@@ -2,10 +2,35 @@
   "name": "@ffw/randstad-react-components",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "build/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "rm -rf build && webpack --mode production"
   },
-  "author": "",
-  "license": "ISC"
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.workingpropeople.com:npm/randstad/ffw-randstad-react-components.git"
+  },
+  "author": {
+    "name": "Petyo Stoyanov",
+    "email": "petyo.stoyanov@ffwagency.com"
+  },
+  "peerDependencies": {
+    "react": "^16",
+    "next": "^8"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.3.4",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/preset-env": "^7.3.4",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.5",
+    "next": "^9.0.2",
+    "react": "^16.8.4",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0"
+  },
+  "dependencies": {
+    "prop-types": "^15.7.2"
+  }
 }
