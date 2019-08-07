@@ -8,8 +8,8 @@ const Checkboxes = ({label, id, options, name, defaultValue, ...props}) => {
     <React.Fragment>
       {options && options.map((option, index) => {
         const optProps = {
-          name: `${name}[${index}]`,
-          id: `${id || name}-${index}`,
+          name: option.name || `${name}[${index}]`,
+          id: option.name || `${id || name}-${index}`,
           value: option.value,
           label: option.label,
           defaultChecked: defaultValue === option.value
