@@ -44,7 +44,7 @@ const Layout = ({registry}) => ChildComponent => {
               </h1>
             </div>
             {media && (
-              <div classname="header__media madia-block">
+              <div className="header__media madia-block">
                 <img src={media.image} alt="" />
               </div>
             )}
