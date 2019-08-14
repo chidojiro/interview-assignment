@@ -20,14 +20,14 @@ const Layout = ({registry}) => ChildComponent => {
     const SubMenu = registry.getComponent('menu', templateSuggestions.subMenu);
     const Breadcrumbs = registry.getComponent('layout', templateSuggestions.breadcrumbs);
 
-    const { media, headline } = header || {};
+    const { media, headline, brand } = header || {};
 
     return (
       <div>
         {ChildComponent.Head && <ChildComponent.Head title={title} {...props} />}
-        <header className="header bg-brand--dark-blue">
+        <header className={`header bg-brand--${brand || 'dark-blue'}`}>
           <div className="platform-placeholder platform-placeholder--navigation text--alternative">
-            <div className="bg-brand--dark-blue">
+            <div className={`bg-brand--${brand || 'dark-blue'}`}>
               <div className="navigation">
                 <div className="wrapper navigation__wrapper">
                   <TopNavigation registry={registry} authenticated={authenticated} />
