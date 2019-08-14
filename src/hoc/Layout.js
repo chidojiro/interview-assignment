@@ -25,7 +25,7 @@ const Layout = ({registry}) => ChildComponent => {
     return (
       <div>
         {ChildComponent.Head && <ChildComponent.Head title={title} {...props} />}
-        <header className="header header--text bg-brand--dark-blue">
+        <header className="header bg-brand--dark-blue">
           <div className="platform-placeholder platform-placeholder--navigation text--alternative">
             <div className="bg-brand--dark-blue">
               <div className="navigation">
