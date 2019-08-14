@@ -38,17 +38,17 @@ const Layout = ({registry}) => ChildComponent => {
             </div>
           </div>
           <div className="header__wrapper wrapper">
-            <div className="header__content header__content--full-width content-block">
+            <div className="header__content content-block">
               <h1 className="content-block__title">
                 <span className="content-block__title-top">{headline || title}</span>
               </h1>
             </div>
+            {media && (
+              <div classname="header__media madia-block">
+                <img src={media.image} alt="" />
+              </div>
+            )}
           </div>
-          {media && (
-            <div classname="header__media madia-block">
-              <img src={media.image} alt="" />
-            </div>
-          )}
         </header>
         <ChildComponent {...props} />
       </div>
