@@ -12,6 +12,7 @@ const components = {
   radioButtons: dynamic(import("../components/form-elements/RadioButtons")),
   checkboxes: dynamic(import("../components/form-elements/Checkboxes")),
   dropdown: dynamic(import("../components/form-elements/Dropdown")),
+  upload: dynamic(import("../components/form-elements/Upload")),
   logo: dynamic(import("../svg/Logo"))
 };
 
@@ -31,7 +32,8 @@ export const registry = {
     'textarea': components.textArea,
     'radio-buttons': components.radioButtons,
     'checkboxes': components.checkboxes,
-    'dropdown': components.dropdown
+    'dropdown': components.dropdown,
+    'upload': components.upload
   },
   svg: {
     logo: components.logo
