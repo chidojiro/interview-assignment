@@ -4,7 +4,7 @@ const Layout = ({registry}) => ChildComponent => {
 
   const TopNavigation = registry.getComponent('layout', 'top-navigation');
 
-  const Component = ({title, breadcrumbs, authenticated, ...props}) => {
+  const Component = ({title, header, breadcrumbs, authenticated, ...props}) => {
 
     const templateSuggestions = {
       subMenu: ['sub'],
@@ -19,6 +19,8 @@ const Layout = ({registry}) => ChildComponent => {
 
     const SubMenu = registry.getComponent('menu', templateSuggestions.subMenu);
     const Breadcrumbs = registry.getComponent('layout', templateSuggestions.breadcrumbs);
+
+    const { media, headline } = header || {};
 
     return (
       <div>
@@ -38,10 +40,15 @@ const Layout = ({registry}) => ChildComponent => {
           <div className="header__wrapper wrapper">
             <div className="header__content header__content--full-width content-block">
               <h1 className="content-block__title">
-                <span className="content-block__title-top">{title}</span>
+                <span className="content-block__title-top">{headline || title}</span>
               </h1>
             </div>
           </div>
+          {media && (
+            <div classname="header__media madia-block">
+              <img src={media.image} alt="" />
+            </div>
+          )}
         </header>
         <ChildComponent {...props} />
       </div>
