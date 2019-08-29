@@ -7,21 +7,21 @@ const Upload = ({type, placeholder, ...props}) => {
     type: 'file'
   };
   return (
-    <div class="upload" data-rs-upload="">
+    <div className="upload" data-rs-upload="">
       <input {...fieldProps} />
-      <div class="upload__content">
-        <div class="upload__text">
-          <span class="icon icon--inline fill--dark-blue-50">
+      <div className="upload__content">
+        <div className="upload__text">
+          <span className="icon icon--inline fill--dark-blue-50">
             <svg>
               <use xlinkHref="human-forward/assets/image/icons.svg#attachment" />
             </svg>
           </span>
-          <span class="upload__add">add files</span>
-          <span class="text--alternative hidden--until-l ">or drop files here</span>
+          <span className="upload__add">add files</span>
+          <span className="text--alternative hidden--until-l ">or drop files here</span>
         </div>
-        <p class="text--alternative">.pdf, .docx, .jpg / max. 10 mb</p>
+        <p className="text--alternative">.pdf, .docx, .jpg / max. 10 mb</p>
       </div>
-      <div class="upload__content upload__content--drop">
+      <div className="upload__content upload__content--drop">
         <span>drop files here</span>
       </div>
     </div>
