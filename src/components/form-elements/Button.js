@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import withFieldGroup from "./FieldGroup";
 
-const Button = ({children, filled, className, ...props}) => {
+const Button = ({children, filled, icon, className, ...props}) => {
   const classes = ['button', className];
   if (filled) classes.push('button--filled');
   if (icon) classes.push('button--icon button--full-width-to-icon');
