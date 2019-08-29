@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import withFieldGroup from "./FieldGroup";
 
 const Button = ({children, filled, icon, className, ...props}) => {
   const classes = ['button', className];
@@ -25,4 +24,4 @@ Button.propTypes = {
 
 Button.displayName = 'Button'
 
-export default withFieldGroup(Button);
+export default Button;
