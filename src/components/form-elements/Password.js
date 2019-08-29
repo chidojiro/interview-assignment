@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import withFieldGroup from "./FieldGroup";
 
-const Password = ({type, placeholder, ...props}) => {
+const Password = ({type, placeholder, suggestions, ...props}) => {
   const fieldProps = {
     type: "password",
     placeholder: placeholder && placeholder.toLowerCase(),
@@ -24,17 +24,6 @@ const Password = ({type, placeholder, ...props}) => {
     </React.Fragment>
   );
 }
-
-Password.suffix = () => (
-  <div className="password-validator__validate-list" data-rs-password-validator-checklist="" hidden="">
-		<ul>
-			<li data-rs-password-validator-validate="minSign">8 characters</li>
-			<li data-rs-password-validator-validate="useChar">1 small letter</li>
-			<li data-rs-password-validator-validate="useUpper">1 capital letter</li>
-			<li data-rs-password-validator-validate="useDigit">1 number</li>
-		</ul>
-	</div>
-);
 
 Password.propTypes = {
   type: PropTypes.string,

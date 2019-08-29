@@ -23,7 +23,7 @@ const withSelectionGroup = ChildComponent => {
           {!required && <span className="form-group__optional">optional</span>}
         </legend>
         <ChildComponent label={label} name={name} id={id || name} disabled={disabled} required={required} {...props} />
-        {ChildComponent.suffix && <ChildComponent.suffix />}
+        {typeof suffix !== 'undefined' && suffix}
         {error && <div className="form-group__feedback">{error}</div>}
         {description && <div className="form-group__message">{description}</div>}
       </fieldset>
