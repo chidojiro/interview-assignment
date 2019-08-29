@@ -1,11 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Button = ({children, filled, icon, plain, className, ...props}) => {
+const Button = ({children, filled, icon, plain, fullWidth, medium, className, ...props}) => {
   const classes = ['button', className];
   if (filled) classes.push('button--filled');
   if (icon) classes.push('button--icon button--full-width-to-icon');
   if (plain) classes.push('button--plain');
+  if (fullWidth) classes.push('button--full-width');
+  if (medium) classes.push('button--m');
 
   const fieldProps = {
     ...props,
