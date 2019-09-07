@@ -30,7 +30,7 @@ const Layout = ({registry}) => ChildComponent => {
             <div className={`bg-brand--${brand || 'dark-blue'}`}>
               <div className="navigation">
                 <div className="wrapper navigation__wrapper">
-                  <TopNavigation registry={registry} authenticated={authenticated} />
+                  <TopNavigation registry={registry} authenticated={authenticated} {...props} />
                   <SubMenu />
                   <Breadcrumbs breadcrumbs={breadcrumbs} />
                 </div>
