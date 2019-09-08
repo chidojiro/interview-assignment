@@ -1,8 +1,8 @@
 import React from "react";
 
-const Block = ({label, children, ...props}) => {
+const Block = ({label, children, className, ...props}) => {
   return (
-    <div className="block">
+    <div className={`block ${className||""}`}>
       <div className="block__wrapper wrapper">
         {label && (
           <div className="block__header">
