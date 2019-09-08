@@ -3,6 +3,8 @@ import React from "react";
 const Layout = ({registry}) => ChildComponent => {
 
   const TopNavigation = registry.getComponent('layout', 'top-navigation');
+  const FooterNavigation = registry.getComponent('layout', 'footer-navigation');
+  const Footer = registry.getComponent('layout', 'footer');
 
   const Component = ({title, header, breadcrumbs, authenticated, ...props}) => {
 
@@ -51,6 +53,12 @@ const Layout = ({registry}) => ChildComponent => {
           </div>
         </header>
         <ChildComponent {...props} />
+        <footer className="footer bg-brand--dark-blue">
+          <div className="footer__wrapper wrapper">
+            <FooterNavigation />
+            <Footer />
+          </div>
+        </footer>
       </div>
     )
   }

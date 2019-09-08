@@ -5,6 +5,8 @@ const components = {
   block: dynamic(import("../components/layout/Block")),
   breadcrumbs: dynamic(import("../components/layout/Breadcrumbs")),
   topNavigation: dynamic(import("../components/layout/TopNavigation")),
+  footer: dynamic(import("../components/layout/Footer")),
+  footerNavigation: dynamic(import("../components/layout/FooterNavigation")),
   input: dynamic(import("../components/form-elements/Input")),
   inputFilter: dynamic(import("../components/form-elements/InputFilter")),
   password: dynamic(import("../components/form-elements/Password")),
@@ -24,7 +26,9 @@ export const registry = {
   layout: {
     'block': components.block,
     'breadcrumbs': components.breadcrumbs,
-    'top-navigation': components.topNavigation
+    'top-navigation': components.topNavigation,
+    'footer': components.footer,
+    'footer-navigation': components.footerNavigation
   },
   form: {
     'input': components.input,
