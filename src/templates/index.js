@@ -7,6 +7,7 @@ const components = {
   topNavigation: dynamic(import("../components/layout/TopNavigation")),
   footer: dynamic(import("../components/layout/Footer")),
   footerNavigation: dynamic(import("../components/layout/FooterNavigation")),
+  toast: dynamic(import("../components/layout/Toast")),
   input: dynamic(import("../components/form-elements/Input")),
   inputFilter: dynamic(import("../components/form-elements/InputFilter")),
   password: dynamic(import("../components/form-elements/Password")),
@@ -28,7 +29,8 @@ export const registry = {
     'breadcrumbs': components.breadcrumbs,
     'top-navigation': components.topNavigation,
     'footer': components.footer,
-    'footer-navigation': components.footerNavigation
+    'footer-navigation': components.footerNavigation,
+    'toast': components.toast
   },
   form: {
     'input': components.input,

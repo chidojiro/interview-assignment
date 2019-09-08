@@ -1,1 +1,0 @@
-exports.ids=[14],exports.modules={122:function(e,r,t){"use strict";t.r(r);var i=t(0),s=t.n(i);r.default=function(){return s.a.createElement("div",{className:"footer__grid divider"})}}};
