@@ -11,6 +11,7 @@ const withFieldGroup = ChildComponent => {
     description,
     error,
     suffix,
+    wrapClassName,
     ...props
   }) => {
     const wrapClass = ['form-group'];
@@ -23,7 +24,7 @@ const withFieldGroup = ChildComponent => {
           {label && label.toLowerCase()}
           {!required && <span className="form-group__optional">optional</span>}
         </label>
-        <div className="form-group__input">
+        <div className={`form-group__input ${wrapClassName || ''}`}>
           <ChildComponent label={label} name={name} id={id || name} disabled={disabled} required={required} {...props} />
         </div>
         {typeof suffix !== 'undefined' && suffix}
