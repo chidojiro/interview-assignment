@@ -48,7 +48,7 @@ const Layout = ({registry}) => ChildComponent => {
           <div className="header__wrapper wrapper">
             <div className={`header__content content-block ${!media && "header__content--full-width"}`}>
               {greeting && (
-                <p class="content-block__eyebrow text--alternative">
+                <p className="content-block__eyebrow text--alternative">
                   <span data-rs-custom-greeting="" ref={addCustomGreetings}></span>
                   , {greeting}
                 </p>
