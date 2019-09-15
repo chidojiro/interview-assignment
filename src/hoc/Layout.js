@@ -55,7 +55,6 @@ const Layout = ({registry}) => ChildComponent => {
                 </p>
               )}
               <h1 className="content-block__title">
-                <span className="content-block__title-top">{headline || title}</span>
                 {subtitle && <span className="content-block__title-bottom text--emphasis">{subtitle}</span>}
               </h1>
             </div>
