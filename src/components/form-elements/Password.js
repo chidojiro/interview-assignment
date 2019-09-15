@@ -2,6 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import withFieldGroup from "./FieldGroup";
 
+import {PasswordVisibility} from '../../orbit/password-visibility';
+
 const Password = ({type, placeholder, suggestions, icon, ...props}) => {
   const fieldProps = {
     type: "password",
@@ -9,15 +11,11 @@ const Password = ({type, placeholder, suggestions, icon, ...props}) => {
     ...props,
   };
 
-  // useEffect(() => {
-  //   const PasswordVisibility = require('../../orbit/password-visibility');
-
-  // })
-
   const addOrbitJS = element => {
     const parent = element.parentElement;
-    console.log('element', element);
-    console.log('parent', parent);
+    if (parent) {
+      PasswordVisibility(parent);
+    }
   }
 
   return (
