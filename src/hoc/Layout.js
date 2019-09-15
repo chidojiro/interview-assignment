@@ -28,7 +28,7 @@ const Layout = ({registry}) => ChildComponent => {
     const addCustomGreetings = element => {
       if (!element) return;
       console.log(element);
-      new CustomGreeting(element);
+      // new CustomGreeting(element);
     }
 
     return (
@@ -50,7 +50,7 @@ const Layout = ({registry}) => ChildComponent => {
             <div className={`header__content content-block ${!media && "header__content--full-width"}`}>
               {greeting && (
                 <p className="content-block__eyebrow text--alternative">
-                  <span data-rs-custom-greeting="" ref={addCustomGreetings}></span>
+                  <span ref={addCustomGreetings} />
                   , {greeting}
                 </p>
               )}
