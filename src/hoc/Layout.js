@@ -22,7 +22,7 @@ const Layout = ({registry}) => ChildComponent => {
     const SubMenu = registry.getComponent('menu', templateSuggestions.subMenu);
     const Breadcrumbs = registry.getComponent('layout', templateSuggestions.breadcrumbs);
 
-    const { media, headline, brand } = header || {};
+    const { media, headline, subtitle, brand } = header || {};
 
     return (
       <div>
@@ -43,6 +43,7 @@ const Layout = ({registry}) => ChildComponent => {
             <div className="header__content content-block">
               <h1 className="content-block__title">
                 <span className="content-block__title-top">{headline || title}</span>
+                {subtitle && <span class="content-block__title-bottom text--emphasis">{subtitle}</span>}
               </h1>
             </div>
             {media && (
