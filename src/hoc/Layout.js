@@ -23,7 +23,7 @@ const Layout = ({registry}) => ChildComponent => {
     const Breadcrumbs = registry.getComponent('layout', templateSuggestions.breadcrumbs);
 
     const { media, headline, subtitle, brand } = header || {};
-    console.log(media, !media && "dasdsa");
+    console.log("=====MEDIA=====", media, !media && "dasdsa");
 
     return (
       <div>
