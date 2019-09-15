@@ -8,9 +8,21 @@ const Password = ({type, placeholder, suggestions, icon, ...props}) => {
     placeholder: placeholder && placeholder.toLowerCase(),
     ...props,
   };
+
+  // useEffect(() => {
+  //   const PasswordVisibility = require('../../orbit/password-visibility');
+
+  // })
+
+  const addOrbitJS = element => {
+    const parent = element.parent;
+    console.log('element', element);
+    console.log('parent', parent);
+  }
+
   return (
     <React.Fragment>
-      <input {...fieldProps} />
+      <input {...fieldProps} ref={addOrbitJS} />
       {icon && (
         <button type="button" data-rs-password-visibility-trigger="" className="button--icon-only show-password">
           <span className="icon">
