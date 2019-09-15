@@ -14,7 +14,7 @@ const Password = ({type, placeholder, suggestions, icon, ...props}) => {
   const addOrbitJS = element => {
     const parent = element.parentElement;
     if (parent) {
-      PasswordVisibility(parent);
+      new PasswordVisibility(parent);
     }
   }
 
