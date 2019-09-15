@@ -27,6 +27,7 @@ const Layout = ({registry}) => ChildComponent => {
 
     const addCustomGreetings = element => {
       if (!element) return;
+      console.log(element);
       new CustomGreeting(element);
     }
 
