@@ -40,10 +40,10 @@ const Layout = ({registry}) => ChildComponent => {
             </div>
           </div>
           <div className="header__wrapper wrapper">
-            <div className="header__content content-block">
+            <div className={`header__content content-block ${!media && "header__content--full-width"}`}>
               <h1 className="content-block__title">
                 <span className="content-block__title-top">{headline || title}</span>
-                {subtitle && <span class="content-block__title-bottom text--emphasis">{subtitle}</span>}
+                {subtitle && <span className="content-block__title-bottom text--emphasis">{subtitle}</span>}
               </h1>
             </div>
             {media && (
