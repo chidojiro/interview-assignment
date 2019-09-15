@@ -4,7 +4,6 @@ import {CustomGreeting} from '../orbit/custom-greeting';
 const Layout = ({registry}) => ChildComponent => {
 
   const TopNavigation = registry.getComponent('layout', 'top-navigation');
-  const FooterNavigation = registry.getComponent('layout', 'footer-navigation');
   const Footer = registry.getComponent('layout', 'footer');
 
   const Component = ({title, header, breadcrumbs, authenticated, ...props}) => {
@@ -12,6 +11,7 @@ const Layout = ({registry}) => ChildComponent => {
     const templateSuggestions = {
       subMenu: ['sub'],
       breadcrumbs: ['breadcrumbs'],
+      footerNav: ['footer-navigation'],
     };
 
     for (let key in templateSuggestions) {
@@ -20,6 +20,7 @@ const Layout = ({registry}) => ChildComponent => {
       });
     }
 
+    const FooterNavigation = registry.getComponent('layout', templateSuggestions.footerNav);
     const SubMenu = registry.getComponent('menu', templateSuggestions.subMenu);
     const Breadcrumbs = registry.getComponent('layout', templateSuggestions.breadcrumbs);
 
