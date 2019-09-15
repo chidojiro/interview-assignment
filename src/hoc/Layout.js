@@ -22,7 +22,7 @@ const Layout = ({registry}) => ChildComponent => {
     const SubMenu = registry.getComponent('menu', templateSuggestions.subMenu);
     const Breadcrumbs = registry.getComponent('layout', templateSuggestions.breadcrumbs);
 
-    const { media, headline, subtitle, brand } = header || {};
+    const { media, headline, subtitle, brand, greeting } = header || {};
 
     return (
       <div>
@@ -41,6 +41,12 @@ const Layout = ({registry}) => ChildComponent => {
           </div>
           <div className="header__wrapper wrapper">
             <div className={`header__content content-block ${!media && "header__content--full-width"}`}>
+              {greeting && (
+                <p class="content-block__eyebrow text--alternative">
+                  <span data-rs-custom-greeting=""></span>
+                  , {greeting}
+                </p>
+              )}
               <h1 className="content-block__title">
                 <span className="content-block__title-top">{headline || title}</span>
                 {subtitle && <span className="content-block__title-bottom text--emphasis">{subtitle}</span>}
