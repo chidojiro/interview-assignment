@@ -13,6 +13,7 @@ const Password = ({type, placeholder, suggestions, validate, preview, icon, ...p
   };
 
   const addOrbitJS = element => {
+    if (!element) return;
     const parent = element.parentElement;
     if (parent && preview) {
       new PasswordVisibility(parent);
