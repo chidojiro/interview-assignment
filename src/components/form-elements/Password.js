@@ -5,7 +5,7 @@ import withFieldGroup from "./FieldGroup";
 import {PasswordVisibility} from '../../orbit/password-visibility';
 import {PasswordValidator} from '../../orbit/password-validator';
 
-const Password = ({type, placeholder, suggestions, validate, visibility, icon, ...props}) => {
+const Password = ({type, placeholder, suggestions, validate, preview, icon, ...props}) => {
   const fieldProps = {
     type: "password",
     placeholder: placeholder && placeholder.toLowerCase(),
@@ -14,7 +14,7 @@ const Password = ({type, placeholder, suggestions, validate, visibility, icon, .
 
   const addOrbitJS = element => {
     const parent = element.parentElement;
-    if (parent && visibility) {
+    if (parent && preview) {
       new PasswordVisibility(parent);
     }
     if (parent && validate) {
