@@ -1,4 +1,5 @@
 import React from "react";
+import {CustomGreeting} from '../orbit/custom-greeting';
 
 const Layout = ({registry}) => ChildComponent => {
 
@@ -24,6 +25,11 @@ const Layout = ({registry}) => ChildComponent => {
 
     const { media, headline, subtitle, brand, greeting } = header || {};
 
+    const addCustomGreetings = element => {
+      if (!element) return;
+      new CustomGreeting(element);
+    }
+
     return (
       <div>
         {ChildComponent.Head && <ChildComponent.Head title={title} {...props} />}
@@ -43,7 +49,7 @@ const Layout = ({registry}) => ChildComponent => {
             <div className={`header__content content-block ${!media && "header__content--full-width"}`}>
               {greeting && (
                 <p class="content-block__eyebrow text--alternative">
-                  <span data-rs-custom-greeting=""></span>
+                  <span data-rs-custom-greeting="" ref={addCustomGreetings}></span>
                   , {greeting}
                 </p>
               )}
