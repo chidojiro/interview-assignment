@@ -1,7 +1,7 @@
 import React from "react";
 import withFieldGroup from "./FieldGroup";
 
-const Upload = ({type, placeholder, ...props}) => {
+const Upload = ({type, placeholder, icon, ...props}) => {
   const fieldProps = {
     ...props,
     type: 'file'
@@ -11,11 +11,11 @@ const Upload = ({type, placeholder, ...props}) => {
       <input {...fieldProps} />
       <div className="upload__content">
         <div className="upload__text">
-          <span className="icon icon--inline fill--dark-blue-50">
-            <svg>
-              <use xlinkHref="human-forward/assets/image/icons.svg#attachment" />
-            </svg>
-          </span>
+          {icon && (
+            <span className="icon icon--inline fill--dark-blue-50">
+              {icon}
+            </span>
+          )}
           <span className="upload__add">add files</span>
           <span className="text--alternative hidden--until-l ">or drop files here</span>
         </div>

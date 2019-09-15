@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import withFieldGroup from "./FieldGroup";
 
-const Dropdown = ({options, ...props}) => {
+const Dropdown = ({options, icon, ...props}) => {
   const iconProps = {
     xlinkHref: "human-forward/assets/image/icons.svg#chevron-down"
   }
@@ -11,11 +11,11 @@ const Dropdown = ({options, ...props}) => {
       <select className="untouched" data-rs-untouched="" {...props}>
         {options.map((opt,index) => <option key={index} value={opt.value}>{opt.label}</option>)}
       </select>
-      <span className="select-arrow icon">
-        <svg>
-          <use {...iconProps} />
-        </svg>
-      </span>
+      {icon && (
+        <span className="select-arrow icon">
+          {icon}
+        </span>
+      )}
     </React.Fragment>
   );
 }
