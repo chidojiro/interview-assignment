@@ -23,7 +23,7 @@ const Layout = ({registry}) => ChildComponent => {
     const SubMenu = registry.getComponent('menu', templateSuggestions.subMenu);
     const Breadcrumbs = registry.getComponent('layout', templateSuggestions.breadcrumbs);
 
-    const { media, headline, subtitle, brand, greeting, size } = header || {};
+    const { media, headline, subtitle, brand, greeting, size, className } = header || {};
 
     const addCustomGreetings = element => {
       if (!element) return;
@@ -33,7 +33,7 @@ const Layout = ({registry}) => ChildComponent => {
     return (
       <div>
         {ChildComponent.Head && <ChildComponent.Head title={title} {...props} />}
-        <header className={`header bg-brand--${brand || 'dark-blue'} ${size && `header--${size}`}`}>
+        <header className={`header bg-brand--${brand || 'dark-blue'} ${size && `header--${size}`} ${className}`}>
           <div className="platform-placeholder platform-placeholder--navigation text--alternative">
             <div className={`bg-brand--${brand || 'dark-blue'}`}>
               <div className="navigation">
