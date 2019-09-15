@@ -15,7 +15,7 @@ const Password = ({type, placeholder, suggestions, icon, ...props}) => {
   // })
 
   const addOrbitJS = element => {
-    const parent = element.parent;
+    const parent = element.parentElement;
     console.log('element', element);
     console.log('parent', parent);
   }
