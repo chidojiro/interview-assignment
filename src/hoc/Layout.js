@@ -55,7 +55,7 @@ const Layout = ({registry}) => ChildComponent => {
                 </p>
               )}
               <h1 className="content-block__title">
-                <span className="content-block__title-top">{headline || title}</span>
+                <span className="content-block__title-top" dangerouslySetInnerHTML={{__html: headline || title}} />
                 {subtitle && <span className="content-block__title-bottom text--emphasis">{subtitle}</span>}
               </h1>
             </div>
