@@ -50,7 +50,7 @@ const Layout = ({registry}) => ChildComponent => {
             <div className={`header__content content-block ${!media && "header__content--full-width"}`}>
               {greeting && (
                 <p className="content-block__eyebrow text--alternative">
-                  <span ref={addCustomGreetings} />
+                  <span  />
                   , {greeting}
                 </p>
               )}
