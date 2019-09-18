@@ -27,7 +27,7 @@ const Password = ({type, placeholder, suggestions, validate, preview, icon, requ
     <React.Fragment>
       <input {...fieldProps} ref={addOrbitJS} />
       {icon && (
-        <button type="button" data-rs-password-visibility-trigger="" className="button--icon-only show-password">
+        <button type="button" data-rs-password-visibility-trigger="" className="button--icon-only show-password" tabIndex="-1">
           <span className="icon">
             {icon}
           </span>
