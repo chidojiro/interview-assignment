@@ -6,7 +6,7 @@ const Breadcrumbs = ({ breadcrumbs }) => (
     <ul className="breadcrumb__list hidden--until-l">
       {breadcrumbs.map((step, index) => (
         <li className="breadcrumb__item" key={index}>
-          {step.uri && <a href={step.url} className="breadcrumb__link">{step.title}</a>}
+          {step.uri && <a href={step.uri} className="breadcrumb__link">{step.title}</a>}
           {!step.uri && step.title}
         </li>
       ))}
