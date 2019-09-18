@@ -17,9 +17,9 @@ const Upload = ({type, placeholder, icon, required, ...props}) => {
             </span>
           )}
           <span className="upload__add">add files</span>
-          <span className="text--alternative hidden--until-l ">or drop files here</span>
+          <span className="text--alternative hidden--until-l "> or drop files here</span>
         </div>
-        <p className="text--alternative">.pdf, .docx, .jpg / max. 10 mb</p>
+        <p className="text--alternative">.pdf, .doc, .docx, .rtf, .txt, .csv, .jpg / max. 3 mb</p>
       </div>
       <div className="upload__content upload__content--drop">
         <span>drop files here</span>
