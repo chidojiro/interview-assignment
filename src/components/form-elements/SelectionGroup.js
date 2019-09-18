@@ -22,7 +22,7 @@ const withSelectionGroup = ChildComponent => {
           {label && label.toLowerCase()}
           {!required && <span className="form-group__optional">optional</span>}
         </legend>
-        <ChildComponent label={label} name={name} id={id || name} disabled={disabled} required={required} {...props} />
+        <ChildComponent label={label} name={name} id={id || `field--${ChildComponent.displayName.toLowerCase()}--${name}`} disabled={disabled} required={required} {...props} />
         {typeof suffix !== 'undefined' && suffix}
         {error && <div className="form-group__feedback">{error}</div>}
         {description && <div className="form-group__message">{description}</div>}
