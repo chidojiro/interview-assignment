@@ -28,11 +28,11 @@ const Upload = ({type, placeholder, icon, closeIcon, required, file, onClear, ..
       </div>
       {file && (
         <ul className="upload-list">
-          <li class="closable upload-list__item " data-rs-file-upload-1="">
-						<a href="#" class="upload-list__link" data-rs-closable-fadeout="">{file.name}</a>
-						<span class="upload-list__info text--alternative" data-rs-closable-fadeout="">{file.size}</span>
-						<button class="button--icon-only upload-list__remove" onClick={onClear}>
-							<span class="icon icon--inline icon--s">
+          <li className="closable upload-list__item " data-rs-file-upload-1="">
+						<a href="#" className="upload-list__link" data-rs-closable-fadeout="">{file.name}</a>
+						<span className="upload-list__info text--alternative" data-rs-closable-fadeout="">{file.size}</span>
+						<button className="button--icon-only upload-list__remove" onClick={onClear}>
+							<span className="icon icon--inline icon--s">
 								{closeIcon}
 							</span>
 						</button>
