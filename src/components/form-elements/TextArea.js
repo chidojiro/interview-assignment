@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import withFieldGroup from "./FieldGroup";
 
-const TextArea = ({name, counter, maxLength, autoResize, placeholder, ...props}) => {
+const TextArea = ({name, counter, maxLength, autoResize, placeholder, required, ...props}) => {
   const fieldProps = {
     name: name,
     placeholder: placeholder && placeholder.toLowerCase(),

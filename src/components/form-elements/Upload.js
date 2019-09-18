@@ -1,7 +1,7 @@
 import React from "react";
 import withFieldGroup from "./FieldGroup";
 
-const Upload = ({type, placeholder, icon, ...props}) => {
+const Upload = ({type, placeholder, icon, required, ...props}) => {
   const fieldProps = {
     ...props,
     type: 'file'

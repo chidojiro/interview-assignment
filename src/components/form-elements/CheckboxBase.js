@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const CheckboxBase = ({name, label, id, ...props}) => {
+const CheckboxBase = ({name, label, id, required, ...props}) => {
   return (
     <div className="form-group__input">
       <label htmlFor={id || name} className="selection-control selection-control--checkbox">

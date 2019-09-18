@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import widthSelectionGroup from "./SelectionGroup";
 import CheckboxBase from "./CheckboxBase";
 
-const Checkboxes = ({label, id, options, name, defaultValue, ...props}) => {
+const Checkboxes = ({label, id, options, name, defaultValue, required, ...props}) => {
   return (
     <React.Fragment>
       {options && options.map((option, index) => {

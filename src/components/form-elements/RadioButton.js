@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const RadioButton = ({name, value, label, ...props}) => {
+const RadioButton = ({name, value, label, required, ...props}) => {
   return (
     <div className="form-group__input">
       <label htmlFor={`${name}-${value}`} className="selection-control selection-control--radio-button">

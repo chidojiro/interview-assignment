@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import withFieldGroup from "./FieldGroup";
 
-const InputFilter = ({type, placeholder, icon, ...props}) => {
+const InputFilter = ({type, placeholder, icon, required, ...props}) => {
   const fieldProps = {
     type: "text",
     placeholder: placeholder && placeholder.toLowerCase(),

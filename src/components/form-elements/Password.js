@@ -5,7 +5,7 @@ import withFieldGroup from "./FieldGroup";
 import {PasswordVisibility} from '../../orbit/password-visibility';
 import {PasswordValidator} from '../../orbit/password-validator';
 
-const Password = ({type, placeholder, suggestions, validate, preview, icon, ...props}) => {
+const Password = ({type, placeholder, suggestions, validate, preview, icon, required, ...props}) => {
   const fieldProps = {
     type: "password",
     placeholder: placeholder && placeholder.toLowerCase(),

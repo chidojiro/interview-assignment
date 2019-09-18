@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import widthSelectionGroup from "./SelectionGroup";
 import RadioButton from "./RadioButton";
 
-const RadioButtons = ({label, options, name, defaultValue, ...props}) => {
+const RadioButtons = ({label, options, name, defaultValue, required, ...props}) => {
   return (
     <React.Fragment>
       {options && options.map((option, index) => {
