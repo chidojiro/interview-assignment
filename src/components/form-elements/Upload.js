@@ -1,7 +1,7 @@
 import React from "react";
 import withFieldGroup from "./FieldGroup";
 
-const Upload = ({type, placeholder, icon, closeIcon, required, file, ...props}) => {
+const Upload = ({type, placeholder, icon, closeIcon, required, file, onClear, ...props}) => {
   const fieldProps = {
     ...props,
     type: 'file'
@@ -31,7 +31,7 @@ const Upload = ({type, placeholder, icon, closeIcon, required, file, ...props}) 
           <li class="closable upload-list__item " data-rs-file-upload-1="">
 						<a href="#" class="upload-list__link" data-rs-closable-fadeout="">{file.name}</a>
 						<span class="upload-list__info text--alternative" data-rs-closable-fadeout="">{file.size}</span>
-						<button class="button--icon-only upload-list__remove" data-rs-closable="data-rs-file-upload-1">
+						<button class="button--icon-only upload-list__remove" onClick={onClear}>
 							<span class="icon icon--inline icon--s">
 								{closeIcon}
 							</span>
