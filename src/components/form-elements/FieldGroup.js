@@ -22,14 +22,18 @@ const withFieldGroup = ChildComponent => {
     if (!wrapProps) wrapProps = {}
     wrapProps = {...wrapProps, className: `form-group__input ${wrapProps.className || ''}`}
 
+    const defaultId = ['field'];
+    if (ChildComponent.displayName) defaultId.push(ChildComponent.displayName.toLowerCase());
+    defaultId.push(name);
+
     return (
       <div className={wrapClass.join(" ")}>
-        <label className="form-group__label" htmlFor={id || `field--${ChildComponent.displayName.toLowerCase()}--${name}`}>
+        <label className="form-group__label" htmlFor={id || defaultId.join('--')}>
           {label && label.toLowerCase()}
           {!required && <span className="form-group__optional">optional</span>}
         </label>
         <div {...wrapProps}>
-          <ChildComponent label={label} name={name} id={id || `field--${ChildComponent.displayName.toLowerCase()}--${name}`} disabled={disabled} required={required} {...props} />
+          <ChildComponent label={label} name={name} id={id || defaultId.join('--')} disabled={disabled} required={required} {...props} />
         </div>
         {typeof suffix !== 'undefined' && suffix}
         {error && <div className="form-group__feedback">{error}</div>}
