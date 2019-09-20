@@ -59,8 +59,8 @@ const Layout = ({registry}) => ChildComponent => {
                 {subtitle && <span className="content-block__title-bottom text--emphasis">{subtitle}</span>}
               </h1>
               {text && (
-                <div class="content-block__split">
-                  <div class="content-block__split-text">
+                <div className="content-block__split">
+                  <div className="content-block__split-text">
                     <p>{text}</p>
                   </div>
                 </div>
