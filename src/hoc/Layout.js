@@ -24,7 +24,7 @@ const Layout = ({registry}) => ChildComponent => {
     const SubMenu = registry.getComponent('menu', templateSuggestions.subMenu);
     const Breadcrumbs = registry.getComponent('layout', templateSuggestions.breadcrumbs);
 
-    const { media, headline, subtitle, brand, greeting, size, className } = header || {};
+    const { media, headline, subtitle, brand, greeting, size, className, text } = header || {};
 
     const addCustomGreetings = element => {
       if (!element) return;
@@ -58,6 +58,13 @@ const Layout = ({registry}) => ChildComponent => {
                 <span className="content-block__title-top" dangerouslySetInnerHTML={{__html: headline || title}} />
                 {subtitle && <span className="content-block__title-bottom text--emphasis">{subtitle}</span>}
               </h1>
+              {text && (
+                <div class="content-block__split">
+                  <div class="content-block__split-text content-block__split-text--s">
+                    <p>{text}</p>
+                  </div>
+                </div>
+              )}
             </div>
             {media && (
               <div className="header__media media-block">
