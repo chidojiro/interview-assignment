@@ -12,6 +12,7 @@ const Layout = ({registry}) => ChildComponent => {
       breadcrumbs: ['breadcrumbs'],
       footerNav: ['footer-navigation'],
       footer: ['footer'],
+      modalNav: ['modal-nav']
     };
 
     for (let key in templateSuggestions) {
@@ -24,6 +25,7 @@ const Layout = ({registry}) => ChildComponent => {
     const Footer = registry.getComponent('layout', templateSuggestions.footer);
     const SubMenu = registry.getComponent('menu', templateSuggestions.subMenu);
     const Breadcrumbs = registry.getComponent('layout', templateSuggestions.breadcrumbs);
+    const ModalNav = registry.getComponent('layout', templateSuggestions.modalNav);
 
     const { media, headline, subtitle, brand, greeting, size, className, text } = header || {};
 
@@ -45,6 +47,7 @@ const Layout = ({registry}) => ChildComponent => {
                   <Breadcrumbs breadcrumbs={breadcrumbs} />
                 </div>
               </div>
+              <ModalNav />
             </div>
           </div>
           <div className="header__wrapper wrapper">
