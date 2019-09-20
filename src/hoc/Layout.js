@@ -60,7 +60,7 @@ const Layout = ({registry}) => ChildComponent => {
               </h1>
               {text && (
                 <div class="content-block__split">
-                  <div class="content-block__split-text content-block__split-text--s">
+                  <div class="content-block__split-text">
                     <p>{text}</p>
                   </div>
                 </div>
