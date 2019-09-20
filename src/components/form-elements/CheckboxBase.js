@@ -13,7 +13,7 @@ const CheckboxBase = ({name, label, id, required, ...props}) => {
             </svg>
           </span>
         </span>
-        <span className="selection-control__label">{label}</span>
+        <span className="selection-control__label" dangerouslySetInnerHTML={{__html: label}} />
       </label>
     </div>
   );
