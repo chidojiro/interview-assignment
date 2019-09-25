@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const CheckboxBase = ({name, label, id, required, ...props}) => {
+const CheckboxBase = ({name, label, id, required, error,  ...props}) => {
   return (
     <div className="form-group__input">
       <label htmlFor={id || name} className="selection-control selection-control--checkbox">
@@ -15,6 +15,7 @@ const CheckboxBase = ({name, label, id, required, ...props}) => {
         </span>
         <span className="selection-control__label" dangerouslySetInnerHTML={{__html: label}} />
       </label>
+      {error && <div className="form-group__feedback">{error}</div>}
     </div>
   );
 }

@@ -12,7 +12,8 @@ const Checkboxes = ({label, id, options, name, defaultValue, required, ...props}
           id: option.name || `${id || name}-${index}`,
           value: option.value,
           label: option.label,
-          defaultChecked: defaultValue === option.value
+          defaultChecked: defaultValue === option.value,
+          error: option.error
         }
         return (
           <CheckboxBase key={index} {...props} {...optProps} />
