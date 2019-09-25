@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 const CheckboxBase = ({name, label, id, required, error,  ...props}) => {
   return (
-    <div className="form-group__input">
+    <div className={`form-group__input ${error && 'form-group--error'}`}>
       <label htmlFor={id || name} className="selection-control selection-control--checkbox">
         <span className="selection-control__input">
           <input {...props} id={id || name} name={name} type="checkbox" />
