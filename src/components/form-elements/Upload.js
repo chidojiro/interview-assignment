@@ -20,7 +20,7 @@ const Upload = ({type, placeholder, icon, closeIcon, required, file, onClear, ..
             <span className="upload__add">add files</span>
             <span className="text--alternative hidden--until-l "> or drop files here</span>
           </div>
-          <p className="text--alternative">.pdf, .doc, .docx, .rtf, .txt, .csv, .jpg / max. 3 mb</p>
+          <p className="text--alternative">.pdf, .doc, .docx, .rtf, .txt, .csv, .jpg / max. 8 mb</p>
         </div>
         <div className="upload__content upload__content--drop">
           <span>drop files here</span>
@@ -30,7 +30,7 @@ const Upload = ({type, placeholder, icon, closeIcon, required, file, onClear, ..
         <ul className="upload-list">
           <li className="closable upload-list__item " data-rs-file-upload-1="">
 						<a href="#" className="upload-list__link" data-rs-closable-fadeout="">{file.name}</a>
-						<span className="upload-list__info text--alternative" data-rs-closable-fadeout="">{file.size}</span>
+						<span className="upload-list__info text--alternative" data-rs-closable-fadeout="" />
 						<button className="button--icon-only upload-list__remove" onClick={onClear}>
 							<span className="icon icon--inline icon--s">
 								{closeIcon}
