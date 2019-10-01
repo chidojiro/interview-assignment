@@ -22,9 +22,6 @@ const Upload = ({type, placeholder, icon, closeIcon, required, file, onClear, ..
           </div>
           <p className="text--alternative">.pdf, .doc, .docx, .rtf, .txt, .csv, .jpg / max. 8 mb</p>
         </div>
-        <div className="upload__content upload__content--drop">
-          <span>drop files here</span>
-        </div>
       </div>
       {file && (
         <ul className="upload-list">
