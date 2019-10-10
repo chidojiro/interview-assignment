@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import { Toast as Orbit } from "../../orbit/components/toast";
 
 const Toast = ({message, onClose, show, icon}) => {
   const [active, setActive] = useState(show);
@@ -14,8 +15,12 @@ const Toast = ({message, onClose, show, icon}) => {
     classes.push('toast--active');
   }
 
+  const refferenced = element => {
+    new Orbit(element);
+  }
+
   return (
-    <div className={classes.join(' ')} data-rs-toast="3" data-rs-toast-3="">
+    <div className={classes.join(' ')} data-rs-toast="3" data-rs-toast-3="" ref={refferenced}>
       <p className="toast__message">{message}</p>
       <button className="button--icon-only" data-rs-closable="data-rs-toast-3" onClick={onClose}>
         {icon && (
