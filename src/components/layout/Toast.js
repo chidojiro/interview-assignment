@@ -1,27 +1,23 @@
 import React, {useState, useEffect} from "react";
-import { default as Orbit } from "../../orbit/components/toast";
 
 const Toast = ({message, onClose, show, icon}) => {
-  // const [active, setActive] = useState(show);
+  const [active, setActive] = useState(show);
 
-  // useEffect(() => {
-  //   setActive(show);
-  // }, [show]);
+  useEffect(() => {
+    setActive(show);
+  }, [show]);
 
   const classes = ['toast'];
 
-  // if (active) {
-  //   classes.push('show');
-  //   classes.push('toast--active');
-  // }
-
-  const refferenced = element => {
-    if (!element) return;
-    new Orbit(element);
+  if (active) {
+    classes.push('show');
+    classes.push('toast--active');
+  } else {
+    classes.push('closable--closed');
   }
 
   return (
-    <div className={classes.join(' ')} data-rs-toast="3" data-rs-toast-3="" ref={refferenced}>
+    <div className={classes.join(' ')} data-rs-toast="3" data-rs-toast-3="">
       <p className="toast__message">{message}</p>
       <button className="button--icon-only" data-rs-closable="data-rs-toast-3" onClick={onClose}>
         {icon && (
