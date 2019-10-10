@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import withFieldGroup from "./FieldGroup";
 
-const Dropdown = ({options, icon, required, onChange, ...props}) => {
+const Dropdown = ({options, icon, required, onChange, defaultValue, ...props}) => {
   const iconProps = {
     xlinkHref: "human-forward/assets/image/icons.svg#chevron-down"
   }
@@ -20,7 +20,7 @@ const Dropdown = ({options, icon, required, onChange, ...props}) => {
 
   return (
     <React.Fragment>
-      <select className="untouched" data-rs-untouched="" onChange={updateValue} {...props}>
+      <select className={(defaultValue === '_none' || defaultValue === null || defaultValue === '') && 'untouched'} data-rs-untouched="" onChange={updateValue} defaultValue={defaultValue} {...props}>
         {options.map((opt,index) => <option key={index} value={opt.value}>{opt.label}</option>)}
       </select>
       {icon && (
