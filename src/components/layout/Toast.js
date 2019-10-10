@@ -1,21 +1,22 @@
 import React, {useState, useEffect} from "react";
-import { Toast as Orbit } from "../../orbit/components/toast";
+import { default as Orbit } from "../../orbit/components/toast";
 
 const Toast = ({message, onClose, show, icon}) => {
-  const [active, setActive] = useState(show);
+  // const [active, setActive] = useState(show);
 
-  useEffect(() => {
-    setActive(show);
-  }, [show]);
+  // useEffect(() => {
+  //   setActive(show);
+  // }, [show]);
 
   const classes = ['toast'];
 
-  if (active) {
-    classes.push('show');
-    classes.push('toast--active');
-  }
+  // if (active) {
+  //   classes.push('show');
+  //   classes.push('toast--active');
+  // }
 
   const refferenced = element => {
+    if (!element) return;
     new Orbit(element);
   }
 
