@@ -1,5 +1,4 @@
 import React from "react";
-import {CustomGreeting} from '../orbit/custom-greeting';
 
 const Layout = ({registry}) => ChildComponent => {
 
@@ -12,7 +11,8 @@ const Layout = ({registry}) => ChildComponent => {
       breadcrumbs: ['breadcrumbs'],
       footerNav: ['footer-navigation'],
       footer: ['footer'],
-      modalNav: ['modal-nav']
+      modalNav: ['modal-nav'],
+      greeting: ['greeting']
     };
 
     for (let key in templateSuggestions) {
@@ -26,13 +26,9 @@ const Layout = ({registry}) => ChildComponent => {
     const SubMenu = registry.getComponent('menu', templateSuggestions.subMenu);
     const Breadcrumbs = registry.getComponent('layout', templateSuggestions.breadcrumbs);
     const ModalNav = registry.getComponent('layout', templateSuggestions.modalNav);
+    const Greeting = registry.getComponent('layout', templateSuggestions.greeting);
 
     const { media, headline, subtitle, brand, greeting, size, className, text } = header || {};
-
-    const addCustomGreetings = element => {
-      if (!element) return;
-      new CustomGreeting(element);
-    }
 
     return (
       <div>
@@ -52,12 +48,7 @@ const Layout = ({registry}) => ChildComponent => {
           </div>
           <div className="header__wrapper wrapper">
             <div className={`header__content content-block ${!media && "header__content--full-width"}`}>
-              {greeting && (
-                <p className="content-block__eyebrow text--alternative">
-                  <span ref={addCustomGreetings} />
-                  , {greeting}
-                </p>
-              )}
+              <Greeting greeting={greeting} strings={props.greetingStrings}/>
               <h1 className="content-block__title">
                 <span className="content-block__title-top" dangerouslySetInnerHTML={{__html: headline || title}} />
                 {subtitle && <span className="content-block__title-bottom text--emphasis">{subtitle}</span>}

@@ -17,7 +17,8 @@ const components = {
   dropdown: dynamic(import("../components/form-elements/Dropdown")),
   upload: dynamic(import("../components/form-elements/Upload")),
   logo: dynamic(import("../svg/Logo")),
-  button: dynamic(import("../components/form-elements/Button"))
+  button: dynamic(import("../components/form-elements/Button")),
+  greeting: dynamic(import("../components/layout/Greeting")),
 };
 
 export const registry = {
@@ -30,7 +31,8 @@ export const registry = {
     'top-navigation': components.topNavigation,
     'footer': components.footer,
     'footer-navigation': components.footerNavigation,
-    'toast': components.toast
+    'toast': components.toast,
+    'greeting': components.greeting
   },
   form: {
     'input': components.input,
