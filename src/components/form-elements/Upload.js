@@ -1,7 +1,7 @@
 import React from "react";
 import withFieldGroup from "./FieldGroup";
 
-const Upload = ({type, placeholder, icon, closeIcon, required, file, onClear, ...props}) => {
+const Upload = ({type, placeholder, icon, closeIcon, required, file, onClear, uploadText, uploadTextAternative, ...props}) => {
   const fieldProps = {
     ...props,
     type: 'file'
@@ -17,8 +17,8 @@ const Upload = ({type, placeholder, icon, closeIcon, required, file, onClear, ..
                 {icon}
               </span>
             )}
-            <span className="upload__add">add files</span>
-            <span className="text--alternative hidden--until-l "> or drop files here</span>
+            <span className="upload__add">{uploadText ? uploadText : 'add files'}</span>
+            <span className="text--alternative hidden--until-l "> {uploadTextAternative ? uploadTextAternative : 'or drop files here'}</span>
           </div>
           <p className="text--alternative">.pdf, .doc, .docx, .rtf, .txt, .csv, .jpg / max. 8 mb</p>
         </div>
