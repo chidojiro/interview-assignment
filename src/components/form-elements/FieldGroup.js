@@ -12,6 +12,7 @@ const withFieldGroup = ChildComponent => {
     error,
     suffix,
     wrapProps,
+    optionalLabel,
     ...props
   }) => {
     const wrapClass = ['form-group'];
@@ -26,11 +27,13 @@ const withFieldGroup = ChildComponent => {
     if (ChildComponent.displayName) defaultId.push(ChildComponent.displayName.toLowerCase());
     defaultId.push(name);
 
+    if (!optionalLabel) optionalLabel = "optional";
+
     return (
       <div className={wrapClass.join(" ")}>
         <label className="form-group__label" htmlFor={id || defaultId.join('--')}>
           {label && label.toLowerCase()}
-          {!required && <span className="form-group__optional"> optional</span>}
+          {!required && <span className="form-group__optional"> { optionalLabel }</span>}
         </label>
         <div {...wrapProps}>
           <ChildComponent label={label} name={name} id={id || defaultId.join('--')} disabled={disabled} required={required} {...props} />
