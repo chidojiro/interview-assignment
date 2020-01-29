@@ -47,7 +47,7 @@ const Layout = ({registry}) => ChildComponent => {
             </div>
           </div>
           <div className="header__wrapper wrapper">
-            <div className={`header__content content-block ${!media && "header__content--full-width"}`}>
+            <div className={`header__content header__content--l content-block ${!media && "header__content--full-width"}`}>
               <Greeting greeting={greeting} strings={props.greetingStrings}/>
               <h1 className="content-block__title">
                 <span className="content-block__title-top" dangerouslySetInnerHTML={{__html: headline || title}} />
