@@ -1,11 +1,13 @@
 import React from "react";
 import withFieldGroup from "./FieldGroup";
 
-const Upload = ({type, placeholder, icon, closeIcon, required, file, onClear, uploadText, uploadTextAternative, ...props}) => {
+const Upload = ({type, placeholder, icon, closeIcon, required, file, onClear, accept, uploadText, uploadTextAternative, ...props}) => {
   const fieldProps = {
     ...props,
     type: 'file'
   };
+
+  const fileExtentions = accept ? accept : ".pdf, .doc, .docx, .rtf, .txt, .csv, .jpg";
   return (
     <React.Fragment>
       <div className="upload" data-rs-upload="">
@@ -20,7 +22,7 @@ const Upload = ({type, placeholder, icon, closeIcon, required, file, onClear, up
             <span className="upload__add">{uploadText ? uploadText : 'add files'}</span>
             <span className="text--alternative hidden--until-l "> {uploadTextAternative ? uploadTextAternative : 'or drop files here'}</span>
           </div>
-          <p className="text--alternative">.pdf, .doc, .docx, .rtf, .txt, .csv, .jpg / max. 8 mb</p>
+          <p className="text--alternative">{fileExtentions} / max. 8 mb</p>
         </div>
       </div>
       {file && (
