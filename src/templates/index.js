@@ -19,6 +19,7 @@ const components = {
   logo: dynamic(import("../svg/Logo")),
   button: dynamic(import("../components/form-elements/Button")),
   greeting: dynamic(import("../components/layout/Greeting")),
+  modal: dynamic(import("../components/layout/Modal")),
 };
 
 export const registry = {
@@ -32,7 +33,8 @@ export const registry = {
     'footer': components.footer,
     'footer-navigation': components.footerNavigation,
     'toast': components.toast,
-    'greeting': components.greeting
+    'greeting': components.greeting,
+    'modal': components.modal,
   },
   form: {
     'input': components.input,
