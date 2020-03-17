@@ -22,7 +22,7 @@ const withSelectionGroup = ChildComponent => {
     return (
       <fieldset className={wrapClass.join(" ")}>
         <legend className="form-group__label">
-          {label && label.toLowerCase()}
+          {label}
           {!required && <span className="form-group__optional"> optional</span>}
         </legend>
         <ChildComponent label={label} name={name} id={id || defaultId.join('--')} disabled={disabled} required={required} {...props} />
