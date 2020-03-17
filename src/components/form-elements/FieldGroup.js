@@ -32,7 +32,7 @@ const withFieldGroup = ChildComponent => {
     return (
       <div className={wrapClass.join(" ")}>
         <label className="form-group__label" htmlFor={id || defaultId.join('--')}>
-          {label && label.toLowerCase()}
+          {label && label}
           {!required && <span className="form-group__optional"> { optionalLabel }</span>}
         </label>
         <div {...wrapProps}>
