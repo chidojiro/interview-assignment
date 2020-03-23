@@ -1,22 +1,28 @@
-import React from "react";
+import React, {useEffect, useRef} from "react";
 import { Modal as ModalJS } from '../../orbit/components/modal'
 
 const Modal = ({ title, children, onClose, footer, iconPath }) => {
 
-  const addOrbitJS = element => {
-    if (!element) return;
-    const ModalJSInit = new ModalJS(element);
+  const modalRef = useRef()
 
+  useEffect(() => {
+    const ModalJSInit = new ModalJS(modalRef.current);
     ModalJSInit.openModal(true)
 
-    element.addEventListener('ModalClosed', () => {
+    // Handle X button event.
+    modalRef.current.addEventListener('ModalClosed', () => {
       onClose()
     })
-  }
+
+    return () => {
+      ModalJSInit.closeModal(false)
+    }
+
+  },[])
 
   return (
     <div>
-      <div className="modal" ref={addOrbitJS} data-rs-modal>
+      <div className="modal" ref={modalRef} data-rs-modal>
         <div className="modal__dialog" data-rs-modal-dialog>
           <div className="modal__header" data-rs-modal-header>
             <h3 className="modal__title">{title}</h3>
