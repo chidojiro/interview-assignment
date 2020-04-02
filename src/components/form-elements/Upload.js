@@ -2,12 +2,14 @@ import React from "react";
 import withFieldGroup from "./FieldGroup";
 
 const Upload = ({type, placeholder, icon, closeIcon, required, file, onClear, accept, uploadText, uploadTextAternative, ...props}) => {
+  const fileExtentions = accept ? accept : ".pdf, .doc, .docx, .rtf, .txt, .csv, .jpg";
+
   const fieldProps = {
     ...props,
-    type: 'file'
+    type: 'file',
+    accept: fileExtentions
   };
 
-  const fileExtentions = accept ? accept : ".pdf, .doc, .docx, .rtf, .txt, .csv, .jpg";
   return (
     <React.Fragment>
       <div className="upload" data-rs-upload="">
