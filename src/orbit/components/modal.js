@@ -152,8 +152,7 @@ export class Modal {
 		document.querySelector('html').classList.remove(this.classes.modalOpen);
 		this.element.setAttribute(this.attributes.hidden, '');
 		this.element.classList.remove(this.classes.modalActive);
-		var event = new Event("ModalClosed");
-		this.element.dispatchEvent(event)
+		ElementHelpers.triggerEvent(this.element, "ModalClosed")
 	}
 
 	/**
