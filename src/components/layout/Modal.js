@@ -1,7 +1,7 @@
 import React, {useEffect, useRef} from "react";
 import { Modal as ModalJS } from '../../orbit/components/modal'
 
-const Modal = ({ title, children, onClose, footer, iconPath }) => {
+const Modal = ({ title, children, onClose, footer, iconPath, footerDivider=true }) => {
 
   const modalRef = useRef()
 
@@ -40,7 +40,7 @@ const Modal = ({ title, children, onClose, footer, iconPath }) => {
             </button>
           </div>
           <div className="modal__main modal__main--overflow" data-rs-modal-main>{children}</div>
-          {footer && <div className="modal__footer divider divider--top" data-rs-modal-footer>{footer}</div>}
+          {footer && <div className={`modal__footer ${footerDivider ? 'divider divider--top' : ''}`} data-rs-modal-footer>{footer}</div>}
         </div>
       </div>
     </div>
