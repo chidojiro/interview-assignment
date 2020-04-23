@@ -21,7 +21,9 @@ const components = {
   button: dynamic(import("../components/form-elements/Button")),
   greeting: dynamic(import("../components/layout/Greeting")),
   modal: dynamic(import("../components/layout/Modal")),
+  autoSuggest: dynamic(import("../components/form-elements/AutoSuggest")),
 };
+
 
 export const registry = {
   system: {
@@ -47,7 +49,8 @@ export const registry = {
     'checkboxes': components.checkboxes,
     'dropdown': components.dropdown,
     'upload': components.upload,
-    'button': components.button
+    'button': components.button,
+    'auto-suggest': components.autoSuggest
   },
   svg: {
     logo: components.logo

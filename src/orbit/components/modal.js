@@ -104,7 +104,11 @@ export class Modal {
 		});
 		// if clicked outside modal/on overlay close/toggle modal
 		this.element.addEventListener('click', (clickEvent) => {
-			if (!this.doNotCloseOnClickOverlay && clickEvent.target !== this.dialog && !this.dialog.contains(clickEvent.target)) {
+			var targetAttr = clickEvent.target.hasAttribute('data-rs-auto-suggest-list-value');
+			var parentTargetAttr = clickEvent.target.parentElement ? clickEvent.target.parentElement.hasAttribute('data-rs-auto-suggest-list-value') : false;
+			var closeModal = !(targetAttr || parentTargetAttr);
+
+			if (!this.doNotCloseOnClickOverlay && clickEvent.target !== this.dialog && !this.dialog.contains(clickEvent.target) && closeModal) {
 				this.closeModal(!this.disableHistory);
 				// document.body.style.marginTop = `${this.bodyMarginTop}px`;
 				// window.scrollTo(0, this.scrollPosition);
