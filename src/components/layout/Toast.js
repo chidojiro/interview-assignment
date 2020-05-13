@@ -19,7 +19,7 @@ const Toast = ({ message, onClose, show, icon, links = [] }) => {
   return (
     <div className={classes.join(' ')} data-rs-toast="3" data-rs-toast-3="">
       <p className="toast__message">{message}</p>
-      {links && <div className="toast__cta">
+      {links.length > 0 && <div className="toast__cta">
         {links.map((link, key) => {
           const { text, classes = [], ...attr } = link;
           classes.push('toast__cta-link')
