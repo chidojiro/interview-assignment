@@ -1,10 +1,10 @@
 import React from "react";
 
-const Layout = ({registry}) => ChildComponent => {
+const Layout = ({ registry }) => ChildComponent => {
 
   const TopNavigation = registry.getComponent('layout', 'top-navigation');
 
-  const Component = ({title, header, breadcrumbs, authenticated, ...props}) => {
+  const Component = ({ title, header, breadcrumbs, authenticated, ...props }) => {
 
     const templateSuggestions = {
       subMenu: ['sub'],
@@ -40,7 +40,7 @@ const Layout = ({registry}) => ChildComponent => {
                 <div className="wrapper navigation__wrapper">
                   <TopNavigation registry={registry} authenticated={authenticated} {...props} />
                   <SubMenu />
-                  <Breadcrumbs breadcrumbs={breadcrumbs} />
+                  {!props.hideBreadCrumbs && <Breadcrumbs breadcrumbs={breadcrumbs} />}
                 </div>
               </div>
               <ModalNav />
@@ -48,9 +48,9 @@ const Layout = ({registry}) => ChildComponent => {
           </div>
           <div className="header__wrapper wrapper">
             <div className={`header__content header__content--l content-block ${!media && "header__content--full-width"}`}>
-              <Greeting greeting={greeting} strings={props.greetingStrings}/>
+              <Greeting greeting={greeting} strings={props.greetingStrings} />
               <h1 className="content-block__title">
-                <span className="content-block__title-top" dangerouslySetInnerHTML={{__html: headline || title}} />
+                <span className="content-block__title-top" dangerouslySetInnerHTML={{ __html: headline || title }} />
                 {subtitle && <span className="content-block__title-bottom text--emphasis">{subtitle}</span>}
               </h1>
               {text && (
