@@ -16,8 +16,8 @@ const Block = ({
           <div className="block__header">
             <h2 className="block__title">{label}</h2>
             {blockControl && (
-              <a href="#" onClick={blockControl.cb} class="block__control">
-                <span class="icon icon--inline fill-brand--blue">
+              <a href="#" onClick={blockControl.cb} className="block__control">
+                <span className="icon icon--inline fill-brand--blue">
                   <svg>
                     <use xlinkHref={`${blockControl.path}/icons.svg#add`}></use>
                   </svg>
