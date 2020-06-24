@@ -103,7 +103,7 @@ export class Modal {
 			// window.scrollTo(0, this.scrollPosition);
 		});
 		// if clicked outside modal/on overlay close/toggle modal
-		this.element.addEventListener('click', (clickEvent) => {
+		this.element.addEventListener('mousedown', (clickEvent) => {
 			var targetAttr = clickEvent.target.hasAttribute('data-rs-auto-suggest-list-value');
 			var parentTargetAttr = clickEvent.target.parentElement ? clickEvent.target.parentElement.hasAttribute('data-rs-auto-suggest-list-value') : false;
 			var closeModal = !(targetAttr || parentTargetAttr);
