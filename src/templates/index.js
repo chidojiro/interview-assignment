@@ -22,6 +22,7 @@ const components = {
   greeting: dynamic(import("../components/layout/Greeting")),
   modal: dynamic(import("../components/layout/Modal")),
   autoSuggest: dynamic(import("../components/form-elements/AutoSuggest")),
+  datePicker: dynamic(import("../components/form-elements/DatePicker")),
 };
 
 
@@ -50,7 +51,8 @@ export const registry = {
     'dropdown': components.dropdown,
     'upload': components.upload,
     'button': components.button,
-    'auto-suggest': components.autoSuggest
+    'auto-suggest': components.autoSuggest,
+    'date-picker-raw': components.datePicker
   },
   svg: {
     logo: components.logo
