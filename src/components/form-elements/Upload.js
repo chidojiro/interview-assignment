@@ -1,7 +1,7 @@
 import React from "react";
 import withFieldGroup from "./FieldGroup";
 
-const Upload = ({type, placeholder, icon, closeIcon, required, file, onClear, accept, uploadText, uploadTextAternative, ...props}) => {
+const Upload = ({type, placeholder, icon, closeIcon, required, file, onClear, accept, uploadText, uploadTextAternative, isImageUpload, ...props}) => {
   const fileExtentions = accept ? accept : ".pdf, .doc, .docx, .rtf, .txt, .csv, .jpg";
 
   const fieldProps = {
@@ -10,9 +10,11 @@ const Upload = ({type, placeholder, icon, closeIcon, required, file, onClear, ac
     accept: fileExtentions
   };
 
+  const hideUploads = file && isImageUpload
+
   return (
     <React.Fragment>
-      <div className="upload" data-rs-upload="">
+      {!hideUploads && <div className="upload" data-rs-upload="">
         <input {...fieldProps} />
         <div className="upload__content">
           <div className="upload__text">
@@ -26,7 +28,7 @@ const Upload = ({type, placeholder, icon, closeIcon, required, file, onClear, ac
           </div>
           <p className="text--alternative">{fileExtentions} / max. 8 mb</p>
         </div>
-      </div>
+      </div>}
       {file && (
         <ul className="upload-list">
           <li className="closable upload-list__item " data-rs-file-upload-1="">
