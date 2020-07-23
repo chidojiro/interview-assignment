@@ -20,7 +20,7 @@ const Dropdown = ({options, icon, required, onChange, defaultValue, ...props}) =
 
   return (
     <React.Fragment>
-      <select className={(!defaultValue || defaultValue === '_none' || defaultValue === null || defaultValue === '') ? 'untouched' : undefined} data-rs-untouched="" onChange={updateValue} defaultValue={defaultValue} {...props}>
+      <select className={(!defaultValue || defaultValue === '_none') ? 'untouched' : undefined} data-rs-untouched="" onChange={updateValue} defaultValue={defaultValue} {...props}>
         {options.map((opt,index) => <option key={index} value={opt.value}>{opt.label}</option>)}
       </select>
       {icon && (
