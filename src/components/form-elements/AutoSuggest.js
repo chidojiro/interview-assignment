@@ -48,7 +48,6 @@ const AutoSuggest = ({
         name={name}
         type="text"
         value={input}
-        required={required}
         onChange={on_change}
       />
       <ul className="select-menu__list">
