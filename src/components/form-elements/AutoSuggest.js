@@ -38,9 +38,9 @@ const AutoSuggest = ({
   };
 
   useEffect(() => {
-    if (!ref.current) return;
 
     document.addEventListener('click', (e) => {
+      if (!ref.current) return;
       // if clicked outside input field or list, close the list and do not select item
 			if (!ref.current.contains(e.target) && ref.current.classList.contains('select-menu--open')) {
         set_menu_open(false)
