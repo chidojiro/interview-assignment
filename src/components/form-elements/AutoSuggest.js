@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import withFieldGroup from "./FieldGroup";
 
@@ -16,6 +16,7 @@ const AutoSuggest = ({
 }) => {
   const [input, set_input] = useState(defaultValue);
   const [menu_open, set_menu_open] = useState(false);
+  const ref = useRef();
 
   const on_change = (e) => {
     set_menu_open(true);
@@ -36,8 +37,19 @@ const AutoSuggest = ({
     setValue(text);
   };
 
+  useEffect(() => {
+    if (!ref.current) return;
+
+    document.addEventListener('click', (e) => {
+      // if clicked outside input field or list, close the list and do not select item
+			if (!ref.current.contains(e.target) && ref.current.classList.contains('select-menu--open')) {
+        set_menu_open(false)
+			}
+		})
+  }, [])
+
   return (
-    <div
+    <div ref={ref}
       className={`form-group__input ${
         menu_open === true ? "select-menu--open" : ""
       }`}
