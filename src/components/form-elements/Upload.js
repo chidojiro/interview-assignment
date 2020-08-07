@@ -1,7 +1,7 @@
 import React from "react";
 import withFieldGroup from "./FieldGroup";
 
-const Upload = ({type, placeholder, icon, closeIcon, required, file, onClear, accept, uploadText, uploadTextAternative, isImageUpload, ...props}) => {
+const Upload = ({type, placeholder, icon, closeIcon, required, file, onClear, accept, uploadText, uploadTextAternative, maxSizeText, isImageUpload, ...props}) => {
   const fileExtentions = accept ? accept : ".pdf, .doc, .docx, .rtf, .txt, .csv, .jpg";
 
   const fieldProps = {
@@ -23,10 +23,10 @@ const Upload = ({type, placeholder, icon, closeIcon, required, file, onClear, ac
                 {icon}
               </span>
             )}
-            <span className="upload__add">{uploadText ? uploadText : 'add files'}</span>
-            <span className="text--alternative hidden--until-l "> {uploadTextAternative ? uploadTextAternative : 'or drop files here'}</span>
+            <span className="upload__add">{uploadText || 'add files'}</span>
+            <span className="text--alternative hidden--until-l "> {uploadTextAternative || 'or drop files here'}</span>
           </div>
-          <p className="text--alternative">{fileExtentions} / max. 8 mb</p>
+          <p className="text--alternative">{fileExtentions} / {maxSizeText || 'max. 8 mb'}</p>
         </div>
       </div>}
       {file && (
