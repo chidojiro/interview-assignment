@@ -24,7 +24,7 @@ const DatePicker = ({orbitLib, lang="", iconPath, onChange, name, defaultValue, 
     window.addEventListener('onFlatDatePickerChange', () => {
       if (!ref.current) return;
 
-      const target = ref.current.querySelector('.flatpickr-mobile').length > 0 ? ref.current.querySelector('.flatpickr-mobile') : ref.current.querySelector('input.input');
+      const target = ref.current.querySelector('input.input');
       // Target name should be same as data-rs-flat-datepicker-input input name to allow on change event.
       target.name = name;
       onChange({
