@@ -19,6 +19,7 @@ const AutoSuggest = ({
   const ref = useRef();
 
   const on_change = (e) => {
+    console.log(e.target.value);
     set_menu_open(true);
     set_input(e.target.value);
     changeCb(e.target.value);
@@ -65,6 +66,11 @@ const AutoSuggest = ({
       <ul className="select-menu__list">
         {values.length > 0 &&
           values.map((item, i) => {
+            let regex = new RegExp(input, 'gi');
+            let response = item.replace(regex, function (value) {
+              return `<mark>${value}</mark>`;
+            });
+
             return (
               <li
                 className="select-menu__item"
@@ -72,9 +78,8 @@ const AutoSuggest = ({
                 onMouseEnter={on_item_mouse_enter}
                 onMouseLeave={on_item_mouse_leave}
                 onClick={on_item_click}
-              >
-                {item}
-              </li>
+                dangerouslySetInnerHTML={{ __html: response}}
+              />
             );
           })}
       </ul>
