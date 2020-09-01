@@ -1,0 +1,27 @@
+stages:
+  - build
+
+old_account_build:
+  stage: build
+  allow_failure: false
+  only:
+    - master
+  tags:
+      - randstad-bluex
+  script:
+    - git remote add codecommit /fake-temp-url || true
+    - git remote set-url codecommit ssh://git-codecommit.eu-west-1.amazonaws.com/v1/repos/git-df-prd-bluex-lib-react-components
+    - git push codecommit HEAD:$CI_COMMIT_REF_NAME
+
+new_account_build:
+  stage: build
+  allow_failure: false
+  only:
+    - master
+  tags:
+    - randstad-bluex-new
+  script:
+    - git remote add codecommit /fake-temp-url || true
+    - git remote set-url codecommit ssh://git-codecommit.eu-west-1.amazonaws.com-new/v1/repos/git-bluex-prd-bx-lib-react-components
+    - git push codecommit HEAD:$CI_COMMIT_REF_NAME
+
