@@ -66,8 +66,9 @@ const AutoSuggest = ({
       <ul className="select-menu__list">
         {values.length > 0 &&
           values.map((item, i) => {
-            let regex = new RegExp(input, 'gi');
-            let response = item.replace(regex, function (value) {
+            const escaped = input.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+            const regex = new RegExp(escaped, 'gi');
+            const response = item.replace(regex, value => {
               return `<mark>${value}</mark>`;
             });
 
