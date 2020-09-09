@@ -7,6 +7,7 @@ const Block = ({
   size,
   align,
   blockControl,
+  headerExtra,
   ...props
 }) => {
   return (
@@ -25,6 +26,7 @@ const Block = ({
                 {blockControl.label}
               </a>
             )}
+            {headerExtra}
           </div>
         )}
         <div
