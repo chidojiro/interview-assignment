@@ -10,9 +10,11 @@ const withSelectionGroup = ChildComponent => {
     disabled,
     description,
     error,
+    formGroupClass,
     ...props
   }) => {
     const wrapClass = ['form-group', 'form-group--selection-control'];
+    if (formGroupClass) wrapClass.push(formGroupClass);
     if (error) wrapClass.push('form-group--error');
     if (disabled) wrapClass.push('form-group--disabled');
     if (ChildComponent.displayName) wrapClass.push(`form-group--${ChildComponent.displayName.toLowerCase()}`)

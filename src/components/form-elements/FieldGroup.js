@@ -13,10 +13,11 @@ const withFieldGroup = ChildComponent => {
     suffix,
     wrapProps,
     optionalLabel,
-    formGroupClass = [],
+    formGroupClass,
     ...props
   }) => {
-    const wrapClass = [...formGroupClass, 'form-group'];
+    const wrapClass = ['form-group'];
+    if (formGroupClass) wrapClass.push(formGroupClass);
     if (error) wrapClass.push('form-group--error');
     if (disabled) wrapClass.push('form-group--disabled');
     if (ChildComponent.displayName) wrapClass.push(`form-group--${ChildComponent.displayName.toLowerCase()}`)
