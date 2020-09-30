@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 import withFieldGroup from "./FieldGroup";
 
-const TextArea = ({name, counter, maxLength, autoResize, placeholder, required, ...props}) => {
+const TextArea = ({name, counter, maxLength, autoResize, placeholder, required, orbitLib, ...props}) => {
+  const ref = useRef();
+
+  useEffect(()=> {
+    if (!ref.current && !orbitLib) return;
+
+    new orbitLib(ref.current)
+  }, [])
+
   const fieldProps = {
     name: name,
     placeholder: placeholder && placeholder.toLowerCase(),
@@ -17,7 +25,7 @@ const TextArea = ({name, counter, maxLength, autoResize, placeholder, required, 
 
   return (
     <React.Fragment>
-      <textarea {...fieldProps}/>
+      <textarea {...fieldProps} ref={ref}/>
       {counter && maxLength && (
         <span className="form-group__characters" data-rs-character-counter-output={`${name}-counter`}></span>
       )}
