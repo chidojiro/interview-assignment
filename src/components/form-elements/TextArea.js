@@ -6,9 +6,9 @@ const TextArea = ({name, counter, maxLength, autoResize, placeholder, required, 
   const ref = useRef();
 
   useEffect(()=> {
-    if (!ref.current && !orbitLib) return;
+    if (!ref.current || !orbitLib) return;
 
-    new orbitLib(ref.current)
+    new orbitLib.AutoResize(ref.current)
   }, [])
 
   const fieldProps = {
