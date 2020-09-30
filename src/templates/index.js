@@ -45,6 +45,7 @@ export const registry = {
     'input-filter': components.inputFilter,
     'password': components.password,
     'textarea': components.textArea,
+    'textarea-raw': components.textArea,
     'radio-buttons': components.radioButtons,
     'checkbox': components.checkbox,
     'checkboxes': components.checkboxes,
