@@ -4,7 +4,7 @@ const Layout = ({ registry }) => ChildComponent => {
 
   const TopNavigation = registry.getComponent('layout', 'top-navigation');
 
-  const Component = ({ title, header, breadcrumbs, authenticated, ...props }) => {
+  const Component = ({ title, header, breadcrumbs, authenticated, hideFooterWrap, ...props }) => {
 
     const templateSuggestions = {
       subMenu: ['sub'],
@@ -69,12 +69,7 @@ const Layout = ({ registry }) => ChildComponent => {
           </div>
         </header>
         <ChildComponent {...props} />
-        <footer className="footer bg-brand--dark-blue">
-          <div className="footer__wrapper wrapper">
-            <FooterNavigation />
-            <Footer />
-          </div>
-        </footer>
+        <Footer navigation={FooterNavigation}/>
       </div>
     )
   }
