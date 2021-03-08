@@ -1,36 +1,23 @@
 {
   "name": "@ffw/randstad-react-components",
-  "version": "1.0.0",
-  "description": "",
-  "main": "build/index.js",
+  "version": "0.1.0",
+  "private": true,
+  "devDependencies": {
+    "webpack-cli": "^4.5.0"
+  },
   "scripts": {
     "build": "rm -rf build && webpack --mode production"
   },
-  "repository": {
-    "type": "git",
-    "url": "git@gitlab.workingpropeople.com:npm/randstad/ffw-randstad-react-components.git"
-  },
-  "author": {
-    "name": "Petyo Stoyanov",
-    "email": "petyo.stoyanov@ffwagency.com"
-  },
-  "peerDependencies": {
-    "react": "^16",
-    "next": "^9"
-  },
-  "devDependencies": {
-    "@babel/cli": "^7.2.3",
-    "@babel/core": "^7.3.4",
-    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
-    "@babel/preset-env": "^7.3.4",
-    "@babel/preset-react": "^7.0.0",
-    "babel-loader": "^8.0.5",
-    "next": "^9.1.4",
-    "react": "^16.8.4",
-    "webpack": "^4.29.6",
-    "webpack-cli": "^3.3.0"
-  },
-  "dependencies": {
-    "prop-types": "^15.7.2"
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

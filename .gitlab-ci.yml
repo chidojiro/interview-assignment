@@ -6,6 +6,7 @@ build:
   allow_failure: false
   only:
     - master
+    - dev
   tags:
       - randstad-bluex
   script:

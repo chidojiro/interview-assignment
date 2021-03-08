@@ -1,9 +1,6 @@
 {
   "presets": [
-    ["next/babel", {
-      "transform-runtime": {
-        "useESModules": false
-      }
-    }]
+    "@babel/preset-env",
+    "@babel/react"
   ]
 }

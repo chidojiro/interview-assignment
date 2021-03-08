@@ -1,2 +1,9 @@
-export {default as Layout} from "./hoc/Layout";
-export {default as Registry} from "./lib/Registry";
+import InputField from './components/forms/InputField'
+
+export {
+  InputField
+}
+
+export const das = {
+  test: 'asd'
+}
