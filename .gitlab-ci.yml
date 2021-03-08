@@ -12,14 +12,13 @@ build:
     - git remote add codecommit /fake-temp-url || true
 
     - git remote set-url codecommit ssh://git-codecommit.eu-west-1.amazonaws.com/v1/repos/git-df-prd-bluex-lib-react-components
-    - git push codecommit HEAD:$CI_COMMIT_REF_NAME
+    - git push codecommit HEAD:refs/heads/$CI_COMMIT_REF_NAME
 
     - git remote set-url codecommit ssh://git-codecommit.eu-west-1.amazonaws.com-new/v1/repos/git-bluex-prd-bx-lib-react-components
-    - git push codecommit HEAD:$CI_COMMIT_REF_NAME
+    - git push codecommit HEAD:refs/heads/$CI_COMMIT_REF_NAME
 
     - git remote set-url codecommit ssh://git-codecommit.ap-southeast-2.amazonaws.com/v1/repos/git-bluex-prd-ba-lib-react-components
-    - git push codecommit HEAD:$CI_COMMIT_REF_NAME
+    - git push codecommit HEAD:refs/heads/$CI_COMMIT_REF_NAME
 
     - git remote set-url codecommit ssh://git-codecommit.us-east-1.amazonaws.com/v1/repos/git-bluex-prd-bu-lib-react-components
-    - git push codecommit HEAD:$CI_COMMIT_REF_NAME
-
+    - git push codecommit HEAD:refs/heads/$CI_COMMIT_REF_NAME
