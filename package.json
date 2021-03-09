@@ -30,12 +30,12 @@
   },
   "lint-staged": {
     "*.js": [
-      "yarn lint",
-      "yarn fmt",
+      "eslint",
+      "prettier --write",
       "git add"
     ],
     "*.{json, md}": [
-      "yarn fmt",
+      "prettier --write",
       "git add"
     ]
   },
