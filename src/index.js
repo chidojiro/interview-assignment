@@ -1,9 +1,7 @@
-import InputField from './components/forms/InputField'
+import InputField from "./components/forms/InputField";
 
-export {
-  InputField
-}
+export { InputField };
 
 export const das = {
-  test: 'asd'
-}
+  test: "asd",
+};

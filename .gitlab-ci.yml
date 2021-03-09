@@ -7,7 +7,7 @@ build:
   only:
     - dev
   tags:
-      - randstad-bluex
+    - randstad-bluex
   script:
     - git remote add codecommit /fake-temp-url || true
 
@@ -22,4 +22,3 @@ build:
 
     - git remote set-url codecommit ssh://git-codecommit.us-east-1.amazonaws.com/v1/repos/git-bluex-prd-bu-lib-react-components
     - git push codecommit HEAD:$CI_COMMIT_REF_NAME
-
