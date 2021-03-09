@@ -1,5 +1,3 @@
 import InputField from "./components/forms/InputField";
 
-export { 
-  InputField
- };
+export { InputField };
