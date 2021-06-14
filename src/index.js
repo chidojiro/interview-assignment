@@ -1,3 +1,3 @@
-import InputField from "./components/forms/InputField";
+import HeaderText from "./components/headers/HeaderText";
 
-export { InputField };
+export { HeaderText };
