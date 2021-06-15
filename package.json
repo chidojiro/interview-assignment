@@ -1,5 +1,5 @@
 {
-  "name": "@ffw/randstad-react-components",
+  "name": "@ffw/randstad-shared-components",
   "version": "0.1.0",
   "private": true,
   "main": "build/index.js",
