@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import t from "prop-types";
 
 const withFieldGroup = (ChildComponent) => {
   const FieldGroup = ({
@@ -52,16 +52,16 @@ const withFieldGroup = (ChildComponent) => {
   };
 
   FieldGroup.propTypes = {
-    label: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    id: PropTypes.string,
-    error: PropTypes.string,
-    description: PropTypes.string,
-    required: PropTypes.bool,
-    readOnly: PropTypes.bool,
-    children: PropTypes.any,
-    optionalLabel: PropTypes.string,
-    formGroupClass: PropTypes.string,
+    label: t.string.isRequired,
+    name: t.string.isRequired,
+    id: t.string,
+    error: t.string,
+    description: t.string,
+    required: t.bool,
+    readOnly: t.bool,
+    children: t.any,
+    optionalLabel: t.string,
+    formGroupClass: t.string,
   };
 
   return FieldGroup;

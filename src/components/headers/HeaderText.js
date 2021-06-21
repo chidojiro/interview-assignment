@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import t from "prop-types";
 
 const HeaderText = ({ variation, titleTop, titleBottom, children: text, cta, classes = [] }) => {
   const headerClasses = ["header", "header--text", ...classes];
@@ -36,12 +36,15 @@ const HeaderText = ({ variation, titleTop, titleBottom, children: text, cta, cla
 };
 
 HeaderText.propTypes = {
-  variation: PropTypes.string,
-  titleTop: PropTypes.string,
-  titleBottom: PropTypes.string,
-  cta: PropTypes.object,
-  classes: PropTypes.array,
-  children: PropTypes.any,
+  variation: t.string.isRequired,
+  titleTop: t.string,
+  titleBottom: t.string,
+  cta: t.shape({
+    href: t.string,
+    title: t.string,
+  }),
+  classes: t.array,
+  children: t.any,
 };
 
 export default HeaderText;
