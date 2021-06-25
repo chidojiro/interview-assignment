@@ -110,11 +110,19 @@ function Button({
 }
 
 Button.propTypes = {
-  children: t.any,
-  size: t.string,
+  children: t.any.isRequired,
+  size: t.oneOf(["s", "m"]),
   fullWidth: t.bool,
   color: t.string,
-  type: t.string,
+  type: t.oneOf([
+    "ghost-icon",
+    "ghost-social",
+    "filled",
+    "filled-icon",
+    "icon",
+    "plain",
+    "plain-icon",
+  ]),
   icon: t.string,
   preloader: t.bool,
   className: t.string,
