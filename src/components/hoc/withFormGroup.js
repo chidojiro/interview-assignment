@@ -1,6 +1,9 @@
 import React from "react";
 import t from "prop-types";
 
+import BasicFormGroup from "../form-group/Basic";
+import SelectionControlFormGroup from "../form-group/SelectionControl";
+
 const withFieldGroup = (ChildComponent) => {
   const FieldGroup = ({
     label,
@@ -15,39 +18,41 @@ const withFieldGroup = (ChildComponent) => {
     formGroupClass,
     ...props
   }) => {
+    const isSelectionControl = ChildComponent?.type === "checkbox";
+
     const wrapClass = ["form-group"];
     if (formGroupClass) wrapClass.push(formGroupClass);
     if (error) wrapClass.push("form-group--error");
 
-    const defaultId = ["field"];
-    defaultId.push(name);
+    const nameSanitized = (name || "").split(" ").join("-");
+    const fieldId = id || `field--${nameSanitized}`;
 
     const componentProps = {
       name,
-      id: id || defaultId.join("--"),
+      id: fieldId,
       ...props,
     };
 
     if (readOnly) componentProps["readOnly"] = "readonly";
     if (required) componentProps["required"] = "required";
 
-    return (
-      <div className={wrapClass.join(" ")}>
-        {label && (
-          <label className="form-group__label" htmlFor={id || defaultId.join("--")}>
-            {label}
-            {!required && (
-              <span className="form-group__optional"> {optionalLabel || "optional"}</span>
-            )}
-          </label>
-        )}
-        <div className="form-group__input">
-          <ChildComponent {...componentProps} />
-        </div>
-        {error && <div className="form-group__feedback">{error}</div>}
-        {description && <div className="form-group__message">{description}</div>}
-        {children}
-      </div>
+    const formGroupProps = {
+      wrapClass,
+      label,
+      id: fieldId,
+      required,
+      optionalLabel,
+      ChildComponent,
+      componentProps,
+      error,
+      description,
+      children,
+    };
+
+    return isSelectionControl ? (
+      <SelectionControlFormGroup {...formGroupProps} />
+    ) : (
+      <BasicFormGroup {...formGroupProps} />
     );
   };
 

@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import t from "prop-types";
 import withFieldGroup from "../hoc/withFormGroup";
 
 const InputField = ({ type, ...props }) => {
@@ -12,7 +12,7 @@ const InputField = ({ type, ...props }) => {
 };
 
 InputField.propTypes = {
-  type: PropTypes.string,
+  type: t.string,
 };
 
 export default withFieldGroup(InputField);
