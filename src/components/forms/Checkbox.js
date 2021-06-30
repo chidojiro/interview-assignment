@@ -2,11 +2,19 @@ import React from "react";
 import t from "prop-types";
 import withFieldGroup from "../hoc/withFormGroup";
 
-const Checkbox = ({ id, label, ...props }) => {
+const Checkbox = ({ id, label, capitalize, ...props }) => {
   const fieldProps = {
     id,
     ...props,
   };
+
+  let fieldLabel = label;
+
+  if (label && capitalize) {
+    fieldLabel = label.charAt(0).toUpperCase() + label.slice(1);
+  }
+
+  console.log(capitalize);
 
   return (
     <label htmlFor={id} className="selection-control selection-control--checkbox">
@@ -18,7 +26,7 @@ const Checkbox = ({ id, label, ...props }) => {
           </svg>
         </span>
       </span>
-      <span className="selection-control__label">{label}</span>
+      <span className="selection-control__label">{fieldLabel}</span>
     </label>
   );
 };
@@ -28,6 +36,7 @@ Checkbox.type = "checkbox";
 Checkbox.propTypes = {
   id: t.string,
   label: t.string,
+  capitalize: t.bool,
 };
 
 export default withFieldGroup(Checkbox);

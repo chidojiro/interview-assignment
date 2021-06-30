@@ -5,6 +5,7 @@ const SelectionControl = ({
   wrapClass,
   label,
   required,
+  capitalize,
   optionalLabel,
   ChildComponent,
   componentProps,
@@ -34,7 +35,7 @@ const SelectionControl = ({
 
           return (
             <div className="form-group__input" key={i}>
-              <ChildComponent id={fieldId} name={name} {...props} />
+              <ChildComponent id={fieldId} name={name} capitalize={capitalize} {...props} />
             </div>
           );
         })
@@ -54,6 +55,7 @@ SelectionControl.propTypes = {
   label: t.string,
   id: t.string,
   required: t.bool,
+  capitalize: t.bool,
   optionalLabel: t.string,
   ChildComponent: t.any,
   componentProps: t.object,

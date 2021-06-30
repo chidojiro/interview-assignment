@@ -16,6 +16,7 @@ const withFieldGroup = (ChildComponent) => {
     children,
     optionalLabel,
     formGroupClass,
+    capitalize,
     ...props
   }) => {
     const isSelectionControl = ChildComponent?.type === "checkbox";
@@ -27,9 +28,16 @@ const withFieldGroup = (ChildComponent) => {
     const nameSanitized = (name || "").split(" ").join("-");
     const fieldId = id || `field--${nameSanitized}`;
 
+    let fieldLabel = label;
+
+    if (label && capitalize) {
+      fieldLabel = label.charAt(0).toUpperCase() + label.slice(1);
+    }
+
     const componentProps = {
       name,
       id: fieldId,
+      capitalize,
       ...props,
     };
 
@@ -38,9 +46,10 @@ const withFieldGroup = (ChildComponent) => {
 
     const formGroupProps = {
       wrapClass,
-      label,
+      label: fieldLabel,
       id: fieldId,
       required,
+      capitalize,
       optionalLabel,
       ChildComponent,
       componentProps,
@@ -64,6 +73,7 @@ const withFieldGroup = (ChildComponent) => {
     description: t.string,
     required: t.bool,
     readOnly: t.bool,
+    capitalize: t.bool,
     children: t.any,
     optionalLabel: t.string,
     formGroupClass: t.string,
