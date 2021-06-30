@@ -14,8 +14,6 @@ const Checkbox = ({ id, label, capitalize, ...props }) => {
     fieldLabel = label.charAt(0).toUpperCase() + label.slice(1);
   }
 
-  console.log(capitalize);
-
   return (
     <label htmlFor={id} className="selection-control selection-control--checkbox">
       <span className="selection-control__input">
