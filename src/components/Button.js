@@ -82,7 +82,7 @@ function Button({
     buttonClasses.push(`button--${color}`);
   }
 
-  if (fullWidth && !largeSize) {
+  if (fullWidth) {
     buttonClasses.push(`button--full-width`);
   }
 
