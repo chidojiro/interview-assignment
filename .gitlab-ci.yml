@@ -23,3 +23,6 @@ build:
     - git remote set-url codecommit ssh://git-codecommit.us-east-1.amazonaws.com/v1/repos/git-bluex-prd-bu-lib-react-components
 
     - git push codecommit HEAD:refs/heads/$CI_COMMIT_REF_NAME
+
+    - git remote set-url codecommit ssh://git-codecommit.ca-central-1.amazonaws.com/v1/repos/git-bluex-prd-bc-lib-react-components
+    - git push codecommit HEAD:refs/heads/$CI_COMMIT_REF_NAME
