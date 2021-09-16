@@ -1,16 +1,18 @@
 import React, { useEffect, useRef } from "react";
 import t from "prop-types";
 
-const Filter = ({ title, children, footer, clearLink, closeMobileOnSubmit = true, lib }) => {
+const Filter = ({ title, children, footer, clearLink, closeMobileOnSubmit = true, libs }) => {
   const filterRef = useRef();
   const closeButtonRef = useRef();
   let transformedFooter = "";
 
   useEffect(() => {
-    if (!lib) return;
+    if (!libs) return;
 
-    new lib.Filter(filterRef.current);
-  }, [lib]);
+    libs.forEach((Item) => {
+      new Item(filterRef.current);
+    });
+  }, [libs]);
 
   const clickElement = (ref) => {
     ref.current.dispatchEvent(
@@ -80,7 +82,7 @@ Filter.propTypes = {
   footer: t.any,
   clearLink: t.any,
   closeMobileOnSubmit: t.bool,
-  lib: t.object,
+  libs: t.object,
 };
 
 export default Filter;
