@@ -2,7 +2,15 @@ import React, { useRef } from "react";
 import t from "prop-types";
 import useLibrary from "../hooks/useLibrary";
 
-const Filter = ({ title, children, footer, clearLink, closeMobileOnSubmit = true, libs }) => {
+const Filter = ({
+  title,
+  mobileTitle,
+  children,
+  footer,
+  clearLink,
+  closeMobileOnSubmit = true,
+  libs,
+}) => {
   const [ref] = useLibrary(libs);
   const closeButtonRef = useRef();
 
@@ -51,7 +59,7 @@ const Filter = ({ title, children, footer, clearLink, closeMobileOnSubmit = true
       </div>
       <div className="filter__content" data-rs-filter-content="">
         <div className="filter__header hidden--from-l">
-          <span className="filter__title">{title}</span>
+          <span className="filter__title">{mobileTitle}</span>
           <span className="icon icon--inline">
             <svg data-rs-filter-close="" ref={closeButtonRef}>
               <use xlinkHref="/themes/custom/bluex/dist/assets/image/icons.svg#close"></use>
@@ -72,6 +80,7 @@ const Filter = ({ title, children, footer, clearLink, closeMobileOnSubmit = true
 
 Filter.propTypes = {
   title: t.string,
+  mobileTitle: t.string,
   children: t.any,
   footer: t.any,
   clearLink: t.any,
