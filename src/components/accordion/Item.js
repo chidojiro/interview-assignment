@@ -44,7 +44,7 @@ const AccordionItem = ({ children, title, subtitle, expanded = false, attr = {},
 
 AccordionItem.propTypes = {
   children: t.any,
-  title: t.tring,
+  title: t.string,
   subtitle: t.string,
   expanded: t.bool,
   attr: t.object,
