@@ -1,16 +1,9 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import t from "prop-types";
+import useLibrary from "../../hooks/useLibrary";
 
 const AccordionItem = ({ children, title, subtitle, expanded = false, attr = {}, libs }) => {
-  const itemRef = useRef();
-
-  useEffect(() => {
-    if (!libs) return;
-
-    libs.forEach((Item) => {
-      new Item(itemRef.current);
-    });
-  }, [libs]);
+  const [ref] = useLibrary(libs);
 
   return (
     <li {...attr} className="link-list__item">
@@ -20,7 +13,7 @@ const AccordionItem = ({ children, title, subtitle, expanded = false, attr = {},
         role="button"
         aria-expanded={expanded}
         data-rs-toggable=""
-        ref={itemRef}
+        ref={ref}
         data-scl=""
       >
         <h3 className="link-list__link">

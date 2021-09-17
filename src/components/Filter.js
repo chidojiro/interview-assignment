@@ -1,18 +1,12 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import t from "prop-types";
+import useLibrary from "../hooks/useLibrary";
 
 const Filter = ({ title, children, footer, clearLink, closeMobileOnSubmit = true, libs }) => {
-  const filterRef = useRef();
+  const [ref] = useLibrary(libs);
   const closeButtonRef = useRef();
+
   let transformedFooter = "";
-
-  useEffect(() => {
-    if (!libs) return;
-
-    libs.forEach((Item) => {
-      new Item(filterRef.current);
-    });
-  }, [libs]);
 
   const clickElement = (ref) => {
     ref.current.dispatchEvent(
@@ -46,7 +40,7 @@ const Filter = ({ title, children, footer, clearLink, closeMobileOnSubmit = true
   }
 
   return (
-    <div className="filter" data-rs-filter="" ref={filterRef}>
+    <div className="filter" data-rs-filter="" ref={ref}>
       <div className="filter__toggle" data-rs-filter-refine-search="">
         <span className="icon icon--inline hidden--from-l">
           <svg>
@@ -57,7 +51,7 @@ const Filter = ({ title, children, footer, clearLink, closeMobileOnSubmit = true
       </div>
       <div className="filter__content" data-rs-filter-content="">
         <div className="filter__header hidden--from-l">
-          <span className="filter__title">filter</span>
+          <span className="filter__title">{title}</span>
           <span className="icon icon--inline">
             <svg data-rs-filter-close="" ref={closeButtonRef}>
               <use xlinkHref="/themes/custom/bluex/dist/assets/image/icons.svg#close"></use>
