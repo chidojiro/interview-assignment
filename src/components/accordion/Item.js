@@ -2,7 +2,7 @@ import React from "react";
 import t from "prop-types";
 import useLibrary from "../../hooks/useLibrary";
 
-const AccordionItem = ({ children, title, subtitle, expanded = false, attr = {}, libs }) => {
+const AccordionItem = ({ children, title, subtitle, expanded = false, libs, ...attr }) => {
   const [ref] = useLibrary(libs);
 
   return (
@@ -47,7 +47,6 @@ AccordionItem.propTypes = {
   title: t.string,
   subtitle: t.string,
   expanded: t.bool,
-  attr: t.object,
   libs: t.object,
 };
 
