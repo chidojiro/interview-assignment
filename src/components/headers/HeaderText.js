@@ -1,9 +1,10 @@
 import React from "react";
 import t from "prop-types";
+import { getBackground } from "../../utils/getBackground";
 
 const HeaderText = ({ variation, titleTop, titleBottom, children: text, cta, classes = [] }) => {
   const headerClasses = ["header", "header--text", ...classes];
-  const bgColor = `bg-brand--${variation ? variation : "dark-blue"}`;
+  const bgColor = getBackground(variation ? variation : "dark-blue");
 
   if (bgColor) headerClasses.push(bgColor);
 

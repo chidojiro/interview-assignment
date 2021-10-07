@@ -6,5 +6,16 @@ import Filter from "./components/Filter";
 import Accordion from "./components/accordion/List";
 import AccordionItem from "./components/accordion/Item";
 import Sortbar from "./components/Sortbar";
+import Pagination from "./components/Pagination";
 
-export { HeaderText, InputField, Button, Checkbox, Filter, Accordion, AccordionItem, Sortbar };
+export {
+  HeaderText,
+  InputField,
+  Button,
+  Checkbox,
+  Filter,
+  Accordion,
+  AccordionItem,
+  Sortbar,
+  Pagination,
+};
