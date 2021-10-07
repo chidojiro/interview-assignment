@@ -29,7 +29,7 @@ const Pagination = ({
   };
 
   const ArrowLink = ({ data, direction }) =>
-    data && (
+    data ? (
       <li className="pagination__item">
         <LinkElement props={data} className="pagination__control">
           <span className="icon icon--inline" aria-hidden="true">
@@ -44,7 +44,7 @@ const Pagination = ({
           <span className="hidden--visually">{data.text}</span>
         </LinkElement>
       </li>
-    );
+    ) : null;
 
   return (
     <nav className="pagination divider divider--top" data-rs-pagination="">
@@ -68,11 +68,13 @@ const Pagination = ({
 };
 
 Pagination.propTypes = {
-  pages: t.shape({
-    text: t.string.isRequired,
-    url: t.string,
-    attributes: t.any,
-  }),
+  pages: t.arrayOf(
+    t.shape({
+      text: t.string.isRequired,
+      url: t.string,
+      attributes: t.any,
+    }),
+  ),
   currentPage: t.oneOfType([t.string, t.number]),
   PaginationLinkElement: t.element,
   previousArrowLink: t.shape({
