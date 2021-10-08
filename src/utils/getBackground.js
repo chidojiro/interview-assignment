@@ -1,4 +1,8 @@
-export const getBackground = (color) => {
+export const getBackground = (color, legacy = false) => {
+  // Handle legacy background classes.
+  if (color && legacy) {
+    return `bg-brand--${color}`;
+  }
   // Color map of Orbit color support old and new color name.
   const colorMap = {
     white: "white",

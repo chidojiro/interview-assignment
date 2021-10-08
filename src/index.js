@@ -7,6 +7,8 @@ import Accordion from "./components/accordion/List";
 import AccordionItem from "./components/accordion/Item";
 import Sortbar from "./components/Sortbar";
 import Pagination from "./components/Pagination";
+import ArticleOverviewList from "./components/article-overview/list/List";
+import ArticleOverviewListItem from "./components/article-overview/list/Item";
 
 export {
   HeaderText,
@@ -18,4 +20,6 @@ export {
   AccordionItem,
   Sortbar,
   Pagination,
+  ArticleOverviewList,
+  ArticleOverviewListItem,
 };
