@@ -45,6 +45,7 @@ const Pagination = ({
         </LinkElement>
       </li>
     ) : null;
+  /* eslint-enable react/prop-types */
 
   return (
     <nav className="pagination divider divider--top" data-rs-pagination="">
