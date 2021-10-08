@@ -18,6 +18,14 @@ export const getBackground = (color) => {
     quinary: "brand-quinary",
   };
 
+  const sphColorMap = {
+    "gradient-orange": "gradient-orange",
+  };
+
+  if (color && sphColorMap[color]) {
+    return `bg-brand--${colorMap[color]}`;
+  }
+
   if (color && colorMap[color]) {
     return `bg-variant-${colorMap[color]}`;
   }
