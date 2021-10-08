@@ -23,7 +23,7 @@ export const getBackground = (color) => {
   };
 
   if (color && sphColorMap[color]) {
-    return `bg-brand--${colorMap[color]}`;
+    return `bg-brand--${sphColorMap[color]}`;
   }
 
   if (color && colorMap[color]) {
