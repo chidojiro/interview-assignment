@@ -1,18 +1,12 @@
 import React from "react";
 import t from "prop-types";
 
-const Pagination = ({
-  pages,
-  currentPage,
-  PaginationLinkElement,
-  previousArrowLink,
-  nextArrowLink,
-}) => {
+const Pagination = ({ pages, currentPage, as, previousArrowLink, nextArrowLink }) => {
   // Helper component to choose link component.
   /* eslint-disable react/prop-types */
   const LinkElement = ({ children, props, ...rest }) => {
     const { url, attributes } = props;
-    const Element = PaginationLinkElement ? PaginationLinkElement : "a";
+    const Element = as ? as : "a";
     const displayATag = Element === "a";
     const elementAttributes = { ...attributes };
 
@@ -77,7 +71,7 @@ Pagination.propTypes = {
     }),
   ),
   currentPage: t.oneOfType([t.string, t.number]),
-  PaginationLinkElement: t.element,
+  as: t.element,
   previousArrowLink: t.shape({
     text: t.string.isRequired,
     url: t.string,
