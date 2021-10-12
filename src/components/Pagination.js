@@ -41,6 +41,10 @@ const Pagination = ({ pages, currentPage, as, previousArrowLink, nextArrowLink }
     ) : null;
   /* eslint-enable react/prop-types */
 
+  if (pages.length < 1) {
+    return null;
+  }
+
   return (
     <nav className="pagination divider divider--top" data-rs-pagination="">
       <ul className="pagination__list" data-rs-pagination-list="">
