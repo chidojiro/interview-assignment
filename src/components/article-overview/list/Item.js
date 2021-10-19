@@ -64,4 +64,8 @@ Item.propTypes = {
   divider: t.bool,
 };
 
+Item.defaultProps = {
+  divider: true,
+};
+
 export default Item;

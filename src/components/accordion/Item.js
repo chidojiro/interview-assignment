@@ -50,4 +50,8 @@ AccordionItem.propTypes = {
   libs: t.object,
 };
 
+AccordionItem.defaultProps = {
+  expanded: false,
+};
+
 export default AccordionItem;

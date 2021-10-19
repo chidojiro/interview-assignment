@@ -48,4 +48,8 @@ HeaderText.propTypes = {
   children: t.any,
 };
 
+HeaderText.defaultProps = {
+  classes: [],
+};
+
 export default HeaderText;

@@ -128,4 +128,9 @@ Button.propTypes = {
   className: t.string,
 };
 
+Button.defaultProps = {
+  type: "ghost",
+  className: "",
+};
+
 export default Button;

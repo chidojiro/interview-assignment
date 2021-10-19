@@ -9,6 +9,7 @@ import Sortbar from "./components/Sortbar";
 import Pagination from "./components/Pagination";
 import ArticleOverviewList from "./components/article-overview/list/List";
 import ArticleOverviewListItem from "./components/article-overview/list/Item";
+import Breadcrumbs from "./components/Breadcrumbs";
 
 export {
   HeaderText,
@@ -22,4 +23,5 @@ export {
   Pagination,
   ArticleOverviewList,
   ArticleOverviewListItem,
+  Breadcrumbs,
 };

@@ -88,4 +88,8 @@ Filter.propTypes = {
   libs: t.object,
 };
 
+Filter.defaultProps = {
+  closeMobileOnSubmit: true,
+};
+
 export default Filter;
