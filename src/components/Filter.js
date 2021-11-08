@@ -1,7 +1,11 @@
 import React, { useRef } from "react";
 import t from "prop-types";
-import useLibrary from "../hooks/useLibrary";
+import useLibrary from "@hooks/useLibrary";
 
+/**
+ * A bundle of different form elements and manipulating the page of search results. See [here](https://randstad.design/components/core/filters/blog/)
+ *
+ */
 const Filter = ({
   title,
   mobileTitle,

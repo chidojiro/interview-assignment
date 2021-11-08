@@ -1,0 +1,1 @@
+Cannot be used without AccordionItem component.

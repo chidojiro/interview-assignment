@@ -1,6 +1,10 @@
 import React from "react";
 import t from "prop-types";
 
+/**
+ * A component to let the user navigate through different pages of results. See [here](https://randstad.design/components/core/pagination/)
+ *
+ */
 const Pagination = ({ pages, currentPage, as, previousArrowLink, nextArrowLink }) => {
   // Helper component to choose link component.
   /* eslint-disable react/prop-types */
@@ -31,8 +35,7 @@ const Pagination = ({ pages, currentPage, as, previousArrowLink, nextArrowLink }
               <use
                 xlinkHref={`/themes/custom/bluex/dist/assets/image/icons.svg#${
                   direction === "left" ? "arrow-left" : "arrow-right"
-                }`}
-              ></use>
+                }`}></use>
             </svg>
           </span>
           <span className="hidden--visually">{data.text}</span>

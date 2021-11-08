@@ -1,7 +1,11 @@
 import React from "react";
 import t from "prop-types";
-import useLibrary from "../../hooks/useLibrary";
+import useLibrary from "@hooks/useLibrary";
 
+/**
+ * Expanding and collapsing sections of content. See [here](https://randstad.design/components/core/accordion/)
+ *
+ */
 const AccordionItem = ({ children, title, subtitle, expanded = false, libs, ...attr }) => {
   const [ref] = useLibrary(libs);
 
@@ -14,8 +18,7 @@ const AccordionItem = ({ children, title, subtitle, expanded = false, libs, ...a
         aria-expanded={expanded}
         data-rs-toggable=""
         ref={ref}
-        data-scl=""
-      >
+        data-scl="">
         <h3 className="link-list__link">
           {title}
           {subtitle && <p className="text--alternative pt-xs mb-none">{subtitle}</p>}
@@ -34,8 +37,7 @@ const AccordionItem = ({ children, title, subtitle, expanded = false, libs, ...a
       <div
         className="collapsible__content body-copy"
         data-rs-collapsible-content={`${expanded ? "expanded" : ""}`}
-        aria-hidden={!expanded}
-      >
+        aria-hidden={!expanded}>
         <div className="collapsible__content--wrapper">{children}</div>
       </div>
     </li>

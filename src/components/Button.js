@@ -1,6 +1,10 @@
 import React from "react";
 import t from "prop-types";
 
+/**
+ * Provides a simple way to trigger an event or to interact with the environment. See [here](https://randstad.design/components/core/buttons/)
+ *
+ */
 function Button({
   children,
   size,
@@ -115,6 +119,7 @@ Button.propTypes = {
   fullWidth: t.bool,
   color: t.string,
   type: t.oneOf([
+    "ghost",
     "ghost-icon",
     "ghost-social",
     "filled",

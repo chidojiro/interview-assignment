@@ -1,7 +1,11 @@
 import React from "react";
 import t from "prop-types";
-import withFieldGroup from "../hoc/withFormGroup";
+import withFieldGroup from "@hoc/withFormGroup";
 
+/**
+ * A box which enables the user to select one or multiple options. See [here](https://randstad.design/components/core/forms/checkbox/)
+ *
+ */
 const Checkbox = ({ id, label, capitalize, ...props }) => {
   const fieldProps = {
     id,

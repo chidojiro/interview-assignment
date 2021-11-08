@@ -1,8 +1,8 @@
 import React from "react";
 import t from "prop-types";
 
-import BasicFormGroup from "../form-group/Basic";
-import SelectionControlFormGroup from "../form-group/SelectionControl";
+import BasicFormGroup from "@components/form-group/Basic";
+import SelectionControlFormGroup from "@components/form-group/SelectionControl";
 
 const withFieldGroup = (ChildComponent) => {
   const FieldGroup = ({

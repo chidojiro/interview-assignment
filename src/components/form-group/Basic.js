@@ -1,6 +1,11 @@
 import React from "react";
 import t from "prop-types";
 
+/**
+ * Basic form group markup.
+ *
+ * @ignore
+ */
 const Basic = ({
   wrapClass,
   label,

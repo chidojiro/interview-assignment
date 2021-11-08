@@ -11,6 +11,10 @@ module.exports = {
   resolve: {
     alias: {
       react: path.resolve(__dirname, "./node_modules/react"),
+      "@hoc": path.resolve(__dirname, "./src/hoc"),
+      "@hooks": path.resolve(__dirname, "./src/hooks"),
+      "@components": path.resolve(__dirname, "./src/components"),
+      "@utils": path.resolve(__dirname, "./src/utils"),
     },
   },
   externals: {

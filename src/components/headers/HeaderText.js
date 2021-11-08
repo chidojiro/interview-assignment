@@ -2,6 +2,10 @@ import React from "react";
 import t from "prop-types";
 import { getBackground } from "../../utils/getBackground";
 
+/**
+ * A header which only consists out of text. See [here](https://randstad.design/components/examples/headers/text/)
+ *
+ */
 const HeaderText = ({ variation, titleTop, titleBottom, children: text, cta, classes = [] }) => {
   const headerClasses = ["header", "header--text", ...classes];
   const bgColor = getBackground(variation ? variation : "dark-blue");
@@ -37,7 +41,7 @@ const HeaderText = ({ variation, titleTop, titleBottom, children: text, cta, cla
 };
 
 HeaderText.propTypes = {
-  variation: t.string.isRequired,
+  variation: t.string,
   titleTop: t.string,
   titleBottom: t.string,
   cta: t.shape({

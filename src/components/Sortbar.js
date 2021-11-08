@@ -1,7 +1,11 @@
 import React from "react";
 import t from "prop-types";
-import useLibrary from "../hooks/useLibrary";
+import useLibrary from "@hooks/useLibrary";
 
+/**
+ * Enables to filter and sort content on the page. See [here](https://randstad.design/components/core/filters/blog/)
+ *
+ */
 const Sortbar = ({ count, selectLabel, selectAttributes, selectOptions, untouched, libs }) => {
   const [ref] = useLibrary(libs);
   const { id, ...attr } = selectAttributes || {};
@@ -11,8 +15,7 @@ const Sortbar = ({ count, selectLabel, selectAttributes, selectOptions, untouche
       <div
         className="sortbar l:divider"
         data-rs-toggable-group="toggable-group__item--active"
-        data-scl=""
-      >
+        data-scl="">
         <span className="sortbar__count text-ellipsis">{count}</span>
         <div className="form-group">
           <label className="form-group__label hidden--visually" htmlFor={id}>
@@ -26,8 +29,7 @@ const Sortbar = ({ count, selectLabel, selectAttributes, selectOptions, untouche
               {...attr}
               className={untouched ? "untouched" : ""}
               data-scl=""
-              ref={ref}
-            >
+              ref={ref}>
               {selectOptions &&
                 Object.keys(selectOptions).map((item) => (
                   <option key={item} value={item}>

@@ -1,6 +1,11 @@
 import React from "react";
 import t from "prop-types";
 
+/**
+ * Select from group markup.
+ *
+ * @private
+ */
 const SelectionControl = ({
   wrapClass,
   label,

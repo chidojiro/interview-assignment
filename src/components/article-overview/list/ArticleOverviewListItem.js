@@ -1,8 +1,21 @@
 import React from "react";
 import t from "prop-types";
-import { getBackground } from "../../../utils/getBackground";
+import { getBackground } from "@utils/getBackground";
 
-const Item = ({ date, title, img, tags, url, placeholder, bgColor, divider = true }) => {
+/**
+ * An overview of highlighted articles in different manifestations. See [here](https://randstad.design/components/examples/overviews/article-overview/)
+ *
+ */
+const ArticleOverviewListItem = ({
+  date,
+  title,
+  img,
+  tags,
+  url,
+  placeholder,
+  bgColor,
+  divider = true,
+}) => {
   const imgClasses = ["blog-overview__media", "aspect-ratio", "aspect-ratio--3-2"];
 
   // CSS classes for placeholder image.
@@ -44,7 +57,7 @@ const Item = ({ date, title, img, tags, url, placeholder, bgColor, divider = tru
   );
 };
 
-Item.propTypes = {
+ArticleOverviewListItem.propTypes = {
   date: t.string,
   /** title supports html */
   title: t.any,
@@ -64,8 +77,8 @@ Item.propTypes = {
   divider: t.bool,
 };
 
-Item.defaultProps = {
+ArticleOverviewListItem.defaultProps = {
   divider: true,
 };
 
-export default Item;
+export default ArticleOverviewListItem;

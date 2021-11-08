@@ -1,6 +1,10 @@
 import React from "react";
 import t from "prop-types";
 
+/**
+ * The top-level navigation of the website and shown on each page. See [here](https://randstad.design/components/core/navigation/)
+ *
+ */
 const Breadcrumbs = ({ items, mobileItem, bgColor = "primary", app = true }) => {
   const { title: mobileTitle, url: mobileUrl } = mobileItem || {};
   const wrapperClasses = ["navigation"];
