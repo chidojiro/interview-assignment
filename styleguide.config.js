@@ -1,8 +1,24 @@
 const path = require("path");
 const pkg = require("./package.json");
 
+const config = Object.assign({}, require("./webpack.config.js"), {
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: { loader: "babel-loader" },
+      },
+      {
+        test: /\.css$/,
+        use: ["css-loader"],
+      },
+    ],
+  },
+});
+
 module.exports = {
-  title: "React Style Guide Example",
+  title: "Shared Components Library Docs",
   moduleAliases: {
     "@ffw/randstad-shared-components": path.resolve(__dirname, "src/index.js"),
   },
@@ -15,8 +31,10 @@ module.exports = {
   },
 
   styleguideComponents: {
-    StyleGuideRenderer: path.join(__dirname, "src/styleguide/StyleGuideRenderer"),
+    StyleGuideRenderer: path.join(__dirname, "src/docs-lib/StyleGuideRenderer"),
   },
+
+  webpackConfig: config,
 
   template: {
     head: {
@@ -25,13 +43,10 @@ module.exports = {
           rel: "stylesheet",
           href: "https://uk-static-dev.dta.randstadbluex.com/articles/static/assets/css/orbit-randstad.css",
         },
-        {
-          rel: "stylesheet",
-          href: "./src/styleguide/styles.css",
-        },
       ],
     },
   },
+
   sections: [
     {
       name: "Shared components",
