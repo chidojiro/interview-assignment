@@ -18,7 +18,7 @@ const config = Object.assign({}, require("./webpack.config.js"), {
 });
 
 module.exports = {
-  title: "Shared Components Library Docs",
+  title: "Shared Components Library",
   moduleAliases: {
     "@ffw/randstad-shared-components": path.resolve(__dirname, "src/index.js"),
   },
