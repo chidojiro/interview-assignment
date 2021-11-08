@@ -29,6 +29,7 @@
     "build": "rm -rf build && webpack --mode production",
     "docs:dev": "styleguidist server",
     "docs:build": "styleguidist build",
+    "docs:deploy": "netlify deploy -p",
     "copy-svg": "node ./src/styleguide/copy-svg.js",
     "test": "jest",
     "lint": "eslint .",
