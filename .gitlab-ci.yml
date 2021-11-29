@@ -6,6 +6,9 @@ build:
   allow_failure: false
   only:
     - dev
+    - test
+    - ppr
+    - prod
   tags:
     - randstad-bluex
   script:
