@@ -61,7 +61,7 @@ ArticleOverviewListItem.propTypes = {
   date: t.string,
   /** title supports html */
   title: t.any,
-  /** img attributes spread in <img> tag. Like data-attributes. */
+  /** img attributes spread in `<img>` tag. Like data-attributes. */
   img: t.object,
   tags: t.arrayOf(
     t.shape({

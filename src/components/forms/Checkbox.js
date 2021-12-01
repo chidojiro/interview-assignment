@@ -6,7 +6,7 @@ import withFieldGroup from "@hoc/withFormGroup";
  * A box which enables the user to select one or multiple options. See [here](https://randstad.design/components/core/forms/checkbox/)
  *
  */
-const Checkbox = ({ id, label, capitalize, ...props }) => {
+const Checkbox = ({ id, label, capitalize, required, ...props }) => {
   const fieldProps = {
     id,
     ...props,
@@ -16,6 +16,10 @@ const Checkbox = ({ id, label, capitalize, ...props }) => {
 
   if (label && capitalize) {
     fieldLabel = label.charAt(0).toUpperCase() + label.slice(1);
+  }
+
+  if (required) {
+    fieldProps["required"] = "required";
   }
 
   return (
@@ -36,9 +40,18 @@ const Checkbox = ({ id, label, capitalize, ...props }) => {
 Checkbox.type = "checkbox";
 
 Checkbox.propTypes = {
-  id: t.string,
+  /** Every other passed props will be added to `<input>`. Like "data-attribute" and "aria-label" */
+  wrapClass: t.array,
   label: t.string,
+  id: t.string,
+  required: t.bool,
   capitalize: t.bool,
+  optionalLabel: t.string,
+  ChildComponent: t.any,
+  componentProps: t.object,
+  error: t.string,
+  description: t.string,
+  children: t.any,
 };
 
 export default withFieldGroup(Checkbox);

@@ -21,7 +21,9 @@ const SelectionControl = ({
   const classes = [...wrapClass];
   classes.push("form-group--selection-control");
 
-  const { fieldLabel, ...props } = componentProps;
+  /* eslint-disable no-unused-vars */
+  const { fieldLabel, required: _, ...props } = componentProps;
+  /* eslint-enable no-unused-vars */
 
   return (
     <div className={classes.join(" ")}>
@@ -46,7 +48,7 @@ const SelectionControl = ({
         })
       ) : (
         <div className="form-group__input">
-          <ChildComponent label={fieldLabel} {...props} />
+          <ChildComponent label={fieldLabel} required={required} {...props} />
         </div>
       )}
       {error && <div className="form-group__feedback">{error}</div>}

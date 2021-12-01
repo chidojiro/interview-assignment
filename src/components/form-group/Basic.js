@@ -18,6 +18,9 @@ const Basic = ({
   description,
   children,
 }) => {
+  /* eslint-disable no-unused-vars */
+  const { required: _, ...props } = componentProps;
+  /* eslint-enable no-unused-vars */
   return (
     <div className={wrapClass.join(" ")}>
       {label && (
@@ -29,7 +32,7 @@ const Basic = ({
         </label>
       )}
       <div className="form-group__input">
-        <ChildComponent {...componentProps} />
+        <ChildComponent required={required} {...props} />
       </div>
       {error && <div className="form-group__feedback">{error}</div>}
       {description && <div className="form-group__message">{description}</div>}

@@ -60,7 +60,8 @@ Breadcrumbs.propTypes = {
     title: t.string.isRequired,
     url: t.string,
   }),
-  bgColor: t.string,
+  /** See more <a href="https://randstad.design/styleguide/colors/">here</a>*/
+  bgColor: t.oneOf(["primary", "secondary", "tertiary", "quaternary", "quinary", "senary"]),
   /** This property is used for adding specific class('navigation--app') only for the apps. Since the navigation markup there is different from Orbit. */
   app: t.bool,
 };
