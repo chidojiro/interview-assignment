@@ -49,6 +49,7 @@ AccordionItem.propTypes = {
   title: t.string,
   subtitle: t.string,
   expanded: t.bool,
+  /** Used to pass js Orbit library responsible for functionality. Note: This should passed on component setup so you don't have to pass it every time. */
   libs: t.object,
 };
 

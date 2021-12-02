@@ -70,6 +70,7 @@ ArticleOverviewListItem.propTypes = {
     }),
   ),
   url: t.string,
+  /** Add classes required for placeholder image */
   placeholder: t.bool,
   /** Used in placeholder image classes to determend background color. */
   bgColor: t.string,

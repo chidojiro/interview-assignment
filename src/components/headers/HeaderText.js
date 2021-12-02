@@ -22,7 +22,7 @@ const HeaderText = ({
   // Depending on the variation.
   if (variation) {
     bgColorTemp = variation;
-    console.warn("Header text - variation prop is deprecated, use bgColor instead");
+    console.warn("Header text: variation prop is deprecated, use bgColor instead");
   }
 
   const bgColor = getBackground(bgColorTemp ? bgColorTemp : "dark-blue");

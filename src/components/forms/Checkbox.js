@@ -6,21 +6,13 @@ import withFieldGroup from "@hoc/withFormGroup";
  * A box which enables the user to select one or multiple options. See [here](https://randstad.design/components/core/forms/checkbox/)
  *
  */
-const Checkbox = ({ id, label, capitalize, required, ...props }) => {
+// Add unused props. Some of the props are comming from the withFieldGroup HOC.
+/* eslint-disable no-unused-vars */
+const Checkbox = ({ id, label, ...props }) => {
   const fieldProps = {
     id,
     ...props,
   };
-
-  let fieldLabel = label;
-
-  if (label && capitalize) {
-    fieldLabel = label.charAt(0).toUpperCase() + label.slice(1);
-  }
-
-  if (required) {
-    fieldProps["required"] = "required";
-  }
 
   return (
     <label htmlFor={id} className="selection-control selection-control--checkbox">
@@ -32,7 +24,7 @@ const Checkbox = ({ id, label, capitalize, required, ...props }) => {
           </svg>
         </span>
       </span>
-      <span className="selection-control__label">{fieldLabel}</span>
+      <span className="selection-control__label">{label}</span>
     </label>
   );
 };
@@ -40,18 +32,20 @@ const Checkbox = ({ id, label, capitalize, required, ...props }) => {
 Checkbox.type = "checkbox";
 
 Checkbox.propTypes = {
+  // Comming from withFieldGroup HOC
   /** Every other passed props will be added to `<input>`. Like "data-attribute" and "aria-label" */
-  wrapClass: t.array,
   label: t.string,
+  name: t.string,
+  /** If not provided, will be generated from `name` */
   id: t.string,
-  required: t.bool,
-  capitalize: t.bool,
-  optionalLabel: t.string,
-  ChildComponent: t.any,
-  componentProps: t.object,
   error: t.string,
   description: t.string,
+  required: t.oneOfType([t.bool, t.string]),
+  readOnly: t.bool,
+  capitalize: t.bool,
   children: t.any,
+  optionalLabel: t.string,
+  formGroupClass: t.string,
 };
 
 export default withFieldGroup(Checkbox);

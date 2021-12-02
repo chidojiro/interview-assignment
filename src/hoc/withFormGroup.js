@@ -66,12 +66,14 @@ const withFieldGroup = (ChildComponent) => {
   };
 
   FieldGroup.propTypes = {
-    label: t.string.isRequired,
-    name: t.string.isRequired,
+    /** Every other passed props will be added to `<input>`. Like "data-attribute" and "aria-label" */
+    label: t.string,
+    name: t.string,
+    /** If not provided, will be generated from `name` */
     id: t.string,
     error: t.string,
     description: t.string,
-    required: t.bool,
+    required: t.oneOfType([t.bool, t.string]),
     readOnly: t.bool,
     capitalize: t.bool,
     children: t.any,

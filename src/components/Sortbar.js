@@ -10,6 +10,10 @@ const Sortbar = ({ count, selectLabel, selectAttributes, selectOptions, untouche
   const [ref] = useLibrary(libs);
   const { id, ...attr } = selectAttributes || {};
 
+  if (!id) {
+    console.warn("Sortbar: selectAttributes should contain an id");
+  }
+
   return (
     <div className="wrapper">
       <div
@@ -52,9 +56,11 @@ const Sortbar = ({ count, selectLabel, selectAttributes, selectOptions, untouche
 Sortbar.propTypes = {
   count: t.string,
   selectLabel: t.string,
+  /** `attrubutes` are spread in the component. You can pass from `data-attributes` to events */
   selectAttributes: t.object,
   selectOptions: t.object,
   untouched: t.bool,
+  /** Used to pass js Orbit library responsible for functionality. Note: This should passed on component setup so you don't have to pass it every time. */
   libs: t.object,
 };
 

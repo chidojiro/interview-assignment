@@ -6,32 +6,37 @@ import withFieldGroup from "@hoc/withFormGroup";
  * A field to enter data in a pre defined format. See [here](https://randstad.design/components/core/forms/input-field/)
  *
  */
-const InputField = ({ type, required, ...props }) => {
+// Add unused props. Some of the props are comming from the withFieldGroup HOC.
+/* eslint-disable no-unused-vars */
+const InputField = ({ type = "text", ...props }) => {
   const fieldProps = {
-    type: type || "text",
+    type,
     ...props,
   };
-
-  if (required) {
-    fieldProps["required"] = "required";
-  }
 
   return <input {...fieldProps} />;
 };
 
 InputField.propTypes = {
-  /** Every other passed props will be added to `<input>`. Like "data-attribute" and "aria-label" */
   type: t.string,
-  wrapClass: t.array,
+  // Comming from withFieldGroup HOC
+  /** Every other passed props will be added to `<input>`. Like "data-attribute" and "aria-label" */
   label: t.string,
+  name: t.string,
+  /** If not provided, will be generated from `name` */
   id: t.string,
-  required: t.bool,
-  optionalLabel: t.string,
-  ChildComponent: t.any,
-  componentProps: t.object,
   error: t.string,
   description: t.string,
+  required: t.oneOfType([t.bool, t.string]),
+  readOnly: t.bool,
+  capitalize: t.bool,
   children: t.any,
+  optionalLabel: t.string,
+  formGroupClass: t.string,
+};
+
+InputField.defaultProps = {
+  type: "text",
 };
 
 export default withFieldGroup(InputField);

@@ -56,6 +56,9 @@ export const StyleGuideRenderer = (props) => {
           color: red;
           font-size: 20px;
         }
+        .npm__react-simple-code-editor__textarea {
+          line-height: 16.8px !important;
+        }
       `,
         }}
       />

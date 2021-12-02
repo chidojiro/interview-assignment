@@ -21,9 +21,7 @@ const SelectionControl = ({
   const classes = [...wrapClass];
   classes.push("form-group--selection-control");
 
-  /* eslint-disable no-unused-vars */
-  const { fieldLabel, required: _, ...props } = componentProps;
-  /* eslint-enable no-unused-vars */
+  const { fieldLabel, ...props } = componentProps;
 
   return (
     <div className={classes.join(" ")}>
@@ -36,19 +34,24 @@ const SelectionControl = ({
         </div>
       )}
       {children ? (
-        children.map(({ props: { id, name, ...props } }, i) => {
+        children.map(({ props: { id, name, label, ...props } }, i) => {
           const nameSanitized = (name || "").split(" ").join("-");
           const fieldId = id || `field--${nameSanitized}`;
+          let childLabel = label;
+
+          if (label && capitalize) {
+            childLabel = label.charAt(0).toUpperCase() + label.slice(1);
+          }
 
           return (
             <div className="form-group__input" key={i}>
-              <ChildComponent id={fieldId} name={name} capitalize={capitalize} {...props} />
+              <ChildComponent id={fieldId} name={name} label={childLabel} {...props} />
             </div>
           );
         })
       ) : (
         <div className="form-group__input">
-          <ChildComponent label={fieldLabel} required={required} {...props} />
+          <ChildComponent label={fieldLabel} {...props} />
         </div>
       )}
       {error && <div className="form-group__feedback">{error}</div>}
