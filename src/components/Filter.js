@@ -75,7 +75,9 @@ const Filter = ({
           {children}
         </div>
         {transformedFooter && (
-          <div className="filter__footer divider--top hidden--from-l">{transformedFooter}</div>
+          <div className="filter__footer divider divider--top hidden--from-l">
+            {transformedFooter}
+          </div>
         )}
       </div>
     </div>
