@@ -19,7 +19,7 @@ build:
     # clone codecommit repo or init new if branch does not exists
     git clone -b $CI_COMMIT_REF_NAME ssh://git-codecommit.eu-west-1.amazonaws.com/v1/repos/git-df-prd-bluex-lib-react-components "${tmp}" || (cd ${tmp} && git init && git checkout -b $CI_COMMIT_REF_NAME && git remote add origin ssh://git-codecommit.eu-west-1.amazonaws.com/v1/repos/git-df-prd-bluex-lib-react-components)
     # remove all except .git in target
-    (mv ${tmp}/.git .git.build && rm -rf ${tmp}/* && mv .git.build ${tmp}/.git)
+    (mv ${tmp}/.git .git.build && rm -rf ${tmp} && mkdir -p ${tmp} && mv .git.build ${tmp}/.git)
     mv build ${tmp}/
     cd ${tmp}
     git add -A
