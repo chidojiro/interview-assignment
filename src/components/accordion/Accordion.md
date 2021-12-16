@@ -1,1 +1,1 @@
-Cannot be used without AccordionItem component.
+<span class="warn">Cannot be used without AccordionItem component.</span>

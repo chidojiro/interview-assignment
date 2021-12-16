@@ -6,9 +6,26 @@ import { getBackground } from "../../utils/getBackground";
  * A header which only consists out of text. See [here](https://randstad.design/components/examples/headers/text/)
  *
  */
-const HeaderText = ({ variation, titleTop, titleBottom, children: text, cta, classes = [] }) => {
+/* eslint-disable react/prop-types */
+const HeaderText = ({
+  variation,
+  bgColor: bgColorProp,
+  titleTop,
+  titleBottom,
+  children: text,
+  cta,
+  classes = [],
+}) => {
   const headerClasses = ["header", "header--text", ...classes];
-  const bgColor = getBackground(variation ? variation : "dark-blue");
+  let bgColorTemp = bgColorProp;
+
+  // Depending on the variation.
+  if (variation) {
+    bgColorTemp = variation;
+    console.warn("Header text: variation prop is deprecated, use bgColor instead");
+  }
+
+  const bgColor = getBackground(bgColorTemp ? bgColorTemp : "dark-blue");
 
   if (bgColor) headerClasses.push(bgColor);
 
@@ -41,7 +58,8 @@ const HeaderText = ({ variation, titleTop, titleBottom, children: text, cta, cla
 };
 
 HeaderText.propTypes = {
-  variation: t.string,
+  /** See more <a href="https://randstad.design/styleguide/colors/">here</a>*/
+  bgColor: t.oneOf(["primary", "secondary", "tertiary", "quaternary", "quinary", "senary"]),
   titleTop: t.string,
   titleBottom: t.string,
   cta: t.shape({

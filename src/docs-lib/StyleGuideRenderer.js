@@ -36,6 +36,29 @@ export const StyleGuideRenderer = (props) => {
         h1[id*="section"] {
           margin-bottom: 30px;
         }
+
+        [class*="rsg--tabBody"] [class*="rsg--para"] {
+          color: rgb(118, 118, 118);
+          font-style: italic;
+          font-size: 14px;
+          margin-bottom: 3px;
+        }
+
+        [class*="rsg--tabBody"] [class*="rsg--para"] code {
+          color: rgb(102, 153, 0);
+        }
+
+        [class*="rsg--tabBody"] [class*=rsg--cell] {
+          vertical-align: unset;
+        }
+
+        .warn {
+          color: red;
+          font-size: 20px;
+        }
+        .npm__react-simple-code-editor__textarea {
+          line-height: 16.8px !important;
+        }
       `,
         }}
       />

@@ -9,3 +9,5 @@ styleguide
 
 # Local Netlify folder
 .netlify
+
+/build

@@ -74,20 +74,22 @@ Pagination.propTypes = {
     t.shape({
       text: t.string.isRequired,
       url: t.string,
-      attributes: t.any,
+      attributes: t.object,
     }),
   ),
   currentPage: t.oneOfType([t.string, t.number]),
+  /** Define the tag of the link element. By default its `<a>`. Could be also `<Link>` */
   as: t.element,
   previousArrowLink: t.shape({
     text: t.string.isRequired,
     url: t.string,
-    attributes: t.any,
+    attributes: t.object,
   }),
+  /** `attrubutes` are spread in the component. You can pass from `data-attributes` to events */
   nextArrowLink: t.shape({
     text: t.string.isRequired,
     url: t.string,
-    attributes: t.any,
+    attributes: t.object,
   }),
 };
 

@@ -61,7 +61,7 @@ ArticleOverviewListItem.propTypes = {
   date: t.string,
   /** title supports html */
   title: t.any,
-  /** img attributes spread in <img> tag. Like data-attributes. */
+  /** img attributes spread in `<img>` tag. Like data-attributes. */
   img: t.object,
   tags: t.arrayOf(
     t.shape({
@@ -70,6 +70,7 @@ ArticleOverviewListItem.propTypes = {
     }),
   ),
   url: t.string,
+  /** Add classes required for placeholder image */
   placeholder: t.bool,
   /** Used in placeholder image classes to determend background color. */
   bgColor: t.string,

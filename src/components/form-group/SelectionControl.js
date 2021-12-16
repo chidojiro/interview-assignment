@@ -34,13 +34,18 @@ const SelectionControl = ({
         </div>
       )}
       {children ? (
-        children.map(({ props: { id, name, ...props } }, i) => {
+        children.map(({ props: { id, name, label, ...props } }, i) => {
           const nameSanitized = (name || "").split(" ").join("-");
           const fieldId = id || `field--${nameSanitized}`;
+          let childLabel = label;
+
+          if (label && capitalize) {
+            childLabel = label.charAt(0).toUpperCase() + label.slice(1);
+          }
 
           return (
             <div className="form-group__input" key={i}>
-              <ChildComponent id={fieldId} name={name} capitalize={capitalize} {...props} />
+              <ChildComponent id={fieldId} name={name} label={childLabel} {...props} />
             </div>
           );
         })
