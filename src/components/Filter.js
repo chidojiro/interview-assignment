@@ -53,8 +53,8 @@ const Filter = ({
 
   return (
     <div className="filter" data-rs-filter="" ref={ref}>
-      <div className="filter__toggle" data-rs-filter-refine-search="">
-        <span className="icon icon--inline hidden--from-l">
+      <div className="filter__toggle" data-rs-filter-refine-search="" role="button" aria-label="">
+        <span className="icon icon--inline hidden--from-l text-brand-primary">
           <svg>
             <use xlinkHref="/themes/custom/bluex/dist/assets/image/icons.svg#filter"></use>
           </svg>
