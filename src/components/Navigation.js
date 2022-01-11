@@ -1,37 +1,31 @@
 import React from "react";
+import t from "prop-types";
+
 import Toast from "./Toast";
 import LanguageSwitcher from "./navigation/LanguageSwitcher";
-import MobileNavigationList from "./navigation/MobileNavigationList";
+import MobileNavigation from "./navigation/MobileNavigation";
 import UtilityNavigation from "./navigation/UtilityNavigation";
 import Logo from "./navigation/Logo";
 import Submenu from "./navigation/Submenu";
+import MainMenu from "./navigation/MainMenu";
+import MyRandstad from "./navigation/MyRandstad";
+import Modal from "./navigation/Modal";
 
 const Navigation = ({
   classes,
-  navigationHeadingMessage,
-  homepageUrl,
-  mainMenuItems,
-  myRandstad,
-  myRandstadBaseUrl,
-  myRandstadLabel,
-  languageItems,
-  utilityMenuItems,
-  mainMenuHasChildren,
-  modalBackground,
-  myRandstadUrl,
+  mainMenu,
+  showMyRandstad = true,
+  languages,
+  utilityMenu,
   theme = "default",
+  myRandstad = {},
+  config = {},
 }) => {
-  const mainMenuHasChildren = this.state.mainMenuItems.some(
-    (menuItem) => menuItem.isActive && menuItem.children && menuItem.children.length,
-  );
-
-  let modalBackground = "bg-variant-brand-tertiary";
-
-  if (this.state.theme == "sph") {
-    modalBackground = "bg-brand--light-grey";
-  }
+  const { baseUrl: myRandstadBaseUrl, label: myRandstadLabel } = myRandstad;
+  const { homepageUrl, navigationHeadingText } = config;
 
   return (
+    // With current implementation on apps we cannot use getBackground() to set background. The background classes are passed with <Head></Head> and will not be optimal to separate classes.
     <header {...classes}>
       <nav
         className="navigation"
@@ -39,51 +33,18 @@ const Navigation = ({
         aria-labelledby="block-main-navigation-menu"
         id="block-main-navigation">
         <h4 id="block-main-navigation-menu" className="hidden--visually">
-          {navigationHeadingMessage}
+          {navigationHeadingText}
         </h4>
         <div className="wrapper navigation__wrapper">
           <div className="navigation__top">
             <Logo homepageUrl={homepageUrl} theme={theme} />
-            <ul className="navigation__menu navigation__menu--main hidden--until-l">
-              {mainMenuItems.map((menuItem, index) => {
-                return (
-                  <li
-                    key={index}
-                    className={
-                      "navigation__menu-item" +
-                      (menuItem.isActive ? " navigation__menu-item--active" : "")
-                    }>
-                    <a href={menuItem.url}>{menuItem.title}</a>
-                  </li>
-                );
-              })}
-            </ul>
+            <MainMenu items={mainMenu} />
             <ul className="navigation__service">
-              {myRandstad && (
-                <li className="navigation__service-item">
-                  <a
-                    href={myRandstadBaseUrl + "login/"}
-                    className="navigation__service-link navigation__service-my-randstad hidden--from-l">
-                    <span className="icon icon--inline">
-                      <svg>
-                        <use xlinkHref="/themes/custom/bluex/dist/assets/image/icons.svg#person"></use>
-                      </svg>
-                    </span>
-                  </a>
-                  <a
-                    href={myRandstadBaseUrl + "login/"}
-                    className="navigation__service-link navigation__service-my-randstad hidden--until-l">
-                    <span className="icon icon--inline">
-                      <svg>
-                        <use xlinkHref="/themes/custom/bluex/dist/assets/image/icons.svg#person"></use>
-                      </svg>
-                    </span>
-                    <span id="navigation__service-user-text" className="hidden--until-l">
-                      {myRandstadLabel}
-                    </span>
-                  </a>
-                </li>
-              )}
+              <MyRandstad
+                baseUrl={myRandstadBaseUrl}
+                label={myRandstadLabel}
+                show={showMyRandstad}
+              />
               <li className="navigation__service-item hidden--from-l">
                 <button
                   className="button--icon-only button--hamburger"
@@ -93,26 +54,21 @@ const Navigation = ({
               </li>
             </ul>
             <div className="navigation__link-bar hidden--until-l">
-              <LanguageSwitcher items={languageItems} />
+              <LanguageSwitcher items={languages} />
             </div>
-            <UtilityNavigation items={utilityMenuItems} />
+            <UtilityNavigation items={utilityMenu} />
             <div id="navigationPopup"></div>
           </div>
-          <Submenu items={mainMenuItems} />
+          <Submenu items={mainMenu} />
           <div className="navigation__bottom"></div>
         </div>
       </nav>
-      <div className="modal modal--navigation hidden--from-l" data-rs-navigation="true">
-        <div className={`modal__dialog ${modalBackground}`}>
-          <div className="modal__header" data-rs-navigation-modal-header="true"></div>
-          <div className="modal__main" data-rs-navigation-modal-main="true">
-            <nav className="navigation-accordion">
-              <MobileNavigationList items={mainMenuItems} myRandstadUrl={myRandstadUrl} />
-              <LanguageSwitcher items={languageItems} />
-            </nav>
-          </div>
-        </div>
-      </div>
+      <Modal theme={theme}>
+        <nav className="navigation-accordion">
+          <MobileNavigation items={mainMenu} myRandstadUrl={myRandstadBaseUrl} />
+          <LanguageSwitcher items={languages} />
+        </nav>
+      </Modal>
 
       <Toast anchor="logged-out" id="logged-out">
         You are successfully logged out of your my randstad account
@@ -122,6 +78,53 @@ const Navigation = ({
       </Toast>
     </header>
   );
+};
+
+Navigation.propTypes = {
+  classes: t.object,
+  mainMenu: t.arrayOf(
+    t.shape({
+      text: t.string.isRequired,
+      url: t.string.isRequired,
+      isActive: t.bool,
+    }),
+  ),
+  showMyRandstad: t.bool,
+  languages: t.arrayOf(
+    t.shape({
+      language: t.string,
+      url: t.string,
+      isActive: t.bool,
+    }),
+  ),
+  utilityMenu: t.arrayOf(
+    t.shape({
+      title: t.string,
+      url: t.string,
+      children: t.arrayOf(
+        t.shape({
+          title: t.string,
+          url: t.string,
+        }),
+      ),
+    }),
+  ),
+  theme: t.oneOf(["default", "sph"]),
+  myRandstad: t.shape({
+    baseUrl: t.string,
+    label: t.string,
+  }),
+  config: t.shape({
+    homepageUrl: t.string,
+    navigationHeadingText: t.string,
+  }),
+};
+
+Navigation.defaultProps = {
+  theme: "default",
+  myRandstad: {},
+  config: {},
+  showMyRandstad: true,
 };
 
 export default Navigation;

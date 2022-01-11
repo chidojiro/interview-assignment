@@ -1,7 +1,8 @@
 import React from "react";
+import t from "prop-types";
 
 const LanguageSwitcher = ({ items }) => {
-  if (items.length < 2) {
+  if (!items || (items && items.length < 2)) {
     return null;
   }
 
@@ -22,6 +23,10 @@ const LanguageSwitcher = ({ items }) => {
       })}
     </ul>
   );
+};
+
+LanguageSwitcher.propTypes = {
+  items: t.array,
 };
 
 export default LanguageSwitcher;

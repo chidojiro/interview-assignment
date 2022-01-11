@@ -1,6 +1,11 @@
 import React from "react";
+import t from "prop-types";
 
 const Submenu = ({ items }) => {
+  if (!items) {
+    return null;
+  }
+
   const mainMenuHasChildren = items.some(
     (menuItem) => menuItem.isActive && menuItem.children && menuItem.children.length,
   );
@@ -8,6 +13,7 @@ const Submenu = ({ items }) => {
   if (!mainMenuHasChildren) {
     return null;
   }
+
   return (
     <ul className="navigation__menu navigation__menu--sub hidden--until-l">
       {items.map((menuItem) => {
@@ -28,6 +34,10 @@ const Submenu = ({ items }) => {
       })}
     </ul>
   );
+};
+
+Submenu.propTypes = {
+  items: t.array,
 };
 
 export default Submenu;

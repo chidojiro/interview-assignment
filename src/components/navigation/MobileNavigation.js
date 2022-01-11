@@ -1,17 +1,22 @@
 import React from "react";
+import t from "prop-types";
 
-const MobileNavigationList = ({ items, myRandstadUrl }) => {
-  const menuAttributes = (menuItemLength) => {
-    // If item has children, return expanded attributes.
-    if (menuItemLength > 0) {
-      return {
-        "data-rs-collapsible": "",
-        "data-rs-toggable": "",
-      };
-    }
+const menuAttributes = (menuItemLength) => {
+  // If item has children, return expanded attributes.
+  if (menuItemLength > 0) {
+    return {
+      "data-rs-collapsible": "",
+      "data-rs-toggable": "",
+    };
+  }
 
-    return {};
-  };
+  return {};
+};
+
+const MobileNavigation = ({ items, myRandstadUrl }) => {
+  if (!items) {
+    return null;
+  }
 
   return (
     <ul className="link-list link-list--single accordion accordion--s">
@@ -22,7 +27,7 @@ const MobileNavigationList = ({ items, myRandstadUrl }) => {
               <div className="link-list__link">
                 <a href={menuItem.url}>{menuItem.title}</a>
                 {menuItem.children && menuItem.children.length ? (
-                  <span class="icon toggle-arrow" data-rs-collapsible-button="" role="button">
+                  <span className="icon toggle-arrow" data-rs-collapsible-button="" role="button">
                     <svg>
                       <use xlinkHref="/themes/custom/bluex/dist/assets/image/icons.svg#chevron-down"></use>
                     </svg>
@@ -53,18 +58,18 @@ const MobileNavigationList = ({ items, myRandstadUrl }) => {
           </li>
         );
       })}
-      <li class="link-list__item hidden--anonyoums">
+      <li className="link-list__item hidden--anonyoums">
         <div
-          class="collapsible__trigger"
+          className="collapsible__trigger"
           data-rs-collapsible=""
           aria-expanded="false"
           data-rs-toggable="">
-          <div class="link-list__link">
+          <div className="link-list__link">
             {/* Can be changed from auth-widget by the id. See DE auth-widget.js */}
             <a id="mr-mobile-navigation-menu-title" href={`${myRandstadUrl}/`}>
               my randstad
             </a>
-            <span class="icon toggle-arrow" data-rs-collapsible-button="" role="button">
+            <span className="icon toggle-arrow" data-rs-collapsible-button="" role="button">
               <svg>
                 <use xlinkHref="/themes/custom/bluex/dist/assets/image/icons.svg#chevron-down"></use>
               </svg>
@@ -73,7 +78,7 @@ const MobileNavigationList = ({ items, myRandstadUrl }) => {
         </div>
         {/* Placeholder for my randstad menu, that's populated by auth-widget. */}
         <div
-          class="collapsible__content"
+          className="collapsible__content"
           id="navigationMobileMR"
           data-rs-collapsible-content=""
           aria-hidden="true"></div>
@@ -82,4 +87,9 @@ const MobileNavigationList = ({ items, myRandstadUrl }) => {
   );
 };
 
-export default MobileNavigationList;
+MobileNavigation.propTypes = {
+  items: t.array,
+  myRandstadUrl: t.string,
+};
+
+export default MobileNavigation;
