@@ -26,7 +26,7 @@ const MyRandstad = ({ show, baseUrl, label }) => {
           </svg>
         </span>
         <span id="navigation__service-user-text" className="hidden--until-l">
-          {label}
+          {label || "my randstad"}
         </span>
       </a>
     </li>

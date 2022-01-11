@@ -23,7 +23,9 @@ const MobileNavigation = ({ items, myRandstadUrl }) => {
       {items.map((menuItem, index) => {
         return (
           <li key={index} className="link-list__item">
-            <div className="collapsible__trigger" {...menuAttributes(menuItem.children.length)}>
+            <div
+              className="collapsible__trigger"
+              {...menuAttributes(menuItem.children ? menuItem.children.length : 0)}>
               <div className="link-list__link">
                 <a href={menuItem.url}>{menuItem.title}</a>
                 {menuItem.children && menuItem.children.length ? (

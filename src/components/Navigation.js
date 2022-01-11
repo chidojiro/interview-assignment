@@ -11,6 +11,10 @@ import MainMenu from "./navigation/MainMenu";
 import MyRandstad from "./navigation/MyRandstad";
 import Modal from "./navigation/Modal";
 
+/**
+ * The top-level navigation of the website and shown on each page. See [here](https://randstad.design/components/core/navigation/)
+ *
+ */
 const Navigation = ({
   classes,
   mainMenu,
@@ -84,23 +88,29 @@ Navigation.propTypes = {
   classes: t.object,
   mainMenu: t.arrayOf(
     t.shape({
-      text: t.string.isRequired,
+      title: t.string.isRequired,
       url: t.string.isRequired,
       isActive: t.bool,
+      children: t.arrayOf(
+        t.shape({
+          title: t.string.isRequired,
+          url: t.string.isRequired,
+        }),
+      ),
     }),
   ),
   showMyRandstad: t.bool,
   languages: t.arrayOf(
     t.shape({
-      language: t.string,
-      url: t.string,
+      language: t.string.isRequired,
+      url: t.string.isRequired,
       isActive: t.bool,
     }),
   ),
   utilityMenu: t.arrayOf(
     t.shape({
-      title: t.string,
-      url: t.string,
+      title: t.string.isRequired,
+      url: t.string.isRequired,
       children: t.arrayOf(
         t.shape({
           title: t.string,
@@ -109,14 +119,16 @@ Navigation.propTypes = {
       ),
     }),
   ),
+  /** Select proper logo and style for the navigation */
   theme: t.oneOf(["default", "sph"]),
   myRandstad: t.shape({
-    baseUrl: t.string,
+    baseUrl: t.string.isRequired,
     label: t.string,
   }),
   config: t.shape({
-    homepageUrl: t.string,
-    navigationHeadingText: t.string,
+    homepageUrl: t.string.isRequired,
+    /** Text displayed on top for a11y */
+    navigationHeadingText: t.string.isRequired,
   }),
 };
 
