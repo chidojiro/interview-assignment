@@ -13,7 +13,7 @@ const menuAttributes = (menuItemLength) => {
   return {};
 };
 
-const MobileNavigation = ({ items, myRandstadUrl }) => {
+const MobileNavigation = ({ items, myRandstadUrl, showMyRandstad }) => {
   if (!items) {
     return null;
   }
@@ -60,31 +60,33 @@ const MobileNavigation = ({ items, myRandstadUrl }) => {
           </li>
         );
       })}
-      <li className="link-list__item hidden--anonyoums">
-        <div
-          className="collapsible__trigger"
-          data-rs-collapsible=""
-          aria-expanded="false"
-          data-rs-toggable="">
-          <div className="link-list__link">
-            {/* Can be changed from auth-widget by the id. See DE auth-widget.js */}
-            <a id="mr-mobile-navigation-menu-title" href={`${myRandstadUrl}/`}>
-              my randstad
-            </a>
-            <span className="icon toggle-arrow" data-rs-collapsible-button="" role="button">
-              <svg>
-                <use xlinkHref="/themes/custom/bluex/dist/assets/image/icons.svg#chevron-down"></use>
-              </svg>
-            </span>
+      {showMyRandstad && (
+        <li className="link-list__item hidden--anonyoums">
+          <div
+            className="collapsible__trigger"
+            data-rs-collapsible=""
+            aria-expanded="false"
+            data-rs-toggable="">
+            <div className="link-list__link">
+              {/* Can be changed from auth-widget by the id. See DE auth-widget.js */}
+              <a id="mr-mobile-navigation-menu-title" href={`${myRandstadUrl}/`}>
+                my randstad
+              </a>
+              <span className="icon toggle-arrow" data-rs-collapsible-button="" role="button">
+                <svg>
+                  <use xlinkHref="/themes/custom/bluex/dist/assets/image/icons.svg#chevron-down"></use>
+                </svg>
+              </span>
+            </div>
           </div>
-        </div>
-        {/* Placeholder for my randstad menu, that's populated by auth-widget. */}
-        <div
-          className="collapsible__content"
-          id="navigationMobileMR"
-          data-rs-collapsible-content=""
-          aria-hidden="true"></div>
-      </li>
+          {/* Placeholder for my randstad menu, that's populated by auth-widget. */}
+          <div
+            className="collapsible__content"
+            id="navigationMobileMR"
+            data-rs-collapsible-content=""
+            aria-hidden="true"></div>
+        </li>
+      )}
     </ul>
   );
 };
@@ -92,6 +94,7 @@ const MobileNavigation = ({ items, myRandstadUrl }) => {
 MobileNavigation.propTypes = {
   items: t.array,
   myRandstadUrl: t.string,
+  showMyRandstad: t.bool,
 };
 
 export default MobileNavigation;

@@ -69,7 +69,11 @@ const Navigation = ({
       </nav>
       <Modal theme={theme}>
         <nav className="navigation-accordion">
-          <MobileNavigation items={mainMenu} myRandstadUrl={myRandstadBaseUrl} />
+          <MobileNavigation
+            items={mainMenu}
+            myRandstadUrl={myRandstadBaseUrl}
+            showMyRandstad={showMyRandstad}
+          />
           <LanguageSwitcher items={languages} />
         </nav>
       </Modal>
