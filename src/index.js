@@ -10,6 +10,7 @@ import Pagination from "./components/Pagination";
 import ArticleOverviewList from "./components/article-overview/list/ArticleOverviewList";
 import ArticleOverviewListItem from "./components/article-overview/list/ArticleOverviewListItem";
 import Breadcrumbs from "./components/Breadcrumbs";
+import Navigation from "./components/Navigation";
 
 export {
   HeaderText,
@@ -24,4 +25,5 @@ export {
   ArticleOverviewList,
   ArticleOverviewListItem,
   Breadcrumbs,
+  Navigation
 };
