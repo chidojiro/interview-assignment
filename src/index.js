@@ -11,6 +11,7 @@ import ArticleOverviewList from "./components/article-overview/list/ArticleOverv
 import ArticleOverviewListItem from "./components/article-overview/list/ArticleOverviewListItem";
 import Breadcrumbs from "./components/Breadcrumbs";
 import Navigation from "./components/Navigation";
+import Block from "./components/Block";
 
 export {
   HeaderText,
@@ -25,5 +26,6 @@ export {
   ArticleOverviewList,
   ArticleOverviewListItem,
   Breadcrumbs,
-  Navigation
+  Navigation,
+  Block,
 };
