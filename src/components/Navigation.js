@@ -132,6 +132,7 @@ Navigation.propTypes = {
   /** Select proper logo and style for the navigation */
   theme: t.oneOf(["default", "sph"]),
   myRandstad: t.shape({
+    baseUrl: t.string.isRequired,
     /** loginUrl is the full url to login page. */
     loginUrl: t.string.isRequired,
     label: t.string,
