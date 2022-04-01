@@ -37,7 +37,6 @@ const MyRandstad = ({ show, loginUrl, label }) => {
 
 MyRandstad.propTypes = {
   show: t.bool,
-  baseUrl: t.string,
   loginUrl: t.string,
   label: t.string,
 };
