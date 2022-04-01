@@ -25,7 +25,11 @@ const Navigation = ({
   myRandstad = {},
   config = {},
 }) => {
-  const { baseUrl: myRandstadBaseUrl, label: myRandstadLabel } = myRandstad;
+  const {
+    baseUrl: myRandstadBaseUrl,
+    label: myRandstadLabel,
+    loginUrl: myRandstadLoginUrl,
+  } = myRandstad;
   const { homepageUrl, navigationHeadingText } = config;
 
   return (
@@ -35,7 +39,8 @@ const Navigation = ({
         className="navigation"
         role="navigation"
         aria-labelledby="block-main-navigation-menu"
-        id="block-main-navigation">
+        id="block-main-navigation"
+      >
         <h4 id="block-main-navigation-menu" className="hidden--visually">
           {navigationHeadingText}
         </h4>
@@ -46,13 +51,15 @@ const Navigation = ({
             <ul className="navigation__service">
               <MyRandstad
                 baseUrl={myRandstadBaseUrl}
+                loginUrl={myRandstadLoginUrl}
                 label={myRandstadLabel}
                 show={showMyRandstad}
               />
               <li className="navigation__service-item hidden--from-l">
                 <button
                   className="button--icon-only button--hamburger"
-                  data-rs-navigation-menu-icon="">
+                  data-rs-navigation-menu-icon=""
+                >
                   <span className="icon icon--hamburger"></span>
                 </button>
               </li>

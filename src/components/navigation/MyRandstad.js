@@ -1,7 +1,7 @@
 import React from "react";
 import t from "prop-types";
 
-const MyRandstad = ({ show, baseUrl, label }) => {
+const MyRandstad = ({ show, loginUrl, label }) => {
   if (!show) {
     return null;
   }
@@ -9,8 +9,9 @@ const MyRandstad = ({ show, baseUrl, label }) => {
   return (
     <li className="navigation__service-item">
       <a
-        href={baseUrl + "login/"}
-        className="navigation__service-link navigation__service-my-randstad hidden--from-l">
+        href={loginUrl}
+        className="navigation__service-link navigation__service-my-randstad hidden--from-l"
+      >
         <span className="icon icon--inline">
           <svg>
             <use xlinkHref="/themes/custom/bluex/dist/assets/image/icons.svg#person"></use>
@@ -18,8 +19,9 @@ const MyRandstad = ({ show, baseUrl, label }) => {
         </span>
       </a>
       <a
-        href={baseUrl + "login/"}
-        className="navigation__service-link navigation__service-my-randstad hidden--until-l">
+        href={loginUrl}
+        className="navigation__service-link navigation__service-my-randstad hidden--until-l"
+      >
         <span className="icon icon--inline">
           <svg>
             <use xlinkHref="/themes/custom/bluex/dist/assets/image/icons.svg#person"></use>
@@ -36,6 +38,7 @@ const MyRandstad = ({ show, baseUrl, label }) => {
 MyRandstad.propTypes = {
   show: t.bool,
   baseUrl: t.string,
+  loginUrl: t.string,
   label: t.string,
 };
 
