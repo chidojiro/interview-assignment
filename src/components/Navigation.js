@@ -50,7 +50,6 @@ const Navigation = ({
             <MainMenu items={mainMenu} />
             <ul className="navigation__service">
               <MyRandstad
-                baseUrl={myRandstadBaseUrl}
                 loginUrl={myRandstadLoginUrl}
                 label={myRandstadLabel}
                 show={showMyRandstad}
