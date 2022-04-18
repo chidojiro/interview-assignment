@@ -24,14 +24,14 @@ const SelectionControl = ({
   const { fieldLabel, ...props } = componentProps;
 
   return (
-    <div className={classes.join(" ")}>
+    <fieldset className={classes.join(" ")}>
       {label && (
-        <div className="form-group__label">
+        <legend className="form-group__label">
           {label}
           {!required && (
             <span className="form-group__optional"> {optionalLabel || "optional"}</span>
           )}
-        </div>
+        </legend>
       )}
       {children ? (
         children.map(({ props: { id, name, label, ...props } }, i) => {
@@ -56,7 +56,7 @@ const SelectionControl = ({
       )}
       {error && <div className="form-group__feedback">{error}</div>}
       {description && <div className="form-group__message">{description}</div>}
-    </div>
+    </fieldset>
   );
 };
 
