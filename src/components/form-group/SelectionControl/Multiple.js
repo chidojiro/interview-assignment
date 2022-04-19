@@ -2,9 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const Multiple = ({ classes, label, error, description, children, ChildComponent, capitalize }) => {
+  if (!label) {
+    console.warn("Missing label for the legend. Fieldset tag requires a legend.");
+  }
+
   return (
     <fieldset className={classes.join(" ")}>
-      {label && <legend className="form-group__label hidden">{label}</legend>}
+      <legend className="form-group__label hidden">{label}</legend>
       {children &&
         children.map(({ props: { id, name, label, ...props } }, i) => {
           const nameSanitized = (name || "").split(" ").join("-");
