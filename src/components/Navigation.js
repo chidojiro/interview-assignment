@@ -24,6 +24,7 @@ const Navigation = ({
   theme = "default",
   myRandstad = {},
   config = {},
+  afterLinks,
 }) => {
   const { baseUrl: myRandstadBaseUrl, label: myRandstadLabel } = myRandstad;
   const { homepageUrl, navigationHeadingText } = config;
@@ -35,7 +36,8 @@ const Navigation = ({
         className="navigation"
         role="navigation"
         aria-labelledby="block-main-navigation-menu"
-        id="block-main-navigation">
+        id="block-main-navigation"
+      >
         <h4 id="block-main-navigation-menu" className="hidden--visually">
           {navigationHeadingText}
         </h4>
@@ -44,6 +46,7 @@ const Navigation = ({
             <Logo homepageUrl={homepageUrl} theme={theme} />
             <MainMenu items={mainMenu} />
             <ul className="navigation__service">
+              {afterLinks()}
               <MyRandstad
                 baseUrl={myRandstadBaseUrl}
                 label={myRandstadLabel}
@@ -52,7 +55,8 @@ const Navigation = ({
               <li className="navigation__service-item hidden--from-l">
                 <button
                   className="button--icon-only button--hamburger"
-                  data-rs-navigation-menu-icon="">
+                  data-rs-navigation-menu-icon=""
+                >
                   <span className="icon icon--hamburger"></span>
                 </button>
               </li>
@@ -134,6 +138,7 @@ Navigation.propTypes = {
     /** Text displayed on top for a11y */
     navigationHeadingText: t.string.isRequired,
   }),
+  afterLinks: t.any,
 };
 
 Navigation.defaultProps = {
