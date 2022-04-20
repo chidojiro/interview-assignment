@@ -24,6 +24,7 @@ const Navigation = ({
   theme = "default",
   myRandstad = {},
   config = {},
+  afterLinks,
 }) => {
   const {
     baseUrl: myRandstadBaseUrl,
@@ -49,6 +50,7 @@ const Navigation = ({
             <Logo homepageUrl={homepageUrl} theme={theme} />
             <MainMenu items={mainMenu} />
             <ul className="navigation__service">
+              {afterLinks}
               <MyRandstad
                 loginUrl={myRandstadLoginUrl}
                 label={myRandstadLabel}
@@ -142,6 +144,7 @@ Navigation.propTypes = {
     /** Text displayed on top for a11y */
     navigationHeadingText: t.string.isRequired,
   }),
+  afterLinks: t.any,
 };
 
 Navigation.defaultProps = {
