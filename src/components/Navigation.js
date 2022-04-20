@@ -46,7 +46,7 @@ const Navigation = ({
             <Logo homepageUrl={homepageUrl} theme={theme} />
             <MainMenu items={mainMenu} />
             <ul className="navigation__service">
-              {afterLinks()}
+              {afterLinks}
               <MyRandstad
                 baseUrl={myRandstadBaseUrl}
                 label={myRandstadLabel}
