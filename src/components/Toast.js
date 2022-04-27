@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const Toast = ({ children, anchor, id, buttonLabel = "close" }) => {
   const attributes = {
@@ -23,6 +24,17 @@ const Toast = ({ children, anchor, id, buttonLabel = "close" }) => {
       </button>
     </div>
   );
+};
+
+Toast.propTypes = {
+  children: PropTypes.node,
+  anchor: PropTypes.string,
+  id: PropTypes.string,
+  buttonLabel: PropTypes.string,
+};
+
+Toast.defaultProps = {
+  buttonLabel: "close",
 };
 
 export default Toast;
