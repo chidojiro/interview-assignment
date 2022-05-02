@@ -1,4 +1,5 @@
 Single checkbox
+
 ```jsx
 import { Checkbox } from "@ffw/randstad-shared-components";
 
@@ -7,10 +8,11 @@ import { Checkbox } from "@ffw/randstad-shared-components";
   label="job specialism"
   required
   fieldLabel="I want to receive news in my inbox"
-/>
-
+/>;
 ```
+
 Multiple checkbox items.
+
 ```jsx
 import { Checkbox } from "@ffw/randstad-shared-components";
 
@@ -18,5 +20,5 @@ import { Checkbox } from "@ffw/randstad-shared-components";
   <item name="engineer" label="engineer" />
   <item name="chef" label="Chef" />
   <item name="construction-worker" label="Construction worker" data-worker="full-time" />
-</Checkbox>
+</Checkbox>;
 ```
