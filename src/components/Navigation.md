@@ -11,9 +11,9 @@ import { Navigation } from "@ffw/randstad-shared-components";
       children: [
         {
           title: "search",
-          url: "#"
-        }
-      ]
+          url: "#",
+        },
+      ],
     },
     {
       title: "About us",
