@@ -6,7 +6,15 @@ import useLibrary from "@hooks/useLibrary";
  * Expanding and collapsing sections of content. See [here](https://randstad.design/components/core/accordion/)
  *
  */
-const AccordionItem = ({ children, title, subtitle, expanded = false, libs, ...attr }) => {
+const AccordionItem = ({
+  children,
+  title,
+  subtitle,
+  expanded = false,
+  libs,
+  HeadingTag = "h3",
+  ...attr
+}) => {
   const [ref] = useLibrary(libs);
 
   return (
@@ -19,7 +27,7 @@ const AccordionItem = ({ children, title, subtitle, expanded = false, libs, ...a
         data-rs-toggable=""
         ref={ref}
         data-scl="">
-        <h3 className="link-list__link">
+        <HeadingTag className="link-list__link">
           {title}
           {subtitle && <p className="text--alternative pt-xs mb-none">{subtitle}</p>}
           <span className="hidden--from-l toggle-arrow icon">
@@ -32,7 +40,7 @@ const AccordionItem = ({ children, title, subtitle, expanded = false, libs, ...a
               <use xlinkHref="/themes/custom/bluex/dist/assets/image/icons.svg#chevron-down-30"></use>
             </svg>
           </span>
-        </h3>
+        </HeadingTag>
       </div>
       <div
         className="collapsible__content body-copy"
@@ -49,6 +57,8 @@ AccordionItem.propTypes = {
   title: t.string,
   subtitle: t.string,
   expanded: t.bool,
+  /** Used to pass js Orbit library responsible for functionality. Note: This should passed on component setup so you don't have to pass it every time. */
+  HeadingTag: t.string,
   /** Used to pass js Orbit library responsible for functionality. Note: This should passed on component setup so you don't have to pass it every time. */
   libs: t.object,
 };
