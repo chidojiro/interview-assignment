@@ -39,12 +39,8 @@ const Navigation = ({
       <nav
         className="navigation"
         role="navigation"
-        aria-labelledby="block-main-navigation-menu"
-        id="block-main-navigation"
-      >
-        <h4 id="block-main-navigation-menu" className="hidden--visually">
-          {navigationHeadingText}
-        </h4>
+        aria-label={navigationHeadingText}
+        id="block-main-navigation">
         <div className="wrapper navigation__wrapper">
           <div className="navigation__top">
             <Logo homepageUrl={homepageUrl} theme={theme} />
@@ -59,8 +55,7 @@ const Navigation = ({
               <li className="navigation__service-item hidden--from-l">
                 <button
                   className="button--icon-only button--hamburger"
-                  data-rs-navigation-menu-icon=""
-                >
+                  data-rs-navigation-menu-icon="">
                   <span className="icon icon--hamburger"></span>
                 </button>
               </li>
