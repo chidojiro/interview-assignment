@@ -49,7 +49,9 @@ const Navigation = ({
               <li className="navigation__service-item hidden--from-l">
                 <button
                   className="button--icon-only button--hamburger"
-                  data-rs-navigation-menu-icon="">
+                  data-rs-navigation-menu-icon=""
+                  data-rs-navigation-menu-labels="" 
+                  aria-label="open menu">
                   <span className="icon icon--hamburger"></span>
                 </button>
               </li>
