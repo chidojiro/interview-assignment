@@ -8,42 +8,46 @@ import t from "prop-types";
 const Breadcrumbs = ({ items, mobileItem, bgColor = "primary", app = true }) => {
   const { title: mobileTitle, url: mobileUrl } = mobileItem || {};
   const wrapperClasses = ["navigation"];
+  const WrapperTag = bgColor ? "div" : React.Fragment;
+  let wrapperAttributes = {};
 
   if (app) {
     wrapperClasses.push("navigation--app");
   }
 
   if (bgColor) {
-    wrapperClasses.push(`bg-variant-brand-${bgColor}`);
+    wrapperAttributes.className = `bg-variant-brand-${bgColor}`;
   }
 
   return (
-    <div className={wrapperClasses.join(" ")}>
-      <div className="wrapper">
-        <div className="navigation__bottom">
-          <nav className="breadcrumb" aria-label="breadcrumb">
-            {mobileItem && (
-              <a className="breadcrumb__link hidden--from-l" href={mobileUrl}>
-                {mobileTitle}
-              </a>
-            )}
-            <ul className="breadcrumb__list hidden--until-l">
-              {items.map(({ title, url, active }, index) => (
-                <li className="breadcrumb__item" key={index}>
-                  {url && !active ? (
-                    <a href={url} className="breadcrumb__link">
-                      {title}
-                    </a>
-                  ) : (
-                    title
-                  )}
-                </li>
-              ))}
-            </ul>
-          </nav>
+    <WrapperTag {...wrapperAttributes}>
+      <div className={wrapperClasses.join(" ")}>
+        <div className="wrapper">
+          <div className="navigation__bottom">
+            <nav className="breadcrumb" aria-label="breadcrumb">
+              {mobileItem && (
+                <a className="breadcrumb__link hidden--from-l" href={mobileUrl}>
+                  {mobileTitle}
+                </a>
+              )}
+              <ul className="breadcrumb__list hidden--until-l">
+                {items.map(({ title, url, active }, index) => (
+                  <li className="breadcrumb__item" key={index}>
+                    {url && !active ? (
+                      <a href={url} className="breadcrumb__link">
+                        {title}
+                      </a>
+                    ) : (
+                      title
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </div>
         </div>
       </div>
-    </div>
+    </WrapperTag>
   );
 };
 
