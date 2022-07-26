@@ -58,7 +58,9 @@ const Pagination = ({ pages, currentPage, as, previousArrowLink, nextArrowLink }
               {parseInt(currentPage) == parseInt(text) ? (
                 <span>{text}</span>
               ) : (
-                <LinkElement props={rest}>{text}</LinkElement>
+                <LinkElement props={rest} className="link">
+                  {text}
+                </LinkElement>
               )}
             </li>
           );
