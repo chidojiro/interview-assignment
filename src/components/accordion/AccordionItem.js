@@ -13,6 +13,7 @@ const AccordionItem = ({
   expanded = false,
   libs,
   HeadingTag = "h3",
+  ariaLabel = "",
   ...attr
 }) => {
   const [ref] = useLibrary(libs);
@@ -24,6 +25,7 @@ const AccordionItem = ({
         data-rs-collapsible=""
         role="button"
         aria-expanded={expanded}
+        aria-label={ariaLabel}
         data-rs-toggable=""
         ref={ref}
         data-scl="">
@@ -59,6 +61,7 @@ AccordionItem.propTypes = {
   expanded: t.bool,
   /** Used to pass js Orbit library responsible for functionality. Note: This should passed on component setup so you don't have to pass it every time. */
   HeadingTag: t.string,
+  ariaLabel: t.string,
   /** Used to pass js Orbit library responsible for functionality. Note: This should passed on component setup so you don't have to pass it every time. */
   libs: t.object,
 };
