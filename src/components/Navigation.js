@@ -52,19 +52,19 @@ const Navigation = ({
                 label={myRandstadLabel}
                 show={showMyRandstad}
               />
+              <li className="navigation__service-item">
+                <LanguageSwitcher items={languages} />
+              </li>
               <li className="navigation__service-item hidden--from-l">
                 <button
                   className="button--icon-only button--hamburger"
                   data-rs-navigation-menu-icon=""
-                  data-rs-navigation-menu-labels="" 
+                  data-rs-navigation-menu-labels=""
                   aria-label="open menu">
                   <span className="icon icon--hamburger"></span>
                 </button>
               </li>
             </ul>
-            <div className="navigation__link-bar hidden--until-l">
-              <LanguageSwitcher items={languages} />
-            </div>
             <UtilityNavigation items={utilityMenu} />
             <div id="navigationPopup"></div>
           </div>
