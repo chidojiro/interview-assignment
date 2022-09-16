@@ -8,32 +8,14 @@ const LanguageSwitcher = (props) => {
     return null;
   }
 
-  /**
-   * The callback for the language switcher element.
-   * Redirect the user to the translated page.
-   * The function will only work if the component is part of the application.
-   *
-   * @param {Object} event
-   *   Change JavaScript event object.
-   */
-  const switchLang = (event) => {
-    if (typeof window !== "undefined") {
-      window.location.href = event.target.options[event.target.selectedIndex].dataset.url;
-    }
-  };
-
   return (
-    <a
-      className="language__dropdown navigation__service-link"
-      onClick={(e) => {
-        e.preventDefault();
-      }}>
+    <a className="language__dropdown navigation__service-link">
       <span className="icon icon--language">
         <svg>
           <use xlinkHref="/themes/custom/bluex/dist/assets/image/icons.svg#globe"></use>
         </svg>
       </span>
-      <select className="js-language-switcher" onChange={switchLang}>
+      <select className="js-language-switcher">
         {items.map((lang) => {
           return (
             <option
