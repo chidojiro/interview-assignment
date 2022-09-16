@@ -50,7 +50,7 @@ const Navigation = ({
                 <button
                   className="button--icon-only button--hamburger"
                   data-rs-navigation-menu-icon=""
-                  data-rs-navigation-menu-labels="" 
+                  data-rs-navigation-menu-labels=""
                   aria-label="open menu">
                   <span className="icon icon--hamburger"></span>
                 </button>
