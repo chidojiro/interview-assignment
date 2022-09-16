@@ -1,9 +1,7 @@
 import React from "react";
 import t from "prop-types";
 
-const LanguageSwitcher = (props) => {
-  const items = props.items;
-
+const LanguageSwitcher = ({ items }) => {
   if (!items || (items && items.length < 2)) {
     return null;
   }
