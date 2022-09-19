@@ -19,7 +19,7 @@ const LanguageSwitcher = ({ items }) => {
             <option
               key={lang.language}
               value={lang.language}
-              defaultValue={lang.isActive}
+              selected={lang.isActive}
               data-url={lang.url}>
               {lang.language}
             </option>
