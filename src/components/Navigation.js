@@ -63,7 +63,6 @@ const Navigation = ({
             <div id="navigationPopup"></div>
           </div>
           <Submenu items={mainMenu} />
-          <div className="navigation__bottom"></div>
         </div>
       </nav>
       <Modal theme={theme}>
