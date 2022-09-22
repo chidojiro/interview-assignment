@@ -4,11 +4,9 @@ const LogoTT = () => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 757.31 159.71">
     <defs>
-      <style
-        dangerouslySetInnerHTML={{
-          __html: `.a{fill:none}.b{fill:#ef4123}.c{fill:#f26c52}.d{clip-path:url(#a)}.e{fill:#dcddde}.f{fill:#cf391e}.g{clip-path:url(#b)}.h{clip-path:url(#c)}.i{clip-path:url(#e)}.j{clip-path:url(#f)}.k{clip-path:url(#h)}.l{clip-path:url(#i)}.m{clip-path:url(#k)}.n{clip-path:url(#l)}.o{clip-path:url(#n)}.p{clip-path:url(#o)}.q{fill:#fff}.r{clip-path:url(#q)}.s{clip-path:url(#r)}.t{clip-path:url(#t)}.u{clip-path:url(#u)}.v{clip-path:url(#w)}.w{clip-path:url(#x)}.x{clip-path:url(#z)}.y{clip-path:url(#aa)}.z{clip-path:url(#ac)}.aa{clip-path:url(#ad)}.ab{clip-path:url(#ae)}.ac{clip-path:url(#af)}.ad{clip-path:url(#ag)}.ae{clip-path:url(#ai)}.af{clip-path:url(#aj)}.ag{clip-path:url(#al)}.ah{clip-path:url(#am)}.ai{clip-path:url(#an)}.aj{fill:#e23822}`
-        }}
-      />
+      <style>
+          {`.a{fill:none}.b{fill:#ef4123}.c{fill:#f26c52}.d{clip-path:url(#a)}.e{fill:#dcddde}.f{fill:#cf391e}.g{clip-path:url(#b)}.h{clip-path:url(#c)}.i{clip-path:url(#e)}.j{clip-path:url(#f)}.k{clip-path:url(#h)}.l{clip-path:url(#i)}.m{clip-path:url(#k)}.n{clip-path:url(#l)}.o{clip-path:url(#n)}.p{clip-path:url(#o)}.q{fill:#fff}.r{clip-path:url(#q)}.s{clip-path:url(#r)}.t{clip-path:url(#t)}.u{clip-path:url(#u)}.v{clip-path:url(#w)}.w{clip-path:url(#x)}.x{clip-path:url(#z)}.y{clip-path:url(#aa)}.z{clip-path:url(#ac)}.aa{clip-path:url(#ad)}.ab{clip-path:url(#ae)}.ac{clip-path:url(#af)}.ad{clip-path:url(#ag)}.ae{clip-path:url(#ai)}.af{clip-path:url(#aj)}.ag{clip-path:url(#al)}.ah{clip-path:url(#am)}.ai{clip-path:url(#an)}.aj{fill:#e23822}`}
+      </style>
       <clipPath id="a" transform="translate(0 0)">
         <rect className="a" x="51.39" y="1.88" width="108.31" height="136.75" />
       </clipPath>
