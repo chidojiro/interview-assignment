@@ -7,21 +7,31 @@ const LanguageSwitcher = ({ items }) => {
   }
 
   return (
-    <ul className="top-link language-switcher">
-      {items.map((lang) => {
-        return (
-          <li key={lang.language} className="top-link__item">
-            {!lang.isActive ? (
-              <a href={lang.url} hrefLang={lang.language} className="language-link">
-                {lang.language}
-              </a>
-            ) : (
-              lang.language
-            )}
-          </li>
-        );
-      })}
-    </ul>
+    <a className="language__dropdown navigation__service-link">
+      <span className="icon icon--language">
+        <svg>
+          <use xlinkHref="/themes/custom/bluex/dist/assets/image/icons.svg#globe"></use>
+        </svg>
+      </span>
+      <select className="js-language-switcher" name="language-switcher">
+        {items.map((lang) => {
+          return (
+            <option
+              key={lang.language}
+              value={lang.language}
+              selected={lang.isActive}
+              data-url={lang.url}>
+              {lang.language}
+            </option>
+          );
+        })}
+      </select>
+      <span className="icon select--status">
+        <svg>
+          <use xlinkHref="/themes/custom/bluex/dist/assets/image/icons.svg#chevron-down-8"></use>
+        </svg>
+      </span>
+    </a>
   );
 };
 
