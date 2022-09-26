@@ -13,7 +13,7 @@ const LanguageSwitcher = ({ items }) => {
           <use xlinkHref="/themes/custom/bluex/dist/assets/image/icons.svg#globe"></use>
         </svg>
       </span>
-      <select className="js-language-switcher">
+      <select className="js-language-switcher" name="">
         {items.map((lang) => {
           return (
             <option
