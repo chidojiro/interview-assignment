@@ -1,15 +1,13 @@
 import React from "react";
 import t from "prop-types";
 
-const LanguageSwitcher = ({ items, tagName, cssClasses }) => {
+const LanguageSwitcher = ({ items }) => {
   if (!items || (items && items.length < 2)) {
     return null;
   }
 
-  const DynamicTag = tagName;
-
   return (
-    <DynamicTag className={cssClasses}>
+    <li className="navigation__service-item language__dropdown__wrapper">
       <a className="language__dropdown navigation__service-link">
         <span className="icon icon--language">
           <svg>
@@ -35,7 +33,7 @@ const LanguageSwitcher = ({ items, tagName, cssClasses }) => {
           </svg>
         </span>
       </a>
-    </DynamicTag>
+    </li>
   );
 };
 

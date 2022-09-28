@@ -46,11 +46,7 @@ const Navigation = ({
                 label={myRandstadLabel}
                 show={showMyRandstad}
               />
-              <LanguageSwitcher
-                items={languages}
-                tagName="li"
-                cssClasses="navigation__service-item language__dropdown__wrapper"
-              />
+              <LanguageSwitcher items={languages} />
               <li className="navigation__service-item hidden--from-l">
                 <button
                   className="button--icon-only button--hamburger"
