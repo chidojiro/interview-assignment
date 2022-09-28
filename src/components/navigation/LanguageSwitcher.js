@@ -39,8 +39,6 @@ const LanguageSwitcher = ({ items }) => {
 
 LanguageSwitcher.propTypes = {
   items: t.array,
-  tagName: t.string.isRequired,
-  cssClasses: t.string,
 };
 
 export default LanguageSwitcher;
