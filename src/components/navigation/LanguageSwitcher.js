@@ -7,31 +7,33 @@ const LanguageSwitcher = ({ items }) => {
   }
 
   return (
-    <a className="language__dropdown navigation__service-link">
-      <span className="icon icon--language">
-        <svg>
-          <use xlinkHref="/themes/custom/bluex/dist/assets/image/icons.svg#globe"></use>
-        </svg>
-      </span>
-      <select className="js-language-switcher" name="language-switcher">
-        {items.map((lang) => {
-          return (
-            <option
-              key={lang.language}
-              value={lang.language}
-              selected={lang.isActive}
-              data-url={lang.url}>
-              {lang.language}
-            </option>
-          );
-        })}
-      </select>
-      <span className="icon select--status">
-        <svg>
-          <use xlinkHref="/themes/custom/bluex/dist/assets/image/icons.svg#chevron-down-8"></use>
-        </svg>
-      </span>
-    </a>
+    <li className="navigation__service-item language__dropdown__wrapper">
+      <a className="language__dropdown navigation__service-link">
+        <span className="icon icon--language">
+          <svg>
+            <use xlinkHref="/themes/custom/bluex/dist/assets/image/icons.svg#globe"></use>
+          </svg>
+        </span>
+        <select className="js-language-switcher" name="language-switcher">
+          {items.map((lang) => {
+            return (
+              <option
+                key={lang.language}
+                value={lang.language}
+                selected={lang.isActive}
+                data-url={lang.url}>
+                {lang.language}
+              </option>
+            );
+          })}
+        </select>
+        <span className="icon select--status">
+          <svg>
+            <use xlinkHref="/themes/custom/bluex/dist/assets/image/icons.svg#chevron-down-8"></use>
+          </svg>
+        </span>
+      </a>
+    </li>
   );
 };
 

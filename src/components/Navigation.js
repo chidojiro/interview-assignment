@@ -52,9 +52,7 @@ const Navigation = ({
                 label={myRandstadLabel}
                 show={showMyRandstad}
               />
-              <li className="navigation__service-item">
-                <LanguageSwitcher items={languages} />
-              </li>
+              <LanguageSwitcher items={languages} />
               <li className="navigation__service-item hidden--from-l">
                 <button
                   className="button--icon-only button--hamburger"
