@@ -18,8 +18,9 @@ const MyRandstad = ({ show, baseUrl, label }) => {
         </span>
       </a>
       <a
-        href={baseUrl + "login/"}
-        className="navigation__service-link navigation__service-my-randstad hidden--until-l">
+        href="#"
+        className="navigation__service-link navigation__service-my-randstad hidden--until-l"
+        data-rs-popover-trigger="login-popover">
         <span className="icon icon--inline">
           <svg>
             <use xlinkHref="/themes/custom/bluex/dist/assets/image/icons.svg#person"></use>
