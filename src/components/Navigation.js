@@ -52,7 +52,6 @@ const Navigation = ({
                 label={myRandstadLabel}
                 show={showMyRandstad}
               />
-              <LanguageSwitcher items={languages} />
               <li className="navigation__service-item hidden--from-l">
                 <button
                   className="button--icon-only button--hamburger"
@@ -63,6 +62,9 @@ const Navigation = ({
                 </button>
               </li>
             </ul>
+            <div className="navigation__link-bar hidden--until-l">
+              <LanguageSwitcher items={languages} />
+            </div>
             <UtilityNavigation items={utilityMenu} />
             <div id="navigationPopup"></div>
           </div>
