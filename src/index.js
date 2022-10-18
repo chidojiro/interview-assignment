@@ -2,6 +2,7 @@ import HeaderText from "./components/headers/HeaderText";
 import InputField from "./components/forms/InputField";
 import Button from "./components/Button";
 import Checkbox from "./components/forms/Checkbox";
+import SelectField from "./components/forms/SelectField";
 import Filter from "./components/Filter";
 import Accordion from "./components/accordion/Accordion";
 import AccordionItem from "./components/accordion/AccordionItem";
@@ -19,6 +20,7 @@ export {
   InputField,
   Button,
   Checkbox,
+  SelectField,
   Filter,
   Accordion,
   AccordionItem,
