@@ -16,15 +16,17 @@ const Basic = ({
   componentProps,
   error,
   description,
-  children,
+  afterContent,
 }) => {
   return (
     <div className={wrapClass.join(" ")}>
       {label && (
         <label className="form-group__label" htmlFor={id}>
           {label}
-          {!required && (
+          {!required ? (
             <span className="form-group__optional"> {optionalLabel || "optional"}</span>
+          ) : (
+            <sup className="form-group__required">*</sup>
           )}
         </label>
       )}
@@ -33,7 +35,7 @@ const Basic = ({
       </div>
       {error && <div className="form-group__feedback">{error}</div>}
       {description && <div className="form-group__message">{description}</div>}
-      {children}
+      {afterContent}
     </div>
   );
 };
@@ -48,7 +50,7 @@ Basic.propTypes = {
   componentProps: t.object,
   error: t.string,
   description: t.string,
-  children: t.any,
+  afterContent: t.any,
 };
 
 export default Basic;

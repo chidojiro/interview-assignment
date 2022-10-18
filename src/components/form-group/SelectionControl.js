@@ -8,13 +8,15 @@ import Multiple from "./SelectionControl/Multiple";
  *
  * @private
  */
-const SelectionControl = ({ wrapClass, children, ...props }) => {
+const SelectionControl = ({ wrapClass, ...props }) => {
   const classes = [...wrapClass];
   classes.push("form-group--selection-control");
 
-  return children ? (
+  const { componentProps } = props;
+
+  return componentProps && componentProps.children ? (
     <Multiple classes={classes} {...props}>
-      {children}
+      {componentProps.children}
     </Multiple>
   ) : (
     <Single classes={classes} {...props} />
@@ -24,6 +26,7 @@ const SelectionControl = ({ wrapClass, children, ...props }) => {
 SelectionControl.propTypes = {
   wrapClass: t.array,
   children: t.any,
+  componentProps: t.any,
 };
 
 export default SelectionControl;
