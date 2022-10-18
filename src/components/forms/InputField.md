@@ -21,6 +21,6 @@ import { InputField } from "@ffw/randstad-shared-components";
   required
   placeholder="design@randstad.com"
   label="email address"
-  after="Add text"
+  afterContent="Add text"
   />;
 ```
