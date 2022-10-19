@@ -11,7 +11,9 @@ import ArticleOverviewList from "./components/article-overview/list/ArticleOverv
 import ArticleOverviewListItem from "./components/article-overview/list/ArticleOverviewListItem";
 import Breadcrumbs from "./components/Breadcrumbs";
 import Navigation from "./components/Navigation";
+import LanguageSwitcher from "./components/navigation/LanguageSwitcher";
 import Block from "./components/Block";
+import Autosuggest from "./components/forms/Autosuggest";
 
 export {
   HeaderText,
@@ -28,4 +30,6 @@ export {
   Breadcrumbs,
   Navigation,
   Block,
+  LanguageSwitcher,
+  Autosuggest,
 };
