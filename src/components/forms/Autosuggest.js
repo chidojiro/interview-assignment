@@ -6,6 +6,12 @@ import ListItemMark from "./autosuggest/ListItemMark";
 import useAutosuggest from "@hooks/useAutosuggest";
 import withFieldGroup from "@hoc/withFormGroup";
 
+/**
+ * An input field which predicts the rest of a word a user is currently typing. See [here](https://randstad.design/components/core/forms/autosuggest/)
+ *
+ * ***
+ * *Every other passed props will be added to `<input>`. Like "data-attribute" and "aria-label"*
+ */
 const Autosuggest = ({
   items = [],
   onChange,
@@ -45,7 +51,6 @@ const Autosuggest = ({
 
 Autosuggest.propTypes = {
   // Comming from withFieldGroup HOC
-  /** Every other passed props will be added to `<input>`. Like "data-attribute" and "aria-label" */
   label: t.string,
   name: t.string,
   /** If not provided, will be generated from `name` */
@@ -55,7 +60,6 @@ Autosuggest.propTypes = {
   required: t.oneOfType([t.bool, t.string]),
   readOnly: t.bool,
   capitalize: t.bool,
-  children: t.any,
   optionalLabel: t.string,
   formGroupClass: t.string,
   items: t.array,
@@ -65,7 +69,7 @@ Autosuggest.propTypes = {
   onSelectItem: t.func,
   noResultsText: t.string,
   config: t.shape({
-    /** Skip autosuggest filter. Work exactly as use-exact-values. Usually this is used when working with elastic search filter which is more complex. */
+    /** Skip autosuggest filter. Work exactly as `use-exact-values`. Usually this is used when working with elastic search filter which is more complex. */
     skipFilter: t.bool,
     /** Allow numeric values in the input. When enter only numbers it will return the match numbers from item. */
     allowNumericValue: t.bool,
