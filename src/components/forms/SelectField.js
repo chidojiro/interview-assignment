@@ -3,6 +3,11 @@ import t from "prop-types";
 import withFieldGroup from "@hoc/withFormGroup";
 import useLibrary from "@hooks/useLibrary";
 
+/**
+ * An input field with a list of options that can be selected from predefined data. See [here](https://randstad.design/components/core/forms/drop-down/).
+ * ***
+ * *Every other passed prop will be added to `<select>`. Like "data-attribute" or "aria-label"*
+ */
 const SelectField = ({ id, children, libs, ...props }) => {
   const [ref] = useLibrary(libs);
 
@@ -24,7 +29,6 @@ SelectField.type = "input";
 
 SelectField.propTypes = {
   // Comming from withFieldGroup HOC
-  /** Every other passed props will be added to `<input>`. Like "data-attribute" and "aria-label" */
   label: t.string,
   /** If not provided, will be generated from `name` */
   id: t.string,
