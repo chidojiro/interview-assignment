@@ -33,6 +33,7 @@ SelectField.propTypes = {
   required: t.oneOfType([t.bool, t.string]),
   disabled: t.bool,
   capitalize: t.bool,
+  /** Rendered Select Options */
   children: t.any,
   optionalLabel: t.string,
   formGroupClass: t.string,
