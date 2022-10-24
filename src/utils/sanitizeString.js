@@ -1,7 +1,7 @@
 const stringSanitize = function () {
-  // Strip all special character without ().
+  // Strip all special character without () and : and &.
   const keepSpaceAndBrackets = (str) => {
-    var str2 = str.replace(/[`~!@#$%^&*_|+\-=?;:'",.<>{}[\]\\/]/gi, "");
+    var str2 = str.replace(/[`~!@#$%^*_|+\-=?;",.<>{}[\]\\/]/gi, "");
     return str2.replace(/ /g, " ");
   };
 
