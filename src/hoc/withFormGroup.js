@@ -13,7 +13,7 @@ const withFieldGroup = (ChildComponent) => {
     readOnly,
     description,
     error,
-    children,
+    afterContent,
     optionalLabel,
     formGroupClass,
     capitalize,
@@ -55,7 +55,7 @@ const withFieldGroup = (ChildComponent) => {
       componentProps,
       error,
       description,
-      children,
+      afterContent,
     };
 
     return isSelectionControl ? (
@@ -77,6 +77,7 @@ const withFieldGroup = (ChildComponent) => {
     readOnly: t.bool,
     capitalize: t.bool,
     children: t.any,
+    afterContent: t.any,
     optionalLabel: t.string,
     formGroupClass: t.string,
   };
