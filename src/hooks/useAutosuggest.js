@@ -1,7 +1,10 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 
+import sanitizeString from "@utils/sanitizeString";
 import handleScrollBar from "@utils/handleScrollBar";
 import isRefsEmpty from "@utils/isRefsEmpty";
+
+const sanitize = sanitizeString().keepSpaceAndBrackets;
 
 const keys = {
   Up: "ArrowUp",
@@ -46,8 +49,10 @@ const useAutosuggest = ({ items, onChange: changeCb, onSelectItem: selectItemCb,
   const filteredList = useMemo(
     () =>
       skipFilter
-        ? items
-        : items.filter((l) => l.toLowerCase().indexOf(inputValue.toLowerCase()) > -1),
+        ? items.filter((l) => sanitize(l))
+        : items.filter((l) => {
+            return sanitize(l).toLowerCase().indexOf(inputValue.toLowerCase()) > -1;
+          }),
     [items, inputValue],
   );
 
@@ -101,12 +106,12 @@ const useAutosuggest = ({ items, onChange: changeCb, onSelectItem: selectItemCb,
       realValue = match[match.length - 1];
     }
 
-    return realValue;
+    return sanitize(realValue);
   };
 
   // Event handlers.
   const handleInputChange = ({ target, type }) => {
-    const value = target.value;
+    const value = sanitize(target.value.trim());
     // Close the list if value is empty.
     setOpen(!!value);
 
