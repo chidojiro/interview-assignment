@@ -96,7 +96,7 @@ const useAutosuggest = ({ items, onChange: changeCb, onSelectItem: selectItemCb,
   // Utility functions depending on state.
   const getValue = (value) => {
     let realValue = value;
-    // Remove words form the value.
+    // Remove words listed in the array from the selected item value.
     if (itemsStripWordList) {
       itemsStripWordList.forEach((word) => {
         if (realValue.includes(word)) {
