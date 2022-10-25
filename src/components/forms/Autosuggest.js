@@ -73,6 +73,8 @@ Autosuggest.propTypes = {
     skipFilter: t.bool,
     /** Allow numeric values in the input. When enter only numbers it will return the match numbers from item. */
     allowNumericValue: t.bool,
+    /** Strip all words listed in the array from selected item value. */
+    itemsStripWordList: t.array,
   }),
 };
 
