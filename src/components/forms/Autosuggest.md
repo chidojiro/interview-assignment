@@ -108,8 +108,8 @@ import { Autosuggest } from "@ffw/randstad-shared-components"
   id="text-2"
   required
   placeholder="select your city ..."
-  formGroupLabel="city"
-  config={{ allowNumericValue: true }}
+  label="city"
+  config={{ itemsStripWordList: ["Région:", "Département:"], allowNumericValue: true }}
   onChange={(item) => console.log(item)}
   items={[
     "Région: Auvergne-Rhône-Alpes",
