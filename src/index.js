@@ -1,5 +1,6 @@
 import HeaderText from "./components/headers/HeaderText";
 import InputField from "./components/forms/InputField";
+import RadioButton from "./components/forms/RadioButton";
 import Button from "./components/Button";
 import Checkbox from "./components/forms/Checkbox";
 import SelectField from "./components/forms/SelectField";
@@ -15,10 +16,12 @@ import Navigation from "./components/Navigation";
 import LanguageSwitcher from "./components/navigation/LanguageSwitcher";
 import Block from "./components/Block";
 import Autosuggest from "./components/forms/Autosuggest";
+import Stackable from "./components/form-group/Stackable";
 
 export {
   HeaderText,
   InputField,
+  RadioButton,
   Button,
   Checkbox,
   SelectField,
@@ -34,4 +37,5 @@ export {
   Block,
   LanguageSwitcher,
   Autosuggest,
+  Stackable,
 };

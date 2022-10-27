@@ -1,10 +1,10 @@
 import React from "react";
 import t from "prop-types";
 
-import ListItemMark from "./autosuggest/ListItemMark";
-
 import useAutosuggest from "@hooks/useAutosuggest";
-import withFieldGroup from "@hoc/withFormGroup";
+import withField from "@hoc/withField";
+
+import ListItemMark from "./autosuggest/ListItemMark";
 
 /**
  * An input field which predicts the rest of a word a user is currently typing. See [here](https://randstad.design/components/core/forms/autosuggest/)
@@ -50,18 +50,7 @@ const Autosuggest = ({
 };
 
 Autosuggest.propTypes = {
-  // Comming from withFieldGroup HOC
-  label: t.string,
-  name: t.string,
-  /** If not provided, will be generated from `name` */
-  id: t.string,
-  error: t.string,
-  description: t.string,
-  required: t.oneOfType([t.bool, t.string]),
-  readOnly: t.bool,
-  capitalize: t.bool,
-  optionalLabel: t.string,
-  formGroupClass: t.string,
+  name: t.string.isRequired,
   items: t.array,
   /** Triggered on input change */
   onChange: t.func,
@@ -74,6 +63,8 @@ Autosuggest.propTypes = {
     /** Allow numeric values in the input. When enter only numbers it will return the match numbers from item. */
     allowNumericValue: t.bool,
   }),
+  /** Wrap component with FormGroup functionality. See FormGroup for more information on props support */
+  withFormGroup: t.bool,
 };
 
-export default withFieldGroup(Autosuggest);
+export default withField(Autosuggest);
