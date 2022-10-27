@@ -36,6 +36,8 @@ SelectField.propTypes = {
   name: t.string.isRequired,
   /** Used to pass js Orbit library responsible for functionality. Note: This should passed on component setup so you don't have to pass it every time. */
   libs: t.object,
+  /** Wrap component with FormGroup functionality. See FormGroup for more information on props support. Enabled by default */
+  withFormGroup: t.bool,
 };
 
 export default withField(SelectField);

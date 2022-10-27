@@ -11,15 +11,10 @@ import withField from "@hoc/withField";
 // Add unused props. Some of the props are comming from the withFieldGroup HOC.
 /* eslint-disable no-unused-vars */
 const Checkbox = ({ id, label, ...props }) => {
-  const fieldProps = {
-    id,
-    ...props,
-  };
-
   return (
     <label htmlFor={id} className="selection-control selection-control--checkbox">
       <span className="selection-control__input">
-        <input type="checkbox" {...fieldProps} />
+        <input id={id} type="checkbox" {...props} />
         <span className="icon selection-control__control" aria-hidden="true">
           <svg viewBox="0 0 16 16">
             <polyline points="2.1,8.5 6.2,12.4 13.9,5.1"></polyline>
@@ -35,7 +30,7 @@ Checkbox.propTypes = {
   name: t.string.isRequired,
   label: t.string.isRequired,
   id: t.string,
-  /** Wrap component with FormGroup functionality. See FormGroup for more information on props support */
+  /** Wrap component with FormGroup functionality. See FormGroup for more information on props support. Enabled by default */
   withFormGroup: t.bool,
 };
 

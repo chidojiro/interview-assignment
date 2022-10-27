@@ -63,7 +63,7 @@ Autosuggest.propTypes = {
     /** Allow numeric values in the input. When enter only numbers it will return the match numbers from item. */
     allowNumericValue: t.bool,
   }),
-  /** Wrap component with FormGroup functionality. See FormGroup for more information on props support */
+  /** Wrap component with FormGroup functionality. See FormGroup for more information on props support. Enabled by default */
   withFormGroup: t.bool,
 };
 

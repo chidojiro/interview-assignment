@@ -22,7 +22,7 @@ const InputField = ({ type = "text", ...props }) => {
 InputField.propTypes = {
   name: t.string.isRequired,
   type: t.string,
-  /** Wrap component with FormGroup functionality. See FormGroup for more information on props support */
+  /** Wrap component with FormGroup functionality. See FormGroup for more information on props support. Enabled by default */
   withFormGroup: t.bool,
 };
 
