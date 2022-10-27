@@ -10,8 +10,7 @@ const MyRandstad = ({ show, loginUrl, label }) => {
     <li className="navigation__service-item">
       <a
         href={loginUrl}
-        className="navigation__service-link navigation__service-my-randstad hidden--from-l"
-      >
+        className="navigation__service-link navigation__service-my-randstad hidden--from-l">
         <span className="icon icon--inline">
           <svg>
             <use xlinkHref="/themes/custom/bluex/dist/assets/image/icons.svg#person"></use>
