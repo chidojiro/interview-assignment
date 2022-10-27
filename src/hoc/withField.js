@@ -23,6 +23,10 @@ const withField = (ChildComponent) => {
     const nameSanitized = (name || "").split(" ").join("-");
     const fieldId = id || `field--${nameSanitized}${stackableIndex ? "-" + stackableIndex : ""}`;
 
+    const selectionControlComponentsList = ["Checkbox"];
+
+    const isSelectionControl = selectionControlComponentsList.includes(ChildComponent.name);
+
     const fieldProps = {
       name,
       required,
@@ -40,6 +44,7 @@ const withField = (ChildComponent) => {
       error,
       description,
       afterContent,
+      isSelectionControl,
     };
 
     if (withFormGroup) {

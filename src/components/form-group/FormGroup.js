@@ -21,6 +21,7 @@ const FormGroup = ({
   error,
   description,
   afterContent,
+  isSelectionControl,
 }) => {
   let fieldLabel = formGroupLabel;
 
@@ -32,6 +33,7 @@ const FormGroup = ({
     <div
       className={cn("form-group", formGroupClass, {
         "form-group--error": error,
+        "form-group--selection-control": isSelectionControl,
       })}>
       {fieldLabel && (
         <label className="form-group__label" htmlFor={id}>
@@ -65,6 +67,8 @@ FormGroup.propTypes = {
   error: t.string,
   description: t.string,
   afterContent: t.any,
+  /** @ignore */
+  isSelectionControl: t.bool,
 };
 
 export default FormGroup;

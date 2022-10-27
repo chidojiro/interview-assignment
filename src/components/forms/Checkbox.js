@@ -1,5 +1,7 @@
 import React from "react";
 import t from "prop-types";
+import cn from "classnames";
+
 import withField from "@hoc/withField";
 
 /**
@@ -12,7 +14,11 @@ import withField from "@hoc/withField";
 /* eslint-disable no-unused-vars */
 const Checkbox = ({ id, label, ...props }) => {
   return (
-    <label htmlFor={id} className="selection-control selection-control--checkbox">
+    <label
+      htmlFor={id}
+      className={cn("selection-control", "selection-control--checkbox", {
+        "selection-control--disabled": props.disabled,
+      })}>
       <span className="selection-control__input">
         <input id={id} type="checkbox" {...props} />
         <span className="icon selection-control__control" aria-hidden="true">
@@ -32,6 +38,8 @@ Checkbox.propTypes = {
   id: t.string,
   /** Wrap component with FormGroup functionality. See FormGroup for more information on props support. Enabled by default */
   withFormGroup: t.bool,
+  /** @ignore part of HTML props */
+  disabled: t.bool,
 };
 
 export default withField(Checkbox);

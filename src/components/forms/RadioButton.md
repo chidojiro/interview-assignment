@@ -1,5 +1,3 @@
-Radio Button
-
 ```jsx
 import { RadioButton, Stackable } from "@ffw/randstad-shared-components";
 
