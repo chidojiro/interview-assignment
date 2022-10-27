@@ -22,11 +22,7 @@ module.exports = {
   moduleAliases: {
     "@ffw/randstad-shared-components": path.resolve(__dirname, "src/index.js"),
   },
-  ignore: [
-    "**/components/form-group/**",
-    "**/components/navigation/**",
-    "**/components/forms/autosuggest/**",
-  ],
+  ignore: ["**/components/navigation/**", "**/components/forms/autosuggest/**"],
 
   getComponentPathLine(componentPath) {
     const name = path.basename(componentPath, ".js");
@@ -58,11 +54,17 @@ module.exports = {
       ignore: [
         "src/components/accordion/**",
         "src/components/forms/**",
+        "src/components/form-group/**",
         "src/components/headers/**",
         "src/components/article-overview/**",
       ],
     },
     { name: "Accordion", components: "src/components/accordion/**/*.js" },
+    {
+      name: "Form Groups",
+      components: "src/components/form-group/**/*.js",
+      description: "Provides wrapper components for form elements",
+    },
     { name: "Forms", components: "src/components/forms/**/*.js" },
     { name: "Headers", components: "src/components/headers/**/*.js" },
     {
