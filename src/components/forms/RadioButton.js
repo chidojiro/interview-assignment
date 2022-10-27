@@ -26,7 +26,7 @@ RadioButton.propTypes = {
   label: t.string.isRequired,
   /** @ignore Part of input HTML props */
   id: t.string,
-  /** Wrap component with FormGroup functionality. See FormGroup for more information on props support */
+  /** Wrap component with FormGroup functionality. See FormGroup for more information on props support. Enabled by default */
   withFormGroup: t.bool,
 };
 

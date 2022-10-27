@@ -42,7 +42,11 @@ const Stackable = ({
       {React.Children.map(children, (child, i) => {
         return (
           <div className="form-group__input">
-            {React.cloneElement(child, { withFormGroup: false, stackableIndex: i, name })}
+            {React.cloneElement(child, {
+              withFormGroup: false,
+              stackableIndex: i,
+              ...(name ? { name } : {}),
+            })}
           </div>
         );
       })}

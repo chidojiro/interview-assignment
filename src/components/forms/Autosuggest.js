@@ -65,7 +65,7 @@ Autosuggest.propTypes = {
     /** Strip all words listed in the array from selected item value. */
     itemsStripWordList: t.array,
   }),
-  /** Wrap component with FormGroup functionality. See FormGroup for more information on props support */
+  /** Wrap component with FormGroup functionality. See FormGroup for more information on props support. Enabled by default */
   withFormGroup: t.bool,
 };
 
