@@ -16,9 +16,9 @@ Multiple checkbox items.
 ```jsx
 import { Checkbox, Stackable } from "@ffw/randstad-shared-components";
 
-<Stackable name="email-12" label="job specialism">
-  <Checkbox id="engineer" label="engineer" />
-  <Checkbox id="chef" label="Chef" />
-  <Checkbox id="construction-worker" label="Construction worker" data-worker="full-time" />
+<Stackable label="job specialism">
+  <Checkbox name="email" id="engineer" label="engineer" />
+  <Checkbox name="email" id="chef" label="Chef" />
+  <Checkbox name="email" id="construction-worker" label="Construction worker" data-worker="full-time" />
 </Stackable>;
 ```
