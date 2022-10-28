@@ -13,7 +13,6 @@ const withField = (ChildComponent) => {
       error,
       description,
       afterContent,
-      stackableIndex,
       capitalize,
       formGroupLabel,
       ...rest
@@ -21,7 +20,7 @@ const withField = (ChildComponent) => {
     /* eslint-enable react/prop-types */
 
     const nameSanitized = (name || "").split(" ").join("-");
-    const fieldId = id || `field--${nameSanitized}${stackableIndex ? "-" + stackableIndex : ""}`;
+    const fieldId = id || `field--${nameSanitized}`;
 
     const selectionControlComponentsList = ["Checkbox"];
 

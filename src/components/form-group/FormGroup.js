@@ -67,7 +67,7 @@ FormGroup.propTypes = {
   error: t.string,
   description: t.string,
   afterContent: t.any,
-  /** @ignore */
+  /** Append all required classes for selection-control components. */
   isSelectionControl: t.bool,
 };
 

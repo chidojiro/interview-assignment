@@ -8,14 +8,11 @@ import t from "prop-types";
  *
  * Groups form component with same name. It provides same functionality as FormGroup component. Like legend, errors, descriptions and etc. See example in form components.
  *
- * *It will autogenerate id for each form element, if not provided*
- *
  * ---
  * ### Cannot be used as a standalone component.
  */
 const Stackable = ({
   children,
-  name,
   error,
   description,
   label,
@@ -39,13 +36,11 @@ const Stackable = ({
         "form-group--error": error,
       })}>
       <legend className={cn("form-group__label", { hidden: hideLabel })}>{legend}</legend>
-      {React.Children.map(children, (child, i) => {
+      {React.Children.map(children, (child) => {
         return (
           <div className="form-group__input">
             {React.cloneElement(child, {
               withFormGroup: false,
-              stackableIndex: i,
-              ...(name ? { name } : {}),
             })}
           </div>
         );
@@ -57,7 +52,6 @@ const Stackable = ({
 };
 
 Stackable.propTypes = {
-  name: t.string.isRequired,
   className: t.string,
   label: t.string.isRequired,
   error: t.string,
