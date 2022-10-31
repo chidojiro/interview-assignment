@@ -62,10 +62,10 @@ const Navigation = ({
                 </button>
               </li>
             </ul>
-            <div className="navigation__link-bar hidden--until-l">
-              <LanguageSwitcher items={languages} />
+            <div className="navigation__link-bar flex hidden--until-l">
+              <UtilityNavigation items={utilityMenu} />
+              <LanguageSwitcher items={languages} extraClasses="l:ml-s" />
             </div>
-            <UtilityNavigation items={utilityMenu} />
             <div id="navigationPopup"></div>
           </div>
           <Submenu items={mainMenu} />
