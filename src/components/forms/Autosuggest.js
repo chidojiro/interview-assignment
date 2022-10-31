@@ -17,10 +17,11 @@ const Autosuggest = ({
   onChange,
   onSelectItem,
   noResultsText,
+  initialValue,
   config,
   ...fieldProps
 }) => {
-  const [values, props] = useAutosuggest({ items, onChange, onSelectItem, config });
+  const [values, props] = useAutosuggest({ items, onChange, onSelectItem, config, initialValue });
 
   const { open, inputValue, list, isNoResults } = values;
   // eslint-disable-next-line react/prop-types
@@ -57,12 +58,14 @@ Autosuggest.propTypes = {
   /** Triggered on item select */
   onSelectItem: t.func,
   noResultsText: t.string,
+  /** Set autosuggest initial initialValue. */
+  initialValue: t.string,
   config: t.shape({
     /** Skip autosuggest filter. Work exactly as `use-exact-values`. Usually this is used when working with elastic search filter which is more complex. */
     skipFilter: t.bool,
     /** Allow numeric values in the input. When enter only numbers it will return the match numbers from item. */
     allowNumericValue: t.bool,
-    /** Strip all words listed in the array from selected item value. */
+    /** Strip all words listed in the array from selected item initialValue. */
     itemsStripWordList: t.array,
   }),
   /** Wrap component with FormGroup functionality. See FormGroup for more information on props support. Enabled by default */

@@ -3,6 +3,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import sanitizeString from "@utils/sanitizeString";
 import handleScrollBar from "@utils/handleScrollBar";
 import isRefsEmpty from "@utils/isRefsEmpty";
+import useDebounce from "@hooks/useDebounce";
 
 const sanitize = sanitizeString().keepSpaceAndBrackets;
 
@@ -26,16 +27,22 @@ const classes = {
   },
 };
 
-const useAutosuggest = ({ items, onChange: changeCb, onSelectItem: selectItemCb, config = {} }) => {
+const useAutosuggest = ({
+  items,
+  onChange: changeCb,
+  onSelectItem: selectItemCb,
+  initialValue = "",
+  config = {},
+}) => {
   const { skipFilter, allowNumericValue, itemsStripWordList = [] } = config;
   const onChange = changeCb ? changeCb : () => null;
   const onSelectItem = selectItemCb ? selectItemCb : () => null;
 
   // States.
   const [open, setOpen] = useState(false);
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState(initialValue);
   // Keep track on input value to avoid unneeded requests.
-  const [previousInputValue, setPreviousInputValue] = useState("");
+  const [previousInputValue, setPreviousInputValue] = useState(initialValue);
   // Index used to manage preselect item.
   const [selectedIndex, setSelectedIndex] = useState(0);
 
@@ -45,7 +52,8 @@ const useAutosuggest = ({ items, onChange: changeCb, onSelectItem: selectItemCb,
   // Used to track which key is pressed to determined scroll position.
   const lastPressKey = useRef(null);
 
-  // Hooks.
+  const debounceInputValue = useDebounce(inputValue);
+
   const filteredList = useMemo(
     () =>
       skipFilter
@@ -57,9 +65,12 @@ const useAutosuggest = ({ items, onChange: changeCb, onSelectItem: selectItemCb,
   );
 
   useEffect(() => {
+    if (previousInputValue === debounceInputValue) return;
+
     setSelectedIndex(0);
-    setPreviousInputValue(inputValue);
-  }, [inputValue]);
+    setPreviousInputValue(debounceInputValue);
+    onChange(debounceInputValue);
+  }, [debounceInputValue]);
 
   useEffect(() => {
     if (isRefsEmpty(activeListItemRef, wrapperRef, lastPressKey)) return;
@@ -118,7 +129,7 @@ const useAutosuggest = ({ items, onChange: changeCb, onSelectItem: selectItemCb,
   };
 
   // Event handlers.
-  const handleInputChange = ({ target, type }) => {
+  const handleInputChange = ({ target }) => {
     const value = sanitize(target.value.trim());
     // Close the list if value is empty.
     setOpen(!!value);
@@ -126,8 +137,6 @@ const useAutosuggest = ({ items, onChange: changeCb, onSelectItem: selectItemCb,
     if (previousInputValue === value) return;
 
     setInputValue(value);
-    // On focus should not send callback when value is empty.
-    type === "focus" ? value && onChange(value) : onChange(value);
   };
 
   const handleSelectedItem = (listItemValue) => {
@@ -137,7 +146,6 @@ const useAutosuggest = ({ items, onChange: changeCb, onSelectItem: selectItemCb,
     if (previousInputValue === value) return;
 
     setInputValue(value);
-    onChange(value);
     onSelectItem(value);
   };
 
