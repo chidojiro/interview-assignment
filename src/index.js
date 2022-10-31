@@ -13,6 +13,7 @@ import ArticleOverviewListItem from "./components/article-overview/list/ArticleO
 import Breadcrumbs from "./components/Breadcrumbs";
 import Navigation from "./components/Navigation";
 import LanguageSwitcher from "./components/navigation/LanguageSwitcher";
+import UtilityNavigation from "./components/navigation/UtilityNavigation";
 import Block from "./components/Block";
 import Autosuggest from "./components/forms/Autosuggest";
 
@@ -33,5 +34,6 @@ export {
   Navigation,
   Block,
   LanguageSwitcher,
+  UtilityNavigation,
   Autosuggest,
 };

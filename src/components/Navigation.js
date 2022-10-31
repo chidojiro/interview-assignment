@@ -57,9 +57,9 @@ const Navigation = ({
               </li>
             </ul>
             <div className="navigation__link-bar hidden--until-l">
+              <UtilityNavigation items={utilityMenu} />
               <LanguageSwitcher items={languages} />
             </div>
-            <UtilityNavigation items={utilityMenu} />
             <div id="navigationPopup"></div>
           </div>
           <Submenu items={mainMenu} />
