@@ -7,7 +7,7 @@ import { Autosuggest } from "@ffw/randstad-shared-components";
   required
   placeholder="select your city ..."
   label="city"
-  value="Durham"
+  initialValue="Durham"
   items={[
     "Bath",
     "Birmingham",
