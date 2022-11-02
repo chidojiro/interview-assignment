@@ -1,5 +1,6 @@
 import HeaderText from "./components/headers/HeaderText";
 import InputField from "./components/forms/InputField";
+import LocationInputField from "./components/forms/LocationInputField";
 import RadioButton from "./components/forms/RadioButton";
 import Button from "./components/Button";
 import Checkbox from "./components/forms/Checkbox";
@@ -21,6 +22,7 @@ import Stackable from "./components/form-group/Stackable";
 export {
   HeaderText,
   InputField,
+  LocationInputField,
   RadioButton,
   Button,
   Checkbox,

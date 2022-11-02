@@ -22,6 +22,7 @@ const FormGroup = ({
   description,
   afterContent,
   isSelectionControl,
+  withoutFormGroupMarkup,
 }) => {
   let fieldLabel = formGroupLabel;
 
@@ -45,7 +46,9 @@ const FormGroup = ({
           )}
         </label>
       )}
-      <div className="form-group__input">{children}</div>
+
+      {withoutFormGroupMarkup ? children : <div className="form-group__input">{children}</div>}
+
       {error && <div className="form-group__feedback">{error}</div>}
       {description && <div className="form-group__message">{description}</div>}
       {afterContent}
@@ -67,8 +70,10 @@ FormGroup.propTypes = {
   error: t.string,
   description: t.string,
   afterContent: t.any,
-  /** Append all required classes for selection-control components. */
+  /** @ignore */
   isSelectionControl: t.bool,
+  /** @ignore */
+  withoutFormGroupMarkup: t.bool,
 };
 
 export default FormGroup;

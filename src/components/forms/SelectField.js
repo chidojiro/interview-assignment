@@ -16,7 +16,12 @@ const SelectField = ({ children, className, libs, ...props }) => {
 
   return (
     <>
-      <select className={cn("untouched", className)} data-rs-untouched="" ref={ref} {...props}>
+      <select
+        className={cn("untouched", className)}
+        data-rs-untouched=""
+        data-scl=""
+        ref={ref}
+        {...props}>
         {children}
       </select>
       <span className="select-arrow icon">
@@ -35,7 +40,7 @@ SelectField.propTypes = {
   className: t.string,
   name: t.string.isRequired,
   /** Used to pass js Orbit library responsible for functionality. Note: This should passed on component setup so you don't have to pass it every time. */
-  libs: t.object,
+  libs: t.array,
   /** Wrap component with FormGroup functionality. See FormGroup for more information on props support. Enabled by default */
   withFormGroup: t.bool,
 };
