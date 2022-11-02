@@ -20,7 +20,7 @@ import { InputField } from "@ffw/randstad-shared-components";
   id="email-1"
   required
   placeholder="design@randstad.com"
-  label="email address">
-  Add text
-</InputField>;
+  label="email address"
+  afterContent="Add text"
+  />;
 ```
