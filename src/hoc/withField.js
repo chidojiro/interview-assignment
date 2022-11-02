@@ -22,14 +22,8 @@ const withField = (ChildComponent) => {
     const nameSanitized = (name || "").split(" ").join("-");
     const fieldId = id || `field--${nameSanitized}`;
 
-    // react-styleguidist does not like HOC to return function so we need to do it like this.
-    const selectionControlComponentsList = ["Checkbox"];
-    const withoutFormGroupMarkupComponentsList = ["LocationInputField"];
-
-    const isSelectionControl = selectionControlComponentsList.includes(ChildComponent.name);
-    const withoutFormGroupMarkup = withoutFormGroupMarkupComponentsList.includes(
-      ChildComponent.name,
-    );
+    const isSelectionControl = ChildComponent.isSelectionControl;
+    const withoutFormGroupMarkup = ChildComponent.withoutFormGroupMarkup;
 
     const fieldProps = {
       name,

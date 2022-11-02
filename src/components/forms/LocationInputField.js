@@ -40,6 +40,8 @@ const LocationInputField = ({ libs, buttonLabel = "clear", ...props }) => {
   );
 };
 
+LocationInputField.withoutFormGroupMarkup = true;
+
 LocationInputField.propTypes = {
   buttonLabel: t.string,
   /** Used to pass js Orbit library responsible for functionality. Note: This should passed on component setup so you don't have to pass it every time. */
