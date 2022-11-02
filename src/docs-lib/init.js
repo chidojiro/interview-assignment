@@ -1,4 +1,4 @@
-const JS_LIBRARIES = ["collapsible", "toggable", "untouched"];
+const JS_LIBRARIES = ["collapsible", "toggable", "untouched", "clearable"];
 
 const changeSVGPath = (use) => {
   const SVG_XLINK = "http://www.w3.org/1999/xlink";
