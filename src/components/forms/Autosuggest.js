@@ -17,10 +17,11 @@ const Autosuggest = ({
   onChange,
   onSelectItem,
   noResultsText,
+  initialValue,
   config,
   ...fieldProps
 }) => {
-  const [values, props] = useAutosuggest({ items, onChange, onSelectItem, config });
+  const [values, props] = useAutosuggest({ items, onChange, onSelectItem, config, initialValue });
 
   const { open, inputValue, list, isNoResults } = values;
   // eslint-disable-next-line react/prop-types
@@ -73,7 +74,11 @@ Autosuggest.propTypes = {
     skipFilter: t.bool,
     /** Allow numeric values in the input. When enter only numbers it will return the match numbers from item. */
     allowNumericValue: t.bool,
+    /** Strip all words listed in the array from selected item initialValue. */
+    itemsStripWordList: t.array,
   }),
+  /** Set autosuggest initial initialValue. */
+  initialValue: t.string,
 };
 
 export default withFieldGroup(Autosuggest);
