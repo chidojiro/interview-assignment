@@ -36,6 +36,7 @@ module.exports = {
 
   styleguideComponents: {
     StyleGuideRenderer: path.join(__dirname, "src/docs-lib/StyleGuideRenderer"),
+    ReactExample: path.join(__dirname, "src/docs-lib/ReactExample"),
   },
 
   webpackConfig: config,
