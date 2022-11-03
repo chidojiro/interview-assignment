@@ -1,9 +1,9 @@
-const JS_LIBRARIES = ["collapsible", "toggable", "untouched", "clearable"];
-
 const changeSVGPath = (use) => {
   const SVG_XLINK = "http://www.w3.org/1999/xlink";
 
-  const svgPath = !window.location.href.includes("localhost") ? "/build" : "/src/docs-lib";
+  const svgPath = !window.location.href.includes("localhost")
+    ? "/build/assets"
+    : "/src/docs-lib/assets";
 
   const newPath = use
     .getAttribute("xlink:href")
@@ -15,17 +15,7 @@ const changeSVGPath = (use) => {
   use.setAttributeNS(SVG_XLINK, "xlink:href", newPath);
 };
 
-const loadScripts = () => {
-  JS_LIBRARIES.forEach((lib) => {
-    var script = document.createElement("script");
-    script.src = `https://uk-static-dev.dta.randstadbluex.com/articles/static/assets/js/standalone/${lib}.js`;
-    document.head.appendChild(script);
-  });
-};
-
 export default function load() {
-  let scriptLoaded = false;
-
   const observerConfig = {
     childList: true,
     subtree: true,
@@ -47,11 +37,6 @@ export default function load() {
         }
       }
     });
-
-    if (!scriptLoaded) {
-      loadScripts();
-      scriptLoaded = true;
-    }
   });
 
   if (!document.querySelector("main.rsg--content-3").length) {
