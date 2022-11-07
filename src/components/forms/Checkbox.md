@@ -5,20 +5,20 @@ import { Checkbox } from "@ffw/randstad-shared-components";
 
 <Checkbox
   name="email-1"
-  label="job specialism"
+  formGroupLabel="job specialism"
   required
-  fieldLabel="I want to receive news in my inbox"
+  label="I want to receive news in my inbox"
 />;
 ```
 
 Multiple checkbox items.
 
 ```jsx
-import { Checkbox } from "@ffw/randstad-shared-components";
+import { Checkbox, Stackable } from "@ffw/randstad-shared-components";
 
-<Checkbox name="email-12" label="job specialism">
-  <item name="engineer" label="engineer" />
-  <item name="chef" label="Chef" />
-  <item name="construction-worker" label="Construction worker" data-worker="full-time" />
-</Checkbox>;
+<Stackable label="job specialism">
+  <Checkbox name="email" id="engineer" label="engineer" />
+  <Checkbox name="email" id="chef" label="Chef" />
+  <Checkbox name="email" id="construction-worker" label="Construction worker" data-worker="full-time" />
+</Stackable>;
 ```
