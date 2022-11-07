@@ -58,8 +58,6 @@ Autosuggest.propTypes = {
   /** Triggered on item select */
   onSelectItem: t.func,
   noResultsText: t.string,
-  /** Set autosuggest initial initialValue. */
-  initialValue: t.string,
   config: t.shape({
     /** Skip autosuggest filter. Work exactly as `use-exact-values`. Usually this is used when working with elastic search filter which is more complex. */
     skipFilter: t.bool,
@@ -68,6 +66,8 @@ Autosuggest.propTypes = {
     /** Strip all words listed in the array from selected item initialValue. */
     itemsStripWordList: t.array,
   }),
+  /** Set autosuggest initial initialValue. */
+  initialValue: t.string,
   /** Wrap component with FormGroup functionality. See FormGroup for more information on props support. Enabled by default */
   withFormGroup: t.bool,
 };

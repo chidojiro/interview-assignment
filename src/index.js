@@ -39,7 +39,7 @@ export {
   Navigation,
   Block,
   LanguageSwitcher,
-  UtilityNavigation,
   Autosuggest,
+  UtilityNavigation,
   Stackable,
 };
