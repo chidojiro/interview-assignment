@@ -20,7 +20,7 @@ const Stackable = ({
   capitalize,
   hideLabel = false,
   optionalLabel,
-  required,
+  required = true,
 }) => {
   if (!label) {
     console.error("Missing label for the legend. Fieldset tag requires a legend.");
