@@ -39,11 +39,7 @@ const Stackable = ({
       })}>
       <legend className={cn("form-group__label", { hidden: hideLabel })}>
         {legend}{" "}
-        {!required ? (
-          <span className="form-group__optional"> {optionalLabel || "optional"}</span>
-        ) : (
-          <sup className="form-group__required">*</sup>
-        )}
+        {!required && <span className="form-group__optional"> {optionalLabel || "optional"}</span>}
       </legend>
       {React.Children.map(children, (child) => {
         return (
