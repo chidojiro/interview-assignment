@@ -6,7 +6,7 @@ import t from "prop-types";
 /**
  * Stackable form group component.
  *
- * Groups form component with same name. It provides same functionality as FormGroup component. Like legend, errors, descriptions and etc. See example in form components.
+ * Groups form component with same name. It provides functionality like label, errors, descriptions and etc. Same as FormGroup, but for stacked components. See example in form components.
  *
  * ---
  * ### Cannot be used as a standalone component.
@@ -19,6 +19,8 @@ const Stackable = ({
   className,
   capitalize,
   hideLabel = false,
+  optionalLabel,
+  required,
 }) => {
   if (!label) {
     console.error("Missing label for the legend. Fieldset tag requires a legend.");
@@ -35,7 +37,14 @@ const Stackable = ({
       className={cn("form-group", "form-group--selection-control", className, {
         "form-group--error": error,
       })}>
-      <legend className={cn("form-group__label", { hidden: hideLabel })}>{legend}</legend>
+      <legend className={cn("form-group__label", { hidden: hideLabel })}>
+        {legend}{" "}
+        {!required ? (
+          <span className="form-group__optional"> {optionalLabel || "optional"}</span>
+        ) : (
+          <sup className="form-group__required">*</sup>
+        )}
+      </legend>
       {React.Children.map(children, (child) => {
         return (
           <div className="form-group__input">
@@ -56,6 +65,8 @@ Stackable.propTypes = {
   label: t.string.isRequired,
   error: t.string,
   description: t.string,
+  required: t.bool,
+  optionalLabel: t.string,
   /** @ignore */
   children: t.any,
   capitalize: t.bool,
