@@ -10,7 +10,7 @@ import withField from "@hoc/withField";
  */
 // Add unused props. Some of the props are comming from the withFieldGroup HOC.
 /* eslint-disable no-unused-vars */
-const InputField = ({ type = "text", ...props }) => {
+export const InputField = ({ type = "text", ...props }) => {
   const fieldProps = {
     type,
     ...props,

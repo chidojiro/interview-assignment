@@ -32,6 +32,8 @@ const Checkbox = ({ id, label, ...props }) => {
   );
 };
 
+Checkbox.isSelectionControl = true;
+
 Checkbox.propTypes = {
   name: t.string.isRequired,
   label: t.string.isRequired,

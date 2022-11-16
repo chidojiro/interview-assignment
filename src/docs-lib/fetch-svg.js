@@ -3,7 +3,9 @@ const fs = require("fs");
 const path = require("path");
 const pathToSvg = path.resolve(__dirname, "./");
 
-fetch("https://uk-static-dev.dta.randstadbluex.com/themes/custom/bluex/dist/assets/image/icons.svg")
+fetch(
+  "https://RandstadWeb:RXPPlatform!2022@uk-static-dev.dta.randstadbluex.com/themes/custom/bluex/dist/assets/image/icons.svg",
+)
   .then(function (response) {
     if (response.status >= 400) {
       throw new Error("Bad response from server");

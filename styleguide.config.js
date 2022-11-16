@@ -22,7 +22,11 @@ module.exports = {
   moduleAliases: {
     "@ffw/randstad-shared-components": path.resolve(__dirname, "src/index.js"),
   },
-  ignore: ["**/components/navigation/**", "**/components/forms/autosuggest/**"],
+  ignore: [
+    "**/components/navigation/**",
+    "**/components/forms/autosuggest/**",
+    "**/components/base/**",
+  ],
 
   getComponentPathLine(componentPath) {
     const name = path.basename(componentPath, ".js");
