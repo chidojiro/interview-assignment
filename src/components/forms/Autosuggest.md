@@ -68,7 +68,7 @@ import { Autosuggest } from "@ffw/randstad-shared-components";
       id="text-2"
       required
       placeholder="select your city ..."
-      formGroupLabel="city"
+      label="city"
       config={{ allowNumericValue: true }}
       onChange={(item) => console.log(item)}
       items={[
