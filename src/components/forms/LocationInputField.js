@@ -15,27 +15,35 @@ import Svg from "@components/base/Svg";
 const LocationInputField = ({ libs, buttonLabel = "clear", ...props }) => {
   const [ref] = useLibrary(libs);
 
+  const attr = !props.disabled
+    ? {
+        "data-rs-clearable": "",
+      }
+    : {};
+
   return (
     <div
       ref={ref}
       className="form-group__input form-group__input--button form-group__input--icon-left clearable-input"
-      data-rs-clearable=""
+      {...attr}
       data-scl="">
       <InputField {...props} />
       <span className="icon">
         <Svg icon="gps-filled" />
       </span>
-      <button
-        type="button"
-        className="button--icon-only"
-        aria-label={buttonLabel}
-        data-rs-clearable-button=""
-        aria-hidden="false">
-        <span>{buttonLabel}</span>
-        <span className="icon">
-          <Svg icon="close" />
-        </span>
-      </button>
+      {!props.disabled && (
+        <button
+          type="button"
+          className="button--icon-only"
+          aria-label={buttonLabel}
+          data-rs-clearable-button=""
+          aria-hidden="false">
+          <span>{buttonLabel}</span>
+          <span className="icon">
+            <Svg icon="close" />
+          </span>
+        </button>
+      )}
     </div>
   );
 };
@@ -43,15 +51,14 @@ const LocationInputField = ({ libs, buttonLabel = "clear", ...props }) => {
 LocationInputField.withoutFormGroupMarkup = true;
 
 LocationInputField.propTypes = {
+  /** @ignore Part of input HTML props. */
+  disabled: t.bool,
+  /** Label for the close button */
   buttonLabel: t.string,
   /** Used to pass js Orbit library responsible for functionality. Note: This should passed on component setup so you don't have to pass it every time. */
   libs: t.array,
   /** Wrap component with FormGroup functionality. See FormGroup for more information on props support. Enabled by default */
   withFormGroup: t.bool,
-};
-
-LocationInputField.defaultProps = {
-  buttonLabel: "clear",
 };
 
 export default withField(LocationInputField);
