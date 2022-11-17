@@ -6,7 +6,7 @@ import { Autosuggest } from "@ffw/randstad-shared-components";
   id="text-2"
   required
   placeholder="select your city ..."
-  formGroupLabel="city"
+  label="city"
   initialValue="Durham"
   items={[
     "Bath",
@@ -37,7 +37,7 @@ import { Autosuggest } from "@ffw/randstad-shared-components";
   id="text-2"
   required
   placeholder="select your city ..."
-  formGroupLabel="city"
+  label="city"
   config={{ skipFilter: true }}
   onChange={(item) => console.log(item)}
   items={[
@@ -101,26 +101,27 @@ import { Autosuggest } from "@ffw/randstad-shared-components";
 With strip items word list
 
 ```jsx
-import { Autosuggest } from "@ffw/randstad-shared-components"
+import { Autosuggest } from "@ffw/randstad-shared-components";
 "",
-
-<Autosuggest
-  name="text-2"
-  id="text-2"
-  required
-  placeholder="select your city ..."
-  formGroupLabel="city"
-  config={{ itemsStripWordList: ["Région:", "Département:"], allowNumericValue: true }}
-  onChange={(item) => console.log(item)}
-  items={[
-    "Région: Auvergne-Rhône-Alpes",
-    "Département: Ain (01)",
-    "Département: Aisne (02)",
-    "Département: Allier (03)",
-    "Département: Alpes-Maritimes (06)",
-    "Département: Alpes-de-Haute-Provence (04)",
-    "Département: Aveyron (12)",
-    "ABBEVILLE (80100)",
-  ]}
-/>
+  (
+    <Autosuggest
+      name="text-2"
+      id="text-2"
+      required
+      placeholder="select your city ..."
+      label="city"
+      config={{ itemsStripWordList: ["Région:", "Département:"], allowNumericValue: true }}
+      onChange={(item) => console.log(item)}
+      items={[
+        "Région: Auvergne-Rhône-Alpes",
+        "Département: Ain (01)",
+        "Département: Aisne (02)",
+        "Département: Allier (03)",
+        "Département: Alpes-Maritimes (06)",
+        "Département: Alpes-de-Haute-Provence (04)",
+        "Département: Aveyron (12)",
+        "ABBEVILLE (80100)",
+      ]}
+    />
+  );
 ```

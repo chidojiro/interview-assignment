@@ -5,7 +5,7 @@ import { PasswordInputField } from "@ffw/randstad-shared-components";
   name="password-1"
   id="password-1"
   required
-  formGroupLabel="password (standard 8 characters)"
+  label="password (standard 8 characters)"
 />;
 ```
 
@@ -19,7 +19,7 @@ import { PasswordInputField } from "@ffw/randstad-shared-components";
   id="password-2"
   required
   minChars={11}
-  formGroupLabel="password (standard 11 characters)"
+  label="password (standard 11 characters)"
 />;
 ```
 
@@ -32,7 +32,7 @@ import { PasswordInputField } from "@ffw/randstad-shared-components";
   name="password-3"
   id="password-3"
   required
-  formGroupLabel="Passwort"
+  label="Passwort"
   validationSchema={{ minSign: "8 Zeichen" }}
 />;
 ```

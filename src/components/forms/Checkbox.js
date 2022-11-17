@@ -40,6 +40,8 @@ Checkbox.propTypes = {
   id: t.string,
   /** Wrap component with FormGroup functionality. See FormGroup for more information on props support. Enabled by default */
   withFormGroup: t.bool,
+  /** Label for form group. */
+  formGroupLabel: t.string,
   /** @ignore part of HTML props */
   disabled: t.bool,
 };

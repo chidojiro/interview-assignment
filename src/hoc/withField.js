@@ -15,6 +15,7 @@ const withField = (ChildComponent) => {
       afterContent,
       capitalize,
       formGroupLabel,
+      label,
       ...rest
     } = props;
     /* eslint-enable react/prop-types */
@@ -30,12 +31,14 @@ const withField = (ChildComponent) => {
       name,
       required,
       id: fieldId,
+      label,
       ...rest,
     };
 
     const formGroupProps = {
       formGroupClass,
-      formGroupLabel,
+      // Some components (like Checkbox) has 2 label. In this case we need formGroupLabel.
+      label: isSelectionControl ? formGroupLabel : label,
       id: fieldId,
       capitalize,
       required,
