@@ -3,7 +3,7 @@ Select Field
 ```jsx
 import { SelectField } from "@ffw/randstad-shared-components";
 
-<SelectField formGroupLabel="country" name="country" required description="we need your country for taxes">
+<SelectField label="country" name="country" required description="we need your country for taxes">
   <option value="">select your country ...</option>
   <option value="Belgium">Belgium</option>
   <option value="France">France</option>
@@ -11,4 +11,3 @@ import { SelectField } from "@ffw/randstad-shared-components";
   <option value="The Netherlands">The Netherlands</option>
 </SelectField>;
 ```
-

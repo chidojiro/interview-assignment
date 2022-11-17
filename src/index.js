@@ -20,6 +20,7 @@ import UtilityNavigation from "./components/navigation/UtilityNavigation";
 import Block from "./components/Block";
 import Autosuggest from "./components/forms/Autosuggest";
 import Stackable from "./components/form-group/Stackable";
+import FormGroup from "./components/form-group/FormGroup";
 
 export {
   HeaderText,
@@ -44,4 +45,5 @@ export {
   UtilityNavigation,
   Autosuggest,
   Stackable,
+  FormGroup,
 };
