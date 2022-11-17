@@ -12,7 +12,7 @@ import t from "prop-types";
  */
 const FormGroup = ({
   formGroupClass,
-  formGroupLabel,
+  label,
   id,
   required,
   optionalLabel,
@@ -23,11 +23,12 @@ const FormGroup = ({
   afterContent,
   isSelectionControl,
   withoutFormGroupMarkup,
+  isPassword,
 }) => {
-  let fieldLabel = formGroupLabel;
+  let fieldLabel = label;
 
-  if (formGroupLabel && capitalize) {
-    fieldLabel = formGroupLabel.charAt(0).toUpperCase() + formGroupLabel.slice(1);
+  if (label && capitalize) {
+    fieldLabel = label.charAt(0).toUpperCase() + label.slice(1);
   }
 
   return (
@@ -35,6 +36,7 @@ const FormGroup = ({
       className={cn("form-group", formGroupClass, {
         "form-group--error": error,
         "form-group--selection-control": isSelectionControl,
+        "form-group--password": isPassword,
       })}>
       {fieldLabel && (
         <label className="form-group__label" htmlFor={id}>
@@ -58,7 +60,7 @@ const FormGroup = ({
 
 FormGroup.propTypes = {
   formGroupClass: t.string,
-  formGroupLabel: t.string,
+  label: t.string,
   /** If not provided, will be generated from `name` */
   id: t.string,
   /** @ignore Part of default HTML attributes. */
@@ -72,6 +74,8 @@ FormGroup.propTypes = {
   afterContent: t.any,
   /** @ignore */
   isSelectionControl: t.bool,
+  /** @ignore */
+  isPassword: t.bool,
   /** @ignore */
   withoutFormGroupMarkup: t.bool,
 };

@@ -7,7 +7,9 @@
     "collapsible",
     "toggable",
     "untouched",
-    "clearable"
+    "clearable",
+    "password-visibility",
+    "password-validator"
   ],
   "devDependencies": {
     "@babel/core": "^7.13.8",

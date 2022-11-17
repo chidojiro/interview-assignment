@@ -15,6 +15,7 @@ const withField = (ChildComponent) => {
       afterContent,
       capitalize,
       formGroupLabel,
+      label,
       ...rest
     } = props;
     /* eslint-enable react/prop-types */
@@ -23,18 +24,21 @@ const withField = (ChildComponent) => {
     const fieldId = id || `field--${nameSanitized}`;
 
     const isSelectionControl = ChildComponent.isSelectionControl;
+    const isPassword = ChildComponent.isPassword;
     const withoutFormGroupMarkup = ChildComponent.withoutFormGroupMarkup;
 
     const fieldProps = {
       name,
       required,
       id: fieldId,
+      label,
       ...rest,
     };
 
     const formGroupProps = {
       formGroupClass,
-      formGroupLabel,
+      // Some components (like Checkbox) has 2 label. In this case we need formGroupLabel.
+      label: isSelectionControl ? formGroupLabel : label,
       id: fieldId,
       capitalize,
       required,
@@ -43,6 +47,7 @@ const withField = (ChildComponent) => {
       description,
       afterContent,
       isSelectionControl,
+      isPassword,
       withoutFormGroupMarkup,
     };
 

@@ -6,7 +6,7 @@ import { InputField } from "@ffw/randstad-shared-components";
   id="email-1"
   required
   placeholder="design@randstad.com"
-  formGroupLabel="email address"
+  label="email address"
 />;
 ```
 
@@ -20,9 +20,9 @@ import { InputField } from "@ffw/randstad-shared-components";
   id="email-1"
   required
   placeholder="design@randstad.com"
-  formGroupLabel="email address"
+  label="email address"
   afterContent="Add text"
-  />;
+/>;
 ```
 
 Email type
@@ -36,6 +36,6 @@ import { InputField } from "@ffw/randstad-shared-components";
   id="email-1"
   required
   placeholder="design@randstad.com"
-  formGroupLabel="email address"
-  />;
+  label="email address"
+/>;
 ```
