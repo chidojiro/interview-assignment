@@ -1,6 +1,7 @@
 import HeaderText from "./components/headers/HeaderText";
 import InputField from "./components/forms/InputField";
 import LocationInputField from "./components/forms/LocationInputField";
+import PasswordInputField from "./components/forms/PasswordInputField";
 import RadioButton from "./components/forms/RadioButton";
 import Button from "./components/Button";
 import Checkbox from "./components/forms/Checkbox";
@@ -24,6 +25,7 @@ export {
   HeaderText,
   InputField,
   LocationInputField,
+  PasswordInputField,
   RadioButton,
   Button,
   Checkbox,
