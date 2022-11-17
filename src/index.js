@@ -3,6 +3,7 @@ import InputField from "./components/forms/InputField";
 import LocationInputField from "./components/forms/LocationInputField";
 import PasswordInputField from "./components/forms/PasswordInputField";
 import RadioButton from "./components/forms/RadioButton";
+import TextArea from "./components/forms/TextArea";
 import Button from "./components/Button";
 import Checkbox from "./components/forms/Checkbox";
 import SelectField from "./components/forms/SelectField";
@@ -28,6 +29,7 @@ export {
   LocationInputField,
   PasswordInputField,
   RadioButton,
+  TextArea,
   Button,
   Checkbox,
   SelectField,
