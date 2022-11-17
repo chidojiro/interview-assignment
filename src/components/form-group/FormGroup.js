@@ -23,6 +23,7 @@ const FormGroup = ({
   afterContent,
   isSelectionControl,
   withoutFormGroupMarkup,
+  isPassword,
 }) => {
   let fieldLabel = formGroupLabel;
 
@@ -35,6 +36,7 @@ const FormGroup = ({
       className={cn("form-group", formGroupClass, {
         "form-group--error": error,
         "form-group--selection-control": isSelectionControl,
+        "form-group--password": isPassword,
       })}>
       {fieldLabel && (
         <label className="form-group__label" htmlFor={id}>
@@ -72,6 +74,8 @@ FormGroup.propTypes = {
   afterContent: t.any,
   /** @ignore */
   isSelectionControl: t.bool,
+  /** @ignore */
+  isPassword: t.bool,
   /** @ignore */
   withoutFormGroupMarkup: t.bool,
 };

@@ -23,6 +23,7 @@ const withField = (ChildComponent) => {
     const fieldId = id || `field--${nameSanitized}`;
 
     const isSelectionControl = ChildComponent.isSelectionControl;
+    const isPassword = ChildComponent.isPassword;
     const withoutFormGroupMarkup = ChildComponent.withoutFormGroupMarkup;
 
     const fieldProps = {
@@ -43,6 +44,7 @@ const withField = (ChildComponent) => {
       description,
       afterContent,
       isSelectionControl,
+      isPassword,
       withoutFormGroupMarkup,
     };
 
