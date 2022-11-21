@@ -1,10 +1,8 @@
 import React from "react";
 import t from "prop-types";
 
-import FormGroup from "@components/form-group/FormGroup";
-
 const withField = (ChildComponent) => {
-  const Component = ({ id, name, withFormGroup = true, ...props }) => {
+  const Component = ({ id, name, ...props }) => {
     /* eslint-disable react/prop-types */
     const {
       formGroupClass,
@@ -15,6 +13,8 @@ const withField = (ChildComponent) => {
       afterContent,
       capitalize,
       formGroupLabel,
+      label,
+      withFormGroup,
       ...rest
     } = props;
     /* eslint-enable react/prop-types */
@@ -22,18 +22,17 @@ const withField = (ChildComponent) => {
     const nameSanitized = (name || "").split(" ").join("-");
     const fieldId = id || `field--${nameSanitized}`;
 
-    const isSelectionControl = ChildComponent.isSelectionControl;
-    const withoutFormGroupMarkup = ChildComponent.withoutFormGroupMarkup;
-
     const fieldProps = {
       name,
       required,
       id: fieldId,
+      label,
       ...rest,
     };
 
     const formGroupProps = {
       formGroupClass,
+      label,
       formGroupLabel,
       id: fieldId,
       capitalize,
@@ -42,26 +41,15 @@ const withField = (ChildComponent) => {
       error,
       description,
       afterContent,
-      isSelectionControl,
-      withoutFormGroupMarkup,
+      withFormGroup,
     };
 
-    if (withFormGroup) {
-      return (
-        <FormGroup {...formGroupProps}>
-          <ChildComponent {...fieldProps} />
-        </FormGroup>
-      );
-    }
-
-    return <ChildComponent {...fieldProps} />;
+    return <ChildComponent {...fieldProps} _formGroupProps={formGroupProps} />;
   };
 
   Component.propTypes = {
     name: t.string.isRequired,
     id: t.string,
-    /** Wrap component with FormGroup functionality. See FormGroup for more information on props support */
-    withFormGroup: t.bool,
   };
 
   return Component;

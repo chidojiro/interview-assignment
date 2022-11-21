@@ -7,8 +7,7 @@ import t from "prop-types";
 const Logo = ({ theme, homepageUrl }) => {
   return (
     <a className={"logo"} href={homepageUrl}>
-      {theme == "sph" ? <LogoSph /> :
-       theme == "tt" ? <LogoTT /> : <LogoDefault />}
+      {theme == "sph" ? <LogoSph /> : theme == "tt" ? <LogoTT /> : <LogoDefault />}
     </a>
   );
 };

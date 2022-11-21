@@ -1,7 +1,6 @@
 import React from "react";
-import cn from "classnames";
-
 import t from "prop-types";
+import cn from "classnames";
 
 /**
  * Stackable form group component.
@@ -19,7 +18,7 @@ const Stackable = ({
   className,
   capitalize,
   hideLabel = false,
-  optionalLabel,
+  optionalLabel = "optional",
   required = true,
 }) => {
   if (!label) {
@@ -38,8 +37,8 @@ const Stackable = ({
         "form-group--error": error,
       })}>
       <legend className={cn("form-group__label", { hidden: hideLabel })}>
-        {legend}{" "}
-        {!required && <span className="form-group__optional"> {optionalLabel || "optional"}</span>}
+        {legend}
+        {!required && <span className="form-group__optional"> {optionalLabel}</span>}
       </legend>
       {React.Children.map(children, (child) => {
         return (
@@ -63,15 +62,11 @@ Stackable.propTypes = {
   description: t.string,
   required: t.bool,
   optionalLabel: t.string,
-  /** @ignore */
-  children: t.any,
   capitalize: t.bool,
   /** Visually will hide the label, but it will remain in the markup. For a11y reasons. */
   hideLabel: t.bool,
-};
-
-Stackable.defaultProps = {
-  hideLabel: false,
+  /** @ignore */
+  children: t.any,
 };
 
 export default Stackable;

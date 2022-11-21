@@ -1,6 +1,7 @@
 import React from "react";
 import cn from "classnames";
 import t from "prop-types";
+import Label from "@components/form-group/Label";
 
 /**
  * Basic form group component.
@@ -12,7 +13,7 @@ import t from "prop-types";
  */
 const FormGroup = ({
   formGroupClass,
-  formGroupLabel,
+  label,
   id,
   required,
   optionalLabel,
@@ -21,33 +22,29 @@ const FormGroup = ({
   error,
   description,
   afterContent,
-  isSelectionControl,
-  withoutFormGroupMarkup,
+  _overrideLabel,
+  _configClasses,
+  _withoutWrapper,
+  withFormGroup = true,
 }) => {
-  let fieldLabel = formGroupLabel;
-
-  if (formGroupLabel && capitalize) {
-    fieldLabel = formGroupLabel.charAt(0).toUpperCase() + formGroupLabel.slice(1);
-  }
+  if (!withFormGroup) return children;
 
   return (
     <div
-      className={cn("form-group", formGroupClass, {
+      className={cn("form-group", formGroupClass, _configClasses, {
         "form-group--error": error,
-        "form-group--selection-control": isSelectionControl,
       })}>
-      {fieldLabel && (
-        <label className="form-group__label" htmlFor={id}>
-          {fieldLabel}
-          {!required ? (
-            <span className="form-group__optional"> {optionalLabel || "optional"}</span>
-          ) : (
-            <sup className="form-group__required">*</sup>
-          )}
-        </label>
+      {_overrideLabel || (
+        <Label
+          label={label}
+          id={id}
+          required={required}
+          capitalize={capitalize}
+          optionalLabel={optionalLabel}
+        />
       )}
 
-      {withoutFormGroupMarkup ? children : <div className="form-group__input">{children}</div>}
+      {_withoutWrapper ? children : <div className="form-group__input">{children}</div>}
 
       {error && <div className="form-group__feedback">{error}</div>}
       {description && <div className="form-group__message">{description}</div>}
@@ -58,22 +55,26 @@ const FormGroup = ({
 
 FormGroup.propTypes = {
   formGroupClass: t.string,
-  formGroupLabel: t.string,
+  label: t.string,
   /** If not provided, will be generated from `name` */
   id: t.string,
-  /** @ignore Part of default HTML attributes. */
-  required: t.bool,
   capitalize: t.bool,
   optionalLabel: t.string,
-  /** @ignore */
-  children: t.any,
   error: t.string,
   description: t.string,
   afterContent: t.any,
+  /** Wrap component with FormGroup functionality. See FormGroup for more information on props support. Enabled by default */
+  withFormGroup: t.bool,
   /** @ignore */
-  isSelectionControl: t.bool,
-  /** @ignore */
-  withoutFormGroupMarkup: t.bool,
+  children: t.any,
+  /** @ignore Part of default HTML attributes. */
+  required: t.bool,
+  /** @ignore Overide the default label component. Not available for public use. */
+  _overrideLabel: t.any,
+  /** @ignore Used only to pass required classes for the field on setup. Not available for public use. */
+  _configClasses: t.string,
+  /** @ignore Does not wrap field with 'form-group__input' div. Use for specific cases on field setup. Not available for public use. */
+  _withoutWrapper: t.bool,
 };
 
 export default FormGroup;
