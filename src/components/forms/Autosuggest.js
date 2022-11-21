@@ -3,14 +3,16 @@ import t from "prop-types";
 
 import useAutosuggest from "@hooks/useAutosuggest";
 import withField from "@hoc/withField";
-
 import ListItemMark from "./autosuggest/ListItemMark";
+import FormGroup from "@components/form-group/FormGroup";
 
 /**
  * An input field which predicts the rest of a word a user is currently typing. See [here](https://randstad.design/components/core/forms/autosuggest/)
  *
- * ***
+ * ---
  * *Every other passed props will be added to `<input>`. Like "data-attribute" and "aria-label"*
+ *
+ * **Wrapped with `FormGroup` component and support all of its props.**
  */
 const Autosuggest = ({
   items = [],
@@ -19,6 +21,7 @@ const Autosuggest = ({
   noResultsText,
   initialValue,
   config,
+  _formGroupProps,
   ...fieldProps
 }) => {
   const [values, props] = useAutosuggest({ items, onChange, onSelectItem, config, initialValue });
@@ -28,25 +31,27 @@ const Autosuggest = ({
   const { inputProps, wrapperProps, listItemProps } = props;
 
   return (
-    <div {...wrapperProps}>
-      <input {...fieldProps} {...inputProps} type="text" autoComplete="off" />
-      {open && (
-        <ul className="select-menu__list">
-          {list.map((listItem, i) => {
-            return (
-              <li key={`list-item-${i}`} {...listItemProps(listItem, i)}>
-                <ListItemMark inputValue={inputValue}>{listItem}</ListItemMark>
+    <FormGroup {..._formGroupProps}>
+      <div {...wrapperProps}>
+        <input {...fieldProps} {...inputProps} type="text" autoComplete="off" />
+        {open && (
+          <ul className="select-menu__list">
+            {list.map((listItem, i) => {
+              return (
+                <li key={`list-item-${i}`} {...listItemProps(listItem, i)}>
+                  <ListItemMark inputValue={inputValue}>{listItem}</ListItemMark>
+                </li>
+              );
+            })}
+            {isNoResults && (
+              <li className="select-menu__item select-menu__item--no-result">
+                {noResultsText ? noResultsText : "no results, please try another search"}
               </li>
-            );
-          })}
-          {isNoResults && (
-            <li className="select-menu__item select-menu__item--no-result">
-              {noResultsText ? noResultsText : "no results, please try another search"}
-            </li>
-          )}
-        </ul>
-      )}
-    </div>
+            )}
+          </ul>
+        )}
+      </div>
+    </FormGroup>
   );
 };
 
@@ -68,8 +73,8 @@ Autosuggest.propTypes = {
   }),
   /** Set autosuggest initial initialValue. */
   initialValue: t.string,
-  /** Wrap component with FormGroup functionality. See FormGroup for more information on props support. Enabled by default */
-  withFormGroup: t.bool,
+  /** @ignore Private props from HOC for easy setup. */
+  _formGroupProps: t.object,
 };
 
 export default withField(Autosuggest);

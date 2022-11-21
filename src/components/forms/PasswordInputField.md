@@ -36,3 +36,16 @@ import { PasswordInputField } from "@ffw/randstad-shared-components";
   validationSchema={{ minSign: "8 Zeichen" }}
 />;
 ```
+
+With forgotten password link.
+
+```jsx
+import { PasswordInputField } from "@ffw/randstad-shared-components";
+
+<PasswordInputField
+  name="password-4"
+  id="password-4"
+  label="password"
+  forgottenPasswordLink={<a href="#">forgotten password</a>}
+/>;
+```
