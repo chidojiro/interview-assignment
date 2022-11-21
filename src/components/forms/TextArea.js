@@ -4,6 +4,7 @@ import cn from "classnames";
 
 import withField from "@hoc/withField";
 import useLibrary from "@hooks/useLibrary";
+import FormGroup from "@components/form-group/FormGroup";
 
 const defaultCharacterCounterLabels = {
   characters: "characters",
@@ -15,12 +16,15 @@ const defaultCharacterCounterLabels = {
  *
  * ---
  * *Every other passed props will be added to `<textarea>`. Like "data-attribute" and "aria-label"*
+ *
+ * **Wrapped with `FormGroup` component and support all of its props.**
  */
 const TextArea = ({
   autoResize = true,
   characterCounter,
   expanded,
   libs,
+  _formGroupProps,
   characterCounterLabels = {},
   maxlength = 250,
   ...props
@@ -53,7 +57,7 @@ const TextArea = ({
     : {};
 
   return (
-    <>
+    <FormGroup {..._formGroupProps}>
       <div
         className={cn("form-group__input", {
           "form-group__character-count": characterCounter,
@@ -73,11 +77,12 @@ const TextArea = ({
       {characterCounter && (
         <div className="form-group__characters" data-rs-character-counter-output={props.name}></div>
       )}
-    </>
+    </FormGroup>
   );
 };
 
 TextArea.propTypes = {
+  name: t.string.isRequired,
   /** Enable text area auto resize. */
   autoResize: t.bool,
   /** Enable character count. */
@@ -98,8 +103,8 @@ TextArea.propTypes = {
   libs: t.array,
   /** Set text area max length */
   maxlength: t.number,
-  /** @ignore Part of input HTML props. */
-  name: t.string,
+  /** @ignore Private props from HOC for easy setup. */
+  _formGroupProps: t.object,
 };
 
 export default withField(TextArea);
