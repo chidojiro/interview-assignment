@@ -8,9 +8,9 @@ import cn from "classnames";
  *
  * *Every other passed props will be added to `<input>`. Like "data-attribute" and "aria-label"*
  */
-// Add unused props. Some of the props are comming from the withFieldGroup HOC.
+// Some of the props are comming from the withFieldGroup HOC. _formGroupProps is used for the form group. In this component form group is not used and we exclude _formGroupProps from props to prevent passing on the input.
 /* eslint-disable no-unused-vars */
-const RadioButton = ({ id, label, ...props }) => {
+const RadioButton = ({ id, label, _formGroupProps, ...props }) => {
   return (
     <label
       htmlFor={id}
@@ -33,8 +33,8 @@ RadioButton.propTypes = {
   id: t.string,
   /** @ignore Part of input HTML props */
   disabled: t.any,
-  /** Wrap component with FormGroup functionality. See FormGroup for more information on props support. Enabled by default */
-  withFormGroup: t.bool,
+  /** @ignore Private props from HOC for easy setup. */
+  _formGroupProps: t.object,
 };
 
 export default withField(RadioButton);

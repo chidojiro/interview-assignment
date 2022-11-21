@@ -26,6 +26,7 @@ module.exports = {
     "**/components/navigation/**",
     "**/components/forms/autosuggest/**",
     "**/components/base/**",
+    "**/components/form-group/Label.js",
   ],
 
   getComponentPathLine(componentPath) {
