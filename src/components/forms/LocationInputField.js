@@ -3,16 +3,18 @@ import t from "prop-types";
 
 import withField from "@hoc/withField";
 import useLibrary from "@hooks/useLibrary";
-import { InputField } from "./InputField";
 import Svg from "@components/base/Svg";
+import FormGroup from "@components/form-group/FormGroup";
 
 /**
  * A field to enter data in a pre defined format. See [here](https://randstad.design/components/core/forms/input-field/)
  *
  * ---
- * *Extend InputField component with location functionality. Support all InputField props.*
+ * *Every other passed props will be added to `<input>`. Like "data-attribute" and "aria-label"*
+ *
+ * **Wrapped with `FormGroup` component and support all of its props.**
  */
-const LocationInputField = ({ libs, buttonLabel = "clear", ...props }) => {
+const LocationInputField = ({ libs, _formGroupProps, buttonLabel = "clear", ...props }) => {
   const [ref] = useLibrary(libs);
 
   const attr = !props.disabled
@@ -22,43 +24,43 @@ const LocationInputField = ({ libs, buttonLabel = "clear", ...props }) => {
     : {};
 
   return (
-    <div
-      ref={ref}
-      className="form-group__input form-group__input--button form-group__input--icon-left clearable-input"
-      {...attr}
-      data-scl="">
-      <InputField {...props} />
-      <span className="icon">
-        <Svg icon="gps-filled" />
-      </span>
-      {!props.disabled && (
-        <button
-          type="button"
-          className="button--icon-only"
-          aria-label={buttonLabel}
-          data-rs-clearable-button=""
-          aria-hidden="false">
-          <span>{buttonLabel}</span>
-          <span className="icon">
-            <Svg icon="close" />
-          </span>
-        </button>
-      )}
-    </div>
+    <FormGroup {..._formGroupProps} _withoutWrapper={true}>
+      <div
+        ref={ref}
+        className="form-group__input form-group__input--button form-group__input--icon-left clearable-input"
+        {...attr}
+        data-scl="">
+        <input {...props} type="text" />
+        <span className="icon">
+          <Svg icon="gps-filled" />
+        </span>
+        {!props.disabled && (
+          <button
+            type="button"
+            className="button--icon-only"
+            aria-label={buttonLabel}
+            data-rs-clearable-button=""
+            aria-hidden="false">
+            <span>{buttonLabel}</span>
+            <span className="icon">
+              <Svg icon="close" />
+            </span>
+          </button>
+        )}
+      </div>
+    </FormGroup>
   );
 };
 
-LocationInputField.withoutFormGroupMarkup = true;
-
 LocationInputField.propTypes = {
-  /** @ignore Part of input HTML props. */
-  disabled: t.bool,
-  /** Label for the close button */
+  name: t.string.isRequired,
   buttonLabel: t.string,
   /** Used to pass js Orbit library responsible for functionality. Note: This should passed on component setup so you don't have to pass it every time. */
   libs: t.array,
-  /** Wrap component with FormGroup functionality. See FormGroup for more information on props support. Enabled by default */
-  withFormGroup: t.bool,
+  /** @ignore Part of input HTML props. */
+  disabled: t.bool,
+  /** @ignore Private props from HOC for easy setup. */
+  _formGroupProps: t.object,
 };
 
 export default withField(LocationInputField);

@@ -3,17 +3,22 @@ import t from "prop-types";
 
 import withField from "@hoc/withField";
 import useLibrary from "@hooks/useLibrary";
-import { InputField } from "./InputField";
+import FormGroup from "@components/form-group/FormGroup";
+import Label from "@components/form-group/Label";
 import Svg from "@components/base/Svg";
 
 /**
  * A field to enter data in a pre defined format. See [here](https://randstad.design/components/core/forms/input-field/)
  *
  * ---
- * *Extend InputField component with location functionality. Support all InputField props.*
+ * *Every other passed props will be added to `<input>`. Like "data-attribute" and "aria-label"*
+ *
+ * **Wrapped with `FormGroup` component and support all of its props.**
  */
 const PasswordInputField = ({
   libs,
+  forgottenPasswordLink,
+  _formGroupProps,
   minChars = 8,
   validationSchema = {},
   buttonLabel = "show password",
@@ -33,18 +38,50 @@ const PasswordInputField = ({
     ...validationSchema,
   };
 
-  const minCharsAttr = minChars ? { "data-rs-password-validator-min-chars": minChars } : {};
+  let forgottenPasswordWithClass = forgottenPasswordLink ? { ...forgottenPasswordLink } : null;
+
+  if (forgottenPasswordWithClass) {
+    forgottenPasswordWithClass.props = {
+      ...forgottenPasswordWithClass.props,
+      className: "form-group__action-link",
+    };
+  }
+
+  const labelWithForgottenPasswordLink = () => {
+    return (
+      <div className="flex justify-between">
+        <Label
+          label={_formGroupProps.label}
+          id={_formGroupProps.id}
+          required={_formGroupProps.required}
+          capitalize={_formGroupProps.capitalize}
+          optionalLabel={_formGroupProps.optionalLabel}
+        />
+        {forgottenPasswordWithClass}
+      </div>
+    );
+  };
+
+  const forgottenPasswordLinkAttributes = forgottenPasswordLink
+    ? {
+        _overrideLabel: labelWithForgottenPasswordLink(),
+      }
+    : {};
 
   return (
-    <>
+    <FormGroup
+      {..._formGroupProps}
+      _configClasses="form-group--password"
+      _withoutWrapper={true}
+      {...forgottenPasswordLinkAttributes}>
       <div
         className="form-group__input form-group__input--button password-validator"
         data-scl=""
         ref={ref}
-        {...minCharsAttr}
+        data-rs-password-validator-min-chars={minChars}
         data-rs-password-validator=""
         data-rs-password-visibility="">
-        <InputField {...props} type="password" />
+        <input {...props} type="password" />
         <button
           type="button"
           data-rs-password-visibility-trigger=""
@@ -67,14 +104,12 @@ const PasswordInputField = ({
           ))}
         </ul>
       </div>
-    </>
+    </FormGroup>
   );
 };
 
-PasswordInputField.withoutFormGroupMarkup = true;
-PasswordInputField.isPassword = true;
-
 PasswordInputField.propTypes = {
+  name: t.string.isRequired,
   /** Change default minimin characters in the validation schema. */
   minChars: t.number,
   /** All supported validators.
@@ -92,10 +127,11 @@ PasswordInputField.propTypes = {
     noSymbol: t.string,
   }),
   buttonLabel: t.string,
+  forgottenPasswordLink: t.node,
   /** Used to pass js Orbit library responsible for functionality. Note: This should passed on component setup so you don't have to pass it every time. */
   libs: t.array,
-  /** Wrap component with FormGroup functionality. See FormGroup for more information on props support. Enabled by default */
-  withFormGroup: t.bool,
+  /** @ignore Private props from HOC for easy setup. */
+  _formGroupProps: t.object,
 };
 
 export default withField(PasswordInputField);

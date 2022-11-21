@@ -21,6 +21,7 @@ import Block from "./components/Block";
 import Autosuggest from "./components/forms/Autosuggest";
 import Stackable from "./components/form-group/Stackable";
 import FormGroup from "./components/form-group/FormGroup";
+import Label from "./components/form-group/Label";
 
 export {
   HeaderText,
@@ -46,4 +47,5 @@ export {
   Autosuggest,
   Stackable,
   FormGroup,
+  Label,
 };
