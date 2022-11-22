@@ -3,7 +3,7 @@ import t from "prop-types";
 
 // For internal issue. Should not be available for public.
 const Label = ({ label, required, id, capitalize, optionalLabel = "optional" }) => {
-  if (!label) return;
+  if (!label) return null;
 
   let fieldLabel = label;
 
