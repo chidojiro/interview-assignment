@@ -126,6 +126,7 @@ PasswordInputField.propTypes = {
     useChar: t.string,
     noSymbol: t.string,
   }),
+  /** Refers to the aria-label attribute of the show button. */
   buttonLabel: t.string,
   forgottenPasswordLink: t.node,
   /** Used to pass js Orbit library responsible for functionality. Note: This should passed on component setup so you don't have to pass it every time. */
