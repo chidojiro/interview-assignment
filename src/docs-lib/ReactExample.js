@@ -2,11 +2,17 @@ import React, { useEffect, useRef } from "react";
 import Original from "react-styleguidist/lib/client/rsg-components/ReactExample/ReactExample";
 import packageConf from "~/package.json";
 
+const mappedLibs = {
+  "character-count": "character-counter",
+  "text-area": "textarea",
+};
+
 function injectOrbitJs(el) {
-  packageConf?.orbitLibraries.forEach((lib) => {
+  packageConf?.orbitLibraries.forEach((l) => {
+    const lib = mappedLibs[l] || l;
     if (el.querySelectorAll(`[data-rs-${lib}]`).length) {
       const els = el.querySelectorAll(`[data-rs-${lib}]`);
-      attachLibrary(lib, els);
+      attachLibrary(l, els);
     }
   });
 }

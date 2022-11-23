@@ -9,7 +9,10 @@
     "untouched",
     "clearable",
     "password-visibility",
-    "password-validator"
+    "password-validator",
+    "character-count",
+    "auto-resize",
+    "text-area"
   ],
   "devDependencies": {
     "@babel/core": "^7.13.8",
