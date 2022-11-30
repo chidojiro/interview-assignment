@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 
-import sanitizeString from "@utils/sanitizeString";
 import handleScrollBar from "@utils/handleScrollBar";
 import isRefsEmpty from "@utils/isRefsEmpty";
 import useDebounce from "@hooks/useDebounce";
@@ -29,13 +28,11 @@ const useAutosuggest = ({
   items,
   onChange: changeCb,
   onSelectItem: selectItemCb,
-  sanitize: sanitizeCb,
   initialValue = "",
   config = {},
 }) => {
-  const { skipFilter, allowNumericValue, itemsStripWordList = [], allowSpaces = false } = config;
+  const { skipFilter, allowNumericValue, itemsStripWordList = [] } = config;
   const onChange = changeCb ? changeCb : () => null;
-  const sanitize = sanitizeCb ? sanitizeCb : sanitizeString().keepSpaceAndBrackets;
   const onSelectItem = selectItemCb ? selectItemCb : () => null;
 
   // States.
@@ -54,15 +51,15 @@ const useAutosuggest = ({
 
   const debounceInputValue = useDebounce(inputValue);
 
-  const filteredList = useMemo(
-    () =>
-      skipFilter
-        ? items.filter((l) => sanitize(l))
-        : items.filter((l) => {
-            return sanitize(l).toLowerCase().indexOf(inputValue.toLowerCase()) > -1;
+  const filteredList = skipFilter
+    ? items
+    : useMemo(
+        () =>
+          items.filter((l) => {
+            return l.toLowerCase().indexOf(inputValue.toLowerCase()) > -1;
           }),
-    [items, inputValue],
-  );
+        [items, inputValue],
+      );
 
   useEffect(() => {
     if (previousInputValue === debounceInputValue) return;
@@ -125,12 +122,12 @@ const useAutosuggest = ({
       realValue = match[match.length - 1];
     }
 
-    return sanitize(allowSpaces ? realValue : realValue.trim());
+    return realValue;
   };
 
   // Event handlers.
   const handleInputChange = ({ target }) => {
-    const value = sanitize(allowSpaces ? target.value : target.value.trim());
+    const value = target.value;
     // Close the list if value is empty.
     setOpen(!!value);
 
