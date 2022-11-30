@@ -18,13 +18,21 @@ const Autosuggest = ({
   items = [],
   onChange,
   onSelectItem,
+  sanitize,
   noResultsText,
   initialValue,
   config,
   _formGroupProps,
   ...fieldProps
 }) => {
-  const [values, props] = useAutosuggest({ items, onChange, onSelectItem, config, initialValue });
+  const [values, props] = useAutosuggest({
+    items,
+    onChange,
+    onSelectItem,
+    sanitize,
+    config,
+    initialValue,
+  });
 
   const { open, inputValue, list, isNoResults } = values;
   // eslint-disable-next-line react/prop-types
