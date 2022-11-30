@@ -5,8 +5,6 @@ import handleScrollBar from "@utils/handleScrollBar";
 import isRefsEmpty from "@utils/isRefsEmpty";
 import useDebounce from "@hooks/useDebounce";
 
-const sanitize = sanitizeString().keepSpaceAndBrackets;
-
 const keys = {
   Up: "ArrowUp",
   Down: "ArrowDown",
@@ -31,11 +29,13 @@ const useAutosuggest = ({
   items,
   onChange: changeCb,
   onSelectItem: selectItemCb,
+  sanitize: sanitizeCb,
   initialValue = "",
   config = {},
 }) => {
-  const { skipFilter, allowNumericValue, itemsStripWordList = [] } = config;
+  const { skipFilter, allowNumericValue, itemsStripWordList = [], allowSpaces = false } = config;
   const onChange = changeCb ? changeCb : () => null;
+  const sanitize = sanitizeCb ? sanitizeCb : sanitizeString().keepSpaceAndBrackets;
   const onSelectItem = selectItemCb ? selectItemCb : () => null;
 
   // States.
@@ -125,12 +125,12 @@ const useAutosuggest = ({
       realValue = match[match.length - 1];
     }
 
-    return sanitize(realValue.trim());
+    return sanitize(allowSpaces ? realValue : realValue.trim());
   };
 
   // Event handlers.
   const handleInputChange = ({ target }) => {
-    const value = sanitize(target.value.trim());
+    const value = sanitize(allowSpaces ? target.value : target.value.trim());
     // Close the list if value is empty.
     setOpen(!!value);
 

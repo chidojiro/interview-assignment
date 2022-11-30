@@ -62,6 +62,8 @@ Autosuggest.propTypes = {
   onChange: t.func,
   /** Triggered on item select */
   onSelectItem: t.func,
+  /** Custom sanitize callback for the onChange OnSelect events */
+  sanitize: t.func,
   noResultsText: t.string,
   config: t.shape({
     /** Skip autosuggest filter. Work exactly as `use-exact-values`. Usually this is used when working with elastic search filter which is more complex. */
@@ -70,6 +72,8 @@ Autosuggest.propTypes = {
     allowNumericValue: t.bool,
     /** Strip all words listed in the array from selected item initialValue. */
     itemsStripWordList: t.array,
+    /** Allow usage of spaces. */
+    allowSpaces: t.bool,
   }),
   /** Set autosuggest initial initialValue. */
   initialValue: t.string,
