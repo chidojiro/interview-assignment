@@ -68,15 +68,15 @@ export default WithLib(['untouched'])(UI(Sortbar)());
 
 ## Contributors
 Please check the guide for [contributors](https://gitlab.workingpropeople.com/randstad-bluex/git-df-prd-bluex-lib-react-components/-/blob/dev/CONTRIBUTORS.md):
- - [Deployment](#deployment)
- - [Working with Components](#working-with-components)
-  - [Setup](#setup)
-  - [Update/Extend components](#updateextend-components)
- - [Working with documentation](#working-with-documentation)
-  - [Local development](#local-development)
-  - [Deploying the documentation](#deploying-the-documentation)
-  - [Setup assets](#setup-assets)
- - [Available commands](#available-commands)
+ - [Deployment](https://gitlab.workingpropeople.com/randstad-bluex/git-df-prd-bluex-lib-react-components/-/blob/dev/CONTRIBUTORS.md#deployment)
+ - [Working with Components](https://gitlab.workingpropeople.com/randstad-bluex/git-df-prd-bluex-lib-react-components/-/blob/dev/CONTRIBUTORS.md#working-with-components)
+  - [Setup](https://gitlab.workingpropeople.com/randstad-bluex/git-df-prd-bluex-lib-react-components/-/blob/dev/CONTRIBUTORS.md#setup)
+  - [Update/Extend components](https://gitlab.workingpropeople.com/randstad-bluex/git-df-prd-bluex-lib-react-components/-/blob/dev/CONTRIBUTORS.md#updateextend-components)
+ - [Working with documentation](https://gitlab.workingpropeople.com/randstad-bluex/git-df-prd-bluex-lib-react-components/-/blob/dev/CONTRIBUTORS.md#working-with-documentation)
+  - [Local development](https://gitlab.workingpropeople.com/randstad-bluex/git-df-prd-bluex-lib-react-components/-/blob/dev/CONTRIBUTORS.md#local-development)
+  - [Deploying the documentation](https://gitlab.workingpropeople.com/randstad-bluex/git-df-prd-bluex-lib-react-components/-/blob/dev/CONTRIBUTORS.md#deploying-the-documentation)
+  - [Setup assets](https://gitlab.workingpropeople.com/randstad-bluex/git-df-prd-bluex-lib-react-components/-/blob/dev/CONTRIBUTORS.md#setup-assets)
+ - [Available commands](https://gitlab.workingpropeople.com/randstad-bluex/git-df-prd-bluex-lib-react-components/-/blob/dev/CONTRIBUTORS.md#available-commands)
 
 Maintainers.
 
