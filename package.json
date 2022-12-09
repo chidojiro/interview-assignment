@@ -42,11 +42,11 @@
     "docs:dev": "styleguidist server",
     "docs:build": "styleguidist build && cp -R ./src/docs-lib/assets ./styleguide/build",
     "docs:deploy": "netlify deploy -p --auth ykXsQT6afSBt0Fy_qU4eNwNyM4wUBDSDOmPn5xfVfY8 --site ac073155-7614-4ee7-ab71-071171f68b95",
-    "fetch-assets": "node ./src/docs-lib/fetch-assets.js",
+    "docs:fetch-assets": "node ./src/docs-lib/fetch-assets.js",
     "test": "jest",
     "lint": "eslint .",
     "fmt": "prettier --write .",
-    "postinstall": "yarn fetch-assets"
+    "postinstall": "yarn docs:fetch-assets"
   },
   "lint-staged": {
     "*.js": [

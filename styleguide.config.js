@@ -32,7 +32,7 @@ module.exports = {
   getComponentPathLine(componentPath) {
     const name = path.basename(componentPath, ".js");
 
-    return `import { ${name} } from '${pkg.name}';`;
+    return `import { ${name} } from '${pkg.name}/build';`;
   },
 
   styleguideComponents: {
