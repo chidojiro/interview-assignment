@@ -60,6 +60,8 @@ const useAutosuggest = ({
           }),
         [items, inputValue],
       );
+  // Update the state of the input value whenever it's changed.
+  useEffect(() => setInputValue(initialValue), [initialValue]);
 
   useEffect(() => {
     if (previousInputValue === debounceInputValue) return;
