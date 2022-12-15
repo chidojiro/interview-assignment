@@ -65,7 +65,11 @@ The list of all supported libraries can be found in `package.json` file under `o
 
 `Note: When adding new component to the documentation make its orbit js library exist in package.json`
 
-
+## Git flow
+The library s adopting `Bluex` branching strategies.
+- Clone feature branch from `ppr`
+- The commint id should contain Jira ticket ID
+- After creating PR send it for review to one of the maintainers.
 
 ## Available commands
 build source code
