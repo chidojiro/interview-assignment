@@ -1,22 +1,37 @@
 import React from "react";
-import t from "prop-types";
+import { BgColor, getBackground } from "@utils/getBackground";
+
+interface Breadcrumbs extends BgColor {
+  /** `active` is used to highlight the item */
+  items?: [{
+    title: string,
+    url: string,
+    active?: boolean,
+  }] | [],
+  mobileItem?: {
+    title: string,
+    url: string
+  },
+  /** This property is used for adding specific class `navigation--app` only for the apps. Since the navigation markup there is different from Orbit. */
+  app?: boolean
+}
 
 /**
  * The top-level navigation of the website and shown on each page. See [here](https://randstad.design/components/core/navigation/)
  *
  */
-const Breadcrumbs = ({ items, mobileItem, bgColor = "primary", app = true }) => {
+const Breadcrumbs = ({ items = [], mobileItem, bgColor = "primary", app = true }: Breadcrumbs) => {
   const { title: mobileTitle, url: mobileUrl } = mobileItem || {};
   const wrapperClasses = ["navigation"];
   const WrapperTag = bgColor ? "div" : React.Fragment;
-  let wrapperAttributes = {};
+  let wrapperAttributes: { className?: string } = {};
 
   if (app) {
     wrapperClasses.push("navigation--app");
   }
 
   if (bgColor) {
-    wrapperAttributes.className = `bg-variant-brand-${bgColor}`;
+    wrapperAttributes.className = getBackground(bgColor);
   }
 
   return (
@@ -49,29 +64,6 @@ const Breadcrumbs = ({ items, mobileItem, bgColor = "primary", app = true }) => 
       </div>
     </WrapperTag>
   );
-};
-
-Breadcrumbs.propTypes = {
-  /** 'active' is used to highlight the item */
-  items: t.arrayOf(
-    t.shape({
-      title: t.string.isRequired,
-      url: t.string,
-      active: t.bool,
-    }),
-  ),
-  mobileItem: t.shape({
-    title: t.string.isRequired,
-    url: t.string,
-  }),
-  /** See more <a href="https://randstad.design/styleguide/colors/">here</a>*/
-  bgColor: t.oneOf(["primary", "secondary", "tertiary", "quaternary", "quinary", "senary"]),
-  /** This property is used for adding specific class('navigation--app') only for the apps. Since the navigation markup there is different from Orbit. */
-  app: t.bool,
-};
-
-Breadcrumbs.defaultProps = {
-  bgColor: "primary",
 };
 
 export default Breadcrumbs;

@@ -1,7 +1,13 @@
 import React from "react";
-import PropTypes from "prop-types";
 
-const Toast = ({ children, anchor, id, buttonLabel = "close" }) => {
+interface Toast {
+  children: React.ReactNode,
+  anchor?: string,
+  id: string,
+  buttonLabel?: string
+}
+
+const Toast = ({ children, anchor, id, buttonLabel = "close" }: Toast) => {
   const attributes = {
     "data-rs-toast": id,
     [`data-rs-toast-${id}`]: "",
@@ -24,17 +30,6 @@ const Toast = ({ children, anchor, id, buttonLabel = "close" }) => {
       </button>
     </div>
   );
-};
-
-Toast.propTypes = {
-  children: PropTypes.node,
-  anchor: PropTypes.string,
-  id: PropTypes.string,
-  buttonLabel: PropTypes.string,
-};
-
-Toast.defaultProps = {
-  buttonLabel: "close",
 };
 
 export default Toast;

@@ -1,10 +1,22 @@
 import React from "react";
-import t from "prop-types";
+
+interface Block {
+  /** Rendered inside block_content */
+  children: React.ReactNode,
+  /** Rendered before block_content */
+  beforeContent?: React.ReactNode,
+  /** Rendered after block_content */
+  afterContent?: React.ReactNode,
+  type?: "filter",
+  contentSize?: "s"
+  align?: "left" | "right",
+  title?: string
+}
 
 /**
  * Global element used in most components. See [here](https://randstad.design/getting-started/developers/block-header-content/).
  */
-const Block = ({ children, beforeContent, afterContent, type, contentSize, align, title }) => {
+const Block = ({ children, beforeContent, afterContent, type, contentSize, align, title }: Block) => {
   const classes = ["block"];
   const contentClasses = ["block__content"];
 
@@ -34,19 +46,6 @@ const Block = ({ children, beforeContent, afterContent, type, contentSize, align
       </div>
     </div>
   );
-};
-
-Block.propTypes = {
-  /** Rendered inside block_content */
-  children: t.any,
-  /** Rendered before block_content */
-  beforeContent: t.any,
-  /** Rendered after block_content */
-  afterContent: t.any,
-  type: t.oneOf(["filter"]),
-  contentSize: t.oneOf(["s"]),
-  align: t.oneOf(["left", "right"]),
-  title: t.string,
 };
 
 export default Block;

@@ -1,12 +1,23 @@
 import React from "react";
-import t from "prop-types";
-import { getBackground } from "../../utils/getBackground";
+import { BgColor, getBackground } from "@utils/getBackground";
+
+interface Header extends BgColor {
+  /** @deprecated use `bgColor` instead. */
+  variation?: BgColor['bgColor'],
+  titleTop: string,
+  titleBottom?: string,
+  /** Used for header description. */
+  children?: React.ReactNode,
+  cta?: {
+    title: string,
+    href: string,
+  },
+  classes?: string[],
+}
 
 /**
  * A header which only consists out of text. See [here](https://randstad.design/components/examples/headers/text/)
- *
  */
-/* eslint-disable react/prop-types */
 const HeaderText = ({
   variation,
   bgColor: bgColorProp,
@@ -15,7 +26,7 @@ const HeaderText = ({
   children: text,
   cta,
   classes = [],
-}) => {
+}: Header) => {
   const headerClasses = ["header", "header--text", ...classes];
   let bgColorTemp = bgColorProp;
 
@@ -55,23 +66,6 @@ const HeaderText = ({
       </div>
     </header>
   );
-};
-
-HeaderText.propTypes = {
-  /** See more <a href="https://randstad.design/styleguide/colors/">here</a>*/
-  bgColor: t.oneOf(["primary", "secondary", "tertiary", "quaternary", "quinary", "senary"]),
-  titleTop: t.string,
-  titleBottom: t.string,
-  cta: t.shape({
-    href: t.string,
-    title: t.string,
-  }),
-  classes: t.array,
-  children: t.any,
-};
-
-HeaderText.defaultProps = {
-  classes: [],
 };
 
 export default HeaderText;

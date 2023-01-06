@@ -1,12 +1,12 @@
 import { useEffect, useRef } from "react";
 
-const useLibrary = (libs) => {
+const useLibrary = (libs: []) => {
   const ref = useRef();
 
   useEffect(() => {
     if (!libs) return;
 
-    libs.forEach((Item) => {
+    libs.forEach((Item: any) => {
       new Item(ref.current);
     });
   }, [libs]);

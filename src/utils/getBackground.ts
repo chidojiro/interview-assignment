@@ -1,10 +1,20 @@
-export const getBackground = (color, legacy = false) => {
+type ColorMap = {
+  [key: string]: string
+}
+
+export interface BgColor {
+  /** See more <a href="https://randstad.design/styleguide/colors/">here</a>*/
+  bgColor?: "primary" | "secondary" | "tertiary" | "quaternary" | "quinary" | "senary",
+}
+
+export const getBackground = (color: string, legacy: boolean = false) => {
   // Handle legacy background classes.
   if (color && legacy) {
     return `bg-brand--${color}`;
   }
+
   // Color map of Orbit color support old and new color name.
-  const colorMap = {
+  const colorMap: ColorMap = {
     white: "white",
     // Old color names.
     blue: "brand-primary",
@@ -22,7 +32,7 @@ export const getBackground = (color, legacy = false) => {
     quinary: "brand-quinary",
   };
 
-  const sphColorMap = {
+  const sphColorMap: ColorMap = {
     "gradient-orange": "gradient-orange",
   };
 
