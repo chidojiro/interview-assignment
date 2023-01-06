@@ -60,12 +60,7 @@ module.exports = {
   sections: [
     {
       name: "Shared components",
-      components: [
-        "src/components/headers/*.tsx",
-        "src/components/Button.tsx",
-        "src/components/forms/Checkbox.tsx",
-        "src/components/forms/InputField.tsx",
-      ],
+      components: ["src/components/headers/*.tsx", "src/components/Button.tsx"],
     },
     // {
     //   name: "Shared components",
