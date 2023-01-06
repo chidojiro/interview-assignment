@@ -4,7 +4,7 @@ module.exports = {
   entry: "./src/index.ts",
   output: {
     path: path.join(__dirname, "/build"),
-    filename: "index.js",
+    filename: "index.ts",
     libraryTarget: "commonjs",
     umdNamedDefine: true,
   },
