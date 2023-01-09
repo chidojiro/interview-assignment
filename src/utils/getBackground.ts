@@ -4,7 +4,7 @@ type ColorMap = {
 
 export interface BgColor {
   /** See more <a href="https://randstad.design/styleguide/colors/">here</a>*/
-  bgColor?: "primary" | "secondary" | "tertiary" | "quaternary" | "quinary" | "senary",
+  bgColor: "primary" | "secondary" | "tertiary" | "quaternary" | "quinary" | "senary",
 }
 
 export const getBackground = (color: string, legacy: boolean = false) => {

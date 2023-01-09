@@ -1,6 +1,14 @@
 import React, { useRef } from "react";
-import t from "prop-types";
-import useLibrary from "@hooks/useLibrary";
+import useLibrary, { Library } from "@hooks/useLibrary";
+
+interface Filter extends Library {
+  title: string,
+  mobileTitle: string,
+  children: any,
+  footer: React.ReactElement,
+  clearLink: React.ReactNode,
+  closeMobileOnSubmit: boolean,
+}
 
 /**
  * A bundle of different form elements and manipulating the page of search results. See [here](https://randstad.design/components/core/filters/blog/)
@@ -14,14 +22,14 @@ const Filter = ({
   clearLink,
   closeMobileOnSubmit = true,
   libs,
-}) => {
-  const [ref] = useLibrary(libs);
-  const closeButtonRef = useRef();
+}: Filter) => {
+  const [ref] = useLibrary<HTMLDivElement>(libs);
+  const closeButtonRef = useRef<SVGSVGElement>(null);
 
-  let transformedFooter = "";
+  let transformedFooter;
 
-  const clickElement = (ref) => {
-    ref.current.dispatchEvent(
+  const clickElement = (ref: typeof closeButtonRef) => {
+    ref.current && ref.current.dispatchEvent(
       new MouseEvent("click", {
         view: window,
         bubbles: true,
@@ -32,11 +40,11 @@ const Filter = ({
   };
 
   if (footer) {
-    transformedFooter = { ...footer };
+    transformedFooter = { ...footer } as React.ReactElement;
 
     // Prevents breaking if there is more than one child.
     if (typeof transformedFooter.props.children !== "object" && closeMobileOnSubmit) {
-      const clickFunc = (inheritClickEvent) => () => {
+      const clickFunc = (inheritClickEvent: () => void) => () => {
         // Fire inherit click event
         if (inheritClickEvent) {
           inheritClickEvent();
@@ -82,21 +90,6 @@ const Filter = ({
       </div>
     </div>
   );
-};
-
-Filter.propTypes = {
-  title: t.string,
-  mobileTitle: t.string,
-  children: t.any,
-  footer: t.any,
-  clearLink: t.any,
-  closeMobileOnSubmit: t.bool,
-  /** Used to pass js Orbit library responsible for functionality. Note: This should passed on component setup so you don't have to pass it every time. */
-  libs: t.object,
-};
-
-Filter.defaultProps = {
-  closeMobileOnSubmit: true,
 };
 
 export default Filter;

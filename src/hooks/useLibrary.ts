@@ -1,7 +1,12 @@
 import { useEffect, useRef } from "react";
 
-const useLibrary = (libs: []) => {
-  const ref = useRef();
+export interface Library {
+  /** Used to pass js Orbit library responsible for functionality. Note: This should passed on component setup so you don't have to pass it every time. */
+  libs: [],
+}
+
+const useLibrary = <T>(libs: []) => {
+  const ref = useRef<T>(null);
 
   useEffect(() => {
     if (!libs) return;

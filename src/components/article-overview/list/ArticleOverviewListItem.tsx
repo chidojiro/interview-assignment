@@ -1,6 +1,37 @@
 import React from "react";
-import t from "prop-types";
-import { getBackground } from "@utils/getBackground";
+import { BgColor, getBackground } from "@utils/getBackground";
+
+interface Tags {
+  text: string,
+  url: string
+}
+
+interface Base {
+  date?: string,
+  /** title supports html */
+  title: string,
+  /** img attributes spread in `<img>` tag. Like data-attributes. */
+  img?: React.ComponentPropsWithoutRef<"img">,
+  tags?: Tags[],
+  url: string,
+  /** Used in placeholder image classes to determend background color. */
+  bgColor?: any,
+  /** Used to add divider class to component and display line bellow. */
+  divider?: boolean,
+}
+
+interface WithPlaceholder extends Base {
+  /** Add classes required for placeholder image */
+  placeholder: true,
+  bgColor: BgColor['bgColor'],
+}
+
+interface WithoutPlaceholder extends Base {
+  /** Add classes required for placeholder image */
+  placeholder?: false | undefined,
+}
+
+type ArticleOverviewListItem = WithPlaceholder | WithoutPlaceholder
 
 /**
  * An overview of highlighted articles in different manifestations. See [here](https://randstad.design/components/examples/overviews/article-overview/)
@@ -15,7 +46,7 @@ const ArticleOverviewListItem = ({
   placeholder,
   bgColor,
   divider = true,
-}) => {
+}: ArticleOverviewListItem) => {
   const imgClasses = ["blog-overview__media", "aspect-ratio", "aspect-ratio--3-2"];
 
   // CSS classes for placeholder image.
@@ -57,29 +88,4 @@ const ArticleOverviewListItem = ({
   );
 };
 
-ArticleOverviewListItem.propTypes = {
-  date: t.string,
-  /** title supports html */
-  title: t.any,
-  /** img attributes spread in `<img>` tag. Like data-attributes. */
-  img: t.object,
-  tags: t.arrayOf(
-    t.shape({
-      text: t.string,
-      url: t.string,
-    }),
-  ),
-  url: t.string,
-  /** Add classes required for placeholder image */
-  placeholder: t.bool,
-  /** Used in placeholder image classes to determend background color. */
-  bgColor: t.string,
-  /** Used to add divider class to component and display line bellow. */
-  divider: t.bool,
-};
-
-ArticleOverviewListItem.defaultProps = {
-  divider: true,
-};
-
-export default ArticleOverviewListItem;
+export default ArticleOverviewListItem

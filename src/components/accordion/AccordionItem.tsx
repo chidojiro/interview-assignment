@@ -1,6 +1,15 @@
 import React from "react";
-import t from "prop-types";
-import useLibrary from "@hooks/useLibrary";
+import useLibrary, { Library } from "@hooks/useLibrary";
+
+interface AccordionItem extends Library {
+  children: React.ReactNode,
+  title: string,
+  subtitle?: string,
+  expanded?: boolean,
+  /** Used to pass js Orbit library responsible for functionality. Note: This should passed on component setup so you don't have to pass it every time. */
+  HeadingTag?: keyof JSX.IntrinsicElements,
+  ariaLabel: string,
+}
 
 /**
  * Expanding and collapsing sections of content. See [here](https://randstad.design/components/core/accordion/)
@@ -15,8 +24,8 @@ const AccordionItem = ({
   HeadingTag = "h3",
   ariaLabel = "",
   ...attr
-}) => {
-  const [ref] = useLibrary(libs);
+}: AccordionItem) => {
+  const [ref] = useLibrary<HTMLDivElement>(libs);
 
   return (
     <li {...attr} className="link-list__item">
@@ -52,22 +61,6 @@ const AccordionItem = ({
       </div>
     </li>
   );
-};
-
-AccordionItem.propTypes = {
-  children: t.any,
-  title: t.string,
-  subtitle: t.string,
-  expanded: t.bool,
-  /** Used to pass js Orbit library responsible for functionality. Note: This should passed on component setup so you don't have to pass it every time. */
-  HeadingTag: t.string,
-  ariaLabel: t.string,
-  /** Used to pass js Orbit library responsible for functionality. Note: This should passed on component setup so you don't have to pass it every time. */
-  libs: t.object,
-};
-
-AccordionItem.defaultProps = {
-  expanded: false,
 };
 
 export default AccordionItem;

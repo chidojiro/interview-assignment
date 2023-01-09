@@ -1,13 +1,22 @@
 import React from "react";
-import t from "prop-types";
-import useLibrary from "@hooks/useLibrary";
+import useLibrary, { Library } from "@hooks/useLibrary";
+import Svg from "@components/base/Svg";
+
+interface Sortbar extends Library {
+  count: string,
+  selectLabel: string,
+  /** `attrubutes` are spread in the component. You can pass from `data-attributes` to events */
+  selectAttributes?: React.ComponentPropsWithoutRef<"select">,
+  selectOptions?: { [key: string]: string },
+  untouched?: boolean,
+}
 
 /**
  * Enables to filter and sort content on the page. See [here](https://randstad.design/components/core/filters/blog/)
  *
  */
-const Sortbar = ({ count, selectLabel, selectAttributes, selectOptions, untouched, libs }) => {
-  const [ref] = useLibrary(libs);
+const Sortbar = ({ count, selectLabel, selectAttributes, selectOptions, untouched, libs }: Sortbar) => {
+  const [ref] = useLibrary<HTMLSelectElement>(libs);
   const { id, ...attr } = selectAttributes || {};
 
   if (!id) {
@@ -28,7 +37,7 @@ const Sortbar = ({ count, selectLabel, selectAttributes, selectOptions, untouche
           <div className="form-group__input">
             <select
               id={id}
-              required="required"
+              required
               data-rs-untouched=""
               {...attr}
               className={untouched ? "untouched" : ""}
@@ -42,26 +51,13 @@ const Sortbar = ({ count, selectLabel, selectAttributes, selectOptions, untouche
                 ))}
             </select>
             <span className="select-arrow icon">
-              <svg>
-                <use xlinkHref="/themes/custom/bluex/dist/assets/image/icons.svg#chevron-down"></use>
-              </svg>
+              <Svg icon="chevron-down" />
             </span>
           </div>
         </div>
       </div>
     </div>
   );
-};
-
-Sortbar.propTypes = {
-  count: t.string,
-  selectLabel: t.string,
-  /** `attrubutes` are spread in the component. You can pass from `data-attributes` to events */
-  selectAttributes: t.object,
-  selectOptions: t.object,
-  untouched: t.bool,
-  /** Used to pass js Orbit library responsible for functionality. Note: This should passed on component setup so you don't have to pass it every time. */
-  libs: t.object,
 };
 
 export default Sortbar;
