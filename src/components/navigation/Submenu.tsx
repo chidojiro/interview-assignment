@@ -1,7 +1,15 @@
 import React from "react";
-import t from "prop-types";
+import { Items } from "./types";
 
-const Submenu = ({ items }) => {
+interface SubmenuItems extends Items {
+  children: Items[]
+}
+
+interface Submenu {
+  items?: SubmenuItems[],
+}
+
+const Submenu = ({ items }: Submenu) => {
   if (!items) {
     return null;
   }
@@ -34,10 +42,6 @@ const Submenu = ({ items }) => {
       })}
     </ul>
   );
-};
-
-Submenu.propTypes = {
-  items: t.array,
 };
 
 export default Submenu;

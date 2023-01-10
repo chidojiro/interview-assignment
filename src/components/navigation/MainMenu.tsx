@@ -1,7 +1,11 @@
 import React from "react";
-import t from "prop-types";
+import { Items } from "./types";
 
-const MainMenu = ({ items = [] }) => {
+interface MainMenuProps {
+  items: Items[]
+}
+
+const MainMenu = ({ items = [] }: MainMenuProps) => {
   return (
     <ul className="navigation__menu navigation__menu--main hidden--until-l">
       {items.map((menuItem, index) => {
@@ -17,10 +21,6 @@ const MainMenu = ({ items = [] }) => {
       })}
     </ul>
   );
-};
-
-MainMenu.propTypes = {
-  items: t.array,
 };
 
 export default MainMenu;

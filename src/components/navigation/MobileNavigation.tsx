@@ -1,7 +1,13 @@
 import React from "react";
-import t from "prop-types";
+import { Items } from "./types";
 
-const menuAttributes = (menuItemLength) => {
+export interface MobileNavigationProps {
+  items?: Items[],
+  showMyRandstad?: boolean,
+  myRandstadUrl?: string
+}
+
+const menuAttributes = (menuItemLength: number) => {
   // If item has children, return expanded attributes.
   if (menuItemLength > 0) {
     return {
@@ -13,7 +19,7 @@ const menuAttributes = (menuItemLength) => {
   return {};
 };
 
-const MobileNavigation = ({ items, myRandstadUrl, showMyRandstad }) => {
+const MobileNavigation = ({ items, myRandstadUrl, showMyRandstad }: MobileNavigationProps) => {
   if (!items) {
     return null;
   }
@@ -89,12 +95,6 @@ const MobileNavigation = ({ items, myRandstadUrl, showMyRandstad }) => {
       )}
     </ul>
   );
-};
-
-MobileNavigation.propTypes = {
-  items: t.array,
-  myRandstadUrl: t.string,
-  showMyRandstad: t.bool,
 };
 
 export default MobileNavigation;

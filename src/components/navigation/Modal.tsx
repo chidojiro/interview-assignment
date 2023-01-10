@@ -1,9 +1,12 @@
 import React from "react";
-import t from "prop-types";
+import { Theme } from "./types";
+import { getBackground } from "@utils/getBackground";
 
-import { getBackground } from "../../utils/getBackground";
+interface Modal extends Theme {
+  children: React.ReactNode
+}
 
-const Modal = ({ theme, children }) => {
+const Modal = ({ theme, children }: Modal) => {
   let modalBackground = getBackground("tertiary");
 
   if (theme == "sph") {
@@ -20,11 +23,6 @@ const Modal = ({ theme, children }) => {
       </div>
     </div>
   );
-};
-
-Modal.propTypes = {
-  theme: t.string,
-  children: t.any,
 };
 
 export default Modal;

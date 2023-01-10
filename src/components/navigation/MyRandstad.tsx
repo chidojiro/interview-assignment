@@ -1,7 +1,12 @@
 import React from "react";
-import t from "prop-types";
 
-const MyRandstad = ({ show, loginUrl, label }) => {
+export interface MyRandstadProps {
+  show?: boolean,
+  loginUrl: string,
+  label: string
+}
+
+const MyRandstad = ({ show, loginUrl, label }: MyRandstadProps) => {
   if (!show) {
     return null;
   }
@@ -32,12 +37,6 @@ const MyRandstad = ({ show, loginUrl, label }) => {
       </a>
     </li>
   );
-};
-
-MyRandstad.propTypes = {
-  show: t.bool,
-  loginUrl: t.string,
-  label: t.string,
 };
 
 export default MyRandstad;

@@ -1,15 +1,32 @@
 import React from "react";
-import t from "prop-types";
 
 import Toast from "./Toast";
-import LanguageSwitcher from "./navigation/LanguageSwitcher";
-import MobileNavigation from "./navigation/MobileNavigation";
-import UtilityNavigation from "./navigation/UtilityNavigation";
-import Logo from "./navigation/Logo";
+import LanguageSwitcher, { LanguageSwitcherProps } from "./navigation/LanguageSwitcher";
+import MobileNavigation, { MobileNavigationProps } from "./navigation/MobileNavigation";
+import UtilityNavigation, { UtilityNavigationProps } from "./navigation/UtilityNavigation";
+import Logo, { LogoProps } from "./navigation/Logo";
 import Submenu from "./navigation/Submenu";
 import MainMenu from "./navigation/MainMenu";
-import MyRandstad from "./navigation/MyRandstad";
+import MyRandstad, { MyRandstadProps } from "./navigation/MyRandstad";
 import Modal from "./navigation/Modal";
+import { Items, Theme } from "./navigation/types";
+
+interface Navigation extends Theme {
+  classes?: React.ComponentPropsWithoutRef<"header">
+  config: {
+    /** Text displayed on top for a11y */
+    navigationHeadingText?: string,
+    homepageUrl: LogoProps['homepageUrl']
+  },
+  mainMenu: Items[],
+  showMyRandstad?: MyRandstadProps['show'],
+  languages: LanguageSwitcherProps['items'],
+  utilityMenu?: UtilityNavigationProps['items'],
+  myRandstad: Omit<MyRandstadProps, 'show'> & {
+    baseUrl?: MobileNavigationProps['myRandstadUrl']
+  },
+  afterLinks?: React.ReactNode
+}
 
 /**
  * The top-level navigation of the website and shown on each page. See [here](https://randstad.design/components/core/navigation/)
@@ -22,16 +39,16 @@ const Navigation = ({
   languages,
   utilityMenu,
   theme = "default",
-  myRandstad = {},
-  config = {},
+  myRandstad,
+  config,
   afterLinks,
-}) => {
+}: Navigation) => {
   const {
     baseUrl: myRandstadBaseUrl,
     label: myRandstadLabel,
     loginUrl: myRandstadLoginUrl,
-  } = myRandstad;
-  const { homepageUrl, navigationHeadingText } = config;
+  } = myRandstad || {};
+  const { homepageUrl, navigationHeadingText } = config || {};
 
   return (
     // With current implementation on apps we cannot use getBackground() to set background. The background classes are passed with <Head></Head> and will not be optimal to separate classes.
@@ -90,64 +107,6 @@ const Navigation = ({
       </Toast>
     </header>
   );
-};
-
-Navigation.propTypes = {
-  classes: t.object,
-  mainMenu: t.arrayOf(
-    t.shape({
-      title: t.string.isRequired,
-      url: t.string.isRequired,
-      isActive: t.bool,
-      children: t.arrayOf(
-        t.shape({
-          title: t.string.isRequired,
-          url: t.string.isRequired,
-        }),
-      ),
-    }),
-  ),
-  showMyRandstad: t.bool,
-  languages: t.arrayOf(
-    t.shape({
-      language: t.string.isRequired,
-      url: t.string.isRequired,
-      isActive: t.bool,
-    }),
-  ),
-  utilityMenu: t.arrayOf(
-    t.shape({
-      title: t.string.isRequired,
-      url: t.string.isRequired,
-      children: t.arrayOf(
-        t.shape({
-          title: t.string,
-          url: t.string,
-        }),
-      ),
-    }),
-  ),
-  /** Select proper logo and style for the navigation */
-  theme: t.oneOf(["default", "sph"]),
-  myRandstad: t.shape({
-    baseUrl: t.string.isRequired,
-    /** loginUrl is the full url to login page. */
-    loginUrl: t.string.isRequired,
-    label: t.string,
-  }),
-  config: t.shape({
-    homepageUrl: t.string.isRequired,
-    /** Text displayed on top for a11y */
-    navigationHeadingText: t.string.isRequired,
-  }),
-  afterLinks: t.any,
-};
-
-Navigation.defaultProps = {
-  theme: "default",
-  myRandstad: {},
-  config: {},
-  showMyRandstad: true,
 };
 
 export default Navigation;

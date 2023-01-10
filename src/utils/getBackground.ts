@@ -7,7 +7,7 @@ export interface BgColor {
   bgColor: "primary" | "secondary" | "tertiary" | "quaternary" | "quinary" | "senary",
 }
 
-export const getBackground = (color: string, legacy: boolean = false) => {
+export const getBackground = (color: BgColor['bgColor'], legacy: boolean = false) => {
   // Handle legacy background classes.
   if (color && legacy) {
     return `bg-brand--${color}`;

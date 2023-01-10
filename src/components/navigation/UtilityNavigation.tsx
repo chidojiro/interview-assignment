@@ -1,7 +1,20 @@
 import React from "react";
 import t from "prop-types";
 
-const UtilityNavigation = ({ items }) => {
+interface MenuItemsBase {
+  title: string,
+  url: string
+}
+
+interface MenuItems extends MenuItemsBase {
+  children: MenuItemsBase[]
+}
+
+export interface UtilityNavigationProps {
+  items?: MenuItems[]
+}
+
+const UtilityNavigation = ({ items }: UtilityNavigationProps) => {
   if (!items || !items.length) {
     return null;
   }
