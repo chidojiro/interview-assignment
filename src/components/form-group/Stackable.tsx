@@ -1,6 +1,19 @@
 import React from "react";
-import t from "prop-types";
 import cn from "classnames";
+
+interface StackableProps {
+  className?: string;
+  label: string;
+  error?: string;
+  description?: string,
+  required?: boolean,
+  optionalLabel?: string,
+  capitalize?: boolean,
+  /** Visually will hide the label, but it will remain in the markup. For a11y reasons. */
+  hideLabel?: boolean,
+  /** @ignore */
+  children?: any,
+};
 
 /**
  * Stackable form group component.
@@ -20,7 +33,7 @@ const Stackable = ({
   hideLabel = false,
   optionalLabel = "optional",
   required = true,
-}) => {
+}: StackableProps) => {
   if (!label) {
     console.error("Missing label for the legend. Fieldset tag requires a legend.");
   }
@@ -53,20 +66,6 @@ const Stackable = ({
       {description && <div className="form-group__message">{description}</div>}
     </fieldset>
   );
-};
-
-Stackable.propTypes = {
-  className: t.string,
-  label: t.string.isRequired,
-  error: t.string,
-  description: t.string,
-  required: t.bool,
-  optionalLabel: t.string,
-  capitalize: t.bool,
-  /** Visually will hide the label, but it will remain in the markup. For a11y reasons. */
-  hideLabel: t.bool,
-  /** @ignore */
-  children: t.any,
 };
 
 export default Stackable;

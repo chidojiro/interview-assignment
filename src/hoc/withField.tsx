@@ -1,9 +1,9 @@
-import React from "react";
-import t from "prop-types";
+/// <reference path="./withField.d.ts" />
+import React, { FunctionComponent } from "react";
 
-const withField = (ChildComponent) => {
-  const Component = ({ id, name, ...props }) => {
-    /* eslint-disable react/prop-types */
+// The any type will be revised. Added it as such until we integrate the rest of the components and can determine all the use cases.
+const withField = <P extends object>(ChildComponent: typeof React.Component | object | any) => {
+  const Component: FunctionComponent<WithFieldProps & P> = ({ id, name, ...props }) => {
     const {
       formGroupClass,
       required,
@@ -17,7 +17,6 @@ const withField = (ChildComponent) => {
       withFormGroup,
       ...rest
     } = props;
-    /* eslint-enable react/prop-types */
 
     const nameSanitized = (name || "").split(" ").join("-");
     const fieldId = id || `field--${nameSanitized}`;
@@ -45,11 +44,6 @@ const withField = (ChildComponent) => {
     };
 
     return <ChildComponent {...fieldProps} _formGroupProps={formGroupProps} />;
-  };
-
-  Component.propTypes = {
-    name: t.string.isRequired,
-    id: t.string,
   };
 
   return Component;

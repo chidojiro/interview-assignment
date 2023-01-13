@@ -1,8 +1,17 @@
 import React from "react";
-import t from "prop-types";
+
+interface LabelProps {
+  label?: string;
+  /** If not provided, will be generated from `name` */
+  id?: string;
+  capitalize?: boolean;
+  optionalLabel?: string;
+  /** @ignore Part of default HTML attributes. */
+  required?: boolean;
+}
 
 // For internal issue. Should not be available for public.
-const Label = ({ label, required, id, capitalize, optionalLabel = "optional" }) => {
+const Label = ({ label, required, id, capitalize, optionalLabel = "optional" }: LabelProps) => {
   if (!label) return null;
 
   let fieldLabel = label;
@@ -23,16 +32,6 @@ const Label = ({ label, required, id, capitalize, optionalLabel = "optional" }) 
       )}
     </label>
   );
-};
-
-Label.propTypes = {
-  label: t.string,
-  /** If not provided, will be generated from `name` */
-  id: t.string,
-  capitalize: t.bool,
-  optionalLabel: t.string,
-  /** @ignore Part of default HTML attributes. */
-  required: t.bool,
 };
 
 export default Label;
