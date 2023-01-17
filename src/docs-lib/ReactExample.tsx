@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import Original from "react-styleguidist/lib/client/rsg-components/ReactExample/ReactExample";
 import packageConf from "../../package.json";
 
@@ -31,7 +31,7 @@ function attachLibrary(lib: string, els: HTMLElement[]) {
 
   try {
     const r = require(`./assets/${lib}.js`) as OrbitLibrary;
-    Orbit = r.Orbit;
+    Orbit = Object.values(r)[0];
   } catch (e) {
     console.error(e);
     return;
