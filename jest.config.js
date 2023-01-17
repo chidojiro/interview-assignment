@@ -6,6 +6,7 @@ const config = {
     "^@hooks/(.*)$": ["<rootDir>/src/hooks/$1"],
     "^@components/(.*)$": ["<rootDir>/src/components/$1"],
     "^@utils/(.*)$": ["<rootDir>/src/utils/$1"],
+    "^~": ["<rootDir>/$1"],
   },
 };
 
