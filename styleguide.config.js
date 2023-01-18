@@ -67,6 +67,11 @@ module.exports = {
       components: "src/components/form-group/**/*.tsx",
       description: "Provides wrapper components for form elements",
     },
+    {
+      name: "Button",
+      components: "src/components/button/**/*.tsx",
+      description: "Provides wrapper components for button element",
+    },
     // {
     //   name: "Shared components",
     //   components: "src/components/**/*.js",
