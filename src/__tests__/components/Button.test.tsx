@@ -20,9 +20,11 @@ for (const [title, props, expectedClass] of [
   ["Disabled button", { disabled: true }, "button--disabled"],
 ]) {
   test(`${title} class "${expectedClass}"`, () => {
+    // @ts-ignore
     const { container } = render(<Button {...props} />);
     const buttonElement = container.querySelector(".button");
 
+    // @ts-ignore
     expect(buttonElement).toHaveClass(expectedClass);
   });
 }
@@ -37,6 +39,6 @@ test("Tag name depending on href", () => {
   const buttonElement = container.querySelector(".as-button");
   const linkElement = container.querySelector(".as-link");
 
-  expect(linkElement.tagName).toBe("A");
-  expect(buttonElement.tagName).toBe("BUTTON");
+  expect(linkElement?.tagName).toBe("A");
+  expect(buttonElement?.tagName).toBe("BUTTON");
 });

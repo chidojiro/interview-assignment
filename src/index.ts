@@ -4,7 +4,7 @@ import HeaderText from "./components/headers/HeaderText";
 // import PasswordInputField from "./components/forms/PasswordInputField";
 // import RadioButton from "./components/forms/RadioButton";
 // import TextArea from "./components/forms/TextArea";
-import Button from "@components/button/button";
+import Button from "./components/button/Button";
 // import Checkbox from "./components/forms/Checkbox";
 // import SelectField from "./components/forms/SelectField";
 // import Filter from "./components/Filter";
