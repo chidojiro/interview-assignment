@@ -7,6 +7,7 @@ import HeaderText from "./components/headers/HeaderText";
 import Button from "./components/button/Button";
 import Badge from "@components/Badge";
 import Icon from "@components/Icon";
+import FieldError from "@components/forms/FieldError";
 import Notice from "./components/notice/Notice";
 // import Checkbox from "./components/forms/Checkbox";
 // import SelectField from "./components/forms/SelectField";
@@ -36,6 +37,7 @@ export {
   Button,
   Badge,
   Icon,
+  FieldError,
   Notice,
   // Checkbox,
   // SelectField,
