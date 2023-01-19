@@ -11,6 +11,7 @@
     "esModuleInterop": true,
     "jsx": "react",
     "module": "esnext",
+    "declaration": true,
     "moduleResolution": "node",
     "lib": ["dom", "esnext"],
     "strict": true,
