@@ -5,6 +5,8 @@ import HeaderText from "./components/headers/HeaderText";
 // import RadioButton from "./components/forms/RadioButton";
 // import TextArea from "./components/forms/TextArea";
 import Button from "./components/button/Button";
+import Badge from "@components/Badge";
+import Icon from "@components/Icon";
 // import Checkbox from "./components/forms/Checkbox";
 // import SelectField from "./components/forms/SelectField";
 // import Filter from "./components/Filter";
@@ -31,6 +33,8 @@ export {
   // RadioButton,
   // TextArea,
   Button,
+  Badge,
+  Icon,
   // Checkbox,
   // SelectField,
   // Filter,
