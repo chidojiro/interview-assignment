@@ -8,6 +8,7 @@ const config = {
     "^@utils/(.*)$": ["<rootDir>/src/utils/$1"],
     "^~": ["<rootDir>/$1"],
   },
+  setupFilesAfterEnv: ["<rootDir>/src/setupTests.ts"],
 };
 
 module.exports = config;

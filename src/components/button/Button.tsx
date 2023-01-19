@@ -8,19 +8,20 @@ interface ButtonProps {
   size?: "small";
   variant?: ButtonVariants;
   dark?: boolean;
-  disabled?: false;
+  disabled?: boolean;
   icon?: string;
-  loader?: false;
-  fullWidth?: false;
+  loader?: boolean;
+  fullWidth?: boolean;
   href?: string;
   svgClasses?: string;
+  className?: string;
 }
 
 type ButtonTypes = "button" | "submit" | "reset";
 
 type ButtonVariants = "filled" | "plain";
 
-const buttonClass = "button";
+const buttonBaseClass = "button";
 
 /**
  * Provides a simple way to trigger an event or to interact with the environment.
@@ -40,26 +41,25 @@ function Button({
   fullWidth,
   href,
   svgClasses,
+  className,
 }: ButtonProps) {
   const ButtonTag = href ? "a" : "button";
-  const typeAttribute = !href ? { type: type } : {};
-  const hrefAttribute = href ? { href: href } : {};
-  const onClickAttribute = handleClick && { onClick: handleClick };
+  const hrefTypeAttribute = href ? { href: href } : { type: type };
+  const onClickAttribute = handleClick ? { onClick: handleClick } : {};
 
   return (
     <ButtonTag
-      className={classNames(buttonClass, {
-        [`${buttonClass}--s`]: size,
-        [`${buttonClass}--filled`]: variant === "filled",
-        [`${buttonClass}--plain`]: variant === "plain",
-        [`${buttonClass}--dark-blue`]: dark,
-        [`${buttonClass}--disabled`]: disabled,
-        [`${buttonClass}--preloader`]: loader,
-        [`${buttonClass}--icon`]: !children,
-        [`${buttonClass}--full-width`]: fullWidth,
+      className={classNames(`${buttonBaseClass} ${className}`, {
+        [`${buttonBaseClass}--s`]: size === "small",
+        [`${buttonBaseClass}--filled`]: variant === "filled",
+        [`${buttonBaseClass}--plain`]: variant === "plain",
+        [`${buttonBaseClass}--dark-blue`]: dark,
+        [`${buttonBaseClass}--disabled`]: disabled,
+        [`${buttonBaseClass}--preloader`]: loader,
+        [`${buttonBaseClass}--icon`]: !children,
+        [`${buttonBaseClass}--full-width`]: fullWidth,
       })}
-      {...typeAttribute}
-      {...hrefAttribute}
+      {...hrefTypeAttribute}
       {...onClickAttribute}>
       {icon && (
         <span className={classNames("icon", { "icon--inline": children })}>
