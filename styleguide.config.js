@@ -60,7 +60,11 @@ module.exports = {
   sections: [
     {
       name: "Shared components",
-      components: ["src/components/headers/*.tsx", "src/components/Button.tsx"],
+      components: [
+        "src/components/headers/*.tsx",
+        "src/components/Badge.tsx",
+        "src/components/Icon.tsx",
+      ],
     },
     {
       name: "Form Groups",
