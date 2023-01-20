@@ -9,7 +9,13 @@ describe("Form Group component tests", () => {
     expect(formGroupComponent).toBeInTheDocument();
   });
 
-  test("Form Group renders errors correctly.", () => {
+  test("Form Group renders one error.", () => {
+    const { container } = render(<FormGroup error="error" />);
+    const formGroupComponent = container.querySelector(".form-group");
+    expect(formGroupComponent).toHaveTextContent("error");
+  });
+
+  test("Form Group renders multiple errors correctly.", () => {
     const { container } = render(<FormGroup error={["error1", "error2", "error3"]} />);
 
     // @ts-ignore
