@@ -1,5 +1,6 @@
 import React from "react";
 import classNames from "classnames";
+import Icon from "@components/Icon";
 
 interface ButtonProps {
   children?: string;
@@ -40,7 +41,7 @@ function Button({
   loader,
   fullWidth,
   href,
-  svgClasses,
+  svgClasses = "",
   className,
 }: ButtonProps) {
   const ButtonTag = href ? "a" : "button";
@@ -62,11 +63,11 @@ function Button({
       {...hrefTypeAttribute}
       {...onClickAttribute}>
       {icon && (
-        <span className={classNames("icon", { "icon--inline": children })}>
-          <svg className={svgClasses}>
-            <use xlinkHref={`/themes/custom/bluex/dist/assets/image/icons.svg#${icon}`}></use>
-          </svg>
-        </span>
+        <Icon
+          className={classNames("icon", { "icon--inline": children })}
+          type={icon}
+          svgProps={{ className: svgClasses }}
+        />
       )}
       {loader && <span className="dots"></span>}
       {!loader && children}

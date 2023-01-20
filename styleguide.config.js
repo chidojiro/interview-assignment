@@ -64,17 +64,14 @@ module.exports = {
         "src/components/headers/*.tsx",
         "src/components/Badge.tsx",
         "src/components/Icon.tsx",
+        "src/components/button/Button.tsx",
+        "src/components/notice/Notice.tsx",
       ],
     },
     {
       name: "Form Groups",
       components: "src/components/form-group/**/*.tsx",
       description: "Provides wrapper components for form elements",
-    },
-    {
-      name: "Button",
-      components: "src/components/button/**/*.tsx",
-      description: "Provides wrapper components for button element",
     },
     // {
     //   name: "Shared components",
