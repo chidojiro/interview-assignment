@@ -13,3 +13,4 @@ styleguide
 .netlify
 
 /build
+.history
