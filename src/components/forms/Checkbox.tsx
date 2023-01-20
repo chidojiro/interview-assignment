@@ -25,6 +25,7 @@ interface Checkbox {
 const Checkbox = ({
   id,
   label,
+  disabled,
   _formGroupProps,
   ...props
 }: Checkbox) => {
@@ -36,7 +37,7 @@ const Checkbox = ({
       <label
         htmlFor={id}
         className={cn("selection-control", "selection-control--checkbox", {
-          "selection-control--disabled": props.disabled,
+          "selection-control--disabled": disabled,
         })}>
         <span className="selection-control__input">
           <input id={id} type="checkbox" {...props} />
