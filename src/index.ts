@@ -7,7 +7,7 @@ import HeaderText from "./components/headers/HeaderText";
 import Button from "./components/button/Button";
 import Badge from "@components/Badge";
 import Icon from "@components/Icon";
-import FieldError from "@components/forms/FieldError";
+import FieldError from "@components/form-group/FieldError/FieldError";
 import Notice from "./components/notice/Notice";
 // import Checkbox from "./components/forms/Checkbox";
 // import SelectField from "./components/forms/SelectField";
@@ -23,6 +23,7 @@ import Breadcrumbs from "./components/Breadcrumbs";
 // import LanguageSwitcher from "./components/navigation/LanguageSwitcher";
 // import UtilityNavigation from "./components/navigation/UtilityNavigation";
 import Block from "./components/Block";
+import FormGroup from "@components/form-group/FormGroup";
 // import Autosuggest from "./components/forms/Autosuggest";
 // import Stackable from "./components/form-group/Stackable";
 // import FormGroup from "./components/form-group/FormGroup";
@@ -38,6 +39,7 @@ export {
   Badge,
   Icon,
   FieldError,
+  FormGroup,
   Notice,
   // Checkbox,
   // SelectField,

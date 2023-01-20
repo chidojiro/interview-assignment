@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import FieldError from "@components/forms/FieldError";
+import FieldError from "@components/form-group/FieldError/FieldError";
 
 describe("Field error component tests", () => {
   test("Field error renders correctly.", () => {
