@@ -25,14 +25,13 @@ const withField = <P extends object>(ChildComponent: typeof React.Component | ob
       name,
       required,
       id: fieldId,
-      label,
+      label: label,
       ...rest,
     };
 
     const formGroupProps = {
       formGroupClass,
-      label,
-      formGroupLabel,
+      label: formGroupLabel,
       id: fieldId,
       capitalize,
       required,

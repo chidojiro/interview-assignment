@@ -11,7 +11,7 @@ interface LabelProps {
 }
 
 // For internal issue. Should not be available for public.
-const Label = ({ label, required, id, capitalize, optionalLabel = "optional" }: LabelProps) => {
+const Label = ({ label, required = true, id, capitalize, optionalLabel = "optional" }: LabelProps) => {
   if (!label) return null;
 
   let fieldLabel = label;
@@ -23,13 +23,7 @@ const Label = ({ label, required, id, capitalize, optionalLabel = "optional" }: 
   return (
     <label className="form-group__label" htmlFor={id}>
       {fieldLabel}
-      {!required ? (
-        <>
-          <span className="form-group__optional"> {optionalLabel}</span>
-        </>
-      ) : (
-        <sup className="form-group__required">*</sup>
-      )}
+      {!required ? <span className="form-group__optional"> {optionalLabel}</span> : null}
     </label>
   );
 };

@@ -7,7 +7,7 @@ import HeaderText from "./components/headers/HeaderText";
 import Button from "./components/button/Button";
 import Badge from "@components/Badge";
 import Icon from "@components/Icon";
-// import Checkbox from "./components/forms/Checkbox";
+import Checkbox from "./components/forms/Checkbox";
 // import SelectField from "./components/forms/SelectField";
 // import Filter from "./components/Filter";
 // import Accordion from "./components/accordion/Accordion";
@@ -22,8 +22,8 @@ import Breadcrumbs from "./components/Breadcrumbs";
 // import UtilityNavigation from "./components/navigation/UtilityNavigation";
 import Block from "./components/Block";
 // import Autosuggest from "./components/forms/Autosuggest";
-// import Stackable from "./components/form-group/Stackable";
-// import FormGroup from "./components/form-group/FormGroup";
+import Stackable from "./components/form-group/Stackable";
+import FormGroup from "./components/form-group/FormGroup";
 
 export {
   HeaderText,
@@ -33,9 +33,7 @@ export {
   // RadioButton,
   // TextArea,
   Button,
-  Badge,
-  Icon,
-  // Checkbox,
+  Checkbox,
   // SelectField,
   // Filter,
   // Accordion,
@@ -50,6 +48,6 @@ export {
   // LanguageSwitcher,
   // Autosuggest,
   // UtilityNavigation,
-  // Stackable,
-  // FormGroup,
+  Stackable,
+  FormGroup,
 };
