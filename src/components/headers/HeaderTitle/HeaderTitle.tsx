@@ -1,7 +1,7 @@
 import React from "react";
 
 interface HeaderTitleProps {
-  children?: string | JSX.Element;
+  children: string | JSX.Element;
 }
 
 function HeaderTitle({ children }: HeaderTitleProps) {
