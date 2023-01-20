@@ -1,4 +1,5 @@
 import HeaderText from "./components/headers/HeaderText";
+import HeaderTitle from "./components/headers/HeaderTitle/HeaderTitle";
 // import InputField from "./components/forms/InputField";
 // import LocationInputField from "./components/forms/LocationInputField";
 // import PasswordInputField from "./components/forms/PasswordInputField";
@@ -30,6 +31,7 @@ import FormGroup from "@components/form-group/FormGroup";
 
 export {
   HeaderText,
+  HeaderTitle,
   // InputField,
   // LocationInputField,
   // PasswordInputField,
