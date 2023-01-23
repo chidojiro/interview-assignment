@@ -1,5 +1,5 @@
 import React from "react";
-import { BgColor, getBackground } from "@utils/getBackground";
+import { BgColor, getBackground } from "../../utils/getBackground";
 
 interface Header extends BgColor {
   /** @deprecated use `bgColor` instead. */
