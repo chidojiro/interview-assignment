@@ -36,7 +36,7 @@ interface PasswordFieldProps {
     capitalize?: boolean;
     optionalLabel?: string;
   };
-  }
+}
 
 /**
  * A field to enter data in a pre defined format. See [here](https://randstad.design/components/core/forms/input-field/)
