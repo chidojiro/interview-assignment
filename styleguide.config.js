@@ -63,7 +63,6 @@ module.exports = {
       components: [
         "src/components/headers/*.tsx",
         "src/components/Badge.tsx",
-        "src/components/Icon.tsx",
         "src/components/button/Button.tsx",
         "src/components/notice/Notice.tsx",
       ],
@@ -75,7 +74,11 @@ module.exports = {
     },
     {
       name: "Form elements",
-      components: "src/components/forms/FieldError.tsx",
+      components: [
+        "src/components/forms/FieldError.tsx",
+        "src/components/forms/SelectField.tsx",
+        "src/components/forms/PasswordField.tsx",
+      ],
       description: "Provides inline error component",
     },
     {
@@ -100,7 +103,7 @@ module.exports = {
     //   components: "src/components/form-group/**/*.js",
     //   description: "Provides wrapper components for form elements",
     // },
-    // { name: "Forms", components: "src/components/forms/**/*.js" },
+    // { name: "Forms", components: "src/components/forms/**/*.tsx" },
     // { name: "Headers", components: "src/components/headers/**/*.js" },
     // {
     //   name: "Article Overview",

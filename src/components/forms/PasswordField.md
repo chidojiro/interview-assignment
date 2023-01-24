@@ -1,7 +1,7 @@
 ```jsx
-import { PasswordInputField } from "@ffw/randstad-shared-components";
+import { PasswordField } from "@ffw/randstad-shared-components";
 
-<PasswordInputField
+<PasswordField
   name="password-1"
   id="password-1"
   required
@@ -12,9 +12,9 @@ import { PasswordInputField } from "@ffw/randstad-shared-components";
 With different minimum characters
 
 ```jsx
-import { PasswordInputField } from "@ffw/randstad-shared-components";
+import { PasswordField } from "@ffw/randstad-shared-components";
 
-<PasswordInputField
+<PasswordField
   name="password-2"
   id="password-2"
   required
@@ -26,9 +26,9 @@ import { PasswordInputField } from "@ffw/randstad-shared-components";
 With translated validation schema type
 
 ```jsx
-import { PasswordInputField } from "@ffw/randstad-shared-components";
+import { PasswordField } from "@ffw/randstad-shared-components";
 
-<PasswordInputField
+<PasswordField
   name="password-3"
   id="password-3"
   required
@@ -40,9 +40,9 @@ import { PasswordInputField } from "@ffw/randstad-shared-components";
 With forgotten password link.
 
 ```jsx
-import { PasswordInputField } from "@ffw/randstad-shared-components";
+import { PasswordField } from "@ffw/randstad-shared-components";
 
-<PasswordInputField
+<PasswordField
   name="password-4"
   id="password-4"
   label="password"
