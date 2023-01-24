@@ -1,12 +1,16 @@
-import React from "react";
-import classNames from "classnames";
-import Icon from "@components/Icon";
+import React from 'react';
+import classNames from 'classnames';
+import Icon from '@components/Icon';
+
+type ButtonTypes = 'button' | 'submit' | 'reset';
+
+type ButtonVariants = 'filled' | 'plain';
 
 interface ButtonProps {
   children?: string;
-  handleClick?: any;
+  handleClick?: (event: React.MouseEvent<HTMLElement>) => void;
   type?: ButtonTypes;
-  size?: "small";
+  small?: boolean;
   variant?: ButtonVariants;
   dark?: boolean;
   disabled?: boolean;
@@ -18,11 +22,7 @@ interface ButtonProps {
   className?: string;
 }
 
-type ButtonTypes = "button" | "submit" | "reset";
-
-type ButtonVariants = "filled" | "plain";
-
-const buttonBaseClass = "button";
+const buttonBaseClass = 'button';
 
 /**
  * Provides a simple way to trigger an event or to interact with the environment.
@@ -32,8 +32,8 @@ const buttonBaseClass = "button";
 function Button({
   children,
   handleClick,
-  type = "button",
-  size,
+  type,
+  small,
   variant,
   dark,
   disabled,
@@ -41,19 +41,19 @@ function Button({
   loader,
   fullWidth,
   href,
-  svgClasses = "",
+  svgClasses = '',
   className,
 }: ButtonProps) {
-  const ButtonTag = href ? "a" : "button";
-  const hrefTypeAttribute = href ? { href: href } : { type: type };
+  const ButtonTag = href ? 'a' : 'button';
+  const hrefTypeAttribute = href ? { href } : { type };
   const onClickAttribute = handleClick ? { onClick: handleClick } : {};
 
   return (
     <ButtonTag
       className={classNames(`${buttonBaseClass} ${className}`, {
-        [`${buttonBaseClass}--s`]: size === "small",
-        [`${buttonBaseClass}--filled`]: variant === "filled",
-        [`${buttonBaseClass}--plain`]: variant === "plain",
+        [`${buttonBaseClass}--s`]: small,
+        [`${buttonBaseClass}--filled`]: variant === 'filled',
+        [`${buttonBaseClass}--plain`]: variant === 'plain',
         [`${buttonBaseClass}--dark-blue`]: dark,
         [`${buttonBaseClass}--disabled`]: disabled,
         [`${buttonBaseClass}--preloader`]: loader,
@@ -61,15 +61,16 @@ function Button({
         [`${buttonBaseClass}--full-width`]: fullWidth,
       })}
       {...hrefTypeAttribute}
-      {...onClickAttribute}>
+      {...onClickAttribute}
+    >
       {icon && (
         <Icon
-          className={classNames("icon", { "icon--inline": children })}
+          className={classNames('icon', { 'icon--inline': children })}
           type={icon}
           svgProps={{ className: svgClasses }}
         />
       )}
-      {loader && <span className="dots"></span>}
+      {loader && <span className="dots" />}
       {!loader && children}
     </ButtonTag>
   );
