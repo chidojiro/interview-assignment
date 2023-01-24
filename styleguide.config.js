@@ -75,8 +75,8 @@ module.exports = {
     },
     {
       name: "Form elements",
-      components: "src/components/forms/FieldError.tsx",
-      description: "Provides inline error component",
+      components: "src/components/forms/*.tsx",
+      description: "Form components - Input, Checkbox, etc.",
     },
     {
       name: "Button",

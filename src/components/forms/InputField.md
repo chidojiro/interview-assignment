@@ -19,9 +19,9 @@ import { InputField } from "@ffw/randstad-shared-components";
   name="email-1"
   id="email-1"
   required
-  placeholder="design@randstad.com"
+  placeholder="Have text below input"
   label="email address"
-  afterContent="Add text"
+  afterContent="Extra text"
 />;
 ```
 
@@ -37,5 +37,21 @@ import { InputField } from "@ffw/randstad-shared-components";
   required
   placeholder="design@randstad.com"
   label="email address"
+/>;
+```
+
+Disabled input field
+
+```jsx
+import { InputField } from "@ffw/randstad-shared-components";
+
+<InputField
+  type="text"
+  name="disabled-1"
+  id="disabled-1"
+  required
+  placeholder="This should be disabled"
+  label="Disabled field"
+  disabled="true"
 />;
 ```

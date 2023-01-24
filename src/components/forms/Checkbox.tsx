@@ -4,8 +4,8 @@ import cn from "classnames";
 import FormGroup from "@components/form-group/FormGroup";
 import withField from "@hoc/withField";
 
-interface Checkbox {
-  label: string | React.ReactFragment;
+interface Checkbox extends WithFieldProps {
+  label: string;
   name: string;
   id?: string;
   /** @ignore part of HTML props */
