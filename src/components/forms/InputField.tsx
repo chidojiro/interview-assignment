@@ -6,7 +6,7 @@ import FormGroup from "@components/form-group/FormGroup";
 interface InputField extends WithFieldProps {
   name: string;
   type: string;
-  disabled: boolean;
+  disabled?: boolean;
   placeholder?: string;
   _formGroupProps?: object;
 }

@@ -5,7 +5,7 @@ import FormGroup from "@components/form-group/FormGroup";
 import withField from "@hoc/withField";
 
 interface Checkbox extends WithFieldProps {
-  label: string;
+  checkboxLabel: React.ReactElement | string;
   name: string;
   id?: string;
   /** @ignore part of HTML props */
@@ -24,7 +24,7 @@ interface Checkbox extends WithFieldProps {
  */
 const Checkbox = ({
   id,
-  label,
+  checkboxLabel,
   disabled,
   _formGroupProps,
   ...props
@@ -47,7 +47,7 @@ const Checkbox = ({
             </svg>
           </span>
         </span>
-        <span className="selection-control__label">{label}</span>
+        <span className="selection-control__label">{checkboxLabel}</span>
       </label>
     </FormGroup>
   );
