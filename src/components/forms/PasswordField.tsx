@@ -1,11 +1,42 @@
 import React from "react";
-import t from "prop-types";
 
 import withField from "@hoc/withField";
 import useLibrary from "@hooks/useLibrary";
 import FormGroup from "@components/form-group/FormGroup";
 import Label from "@components/form-group/Label";
 import Svg from "@components/base/Svg";
+
+interface PasswordFieldProps {
+  name: string;
+  minChars?: number;
+  /** All supported validators.
+   * Default validators
+   * - minSign
+   * - useChar
+   * - useUpper
+   * - useDigit
+   */
+  validationSchema?: {
+    minSign: string;
+    useUpper: string;
+    useDigit: string;
+    useChar: string;
+    noSymbol: string;
+  };
+  /** Refers to the aria-label attribute of the show button. */
+  buttonLabel?: string;
+  forgottenPasswordLink?: any;
+  /** Used to pass js Orbit library responsible for functionality. Note: This should passed on component setup so you don't have to pass it every time. */
+  libs?: [];
+  /** @ignore Private props from HOC for easy setup. */
+  _formGroupProps?: {
+    label?: string;
+    id?: string;
+    required?: boolean;
+    capitalize?: boolean;
+    optionalLabel?: string;
+  };
+}
 
 /**
  * A field to enter data in a pre defined format. See [here](https://randstad.design/components/core/forms/input-field/)
@@ -15,16 +46,16 @@ import Svg from "@components/base/Svg";
  *
  * **Wrapped with `FormGroup` component and support all of its props.**
  */
-const PasswordInputField = ({
+const PasswordField: React.FC<PasswordFieldProps> = ({
   libs,
   forgottenPasswordLink,
-  _formGroupProps,
+  _formGroupProps = {},
   minChars = 8,
-  validationSchema = {},
+  validationSchema,
   buttonLabel = "show password",
   ...props
 }) => {
-  const [ref] = useLibrary(libs);
+  const [ref]: any = useLibrary(libs!);
 
   const defaultValidationSchema = {
     minSign: `${minChars} characters`,
@@ -108,31 +139,4 @@ const PasswordInputField = ({
   );
 };
 
-PasswordInputField.propTypes = {
-  name: t.string.isRequired,
-  /** Change default minimin characters in the validation schema. */
-  minChars: t.number,
-  /** All supported validators.
-   * Default validators
-   * - minSign
-   * - useChar
-   * - useUpper
-   * - useDigit
-   */
-  validationSchema: t.shape({
-    minSign: t.string,
-    useUpper: t.string,
-    useDigit: t.string,
-    useChar: t.string,
-    noSymbol: t.string,
-  }),
-  /** Refers to the aria-label attribute of the show button. */
-  buttonLabel: t.string,
-  forgottenPasswordLink: t.node,
-  /** Used to pass js Orbit library responsible for functionality. Note: This should passed on component setup so you don't have to pass it every time. */
-  libs: t.array,
-  /** @ignore Private props from HOC for easy setup. */
-  _formGroupProps: t.object,
-};
-
-export default withField(PasswordInputField);
+export default withField(PasswordField);
