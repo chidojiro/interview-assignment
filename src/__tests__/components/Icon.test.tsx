@@ -6,7 +6,7 @@ describe("Icon component tests", () => {
   test("should render icon and the className", () => {
     const className = "icon";
     const svgProps = {};
-    const { container } = render(<Icon type="eye" className={className} svgProps={svgProps} />);
+    const { container } = render(<Icon iconType="eye" iconClassName={className} svgProps={svgProps} />);
 
     const iconElement = container.querySelector(".icon");
     expect(iconElement).toHaveClass(className);

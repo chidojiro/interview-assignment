@@ -11,7 +11,7 @@ Small button
 ```jsx
 import { Button } from "@ffw/randstad-shared-components";
 
-<Button size="small">button</Button>;
+<Button small>button</Button>;
 ```
 
 Filled button

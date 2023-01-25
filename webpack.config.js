@@ -17,6 +17,7 @@ module.exports = {
       "@utils": path.resolve(__dirname, "./src/utils"),
       "~": path.resolve(__dirname, "./"),
     },
+    extensions: ['.js', '.jsx'],
   },
   externals: {
     // Don't bundle react or react-dom

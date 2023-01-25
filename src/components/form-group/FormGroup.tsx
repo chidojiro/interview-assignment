@@ -1,26 +1,26 @@
-import React from "react";
-import cn from "classnames";
-import Label from "@components/form-group/Label";
-import FieldError from "@components/form-group/FieldError/FieldError";
+import React from 'react';
+import cn from 'classnames';
+import Label from '@components/form-group/Label';
+import FieldError from '@components/form-group/FieldError/FieldError';
 
 interface FormGroupProps {
   formGroupClass?: string;
   label?: string;
-  /** If not provided, will be generated from `name` */
+  /** Optional, 'name' used as a fallback id */
   id?: string;
   capitalize?: boolean;
   optionalLabel?: string;
   error?: string | string[];
   description?: string;
-  afterContent?: any;
+  afterContent?: JSX.Element;
   /** Wrap component with FormGroup functionality. See FormGroup for more information on props support. Enabled by default */
   withFormGroup?: boolean;
   /** @ignore */
-  children?: any;
+  children?: JSX.Element | JSX.Element[];
   /** @ignore Part of default HTML attributes. */
   required?: boolean;
   /** @ignore Overide the default label component. Not available for public use. */
-  _overrideLabel?: any;
+  _overrideLabel?: JSX.Element;
   /** @ignore Used only to pass required classes for the field on setup. Not available for public use. */
   _configClasses?: string;
   /** @ignore Does not wrap field with 'form-group__input' div. Use for specific cases on field setup. Not available for public use. */
@@ -33,9 +33,9 @@ interface FormGroupProps {
  * Wrapper for form component. Provides component with form group functionality. Like labels, errors, descriptions and etc.
  *
  * ---
- * ### Cannot be used as a standalone component.
+ * ### Cannot use as a standalone component.
  */
-const FormGroup = ({
+function FormGroup({
   formGroupClass,
   label,
   id,
@@ -50,16 +50,17 @@ const FormGroup = ({
   _configClasses,
   _withoutWrapper,
   withFormGroup = true,
-}: FormGroupProps) => {
-  if (!withFormGroup) return children;
+}: FormGroupProps): JSX.Element {
+  if (!withFormGroup && children) return <>children</>;
 
   const errorMessagesArray = error && ((Array.isArray(error) && error) || [error]);
 
   return (
     <div
-      className={cn("form-group", formGroupClass, _configClasses, {
-        "form-group--error": error,
-      })}>
+      className={cn('form-group', formGroupClass, _configClasses, {
+        'form-group--error': error,
+      })}
+    >
       {_overrideLabel || (
         <Label
           label={label}
@@ -69,16 +70,13 @@ const FormGroup = ({
           optionalLabel={optionalLabel}
         />
       )}
-
       {_withoutWrapper ? children : <div className="form-group__input">{children}</div>}
 
-      {(errorMessagesArray || []).map((item, index) => {
-        return <FieldError key={index}>{item}</FieldError>;
-      })}
+      {(errorMessagesArray || []).map((item) => <FieldError key={item}>{item}</FieldError>)}
       {description && <div className="form-group__message">{description}</div>}
       {afterContent}
     </div>
   );
-};
+}
 
 export default FormGroup;
