@@ -1,10 +1,16 @@
 {
-  "parser": "@babel/eslint-parser",
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "requireConfigFile": false
+    "requireConfigFile": false,
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module"
   },
   "env": {
     "browser": true,
+    "es2021": true,
     "es6": true,
     "node": true,
     "jest": true
@@ -12,8 +18,19 @@
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
-    "prettier",
-    "plugin:prettier/recommended"
+    "airbnb",
+    "plugin:react-hooks/recommended",
+    "plugin:promise/recommended",
+    "plugin:xss/recommended",
+    "plugin:sonarjs/recommended",
+    "plugin:jest/recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "plugins": [
+    "only-error",
+    "write-good-comments",
+    "eslint-disable-enforce-comment-above",
+    "@typescript-eslint"
   ],
   "settings": {
     "react": {
@@ -27,5 +44,72 @@
         "no-undef": "off"
       }
     }
-  ]
+  ],
+  "rules": {
+    "@typescript-eslint/no-var-requires": 0,
+    "global-require": 0,
+    "no-new": 0,
+    "xss/no-mixed-html": [ 2, {
+      "htmlVariableRules": [ "AsHtml", "HtmlEncoded/i", "^html$" ],
+      "htmlFunctionRules": [ ".asHtml/i", "toHtml" ],
+      "functions": {
+        "$": {
+          "htmlInput": true,
+          "safe": [ "document", "this" ]
+        },
+        ".html": {
+          "htmlInput": true,
+          "htmlOutput": true
+        },
+        ".join": {
+          "passthrough": { "obj": true, "args": true }
+        }
+      }
+    } ],
+    "react/prop-types": "off",
+    "import/no-unresolved": "off",
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
+    "react/jsx-filename-extension": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/display-name": "off",
+    "max-len": "off",
+    "eslint-disable-enforce-comment-above/eslint-disable-enforce-comment-above": "error",
+    "write-good-comments/write-good-comments": "error",
+    "no-underscore-dangle": [
+      "error",
+      {
+        "allow": [
+          "__ROUTE_DATA__",
+          "__OPTIMIZELY_SETTINGS__"
+        ]
+      }
+    ],
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "warn",
+    "indent": ["error", 2, { "SwitchCase": 1 }],
+    "react/no-unescaped-entities": 0,
+    "no-restricted-syntax": ["error", "ForInStatement", "LabeledStatement", "WithStatement"],
+    "sonarjs/no-duplicate-string": ["error", 5],
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
+    "react/require-default-props": [
+      "error",
+      {
+        "forbidDefaultForRequired": true,
+        "functions": "ignore"
+      }
+    ]
+  },
+  "globals": {
+    "JSX":"readonly"
+  },
+  "ignorePatterns": "**/*.d.ts"
 }
