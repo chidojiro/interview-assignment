@@ -1,3 +1,4 @@
+import HeaderTitle from '@components/headers/HeaderTitle/HeaderTitle';
 import HeaderText from '@components/headers/HeaderText';
 import InputField from '@components/forms/InputField';
 // import InputField from "./components/forms/InputField";
@@ -33,6 +34,8 @@ import FormGroup from '@components/form-group/FormGroup';
 
 export {
   HeaderText,
+  HeaderTitle,
+  // InputField,
   InputField,
   // LocationInputField,
   // RadioButton,
