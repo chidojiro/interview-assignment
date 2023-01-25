@@ -8,9 +8,9 @@ import Badge from "@components/Badge";
 import Icon from "@components/Icon";
 import FieldError from "@components/form-group/FieldError/FieldError";
 import Notice from "./components/notice/Notice";
-// import Checkbox from "./components/forms/Checkbox";
 import SelectField from "./components/forms/SelectField";
 import PasswordField from "./components/forms/PasswordField";
+import Checkbox from "./components/forms/Checkbox";
 // import Filter from "./components/Filter";
 // import Accordion from "./components/accordion/Accordion";
 // import AccordionItem from "./components/accordion/AccordionItem";
@@ -40,9 +40,9 @@ export {
   FieldError,
   FormGroup,
   Notice,
-  // Checkbox,
   SelectField,
   PasswordField,
+  Checkbox,
   // Filter,
   // Accordion,
   // AccordionItem,
