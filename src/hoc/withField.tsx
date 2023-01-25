@@ -1,10 +1,11 @@
 /// <reference path="./withField.d.ts" />
-import React, { FunctionComponent } from "react";
+import React from "react";
 
-// The any type will be revised. Added it as such until we integrate the rest of the components and can determine all the use cases.
-const withField = <P extends object>(ChildComponent: typeof React.Component | object | any) => {
-  const Component: FunctionComponent<WithFieldProps & P> = ({ id, name, ...props }) => {
+const withField = <T extends WithFieldProps = WithFieldProps>(ChildComponent: React.FC<T>) => {
+  const Component = (props: WithFieldProps | T) => {
     const {
+      id,
+      name,
       formGroupClass,
       required,
       optionalLabel,
@@ -25,14 +26,13 @@ const withField = <P extends object>(ChildComponent: typeof React.Component | ob
       name,
       required,
       id: fieldId,
-      label,
+      label: label,
       ...rest,
     };
 
     const formGroupProps = {
       formGroupClass,
-      label,
-      formGroupLabel,
+      label: formGroupLabel,
       id: fieldId,
       capitalize,
       required,
@@ -42,8 +42,7 @@ const withField = <P extends object>(ChildComponent: typeof React.Component | ob
       afterContent,
       withFormGroup,
     };
-
-    return <ChildComponent {...fieldProps} _formGroupProps={formGroupProps} />;
+    return <ChildComponent {...(fieldProps as T)} _formGroupProps={formGroupProps} />;
   };
 
   return Component;

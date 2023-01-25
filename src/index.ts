@@ -1,8 +1,8 @@
 import HeaderText from "./components/headers/HeaderText";
 import HeaderTitle from "./components/headers/HeaderTitle/HeaderTitle";
 // import InputField from "./components/forms/InputField";
+import InputField from "./components/forms/InputField";
 // import LocationInputField from "./components/forms/LocationInputField";
-// import PasswordInputField from "./components/forms/PasswordInputField";
 // import RadioButton from "./components/forms/RadioButton";
 // import TextArea from "./components/forms/TextArea";
 import Button from "./components/button/Button";
@@ -10,8 +10,9 @@ import Badge from "@components/Badge";
 import Icon from "@components/Icon";
 import FieldError from "@components/form-group/FieldError/FieldError";
 import Notice from "./components/notice/Notice";
-// import Checkbox from "./components/forms/Checkbox";
-// import SelectField from "./components/forms/SelectField";
+import SelectField from "./components/forms/SelectField";
+import PasswordField from "./components/forms/PasswordField";
+import Checkbox from "./components/forms/Checkbox";
 // import Filter from "./components/Filter";
 // import Accordion from "./components/accordion/Accordion";
 // import AccordionItem from "./components/accordion/AccordionItem";
@@ -33,8 +34,8 @@ export {
   HeaderText,
   HeaderTitle,
   // InputField,
+  InputField,
   // LocationInputField,
-  // PasswordInputField,
   // RadioButton,
   // TextArea,
   Button,
@@ -43,8 +44,9 @@ export {
   FieldError,
   FormGroup,
   Notice,
-  // Checkbox,
-  // SelectField,
+  SelectField,
+  PasswordField,
+  Checkbox,
   // Filter,
   // Accordion,
   // AccordionItem,
