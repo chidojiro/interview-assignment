@@ -107,7 +107,6 @@
         "functions": "ignore"
       }
     ]
-
   },
   "globals": {
     "JSX":"readonly"

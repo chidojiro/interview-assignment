@@ -1,8 +1,8 @@
 import React from 'react';
 
 interface IconProps {
-  type: string;
-  className?: string;
+  iconType: string;
+  iconClassName?: string;
   svgProps?: object;
   rest?: object;
 }
@@ -12,23 +12,23 @@ interface IconProps {
  * @returns SVG icon
  */
 function Icon({
-  type,
-  className = 'icon',
+  iconType,
+  iconClassName = 'icon',
   svgProps,
   ...rest
 }: IconProps) {
-  if (className) {
+  if (iconClassName) {
     return (
-      <span className={className} {...rest}>
+      <span className={iconClassName} {...rest}>
         <svg {...svgProps}>
-          <use xlinkHref={`/themes/custom/bluex/dist/assets/image/icons.svg#${type}`} />
+          <use xlinkHref={`/themes/custom/bluex/dist/assets/image/icons.svg#${iconType}`} />
         </svg>
       </span>
     );
   }
   return (
     <svg {...svgProps}>
-      <use xlinkHref={`/themes/custom/bluex/dist/assets/image/icons.svg#${type}`} />
+      <use xlinkHref={`/themes/custom/bluex/dist/assets/image/icons.svg#${iconType}`} />
     </svg>
   );
 }

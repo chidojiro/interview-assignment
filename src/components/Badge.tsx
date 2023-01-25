@@ -32,7 +32,7 @@ function Badge({
 
   return (
     <span className={badgeClass}>
-      {icon && <Icon className="icon icon--s icon--inline mr-xs" type={icon} />}
+      {icon && <Icon iconClassName="icon icon--s icon--inline mr-xs" iconType={icon} />}
       <span className="badge__text">{children}</span>
     </span>
   );

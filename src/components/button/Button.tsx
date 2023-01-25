@@ -65,8 +65,8 @@ function Button({
     >
       {icon && (
         <Icon
-          className={classNames('icon', { 'icon--inline': children })}
-          type={icon}
+          iconClassName={classNames('icon', { 'icon--inline': children })}
+          iconType={icon}
           svgProps={{ className: svgClasses }}
         />
       )}
