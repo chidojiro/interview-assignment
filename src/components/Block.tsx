@@ -1,4 +1,5 @@
 import React from 'react';
+import cn from 'classnames';
 
 interface Block {
   /** Rendered inside block_content */
@@ -19,23 +20,11 @@ interface Block {
 function Block({
   children, beforeContent, afterContent, type, contentSize, align, title,
 }: Block) {
-  const classes = ['block'];
-  const contentClasses = ['block__content'];
-
-  if (type === 'filter') {
-    classes.push('block--filter');
-  }
-
-  if (contentSize) {
-    contentClasses.push(`block__content--${contentSize}`);
-  }
-
-  if (align) {
-    contentClasses.push(`block__content--align-${align}`);
-  }
-
   return (
-    <div className={classes.join(' ')}>
+    <div className={cn('block', {
+      'block--filter': type === 'filter',
+    })}
+    >
       <div className="block__wrapper wrapper">
         {title && (
           <div className="block__header">
@@ -43,7 +32,13 @@ function Block({
           </div>
         )}
         {beforeContent}
-        <div className={contentClasses.join(' ')}>{children}</div>
+        <div className={cn('block__content', {
+          [`block__content--${contentSize}`]: contentSize,
+          [`block__content--align-${align}`]: align,
+        })}
+        >
+          {children}
+        </div>
         {afterContent}
       </div>
     </div>
