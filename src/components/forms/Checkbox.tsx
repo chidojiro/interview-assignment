@@ -4,10 +4,8 @@ import cn from "classnames";
 import FormGroup from "@components/form-group/FormGroup";
 import withField from "@hoc/withField";
 
-interface Checkbox {
-  label: string | React.ReactFragment;
-  name: string;
-  id?: string;
+interface Checkbox extends WithFieldProps {
+  checkboxLabel: React.ReactElement | string;
   /** @ignore part of HTML props */
   disabled?: boolean;
   /** @ignore Private props from HOC for easy setup. */
@@ -24,7 +22,7 @@ interface Checkbox {
  */
 const Checkbox = ({
   id,
-  label,
+  checkboxLabel,
   disabled,
   _formGroupProps,
   ...props
@@ -47,7 +45,7 @@ const Checkbox = ({
             </svg>
           </span>
         </span>
-        <span className="selection-control__label">{label}</span>
+        <span className="selection-control__label">{checkboxLabel}</span>
       </label>
     </FormGroup>
   );

@@ -1,5 +1,5 @@
 import HeaderText from "./components/headers/HeaderText";
-// import InputField from "./components/forms/InputField";
+import InputField from "./components/forms/InputField";
 // import LocationInputField from "./components/forms/LocationInputField";
 // import RadioButton from "./components/forms/RadioButton";
 // import TextArea from "./components/forms/TextArea";
@@ -30,7 +30,7 @@ import FormGroup from "@components/form-group/FormGroup";
 
 export {
   HeaderText,
-  // InputField,
+  InputField,
   // LocationInputField,
   // RadioButton,
   // TextArea,
