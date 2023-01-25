@@ -8,8 +8,8 @@ interface Block {
   beforeContent?: React.ReactNode;
   /** Rendered after block_content */
   afterContent?: React.ReactNode;
-  type?: 'filter';
-  contentSize?: 's';
+  typeFilter?: boolean;
+  smallContentSize?: boolean;
   align?: 'left' | 'right';
   title?: string;
 }
@@ -18,11 +18,11 @@ interface Block {
  * Global element used in most components. See [here](https://randstad.design/getting-started/developers/block-header-content/).
  */
 function Block({
-  children, beforeContent, afterContent, type, contentSize, align, title,
+  children, beforeContent, afterContent, typeFilter, smallContentSize, align, title,
 }: Block) {
   return (
     <div className={cn('block', {
-      'block--filter': type === 'filter',
+      'block--filter': typeFilter,
     })}
     >
       <div className="block__wrapper wrapper">
@@ -33,7 +33,7 @@ function Block({
         )}
         {beforeContent}
         <div className={cn('block__content', {
-          [`block__content--${contentSize}`]: contentSize,
+          'block__content--s': smallContentSize,
           [`block__content--align-${align}`]: align,
         })}
         >

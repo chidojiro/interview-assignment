@@ -5,7 +5,7 @@ import Block from '../../components/Block';
 describe('Block left aligned exists', () => {
   test('should render block with left aligned text', () => {
     const { container } = render(
-      <Block align="left" contentSize="s" title="This is left aligned content.">
+      <Block align="left" smallContentSize title="This is left aligned content.">
         This is example text
       </Block>,
     );
@@ -17,7 +17,7 @@ describe('Block left aligned exists', () => {
   });
   test('should render block with right aligned text', () => {
     const { container } = render(
-      <Block align="right" contentSize="s" title="This is right aligned content.">
+      <Block align="right" smallContentSize title="This is right aligned content.">
         This is example text
       </Block>,
     );
