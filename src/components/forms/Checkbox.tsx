@@ -6,8 +6,6 @@ import withField from "@hoc/withField";
 
 interface Checkbox extends WithFieldProps {
   checkboxLabel: React.ReactElement | string;
-  name: string;
-  id?: string;
   /** @ignore part of HTML props */
   disabled?: boolean;
   /** @ignore Private props from HOC for easy setup. */
