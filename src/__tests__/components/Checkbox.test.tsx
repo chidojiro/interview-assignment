@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import Checkbox from "@components/forms/Checkbox";
+import Checkbox from "../../components/forms/Checkbox";
 
 test("Checkbox exist", () => {
   const { container } = render(<Checkbox name="terms" checkboxLabel={<>I accept the <a href="/example">terms</a> of use</>} />);

@@ -1,10 +1,10 @@
 import React from "react";
 
-import withField from "@hoc/withField";
-import useLibrary from "@hooks/useLibrary";
-import FormGroup from "@components/form-group/FormGroup";
-import Label from "@components/form-group/Label";
-import Svg from "@components/base/Svg";
+import withField from "../../hoc/withField";
+import useLibrary from "../../hooks/useLibrary";
+import FormGroup from "../form-group/FormGroup";
+import Label from "../form-group/Label";
+import Svg from "../base/Svg";
 
 interface PasswordFieldProps {
   name: string;

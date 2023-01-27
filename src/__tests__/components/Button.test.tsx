@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import Button from '@components/button/Button';
+import Button from '../../components/button/Button';
 
 test('Button exist', () => {
   const { container } = render(<Button>test</Button>);

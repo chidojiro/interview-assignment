@@ -1,8 +1,8 @@
 import React from 'react';
 import cn from 'classnames';
 
-import FormGroup from '@components/form-group/FormGroup';
-import withField from '@hoc/withField';
+import FormGroup from '../form-group/FormGroup';
+import withField from '../../hoc/withField';
 
 interface Checkbox extends WithFieldProps {
   checkboxLabel: React.ReactElement | string;

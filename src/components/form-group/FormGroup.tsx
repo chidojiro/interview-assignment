@@ -1,7 +1,7 @@
 import React from 'react';
 import cn from 'classnames';
-import Label from '@components/form-group/Label';
-import FieldError from '@components/form-group/FieldError/FieldError';
+import Label from '../form-group/Label';
+import FieldError from '../form-group/FieldError/FieldError';
 
 interface FormGroupProps {
   formGroupClass?: string;

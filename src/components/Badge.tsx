@@ -1,6 +1,6 @@
 import React from 'react';
 import cn from 'classnames';
-import Icon from '@components/Icon';
+import Icon from '../components/Icon';
 
 interface BadgeProps {
   children: string;

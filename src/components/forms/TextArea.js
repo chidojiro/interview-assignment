@@ -2,9 +2,9 @@ import React from "react";
 import t from "prop-types";
 import cn from "classnames";
 
-import withField from "@hoc/withField";
-import useLibrary from "@hooks/useLibrary";
-import FormGroup from "@components/form-group/FormGroup";
+import withField from "../../hoc/withField";
+import useLibrary from "../../hooks/useLibrary";
+import FormGroup from "../form-group/FormGroup";
 
 const defaultCharacterCounterLabels = {
   characters: "characters",

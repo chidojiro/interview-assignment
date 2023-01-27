@@ -1,9 +1,9 @@
 import React from "react";
 import cn from "classnames";
 
-import withField from "@hoc/withField";
-import useLibrary from "@hooks/useLibrary";
-import FormGroup from "@components/form-group/FormGroup";
+import withField from "../../hoc/withField";
+import useLibrary from "../../hooks/useLibrary";
+import FormGroup from "../form-group/FormGroup";
 
 interface SelectField {
   /** Rendered Select Options */
