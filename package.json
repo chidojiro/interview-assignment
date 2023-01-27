@@ -2,7 +2,7 @@
   "name": "@ffw/randstad-shared-components",
   "version": "0.1.0",
   "private": true,
-  "main": "build/index.js",
+  "main": "src/index.ts",
   "orbitLibraries": [
     "collapsible",
     "toggable",
@@ -91,6 +91,7 @@
     }
   },
   "dependencies": {
+    "@ffw/randstad-local-orbit": "git+ssh://git-codecommit.eu-west-1.amazonaws.com/v1/repos/git-df-prd-bluex-local-orbit#dev",
     "@typescript-eslint/parser": "^5.48.2",
     "classnames": "^2.3.2",
     "prop-types": "^15.8.1"

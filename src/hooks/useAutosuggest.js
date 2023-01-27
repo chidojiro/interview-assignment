@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 
-import handleScrollBar from "@utils/handleScrollBar";
-import isRefsEmpty from "@utils/isRefsEmpty";
-import useDebounce from "@hooks/useDebounce";
+import handleScrollBar from "../utils/handleScrollBar";
+import isRefsEmpty from "../utils/isRefsEmpty";
+import useDebounce from "../hooks/useDebounce";
 
 const keys = {
   Up: "ArrowUp",

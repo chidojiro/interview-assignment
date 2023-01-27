@@ -1,13 +1,6 @@
 {
   "compilerOptions": {
     "baseUrl": "./",
-    "paths": {
-      "@hoc/*": ["src/hoc/*"],
-      "@hooks/*": ["src/hooks/*"],
-      "@components/*": ["src/components/*"],
-      "@utils/*": ["./src/utils/*"],
-      "~": ["./*"]
-    },
     "esModuleInterop": true,
     "jsx": "react",
     "module": "esnext",

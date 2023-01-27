@@ -1,10 +1,10 @@
 import React from "react";
 import t from "prop-types";
 
-import useAutosuggest from "@hooks/useAutosuggest";
-import withField from "@hoc/withField";
+import useAutosuggest from "../../hooks/useAutosuggest";
+import withField from "../../hoc/withField";
 import ListItemMark from "./autosuggest/ListItemMark";
-import FormGroup from "@components/form-group/FormGroup";
+import FormGroup from "../form-group/FormGroup";
 
 /**
  * An input field which predicts the rest of a word a user is currently typing. See [here](https://randstad.design/components/core/forms/autosuggest/)

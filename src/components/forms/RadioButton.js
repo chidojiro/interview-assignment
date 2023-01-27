@@ -1,6 +1,6 @@
 import React from "react";
 import t from "prop-types";
-import withField from "@hoc/withField";
+import withField from "../../hoc/withField";
 import cn from "classnames";
 
 /**

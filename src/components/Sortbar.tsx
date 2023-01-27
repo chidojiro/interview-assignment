@@ -1,6 +1,6 @@
 import React from "react";
-import useLibrary, { Library } from "@hooks/useLibrary";
-import Svg from "@components/base/Svg";
+import useLibrary, { Library } from "../hooks/useLibrary";
+import Svg from "../components/base/Svg";
 
 interface Sortbar extends Library {
   count: string,

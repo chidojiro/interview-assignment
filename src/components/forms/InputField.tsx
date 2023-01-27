@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
-import withField from "@hoc/withField";
-import FormGroup from "@components/form-group/FormGroup";
+import withField from '../../hoc/withField';
+import FormGroup from '../form-group/FormGroup';
 
 interface InputField extends WithFieldProps {
   name: string;
@@ -20,8 +20,8 @@ interface InputField extends WithFieldProps {
  * **Wrapped with `FormGroup` component and support all of its props.**
  */
 
-export const InputField: React.FC<InputField> = ({
-  type = "text",
+const InputField: React.FC<InputField> = ({
+  type = 'text',
   disabled,
   placeholder,
   _formGroupProps,
@@ -29,8 +29,8 @@ export const InputField: React.FC<InputField> = ({
 }: InputField) => {
   const otherFieldProps = {
     type,
-    ...(disabled && { readonly: "readonly" }),
-    ...(placeholder && { placeholder: placeholder }),
+    ...(disabled && { readonly: 'readonly' }),
+    ...(placeholder && { placeholder }),
     ...props,
   };
 

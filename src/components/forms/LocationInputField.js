@@ -1,10 +1,10 @@
 import React from "react";
 import t from "prop-types";
 
-import withField from "@hoc/withField";
-import useLibrary from "@hooks/useLibrary";
-import Svg from "@components/base/Svg";
-import FormGroup from "@components/form-group/FormGroup";
+import withField from "../../hoc/withField";
+import useLibrary from "../../hooks/useLibrary";
+import Svg from "../base/Svg";
+import FormGroup from "../form-group/FormGroup";
 
 /**
  * A field to enter data in a pre defined format. See [here](https://randstad.design/components/core/forms/input-field/)

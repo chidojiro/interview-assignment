@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import useLibrary, { Library } from "@hooks/useLibrary";
+import useLibrary, { Library } from "../hooks/useLibrary";
 
 interface Filter extends Library {
   title: string,

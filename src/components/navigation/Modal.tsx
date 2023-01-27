@@ -1,6 +1,6 @@
 import React from "react";
 import { Theme } from "./types";
-import { getBackground } from "@utils/getBackground";
+import { getBackground } from "../../utils/getBackground";
 
 interface Modal extends Theme {
   children: React.ReactNode

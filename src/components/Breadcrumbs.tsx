@@ -1,5 +1,5 @@
 import React from "react";
-import { BgColor, getBackground } from "@utils/getBackground";
+import { BgColor, getBackground } from "../utils/getBackground";
 
 interface Breadcrumbs extends BgColor {
   /** `active` is used to highlight the item */

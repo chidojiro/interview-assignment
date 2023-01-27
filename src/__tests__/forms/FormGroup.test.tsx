@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import FormGroup from '@components/form-group/FormGroup';
+import FormGroup from '../../components/form-group/FormGroup';
 
 describe('Form Group component tests', () => {
   test('Form Group renders correctly.', () => {

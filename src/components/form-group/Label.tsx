@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 interface LabelProps {
   label?: string;
@@ -11,7 +11,7 @@ interface LabelProps {
 }
 
 // For internal issue. Should not be available for public.
-const Label = ({ label, required = true, id, capitalize, optionalLabel = "optional" }: LabelProps) => {
+const Label = ({ label, required = true, id, capitalize, optionalLabel = 'optional' }: LabelProps) => {
   if (!label) return null;
 
   let fieldLabel = label;
