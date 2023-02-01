@@ -16,7 +16,7 @@ function LanguageSwitcher({
           ? 'en'
           : (
             <a
-              href='/Users/katerina/Public'
+              href='/'
               className='language-link'
               hrefLang='en'
             >
