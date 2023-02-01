@@ -2,41 +2,32 @@ import React from 'react';
 
 interface LanguageSwitcherProps {
   activeLanguage: string;
-  secondLanguage: string;
+  languages: string[];
 }
 
 function LanguageSwitcher({
   activeLanguage,
-  secondLanguage,
+  languages,
 }: LanguageSwitcherProps) {
   return (
     <ul className='top-link language-switcher l:ml-s'>
-      <li className='top-link__item'>
-        {activeLanguage === 'en'
-          ? 'en'
-          : (
+      {
+        languages.map((item: string) => {
+          if (item === activeLanguage) {
+            return <li className='top-link__item' key={item}>{item}</li>
+          }
+
+          return <li className='top-link__item' key={item}>
             <a
-              href='/'
+              href={`/${item}/`}
               className='language-link'
-              hrefLang='en'
+              hrefLang={item}
             >
-              en
+              {item}
             </a>
-          )}
-      </li>
-      <li className='top-link__item'>
-        {activeLanguage === secondLanguage
-          ? secondLanguage
-          : (
-            <a
-              href={`/${secondLanguage}/`}
-              className='language-link'
-              hrefLang={secondLanguage}
-            >
-              {secondLanguage}
-            </a>
-          )}
-      </li>
+          </li>
+        })
+      }
     </ul>
   );
 }

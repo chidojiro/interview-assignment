@@ -4,15 +4,22 @@ import LanguageSwitcher from '../../components/headers/LanguageSwitcher/Language
 
 describe('Language Switcher tests', () => {
   test('Language Switcher exist', () => {
-    const { container } = render(<LanguageSwitcher activeLanguage='en' secondLanguage='fr' />);
+    const { container } = render(<LanguageSwitcher activeLanguage='en' languages={['en', 'fr', 'ak']} />);
     const languageSwitcherElement = container.querySelector('.language-switcher ');
     expect(languageSwitcherElement)
       .toBeInTheDocument();
   });
 
-  test('Second language has tag "a"', () => {
+  test('Amount of languages is correct', () => {
+    const { container } = render(<LanguageSwitcher activeLanguage='en' languages={['en', 'fr', 'ak']} />);
+    // @ts-ignore
+    const languagesElements = [...container.querySelectorAll('.top-link__item')];
+    expect(languagesElements.length).toBe(3);
+  });
+
+  test('Not active language has tag "a"', () => {
     const secondLanguage = 'fr';
-    const { container } = render(<LanguageSwitcher activeLanguage='en' secondLanguage={secondLanguage} />);
+    const { container } = render(<LanguageSwitcher activeLanguage='en' languages={['en', 'fr']} />);
     const activeLanguageElement = container.querySelector('a');
 
     expect(activeLanguageElement).toHaveAttribute(
@@ -23,7 +30,7 @@ describe('Language Switcher tests', () => {
 
   test('Active language has tag "li"', () => {
     const activeLanguage = 'en';
-    const { container } = render(<LanguageSwitcher activeLanguage={activeLanguage} secondLanguage='fr' />);
+    const { container } = render(<LanguageSwitcher activeLanguage={activeLanguage} languages={['en', 'fr', 'ak']} />);
     const activeLanguageElement = container.querySelector('li');
 
     expect(activeLanguageElement).toHaveTextContent('en');
