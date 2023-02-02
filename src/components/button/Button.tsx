@@ -70,7 +70,7 @@ function Button({
           svgProps={{ className: svgClasses }}
         />
       )}
-      {loader && <span className="dots" />}
+      {loader && <span className='dots' />}
       {!loader && children}
     </ButtonTag>
   );

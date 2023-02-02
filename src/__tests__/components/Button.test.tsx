@@ -32,8 +32,8 @@ for (const [title, props, expectedClass] of [
 test('Tag name depending on href', () => {
   const { container } = render(
     <>
-      <Button className="as-link" href="/test" />
-      <Button className="as-button" />
+      <Button className='as-link' href='/test' />
+      <Button className='as-button' />
     </>,
   );
   const buttonElement = container.querySelector('.as-button');

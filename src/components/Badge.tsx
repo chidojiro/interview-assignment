@@ -32,8 +32,8 @@ function Badge({
 
   return (
     <span className={badgeClass}>
-      {icon && <Icon iconClassName="icon icon--s icon--inline mr-xs" iconType={icon} />}
-      <span className="badge__text">{children}</span>
+      {icon && <Icon iconClassName='icon icon--s icon--inline mr-xs' iconType={icon} />}
+      <span className='badge__text'>{children}</span>
     </span>
   );
 }

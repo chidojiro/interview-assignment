@@ -70,10 +70,10 @@ function FormGroup({
           optionalLabel={optionalLabel}
         />
       )}
-      {_withoutWrapper ? children : <div className="form-group__input">{children}</div>}
+      {_withoutWrapper ? children : <div className='form-group__input'>{children}</div>}
 
       {(errorMessagesArray || []).map((item) => <FieldError key={item}>{item}</FieldError>)}
-      {description && <div className="form-group__message">{description}</div>}
+      {description && <div className='form-group__message'>{description}</div>}
       {afterContent}
     </div>
   );
