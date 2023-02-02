@@ -4,7 +4,7 @@ import Notice from '../../components/notice/Notice';
 
 describe('Notice component tests', () => {
   test('Notice exist', () => {
-    const { container } = render(<Notice type="negative">test</Notice>);
+    const { container } = render(<Notice type='negative'>test</Notice>);
     const noticeElement = container.querySelector('.notice-in-page');
     expect(noticeElement).toBeInTheDocument();
     expect(noticeElement).toHaveTextContent('test');

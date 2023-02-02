@@ -1,5 +1,5 @@
-import React from "react";
-import cn from "classnames";
+import React from 'react';
+import cn from 'classnames';
 
 interface StackableProps {
   className?: string;
@@ -31,11 +31,11 @@ const Stackable = ({
   className,
   capitalize,
   hideLabel = false,
-  optionalLabel = "optional",
+  optionalLabel = 'optional',
   required = true,
 }: StackableProps) => {
   if (!label) {
-    console.error("Missing label for the legend. Fieldset tag requires a legend.");
+    console.error('Missing label for the legend. Fieldset tag requires a legend.');
   }
 
   let legend = label;
@@ -46,24 +46,24 @@ const Stackable = ({
 
   return (
     <fieldset
-      className={cn("form-group", "form-group--selection-control", className, {
-        "form-group--error": error,
+      className={cn('form-group', 'form-group--selection-control', className, {
+        'form-group--error': error,
       })}>
-      <legend className={cn("form-group__label", { hidden: hideLabel })}>
+      <legend className={cn('form-group__label', { hidden: hideLabel })}>
         {legend}
-        {!required && <span className="form-group__optional"> {optionalLabel}</span>}
+        {!required && <span className='form-group__optional'> {optionalLabel}</span>}
       </legend>
       {React.Children.map(children, (child) => {
         return (
-          <div className="form-group__input">
+          <div className='form-group__input'>
             {React.cloneElement(child, {
               withFormGroup: false,
             })}
           </div>
         );
       })}
-      {error && <div className="form-group__feedback">{error}</div>}
-      {description && <div className="form-group__message">{description}</div>}
+      {error && <div className='form-group__feedback'>{error}</div>}
+      {description && <div className='form-group__message'>{description}</div>}
     </fieldset>
   );
 };

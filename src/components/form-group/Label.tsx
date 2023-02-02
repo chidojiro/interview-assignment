@@ -21,9 +21,9 @@ const Label = ({ label, required = true, id, capitalize, optionalLabel = 'option
   }
 
   return (
-    <label className="form-group__label" htmlFor={id}>
+    <label className='form-group__label' htmlFor={id}>
       {fieldLabel}
-      {!required ? <span className="form-group__optional"> {optionalLabel}</span> : null}
+      {!required ? <span className='form-group__optional'> {optionalLabel}</span> : null}
     </label>
   );
 };

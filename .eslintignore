@@ -15,7 +15,6 @@ src/components/forms/SelectField
 src/components/forms/TextArea
 src/components/forms/Checkbox
 
-src/components/headers
 src/components/navigation
 src/components/pagination
 

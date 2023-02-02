@@ -25,10 +25,10 @@ function Block({
       'block--filter': typeFilter,
     })}
     >
-      <div className="block__wrapper wrapper">
+      <div className='block__wrapper wrapper'>
         {title && (
-          <div className="block__header">
-            <h2 className="block__title">{title}</h2>
+          <div className='block__header'>
+            <h2 className='block__title'>{title}</h2>
           </div>
         )}
         {beforeContent}

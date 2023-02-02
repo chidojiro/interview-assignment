@@ -12,5 +12,8 @@
     "target": "esnext",
     "resolveJsonModule": true
   },
-  "exclude": ["node_modules", "build"]
+  "exclude": ["node_modules", "build"],
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  }
 }

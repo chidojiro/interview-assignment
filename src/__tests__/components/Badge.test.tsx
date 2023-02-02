@@ -10,17 +10,17 @@ describe('Badge component tests', () => {
   });
 
   test('Badge renders correctly with color prop', () => {
-    const { container } = render(<Badge color="primary">Label</Badge>);
+    const { container } = render(<Badge color='primary'>Label</Badge>);
     expect(container.firstChild).toHaveClass('badge--primary');
   });
 
   test('Badge renders correctly with icon prop', () => {
-    const { container } = render(<Badge icon="check">Label</Badge>);
+    const { container } = render(<Badge icon='check'>Label</Badge>);
     expect(container.querySelector('.icon')).toBeInTheDocument();
   });
 
   test('Badge renders correctly with size prop', () => {
-    const { container } = render(<Badge size="l">Label</Badge>);
+    const { container } = render(<Badge size='l'>Label</Badge>);
     expect(container.firstChild).toHaveClass('badge--l');
   });
 });
