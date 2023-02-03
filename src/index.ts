@@ -1,11 +1,11 @@
 import PasswordField from './components/forms/PasswordField';
 import Checkbox from './components/forms/Checkbox';
-import Breadcrumbs from './components/Breadcrumbs';
 import Block from './components/Block';
 import FormGroup from './components/form-group/FormGroup';
 import HeaderTitle from './components/headers/HeaderTitle/HeaderTitle';
 import HeaderText from './components/headers/HeaderText';
 import LanguageSwitcher from './components/headers/LanguageSwitcher/LanguageSwitcher';
+import Breadcrumbs from './components/headers/Breadcrumbs/Breadcrumbs';
 // import InputField from "./components/forms/InputField";
 // import LocationInputField from "./components/forms/LocationInputField";
 // import RadioButton from "./components/forms/RadioButton";
@@ -36,12 +36,12 @@ import InputField from './components/forms/InputField';
 export {
   PasswordField,
   Checkbox,
-  Breadcrumbs,
   Block,
   FormGroup,
   HeaderTitle,
   HeaderText,
   LanguageSwitcher,
+  Breadcrumbs,
   // LocationInputField,
   // RadioButton,
   // TextArea,

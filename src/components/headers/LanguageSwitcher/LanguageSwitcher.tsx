@@ -14,18 +14,20 @@ function LanguageSwitcher({
       {
         languages.map((item: string) => {
           if (item === activeLanguage) {
-            return <li className='top-link__item' key={item}>{item}</li>
+            return <li className='top-link__item' key={item}>{item}</li>;
           }
 
-          return <li className='top-link__item' key={item}>
-            <a
-              href={`/${item}/`}
-              className='language-link'
-              hrefLang={item}
-            >
-              {item}
-            </a>
-          </li>
+          return (
+            <li className='top-link__item' key={item}>
+              <a
+                href={`/${item}/`}
+                className='language-link'
+                hrefLang={item}
+              >
+                {item}
+              </a>
+            </li>
+          );
         })
       }
     </ul>
