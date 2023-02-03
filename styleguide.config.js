@@ -58,26 +58,6 @@ module.exports = {
   }).parse,
 
   sections: [
-    // {
-    //   name: "Shared components",
-    //   components: [
-    //     "src/components/headers/**/*.tsx",
-    //     "src/components/Badge.tsx",
-    //     "src/components/button/Button.tsx",
-    //     "src/components/notice/Notice.tsx",
-    //     "src/components/Block.tsx",
-    //   ],
-    // },
-    // {
-    //   name: "Form Groups",
-    //   components: "src/components/form-group/**/*.tsx",
-    //   description: "Provides wrapper components for form elements",
-    // },
-    // {
-    //   name: "Form elements",
-    //   components: "src/components/forms/*.tsx",
-    //   description: "Form components - Input, Checkbox, etc.",
-    // },
     {
       name: 'Shared components',
       components: [
