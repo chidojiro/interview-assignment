@@ -19,6 +19,7 @@ import FieldError from './components/form-group/FieldError/FieldError';
 import Notice from './components/notice/Notice';
 import SelectField from './components/forms/SelectField';
 import InputField from './components/forms/InputField';
+import ConfirmationModal from './components/overlays/ConfirmationModal';
 // import Filter from "./components/Filter";
 // import Accordion from "./components/accordion/Accordion";
 // import AccordionItem from "./components/accordion/AccordionItem";
@@ -52,6 +53,7 @@ export {
   Notice,
   SelectField,
   InputField,
+  ConfirmationModal,
   // Filter,
   // Accordion,
   // AccordionItem,
