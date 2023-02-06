@@ -11,19 +11,26 @@ interface LabelProps {
 }
 
 // For internal issue. Should not be available for public.
-const Label = ({ label, required = true, id, capitalize, optionalLabel = 'optional' }: LabelProps) => {
+const Label = ({
+  label,
+  required = true,
+  id,
+  capitalize,
+  optionalLabel = 'optional',
+}: LabelProps) => {
   if (!label) return null;
 
   let fieldLabel = label;
 
   if (capitalize) {
-    fieldLabel = label.charAt(0).toUpperCase() + label.slice(1);
+    fieldLabel = label.charAt(0)
+      .toUpperCase() + label.slice(1);
   }
 
   return (
-    <label className='form-group__label' htmlFor={id}>
+    <label className="form-group__label" htmlFor={id}>
       {fieldLabel}
-      {!required ? <span className='form-group__optional'> {optionalLabel}</span> : null}
+      {!required ? <span className="form-group__optional"> {optionalLabel}</span> : null}
     </label>
   );
 };
