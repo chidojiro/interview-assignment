@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useRef } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import classNames from 'classnames';
 import styles, { keyframes } from 'styled-components';
 import Icon from '../Icon';
@@ -72,12 +72,9 @@ function ConfirmationModal({
   confirmButtonText = 'yes',
   cancelButtonText = 'cancel',
 }: ConfirmationModalProps) {
-  const modalInner = useRef<HTMLDivElement>(null);
-  const modalCurrent = modalInner.current;
-
-  const onClickHandler = useCallback((event: { stopPropagation: () => void }) => {
+  const onClickHandler = (event: { stopPropagation: () => void }) => {
     event.stopPropagation();
-  }, []);
+  };
 
   const modalClose = useCallback(
     (event: CloseEvents) => {
@@ -93,25 +90,16 @@ function ConfirmationModal({
   );
 
   useEffect(() => {
-    if (modalCurrent) {
-      modalCurrent.addEventListener('click', onClickHandler);
-    }
-    return () => {
-      if (modalCurrent) {
-        modalCurrent.removeEventListener('click', onClickHandler);
-      }
-    };
-  }, [modalCurrent, onClickHandler]);
-
-  useEffect(() => {
     document.addEventListener('keydown', modalClose);
     return () => document.removeEventListener('keydown', modalClose);
   }, [modalClose]);
 
   return (
-    <ModalStyle className='modal modal--active' data-rs-modal='modal' onClick={(event: React.MouseEvent<HTMLElement>) => modalClose(event)}>
+    <ModalStyle className='modal modal--active' data-rs-modal='modal' onClick={(event: React.MouseEvent<HTMLDivElement>) => modalClose(event)}>
+      {/* Tag <div> needed here according to the Orbit */}
+      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions */}
       <div
-        ref={modalInner}
+        onClick={(event: React.MouseEvent<HTMLDivElement>) => onClickHandler(event)}
         className='modal__dialog bg-variant-brand-tertiary'
         role='dialog'
         aria-modal='true'
