@@ -12,7 +12,8 @@
     "password-validator",
     "character-count",
     "auto-resize",
-    "text-area"
+    "text-area",
+    "tab-bar"
   ],
   "devDependencies": {
     "@babel/core": "^7.13.8",

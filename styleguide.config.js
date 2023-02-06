@@ -17,7 +17,6 @@ module.exports = {
     '@ffw/randstad-shared-components': path.resolve(__dirname, 'src/index.ts'),
   },
   ignore: [
-    '**/components/navigation/**',
     '**/components/forms/autosuggest/**',
     '**/components/base/**',
     '**/components/form-group/Label.js',
@@ -72,6 +71,12 @@ module.exports = {
       name: 'Form Groups',
       components: 'src/components/form-group/**/*.tsx',
       description: 'Provides wrapper components for form elements',
+    },
+    {
+      name: 'Navigation',
+      // components: 'src/components/navigation/**/*.tsx',
+      components: ['src/components/navigation/TabBar.tsx'],
+      description: 'Navigation components used across the applications.',
     },
     {
       name: 'Form elements',

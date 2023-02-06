@@ -18,6 +18,7 @@ import Icon from './components/Icon';
 import FieldError from './components/form-group/FieldError/FieldError';
 import Notice from './components/notice/Notice';
 import SelectField from './components/forms/SelectField';
+import TabBar from './components/navigation/TabBar';
 import InputField from './components/forms/InputField';
 // import Filter from "./components/Filter";
 // import Accordion from "./components/accordion/Accordion";
@@ -52,6 +53,7 @@ export {
   Notice,
   SelectField,
   InputField,
+  TabBar,
   // Filter,
   // Accordion,
   // AccordionItem,
