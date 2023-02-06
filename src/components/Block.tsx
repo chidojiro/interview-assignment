@@ -18,17 +18,23 @@ interface Block {
  * Global element used in most components. See [here](https://randstad.design/getting-started/developers/block-header-content/).
  */
 function Block({
-  children, beforeContent, afterContent, typeFilter, smallContentSize, align, title,
+  children,
+  beforeContent,
+  afterContent,
+  typeFilter,
+  smallContentSize,
+  align,
+  title,
 }: Block) {
   return (
     <div className={cn('block', {
       'block--filter': typeFilter,
     })}
     >
-      <div className='block__wrapper wrapper'>
+      <div className="block__wrapper wrapper">
         {title && (
-          <div className='block__header'>
-            <h2 className='block__title'>{title}</h2>
+          <div className="block__header">
+            <h2 className="block__title">{title}</h2>
           </div>
         )}
         {beforeContent}

@@ -5,8 +5,10 @@ import Button from '../../components/button/Button';
 test('Button exist', () => {
   const { container } = render(<Button>test</Button>);
   const buttonElement = container.querySelector('.button');
-  expect(buttonElement).toBeInTheDocument();
-  expect(buttonElement).toHaveTextContent('test');
+  expect(buttonElement)
+    .toBeInTheDocument();
+  expect(buttonElement)
+    .toHaveTextContent('test');
 });
 
 for (const [title, props, expectedClass] of [
@@ -32,13 +34,15 @@ for (const [title, props, expectedClass] of [
 test('Tag name depending on href', () => {
   const { container } = render(
     <>
-      <Button className='as-link' href='/test' />
-      <Button className='as-button' />
+      <Button className="as-link" href="/test" />
+      <Button className="as-button" />
     </>,
   );
   const buttonElement = container.querySelector('.as-button');
   const linkElement = container.querySelector('.as-link');
 
-  expect(linkElement?.tagName).toBe('A');
-  expect(buttonElement?.tagName).toBe('BUTTON');
+  expect(linkElement?.tagName)
+    .toBe('A');
+  expect(buttonElement?.tagName)
+    .toBe('BUTTON');
 });
