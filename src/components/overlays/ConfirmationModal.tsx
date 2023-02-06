@@ -4,15 +4,17 @@ import Icon from '../Icon';
 import Button from '../button/Button';
 import styles, { keyframes } from 'styled-components';
 
-interface ConfirmationModal {
+type CloseEvents = React.MouseEvent | KeyboardEvent | TouchEvent;
+interface ConfirmationModalProps {
   title: string;
   content: string;
   ariaLabelClose?: string;
   confirmButtonText?: string;
   cancelButtonText?: string;
-  onClose: (event: React.MouseEvent | KeyboardEvent | TouchEvent) => void;
+  onClose: (event: CloseEvents) => void;
   onSubmit?: (event: React.MouseEvent) => void;
 }
+
 
 const popupEnter = keyframes`
   0% { opacity: 0; }
@@ -70,13 +72,13 @@ function ConfirmationModal({
   ariaLabelClose = 'close',
   confirmButtonText = 'yes',
   cancelButtonText = 'cancel',
-}: ConfirmationModal) {
+}: ConfirmationModalProps) {
   const onClick = (event: { stopPropagation: () => void }) => {
     event.stopPropagation();
   };
 
   const modalClose = useCallback(
-    (event: React.MouseEvent | KeyboardEvent | TouchEvent) => {
+    (event: CloseEvents) => {
       if (event instanceof KeyboardEvent && event.key !== 'Escape') return;
       event.preventDefault();
       event.stopPropagation();
@@ -84,6 +86,7 @@ function ConfirmationModal({
       setTimeout(() => {
         onClose?.(event);
       }, 200);
+      console.log(event)
     },
     [onClose],
   );
@@ -94,9 +97,9 @@ function ConfirmationModal({
   }, [modalClose]);
 
   return (
-    <ModalStyle className="modal modal--active" data-rs-modal="modal" onClick={(e) => modalClose(e)}>
+    <ModalStyle className="modal modal--active" data-rs-modal="modal" onClick={(event: CloseEvents) => modalClose(event)}>
       <div
-        onClick={(e) => onClick(e)}
+        onClick={(event: React.MouseEvent<HTMLElement>) => onClick(event)}
         className="modal__dialog bg-variant-brand-tertiary"
         role="dialog"
         aria-modal="true"
@@ -109,7 +112,7 @@ function ConfirmationModal({
             className="button--icon-only modal__close"
             data-rs-modal-close-trigger=""
             aria-label={ariaLabelClose}
-            onClick={(e) => modalClose(e)}
+            onClick={(event: CloseEvents) => modalClose(event)}
           >
             <Icon iconClassName={classNames('icon icon--inline hidden--from-l icon--alternative')} iconType="close" />
             <Icon iconClassName={classNames('icon icon--l icon--inline hidden--until-l icon--alternative')} iconType="close-30" />
@@ -123,7 +126,7 @@ function ConfirmationModal({
             <Button href="#" variant="filled" fullWidth handleClick={onSubmit}>
               {confirmButtonText}
             </Button>
-            <Button href="#" variant="plain" fullWidth handleClick={(e) => modalClose(e)}>
+            <Button href="#" variant="plain" fullWidth handleClick={(event: CloseEvents) => modalClose(event)}>
               {confirmButtonText}
             </Button>
           </div>
@@ -131,7 +134,7 @@ function ConfirmationModal({
             <Button href="#" variant="filled" handleClick={onSubmit}>
               {confirmButtonText}
             </Button>
-            <Button href="#" variant="plain" handleClick={(e) => modalClose(e)}>
+            <Button href="#" variant="plain" handleClick={(event: CloseEvents) => modalClose(event)}>
               {cancelButtonText}
             </Button>
           </div>
