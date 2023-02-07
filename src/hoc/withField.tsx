@@ -1,5 +1,21 @@
-/// <reference path="./withField.d.ts" />
 import React from "react";
+
+export interface WithFieldProps {
+  name: string;
+  id?: string;
+  formGroupClass?: string;
+  required?: boolean;
+  optionalLabel?: string;
+  error?: string;
+  description?: string;
+  afterContent?: any;
+  capitalize?: boolean;
+  formGroupLabel?: string;
+  label?: string;
+  withFormGroup?: boolean;
+  _formGroupProps?: object;
+}
+
 
 const withField = <T extends WithFieldProps = WithFieldProps>(ChildComponent: React.FC<T>) => {
   const Component = (props: WithFieldProps | T) => {

@@ -19,6 +19,7 @@ import Icon from './components/Icon';
 import FieldError from './components/form-group/FieldError/FieldError';
 import Notice from './components/notice/Notice';
 import SelectField from './components/forms/SelectField';
+import TabBar from './components/navigation/TabBar';
 import InputField from './components/forms/InputField';
 import ConfirmationModal from './components/overlays/ConfirmationModal';
 // import Filter from "./components/Filter";
@@ -55,6 +56,7 @@ export {
   Notice,
   SelectField,
   InputField,
+  TabBar,
   ConfirmationModal,
   // Filter,
   // Accordion,
