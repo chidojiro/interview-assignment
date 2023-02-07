@@ -109,7 +109,7 @@
         "functions": "ignore"
       }
     ],
-    "jsx-quotes": [2, "prefer-single"]
+    "jsx-quotes": [2, "prefer-double"]
   },
   "globals": {
     "JSX":"readonly"

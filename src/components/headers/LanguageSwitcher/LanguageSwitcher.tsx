@@ -10,22 +10,22 @@ function LanguageSwitcher({
   languages,
 }: LanguageSwitcherProps) {
   return (
-    <ul className='top-link language-switcher l:ml-s'>
+    <ul className="top-link language-switcher l:ml-s">
       {
         languages.map((item: string) => {
           if (item === activeLanguage) {
-            return <li className='top-link__item' key={item}>{item}</li>
+            return <li className="top-link__item" key={item}>{item}</li>;
           }
 
-          return <li className='top-link__item' key={item}>
+          return <li className="top-link__item" key={item}>
             <a
               href={`/${item}/`}
-              className='language-link'
+              className="language-link"
               hrefLang={item}
             >
               {item}
             </a>
-          </li>
+          </li>;
         })
       }
     </ul>

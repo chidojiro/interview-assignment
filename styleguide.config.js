@@ -88,6 +88,11 @@ module.exports = {
       components: 'src/components/button/**/*.tsx',
       description: 'Provides wrapper components for button element.',
     },
+    {
+      name: 'Overlays',
+      components: 'src/components/overlays/**/*.tsx',
+      description: 'Provides wrapper components for overlays.',
+    },
     // {
     //   name: 'Shared components',
     //   components: 'src/components/**/*.js',

@@ -9,7 +9,11 @@ interface NoticeProps {
   icon?: string;
 }
 
-function Notice({ children, type = 'informative', icon }: NoticeProps) {
+function Notice({
+  children,
+  type = 'informative',
+  icon,
+}: NoticeProps) {
   let noticeIcon;
 
   switch (type) {
@@ -34,8 +38,8 @@ function Notice({ children, type = 'informative', icon }: NoticeProps) {
 
   return (
     <div className={`notice-in-page notice-in-page--${type}`}>
-      <Icon iconClassName='icon icon--inline icon--static' iconType={icon || noticeIcon || 'info'} />
-      <span className='notice-in-page__body-copy body-copy'>{children}</span>
+      <Icon iconClassName="icon icon--inline icon--static" iconType={icon || noticeIcon || 'info'} />
+      <span className="notice-in-page__body-copy body-copy">{children}</span>
     </div>
   );
 }
