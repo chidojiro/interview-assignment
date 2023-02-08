@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export interface WithFieldProps {
   name: string;
@@ -8,7 +8,7 @@ export interface WithFieldProps {
   optionalLabel?: string;
   error?: string;
   description?: string;
-  afterContent?: any;
+  afterContent?: React.ReactNode;
   capitalize?: boolean;
   formGroupLabel?: string;
   label?: string;
@@ -16,9 +16,8 @@ export interface WithFieldProps {
   _formGroupProps?: object;
 }
 
-
 const withField = <T extends WithFieldProps = WithFieldProps>(ChildComponent: React.FC<T>) => {
-  const Component = (props: WithFieldProps | T) => {
+  function Component(props: WithFieldProps | T) {
     const {
       id,
       name,
@@ -35,14 +34,15 @@ const withField = <T extends WithFieldProps = WithFieldProps>(ChildComponent: Re
       ...rest
     } = props;
 
-    const nameSanitized = (name || "").split(" ").join("-");
+    const nameSanitized = (name || '').split(' ').join('-');
     const fieldId = id || `field--${nameSanitized}`;
+    const labelValue = label || '';
 
     const fieldProps = {
       name,
       required,
       id: fieldId,
-      label: label,
+      label: labelValue,
       ...rest,
     };
 
@@ -59,7 +59,7 @@ const withField = <T extends WithFieldProps = WithFieldProps>(ChildComponent: Re
       withFormGroup,
     };
     return <ChildComponent {...(fieldProps as T)} _formGroupProps={formGroupProps} />;
-  };
+  }
 
   return Component;
 };

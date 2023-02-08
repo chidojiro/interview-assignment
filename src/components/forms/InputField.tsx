@@ -1,9 +1,9 @@
 import React from 'react';
 
-import withField from '../../hoc/withField';
+import withField, { WithFieldProps } from '../../hoc/withField';
 import FormGroup from '../form-group/FormGroup';
 
-interface InputField extends WithFieldProps {
+interface InputFieldProps extends WithFieldProps {
   name: string;
   type: string;
   disabled?: boolean;
@@ -15,18 +15,18 @@ interface InputField extends WithFieldProps {
  * A field to enter data in a pre defined format. See [here](https://randstad.design/components/core/forms/input-field/)
  *
  * ---
- * *Every other passed props will be added to `<input>`. Like "data-attribute" and "aria-label"*
+ * *Every other passed props will get added to `<input>`. Like "data-attribute" and "aria-label"*
  *
- * **Wrapped with `FormGroup` component and support all of its props.**
+ * **Wrapped with `FormGroup` component and supports all the props from it.**
  */
 
-const InputField: React.FC<InputField> = ({
+function InputField({
   type = 'text',
   disabled,
   placeholder,
   _formGroupProps,
   ...props
-}: InputField) => {
+}: InputFieldProps): React.ReactElement {
   const otherFieldProps = {
     type,
     ...(disabled && { readonly: 'readonly' }),
@@ -39,6 +39,6 @@ const InputField: React.FC<InputField> = ({
       <input {...otherFieldProps} />
     </FormGroup>
   );
-};
+}
 
 export default withField(InputField);
