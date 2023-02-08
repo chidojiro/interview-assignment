@@ -35,6 +35,7 @@ import ConfirmationModal from './components/overlays/ConfirmationModal';
 // import Autosuggest from "./components/forms/Autosuggest";
 // import Stackable from "./components/form-group/Stackable";
 // import FormGroup from "./components/form-group/FormGroup";
+import FooterSocials from './components/footer/FooterSocials';
 
 export {
   PasswordField,
@@ -71,4 +72,5 @@ export {
   // UtilityNavigation,
   // Stackable,
   // FormGroup,
+  FooterSocials,
 };

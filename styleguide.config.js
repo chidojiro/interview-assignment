@@ -61,6 +61,7 @@ module.exports = {
       name: 'Shared components',
       components: [
         'src/components/headers/**/*.tsx',
+        'src/components/footer/**/*.tsx',
         'src/components/Badge.tsx',
         'src/components/button/Button.tsx',
         'src/components/notice/Notice.tsx',
