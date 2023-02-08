@@ -1,7 +1,7 @@
 import React from 'react';
 import cn from 'classnames';
-import Label from '../form-group/Label';
-import FieldError from '../form-group/FieldError/FieldError';
+import Label from './Label';
+import FieldError from './FieldError/FieldError';
 
 interface FormGroupProps {
   formGroupClass?: string;
@@ -21,7 +21,7 @@ interface FormGroupProps {
   required?: boolean;
   /** @ignore Overide the default label component. Not available for public use. */
   _overrideLabel?: JSX.Element;
-  /** @ignore Used only to pass required classes for the field on setup. Not available for public use. */
+  /** @ignore Used to pass required classes for the field on setup. Not available for public use. */
   _configClasses?: string;
   /** @ignore Does not wrap field with 'form-group__input' div. Use for specific cases on field setup. Not available for public use. */
   _withoutWrapper?: boolean;
