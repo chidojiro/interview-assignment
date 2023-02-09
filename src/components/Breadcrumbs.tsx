@@ -3,11 +3,11 @@ import { BgColor, getBackground } from '../utils/getBackground';
 
 interface BreadcrumbsProps extends BgColor {
   /** `active` used to highlight the item */
-  items?: [{
+  items?: {
     title: string,
     url: string,
     active?: boolean,
-  }] | [],
+  }[] | [],
   mobileItem?: {
     title: string,
     url: string
