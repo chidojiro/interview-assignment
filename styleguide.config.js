@@ -48,10 +48,7 @@ module.exports = {
   },
 
   propsParser: withCustomConfig('./tsconfig.json', {
-    componentNameResolver: (_, source) => {
-      const defaultName = getDefaultExportForFile(source);
-      return defaultName.replace(/[A-Z]/g, (letter) => ` ${letter}`).trim();
-    },
+    componentNameResolver: (_, source) => getDefaultExportForFile(source).trim(),
     shouldRemoveUndefinedFromOptional: true,
     shouldExtractLiteralValuesFromEnum: true,
   }).parse,
@@ -75,7 +72,10 @@ module.exports = {
     {
       name: 'Navigation',
       // components: 'src/components/navigation/**/*.tsx',
-      components: ['src/components/navigation/TabBar.tsx'],
+      components: [
+        'src/components/navigation/TabBar.tsx',
+        'src/components/navigation/FooterBottomNav.tsx',
+      ],
       description: 'Navigation components used across the applications.',
     },
     {
