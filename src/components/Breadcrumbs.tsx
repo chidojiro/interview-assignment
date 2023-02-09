@@ -1,8 +1,8 @@
-import React from "react";
-import { BgColor, getBackground } from "../utils/getBackground";
+import React from 'react';
+import { BgColor, getBackground } from '../utils/getBackground';
 
-interface Breadcrumbs extends BgColor {
-  /** `active` is used to highlight the item */
+interface BreadcrumbsProps extends BgColor {
+  /** `active` used to highlight the item */
   items?: [{
     title: string,
     url: string,
@@ -12,7 +12,7 @@ interface Breadcrumbs extends BgColor {
     title: string,
     url: string
   },
-  /** This property is used for adding specific class `navigation--app` only for the apps. Since the navigation markup there is different from Orbit. */
+  /** This property used for adding specific class `navigation--app` for the apps. Since the navigation markup there is different from Orbit. */
   app?: boolean
 }
 
@@ -20,14 +20,16 @@ interface Breadcrumbs extends BgColor {
  * The top-level navigation of the website and shown on each page. See [here](https://randstad.design/components/core/navigation/)
  *
  */
-const Breadcrumbs = ({ items = [], mobileItem, bgColor = "primary", app = true }: Breadcrumbs) => {
+function Breadcrumbs({
+  items = [], mobileItem, bgColor = 'primary', app = true,
+}: BreadcrumbsProps) {
   const { title: mobileTitle, url: mobileUrl } = mobileItem || {};
-  const wrapperClasses = ["navigation"];
-  const WrapperTag = bgColor ? "div" : React.Fragment;
-  let wrapperAttributes: { className?: string } = {};
+  const wrapperClasses = ['navigation'];
+  const WrapperTag = bgColor ? 'div' : React.Fragment;
+  const wrapperAttributes: { className?: string } = {};
 
   if (app) {
-    wrapperClasses.push("navigation--app");
+    wrapperClasses.push('navigation--app');
   }
 
   if (bgColor) {
@@ -36,7 +38,7 @@ const Breadcrumbs = ({ items = [], mobileItem, bgColor = "primary", app = true }
 
   return (
     <WrapperTag {...wrapperAttributes}>
-      <div className={wrapperClasses.join(" ")}>
+      <div className={wrapperClasses.join(' ')}>
         <div className="wrapper">
           <div className="navigation__bottom">
             <nav className="breadcrumb" aria-label="breadcrumb">
@@ -46,8 +48,8 @@ const Breadcrumbs = ({ items = [], mobileItem, bgColor = "primary", app = true }
                 </a>
               )}
               <ul className="breadcrumb__list hidden--until-l">
-                {items.map(({ title, url, active }, index) => (
-                  <li className="breadcrumb__item" key={index}>
+                {items.map(({ title, url, active }) => (
+                  <li className="breadcrumb__item" key={`breadcrumb-${title}`}>
                     {url && !active ? (
                       <a href={url} className="breadcrumb__link">
                         {title}
@@ -64,6 +66,6 @@ const Breadcrumbs = ({ items = [], mobileItem, bgColor = "primary", app = true }
       </div>
     </WrapperTag>
   );
-};
+}
 
 export default Breadcrumbs;
