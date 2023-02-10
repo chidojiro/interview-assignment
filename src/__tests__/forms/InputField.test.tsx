@@ -26,4 +26,10 @@ describe('InputField component tests', () => {
     const inputElement = container.querySelector(`input[type="placeholder"]`);
     waitFor(() => expect(inputElement).toHaveAttribute('placeholder', 'TestPlaceholder'));
   });
+
+  test.only('InputField renders correctly with a value', () => {
+    const { container } = render(<InputField name="testValue" type="text" value="InputTestValue" onChange={ () => {} } />);
+    const inputElement = container.querySelector(`input[name="testValue"]`);
+    waitFor(() => expect(inputElement).toHaveValue('InputTestValue'));
+  });
 });
