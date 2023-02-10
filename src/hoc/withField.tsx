@@ -12,6 +12,7 @@ export interface WithFieldProps {
   capitalize?: boolean;
   formGroupLabel?: string;
   label?: string;
+  value?: string | boolean | number;
   withFormGroup?: boolean;
   _formGroupProps?: object;
 }
