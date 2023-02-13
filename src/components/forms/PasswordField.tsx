@@ -1,12 +1,12 @@
 import React from 'react';
 
-import withField from '../../hoc/withField';
+import withField, { WithFieldProps } from '../../hoc/withField';
 import useLibrary from '../../hooks/useLibrary';
 import FormGroup from '../form-group/FormGroup';
 import Label from '../form-group/Label';
 import Svg from '../base/Svg';
 
-interface PasswordFieldProps {
+interface PasswordFieldProps extends Partial<Pick<WithFieldProps, 'onBlur' | 'onChange'>> {
   name: string;
   minChars?: number;
   /** All supported validators.
