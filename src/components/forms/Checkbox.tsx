@@ -5,6 +5,7 @@ import FormGroup from '../form-group/FormGroup';
 import withField, { WithFieldProps } from '../../hoc/withField';
 
 interface CheckboxProps extends WithFieldProps {
+  checked?: boolean | undefined;
   checkboxLabel: React.ReactElement | string;
   /** @ignore part of HTML props */
   disabled?: boolean;
@@ -22,6 +23,7 @@ interface CheckboxProps extends WithFieldProps {
  */
 function Checkbox({
   id,
+  checked = false,
   checkboxLabel,
   disabled,
   _formGroupProps,
@@ -39,7 +41,7 @@ function Checkbox({
         })}
       >
         <span className="selection-control__input">
-          <input id={id} type="checkbox" {...props} />
+          <input id={id} type="checkbox" checked={checked} {...props} />
           <span className="icon selection-control__control" aria-hidden="true">
             <svg viewBox="0 0 16 16">
               <polyline points="2.1,8.5 6.2,12.4 13.9,5.1" />
