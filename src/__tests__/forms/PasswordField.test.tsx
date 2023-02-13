@@ -1,10 +1,10 @@
 import React from 'react';
-import { render, fireEvent, cleanup } from '@testing-library/react';
+import { render, cleanup } from '@testing-library/react';
 import PasswordField from '../../components/forms/PasswordField';
 
 afterEach(cleanup);
 
-const forgottenPasswordLink = <a href='/forgotten-password'>Forgotten password</a>;
+const forgottenPasswordLink = <a href="/forgotten-password">Forgotten password</a>;
 
 const props = {
   name: 'password',
@@ -33,7 +33,7 @@ describe('PasswordField component tests', () => {
       <PasswordField {...props} />
     );
 
-    const forgottenPasswordLink = getByText('Forgotten password');
+    const forgottenPasswordText = getByText('Forgotten password');
     const input = container.querySelector('[type=\'password\']');
     const checkList = container.querySelector('[data-rs-password-validator-checklist]');
     const minSign = getByText('8 characters');
@@ -43,7 +43,7 @@ describe('PasswordField component tests', () => {
     const noSymbol = getByText('No symbols');
     const showPasswordBtn = container.querySelector('.show-password') as HTMLButtonElement;
 
-    expect(forgottenPasswordLink).toBeInTheDocument();
+    expect(forgottenPasswordText).toBeInTheDocument();
     expect(input).toBeInTheDocument();
     expect(checkList).toBeInTheDocument();
     expect(minSign).toBeInTheDocument();
@@ -57,7 +57,7 @@ describe('PasswordField component tests', () => {
 
   test('renders the component with default props', () => {
     const { container, getByText } = render(
-      <PasswordField {...props} />
+      <PasswordField {...props} />,
     );
 
     const checkList = container.querySelector('.password-validator__validate-list');

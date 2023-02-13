@@ -1,11 +1,11 @@
-import React from "react";
-import cn from "classnames";
+import React from 'react';
+import cn from 'classnames';
 
-import withField from "../../hoc/withField";
-import useLibrary from "../../hooks/useLibrary";
-import FormGroup from "../form-group/FormGroup";
+import withField from '../../hoc/withField';
+import useLibrary from '../../hooks/useLibrary';
+import FormGroup from '../form-group/FormGroup';
 
-interface SelectField {
+interface SelectFieldProps {
   /** Rendered Select Options */
   children: React.ReactNode,
   /** @ignore Part of input HTML props. */
@@ -25,26 +25,29 @@ interface SelectField {
  *
  * **Wrapped with `FormGroup` component and support all of its props.**
  */
-const SelectField = ({ children, className, libs, _formGroupProps, ...props }: SelectField) => {
-  const [ref]: any = useLibrary(libs);
+function SelectField({
+  children, className, libs, _formGroupProps, ...props
+}: SelectFieldProps) {
+  const [ref] = useLibrary(libs);
 
   return (
     <FormGroup {..._formGroupProps}>
       <select
-        className={cn("untouched", className)}
+        className={cn('untouched', className)}
         data-rs-untouched=""
         data-scl=""
-        ref={ref}
-        {...props}>
+        ref={ref as React.RefObject<HTMLSelectElement>}
+        {...props}
+      >
         {children}
       </select>
       <span className="select-arrow icon">
         <svg>
-          <use xlinkHref="/themes/custom/bluex/dist/assets/image/icons.svg#chevron-down"></use>
+          <use xlinkHref="/themes/custom/bluex/dist/assets/image/icons.svg#chevron-down" />
         </svg>
       </span>
     </FormGroup>
   );
-};
+}
 
 export default withField(SelectField);
