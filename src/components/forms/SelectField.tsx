@@ -43,7 +43,7 @@ function SelectField({
       </select>
       <span className="select-arrow icon">
         <svg>
-          <use xlinkHref="/themes/custom/bluex/dist/assets/image/icons.svg#chevron-down" />
+          <use xlinkHref="/src/assets/img/icons.svg#chevron-down"></use>
         </svg>
       </span>
     </FormGroup>

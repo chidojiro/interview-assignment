@@ -23,7 +23,7 @@ const Toast = ({ children, anchor, id, buttonLabel = "close" }: Toast) => {
       <button className="button--icon-only" data-rs-closable={`data-rs-toast-${id}`}>
         <span className="icon fill--dark-blue-50">
           <svg>
-            <use xlinkHref="/themes/custom/bluex/dist/assets/image/icons.svg#close"></use>
+            <use xlinkHref="/src/assets/img/icons.svg#close"></use>
           </svg>
         </span>
         <span className="hidden--visually">{buttonLabel}</span>
