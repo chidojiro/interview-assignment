@@ -40,7 +40,7 @@ const SelectField = ({ children, className, libs, _formGroupProps, ...props }: S
       </select>
       <span className="select-arrow icon">
         <svg>
-          <use xlinkHref="/themes/custom/bluex/dist/assets/image/icons.svg#chevron-down"></use>
+          <use xlinkHref="/src/assets/img/icons.svg#chevron-down"></use>
         </svg>
       </span>
     </FormGroup>

@@ -7,7 +7,7 @@ interface Svg {
 const Svg = ({ icon }: Svg) => {
   return (
     <svg>
-      <use xlinkHref={`/themes/custom/bluex/dist/assets/image/icons.svg#${icon}`}></use>
+      <use xlinkHref={`/src/assets/img/icons.svg#${icon}`}></use>
     </svg>
   );
 };

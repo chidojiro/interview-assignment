@@ -27,7 +27,7 @@ describe('Notice component tests', () => {
       expect(noticeIconElement)
         .toHaveAttribute(
           'xlink:href',
-          `/themes/custom/bluex/dist/assets/image/icons.svg#${expectedIcon}`,
+          `/src/assets/img/icons.svg#${expectedIcon}`,
         );
     });
   }

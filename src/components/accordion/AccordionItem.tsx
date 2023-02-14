@@ -43,12 +43,12 @@ const AccordionItem = ({
           {subtitle && <p className="text--alternative pt-xs mb-none">{subtitle}</p>}
           <span className="hidden--from-l toggle-arrow icon">
             <svg>
-              <use xlinkHref="/themes/custom/bluex/dist/assets/image/icons.svg#chevron-down"></use>
+              <use xlinkHref="/src/assets/img/icons.svg#chevron-down"></use>
             </svg>
           </span>
           <span className="hidden--until-l toggle-arrow icon icon--l">
             <svg>
-              <use xlinkHref="/themes/custom/bluex/dist/assets/image/icons.svg#chevron-down-30"></use>
+              <use xlinkHref="/src/assets/img/icons.svg#chevron-down-30"></use>
             </svg>
           </span>
         </HeadingTag>

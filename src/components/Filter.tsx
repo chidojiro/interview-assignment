@@ -64,7 +64,7 @@ const Filter = ({
       <div className="filter__toggle" data-rs-filter-refine-search="" role="button" aria-label="">
         <span className="icon icon--inline hidden--from-l text-brand-primary">
           <svg>
-            <use xlinkHref="/themes/custom/bluex/dist/assets/image/icons.svg#filter"></use>
+            <use xlinkHref="/src/assets/img/icons.svg#filter"></use>
           </svg>
         </span>
         <span>{title}</span>
@@ -74,7 +74,7 @@ const Filter = ({
           <span className="filter__title">{mobileTitle}</span>
           <span className="icon icon--inline">
             <svg data-rs-filter-close="" ref={closeButtonRef}>
-              <use xlinkHref="/themes/custom/bluex/dist/assets/image/icons.svg#close"></use>
+              <use xlinkHref="/src/assets/img/icons.svg#close"></use>
             </svg>
           </span>
         </div>
