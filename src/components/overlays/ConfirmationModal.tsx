@@ -95,47 +95,47 @@ function ConfirmationModal({
   }, [modalClose]);
 
   return (
-    <ModalStyle className='modal modal--active' data-rs-modal='modal' onClick={(event: React.MouseEvent<HTMLDivElement>) => modalClose(event)}>
+    <ModalStyle className="modal modal--active" data-rs-modal="modal" onClick={(event: React.MouseEvent<HTMLDivElement>) => modalClose(event)}>
       {/* Tag <div> needed here according to the Orbit */}
       {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions */}
       <div
         onClick={(event: React.MouseEvent<HTMLDivElement>) => onClickHandler(event)}
-        className='modal__dialog bg-variant-brand-tertiary'
-        role='dialog'
-        aria-modal='true'
-        aria-labelledby='#'
-        data-rs-modal-dialog=''
+        className="modal__dialog bg-variant-brand-tertiary"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="#"
+        data-rs-modal-dialog=""
       >
-        <div className='modal__header' data-rs-modal-header=''>
-          <div className='modal__title'>{title}</div>
+        <div className="modal__header" data-rs-modal-header="">
+          <div className="modal__title">{title}</div>
           <button
-            className='button--icon-only modal__close'
-            data-rs-modal-close-trigger=''
+            className="button--icon-only modal__close"
+            data-rs-modal-close-trigger=""
             aria-label={ariaLabelClose}
-            type='button'
+            type="button"
             onClick={(event: CloseEvents) => modalClose(event)}
           >
-            <Icon iconClassName={classNames('icon icon--inline hidden--from-l icon--alternative')} iconType='close' />
-            <Icon iconClassName={classNames('icon icon--l icon--inline hidden--until-l icon--alternative')} iconType='close-30' />
+            <Icon iconClassName={classNames('icon icon--inline hidden--from-l icon--alternative')} iconType="close" />
+            <Icon iconClassName={classNames('icon icon--l icon--inline hidden--until-l icon--alternative')} iconType="close-30" />
           </button>
         </div>
-        <div className='modal__main' data-rs-modal-main=''>
-          <p className='form__header'>{content}</p>
+        <div className="modal__main" data-rs-modal-main="">
+          <p className="form__header">{content}</p>
         </div>
-        <div className='modal__footer divider' data-rs-modal-footer=''>
-          <div className='button-group button-group--full-width hidden--from-l'>
-            <Button href='#' variant='filled' fullWidth handleClick={onSubmit}>
+        <div className="modal__footer divider" data-rs-modal-footer="">
+          <div className="button-group button-group--full-width hidden--from-l">
+            <Button href="#" variant="filled" fullWidth handleClick={onSubmit}>
               {confirmButtonText}
             </Button>
-            <Button href='#' variant='plain' fullWidth handleClick={(event: CloseEvents) => modalClose(event)}>
+            <Button href="#" variant="plain" fullWidth handleClick={(event: CloseEvents) => modalClose(event)}>
               {confirmButtonText}
             </Button>
           </div>
-          <div className='button-group hidden--until-l button-group--options'>
-            <Button href='#' variant='filled' handleClick={onSubmit}>
+          <div className="button-group hidden--until-l button-group--options">
+            <Button href="#" variant="filled" handleClick={onSubmit}>
               {confirmButtonText}
             </Button>
-            <Button href='#' variant='plain' handleClick={(event: CloseEvents) => modalClose(event)}>
+            <Button href="#" variant="plain" handleClick={(event: CloseEvents) => modalClose(event)}>
               {cancelButtonText}
             </Button>
           </div>

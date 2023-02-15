@@ -6,13 +6,13 @@ describe('TabBar component', () => {
   afterEach(cleanup);
   const items = [
     {
-      text: 'Home',
-      href: '/',
+      title: 'Home',
+      url: '/',
       icon: 'home'
     },
     {
-      text: 'About',
-      href: '/about',
+      title: 'About',
+      url: '/about',
       icon: 'about'
     }
   ];

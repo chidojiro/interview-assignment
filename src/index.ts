@@ -4,9 +4,16 @@ import Block from './components/Block';
 import FormGroup from './components/form-group/FormGroup';
 import HeaderTitle from './components/headers/HeaderTitle/HeaderTitle';
 import HeaderText from './components/headers/HeaderText';
-import LanguageSwitcher from './components/headers/LanguageSwitcher/LanguageSwitcher';
+import LanguageSwitcher from './components/navigation/LanguageSwitcher';
 import Breadcrumbs from './components/Breadcrumbs';
 import ServiceLinks from './components/headers/ServiceLinks/ServiceLinks';
+import Logo from './components/navigation/Logo';
+import MainMenu from './components/navigation/MainMenu';
+import MyRandstad from './components/navigation/MyRandstad';
+import UtilityNavigation from './components/navigation/UtilityNavigation';
+import SubMenu from './components/navigation/Submenu';
+import MobileNavigation from './components/navigation/MobileNavigation';
+import Modal from './components/navigation/Modal';
 // import InputField from "./components/forms/InputField";
 // import LocationInputField from "./components/forms/LocationInputField";
 // import RadioButton from "./components/forms/RadioButton";
@@ -48,6 +55,13 @@ export {
   LanguageSwitcher,
   Breadcrumbs,
   ServiceLinks,
+  Logo,
+  MainMenu,
+  MyRandstad,
+  UtilityNavigation,
+  SubMenu,
+  MobileNavigation,
+  Modal,
   // LocationInputField,
   // RadioButton,
   // TextArea,

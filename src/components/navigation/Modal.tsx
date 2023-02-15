@@ -1,20 +1,17 @@
-import React from "react";
-import { Theme } from "./types";
-import { getBackground } from "../../utils/getBackground";
+import React from 'react';
+import { getBackground } from '../../utils/getBackground';
+import useOrbitComponent from '../../hooks/useOrbitComponent';
 
-interface Modal extends Theme {
+interface ModalProps {
   children: React.ReactNode
 }
 
-const Modal = ({ theme, children }: Modal) => {
-  let modalBackground = getBackground("tertiary");
-
-  if (theme == "sph") {
-    modalBackground = "bg-brand--light-grey";
-  }
+function Modal({ children }: ModalProps) {
+  const modalBackground = getBackground('tertiary');
+  const [ref] = useOrbitComponent('navigation');
 
   return (
-    <div className="modal modal--navigation hidden--from-l" data-rs-navigation="true">
+    <div ref={ref} className="modal modal--navigation hidden--from-l" data-rs-navigation="true">
       <div className={`modal__dialog ${modalBackground}`}>
         <div className="modal__header" data-rs-navigation-modal-header="true"></div>
         <div className="modal__main" data-rs-navigation-modal-main="true">
@@ -23,6 +20,6 @@ const Modal = ({ theme, children }: Modal) => {
       </div>
     </div>
   );
-};
+}
 
 export default Modal;
