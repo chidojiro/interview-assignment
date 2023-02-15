@@ -88,7 +88,7 @@ const Navigation = ({
           <Submenu items={mainMenu} />
         </div>
       </nav>
-      <Modal theme={theme}>
+      <Modal>
         <nav className="navigation-accordion">
           <MobileNavigation
             items={mainMenu}
