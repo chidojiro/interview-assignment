@@ -21,14 +21,14 @@ function Icon({
     return (
       <span className={iconClassName} {...rest}>
         <svg {...svgProps}>
-          <use xlinkHref={`/src/assets/image/icons.svg#${iconType}`} />
+          <use xlinkHref={`/src/assets/img/icons.svg#${iconType}`} />
         </svg>
       </span>
     );
   }
   return (
     <svg {...svgProps}>
-      <use xlinkHref={`/src/assets/image/icons.svg#${iconType}`} />
+      <use xlinkHref={`/src/assets/img/icons.svg#${iconType}`} />
     </svg>
   );
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 interface Items {
   language: string,
@@ -11,13 +11,13 @@ export interface LanguageSwitcherProps {
   extraClasses?: string
 }
 
-const LanguageSwitcher = ({ items, extraClasses }: LanguageSwitcherProps) => {
+function LanguageSwitcher({ items, extraClasses }: LanguageSwitcherProps) {
   if (!items || (items && items.length < 2)) {
     return null;
   }
 
   return (
-    <ul className={`top-link language-switcher ${extraClasses ? extraClasses : ""}`}>
+    <ul className={`top-link language-switcher ${extraClasses || ''}`}>
       {items.map((lang) => (
         <li key={lang.language} className="top-link__item">
           {!lang.isActive ? (
@@ -31,6 +31,6 @@ const LanguageSwitcher = ({ items, extraClasses }: LanguageSwitcherProps) => {
       ))}
     </ul>
   );
-};
+}
 
 export default LanguageSwitcher;

@@ -1,6 +1,6 @@
 import React, { useEffect, useCallback } from 'react';
 import classNames from 'classnames';
-import styles, { keyframes } from 'styled-components';
+// import styles, { keyframes } from 'styled-components';
 import Icon from '../Icon';
 import Button from '../button/Button';
 
@@ -15,53 +15,53 @@ interface ConfirmationModalProps {
   onSubmit?: (event: React.MouseEvent) => void;
 }
 
-const popupEnter = keyframes`
-  0% { opacity: 0; }
-  100% { opacity: 1; }
-`;
-
-const popupEnterExit = keyframes`
-  0% { opacity: 1; }
-  100% { opacity: 0; }
-`;
-
-const popupEnterDone = keyframes`
-  0% { transform: translateY(10%) }
-  100% { transform: none; }
-`;
-
-const popupEnterDoneExit = keyframes`
-  0% { transform: none; }
-  100% { transform: translateY(10%) }
-`;
-
-const styleProps = `
-    animation-duration: 0.3s;
-    animation-timing-function: ease;
-`;
-
-const ModalStyle = styles.div`
-  & {
-    animation-name: ${popupEnter};
-    ${styleProps}
-  }
-
-  & .modal__dialog {
-    animation-name: ${popupEnterDone};
-    ${styleProps}
-  }
-
-  &.modal-exit {
-    animation-name: ${popupEnterExit};
-    ${styleProps}
-  }
-
-  &.modal-exit .modal__dialog {
-    animation-name: ${popupEnterDoneExit};
-    ${styleProps}
-  }
-
-`;
+// const popupEnter = keyframes`
+//   0% { opacity: 0; }
+//   100% { opacity: 1; }
+// `;
+//
+// const popupEnterExit = keyframes`
+//   0% { opacity: 1; }
+//   100% { opacity: 0; }
+// `;
+//
+// const popupEnterDone = keyframes`
+//   0% { transform: translateY(10%) }
+//   100% { transform: none; }
+// `;
+//
+// const popupEnterDoneExit = keyframes`
+//   0% { transform: none; }
+//   100% { transform: translateY(10%) }
+// `;
+//
+// const styleProps = `
+//     animation-duration: 0.3s;
+//     animation-timing-function: ease;
+// `;
+//
+// const ModalStyle = styles.div`
+//   & {
+//     animation-name: ${popupEnter};
+//     ${styleProps}
+//   }
+//
+//   & .modal__dialog {
+//     animation-name: ${popupEnterDone};
+//     ${styleProps}
+//   }
+//
+//   &.modal-exit {
+//     animation-name: ${popupEnterExit};
+//     ${styleProps}
+//   }
+//
+//   &.modal-exit .modal__dialog {
+//     animation-name: ${popupEnterDoneExit};
+//     ${styleProps}
+//   }
+//
+// `;
 
 function ConfirmationModal({
   title = 'are you sure?',
@@ -95,7 +95,7 @@ function ConfirmationModal({
   }, [modalClose]);
 
   return (
-    <ModalStyle className='modal modal--active' data-rs-modal='modal' onClick={(event: React.MouseEvent<HTMLDivElement>) => modalClose(event)}>
+    <React.Fragment>
       {/* Tag <div> needed here according to the Orbit */}
       {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions */}
       <div
@@ -141,7 +141,7 @@ function ConfirmationModal({
           </div>
         </div>
       </div>
-    </ModalStyle>
+    </React.Fragment>
   );
 }
 
