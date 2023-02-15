@@ -15,7 +15,7 @@ describe('Service Links tests', () => {
       },
     ]}
     />);
-    const ServiceLinksElement = container.querySelector('.navigation__link-bar ');
+    const ServiceLinksElement = container.querySelector('.top-link ');
     expect(ServiceLinksElement)
       .toBeInTheDocument();
   });
