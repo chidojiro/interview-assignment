@@ -1,5 +1,4 @@
-import React from 'react';
-import { Library } from '../../hooks/useLibrary';
+import React from 'react';;
 import Icon from '../Icon';
 import useOrbitComponent from '../../hooks/useOrbitComponent';
 
@@ -9,7 +8,7 @@ type TabBarItem = {
   icon: string;
 };
 
-interface TabBarProps extends Library {
+interface TabBarProps {
   items: Array<TabBarItem>;
   RouterComponent?: React.FC<any>;
 }
