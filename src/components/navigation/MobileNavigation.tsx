@@ -1,7 +1,8 @@
 import React, { useEffect, useRef } from 'react';
-import { Collapsible } from '@ffw/randstad-local-orbit/js/components/collapsible';
-import { Toggable } from '@ffw/randstad-local-orbit/js/components/toggable';
 import { Items } from './types';
+
+const { Collapsible } = require('@ffw/randstad-local-orbit/js/components/collapsible');
+const { Toggable } = require('@ffw/randstad-local-orbit/js/components/toggable');
 
 export interface MobileNavigationProps {
   items?: Items[],
