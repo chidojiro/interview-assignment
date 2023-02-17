@@ -13,7 +13,8 @@
     "character-count",
     "auto-resize",
     "text-area",
-    "tab-bar"
+    "tab-bar",
+    "switch"
   ],
   "devDependencies": {
     "@babel/core": "^7.13.8",

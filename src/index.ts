@@ -1,5 +1,6 @@
 import PasswordField from './components/forms/PasswordField';
 import Checkbox from './components/forms/Checkbox';
+import Toggle from './components/forms/Toggle';
 import Block from './components/Block';
 import FormGroup from './components/form-group/FormGroup';
 import HeaderTitle from './components/headers/HeaderTitle/HeaderTitle';
@@ -48,6 +49,7 @@ import FooterSocials from './components/footer/FooterSocials';
 export {
   PasswordField,
   Checkbox,
+  Toggle,
   Block,
   FormGroup,
   HeaderTitle,
