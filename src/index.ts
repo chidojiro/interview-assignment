@@ -24,7 +24,7 @@ import Button from './components/button/Button';
 import Badge from './components/Badge';
 import Icon from './components/Icon';
 import FieldError from './components/form-group/FieldError/FieldError';
-import Notice from './components/notice/Notice';
+import { Notice, NoticeType } from './components/notice/Notice';
 import SelectField from './components/forms/SelectField';
 import TabBar from './components/navigation/TabBar';
 import FooterBottomNav from './components/navigation/FooterBottomNav';
@@ -70,6 +70,7 @@ export {
   Icon,
   FieldError,
   Notice,
+  NoticeType,
   SelectField,
   InputField,
   TabBar,
