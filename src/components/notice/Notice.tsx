@@ -44,4 +44,4 @@ function Notice({
   );
 }
 
-export default Notice;
+export { Notice, NoticeType };
