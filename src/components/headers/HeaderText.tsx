@@ -1,11 +1,11 @@
-import React from "react";
-import { BgColor, getBackground } from "../../utils/getBackground";
+import React from 'react';
+import { BgColor, getBackground } from '../../utils/getBackground';
 
 interface Header extends BgColor {
   /** @deprecated use `bgColor` instead. */
   variation?: BgColor['bgColor'],
-  titleTop: string,
-  titleBottom?: string,
+  titleTop: string | React.ReactNode,
+  titleBottom?: string | React.ReactNode,
   /** Used for header description. */
   children?: React.ReactNode,
   cta?: {
@@ -18,7 +18,7 @@ interface Header extends BgColor {
 /**
  * A header which only consists out of text. See [here](https://randstad.design/components/examples/headers/text/)
  */
-const HeaderText = ({
+function HeaderText({
   variation,
   bgColor: bgColorProp,
   titleTop,
@@ -26,22 +26,22 @@ const HeaderText = ({
   children: text,
   cta,
   classes = [],
-}: Header) => {
-  const headerClasses = ["header", "header--text", ...classes];
+}: Header) {
+  const headerClasses = ['header', 'header--text', ...classes];
   let bgColorTemp = bgColorProp;
 
   // Depending on the variation.
   if (variation) {
     bgColorTemp = variation;
-    console.warn("Header text: variation prop is deprecated, use bgColor instead");
+    console.warn('Header text: variation prop is deprecated, use bgColor instead');
   }
 
-  const bgColor = getBackground(bgColorTemp ? bgColorTemp : "dark-blue");
+  const bgColor = getBackground(bgColorTemp || 'dark-blue');
 
   if (bgColor) headerClasses.push(bgColor);
 
   return (
-    <header className={headerClasses.join(" ")}>
+    <header className={headerClasses.join(' ')}>
       <div className="header__wrapper wrapper">
         <div className="header__content header__content--full-width content-block">
           <h1 className="content-block__title">
@@ -66,6 +66,6 @@ const HeaderText = ({
       </div>
     </header>
   );
-};
+}
 
 export default HeaderText;
