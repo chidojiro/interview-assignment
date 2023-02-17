@@ -41,7 +41,7 @@ function HeaderText({
   if (bgColor) headerClasses.push(bgColor);
 
   return (
-    <header className={headerClasses.join(' ')}>
+    <div className={headerClasses.join(' ')}>
       <div className="header__wrapper wrapper">
         <div className="header__content header__content--full-width content-block">
           <h1 className="content-block__title">
@@ -64,7 +64,7 @@ function HeaderText({
           )}
         </div>
       </div>
-    </header>
+    </div>
   );
 }
 
