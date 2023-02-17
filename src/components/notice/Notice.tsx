@@ -1,7 +1,7 @@
 import React from 'react';
 import Icon from '../Icon';
 
-type NoticeType = 'negative' | 'informative' | 'positive' | 'warning' | 'subtle';
+export type NoticeType = 'negative' | 'informative' | 'positive' | 'warning' | 'subtle';
 
 interface NoticeProps {
   children: string | JSX.Element;
@@ -44,4 +44,4 @@ function Notice({
   );
 }
 
-export { Notice, NoticeType };
+export { Notice };
