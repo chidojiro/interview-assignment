@@ -70,7 +70,6 @@ export {
   Icon,
   FieldError,
   Notice,
-  NoticeType,
   SelectField,
   InputField,
   TabBar,
@@ -91,3 +90,5 @@ export {
   // FormGroup,
   FooterSocials,
 };
+
+export type { NoticeType };
