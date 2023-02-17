@@ -1,22 +1,20 @@
 Light Toggle
 
 ```jsx
-import { Notice } from "@ffw/randstad-shared-components";
+import { Toggle } from "@ffw/randstad-shared-components";
 
 <Toggle
-    name="marketing"
-    type="light"
-    toggled={true}
+  name="marketing"
 />
 ```
 
 Dark Toggle
 
 ```jsx
-import { Notice } from "@ffw/randstad-shared-components";
+import { Toggle } from "@ffw/randstad-shared-components";
 
-<Toggle
-    name="marketing"
-    type="dark"
+<Toggle 
+  name="marketing2"
+  type="dark"
 />
 ```

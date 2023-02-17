@@ -1,41 +1,28 @@
-import React, { useState } from 'react';
-
-import FormGroup from '../form-group/FormGroup';
+import React from 'react';
 import withField, { WithFieldProps } from '../../hoc/withField';
 
 type ToggleType = 'light' | 'dark';
 
 interface ToggleProps extends WithFieldProps {
   /** @ignore part of HTML props */
+  name: string,
   type?: ToggleType;
-  toggled?: boolean | undefined;
-  /** @ignore Private props from HOC for easy setup. */
-  _formGroupProps?: object;
 }
 
 function Toggle({
-  id,
-  type = 'light',
-  toggled = false,
-  _formGroupProps,
-  ...props
+  name,
+  type = 'light' as ToggleType,
 }: ToggleProps) {
-
   return (
-    <FormGroup
-      {..._formGroupProps}
-      _configClasses="form-group--selection-control"
-    >
-      <div role="switch" aria-checked={toggled} className={`switch__${type}`} data-rs-switch="">
-        <span className="switch switch__light">
-          <span className="icon">
-            <svg className="checkmark">
-              <use xlinkHref="/themes/custom/bluex/dist/assets/image/icons.svg#check-16"></use>
-            </svg>
-          </span>
+    <div role="switch" aria-checked={false} className={`switch__${type}`} data-rs-switch={name}>
+      <span className={`switch switch__${type}`}>
+        <span className="icon">
+          <svg className="checkmark">
+            <use xlinkHref="/themes/custom/bluex/dist/assets/image/icons.svg#check-16" />
+          </svg>
         </span>
-      </div>
-    </FormGroup>
+      </span>
+    </div>
   );
 }
 
