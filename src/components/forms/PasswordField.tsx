@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
+import { PasswordVisibility } from '@ffw/randstad-local-orbit/original/js/components/password-visibility';
+import { PasswordValidator } from '@ffw/randstad-local-orbit/original/js/components/password-validator';
 import withField, { WithFieldProps } from '../../hoc/withField';
-import useLibrary from '../../hooks/useLibrary';
 import FormGroup from '../form-group/FormGroup';
 import Label from '../form-group/Label';
 import Svg from '../base/Svg';
@@ -24,6 +25,7 @@ interface PasswordFieldProps extends Partial<Pick<WithFieldProps, 'onBlur' | 'on
     noSymbol: string;
   };
   hideValidationList?: boolean;
+  disableValidationRules?: boolean;
   /** Refers to the aria-label attribute of the show button. */
   buttonLabel?: string;
   forgottenPasswordLink?: React.ReactElement;
@@ -55,9 +57,21 @@ function PasswordField({
   validationSchema,
   buttonLabel = 'show password',
   hideValidationList = true,
+  disableValidationRules = true,
   ...props
 }: PasswordFieldProps): React.ReactElement {
-  const [ref] = useLibrary(libs ?? []);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    if (!ref.current) return;
+    if (!ref.current.dataset.rendered) {
+      ref.current.dataset.rendered = 'rendered';
+      new PasswordVisibility(ref.current);
+      if (!disableValidationRules) {
+        new PasswordValidator(ref.current);
+      }
+    }
+  }, []);
 
   const defaultValidationSchema = {
     minSign: `${minChars} characters`,
@@ -109,7 +123,7 @@ function PasswordField({
       <div
         className="form-group__input form-group__input--button password-validator"
         data-scl=""
-        ref={ref as React.RefObject<HTMLDivElement>}
+        ref={ref}
         data-rs-password-validator-min-chars={minChars}
         data-rs-password-validator=""
         data-rs-password-visibility=""
@@ -126,19 +140,21 @@ function PasswordField({
           </span>
         </button>
       </div>
-      <div
-        className="password-validator__validate-list"
-        data-rs-password-validator-checklist=""
-        hidden={hideValidationList}
-      >
-        <ul>
-          {Object.entries(currentValidationSchema).map(([type, schema]) => (
-            <li data-rs-password-validator-validate={type} key={type}>
-              {schema}
-            </li>
-          ))}
-        </ul>
-      </div>
+      {!disableValidationRules ? (
+        <div
+          className="password-validator__validate-list"
+          data-rs-password-validator-checklist=""
+          hidden={hideValidationList}
+        >
+          <ul>
+            {Object.entries(currentValidationSchema).map(([type, schema]) => (
+              <li data-rs-password-validator-validate={type} key={type}>
+                {schema}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : null as never}
     </FormGroup>
   );
 }

@@ -18,7 +18,7 @@ const MyRandstad = ({ show, loginUrl, label }: MyRandstadProps) => {
         className="navigation__service-link navigation__service-my-randstad hidden--from-l">
         <span className="icon icon--inline">
           <svg>
-            <use xlinkHref="/src/assets/img/icons.svg#person"></use>
+            <use xlinkHref={`${process.env.NEXT_PUBLIC_RESOURCE_PREFIX}/my-randstad/src/assets/img/icons.svg#person`} />
           </svg>
         </span>
       </a>
@@ -28,7 +28,7 @@ const MyRandstad = ({ show, loginUrl, label }: MyRandstadProps) => {
         data-rs-popover-trigger="login-popover">
         <span className="icon icon--inline">
           <svg>
-            <use xlinkHref="/src/assets/img/icons.svg#person"></use>
+            <use xlinkHref={`${process.env.NEXT_PUBLIC_RESOURCE_PREFIX}/src/assets/img/icons.svg#person`} />
           </svg>
         </span>
         <span id="navigation__service-user-text" className="hidden--until-l">
