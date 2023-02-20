@@ -55,7 +55,7 @@ function MobileNavigation({ items, myRandstadUrl, showMyRandstad }: MobileNaviga
               {menuItem.children && menuItem.children.length ? (
                 <span className="icon toggle-arrow" data-rs-collapsible-button="" role="button">
                   <svg>
-                    <use xlinkHref="/src/assets/img/icons.svg#chevron-down" />
+                    <use xlinkHref={`${process.env.NEXT_PUBLIC_RESOURCE_PREFIX}/src/assets/img/icons.svg#chevron-down`} />
                   </svg>
                 </span>
               ) : (
@@ -98,7 +98,7 @@ function MobileNavigation({ items, myRandstadUrl, showMyRandstad }: MobileNaviga
               </a>
               <span className="icon toggle-arrow" data-rs-collapsible-button="" role="button">
                 <svg>
-                  <use xlinkHref="/src/assets/img/icons.svg#chevron-down" />
+                  <use xlinkHref={`${process.env.NEXT_PUBLIC_RESOURCE_PREFIX}/src/assets/img/icons.svg#chevron-down`} />
                 </svg>
               </span>
             </div>

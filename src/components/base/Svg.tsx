@@ -7,7 +7,7 @@ interface Svg {
 const Svg = ({ icon }: Svg) => {
   return (
     <svg>
-      <use xlinkHref={`/src/assets/img/icons.svg#${icon}`}></use>
+      <use xlinkHref={`${process.env.NEXT_PUBLIC_RESOURCE_PREFIX}/src/assets/img/icons.svg#${icon}`} />
     </svg>
   );
 };
