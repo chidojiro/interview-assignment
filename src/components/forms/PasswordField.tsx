@@ -60,7 +60,7 @@ function PasswordField({
   disableValidationRules = true,
   ...props
 }: PasswordFieldProps): React.ReactElement {
-  const ref = useRef(null);
+  const ref = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (!ref.current) return;
