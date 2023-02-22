@@ -5,15 +5,16 @@ interface BreadcrumbsProps extends BgColor {
   /** `active` used to highlight the item */
   items?: {
     title: string,
-    url: string,
+    link: string,
     active?: boolean,
   }[] | [],
   mobileItem?: {
     title: string,
-    url: string
+    link: string
   },
   /** This property used for adding specific class `navigation--app` for the apps. Since the navigation markup there is different from Orbit. */
   app?: boolean
+  RouterComponent: React.FC<any>
 }
 
 /**
@@ -21,9 +22,9 @@ interface BreadcrumbsProps extends BgColor {
  *
  */
 function Breadcrumbs({
-  items = [], mobileItem, bgColor = 'primary', app = true,
+  items = [], mobileItem, bgColor = 'primary', app = true, RouterComponent,
 }: BreadcrumbsProps) {
-  const { title: mobileTitle, url: mobileUrl } = mobileItem || {};
+  const { title: mobileTitle, link: mobileUrl } = mobileItem || {};
   const wrapperClasses = ['navigation'];
   const WrapperTag = bgColor ? 'div' : React.Fragment;
   const wrapperAttributes: { className?: string } = {};
@@ -43,17 +44,17 @@ function Breadcrumbs({
           <div className="navigation__bottom">
             <nav className="breadcrumb" aria-label="breadcrumb">
               {mobileItem && (
-                <a className="breadcrumb__link hidden--from-l" href={mobileUrl}>
+                <RouterComponent className="breadcrumb__link hidden--from-l" href={mobileUrl}>
                   {mobileTitle}
-                </a>
+                </RouterComponent>
               )}
               <ul className="breadcrumb__list hidden--until-l">
-                {items.map(({ title, url, active }) => (
+                {items.map(({ title, link, active }) => (
                   <li className="breadcrumb__item" key={`breadcrumb-${title}`}>
-                    {url && !active ? (
-                      <a href={url} className="breadcrumb__link">
+                    {link && !active ? (
+                      <RouterComponent href={link} className="breadcrumb__link">
                         {title}
-                      </a>
+                      </RouterComponent>
                     ) : (
                       title
                     )}
