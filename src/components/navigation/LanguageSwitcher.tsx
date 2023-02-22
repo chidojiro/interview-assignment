@@ -8,7 +8,7 @@ interface Items {
 
 export interface LanguageSwitcherProps {
   items: Items[],
-  extraClasses?: string
+  extraClasses?: string,
 }
 
 function LanguageSwitcher({ items, extraClasses }: LanguageSwitcherProps) {

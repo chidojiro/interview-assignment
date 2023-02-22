@@ -32,6 +32,7 @@ function MobileNavigation({ items, myRandstadUrl, showMyRandstad }: MobileNaviga
         if (item?.hasAttribute('data-rs-collapsible') && item?.hasAttribute('data-rs-toggable') && !item.hasAttribute('data-rendered')) {
           new Collapsible(item);
           new Toggable(item);
+          item.dataset.rendered = 'rendered';
         }
       }
     }
