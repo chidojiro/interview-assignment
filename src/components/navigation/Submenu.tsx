@@ -7,7 +7,7 @@ interface SubmenuItems extends Items {
 
 interface SubmenuProps {
   items?: SubmenuItems[],
-  RouterComponent: React.FC<any>,
+  RouterComponent?: React.FC<any>,
 }
 
 function Submenu({ items, RouterComponent }: SubmenuProps) {
@@ -24,7 +24,8 @@ function Submenu({ items, RouterComponent }: SubmenuProps) {
             `navigation__menu-item${menuItem.isActive ? ' navigation__menu-item--active' : ''}`
           }
         >
-          <RouterComponent href={menuItem.url}>{menuItem.title}</RouterComponent>
+          {RouterComponent ? <RouterComponent href={menuItem.url}>{menuItem.title}</RouterComponent>
+            : <a href={menuItem.url}>{menuItem.title}</a>}
         </li>
       ))}
     </ul>
