@@ -20,6 +20,7 @@ interface ButtonProps {
   href?: string;
   svgClasses?: string;
   className?: string;
+  [x:string]: any;
 }
 
 const buttonBaseClass = 'button';
@@ -43,6 +44,7 @@ function Button({
   href,
   svgClasses = '',
   className,
+  ...rest
 }: ButtonProps) {
   const ButtonTag = href ? 'a' : 'button';
   const hrefTypeAttribute = href ? { href } : { type };
@@ -62,6 +64,7 @@ function Button({
       })}
       {...hrefTypeAttribute}
       {...onClickAttribute}
+      {...rest}
     >
       {icon && (
         <Icon
