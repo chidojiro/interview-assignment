@@ -1,12 +1,15 @@
+import FormGroup from './components/form-group/FormGroup';
 import PasswordField from './components/forms/PasswordField';
+import FieldError from './components/form-group/FieldError/FieldError';
+import SelectField from './components/forms/SelectField';
+import InputField from './components/forms/InputField';
 import Checkbox from './components/forms/Checkbox';
 import Toggle from './components/forms/Toggle';
 import Block from './components/Block';
-import FormGroup from './components/form-group/FormGroup';
 import HeaderTitle from './components/headers/HeaderTitle/HeaderTitle';
 import HeaderText from './components/headers/HeaderText';
-import LanguageSwitcher from './components/navigation/LanguageSwitcher';
 import Breadcrumbs from './components/Breadcrumbs';
+import LanguageSwitcher from './components/navigation/LanguageSwitcher';
 import ServiceLinks from './components/headers/ServiceLinks/ServiceLinks';
 import Logo from './components/navigation/Logo';
 import MainMenu from './components/navigation/MainMenu';
@@ -14,23 +17,19 @@ import MyRandstad from './components/navigation/MyRandstad';
 import UtilityNavigation from './components/navigation/UtilityNavigation';
 import SubMenu from './components/navigation/Submenu';
 import MobileNavigation from './components/navigation/MobileNavigation';
+import TabBar from './components/navigation/TabBar';
 import Modal from './components/navigation/Modal';
-// import InputField from "./components/forms/InputField";
-// import LocationInputField from "./components/forms/LocationInputField";
-// import RadioButton from "./components/forms/RadioButton";
-// import TextArea from "./components/forms/TextArea";
-// import Checkbox from "./components/forms/Checkbox";
-// import SelectField from "./components/forms/SelectField";
+import ConfirmationModal from './components/overlays/ConfirmationModal';
 import Button from './components/button/Button';
 import Badge from './components/Badge';
 import Icon from './components/Icon';
-import FieldError from './components/form-group/FieldError/FieldError';
 import { Notice, NoticeType } from './components/notice/Notice';
-import SelectField from './components/forms/SelectField';
-import TabBar from './components/navigation/TabBar';
-import FooterBottomNav from './components/navigation/FooterBottomNav';
-import InputField from './components/forms/InputField';
-import ConfirmationModal from './components/overlays/ConfirmationModal';
+import FooterBottomNav from './components/footer/FooterBottomNav';
+import FooterSocials, { FooterSocial } from './components/footer/FooterSocials';
+import Footer from './components/footer/Footer';
+// import LocationInputField from "./components/forms/LocationInputField";
+// import RadioButton from "./components/forms/RadioButton";
+// import TextArea from "./components/forms/TextArea";
 // import Filter from "./components/Filter";
 // import Accordion from "./components/accordion/Accordion";
 // import AccordionItem from "./components/accordion/AccordionItem";
@@ -39,12 +38,8 @@ import ConfirmationModal from './components/overlays/ConfirmationModal';
 // import ArticleOverviewList from "./components/article-overview/list/ArticleOverviewList";
 // import ArticleOverviewListItem from "./components/article-overview/list/ArticleOverviewListItem";
 // import Navigation from "./components/Navigation";
-// import LanguageSwitcher from "./components/navigation/LanguageSwitcher";
-// import UtilityNavigation from "./components/navigation/UtilityNavigation";
 // import Autosuggest from "./components/forms/Autosuggest";
 // import Stackable from "./components/form-group/Stackable";
-// import FormGroup from "./components/form-group/FormGroup";
-import FooterSocials from './components/footer/FooterSocials';
 
 export {
   PasswordField,
@@ -64,9 +59,7 @@ export {
   SubMenu,
   MobileNavigation,
   Modal,
-  // LocationInputField,
-  // RadioButton,
-  // TextArea,
+  ConfirmationModal,
   Button,
   Badge,
   Icon,
@@ -76,7 +69,11 @@ export {
   InputField,
   TabBar,
   FooterBottomNav,
-  ConfirmationModal,
+  FooterSocials,
+  Footer,
+  // LocationInputField,
+  // RadioButton,
+  // TextArea,
   // Filter,
   // Accordion,
   // AccordionItem,
@@ -90,7 +87,9 @@ export {
   // UtilityNavigation,
   // Stackable,
   // FormGroup,
-  FooterSocials,
 };
 
-export type { NoticeType };
+/**
+ * Exporting interfaces and types.
+ */
+export type { NoticeType, FooterSocial };

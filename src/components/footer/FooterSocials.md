@@ -5,7 +5,7 @@ Color of icon depends on wrapper brand class.
 ```jsx
 import FooterSocials from './FooterSocials';
 
-<FooterSocials socials={
+<FooterSocials items={
     [
         {url: "/", title: "view our LinkedIn profile", icon: "linkedin-filled-30"},
         {url: "/", title: "view our Twitter page", icon: "twitter-filled-30"},

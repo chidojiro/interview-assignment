@@ -1,20 +1,20 @@
 import React from 'react';
 import Icon from '../Icon';
 
-interface FooterSocial {
+export interface FooterSocial {
   url: string,
   title: string,
   icon: string,
 }
 
-interface FooterSocialsProps {
-  socials: FooterSocial[];
+export interface FooterSocialsProps {
+  items: FooterSocial[];
 }
 
-function FooterSocials({ socials }: FooterSocialsProps) {
+function FooterSocials({ items }: FooterSocialsProps) {
   return (
     <ul className="social__list">
-      {socials.map((item) => (
+      {items.map((item) => (
         <li className="social__item" key={item.title}>
           <a
             href={item.url}

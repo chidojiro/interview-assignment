@@ -4,7 +4,7 @@ import FooterSocials from '../../components/footer/FooterSocials';
 
 describe('Footer socials tests', () => {
   test('Footer socials render correctly', () => {
-    const { container } = render(<FooterSocials socials={
+    const { container } = render(<FooterSocials items={
       [
         {
           url: '/',
@@ -20,7 +20,7 @@ describe('Footer socials tests', () => {
   });
 
   test('Social link has correct href and title', () => {
-    const { container } = render(<FooterSocials socials={
+    const { container } = render(<FooterSocials items={
       [
         {
           url: '/linkedin',
@@ -46,7 +46,7 @@ describe('Footer socials tests', () => {
   });
 
   test('Footer socials renders multiple social links correctly.', () => {
-    const { container } = render(<FooterSocials socials={
+    const { container } = render(<FooterSocials items={
       [
         {
           url: '/',
