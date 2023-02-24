@@ -75,7 +75,6 @@ module.exports = {
       // components: 'src/components/navigation/**/*.tsx',
       components: [
         'src/components/navigation/TabBar.tsx',
-        'src/components/navigation/FooterBottomNav.tsx',
       ],
       description: 'Navigation components used across the applications.',
     },
