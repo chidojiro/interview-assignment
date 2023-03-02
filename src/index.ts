@@ -27,6 +27,7 @@ import { Notice, NoticeType } from './components/notice/Notice';
 import FooterBottomNav from './components/footer/FooterBottomNav';
 import FooterSocials, { FooterSocial } from './components/footer/FooterSocials';
 import Footer from './components/footer/Footer';
+import GoogleRecaptcha from './components/forms/GoogleRecaptcha';
 // import LocationInputField from "./components/forms/LocationInputField";
 // import RadioButton from "./components/forms/RadioButton";
 // import TextArea from "./components/forms/TextArea";
@@ -71,6 +72,7 @@ export {
   FooterBottomNav,
   FooterSocials,
   Footer,
+  GoogleRecaptcha,
   // LocationInputField,
   // RadioButton,
   // TextArea,
