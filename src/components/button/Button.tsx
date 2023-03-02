@@ -20,6 +20,7 @@ interface ButtonProps {
   href?: string;
   svgClasses?: string;
   className?: string;
+  RouterComponent?: React.FC<any>,
   [x:string]: any;
 }
 
@@ -44,9 +45,10 @@ function Button({
   href,
   svgClasses = '',
   className,
+  RouterComponent,
   ...rest
 }: ButtonProps) {
-  const ButtonTag = href ? 'a' : 'button';
+  const ButtonTag = href ? (RouterComponent || 'a') : 'button';
   const hrefTypeAttribute = href ? { href } : { type };
   const onClickAttribute = handleClick ? { onClick: handleClick } : {};
 
