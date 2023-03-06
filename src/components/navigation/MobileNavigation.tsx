@@ -6,7 +6,9 @@ import { Items } from './types';
 export interface MobileNavigationProps {
   items?: Items[],
   showMyRandstad?: boolean,
-  myRandstadUrl?: string
+  myRandstadUrl?: string,
+  myRandstadLabel?: string | React.ReactNode,
+  myRandstadMenu?: Items[],
 }
 
 const menuAttributes = (menuItemLength: number) => {
@@ -21,9 +23,11 @@ const menuAttributes = (menuItemLength: number) => {
   return {};
 };
 
-function MobileNavigation({ items, myRandstadUrl, showMyRandstad }: MobileNavigationProps) {
+function MobileNavigation({
+  items, myRandstadUrl, showMyRandstad, myRandstadLabel, myRandstadMenu
+}: MobileNavigationProps) {
   const ref = useRef<Array<HTMLDivElement | null>>([]);
-  const mobileMenuRef = useRef(null);
+  const mobileMenuRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (items && items.length) {
@@ -40,6 +44,15 @@ function MobileNavigation({ items, myRandstadUrl, showMyRandstad }: MobileNaviga
 
   if (!items) {
     return null;
+  }
+
+  if (myRandstadMenu && myRandstadMenu.length && mobileMenuRef && mobileMenuRef.current) {
+    const mobileMenu = mobileMenuRef.current;
+    if (mobileMenu.hasAttribute('data-rs-collapsible') && mobileMenu.hasAttribute('data-rs-toggable') && !mobileMenu.hasAttribute('data-rendered')) {
+      new Collapsible(mobileMenu);
+      new Toggable(mobileMenu);
+      mobileMenu.dataset.rendered = 'rendered';
+    }
   }
 
   return (
@@ -93,9 +106,8 @@ function MobileNavigation({ items, myRandstadUrl, showMyRandstad }: MobileNaviga
             data-rs-toggable=""
           >
             <div className="link-list__link">
-              {/* Can be changed from auth-widget by the id. See DE auth-widget.js */}
               <a id="mr-mobile-navigation-menu-title" href={`${myRandstadUrl}/`}>
-                my randstad
+                {myRandstadLabel}
               </a>
               <span className="icon toggle-arrow" data-rs-collapsible-button="" role="button">
                 <svg>
@@ -104,13 +116,24 @@ function MobileNavigation({ items, myRandstadUrl, showMyRandstad }: MobileNaviga
               </span>
             </div>
           </div>
-          {/* Placeholder for my randstad menu, that's populated by auth-widget. */}
           <div
             className="collapsible__content"
             id="navigationMobileMR"
             data-rs-collapsible-content=""
             aria-hidden="true"
-          />
+          >
+            {myRandstadMenu && myRandstadMenu.length ? (
+              <ul className="navigation-accordion__sub">
+                {myRandstadMenu.map((mrMenuItem) => (
+                  <li key={mrMenuItem.title}>
+                    <a href={mrMenuItem.url}>{mrMenuItem.title}</a>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              ''
+            )}
+          </div>
         </li>
       )}
     </ul>
