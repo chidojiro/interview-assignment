@@ -11,11 +11,12 @@ interface ToastProps {
   buttonCloseText?: string;
   buttonSuccessText?: string;
   ariaLabelClose?: string;
+  labelClose?: string;
   onClose?: () => void;
   onSuccess?: () => void;
 }
 
-function Toast({ title, anchor, id, buttonCloseText, buttonSuccessText, ariaLabelClose = 'close', onSuccess, onClose }: ToastProps) {
+function Toast({ title, anchor, id, buttonCloseText, buttonSuccessText, ariaLabelClose = 'close', labelClose = 'close', onSuccess, onClose }: ToastProps) {
   const [closeToast, setCloseToast] = useState('');
 
   const attributes = {
@@ -98,7 +99,7 @@ function Toast({ title, anchor, id, buttonCloseText, buttonSuccessText, ariaLabe
           onClick={(event: CloseEvents) => toastClose(event)}
         >
           <Icon iconClassName="icon" iconType="close-30" />
-          <span className="hidden--visually">close</span>
+          <span className="hidden--visually">{labelClose}</span>
         </button>
       </div>
     </>

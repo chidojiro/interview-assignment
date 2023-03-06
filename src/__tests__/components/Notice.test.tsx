@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import Notice from '../../components/notifications/Notice';
+import { Notice } from '../../components/notifications/Notice';
 
 describe('Notice component tests', () => {
   test('Notice exist', () => {
