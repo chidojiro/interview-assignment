@@ -23,7 +23,8 @@ import ConfirmationModal from './components/overlays/ConfirmationModal';
 import Button from './components/button/Button';
 import Badge from './components/Badge';
 import Icon from './components/Icon';
-import { Notice, NoticeType } from './components/notice/Notice';
+import { Notice, NoticeType } from './components/notifications/Notice';
+import { Toast } from './components/notifications/Toast';
 import FooterBottomNav from './components/footer/FooterBottomNav';
 import FooterSocials, { FooterSocial } from './components/footer/FooterSocials';
 import Footer from './components/footer/Footer';
@@ -73,6 +74,7 @@ export {
   FooterSocials,
   Footer,
   GoogleRecaptcha,
+  Toast,
   // LocationInputField,
   // RadioButton,
   // TextArea,
