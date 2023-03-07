@@ -1,4 +1,5 @@
 import React from "react";
+import Icon from './Icon';
 
 interface Toast {
   children: React.ReactNode,
@@ -21,11 +22,7 @@ const Toast = ({ children, anchor, id, buttonLabel = "close" }: Toast) => {
     <div className="toast" {...attributes}>
       <p className="toast__message">{children}</p>
       <button className="button--icon-only" data-rs-closable={`data-rs-toast-${id}`}>
-        <span className="icon fill--dark-blue-50">
-          <svg>
-            <use xlinkHref="/src/assets/img/icons.svg#close"></use>
-          </svg>
-        </span>
+        <Icon iconClassName="icon fill--dark-blue-50" iconType="close" />
         <span className="hidden--visually">{buttonLabel}</span>
       </button>
     </div>

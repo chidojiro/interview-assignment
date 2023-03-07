@@ -1,5 +1,6 @@
 import React from 'react';
 import withField, { WithFieldProps } from '../../hoc/withField';
+import Icon from '../Icon';
 
 type ToggleType = 'light' | 'dark';
 
@@ -16,11 +17,7 @@ function Toggle({
   return (
     <div role="switch" aria-checked={false} className={`switch__${type}`} data-rs-switch={name}>
       <span className={`switch switch__${type}`}>
-        <span className="icon">
-          <svg className="checkmark">
-            <use xlinkHref="/themes/custom/bluex/dist/assets/image/icons.svg#check-16" />
-          </svg>
-        </span>
+        <Icon iconClassName="icon" svgProps={{className: 'checkmark'}} iconType="check-16" />
       </span>
     </div>
   );
