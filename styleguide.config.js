@@ -94,6 +94,11 @@ module.exports = {
       components: 'src/components/overlays/**/*.tsx',
       description: 'Provides wrapper components for overlays.',
     },
+    {
+      name: 'My Environment',
+      components: 'src/components/my-environment/*.tsx',
+      description: 'My Environment components',
+    },
     // {
     //   name: 'Shared components',
     //   components: 'src/components/**/*.js',
