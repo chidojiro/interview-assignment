@@ -6,11 +6,11 @@ function handleAddItem() {
 }
 
 function handleAddSectionItem() {
-  console.log('Handle add item');
+  console.log('Handle add section item');
 }
 
 function handleEdit() {
-  console.log('added item');
+  console.log('edit item');
 }
 <MyEnvironmentLayout title="personal information" label="add contact details" handleAddItem={handleAddItem} description="Complete your personal information and keep it up to date to benefit from personalized job matches.">
   <Section title="contact details" handleEdit={handleEdit} handleAddItem={handleAddSectionItem} label="add section item" divider={true}>
