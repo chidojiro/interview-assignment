@@ -1,0 +1,39 @@
+import React from 'react';
+import Icon from '../Icon';
+
+type MyEnvironmentLayoutTypes = {
+  title: string | React.ReactNode;
+  handleAddItem: void;
+  label?: string | React.ReactNode;
+  description?: string | React.ReactNode;
+  children?: React.ReactNode;
+};
+function MyEnvironmentLayout({
+  title, handleAddItem, label, description, children,
+}: MyEnvironmentLayoutTypes) {
+  return (
+    <div className="block block--my-randstad block--xs">
+      <div className="block__wrapper wrapper pt-l l:pt-xl">
+        <div className="block__header">
+          <h2 className="block__title">{title}</h2>
+          {typeof handleAddItem === 'function' && (
+            <a href="#" className="block__control" onClick={handleAddItem}>
+              <Icon iconClassName="icon icon--inline fill-brand--blue" iconType="add" />
+              {label}
+            </a>
+          )}
+          {description && (
+            <div className="block__description block__description--s text--alternative">
+              <p>{description}</p>
+            </div>
+          )}
+        </div>
+        <div className="block__content block__content--align-right block__content--s">
+          {children}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default MyEnvironmentLayout;
