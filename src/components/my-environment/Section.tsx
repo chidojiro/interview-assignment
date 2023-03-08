@@ -4,8 +4,8 @@ import Icon from '../Icon';
 type SectionTypes = {
   children?: React.ReactNode;
   title: string | React.ReactNode;
-  handleEdit?: void;
-  handleAddItem?: void;
+  handleEdit?: () => void;
+  handleAddItem?: () => void;
   label?: string | React.ReactNode;
   divider?: boolean;
 };
