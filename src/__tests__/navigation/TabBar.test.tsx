@@ -8,23 +8,25 @@ describe('TabBar component', () => {
     {
       title: 'Home',
       url: '/',
-      icon: 'home'
+      icon: 'home',
+      isActive: true
     },
     {
       title: 'About',
       url: '/about',
-      icon: 'about'
+      icon: 'about',
+      isActive: false
     }
   ];
 
   it('should render two tabs', () => {
-    const { container } = render(<TabBar items={items} libs={[]} />);
+    const { container } = render(<TabBar items={items} />);
     const tabs = container.querySelectorAll('.tab-bar__item');
     expect(tabs.length).toBe(2);
   });
 
   it('should set the active tab as the one that was clicked', () => {
-    const { container } = render(<TabBar items={items} libs={[]} />);
+    const { container } = render(<TabBar items={items} />);
     const aboutTab = container.querySelector('.tab-bar__item.active');
     if (aboutTab) {
       fireEvent.click(aboutTab);

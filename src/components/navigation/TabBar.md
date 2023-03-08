@@ -5,27 +5,32 @@ import { TabBar } from "@ffw/randstad-shared-components";
   {
     "title": "overview",
     "href": "/my-randstad/",
-    "icon": "dashboard"
+    "icon": "dashboard",
+    "isActive": "true"
   },
   {
     "title": "my applications",
     "href": "/my-randstad/my-applications/",
-    "icon": "briefcase"
+    "icon": "briefcase",
+    "isActive": "false"
   },
   {
     "title": "job preferences",
     "href": "/my-randstad/job-preferences/",
-    "icon": "filter"
+    "icon": "filter",
+    "isActive": "false"
   },
   {
     "title": "personal information",
     "href": "/my-randstad/personal-information/",
-    "icon": "account-circle"
+    "icon": "account-circle",
+    "isActive": "false"
   },
   {
     "title": "settings",
     "href": "/my-randstad/my-account/",
-    "icon": "settings"
+    "icon": "settings",
+    "isActive": "false"
   }
 ]} />;
 ```
