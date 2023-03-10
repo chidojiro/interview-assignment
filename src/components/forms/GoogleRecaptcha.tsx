@@ -1,12 +1,17 @@
 import React from 'react';
 import ReCAPTCHA from 'react-google-recaptcha-enterprise';
 
+export type GoogleRecaptchaRef = {
+  reset: () => void;
+};
+
 interface GRecaptchaProps {
-  onChange(...any:any): void,
+  onChange: (token: string | null) => void;
   error?: string;
   touched?: boolean;
   locale?: string;
   sitekey: string;
+  innerRef?: React.Ref<GoogleRecaptchaRef>;
 }
 function GoogleRecaptcha({
   onChange,
@@ -14,10 +19,12 @@ function GoogleRecaptcha({
   touched,
   locale,
   sitekey,
+  innerRef,
 }: GRecaptchaProps) {
   return (
     <div className={`form-group form-group__input ${touched && error && 'form-group--error'}`}>
       <ReCAPTCHA
+        ref={innerRef}
         sitekey={sitekey}
         onChange={onChange}
         hl={locale ?? 'en'}
@@ -27,4 +34,5 @@ function GoogleRecaptcha({
     </div>
   );
 }
+
 export default GoogleRecaptcha;

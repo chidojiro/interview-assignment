@@ -28,7 +28,7 @@ import { Toast } from './components/notifications/Toast';
 import FooterBottomNav from './components/footer/FooterBottomNav';
 import FooterSocials, { FooterSocial } from './components/footer/FooterSocials';
 import Footer from './components/footer/Footer';
-import GoogleRecaptcha from './components/forms/GoogleRecaptcha';
+import GoogleRecaptcha, { GoogleRecaptchaRef } from './components/forms/GoogleRecaptcha';
 import MyEnvironmentLayout from './components/my-environment/MyEnvironmentLayout';
 import Section from './components/my-environment/Section';
 // import LocationInputField from "./components/forms/LocationInputField";
@@ -100,4 +100,4 @@ export {
 /**
  * Exporting interfaces and types.
  */
-export type { NoticeType, FooterSocial };
+export type { NoticeType, FooterSocial, GoogleRecaptchaRef };
