@@ -27,7 +27,7 @@ import { Notice, NoticeType } from './components/notice/Notice';
 import FooterBottomNav from './components/footer/FooterBottomNav';
 import FooterSocials, { FooterSocial } from './components/footer/FooterSocials';
 import Footer from './components/footer/Footer';
-import GoogleRecaptcha from './components/forms/GoogleRecaptcha';
+import GoogleRecaptcha, { GoogleRecaptchaRef } from './components/forms/GoogleRecaptcha';
 // import LocationInputField from "./components/forms/LocationInputField";
 // import RadioButton from "./components/forms/RadioButton";
 // import TextArea from "./components/forms/TextArea";
@@ -94,4 +94,4 @@ export {
 /**
  * Exporting interfaces and types.
  */
-export type { NoticeType, FooterSocial };
+export type { NoticeType, FooterSocial, GoogleRecaptchaRef };
