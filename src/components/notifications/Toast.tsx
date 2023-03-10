@@ -98,7 +98,7 @@ function Toast({ title, anchor, id, buttonCloseText, buttonSuccessText, ariaLabe
           tabIndex={0}
           onClick={(event: CloseEvents) => toastClose(event)}
         >
-          <Icon iconClassName="icon" iconType="close-30" />
+          <Icon iconClassName="icon" iconType="close" />
           <span className="hidden--visually">{labelClose}</span>
         </button>
       </div>
