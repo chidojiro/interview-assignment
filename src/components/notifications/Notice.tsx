@@ -4,7 +4,7 @@ import Icon from '../Icon';
 export type NoticeType = 'negative' | 'informative' | 'positive' | 'warning' | 'subtle';
 
 interface NoticeProps {
-  children: string | JSX.Element;
+  children: string | JSX.Element | (string | JSX.Element)[];
   type: NoticeType;
   icon?: string;
 }
