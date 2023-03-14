@@ -18,7 +18,7 @@ function Section({
         <h2 className="my-environment-header__title--m mr-xxs">{title}</h2>
         {typeof handleEdit === 'function' && (
           <div className="my-environment__controls mt-xxs">
-            <button data-label={label} className="button--clean" onClick={handleEdit}>
+            <button type="button" data-label={label} className="button--clean" onClick={handleEdit}>
               <Icon iconClassName="icon icon--inline" iconType="edit" />
               <span className="hidden--visually">{label}</span>
             </button>
@@ -26,10 +26,10 @@ function Section({
         )}
       </div>
       {typeof handleAddItem === 'function' && (
-        <a href="#" className="button button--s mt-s" onClick={handleAddItem}>
-          <Icon iconClassName="icon icon--inline fill-brand--blue" iconType="add" />
+        <button type="button" className="button button--s mt-s" onClick={handleAddItem}>
+          <Icon iconClassName="icon icon--s icon--inline" iconType="add" />
           {label}
-        </a>
+        </button>
       )}
       {children}
     </div>
