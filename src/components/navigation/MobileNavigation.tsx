@@ -102,7 +102,6 @@ function MobileNavigation({
             ref={mobileMenuRef}
             className="collapsible__trigger"
             data-rs-collapsible=""
-            aria-expanded="false"
             data-rs-toggable=""
           >
             <div className="link-list__link">
