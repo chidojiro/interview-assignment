@@ -18,7 +18,8 @@ import UtilityNavigation from './components/navigation/UtilityNavigation';
 import SubMenu from './components/navigation/Submenu';
 import MobileNavigation from './components/navigation/MobileNavigation';
 import TabBar from './components/navigation/TabBar';
-import Modal from './components/navigation/Modal';
+import NavigationModal from './components/navigation/NavigationModal';
+import Modal from './components/overlays/Modal';
 import ConfirmationModal from './components/overlays/ConfirmationModal';
 import Button from './components/button/Button';
 import Badge from './components/Badge';
@@ -62,6 +63,7 @@ export {
   UtilityNavigation,
   SubMenu,
   MobileNavigation,
+  NavigationModal,
   Modal,
   ConfirmationModal,
   Button,

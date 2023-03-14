@@ -8,7 +8,7 @@ import Logo, { LogoProps } from "./navigation/Logo";
 import Submenu from "./navigation/Submenu";
 import MainMenu from "./navigation/MainMenu";
 import MyRandstad, { MyRandstadProps } from "./navigation/MyRandstad";
-import Modal from "./navigation/Modal";
+import NavigationModal from "./navigation/NavigationModal";
 import { Items, Theme } from "./navigation/types";
 
 interface Navigation extends Theme {
@@ -88,7 +88,7 @@ const Navigation = ({
           <Submenu items={mainMenu} />
         </div>
       </nav>
-      <Modal>
+      <NavigationModal>
         <nav className="navigation-accordion">
           <MobileNavigation
             items={mainMenu}
@@ -97,7 +97,7 @@ const Navigation = ({
           />
           <LanguageSwitcher items={languages} />
         </nav>
-      </Modal>
+      </NavigationModal>
 
       <Toast anchor="logged-out" id="logged-out">
         You are successfully logged out of your my randstad account
