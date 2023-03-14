@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect} from 'react';
+import React, { useEffect, useCallback, useRef } from 'react';
 import classNames from 'classnames';
 import styles, { keyframes } from 'styled-components';
 import Icon from '../Icon';
@@ -8,7 +8,7 @@ interface ModalProps {
   title: string;
   ariaLabelClose?: string;
   children?: string | React.ReactNode;
-  onClose?: () => void;
+  onClose?: (event: CloseEvents) => void;
   footer?: React.ReactNode;
   footerDivider?: boolean;
   footerDividerTop?: boolean;
@@ -76,13 +76,16 @@ function Modal({
   const onClickHandler = (event: { stopPropagation: () => void }) => {
     event.stopPropagation();
   };
+  const modalRef = useRef<HTMLDivElement>(null);
 
   const modalClose = useCallback(
     (event: CloseEvents) => {
       if (event instanceof KeyboardEvent && event.key !== 'Escape') return;
       event.preventDefault();
       event.stopPropagation();
-      document.getElementsByClassName('modal')[0].classList.add('modal-exit');
+      if (modalRef && modalRef.current) {
+        modalRef.current.classList.add('modal-exit');
+      }
       setTimeout(() => {
         onClose?.(event);
       }, 200);
@@ -96,7 +99,7 @@ function Modal({
   }, [modalClose]);
 
   return (
-    <ModalStyle className="modal modal--active" data-rs-modal="modal" onClick={(event: React.MouseEvent<HTMLDivElement>) => modalClose(event)}>
+    <ModalStyle ref={modalRef} className="modal modal--active" data-rs-modal="modal" onClick={(event: React.MouseEvent<HTMLDivElement>) => modalClose(event)}>
       {/* Tag <div> needed here according to the Orbit */}
       {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions */}
       <div
