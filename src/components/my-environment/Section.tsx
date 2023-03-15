@@ -15,7 +15,7 @@ function Section({
   return (
     <div className={`my-environment-container pb-m l:pb-l ${divider ? 'divider' : ''}`}>
       <div className="my-environment-header mb-s">
-        <h2 className="my-environment-header__title--m mr-xxs">{title}</h2>
+        <h2 className="title--s mr-xxs">{title}</h2>
         {typeof handleEdit === 'function' && (
           <div className="my-environment__controls mt-xxs">
             <button type="button" data-label={label} className="button--clean" onClick={handleEdit}>
