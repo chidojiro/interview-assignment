@@ -46,14 +46,16 @@ function MobileNavigation({
     return null;
   }
 
-  if (myRandstadMenu && myRandstadMenu.length && mobileMenuRef && mobileMenuRef.current) {
-    const mobileMenu = mobileMenuRef.current;
-    if (mobileMenu.hasAttribute('data-rs-collapsible') && mobileMenu.hasAttribute('data-rs-toggable') && !mobileMenu.hasAttribute('data-rendered')) {
-      new Collapsible(mobileMenu);
-      new Toggable(mobileMenu);
-      mobileMenu.dataset.rendered = 'rendered';
+  useEffect(() => {
+    if (myRandstadMenu && myRandstadMenu.length && mobileMenuRef && mobileMenuRef.current) {
+      const mobileMenu = mobileMenuRef.current;
+      if (!mobileMenu.hasAttribute('data-rendered')) {
+        new Collapsible(mobileMenu);
+        new Toggable(mobileMenu);
+        mobileMenu.dataset.rendered = 'rendered';
+      }
     }
-  }
+  }, [myRandstadMenu, mobileMenuRef]);
 
   return (
     <ul className="link-list link-list--single accordion accordion--s">

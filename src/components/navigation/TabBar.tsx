@@ -19,11 +19,11 @@ function TabBar({ items = [], RouterComponent }: TabBarProps) {
 
   useEffect(() => {
     if (!ref.current) return;
-    if (!ref.current.dataset.rendered) {
+    if (!ref.current.dataset.rendered || ref?.current?.children) {
       ref.current.dataset.rendered = 'rendered';
       new OrbitComponent(ref.current);
     }
-  }, [items]);
+  }, [items, ref?.current?.children]);
 
   return (
     <div ref={ref} className="tab-bar tab-bar--icon" data-rs-tab-bar="" data-rs-tab-bar-animation-type="instant">
