@@ -1,50 +1,14 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import JobCard from '../../components/JobCard/JobCard';
-import JobItemMetadata from '../../components/JobCard/JobItemMetadata';
 import Icon from '../../components/Icon';
 import { within } from '@testing-library/dom'
-import { fourthOptionSettingsField } from '../../components/JobCard/JobItemMetadata';
-import { settingsFields } from '../../components/JobCard/JobItemMetadata';
 
 const closeIconProps = {
   "aria-label": ""
 }
 const infoIconProps = {
   "aria-label": ""
-}
-
-const settings: {
-  location: settingsFields;
-  jobType: settingsFields;
-  salary: settingsFields;
-  fourthOption: fourthOptionSettingsField;
-} = {
-  location: {
-    checked: true,
-  },
-  jobType: {
-    checked: true,
-  },
-  salary: {
-    checked: true,
-  },
-  fourthOption: {
-    field: "client_name_settings",
-    ariaLabel: ""
-  }
-}
-
-let JobCardListingSettings: {
-  background: boolean;
-  active: "grid" | "list";
-  viewJobText: string;
-  closeText: string;
-} = {
-  background: false,
-  active: "grid",
-  viewJobText: "show job details",
-  closeText: "",
 }
 
 const cardLogo = (
@@ -56,17 +20,6 @@ const cardLogo = (
 )
 
 describe("JobCard tests", () => {
-  const metaDataFields = {
-    location: "cambridgeshire, east of england",
-    salary: "£20.00 - £24.00 per hour",
-    clientName: "randstad",
-    workHours: "full-time",
-    education: "bachelor",
-    duration: "12 months",
-    divison: "randstad korea",
-    sector: "Sector",
-    jobType: "temporary"
-  }
 
   it("Renders a job card and checks for the correct location.", async () => {
     render(<JobCard
@@ -74,19 +27,28 @@ describe("JobCard tests", () => {
       description="Test Description"
       id="1"
       url="www.google.com"
-      meta={<JobItemMetadata metaDataFields={metaDataFields} settings={settings} />}
       date={Date.now().toString()}
       logo={cardLogo}
-      settings={JobCardListingSettings}
       favoriteIcon={<Icon iconType='heart-filled-30' />}
       infoIcon={infoIconProps}
       closeIcon={closeIconProps}
       infoIconClick={() => console.log("Info icon clicked, add dataLayer event in this place in the future.")}
       onMouseDownClick={() => console.log("mouseClick event")}
+      hasBackground={false}
+      activeView={"grid"}
+      viewJobText="View job"
+      closeText=""
+      location="göteborg kommun, västra götaland"
+      salary="sek1,000,000 - sek2,000,000 0"
+      jobType="rekrytering"
+      enableLocation={true}
+      enableSalary={true}
+      enableJobType={true}
+    
     />);
 
     const { findByText } = within(screen.getByTestId("location-testId") as HTMLElement)
-    expect(await findByText('cambridgeshire, east of england')).toBeInTheDocument()
+    expect(await findByText('göteborg kommun, västra götaland')).toBeInTheDocument()
   })
 
   it("Renders a job card and checks if the title is correct.", () => {
@@ -95,15 +57,24 @@ describe("JobCard tests", () => {
       description="Test Description"
       id="1"
       url="www.google.com"
-      meta={<JobItemMetadata metaDataFields={metaDataFields} settings={settings} />}
       date={Date.now().toString()}
       logo={cardLogo}
-      settings={JobCardListingSettings}
       favoriteIcon={<Icon iconType='heart-filled-30' />}
       infoIcon={infoIconProps}
       closeIcon={closeIconProps}
       infoIconClick={() => console.log("Info icon clicked, add dataLayer event in this place in the future.")}
       onMouseDownClick={() => console.log("mouseClick event")}
+      hasBackground={false}
+      activeView={"grid"}
+      viewJobText="View job"
+      closeText=""
+      location="göteborg kommun, västra götaland"
+      salary="sek1,000,000 - sek2,000,000 0"
+      jobType="rekrytering"
+      enableLocation={true}
+      enableSalary={true}
+      enableJobType={true}
+    
     />);
 
     const titleMetaDataElement = document.querySelector('.cards__title');
@@ -116,15 +87,25 @@ describe("JobCard tests", () => {
       description="Test Description"
       id="1"
       url="www.google.com"
-      meta={<JobItemMetadata metaDataFields={metaDataFields} settings={settings} />}
       date={Date.now().toString()}
       logo={cardLogo}
-      settings={JobCardListingSettings}
       favoriteIcon={<Icon iconType='heart-filled-30' />}
       infoIcon={infoIconProps}
       closeIcon={closeIconProps}
       infoIconClick={() => console.log("Info icon clicked, add dataLayer event in this place in the future.")}
       onMouseDownClick={() => console.log("mouseClick event")}
+      hasBackground={false}
+      activeView={"grid"}
+      viewJobText="View job"
+      closeText=""
+      location="göteborg kommun, västra götaland"
+      salary="sek1,000,000 - sek2,000,000 0"
+      jobType="rekrytering"
+      enableLocation={true}
+      enableSalary={true}
+      enableJobType={true}
+      fourthOptionField="client_name_settings"
+      clientName="randstad"
     />);
 
     const { findByText } = within(screen.getByTestId("fourth-option-client-name-id") as HTMLElement)
@@ -137,15 +118,25 @@ describe("JobCard tests", () => {
       description="Test Description"
       id="1"
       url="www.google.com"
-      meta={<JobItemMetadata metaDataFields={metaDataFields} settings={settings} />}
       date={Date.now().toString()}
       logo={cardLogo}
-      settings={JobCardListingSettings}
       favoriteIcon={<Icon iconType='heart-filled-30' />}
       infoIcon={infoIconProps}
       closeIcon={closeIconProps}
       infoIconClick={() => console.log("Info icon clicked, add dataLayer event in this place in the future.")}
       onMouseDownClick={() => console.log("mouseClick event")}
+      hasBackground={false}
+      activeView={"grid"}
+      viewJobText="View job"
+      closeText=""
+      location="göteborg kommun, västra götaland"
+      salary="sek1,000,000 - sek2,000,000 0"
+      jobType="rekrytering"
+      enableLocation={true}
+      enableSalary={true}
+      enableJobType={true}
+      fourthOptionField="client_name_settings"
+    
     />);
 
     const educationMetaItem = screen.queryByText('bachelor')
@@ -153,22 +144,31 @@ describe("JobCard tests", () => {
   })
 
   it("Changes the 4th option of the job cards to education and it renders successfully.", async () => {
-    settings.fourthOption.field = "education_settings"
 
     render(<JobCard
       title="Test title"
       description="Test Description"
       id="1"
       url="www.google.com"
-      meta={<JobItemMetadata metaDataFields={metaDataFields} settings={settings} />}
       date={Date.now().toString()}
       logo={cardLogo}
-      settings={JobCardListingSettings}
       favoriteIcon={<Icon iconType='heart-filled-30' />}
       infoIcon={infoIconProps}
       closeIcon={closeIconProps}
       infoIconClick={() => console.log("Info icon clicked, add dataLayer event in this place in the future.")}
       onMouseDownClick={() => console.log("mouseClick event")}
+      hasBackground={false}
+      activeView={"grid"}
+      viewJobText="View job"
+      closeText=""
+      location="göteborg kommun, västra götaland"
+      salary="sek1,000,000 - sek2,000,000 0"
+      jobType="rekrytering"
+      enableLocation={true}
+      enableSalary={true}
+      enableJobType={true}
+      fourthOptionField="education_settings"
+      education="bachelor"
     />);
 
     expect(screen.getByTestId("fourth-option-education-id") as HTMLElement).toBeInTheDocument();

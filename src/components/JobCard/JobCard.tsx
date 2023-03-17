@@ -1,20 +1,19 @@
 import React, { useRef, useEffect } from 'react';
 import Icon from '../Icon';
+import JobItemMetadata from './JobItemMetadata';
+import { JobItemMetadataProps } from './JobItemMetadata';
 
-interface JobCardProps {
+interface JobCardProps extends JobItemMetadataProps{
   title: string;
   description: string;
   id: string;
   url: string;
-  meta: JSX.Element;
   date: string;
   logo: JSX.Element;
-  settings: {
-    background: boolean;
-    active: "grid" | "list";
-    viewJobText: string;
-    closeText: string;
-  }
+  hasBackground: boolean;
+  activeView: "grid" | "list";
+  viewJobText: string;
+  closeText: string;
   favoriteIcon: JSX.Element;
   infoIcon: object;
   closeIcon: object;
@@ -27,35 +26,56 @@ const JobCard: React.FC<JobCardProps> = ({
   description,
   id,
   url,
-  meta,
   date,
   logo,
-  settings,
+  hasBackground,
+  activeView,
+  viewJobText,
+  closeText,
   favoriteIcon,
   infoIcon,
   closeIcon,
   infoIconClick,
-  onMouseDownClick
+  onMouseDownClick,
+  location,
+  salary,
+  clientName,
+  workHours,
+  education,
+  duration,
+  divison,
+  sector,
+  jobType,
+  locationIcon,
+  salaryIcon,
+  jobTypeIcon,
+  locationAttributes,
+  salaryAttributes,
+  jobTypeAttributes,
+  enableLocation,
+  enableSalary,
+  enableJobType,
+  fourthOptionField,
+  fourthOptionIcon,
+  fourthOptionAriaLabelValue,
+  lowerCased
 }) => {
 
   const cardRef = useRef<any>(null);
-  const { active, background, viewJobText, closeText } = settings;
 
   useEffect(() => {
     if (cardRef.current?.classList.contains('cards__item--backside-active')) {
       cardRef.current?.querySelector('[data-rs-card-hide-backside]')?.click();
     }
-  }, [active]);
+  }, [activeView]);
 
   return (
-    <li className={`cards__item ${background ? '' : 'bg-variant-white'}`} data-rs-card={true} ref={cardRef}>
+    <li className={`cards__item ${hasBackground ? '' : 'bg-variant-white'}`} data-rs-card={true} ref={cardRef}>
       <div className="cards__header">
         <div className="cards__logo-title-container">
-          {
-            logo
-          }
+          { logo }
           <h3 className="cards__title">
-            <a href={url} tabIndex={0} className="cards__link" onMouseDown={() => onMouseDownClick}>
+            <a href={url} tabIndex={0} className="cards__link" onMouseDown={onMouseDownClick}>
               {title}
               <span className="make-entire-card-clickable"/>
             </a>
@@ -63,7 +83,24 @@ const JobCard: React.FC<JobCardProps> = ({
         </div>
         {favoriteIcon}
       </div>
-      {meta}
+      <JobItemMetadata location={location} salary={salary} clientName={clientName} workHours={workHours} education={education} duration={duration} divison={divison} sector={sector} jobType={jobType}
+        locationIcon={locationIcon}
+        salaryIcon={salaryIcon}
+        jobTypeIcon={jobTypeIcon}
+
+        locationAttributes={locationAttributes}
+        salaryAttributes={salaryAttributes}
+        jobTypeAttributes={jobTypeAttributes}
+
+        enableLocation={enableLocation}
+        enableSalary={enableSalary}
+        enableJobType={enableJobType}
+
+        fourthOptionField={fourthOptionField}
+        fourthOptionIcon={fourthOptionIcon}
+        fourthOptionAriaLabelValue={fourthOptionAriaLabelValue}
+        lowerCased={lowerCased}
+      />
       <div className="cards__description" dangerouslySetInnerHTML={{ __html: description }} />
       <div className="cards__footer">
         <div className="cards__time-info">
@@ -72,7 +109,7 @@ const JobCard: React.FC<JobCardProps> = ({
           </span>
         </div>
         <div className="cards__info-wrapper" tabIndex={0} data-rs-card-show-backside={true} {...infoIcon}>
-          <span className="cards__info-button text--alternative" onClick={() => infoIconClick()}>
+          <span className="cards__info-button text--alternative" onClick={infoIconClick}>
             <span className="icon icon--inline">
               <Icon iconType="info"/>
             </span>
@@ -83,7 +120,7 @@ const JobCard: React.FC<JobCardProps> = ({
         <div className="cards__backside-description" dangerouslySetInnerHTML={{ __html: description }} />
         <div className="cards__backside-footer">
           <a href={url}
-            data-jobid={id} onMouseDown={() => onMouseDownClick}
+            data-jobid={id} onMouseDown={onMouseDownClick}
             className="cards__backside-footer--horizontal cards__backside-footer--job-link" tabIndex={-1} aria-label="">
             <span className="icon icon--inline">
               <Icon iconType="eye"/>
