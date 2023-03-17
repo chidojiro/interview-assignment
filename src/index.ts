@@ -33,6 +33,7 @@ import GoogleRecaptcha, { GoogleRecaptchaRef } from './components/forms/GoogleRe
 import MyEnvironmentLayout from './components/my-environment/MyEnvironmentLayout';
 import Section from './components/my-environment/Section';
 import PagePreloader from './components/PagePreloader';
+import Preloader from './components/loaders/Preloader';
 // import LocationInputField from "./components/forms/LocationInputField";
 // import RadioButton from "./components/forms/RadioButton";
 // import TextArea from "./components/forms/TextArea";
@@ -83,6 +84,7 @@ export {
   MyEnvironmentLayout,
   Section,
   PagePreloader,
+  Preloader,
   // LocationInputField,
   // RadioButton,
   // TextArea,
