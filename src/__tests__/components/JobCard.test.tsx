@@ -4,84 +4,35 @@ import JobCard from '../../components/JobCard/JobCard';
 import JobItemMetadata from '../../components/JobCard/JobItemMetadata';
 import Icon from '../../components/Icon';
 import { within } from '@testing-library/dom'
+import { fourthOptionSettingsField } from '../../components/JobCard/JobItemMetadata';
+import { settingsFields } from '../../components/JobCard/JobItemMetadata';
 
-const additionalCardSettings = {
-  favorite_icon: 1,
-  favorite_icon_attributes: {
-    "aria-label": ""
-  },
-  info_icon_attributes: {
-    "aria-label": ""
-  },
-  close_icon_attributes: {
-    "aria-label": ""
-  },
-  custom_salary_string: 0,
-  no_salary_rate: 0
+const closeIconProps = {
+  "aria-label": ""
+}
+const infoIconProps = {
+  "aria-label": ""
 }
 
-const cardSettings = {
-  "card_settings": {
-    "miles_settings": {
-      "checked": 0,
-      "icon": "",
-      "icon_attributes": {
-        "aria-label": ""
-      }
-    },
-    "location_settings": {
-      "checked": 1,
-      "icon": "",
-      "icon_attributes": {
-        "aria-label": ""
-      }
-    },
-    "jobtype_settings": {
-      "checked": 1,
-      "icon": "",
-      "icon_attributes": {
-        "aria-label": ""
-      }
-    },
-    "salary_settings": {
-      "checked": 1,
-      "icon": "",
-      "icon_attributes": {
-        "aria-label": ""
-      }
-    }
+const settings: {
+  location: settingsFields;
+  jobType: settingsFields;
+  salary: settingsFields;
+  fourthOption: fourthOptionSettingsField;
+} = {
+  location: {
+    checked: true,
+  },
+  jobType: {
+    checked: true,
+  },
+  salary: {
+    checked: true,
+  },
+  fourthOption: {
+    field: "client_name_settings",
+    ariaLabel: ""
   }
-}
-
-const jobCardSettings = {
-  "job_cards_tab": {
-    "job_card_setting": {
-      "additional_meta_field": {
-        "display": "client_name_settings",
-        "weight": "1"
-      },
-      "icon": {
-        "display": "building",
-        "weight": "2"
-      },
-      "aria_label": {
-        "display": "company job is listed by",
-        "weight": "3"
-      }
-    }
-  }
-}
-
-const closeIconProps = additionalCardSettings.close_icon_attributes || {};
-const infoIconProps = additionalCardSettings.info_icon_attributes || {};
-
-const { card_settings } = cardSettings
-const { job_cards_tab } = jobCardSettings
-
-const settings = {
-  card_settings,
-  job_cards_tab,
-  fourthOptionAriaLabel: {}
 }
 
 let JobCardListingSettings: {
@@ -202,7 +153,7 @@ describe("JobCard tests", () => {
   })
 
   it("Changes the 4th option of the job cards to education and it renders successfully.", async () => {
-    settings.job_cards_tab.job_card_setting.additional_meta_field.display = "education_settings"
+    settings.fourthOption.field = "education_settings"
 
     render(<JobCard
       title="Test title"

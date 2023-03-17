@@ -1,7 +1,19 @@
 import React from 'react';
 import Icon from '../Icon';
 
-interface JobItemMetadataProps {
+export interface settingsFields {
+  checked: boolean;
+  icon?: string;
+  iconAttributes?: object;
+}
+
+export interface fourthOptionSettingsField {
+  field: "client_name_settings" | "hours_settings" | "education_settings" | "duration_settings" | "division_settings" | "sector_settings";
+  icon?: "building" | "clock" | "education" | "calendar" | "factory";
+  ariaLabel: string;
+}
+
+export interface JobItemMetadataProps {
   metaDataFields: {
     location: string;
     salary: string;
@@ -14,17 +26,17 @@ interface JobItemMetadataProps {
     jobType: string;
   };
   settings: {
-    card_settings: any;
-    job_cards_tab: any;
-    fourthOptionAriaLabel: object;
+    location: settingsFields
+    jobType: settingsFields;
+    salary: settingsFields;
+    fourthOption?: fourthOptionSettingsField
   }
   lowerCased?: string;
 }
 
 const JobItemMetadata: React.FC<JobItemMetadataProps> = ({metaDataFields, settings, lowerCased = false}) => {
-  const { card_settings, job_cards_tab } = settings;
-  const fourthOptionIcon = job_cards_tab?.job_card_setting?.icon?.display;
-  const fourthOptionAriaLabel = {"aria-label": settings?.fourthOptionAriaLabel};
+  const fourthOptionIcon = settings.fourthOption?.icon
+  const fourthOptionAriaLabel = {"aria-label": settings?.fourthOption?.ariaLabel};
 
   let fourthMetaCardOption = null;
 
@@ -105,7 +117,7 @@ const JobItemMetadata: React.FC<JobItemMetadataProps> = ({metaDataFields, settin
     )
   }
 
-  switch (job_cards_tab?.job_card_setting?.additional_meta_field?.display) {
+  switch (settings.fourthOption?.field) {
     case 'client_name_settings':
       fourthMetaCardOption = renderClientName();
       break;
@@ -131,28 +143,28 @@ const JobItemMetadata: React.FC<JobItemMetadataProps> = ({metaDataFields, settin
   return(
     <ul className="cards__meta">
       {
-         card_settings?.location_settings?.checked && metaDataFields.location ?
+         (settings?.location.checked && metaDataFields?.location) ?
           <li className="cards__meta-item" data-testid="location-testId">
             <span className="icon icon--inline">
-              <Icon svgProps={card_settings.location_settings.icon_attributes || {}} iconType={card_settings.location_settings.icon ? card_settings.location_settings.icon : "marker"} iconClassName={null}/>
+              <Icon svgProps={settings?.location.iconAttributes || {}} iconType={settings?.location.icon ? settings?.location.icon : "marker"} iconClassName={null}/>
             </span>
             { lowerCased ? metaDataFields.location.toLowerCase() : metaDataFields.location }
           </li> : null
       }
       {
-        card_settings?.jobtype_settings?.checked && metaDataFields.jobType ?
+        (settings?.jobType.checked && metaDataFields.jobType) ?
           <li className="cards__meta-item">
             <span className="icon icon--inline">
-              <Icon svgProps={card_settings.jobtype_settings.icon_attributes || {}} iconType={card_settings.jobtype_settings.icon ? card_settings.jobtype_settings.icon : "briefcase"} iconClassName={null}/>
+              <Icon svgProps={settings.jobType.iconAttributes || {}} iconType={settings.jobType.icon ? settings.jobType.icon : "briefcase"} iconClassName={null}/>
             </span>
             { lowerCased ? metaDataFields.jobType.toLowerCase() : metaDataFields.jobType }
           </li> : null
       }
       {
-         card_settings?.salary_settings?.checked && metaDataFields.salary ?
+         (settings?.salary?.checked && metaDataFields.salary) ?
           <li className={`cards__meta-item`}>
             <span className="icon icon--inline">
-              <Icon svgProps={card_settings.salary_settings.icon_attributes || {}} iconType={card_settings.salary_settings.icon ? card_settings.salary_settings.icon : "salary"} iconClassName={null}/>
+              <Icon svgProps={settings.salary.iconAttributes || {}} iconType={settings.salary.icon ? settings.salary.icon : "salary"} iconClassName={null}/>
             </span>
             { metaDataFields.salary }
           </li> : null
