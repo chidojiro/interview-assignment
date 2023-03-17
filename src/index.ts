@@ -31,6 +31,7 @@ import Footer from './components/footer/Footer';
 import GoogleRecaptcha, { GoogleRecaptchaRef } from './components/forms/GoogleRecaptcha';
 import MyEnvironmentLayout from './components/my-environment/MyEnvironmentLayout';
 import Section from './components/my-environment/Section';
+import PagePreloader from './components/PagePreloader';
 // import LocationInputField from "./components/forms/LocationInputField";
 // import RadioButton from "./components/forms/RadioButton";
 // import TextArea from "./components/forms/TextArea";
@@ -79,6 +80,7 @@ export {
   Toast,
   MyEnvironmentLayout,
   Section,
+  PagePreloader,
   // LocationInputField,
   // RadioButton,
   // TextArea,
