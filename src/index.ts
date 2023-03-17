@@ -26,13 +26,13 @@ import Badge from './components/Badge';
 import Icon from './components/Icon';
 import { Notice, NoticeType } from './components/notifications/Notice';
 import { Toast } from './components/notifications/Toast';
-import Preloader from './components/loaders/Preloader';
 import FooterBottomNav from './components/footer/FooterBottomNav';
 import FooterSocials, { FooterSocial } from './components/footer/FooterSocials';
 import Footer from './components/footer/Footer';
 import GoogleRecaptcha, { GoogleRecaptchaRef } from './components/forms/GoogleRecaptcha';
 import MyEnvironmentLayout from './components/my-environment/MyEnvironmentLayout';
 import Section from './components/my-environment/Section';
+import PagePreloader from './components/PagePreloader';
 // import LocationInputField from "./components/forms/LocationInputField";
 // import RadioButton from "./components/forms/RadioButton";
 // import TextArea from "./components/forms/TextArea";
@@ -82,7 +82,7 @@ export {
   Toast,
   MyEnvironmentLayout,
   Section,
-  Preloader,
+  PagePreloader,
   // LocationInputField,
   // RadioButton,
   // TextArea,
