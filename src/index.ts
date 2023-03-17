@@ -26,6 +26,7 @@ import Badge from './components/Badge';
 import Icon from './components/Icon';
 import { Notice, NoticeType } from './components/notifications/Notice';
 import { Toast } from './components/notifications/Toast';
+import Preloader from './components/loaders/Preloader';
 import FooterBottomNav from './components/footer/FooterBottomNav';
 import FooterSocials, { FooterSocial } from './components/footer/FooterSocials';
 import Footer from './components/footer/Footer';
@@ -81,6 +82,7 @@ export {
   Toast,
   MyEnvironmentLayout,
   Section,
+  Preloader,
   // LocationInputField,
   // RadioButton,
   // TextArea,
