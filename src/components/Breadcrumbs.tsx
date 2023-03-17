@@ -43,7 +43,7 @@ function Breadcrumbs({
         <div className="wrapper">
           <div className="navigation__bottom">
             <nav className="breadcrumb" aria-label="breadcrumb">
-              {mobileItem && (
+              {(mobileUrl && mobileTitle) && (
                 <RouterComponent className="breadcrumb__link hidden--from-l" href={mobileUrl}>
                   {mobileTitle}
                 </RouterComponent>

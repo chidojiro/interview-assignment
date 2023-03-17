@@ -31,6 +31,8 @@ import Footer from './components/footer/Footer';
 import GoogleRecaptcha, { GoogleRecaptchaRef } from './components/forms/GoogleRecaptcha';
 import MyEnvironmentLayout from './components/my-environment/MyEnvironmentLayout';
 import Section from './components/my-environment/Section';
+import JobCard from './components/JobCard/JobCard';
+import JobItemMetadata from './components/JobCard/JobItemMetadata';
 // import LocationInputField from "./components/forms/LocationInputField";
 // import RadioButton from "./components/forms/RadioButton";
 // import TextArea from "./components/forms/TextArea";
@@ -79,6 +81,8 @@ export {
   Toast,
   MyEnvironmentLayout,
   Section,
+  JobCard,
+  JobItemMetadata,
   // LocationInputField,
   // RadioButton,
   // TextArea,
