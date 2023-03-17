@@ -9,6 +9,7 @@ export interface MobileNavigationProps {
   myRandstadUrl?: string,
   myRandstadLabel?: string | React.ReactNode,
   myRandstadMenu?: Items[],
+  languagePrefix: string;
 }
 
 const menuAttributes = (menuItemLength: number) => {
@@ -24,7 +25,7 @@ const menuAttributes = (menuItemLength: number) => {
 };
 
 function MobileNavigation({
-  items, myRandstadUrl, showMyRandstad, myRandstadLabel, myRandstadMenu
+  items, myRandstadUrl, showMyRandstad, myRandstadLabel, myRandstadMenu, languagePrefix
 }: MobileNavigationProps) {
   const ref = useRef<Array<HTMLDivElement | null>>([]);
   const mobileMenuRef = useRef<HTMLDivElement | null>(null);
@@ -127,7 +128,7 @@ function MobileNavigation({
               <ul className="navigation-accordion__sub">
                 {myRandstadMenu.map((mrMenuItem) => (
                   <li key={mrMenuItem.title}>
-                    <a href={mrMenuItem.url}>{mrMenuItem.title}</a>
+                    <a href={`${languagePrefix}${mrMenuItem.url}`}>{mrMenuItem.title}</a>
                   </li>
                 ))}
               </ul>
