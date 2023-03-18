@@ -18,7 +18,7 @@ const MyRandstad = ({ show, loginUrl, label }) => {
         </span>
       </a>
       <a
-        href={loginUrl}
+        href="#"
         className="navigation__service-link navigation__service-my-randstad hidden--until-l"
         data-rs-popover-trigger="login-popover">
         <span className="icon icon--inline">
