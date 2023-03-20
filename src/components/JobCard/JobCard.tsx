@@ -15,8 +15,8 @@ interface JobCardProps extends JobItemMetadataProps{
   viewJobText: string;
   closeText: string;
   favoriteIcon: JSX.Element;
-  infoIcon: object;
-  closeIcon: object;
+  infoIconAriaLabel: string;
+  closeIconAriaLabel: string;
   infoIconClick: () => void;
   onMouseDownClick: () => void;
 }
@@ -33,8 +33,8 @@ const JobCard: React.FC<JobCardProps> = ({
   viewJobText,
   closeText,
   favoriteIcon,
-  infoIcon,
-  closeIcon,
+  infoIconAriaLabel,
+  closeIconAriaLabel,
   infoIconClick,
   onMouseDownClick,
   location,
@@ -91,7 +91,7 @@ const JobCard: React.FC<JobCardProps> = ({
             {date}
           </span>
         </div>
-        <div className="cards__info-wrapper" tabIndex={0} data-rs-card-show-backside={true} {...infoIcon}>
+        <div className="cards__info-wrapper" tabIndex={0} data-rs-card-show-backside={true} aria-label={infoIconAriaLabel}>
           <span className="cards__info-button text--alternative" onClick={infoIconClick}>
             <span className="icon icon--inline">
               <Icon iconType="info"/>
@@ -112,7 +112,7 @@ const JobCard: React.FC<JobCardProps> = ({
           </a>
           <div data-rs-card-hide-backside=""
             className="cards__backside-footer--horizontal cards__backside-footer--close-backside" tabIndex={-1}
-            role="button" {...closeIcon}>
+            role="button" aria-label={closeIconAriaLabel}>
             <span className="icon icon--inline">
               <Icon iconType="close"/>
             </span>

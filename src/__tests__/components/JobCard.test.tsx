@@ -4,12 +4,8 @@ import JobCard from '../../components/JobCard/JobCard';
 import Icon from '../../components/Icon';
 import { within } from '@testing-library/dom'
 
-const closeIconAreaLabel = {
-  "aria-label": ""
-}
-const infoIconAriaLabel = {
-  "aria-label": ""
-}
+const closeIconAreaLabel = "Test Info icon aria-lbel";
+const infoIconAriaLabel = "Test Close icon aria-label"
 
 const cardLogo = (
   <div className={`cards__logo`}>
@@ -30,8 +26,8 @@ describe("JobCard tests", () => {
       date={Date.now().toString()}
       logo={cardLogo}
       favoriteIcon={<Icon iconType='heart-filled-30' />}
-      infoIcon={infoIconAriaLabel}
-      closeIcon={closeIconAreaLabel}
+      infoIconAriaLabel={infoIconAriaLabel}
+      closeIconAriaLabel={closeIconAreaLabel}
       infoIconClick={() => console.log("Info icon clicked, add dataLayer event in this place in the future.")}
       onMouseDownClick={() => console.log("mouseClick event")}
       hasBackground={false}
@@ -60,8 +56,8 @@ describe("JobCard tests", () => {
       date={Date.now().toString()}
       logo={cardLogo}
       favoriteIcon={<Icon iconType='heart-filled-30' />}
-      infoIcon={infoIconAriaLabel}
-      closeIcon={closeIconAreaLabel}
+      infoIconAriaLabel={infoIconAriaLabel}
+      closeIconAriaLabel={closeIconAreaLabel}
       infoIconClick={() => console.log("Info icon clicked, add dataLayer event in this place in the future.")}
       onMouseDownClick={() => console.log("mouseClick event")}
       hasBackground={false}
@@ -90,8 +86,8 @@ describe("JobCard tests", () => {
       date={Date.now().toString()}
       logo={cardLogo}
       favoriteIcon={<Icon iconType='heart-filled-30' />}
-      infoIcon={infoIconAriaLabel}
-      closeIcon={closeIconAreaLabel}
+      infoIconAriaLabel={infoIconAriaLabel}
+      closeIconAriaLabel={closeIconAreaLabel}
       infoIconClick={() => console.log("Info icon clicked, add dataLayer event in this place in the future.")}
       onMouseDownClick={() => console.log("mouseClick event")}
       hasBackground={false}
@@ -121,8 +117,8 @@ describe("JobCard tests", () => {
       date={Date.now().toString()}
       logo={cardLogo}
       favoriteIcon={<Icon iconType='heart-filled-30' />}
-      infoIcon={infoIconAriaLabel}
-      closeIcon={closeIconAreaLabel}
+      infoIconAriaLabel={infoIconAriaLabel}
+      closeIconAriaLabel={closeIconAreaLabel}
       infoIconClick={() => console.log("Info icon clicked, add dataLayer event in this place in the future.")}
       onMouseDownClick={() => console.log("mouseClick event")}
       hasBackground={false}
@@ -153,8 +149,8 @@ describe("JobCard tests", () => {
       date={Date.now().toString()}
       logo={cardLogo}
       favoriteIcon={<Icon iconType='heart-filled-30' />}
-      infoIcon={infoIconAriaLabel}
-      closeIcon={closeIconAreaLabel}
+      infoIconAriaLabel={infoIconAriaLabel}
+      closeIconAriaLabel={closeIconAreaLabel}
       infoIconClick={() => console.log("Info icon clicked, add dataLayer event in this place in the future.")}
       onMouseDownClick={() => console.log("mouseClick event")}
       hasBackground={false}
@@ -172,5 +168,36 @@ describe("JobCard tests", () => {
     />);
 
     expect(screen.getByTestId("fourth-option-education-id") as HTMLElement).toBeInTheDocument();
+  })
+
+  it("Checks the job card info icon for the correct aria-label.", async () => {
+
+    render(<JobCard
+      title="Test title"
+      description="Test Description"
+      id="1"
+      url="www.google.com"
+      date={Date.now().toString()}
+      logo={cardLogo}
+      favoriteIcon={<Icon iconType='heart-filled-30' />}
+      infoIconAriaLabel={infoIconAriaLabel}
+      closeIconAriaLabel={closeIconAreaLabel}
+      infoIconClick={() => console.log("Info icon clicked, add dataLayer event in this place in the future.")}
+      onMouseDownClick={() => console.log("mouseClick event")}
+      hasBackground={false}
+      activeView={"grid"}
+      viewJobText="View job"
+      closeText=""
+      location="göteborg kommun, västra götaland"
+      salary="sek1,000,000 - sek2,000,000 0"
+      jobType="rekrytering"
+      enableLocation={true}
+      enableSalary={true}
+      enableJobType={true}
+      fourthOptionField="education_settings"
+      education="bachelor"
+    />);
+
+    expect(screen.getByLabelText(infoIconAriaLabel)).toBeInTheDocument();
   })
 });
