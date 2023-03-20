@@ -49,9 +49,9 @@ const JobCard: React.FC<JobCardProps> = ({
   locationIcon,
   salaryIcon,
   jobTypeIcon,
-  locationAttributes,
-  salaryAttributes,
-  jobTypeAttributes,
+  locationIconAttributes,
+  salaryIconAttributes,
+  jobTypeIconAttributes,
   enableLocation,
   enableSalary,
   enableJobType,
@@ -83,24 +83,7 @@ const JobCard: React.FC<JobCardProps> = ({
         </div>
         {favoriteIcon}
       </div>
-      <JobItemMetadata location={location} salary={salary} clientName={clientName} workHours={workHours} education={education} duration={duration} divison={divison} sector={sector} jobType={jobType}
-        locationIcon={locationIcon}
-        salaryIcon={salaryIcon}
-        jobTypeIcon={jobTypeIcon}
-
-        locationAttributes={locationAttributes}
-        salaryAttributes={salaryAttributes}
-        jobTypeAttributes={jobTypeAttributes}
-
-        enableLocation={enableLocation}
-        enableSalary={enableSalary}
-        enableJobType={enableJobType}
-
-        fourthOptionField={fourthOptionField}
-        fourthOptionIcon={fourthOptionIcon}
-        fourthOptionAriaLabelValue={fourthOptionAriaLabelValue}
-        lowerCased={lowerCased}
-      />
+      <JobItemMetadata location={location} salary={salary} clientName={clientName} workHours={workHours} education={education} duration={duration} divison={divison} sector={sector} jobType={jobType} locationIcon={locationIcon} salaryIcon={salaryIcon} jobTypeIcon={jobTypeIcon} locationIconAttributes={locationIconAttributes} salaryIconAttributes={salaryIconAttributes} jobTypeIconAttributes={jobTypeIconAttributes} enableLocation={enableLocation} enableSalary={enableSalary} enableJobType={enableJobType} fourthOptionField={fourthOptionField} fourthOptionIcon={fourthOptionIcon} fourthOptionAriaLabelValue={fourthOptionAriaLabelValue} lowerCased={lowerCased}/>
       <div className="cards__description" dangerouslySetInnerHTML={{ __html: description }} />
       <div className="cards__footer">
         <div className="cards__time-info">

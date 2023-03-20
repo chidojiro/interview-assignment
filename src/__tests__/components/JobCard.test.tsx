@@ -4,10 +4,10 @@ import JobCard from '../../components/JobCard/JobCard';
 import Icon from '../../components/Icon';
 import { within } from '@testing-library/dom'
 
-const closeIconProps = {
+const closeIconAreaLabel = {
   "aria-label": ""
 }
-const infoIconProps = {
+const infoIconAriaLabel = {
   "aria-label": ""
 }
 
@@ -30,8 +30,8 @@ describe("JobCard tests", () => {
       date={Date.now().toString()}
       logo={cardLogo}
       favoriteIcon={<Icon iconType='heart-filled-30' />}
-      infoIcon={infoIconProps}
-      closeIcon={closeIconProps}
+      infoIcon={infoIconAriaLabel}
+      closeIcon={closeIconAreaLabel}
       infoIconClick={() => console.log("Info icon clicked, add dataLayer event in this place in the future.")}
       onMouseDownClick={() => console.log("mouseClick event")}
       hasBackground={false}
@@ -60,8 +60,8 @@ describe("JobCard tests", () => {
       date={Date.now().toString()}
       logo={cardLogo}
       favoriteIcon={<Icon iconType='heart-filled-30' />}
-      infoIcon={infoIconProps}
-      closeIcon={closeIconProps}
+      infoIcon={infoIconAriaLabel}
+      closeIcon={closeIconAreaLabel}
       infoIconClick={() => console.log("Info icon clicked, add dataLayer event in this place in the future.")}
       onMouseDownClick={() => console.log("mouseClick event")}
       hasBackground={false}
@@ -90,8 +90,8 @@ describe("JobCard tests", () => {
       date={Date.now().toString()}
       logo={cardLogo}
       favoriteIcon={<Icon iconType='heart-filled-30' />}
-      infoIcon={infoIconProps}
-      closeIcon={closeIconProps}
+      infoIcon={infoIconAriaLabel}
+      closeIcon={closeIconAreaLabel}
       infoIconClick={() => console.log("Info icon clicked, add dataLayer event in this place in the future.")}
       onMouseDownClick={() => console.log("mouseClick event")}
       hasBackground={false}
@@ -121,8 +121,8 @@ describe("JobCard tests", () => {
       date={Date.now().toString()}
       logo={cardLogo}
       favoriteIcon={<Icon iconType='heart-filled-30' />}
-      infoIcon={infoIconProps}
-      closeIcon={closeIconProps}
+      infoIcon={infoIconAriaLabel}
+      closeIcon={closeIconAreaLabel}
       infoIconClick={() => console.log("Info icon clicked, add dataLayer event in this place in the future.")}
       onMouseDownClick={() => console.log("mouseClick event")}
       hasBackground={false}
@@ -153,8 +153,8 @@ describe("JobCard tests", () => {
       date={Date.now().toString()}
       logo={cardLogo}
       favoriteIcon={<Icon iconType='heart-filled-30' />}
-      infoIcon={infoIconProps}
-      closeIcon={closeIconProps}
+      infoIcon={infoIconAriaLabel}
+      closeIcon={closeIconAreaLabel}
       infoIconClick={() => console.log("Info icon clicked, add dataLayer event in this place in the future.")}
       onMouseDownClick={() => console.log("mouseClick event")}
       hasBackground={false}

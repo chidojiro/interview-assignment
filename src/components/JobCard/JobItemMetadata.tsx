@@ -18,9 +18,9 @@ export interface JobItemMetadataProps {
   salaryIcon?: metaItemIcons;
   jobTypeIcon?: metaItemIcons;
 
-  locationAttributes?: object;
-  salaryAttributes?: object;
-  jobTypeAttributes?: object;
+  locationIconAttributes?: object;
+  salaryIconAttributes?: object;
+  jobTypeIconAttributes?: object;
 
   enableLocation: boolean;
   enableSalary: boolean;
@@ -37,7 +37,7 @@ const JobItemMetadata: React.FC<JobItemMetadataProps> = ({
   location, salary, clientName, workHours, education, duration, divison, sector, jobType,
   locationIcon, salaryIcon, jobTypeIcon,
   enableLocation, enableSalary, enableJobType,
-  locationAttributes, salaryAttributes, jobTypeAttributes,
+  locationIconAttributes, salaryIconAttributes, jobTypeIconAttributes,
   fourthOptionField, fourthOptionIcon, fourthOptionAriaLabelValue,
   lowerCased = false
 }) => {
@@ -145,7 +145,7 @@ const JobItemMetadata: React.FC<JobItemMetadataProps> = ({
         (enableLocation && location) &&
         <li className="cards__meta-item" data-testid="location-testId">
           <span className="icon icon--inline">
-            <Icon svgProps={locationAttributes || {}} iconType={locationIcon ? locationIcon : "marker"} iconClassName={null} />
+            <Icon svgProps={locationIconAttributes || {}} iconType={locationIcon ? locationIcon : "marker"} iconClassName={null} />
           </span>
           {fieldValue(location)}
         </li>
@@ -154,7 +154,7 @@ const JobItemMetadata: React.FC<JobItemMetadataProps> = ({
         (enableJobType && jobType) &&
         <li className="cards__meta-item">
           <span className="icon icon--inline">
-            <Icon svgProps={jobTypeAttributes || {}} iconType={jobTypeIcon ? jobTypeIcon : "briefcase"} iconClassName={null} />
+            <Icon svgProps={jobTypeIconAttributes || {}} iconType={jobTypeIcon ? jobTypeIcon : "briefcase"} iconClassName={null} />
           </span>
           {fieldValue(jobType)}
         </li>
@@ -163,7 +163,7 @@ const JobItemMetadata: React.FC<JobItemMetadataProps> = ({
         (enableSalary && salary) &&
         <li className={`cards__meta-item`}>
           <span className="icon icon--inline">
-            <Icon svgProps={salaryAttributes || {}} iconType={salaryIcon ? salaryIcon : "salary"} iconClassName={null} />
+            <Icon svgProps={salaryIconAttributes || {}} iconType={salaryIcon ? salaryIcon : "salary"} iconClassName={null} />
           </span>
           {fieldValue(salary)}
         </li>
