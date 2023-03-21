@@ -52,8 +52,8 @@ function HeaderText({
           </h1>
           {(text || cta) && (
             <div className="content-block__split">
-              <div className="content-block__split-text content-block__split-text--s">
-                {text && <p>{text}</p>}
+              <div className="content-block__split-text body-copy">
+                {text && text}
               </div>
               {cta?.title && (
                 <a href={cta?.href} className="button">
