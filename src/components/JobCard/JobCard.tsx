@@ -21,45 +21,9 @@ interface JobCardProps extends JobItemMetadataProps{
   onMouseDownClick: () => void;
 }
 
-const JobCard: React.FC<JobCardProps> = ({
-  title,
-  description,
-  id,
-  url,
-  date,
-  logo,
-  hasBackground,
-  activeView,
-  viewJobText,
-  closeText,
-  favoriteIcon,
-  infoIconAriaLabel,
-  closeIconAriaLabel,
-  infoIconClick,
-  onMouseDownClick,
-  location,
-  salary,
-  clientName,
-  workHours,
-  education,
-  duration,
-  divison,
-  sector,
-  jobType,
-  locationIcon,
-  salaryIcon,
-  jobTypeIcon,
-  locationIconAttributes,
-  salaryIconAttributes,
-  jobTypeIconAttributes,
-  enableLocation,
-  enableSalary,
-  enableJobType,
-  fourthOptionField,
-  fourthOptionIcon,
-  fourthOptionAriaLabelValue,
-  lowerCased
-}) => {
+const JobCard: React.FC<JobCardProps> = (props) => {
+
+  const {activeView, hasBackground, logo, url, onMouseDownClick, title, favoriteIcon, description, date, infoIconAriaLabel, infoIconClick, id, viewJobText, closeIconAriaLabel, closeText} = props
 
   const cardRef = useRef<any>(null);
 
@@ -83,7 +47,7 @@ const JobCard: React.FC<JobCardProps> = ({
         </div>
         {favoriteIcon}
       </div>
-      <JobItemMetadata location={location} salary={salary} clientName={clientName} workHours={workHours} education={education} duration={duration} divison={divison} sector={sector} jobType={jobType} locationIcon={locationIcon} salaryIcon={salaryIcon} jobTypeIcon={jobTypeIcon} locationIconAttributes={locationIconAttributes} salaryIconAttributes={salaryIconAttributes} jobTypeIconAttributes={jobTypeIconAttributes} enableLocation={enableLocation} enableSalary={enableSalary} enableJobType={enableJobType} fourthOptionField={fourthOptionField} fourthOptionIcon={fourthOptionIcon} fourthOptionAriaLabelValue={fourthOptionAriaLabelValue} lowerCased={lowerCased}/>
+      <JobItemMetadata {...props}/>
       <div className="cards__description" dangerouslySetInnerHTML={{ __html: description }} />
       <div className="cards__footer">
         <div className="cards__time-info">

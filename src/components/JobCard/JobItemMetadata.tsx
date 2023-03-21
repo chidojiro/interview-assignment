@@ -10,7 +10,7 @@ export interface JobItemMetadataProps {
   workHours?: string;
   education?: string;
   duration?: string;
-  divison?: string;
+  division?: string;
   sector?: string;
   jobType: string;
 
@@ -34,7 +34,7 @@ export interface JobItemMetadataProps {
 }
 
 const JobItemMetadata: React.FC<JobItemMetadataProps> = ({
-  location, salary, clientName, workHours, education, duration, divison, sector, jobType,
+  location, salary, clientName, workHours, education, duration, division, sector, jobType,
   locationIcon, salaryIcon, jobTypeIcon,
   enableLocation, enableSalary, enableJobType,
   locationIconAttributes, salaryIconAttributes, jobTypeIconAttributes,
@@ -99,14 +99,14 @@ const JobItemMetadata: React.FC<JobItemMetadataProps> = ({
   }
 
   const Division = () => {
-    if (!divison) return null;
+    if (!division) return null;
 
     return (
       <li className="cards__meta-item">
         <span className="icon icon--inline">
           <Icon svgProps={fourthOptionAriaLabel} iconType={fourthOptionIcon ? fourthOptionIcon : "building"} iconClassName={null} />
         </span>
-        {fieldValue(divison)}
+        {fieldValue(division)}
       </li>
     )
   }
