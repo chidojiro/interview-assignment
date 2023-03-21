@@ -72,7 +72,7 @@ function Modal({
             <Icon iconClassName={classNames('icon icon--l icon--inline hidden--until-l icon--alternative')} iconType="close-30" />
           </button>
         </div>
-        <div className={`modal__main body-copy ${modalOverflow ? 'modal__main--overflow' : ''}`} data-rs-modal-main="">
+        <div className={`modal__main ${modalOverflow ? 'modal__main--overflow' : ''}`} data-rs-modal-main="">
           {children}
         </div>
         <div className={`modal__footer ${footerDivider ? 'divider' : ''} ${footerDividerTop ? 'divider--top' : ''}`} data-rs-modal-footer="">
