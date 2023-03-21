@@ -100,6 +100,12 @@ module.exports = {
       components: 'src/components/my-environment/*.tsx',
       description: 'My Environment components',
     },
+    {
+      name: 'User',
+      components: [
+        'src/components/UserImageBlock.tsx',
+      ],
+    },
     // {
     //   name: 'Shared components',
     //   components: 'src/components/**/*.js',
