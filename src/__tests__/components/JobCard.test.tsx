@@ -7,14 +7,6 @@ import { within } from '@testing-library/dom'
 const closeIconAreaLabel = "Test Info icon aria-lbel";
 const infoIconAriaLabel = "Test Close icon aria-label"
 
-const cardLogo = (
-  <div className={`cards__logo`}>
-    <img className="cards__logo-image" alt={"Test title"}
-      src="https://www.randstad.com/themes/custom/bluex/src/assets/img/logo-bluex.png"
-    />
-  </div>
-)
-
 describe("JobCard tests", () => {
 
   it("Renders a job card and checks for the correct location.", async () => {
@@ -24,14 +16,15 @@ describe("JobCard tests", () => {
       id="1"
       url="www.google.com"
       date={Date.now().toString()}
-      logo={cardLogo}
+      enableLogo={true}
+      enableFavoriteIcon={true}
       favoriteIcon={<Icon iconType='heart-filled-30' />}
       infoIconAriaLabel={infoIconAriaLabel}
       closeIconAriaLabel={closeIconAreaLabel}
-      infoIconClick={() => console.log("Info icon clicked, add dataLayer event in this place in the future.")}
+      logoAltTagValue={"test alt"}
+      logoSrcTagValue={"https://www.randstad-easydrive.de/m/19e8e57574a321fa/original/Logo-Jobborse-GULP.jpeg"}
       onMouseDownClick={() => console.log("mouseClick event")}
       hasBackground={false}
-      activeView={"grid"}
       viewJobText="View job"
       closeText=""
       location="göteborg kommun, västra götaland"
@@ -40,7 +33,7 @@ describe("JobCard tests", () => {
       enableLocation={true}
       enableSalary={true}
       enableJobType={true}
-    
+
     />);
 
     const { findByText } = within(screen.getByTestId("location-testId") as HTMLElement)
@@ -54,14 +47,15 @@ describe("JobCard tests", () => {
       id="1"
       url="www.google.com"
       date={Date.now().toString()}
-      logo={cardLogo}
+      enableLogo={true}
+      enableFavoriteIcon={true}
       favoriteIcon={<Icon iconType='heart-filled-30' />}
       infoIconAriaLabel={infoIconAriaLabel}
       closeIconAriaLabel={closeIconAreaLabel}
-      infoIconClick={() => console.log("Info icon clicked, add dataLayer event in this place in the future.")}
+      logoAltTagValue={"test alt"}
+      logoSrcTagValue={"https://www.randstad-easydrive.de/m/19e8e57574a321fa/original/Logo-Jobborse-GULP.jpeg"}
       onMouseDownClick={() => console.log("mouseClick event")}
       hasBackground={false}
-      activeView={"grid"}
       viewJobText="View job"
       closeText=""
       location="göteborg kommun, västra götaland"
@@ -70,7 +64,7 @@ describe("JobCard tests", () => {
       enableLocation={true}
       enableSalary={true}
       enableJobType={true}
-    
+
     />);
 
     const titleMetaDataElement = document.querySelector('.cards__title');
@@ -84,14 +78,15 @@ describe("JobCard tests", () => {
       id="1"
       url="www.google.com"
       date={Date.now().toString()}
-      logo={cardLogo}
+      enableLogo={true}
+      enableFavoriteIcon={true}
       favoriteIcon={<Icon iconType='heart-filled-30' />}
       infoIconAriaLabel={infoIconAriaLabel}
       closeIconAriaLabel={closeIconAreaLabel}
-      infoIconClick={() => console.log("Info icon clicked, add dataLayer event in this place in the future.")}
+      logoAltTagValue={"test alt"}
+      logoSrcTagValue={"https://www.randstad-easydrive.de/m/19e8e57574a321fa/original/Logo-Jobborse-GULP.jpeg"}
       onMouseDownClick={() => console.log("mouseClick event")}
       hasBackground={false}
-      activeView={"grid"}
       viewJobText="View job"
       closeText=""
       location="göteborg kommun, västra götaland"
@@ -115,14 +110,15 @@ describe("JobCard tests", () => {
       id="1"
       url="www.google.com"
       date={Date.now().toString()}
-      logo={cardLogo}
+      enableLogo={true}
+      enableFavoriteIcon={true}
       favoriteIcon={<Icon iconType='heart-filled-30' />}
       infoIconAriaLabel={infoIconAriaLabel}
       closeIconAriaLabel={closeIconAreaLabel}
-      infoIconClick={() => console.log("Info icon clicked, add dataLayer event in this place in the future.")}
+      logoAltTagValue={"test alt"}
+      logoSrcTagValue={"https://www.randstad-easydrive.de/m/19e8e57574a321fa/original/Logo-Jobborse-GULP.jpeg"}
       onMouseDownClick={() => console.log("mouseClick event")}
       hasBackground={false}
-      activeView={"grid"}
       viewJobText="View job"
       closeText=""
       location="göteborg kommun, västra götaland"
@@ -132,7 +128,7 @@ describe("JobCard tests", () => {
       enableSalary={true}
       enableJobType={true}
       fourthOptionField="client_name_settings"
-    
+
     />);
 
     const educationMetaItem = screen.queryByText('bachelor')
@@ -147,14 +143,15 @@ describe("JobCard tests", () => {
       id="1"
       url="www.google.com"
       date={Date.now().toString()}
-      logo={cardLogo}
+      enableLogo={true}
+      enableFavoriteIcon={true}
       favoriteIcon={<Icon iconType='heart-filled-30' />}
       infoIconAriaLabel={infoIconAriaLabel}
       closeIconAriaLabel={closeIconAreaLabel}
-      infoIconClick={() => console.log("Info icon clicked, add dataLayer event in this place in the future.")}
+      logoAltTagValue={"test alt"}
+      logoSrcTagValue={"https://www.randstad-easydrive.de/m/19e8e57574a321fa/original/Logo-Jobborse-GULP.jpeg"}
       onMouseDownClick={() => console.log("mouseClick event")}
       hasBackground={false}
-      activeView={"grid"}
       viewJobText="View job"
       closeText=""
       location="göteborg kommun, västra götaland"
@@ -178,14 +175,15 @@ describe("JobCard tests", () => {
       id="1"
       url="www.google.com"
       date={Date.now().toString()}
-      logo={cardLogo}
+      enableLogo={true}
+      enableFavoriteIcon={true}
       favoriteIcon={<Icon iconType='heart-filled-30' />}
       infoIconAriaLabel={infoIconAriaLabel}
       closeIconAriaLabel={closeIconAreaLabel}
-      infoIconClick={() => console.log("Info icon clicked, add dataLayer event in this place in the future.")}
+      logoAltTagValue={"test alt"}
+      logoSrcTagValue={"https://www.randstad-easydrive.de/m/19e8e57574a321fa/original/Logo-Jobborse-GULP.jpeg"}
       onMouseDownClick={() => console.log("mouseClick event")}
       hasBackground={false}
-      activeView={"grid"}
       viewJobText="View job"
       closeText=""
       location="göteborg kommun, västra götaland"

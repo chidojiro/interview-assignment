@@ -1,53 +1,68 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useState } from 'react';
 import Icon from '../Icon';
 import JobItemMetadata from './JobItemMetadata';
 import { JobItemMetadataProps } from './JobItemMetadata';
 
-interface JobCardProps extends JobItemMetadataProps{
+interface JobCardProps extends JobItemMetadataProps {
   title: string;
   description: string;
   id: string;
   url: string;
   date: string;
-  logo: JSX.Element;
+  enableLogo: boolean;
   hasBackground: boolean;
-  activeView: "grid" | "list";
   viewJobText: string;
   closeText: string;
-  favoriteIcon: JSX.Element;
+  enableFavoriteIcon: boolean;
+  favoriteIcon?: JSX.Element;
+  logoAltTagValue: string;
+  logoSrcTagValue: string;
   infoIconAriaLabel: string;
   closeIconAriaLabel: string;
-  infoIconClick: () => void;
   onMouseDownClick: () => void;
 }
 
 const JobCard: React.FC<JobCardProps> = (props) => {
 
-  const {activeView, hasBackground, logo, url, onMouseDownClick, title, favoriteIcon, description, date, infoIconAriaLabel, infoIconClick, id, viewJobText, closeIconAriaLabel, closeText} = props
+  const { hasBackground, url, onMouseDownClick, title, favoriteIcon, description, date, infoIconAriaLabel, id, viewJobText, closeIconAriaLabel, closeText, enableLogo, enableFavoriteIcon, logoAltTagValue, logoSrcTagValue } = props
+  const [realLogoImg, setRealLogoImg] = useState(true);
+  const [showInfo, setShowInfo] = useState(false);
 
-  const cardRef = useRef<any>(null);
+  const logoRef = useRef<any>(null);
 
-  useEffect(() => {
-    if (cardRef.current?.classList.contains('cards__item--backside-active')) {
-      cardRef.current?.querySelector('[data-rs-card-hide-backside]')?.click();
+  const onLogoLoad = (event: any) => {
+    if (event.target.naturalHeight <= 1) {
+      logoRef.current.remove();
+    } else {
+      setRealLogoImg(event.target.naturalHeight > 1);
     }
-  }, [activeView]);
+  };
+
+  const toggleShowInfo = () => {
+    setShowInfo(prev => !prev)
+  }
 
   return (
-    <li className={`cards__item ${hasBackground ? '' : 'bg-variant-white'}`} data-rs-card={true} ref={cardRef}>
+    <li className={`cards__item ${hasBackground ? '' : 'bg-variant-white'} ${showInfo && "cards__item--backside-active"}`} aria-expanded={showInfo} style={{ height: '290px' }} >
       <div className="cards__header">
         <div className="cards__logo-title-container">
-          { logo }
+          {enableLogo && (
+            <div className={`cards__logo${realLogoImg ? "" : " hidden--visually"}`} ref={logoRef}>
+              <img className="cards__logo-image" alt={logoAltTagValue}
+                src={logoSrcTagValue}
+                onLoad={onLogoLoad} />
+            </div>)
+          }
           <h3 className="cards__title">
             <a href={url} tabIndex={0} className="cards__link" onMouseDown={onMouseDownClick}>
               {title}
-              <span className="make-entire-card-clickable"/>
+              <span className="make-entire-card-clickable" />
             </a>
           </h3>
         </div>
-        {favoriteIcon}
+        {enableFavoriteIcon && favoriteIcon}
       </div>
-      <JobItemMetadata {...props}/>
+      <JobItemMetadata {...props} />
       <div className="cards__description" dangerouslySetInnerHTML={{ __html: description }} />
       <div className="cards__footer">
         <div className="cards__time-info">
@@ -55,10 +70,10 @@ const JobCard: React.FC<JobCardProps> = (props) => {
             {date}
           </span>
         </div>
-        <div className="cards__info-wrapper" tabIndex={0} data-rs-card-show-backside={true} aria-label={infoIconAriaLabel}>
-          <span className="cards__info-button text--alternative" onClick={infoIconClick}>
+        <div className="cards__info-wrapper" tabIndex={0} aria-label={infoIconAriaLabel}>
+          <span className="cards__info-button text--alternative" onClick={toggleShowInfo}>
             <span className="icon icon--inline">
-              <Icon iconType="info"/>
+              <Icon iconType="info" />
             </span>
           </span>
         </div>
@@ -68,17 +83,16 @@ const JobCard: React.FC<JobCardProps> = (props) => {
         <div className="cards__backside-footer">
           <a href={url}
             data-jobid={id} onMouseDown={onMouseDownClick}
-            className="cards__backside-footer--horizontal cards__backside-footer--job-link" tabIndex={-1} aria-label="">
+            className="cards__backside-footer--horizontal cards__backside-footer--job-link" tabIndex={showInfo ? 0 : -1} aria-label="">
             <span className="icon icon--inline">
-              <Icon iconType="eye"/>
+              <Icon iconType="eye" />
             </span>
             {viewJobText}
           </a>
-          <div data-rs-card-hide-backside=""
-            className="cards__backside-footer--horizontal cards__backside-footer--close-backside" tabIndex={-1}
+          <div className="cards__backside-footer--horizontal cards__backside-footer--close-backside" tabIndex={showInfo ? 0 : -1}
             role="button" aria-label={closeIconAriaLabel}>
-            <span className="icon icon--inline">
-              <Icon iconType="close"/>
+            <span className="icon icon--inline" onClick={toggleShowInfo}>
+              <Icon iconType="close" />
             </span>
             <span className="button-text">{closeText}</span>
           </div>
