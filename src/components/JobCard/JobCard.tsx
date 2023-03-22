@@ -46,9 +46,6 @@ const JobCard: React.FC<JobCardProps> = (props) => {
     }
   }, []);
 
-  console.log(cardRef.current);
-  
-
 useEffect(() => {
     if (cardRef?.current?.classList.contains('cards__item--backside-active')) {
         (cardRef?.current?.querySelector(('[data-rs-card-hide-backside]')) as HTMLLIElement)?.click();
