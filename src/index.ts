@@ -35,6 +35,7 @@ import Section from './components/my-environment/Section';
 import PagePreloader from './components/PagePreloader';
 import Preloader from './components/loaders/Preloader';
 import UserImageBlock from './components/UserImageBlock';
+import UploadField from './components/forms/UploadField';
 // import LocationInputField from "./components/forms/LocationInputField";
 // import RadioButton from "./components/forms/RadioButton";
 // import TextArea from "./components/forms/TextArea";
@@ -87,6 +88,7 @@ export {
   PagePreloader,
   Preloader,
   UserImageBlock,
+  UploadField,
   // LocationInputField,
   // RadioButton,
   // TextArea,
