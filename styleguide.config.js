@@ -99,6 +99,11 @@ module.exports = {
       components: 'src/components/my-environment/*.tsx',
       description: 'My Environment components',
     },
+    {
+      name: 'Job card',
+      components: 'src/components/JobCard/*.tsx',
+      description: 'Job card component and its metadata fields component.',
+    },
     // {
     //   name: 'Shared components',
     //   components: 'src/components/**/*.js',
