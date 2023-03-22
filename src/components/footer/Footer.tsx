@@ -24,7 +24,7 @@ interface FooterProps {
  * @returns Footer with all components that we have passed data for.
  */
 function Footer({ footerColumnNavLinks, socialNavLinks, bottomNavLinks, className, copyright }: FooterProps) {
-  if (!footerColumnNavLinks || !socialNavLinks || !bottomNavLinks || !copyright) return null;
+  if ( !socialNavLinks || !bottomNavLinks ) return null;
 
   return (
     <footer className={classNames('footer footer--s', className)}>
