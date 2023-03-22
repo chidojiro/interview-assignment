@@ -1,5 +1,3 @@
-// d.
-/* eslint-disable no-console */
 import { AxiosResponse } from 'axios';
 import talentAppApi from '../utils/talent-app-api';
 
