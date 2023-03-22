@@ -1,7 +1,8 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Icon from '../Icon';
 import JobItemMetadata from './JobItemMetadata';
 import { JobItemMetadataProps } from './JobItemMetadata';
+import { Card } from '@ffw/randstad-local-orbit/js/components/card';
 
 interface JobCardProps extends JobItemMetadataProps {
   title: string;
@@ -11,6 +12,7 @@ interface JobCardProps extends JobItemMetadataProps {
   date: string;
   enableLogo: boolean;
   hasBackground: boolean;
+  activeView: "grid" | "list";
   viewJobText: string;
   closeText: string;
   enableFavoriteIcon: boolean;
@@ -24,11 +26,11 @@ interface JobCardProps extends JobItemMetadataProps {
 
 const JobCard: React.FC<JobCardProps> = (props) => {
 
-  const { hasBackground, url, onMouseDownClick, title, favoriteIcon, description, date, infoIconAriaLabel, id, viewJobText, closeIconAriaLabel, closeText, enableLogo, enableFavoriteIcon, logoAltTagValue, logoSrcTagValue } = props
+  const { hasBackground, url, onMouseDownClick, title, favoriteIcon, description, date, infoIconAriaLabel, id, viewJobText, closeIconAriaLabel, closeText, enableLogo, enableFavoriteIcon, logoAltTagValue, logoSrcTagValue, activeView } = props
   const [realLogoImg, setRealLogoImg] = useState(true);
-  const [showInfo, setShowInfo] = useState(false);
 
   const logoRef = useRef<any>(null);
+  const cardRef = useRef<HTMLLIElement | null>(null);
 
   const onLogoLoad = (event: any) => {
     if (event.target.naturalHeight <= 1) {
@@ -38,12 +40,23 @@ const JobCard: React.FC<JobCardProps> = (props) => {
     }
   };
 
-  const toggleShowInfo = () => {
-    setShowInfo(prev => !prev)
-  }
+  useEffect(() => {
+    if (cardRef.current) {
+      new Card(cardRef.current)
+    }
+  }, []);
+
+  console.log(cardRef.current);
+  
+
+useEffect(() => {
+    if (cardRef?.current?.classList.contains('cards__item--backside-active')) {
+        (cardRef?.current?.querySelector(('[data-rs-card-hide-backside]')) as HTMLLIElement)?.click();
+    }
+}, [activeView]);
 
   return (
-    <li className={`cards__item ${hasBackground ? '' : 'bg-variant-white'} ${showInfo && "cards__item--backside-active"}`} aria-expanded={showInfo} style={{ height: '290px' }} >
+    <li className={`cards__item ${hasBackground ? '' : 'bg-variant-white'}`} data-rs-card={true} ref={cardRef}>
       <div className="cards__header">
         <div className="cards__logo-title-container">
           {enableLogo && (
@@ -70,8 +83,8 @@ const JobCard: React.FC<JobCardProps> = (props) => {
             {date}
           </span>
         </div>
-        <div className="cards__info-wrapper" tabIndex={0} aria-label={infoIconAriaLabel}>
-          <span className="cards__info-button text--alternative" onClick={toggleShowInfo}>
+        <div className="cards__info-wrapper" tabIndex={0} data-rs-card-show-backside={true} aria-label={infoIconAriaLabel}>
+          <span className="cards__info-button text--alternative">
             <span className="icon icon--inline">
               <Icon iconType="info" />
             </span>
@@ -83,15 +96,15 @@ const JobCard: React.FC<JobCardProps> = (props) => {
         <div className="cards__backside-footer">
           <a href={url}
             data-jobid={id} onMouseDown={onMouseDownClick}
-            className="cards__backside-footer--horizontal cards__backside-footer--job-link" tabIndex={showInfo ? 0 : -1} aria-label="">
+            className="cards__backside-footer--horizontal cards__backside-footer--job-link" tabIndex={-1} aria-label="">
             <span className="icon icon--inline">
               <Icon iconType="eye" />
             </span>
             {viewJobText}
           </a>
-          <div className="cards__backside-footer--horizontal cards__backside-footer--close-backside" tabIndex={showInfo ? 0 : -1}
+          <div className="cards__backside-footer--horizontal cards__backside-footer--close-backside" data-rs-card-hide-backside="" tabIndex={-1}
             role="button" aria-label={closeIconAriaLabel}>
-            <span className="icon icon--inline" onClick={toggleShowInfo}>
+            <span className="icon icon--inline" >
               <Icon iconType="close" />
             </span>
             <span className="button-text">{closeText}</span>

@@ -33,6 +33,7 @@ describe("JobCard tests", () => {
       enableLocation={true}
       enableSalary={true}
       enableJobType={true}
+      activeView="grid"
 
     />);
 
@@ -64,7 +65,7 @@ describe("JobCard tests", () => {
       enableLocation={true}
       enableSalary={true}
       enableJobType={true}
-
+      activeView="grid"
     />);
 
     const titleMetaDataElement = document.querySelector('.cards__title');
@@ -97,6 +98,7 @@ describe("JobCard tests", () => {
       enableJobType={true}
       fourthOptionField="client_name_settings"
       clientName="randstad"
+      activeView="grid"
     />);
 
     const { findByText } = within(screen.getByTestId("fourth-option-client-name-id") as HTMLElement)
@@ -128,6 +130,7 @@ describe("JobCard tests", () => {
       enableSalary={true}
       enableJobType={true}
       fourthOptionField="client_name_settings"
+      activeView="grid"
 
     />);
 
@@ -162,6 +165,7 @@ describe("JobCard tests", () => {
       enableJobType={true}
       fourthOptionField="education_settings"
       education="bachelor"
+      activeView="grid"
     />);
 
     expect(screen.getByTestId("fourth-option-education-id") as HTMLElement).toBeInTheDocument();
@@ -194,6 +198,7 @@ describe("JobCard tests", () => {
       enableJobType={true}
       fourthOptionField="education_settings"
       education="bachelor"
+      activeView="grid"
     />);
 
     expect(screen.getByLabelText(infoIconAriaLabel)).toBeInTheDocument();
