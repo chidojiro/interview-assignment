@@ -40,7 +40,7 @@ function TabBar({ items = [], url, RouterComponent }: TabBarProps) {
       );
       ref.current?.removeChild(ref.current.children[indexRightArrow]);
     }
-    return new OrbitComponent(ref.current);
+    new OrbitComponent(ref.current);
   }, [url]);
 
   return (
