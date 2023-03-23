@@ -25,6 +25,7 @@ import Button from './components/button/Button';
 import Badge from './components/Badge';
 import Icon from './components/Icon';
 import { Notice, NoticeType } from './components/notifications/Notice';
+import { TextNotice, TextNoticeBackground } from './components/notifications/TextNotice';
 import { Toast } from './components/notifications/Toast';
 import FooterBottomNav from './components/footer/FooterBottomNav';
 import FooterSocials, { FooterSocial } from './components/footer/FooterSocials';
@@ -74,6 +75,7 @@ export {
   Icon,
   FieldError,
   Notice,
+  TextNotice,
   SelectField,
   InputField,
   TabBar,
@@ -108,4 +110,4 @@ export {
 /**
  * Exporting interfaces and types.
  */
-export type { NoticeType, FooterSocial, GoogleRecaptchaRef };
+export type { NoticeType, TextNoticeBackground, FooterSocial, GoogleRecaptchaRef };
