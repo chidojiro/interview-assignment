@@ -2,19 +2,6 @@
 import { JobCard } from "@ffw/randstad-shared-components";
 import Icon from '../Icon';
 
-const renderFavoriteJobIcon = () => {
-  return (
-    <button className={`icon__toggler icon--l`} aria-pressed={false} id={`fav - jobId`}>
-      <span className={`icon icon--l icon--inline`}>
-        <Icon type="heart-30" />
-      </span>
-      <span className={`icon icon--l icon--inline`}>
-        <Icon type="heart-filled-30" />
-      </span>
-    </button>
-  )
-}
-
 <ul>
   <JobCard
       description="descriptif du posteSous la responsabilité d'un chef d'équipe, vos missions seront les suivantes:- La sécurisation de votre poste- Réaliser la pose de planchers et de rails (mise en place de scotch et de joints)- Effectuer la pose de luminaires provisoires- Mise en place de protections sur parois- Exécuter les opérations de nettoyage de votre poste de travail- Retirer des copeaux par système d'aspiration- Passer la soufflette à air compriméHoraires 2X8, sal"
@@ -22,10 +9,10 @@ const renderFavoriteJobIcon = () => {
       url="Url to the job details page"
       date="posted 22 march 2023"
       enableLogo={true}
-      enableFavoriteIcon={true}
+      favoriteJobsEnabled={true}
+      favorited={false}
       logoAltTagValue="logo alt text"
       logoSrcTagValue="https://bynder-public.s3.amazonaws.com/media/6EF965C8-0E83-47D9-ABF1A5C7AC6D092A/0/B591E16A-8CC3-4F5D-ABC89781EFC13D7A/webimage-333390C9-7283-44B4-83FDFA1C921A763C.png"
-      favoriteIconComponent={renderFavoriteJobIcon()}
       infoIconAriaLabel="Info icon aria label"
       closeIconAriaLabel="Close icon aria label"
       onMouseDownClick={() => {console.log("eval(jobData.dataLayerJobClick)")}}
@@ -55,7 +42,6 @@ const renderFavoriteJobIcon = () => {
       fourthOptionAriaLabelValue="Fourth option aria-label"
       lowerCased={false}
       activeView="grid"
-
   />
 </ul>
 ```

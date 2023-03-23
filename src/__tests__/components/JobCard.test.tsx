@@ -1,7 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import JobCard from '../../components/JobCard/JobCard';
-import Icon from '../../components/Icon';
 import { within } from '@testing-library/dom'
 
 const closeIconAreaLabel = "Test Info icon aria-lbel";
@@ -17,8 +16,8 @@ describe("JobCard tests", () => {
       url="www.google.com"
       date={Date.now().toString()}
       enableLogo={true}
-      enableFavoriteIcon={true}
-      favoriteIconComponent={<Icon iconType='heart-filled-30' />}
+      favoriteJobsEnabled={true}
+      favorited={false}
       infoIconAriaLabel={infoIconAriaLabel}
       closeIconAriaLabel={closeIconAreaLabel}
       logoAltTagValue={"test alt"}
@@ -49,8 +48,8 @@ describe("JobCard tests", () => {
       url="www.google.com"
       date={Date.now().toString()}
       enableLogo={true}
-      enableFavoriteIcon={true}
-      favoriteIconComponent={<Icon iconType='heart-filled-30' />}
+      favoriteJobsEnabled={true}
+      favorited={false}
       infoIconAriaLabel={infoIconAriaLabel}
       closeIconAriaLabel={closeIconAreaLabel}
       logoAltTagValue={"test alt"}
@@ -80,8 +79,8 @@ describe("JobCard tests", () => {
       url="www.google.com"
       date={Date.now().toString()}
       enableLogo={true}
-      enableFavoriteIcon={true}
-      favoriteIconComponent={<Icon iconType='heart-filled-30' />}
+      favoriteJobsEnabled={true}
+      favorited={false}
       infoIconAriaLabel={infoIconAriaLabel}
       closeIconAriaLabel={closeIconAreaLabel}
       logoAltTagValue={"test alt"}
@@ -113,8 +112,8 @@ describe("JobCard tests", () => {
       url="www.google.com"
       date={Date.now().toString()}
       enableLogo={true}
-      enableFavoriteIcon={true}
-      favoriteIconComponent={<Icon iconType='heart-filled-30' />}
+      favoriteJobsEnabled={true}
+      favorited={false}
       infoIconAriaLabel={infoIconAriaLabel}
       closeIconAriaLabel={closeIconAreaLabel}
       logoAltTagValue={"test alt"}
@@ -147,8 +146,8 @@ describe("JobCard tests", () => {
       url="www.google.com"
       date={Date.now().toString()}
       enableLogo={true}
-      enableFavoriteIcon={true}
-      favoriteIconComponent={<Icon iconType='heart-filled-30' />}
+      favoriteJobsEnabled={true}
+      favorited={false}
       infoIconAriaLabel={infoIconAriaLabel}
       closeIconAriaLabel={closeIconAreaLabel}
       logoAltTagValue={"test alt"}
@@ -180,8 +179,8 @@ describe("JobCard tests", () => {
       url="www.google.com"
       date={Date.now().toString()}
       enableLogo={true}
-      enableFavoriteIcon={true}
-      favoriteIconComponent={<Icon iconType='heart-filled-30' />}
+      favoriteJobsEnabled={true}
+      favorited={false}
       infoIconAriaLabel={infoIconAriaLabel}
       closeIconAriaLabel={closeIconAreaLabel}
       logoAltTagValue={"test alt"}

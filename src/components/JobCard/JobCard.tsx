@@ -15,8 +15,8 @@ interface JobCardProps extends JobItemMetadataProps {
   activeView: "grid" | "list";
   viewJobText: string;
   closeText: string;
-  enableFavoriteIcon: boolean;
-  favoriteIconComponent?: JSX.Element;
+  favoriteJobsEnabled: boolean;
+  favorited: boolean;
   logoAltTagValue: string;
   logoSrcTagValue: string;
   infoIconAriaLabel: string;
@@ -24,9 +24,28 @@ interface JobCardProps extends JobItemMetadataProps {
   onMouseDownClick: () => void;
 }
 
+interface FavoriteIconProps {
+  id: string;
+  favorite: boolean;
+  size?: string;
+}
+
+const FavoriteIcon = ({id, favorite = false, size}: FavoriteIconProps) => {
+  return (
+    <button className={`icon__toggler icon--l ${favorite ? "icon__toggler--active" : ""} `} aria-pressed={favorite ? "true" : "false"} id={`fav-${id}`}>
+      <span className={`icon ${size ? 'icon--' + size : ""} icon--inline`}>
+        <Icon iconType="heart-30" />
+      </span>
+      <span className={`icon ${size ? 'icon--' + size : ""} icon--inline`}>
+        <Icon iconType="heart-filled-30" />
+      </span>
+    </button>
+  )
+}
+
 const JobCard: React.FC<JobCardProps> = (props) => {
 
-  const { hasBackground, url, onMouseDownClick, title, favoriteIconComponent, description, date, infoIconAriaLabel, id, viewJobText, closeIconAriaLabel, closeText, enableLogo, enableFavoriteIcon, logoAltTagValue, logoSrcTagValue, activeView } = props
+  const { hasBackground, url, onMouseDownClick, title, description, date, infoIconAriaLabel, id, viewJobText, closeIconAriaLabel, closeText, enableLogo, favoriteJobsEnabled, favorited, logoAltTagValue, logoSrcTagValue, activeView } = props
   const [realLogoImg, setRealLogoImg] = useState(true);
 
   const logoRef = useRef<any>(null);
@@ -70,7 +89,7 @@ useEffect(() => {
             </a>
           </h3>
         </div>
-        {enableFavoriteIcon && favoriteIconComponent}
+        {favoriteJobsEnabled && <FavoriteIcon id={id} favorite={favorited}/>}
       </div>
       <JobItemMetadata {...props} />
       <div className="cards__description" dangerouslySetInnerHTML={{ __html: description }} />
