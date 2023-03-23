@@ -18,7 +18,8 @@ import UtilityNavigation from './components/navigation/UtilityNavigation';
 import SubMenu from './components/navigation/Submenu';
 import MobileNavigation from './components/navigation/MobileNavigation';
 import TabBar from './components/navigation/TabBar';
-import Modal from './components/navigation/Modal';
+import NavigationModal from './components/navigation/NavigationModal';
+import Modal from './components/overlays/Modal';
 import ConfirmationModal from './components/overlays/ConfirmationModal';
 import Button from './components/button/Button';
 import Badge from './components/Badge';
@@ -33,6 +34,9 @@ import MyEnvironmentLayout from './components/my-environment/MyEnvironmentLayout
 import Section from './components/my-environment/Section';
 import JobCard from './components/JobCard/JobCard';
 import JobItemMetadata from './components/JobCard/JobItemMetadata';
+import PagePreloader from './components/PagePreloader';
+import Preloader from './components/loaders/Preloader';
+import UserImageBlock from './components/UserImageBlock';
 // import LocationInputField from "./components/forms/LocationInputField";
 // import RadioButton from "./components/forms/RadioButton";
 // import TextArea from "./components/forms/TextArea";
@@ -64,6 +68,7 @@ export {
   UtilityNavigation,
   SubMenu,
   MobileNavigation,
+  NavigationModal,
   Modal,
   ConfirmationModal,
   Button,
@@ -83,6 +88,9 @@ export {
   Section,
   JobCard,
   JobItemMetadata,
+  PagePreloader,
+  Preloader,
+  UserImageBlock,
   // LocationInputField,
   // RadioButton,
   // TextArea,

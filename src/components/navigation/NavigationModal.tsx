@@ -6,7 +6,7 @@ interface ModalProps {
   children: React.ReactNode
 }
 
-function Modal({ children }: ModalProps) {
+function NavigationModal({ children }: ModalProps) {
   const modalBackground = getBackground('tertiary');
   const [ref] = useOrbitComponent('navigation');
 
@@ -22,4 +22,4 @@ function Modal({ children }: ModalProps) {
   );
 }
 
-export default Modal;
+export default NavigationModal;

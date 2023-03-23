@@ -14,7 +14,7 @@ interface BreadcrumbsProps extends BgColor {
   },
   /** This property used for adding specific class `navigation--app` for the apps. Since the navigation markup there is different from Orbit. */
   app?: boolean
-  RouterComponent: React.FC<any>
+  RouterComponent?: React.FC<any> | undefined;
 }
 
 /**
@@ -23,7 +23,7 @@ interface BreadcrumbsProps extends BgColor {
  */
 function Breadcrumbs({
   items = [], mobileItem, bgColor = 'primary', app = true, RouterComponent,
-}: BreadcrumbsProps) {
+}: BreadcrumbsProps) {    
   const { title: mobileTitle, link: mobileUrl } = mobileItem || {};
   const wrapperClasses = ['navigation'];
   const WrapperTag = bgColor ? 'div' : React.Fragment;
@@ -43,18 +43,14 @@ function Breadcrumbs({
         <div className="wrapper">
           <div className="navigation__bottom">
             <nav className="breadcrumb" aria-label="breadcrumb">
-              {(mobileUrl && mobileTitle) && (
-                <RouterComponent className="breadcrumb__link hidden--from-l" href={mobileUrl}>
-                  {mobileTitle}
-                </RouterComponent>
+              {mobileItem && (
+                RouterComponent ? <RouterComponent className="breadcrumb__link hidden--from-l" href={mobileUrl}>{mobileTitle}</RouterComponent> : <a className="breadcrumb__link hidden--from-l" href={mobileUrl}>{mobileTitle}</a>
               )}
               <ul className="breadcrumb__list hidden--until-l">
                 {items.map(({ title, link, active }) => (
                   <li className="breadcrumb__item" key={`breadcrumb-${title}`}>
                     {link && !active ? (
-                      <RouterComponent href={link} className="breadcrumb__link">
-                        {title}
-                      </RouterComponent>
+                      RouterComponent ? <RouterComponent className="breadcrumb__link" href={link}>{title}</RouterComponent> : <a className="breadcrumb__link" href={link}>{title}</a>
                     ) : (
                       title
                     )}

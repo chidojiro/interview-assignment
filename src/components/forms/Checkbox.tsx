@@ -40,6 +40,7 @@ function Checkbox({
           'selection-control--disabled': disabled,
         })}
       >
+        <input id={id} type="checkbox" checked={checked} {...props} />
         <span className="selection-control__input">
           <input id={id} type="checkbox" checked={checked} {...props} />
           <span className="icon selection-control__control" aria-hidden="true">

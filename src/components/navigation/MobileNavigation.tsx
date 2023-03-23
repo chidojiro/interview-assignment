@@ -9,6 +9,7 @@ export interface MobileNavigationProps {
   myRandstadUrl?: string,
   myRandstadLabel?: string | React.ReactNode,
   myRandstadMenu?: Items[],
+  languagePrefix: string;
 }
 
 const menuAttributes = (menuItemLength: number) => {
@@ -24,7 +25,7 @@ const menuAttributes = (menuItemLength: number) => {
 };
 
 function MobileNavigation({
-  items, myRandstadUrl, showMyRandstad, myRandstadLabel, myRandstadMenu
+  items, myRandstadUrl, showMyRandstad, myRandstadLabel, myRandstadMenu, languagePrefix
 }: MobileNavigationProps) {
   const ref = useRef<Array<HTMLDivElement | null>>([]);
   const mobileMenuRef = useRef<HTMLDivElement | null>(null);
@@ -46,14 +47,16 @@ function MobileNavigation({
     return null;
   }
 
-  if (myRandstadMenu && myRandstadMenu.length && mobileMenuRef && mobileMenuRef.current) {
-    const mobileMenu = mobileMenuRef.current;
-    if (mobileMenu.hasAttribute('data-rs-collapsible') && mobileMenu.hasAttribute('data-rs-toggable') && !mobileMenu.hasAttribute('data-rendered')) {
-      new Collapsible(mobileMenu);
-      new Toggable(mobileMenu);
-      mobileMenu.dataset.rendered = 'rendered';
+  useEffect(() => {
+    if (myRandstadMenu && myRandstadMenu.length && mobileMenuRef && mobileMenuRef.current) {
+      const mobileMenu = mobileMenuRef.current;
+      if (!mobileMenu.hasAttribute('data-rendered')) {
+        new Collapsible(mobileMenu);
+        new Toggable(mobileMenu);
+        mobileMenu.dataset.rendered = 'rendered';
+      }
     }
-  }
+  }, [myRandstadMenu, mobileMenuRef]);
 
   return (
     <ul className="link-list link-list--single accordion accordion--s">
@@ -102,7 +105,6 @@ function MobileNavigation({
             ref={mobileMenuRef}
             className="collapsible__trigger"
             data-rs-collapsible=""
-            aria-expanded="false"
             data-rs-toggable=""
           >
             <div className="link-list__link">
@@ -126,7 +128,7 @@ function MobileNavigation({
               <ul className="navigation-accordion__sub">
                 {myRandstadMenu.map((mrMenuItem) => (
                   <li key={mrMenuItem.title}>
-                    <a href={mrMenuItem.url}>{mrMenuItem.title}</a>
+                    <a href={`${languagePrefix}${mrMenuItem.url}`}>{mrMenuItem.title}</a>
                   </li>
                 ))}
               </ul>

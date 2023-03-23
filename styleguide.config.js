@@ -64,6 +64,7 @@ module.exports = {
         'src/components/notifications/Notice.tsx',
         'src/components/notifications/Toast.tsx',
         'src/components/Block.tsx',
+        'src/components/PagePreloader.tsx',
       ],
     },
     {
@@ -103,6 +104,12 @@ module.exports = {
       name: 'Job card',
       components: 'src/components/JobCard/*.tsx',
       description: 'Job card component and its metadata fields component.',
+    },
+    {
+      name: 'User',
+      components: [
+        'src/components/UserImageBlock.tsx',
+      ],
     },
     // {
     //   name: 'Shared components',
