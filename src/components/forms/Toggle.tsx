@@ -1,6 +1,7 @@
 import React from 'react';
 import withField, { WithFieldProps } from '../../hoc/withField';
 import Icon from '../Icon';
+import useOrbitComponent from '../../hooks/useOrbitComponent';
 
 type ToggleType = 'light' | 'dark';
 
@@ -14,8 +15,9 @@ function Toggle({
   name,
   type = 'light' as ToggleType,
 }: ToggleProps) {
+  const [ref] = useOrbitComponent('character-count');
   return (
-    <div role="switch" aria-checked={false} className={`switch__${type}`} data-rs-switch={name}>
+    <div ref={ref} role="switch" aria-checked={false} className={`switch__${type}`} data-rs-switch={name}>
       <span className={`switch switch__${type}`}>
         <Icon iconClassName="icon" svgProps={{className: 'checkmark'}} iconType="check-16" />
       </span>

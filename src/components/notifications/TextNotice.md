@@ -10,9 +10,9 @@ const showTextNotice = () => {
   return (
     <>
       {textNotice && (
-          <TextNotice background="primary" onClose={textNoticeCloseHandler}>It looks like you are visiting from the United Kingdom.
-              <a href="#">Take me to Randstad United Kindom </a>
-          </TextNotice>
+        <TextNotice background="primary" onClose={textNoticeCloseHandler}>It looks like you are visiting from the United Kingdom.
+          <a href="#">Take me to Randstad United Kindom </a>
+        </TextNotice>
       )}
     </>
   );
@@ -33,9 +33,9 @@ const showTextNotice = () => {
   return (
     <>
       {textNotice && (
-          <TextNotice background="tint-7" onClose={textNoticeCloseHandler}>It looks like you are visiting from the United Kingdom.
-              <a href="#">Take me to Randstad United Kindom </a>
-          </TextNotice>
+        <TextNotice background="tint-7" onClose={textNoticeCloseHandler}>It looks like you are visiting from the United Kingdom.
+          <a href="#">Take me to Randstad United Kindom </a>
+        </TextNotice>
       )}
     </>
   );
@@ -56,9 +56,9 @@ const showTextNotice = () => {
   return (
     <>
       {textNotice && (
-          <TextNotice background="secondary" onClose={textNoticeCloseHandler}>It looks like you are visiting from the United Kingdom.
-              <a href="#">Take me to Randstad United Kindom </a>
-          </TextNotice>
+        <TextNotice background="secondary" onClose={textNoticeCloseHandler}>It looks like you are visiting from the United Kingdom.
+          <a href="#">Take me to Randstad United Kindom </a>
+        </TextNotice>
       )}
     </>
   );
@@ -79,9 +79,9 @@ const showTextNotice = () => {
   return (
     <>
       {textNotice && (
-          <TextNotice background="tertiary" onClose={textNoticeCloseHandler}>It looks like you are visiting from the United Kingdom.
-              <a href="#">Take me to Randstad United Kindom </a>
-          </TextNotice>
+        <TextNotice background="tertiary" onClose={textNoticeCloseHandler}>It looks like you are visiting from the United Kingdom.
+          <a href="#">Take me to Randstad United Kindom </a>
+        </TextNotice>
       )}
     </>
   );
@@ -102,9 +102,9 @@ const showTextNotice = () => {
   return (
     <>
       {textNotice && (
-          <TextNotice background="quaternary" onClose={textNoticeCloseHandler}>It looks like you are visiting from the United Kingdom.
-              <a href="#">Take me to Randstad United Kindom </a>
-          </TextNotice>
+        <TextNotice background="quaternary" onClose={textNoticeCloseHandler}>It looks like you are visiting from the United Kingdom.
+          <a href="#">Take me to Randstad United Kindom </a>
+        </TextNotice>
       )}
     </>
   );
@@ -125,9 +125,9 @@ const showTextNotice = () => {
   return (
     <>
       {textNotice && (
-          <TextNotice background="quinary" onClose={textNoticeCloseHandler}>It looks like you are visiting from the United Kingdom.
-              <a href="#">Take me to Randstad United Kindom </a>
-          </TextNotice>
+        <TextNotice background="quinary" onClose={textNoticeCloseHandler}>It looks like you are visiting from the United Kingdom.
+          <a href="#">Take me to Randstad United Kindom </a>
+        </TextNotice>
       )}
     </>
   );
@@ -148,9 +148,9 @@ const showTextNotice = () => {
   return (
     <>
       {textNotice && (
-          <TextNotice background="senary" onClose={textNoticeCloseHandler}>It looks like you are visiting from the United Kingdom.
-              <a href="#">Take me to Randstad United Kindom </a>
-          </TextNotice>
+        <TextNotice background="senary" onClose={textNoticeCloseHandler}>It looks like you are visiting from the United Kingdom.
+          <a href="#">Take me to Randstad United Kindom </a>
+        </TextNotice>
       )}
     </>
   );
