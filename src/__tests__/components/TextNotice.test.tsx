@@ -10,15 +10,13 @@ describe('TextNotice component tests', () => {
       .toBeInTheDocument();
   });
 
+
   test('TextNotice has correct attributes', () => {
     const { container } = render(<TextNotice background="primary" onClose={() => console.log('Cancel')}>test</TextNotice>);
     const textNoticeElement = container.querySelector('.notice-text-only');
     expect(textNoticeElement)
-      .toHaveAttribute(
-        'background',
-        'primary',
-      );
+      .toHaveClass('bg-variant-brand-primary');
     expect(textNoticeElement)
-      .toContainHTML("<div class='description'><p>It looks like you are visiting from the United Kingdom. <a href='#'>Take me to Randstad United Kindom </a></p></div>");
+      .toContainHTML("<div class='description'><p>test</a></p></div>");
   });
 });
