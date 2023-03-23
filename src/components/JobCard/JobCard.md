@@ -25,7 +25,7 @@ const renderFavoriteJobIcon = () => {
       enableFavoriteIcon={true}
       logoAltTagValue="logo alt text"
       logoSrcTagValue="https://bynder-public.s3.amazonaws.com/media/6EF965C8-0E83-47D9-ABF1A5C7AC6D092A/0/B591E16A-8CC3-4F5D-ABC89781EFC13D7A/webimage-333390C9-7283-44B4-83FDFA1C921A763C.png"
-      favoriteIcon={renderFavoriteJobIcon()}
+      favoriteIconComponent={renderFavoriteJobIcon()}
       infoIconAriaLabel="Info icon aria label"
       closeIconAriaLabel="Close icon aria label"
       onMouseDownClick={() => {console.log("eval(jobData.dataLayerJobClick)")}}

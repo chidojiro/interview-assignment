@@ -16,7 +16,7 @@ interface JobCardProps extends JobItemMetadataProps {
   viewJobText: string;
   closeText: string;
   enableFavoriteIcon: boolean;
-  favoriteIcon?: JSX.Element;
+  favoriteIconComponent?: JSX.Element;
   logoAltTagValue: string;
   logoSrcTagValue: string;
   infoIconAriaLabel: string;
@@ -26,7 +26,7 @@ interface JobCardProps extends JobItemMetadataProps {
 
 const JobCard: React.FC<JobCardProps> = (props) => {
 
-  const { hasBackground, url, onMouseDownClick, title, favoriteIcon, description, date, infoIconAriaLabel, id, viewJobText, closeIconAriaLabel, closeText, enableLogo, enableFavoriteIcon, logoAltTagValue, logoSrcTagValue, activeView } = props
+  const { hasBackground, url, onMouseDownClick, title, favoriteIconComponent, description, date, infoIconAriaLabel, id, viewJobText, closeIconAriaLabel, closeText, enableLogo, enableFavoriteIcon, logoAltTagValue, logoSrcTagValue, activeView } = props
   const [realLogoImg, setRealLogoImg] = useState(true);
 
   const logoRef = useRef<any>(null);
@@ -70,7 +70,7 @@ useEffect(() => {
             </a>
           </h3>
         </div>
-        {enableFavoriteIcon && favoriteIcon}
+        {enableFavoriteIcon && favoriteIconComponent}
       </div>
       <JobItemMetadata {...props} />
       <div className="cards__description" dangerouslySetInnerHTML={{ __html: description }} />

@@ -18,7 +18,7 @@ describe("JobCard tests", () => {
       date={Date.now().toString()}
       enableLogo={true}
       enableFavoriteIcon={true}
-      favoriteIcon={<Icon iconType='heart-filled-30' />}
+      favoriteIconComponent={<Icon iconType='heart-filled-30' />}
       infoIconAriaLabel={infoIconAriaLabel}
       closeIconAriaLabel={closeIconAreaLabel}
       logoAltTagValue={"test alt"}
@@ -50,7 +50,7 @@ describe("JobCard tests", () => {
       date={Date.now().toString()}
       enableLogo={true}
       enableFavoriteIcon={true}
-      favoriteIcon={<Icon iconType='heart-filled-30' />}
+      favoriteIconComponent={<Icon iconType='heart-filled-30' />}
       infoIconAriaLabel={infoIconAriaLabel}
       closeIconAriaLabel={closeIconAreaLabel}
       logoAltTagValue={"test alt"}
@@ -81,7 +81,7 @@ describe("JobCard tests", () => {
       date={Date.now().toString()}
       enableLogo={true}
       enableFavoriteIcon={true}
-      favoriteIcon={<Icon iconType='heart-filled-30' />}
+      favoriteIconComponent={<Icon iconType='heart-filled-30' />}
       infoIconAriaLabel={infoIconAriaLabel}
       closeIconAriaLabel={closeIconAreaLabel}
       logoAltTagValue={"test alt"}
@@ -114,7 +114,7 @@ describe("JobCard tests", () => {
       date={Date.now().toString()}
       enableLogo={true}
       enableFavoriteIcon={true}
-      favoriteIcon={<Icon iconType='heart-filled-30' />}
+      favoriteIconComponent={<Icon iconType='heart-filled-30' />}
       infoIconAriaLabel={infoIconAriaLabel}
       closeIconAriaLabel={closeIconAreaLabel}
       logoAltTagValue={"test alt"}
@@ -148,7 +148,7 @@ describe("JobCard tests", () => {
       date={Date.now().toString()}
       enableLogo={true}
       enableFavoriteIcon={true}
-      favoriteIcon={<Icon iconType='heart-filled-30' />}
+      favoriteIconComponent={<Icon iconType='heart-filled-30' />}
       infoIconAriaLabel={infoIconAriaLabel}
       closeIconAriaLabel={closeIconAreaLabel}
       logoAltTagValue={"test alt"}
@@ -181,7 +181,7 @@ describe("JobCard tests", () => {
       date={Date.now().toString()}
       enableLogo={true}
       enableFavoriteIcon={true}
-      favoriteIcon={<Icon iconType='heart-filled-30' />}
+      favoriteIconComponent={<Icon iconType='heart-filled-30' />}
       infoIconAriaLabel={infoIconAriaLabel}
       closeIconAriaLabel={closeIconAreaLabel}
       logoAltTagValue={"test alt"}
