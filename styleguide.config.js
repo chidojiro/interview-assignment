@@ -101,6 +101,11 @@ module.exports = {
       description: 'My Environment components',
     },
     {
+      name: 'Job card',
+      components: 'src/components/JobCard/*.tsx',
+      description: 'Job card component and its metadata fields component.',
+    },
+    {
       name: 'User',
       components: [
         'src/components/UserImageBlock.tsx',
