@@ -1,15 +1,21 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as yup from 'yup';
+import FormatFileSize from '../../hooks/formatFileSize';
 import Icon from '../Icon';
 import withField, { WithFieldProps } from '../../hoc/withField';
 import FormGroup from '../form-group/FormGroup';
-import { uploadTemporaryResume } from '../../hooks/resumeHandler';
+import { uploadTemporaryResume, getResumeFile } from '../../hooks/resumeHandler';
 
 export interface UploadedFile {
   name: string,
   id?: string,
   error?: string,
   file?: File
+}
+
+interface AlreadyUploadedFile {
+  filename: string,
+  url: string,
 }
 
 export type TranslationProps = {
@@ -21,17 +27,22 @@ export type TranslationProps = {
   DropFileHere: string | React.ReactNode,
   UserCvMaxSize: string,
   FilenamePattern: string,
+  UploadFieldSizes: string[],
 };
 
 interface FileFieldProps extends WithFieldProps {
-  files: UploadedFile[];
+  gdsApiKey: string;
+  gdsApiUrl: string;
+  // Files are optional - for a field that should not check if there are any preloaded files - we should not set the files prop
+  //  But if we want preloading - we should set the files prop with the appropriate user file.
+  files?: AlreadyUploadedFile;
+  formDataName: string;
   multiselect?: boolean;
   maxSizeInBytes?: number;
   supportedMimeTypes?: string;
   useGoogleDrive?: boolean,
   useDropbox?: boolean,
   touched?: boolean;
-  preloadAlreadyExistingFile?: boolean,
   /** @ignore Private props from HOC for easy setup. */
   _formGroupProps?: object;
   fileToken: (token: string) => void;
@@ -41,16 +52,49 @@ interface FileFieldProps extends WithFieldProps {
 function UploadField({
   multiselect,
   name,
+  files,
+  formDataName,
   supportedMimeTypes,
   _formGroupProps,
+  maxSizeInBytes,
   fileToken,
   translations,
-}: FileFieldProps) { 
-  console.log('input');
-  
+  gdsApiKey,
+  gdsApiUrl,
+}: FileFieldProps) {
   const [updatedFiles, setUpdatedFiles] = useState<UploadedFile | null>(null);
   // State used to control if the field is set to readonly or not.
-  const [fileUploaded, setFileUploaded] = useState<boolean>(false);
+  const [isFileUploaded, setIsFileUploaded] = useState<boolean>(false);
+  const [isFilePreloaded, setIsFilePreloaded] = useState<boolean>(false);
+
+  useEffect(() => {
+    // Function that checks if the current logged in user has an already uplaoded file.
+    const checkIfUserHasFile = async (filename: string) => {
+      if (!files) {
+        return null;
+      }
+      const ResumeFile = await getResumeFile(gdsApiKey, gdsApiUrl, files?.filename);
+      const file: UploadedFile = {
+        name: filename,
+        error: '',
+        file: ResumeFile,
+      };
+      return file;
+    };
+
+    const checkForFile = async () => {
+      if (files) {
+        const alreadyUploadedFile = await checkIfUserHasFile(files.filename);
+        if (alreadyUploadedFile) {
+          setUpdatedFiles(alreadyUploadedFile);
+          setIsFileUploaded(true);
+          setIsFilePreloaded(true);
+        }
+      }
+    };
+    checkForFile();
+  }, [files, gdsApiKey, gdsApiUrl]);
+
   let uploadedItems: JSX.Element[] = [];
   const mimeTypes = [
     'application/pdf',
@@ -64,7 +108,7 @@ function UploadField({
 
   const filesValidation = {
     size: yup.number()
-      .max(8 * 1024 * 1024, translations.UserCvMaxSize),
+      .max(maxSizeInBytes as number, translations.UserCvMaxSize),
     mimeType: yup.string()
       .oneOf(mimeTypes, translations.FilenamePattern),
   };
@@ -81,7 +125,6 @@ function UploadField({
 
       return uploadedFile;
     };
-    
 
     let uploadedFile: UploadedFile[] = [];
     const { target } = event;
@@ -97,36 +140,29 @@ function UploadField({
     const resume = uploadedFile[0] ?? undefined;
 
     if (!resume?.error && resume?.file) {
-      setFileUploaded(true);
-      const uploadedFileToken = await uploadTemporaryResume(resume.file);
+      setIsFileUploaded(true);
+      const uploadedFileToken = await uploadTemporaryResume(gdsApiKey, gdsApiUrl, formDataName, resume.file);
       fileToken(uploadedFileToken.token);
     }
   };
 
-  const onInputClick = ( event: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
-    const element = event.target as HTMLInputElement
-    element.value = ''
-}
+  // Needed function for uploading the same file to be validated again.
+  const onInputClick = (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
+    const element = event.target as HTMLInputElement;
+    element.value = '';
+  };
 
   const removeFile = () => {
     uploadedItems = [];
     setUpdatedFiles(null);
-    setFileUploaded(false);
+    setIsFileUploaded(false);
+    setIsFilePreloaded(false);
     fileToken('');
-  };
-
-  const checkIfUserHasFile = () => {
-    
   };
 
   [updatedFiles].forEach((file, index) => {
     if (file === null) {
       return;
-    }
-    function renderSize() {
-      return process.env.REACT_APP_HIDE_SIZE_MB && process.env.REACT_APP_HIDE_SIZE_MB === 'true'
-        ? ''
-        : <span className="upload-list__info text--alternative" data-rs-closable-fadeout="">{file?.file?.size || 0}</span>;
     }
 
     if (Object.hasOwn(file, 'error') && file.error) {
@@ -145,12 +181,12 @@ function UploadField({
     } else {
       uploadedItems.push(
         <li
-          className={`closable upload-list__item upload-list__item--success}`}
+          className="closable upload-list__item upload-list__item--success}"
           {...{ [`data-rs-file-upload-${index}`]: '' }}
           key={file.name}
         >
           <span className="upload-list__link" data-rs-closable-fadeout="">{file.name}</span>
-          {renderSize()}
+          <span className="upload-list__info text--alternative" data-rs-closable-fadeout="">{FormatFileSize(file?.file?.size as number, translations.UploadFieldSizes) || 0}</span>
           <Icon iconType="check" iconClassName="icon upload-list__success" />
           <button
             className="button--icon-only upload-list__remove"
@@ -166,26 +202,26 @@ function UploadField({
     }
   });
 
-  const formGroupClasses = fileUploaded ? 'form-group--upload form-group--read-only' : 'form-group--upload';
-
+  const formGroupClasses = isFileUploaded ? 'form-group--upload form-group--read-only' : 'form-group--upload';
   return (
     <div>
-      <FormGroup
-        {..._formGroupProps}
-        _configClasses={formGroupClasses}
-      >
-        <input
-          name={name}
-          accept={supportedMimeTypes}
-          disabled={fileUploaded}
-          multiple={multiselect}
-          type="file"
-          onChange={onInputChange}
-          onClick={onInputClick}
-        />
-        <div className="upload" data-rs-upload="">
-          <div className="upload__content">
-            {fileUploaded
+      {!isFilePreloaded && (
+        <FormGroup
+          {..._formGroupProps}
+          _configClasses={formGroupClasses}
+        >
+          <input
+            name={name}
+            accept={supportedMimeTypes}
+            disabled={isFileUploaded}
+            multiple={multiselect}
+            type="file"
+            onChange={onInputChange}
+            onClick={onInputClick}
+          />
+          <div className="upload" data-rs-upload="">
+            <div className="upload__content">
+              {isFileUploaded
             && (
               <>
                 <div className="upload__text">
@@ -198,7 +234,7 @@ function UploadField({
                 </p>
               </>
             )}
-            {!fileUploaded
+              {!isFileUploaded
             && (
               <>
                 <div className="upload__text">
@@ -218,15 +254,16 @@ function UploadField({
                 </p>
               </>
             )}
+            </div>
+            <div className="upload__content upload__content--drop">
+              <span>
+                {' '}
+                {translations.DropFileHere}
+              </span>
+            </div>
           </div>
-          <div className="upload__content upload__content--drop">
-            <span>
-              {' '}
-              {translations.DropFileHere}
-            </span>
-          </div>
-        </div>
-      </FormGroup>
+        </FormGroup>
+      )}
       <div>
         { uploadedItems }
       </div>
@@ -236,7 +273,6 @@ function UploadField({
 
 UploadField.defaultProps = {
   maxSizeInBytes: 8 * 1024 * 1024,
-  disabled: false,
   multiselect: false,
 };
 
