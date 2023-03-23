@@ -9,14 +9,27 @@ describe('TabBar component', () => {
       title: 'Home',
       url: '/',
       icon: 'home',
-      isActive: true
+      isActive: true,
     },
     {
       title: 'About',
       url: '/about',
       icon: 'about',
-      isActive: false
-    }
+      isActive: false,
+    },
+  ];
+
+  const noIconItems = [
+    {
+      title: 'active applications',
+      url: '/#active',
+      isActive: true,
+    },
+    {
+      title: 'past applications',
+      url: '/#past',
+      isActive: false,
+    },
   ];
 
   it('should render two tabs', () => {
@@ -32,5 +45,20 @@ describe('TabBar component', () => {
       fireEvent.click(aboutTab);
       expect(aboutTab.className).toBeInTheDocument();
     }
+  });
+
+  it('should render two tabs with no icons', async () => {
+    const { container } = render(<TabBar items={noIconItems} />);
+    render(<TabBar items={noIconItems} />);
+    const tabs = container.querySelectorAll('.tab-bar__item');
+    expect(tabs.length).toBe(2);
+  });
+
+  it('should change active tab', async () => {
+    const { container } = await render(<TabBar items={noIconItems} />);
+    const tabs = container.querySelectorAll('.tab-bar__item :not(.active)');
+    const inactiveTab = tabs[0];
+    fireEvent.click(inactiveTab);
+    expect(inactiveTab).toHaveClass('active');
   });
 });

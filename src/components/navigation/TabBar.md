@@ -34,3 +34,22 @@ import { TabBar } from "@ffw/randstad-shared-components";
   }
 ]} />;
 ```
+
+TabBar item icons are optional.
+
+```jsx
+import { TabBar } from "@ffw/randstad-shared-components";
+
+<TabBar items={[
+  {
+    title: 'active applications',
+    url: '/#active',
+    isActive: true,
+  },
+  {
+    title: 'past applications',
+    url: '/#past',
+    isActive: false,
+  },
+]} />;
+```
