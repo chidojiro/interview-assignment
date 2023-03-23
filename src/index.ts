@@ -26,7 +26,9 @@ import Badge from './components/Badge';
 import Icon from './components/Icon';
 import { Notice, NoticeType } from './components/notifications/Notice';
 import { Toast } from './components/notifications/Toast';
+import FooterColumnNav from './components/footer/FooterColumnNav';
 import FooterBottomNav from './components/footer/FooterBottomNav';
+import FooterCopyright from './components/footer/FooterCopyright';
 import FooterSocials, { FooterSocial } from './components/footer/FooterSocials';
 import Footer from './components/footer/Footer';
 import GoogleRecaptcha, { GoogleRecaptchaRef } from './components/forms/GoogleRecaptcha';
@@ -77,7 +79,9 @@ export {
   SelectField,
   InputField,
   TabBar,
+  FooterColumnNav,
   FooterBottomNav,
+  FooterCopyright,
   FooterSocials,
   Footer,
   GoogleRecaptcha,
