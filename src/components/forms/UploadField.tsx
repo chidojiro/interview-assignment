@@ -5,7 +5,7 @@ import Icon from '../Icon';
 import withField, { WithFieldProps } from '../../hoc/withField';
 import FormGroup from '../form-group/FormGroup';
 import {
-  UploadedFile, AlreadyUploadedFile, uploadTemporaryResume, checkIfUserHasFile,
+  UploadedFile, AlreadyUploadedFile, uploadTemporaryResume, checkIfUserHasFile, getUploadedFiles,
 } from '../../hooks/resumeHandler';
 
 export type TranslationProps = {
@@ -90,35 +90,16 @@ function UploadField({
   };
 
   const onInputChange = async (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>): Promise<void> => {
-    const processFile = async (file: File) => {
-      const uploadedFile: UploadedFile = { name: file.name, file, error: '' };
-      await filesValidation.size.validate(file.size).catch((e) => {
-        uploadedFile.error += e.message;
-      });
-      await filesValidation.mimeType.validate(file.type).catch((e) => {
-        uploadedFile.error += e.message;
-      });
+    const uploadedFile = await getUploadedFiles(event, filesValidation);
+    if (uploadedFile) {
+      setUpdatedFiles(uploadedFile[0]);
 
-      return uploadedFile;
-    };
-
-    let uploadedFile: UploadedFile[] = [];
-    const { target } = event;
-    if ((target as HTMLInputElement).files) {
-      const filesPromises = [];
-      for (const file of Array.from((target as HTMLInputElement).files as ArrayLike<File>)) {
-        filesPromises.push(processFile(file));
+      const resume = uploadedFile[0] ?? undefined;
+      if (!resume?.error && resume?.file) {
+        setIsFileUploaded(true);
+        const uploadedFileToken = await uploadTemporaryResume(gdsApiKey, gdsApiUrl, formDataName, resume.file);
+        fileToken(uploadedFileToken.token);
       }
-      uploadedFile = await Promise.all(filesPromises);
-    }
-    setUpdatedFiles(uploadedFile[0]);
-
-    const resume = uploadedFile[0] ?? undefined;
-
-    if (!resume?.error && resume?.file) {
-      setIsFileUploaded(true);
-      const uploadedFileToken = await uploadTemporaryResume(gdsApiKey, gdsApiUrl, formDataName, resume.file);
-      fileToken(uploadedFileToken.token);
     }
   };
 

@@ -1,4 +1,5 @@
 import { AxiosResponse } from 'axios';
+import * as yup from 'yup';
 import { TalentAppApi } from './talentAppApi';
 
 type TempDocument = {
@@ -25,10 +26,41 @@ export interface UploadedFile {
   file?: File;
 }
 
+export interface FilesValidation {
+  size: yup.NumberSchema<number | undefined, yup.AnyObject, undefined, ''>;
+  mimeType: yup.StringSchema<string | undefined, yup.AnyObject, undefined, ''>;
+}
+
 export type Data = {
   // Data describes a generic abstract structure of request, which can be anything.
   /* eslint-disable @typescript-eslint/no-explicit-any */
   [id: string]: any;
+};
+
+const validateFile = async (filesValidation: FilesValidation, file: File) => {
+  const uploadedFile: UploadedFile = { name: file.name, file, error: '' };
+  await filesValidation.size.validate(file.size).catch((e) => {
+    uploadedFile.error += e.message;
+  });
+  await filesValidation.mimeType.validate(file.type).catch((e) => {
+    uploadedFile.error += e.message;
+  });
+
+  return uploadedFile;
+};
+
+const getUploadedFiles = async (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>, filesValidation: FilesValidation) => {
+  let uploadedFile: UploadedFile[] = [];
+  const { target } = event;
+  if ((target as HTMLInputElement).files) {
+    const filesPromises = [];
+    for (const file of Array.from((target as HTMLInputElement).files as ArrayLike<File>)) {
+      filesPromises.push(validateFile(filesValidation, file));
+    }
+    uploadedFile = await Promise.all(filesPromises);
+    return uploadedFile;
+  }
+  return null;
 };
 
 const uploadTemporaryResume = async (gdsApiKey: string, gdsApiUrl: string, formDataName: string, file: File): Promise<TempDocument> => {
@@ -136,4 +168,4 @@ const checkIfUserHasFile = async (files: AlreadyUploadedFile, gdsApiKey: string,
   return null;
 };
 
-export { uploadTemporaryResume, deleteTempFile, getResumeFile, getResumeFilename, checkIfUserHasFile };
+export { uploadTemporaryResume, deleteTempFile, getResumeFile, getResumeFilename, checkIfUserHasFile, getUploadedFiles };
