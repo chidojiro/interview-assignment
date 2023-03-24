@@ -40,6 +40,7 @@ import PagePreloader from './components/PagePreloader';
 import Preloader from './components/loaders/Preloader';
 import UserImageBlock from './components/UserImageBlock';
 import AccountInfo from './components/account-info/AccountInfo';
+import UploadField from './components/forms/UploadField';
 // import LocationInputField from "./components/forms/LocationInputField";
 // import RadioButton from "./components/forms/RadioButton";
 // import TextArea from "./components/forms/TextArea";
@@ -97,6 +98,7 @@ export {
   Preloader,
   UserImageBlock,
   AccountInfo,
+  UploadField,
   // LocationInputField,
   // RadioButton,
   // TextArea,
