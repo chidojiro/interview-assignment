@@ -39,6 +39,7 @@ import JobItemMetadata from './components/JobCard/JobItemMetadata';
 import PagePreloader from './components/PagePreloader';
 import Preloader from './components/loaders/Preloader';
 import UserImageBlock from './components/UserImageBlock';
+import AccountInfo from './components/account-info/AccountInfo';
 // import LocationInputField from "./components/forms/LocationInputField";
 // import RadioButton from "./components/forms/RadioButton";
 // import TextArea from "./components/forms/TextArea";
@@ -95,6 +96,7 @@ export {
   PagePreloader,
   Preloader,
   UserImageBlock,
+  AccountInfo,
   // LocationInputField,
   // RadioButton,
   // TextArea,
