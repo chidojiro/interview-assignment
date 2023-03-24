@@ -4,19 +4,9 @@ import FormatFileSize from '../../hooks/formatFileSize';
 import Icon from '../Icon';
 import withField, { WithFieldProps } from '../../hoc/withField';
 import FormGroup from '../form-group/FormGroup';
-import { uploadTemporaryResume, getResumeFile } from '../../hooks/resumeHandler';
-
-export interface UploadedFile {
-  name: string,
-  id?: string,
-  error?: string,
-  file?: File
-}
-
-interface AlreadyUploadedFile {
-  filename: string,
-  url: string,
-}
+import {
+  UploadedFile, AlreadyUploadedFile, uploadTemporaryResume, checkIfUserHasFile,
+} from '../../hooks/resumeHandler';
 
 export type TranslationProps = {
   UploadSuccessful: string | React.ReactNode,
@@ -68,23 +58,9 @@ function UploadField({
   const [isFilePreloaded, setIsFilePreloaded] = useState<boolean>(false);
 
   useEffect(() => {
-    // Function that checks if the current logged in user has an already uplaoded file.
-    const checkIfUserHasFile = async (filename: string) => {
-      if (!files) {
-        return null;
-      }
-      const ResumeFile = await getResumeFile(gdsApiKey, gdsApiUrl, files?.filename);
-      const file: UploadedFile = {
-        name: filename,
-        error: '',
-        file: ResumeFile,
-      };
-      return file;
-    };
-
     const checkForFile = async () => {
-      if (files) {
-        const alreadyUploadedFile = await checkIfUserHasFile(files.filename);
+      if (files && Object.keys(files).length !== 0) {
+        const alreadyUploadedFile = await checkIfUserHasFile(files, gdsApiKey, gdsApiUrl);
         if (alreadyUploadedFile) {
           setUpdatedFiles(alreadyUploadedFile);
           setIsFileUploaded(true);
@@ -186,7 +162,7 @@ function UploadField({
           key={file.name}
         >
           <span className="upload-list__link" data-rs-closable-fadeout="">{file.name}</span>
-          <span className="upload-list__info text--alternative" data-rs-closable-fadeout="">{FormatFileSize(file?.file?.size as number, translations.UploadFieldSizes) || 0}</span>
+          { file && file.file && file.file.size && <span className="upload-list__info text--alternative" data-rs-closable-fadeout="">{FormatFileSize(file?.file?.size as number, translations.UploadFieldSizes) || 0}</span> }
           <Icon iconType="check" iconClassName="icon upload-list__success" />
           <button
             className="button--icon-only upload-list__remove"

@@ -13,6 +13,18 @@ type FieldError = {
   target: string;
 };
 
+export interface AlreadyUploadedFile {
+  filename: string;
+  url: string;
+}
+
+export interface UploadedFile {
+  name: string;
+  id?: string;
+  error?: string;
+  file?: File;
+}
+
 export type Data = {
   // Data describes a generic abstract structure of request, which can be anything.
   /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -79,6 +91,22 @@ const getResumeFile = async (gdsApiKey: string, gdsApiUrl: string, filename: str
   return undefined;
 };
 
+const getResumeFilename = async (gdsApiKey: string, gdsApiUrl: string): Promise<AlreadyUploadedFile | undefined> => {
+  const talentApi = new TalentAppApi(gdsApiKey, gdsApiUrl);
+
+  const response = await talentApi.get<Data, AxiosResponse<AlreadyUploadedFile>>('/me/resume').catch((err) => {
+    // Needed logging for error.
+    // eslint-disable-next-line no-console
+    console.error('GetResumeFilename Error: ', err);
+    return undefined;
+  });
+  if (response) {
+    return response?.data;
+  }
+
+  return undefined;
+};
+
 const deleteTempFile = async (tempResumeDocumentToken: string, gdsApiKey: string, gdsApiUrl: string) => {
   const talentApi = new TalentAppApi(gdsApiKey, gdsApiUrl);
   talentApi
@@ -92,4 +120,20 @@ const deleteTempFile = async (tempResumeDocumentToken: string, gdsApiKey: string
     });
 };
 
-export { uploadTemporaryResume, deleteTempFile, getResumeFile };
+// Function that checks if the current logged in user has an already uplaoded file.
+const checkIfUserHasFile = async (files: AlreadyUploadedFile, gdsApiKey: string, gdsApiUrl: string) => {
+  if (!files) {
+    return null;
+  }
+  const returnedFile = await getResumeFilename(gdsApiKey, gdsApiUrl);
+  if (returnedFile) {
+    const file: UploadedFile = {
+      // TODO: Add support for size in the future when GDS starts returning it.
+      name: returnedFile.filename as string,
+    };
+    return file;
+  }
+  return null;
+};
+
+export { uploadTemporaryResume, deleteTempFile, getResumeFile, getResumeFilename, checkIfUserHasFile };
