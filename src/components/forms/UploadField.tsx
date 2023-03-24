@@ -28,7 +28,7 @@ interface FileFieldProps extends WithFieldProps {
   files?: AlreadyUploadedFile;
   formDataName: string;
   multiselect?: boolean;
-  maxSizeInBytes?: number;
+  maxSizeInBytes: number;
   supportedMimeTypes?: string;
   useGoogleDrive?: boolean,
   useDropbox?: boolean,
@@ -57,6 +57,8 @@ function UploadField({
   const [isFileUploaded, setIsFileUploaded] = useState<boolean>(false);
   const [isFilePreloaded, setIsFilePreloaded] = useState<boolean>(false);
 
+  const maxSizeForCv = 1048576 * maxSizeInBytes;
+
   useEffect(() => {
     const checkForFile = async () => {
       if (files && Object.keys(files).length !== 0) {
@@ -84,7 +86,7 @@ function UploadField({
 
   const filesValidation = {
     size: yup.number()
-      .max(maxSizeInBytes as number, translations.UserCvMaxSize),
+      .max(maxSizeForCv as number, translations.UserCvMaxSize),
     mimeType: yup.string()
       .oneOf(mimeTypes, translations.FilenamePattern),
   };
@@ -229,7 +231,6 @@ function UploadField({
 }
 
 UploadField.defaultProps = {
-  maxSizeInBytes: 8 * 1024 * 1024,
   multiselect: false,
 };
 
