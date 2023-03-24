@@ -30,14 +30,15 @@ interface FavoriteIconProps {
   size?: string;
 }
 
-const FavoriteIcon = ({id, favorite = false, size}: FavoriteIconProps) => {
+const FavoriteIcon = ({id, favorite = false, size= "l"}: FavoriteIconProps) => {
+  const [iconFilled, setIconFilled] = useState(favorite);
   return (
-    <button className={`icon__toggler icon--l ${favorite ? "icon__toggler--active" : ""} `} aria-pressed={favorite ? "true" : "false"} id={`fav-${id}`}>
+    <button className={`icon__toggler icon--l ${favorite || iconFilled ? "icon__toggler--active" : ""} `} aria-pressed={favorite ? "true" : "false"} id={`fav-${id}`} onClick={() => setIconFilled(prev => !prev)}>
       <span className={`icon ${size ? 'icon--' + size : ""} icon--inline`}>
-        <Icon iconType="heart-30" />
+        <Icon iconType="heart-30" iconClassName={null}/>
       </span>
       <span className={`icon ${size ? 'icon--' + size : ""} icon--inline`}>
-        <Icon iconType="heart-filled-30" />
+        <Icon iconType="heart-filled-30" iconClassName={null}/>
       </span>
     </button>
   )
@@ -75,7 +76,7 @@ useEffect(() => {
     <li className={`cards__item ${hasBackground ? '' : 'bg-variant-white'}`} data-rs-card={true} ref={cardRef}>
       <div className="cards__header">
         <div className="cards__logo-title-container">
-          {enableLogo && (
+          {enableLogo && logoSrcTagValue?.length && (
             <div className={`cards__logo${realLogoImg ? "" : " hidden--visually"}`} ref={logoRef}>
               <img className="cards__logo-image" alt={logoAltTagValue}
                 src={logoSrcTagValue}
