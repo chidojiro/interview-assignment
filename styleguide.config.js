@@ -62,6 +62,7 @@ module.exports = {
         'src/components/Badge.tsx',
         'src/components/button/Button.tsx',
         'src/components/notifications/Notice.tsx',
+        'src/components/notifications/TextNotice.tsx',
         'src/components/notifications/Toast.tsx',
         'src/components/Block.tsx',
         'src/components/PagePreloader.tsx',
