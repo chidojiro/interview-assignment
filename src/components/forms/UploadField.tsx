@@ -225,7 +225,7 @@ function UploadField({
               </div>
             </div>
           </div>
-          <ul className="upload-list">{uploadedItems}</ul>
+          {uploadedItems && <ul className="upload-list">{uploadedItems}</ul>}
         </FormGroup>
       )}
     </div>
