@@ -51,6 +51,7 @@ function UploadField({
   translations,
   gdsApiKey,
   gdsApiUrl,
+  ...rest
 }: FileFieldProps) {
   const [updatedFiles, setUpdatedFiles] = useState<UploadedFile | null>(null);
   // State used to control if the field is set to readonly or not.
@@ -140,7 +141,7 @@ function UploadField({
     } else {
       uploadedItems.push(
         <li
-          className="closable upload-list__item upload-list__item--success}"
+          className="closable upload-list__item upload-list__item--success"
           {...{ [`data-rs-file-upload-${index}`]: '' }}
           key={file.name}
         >
@@ -167,65 +168,66 @@ function UploadField({
       {!isFilePreloaded && (
         <FormGroup
           {..._formGroupProps}
+          {...rest}
           _configClasses={formGroupClasses}
         >
-          <input
-            name={name}
-            accept={supportedMimeTypes}
-            disabled={isFileUploaded}
-            multiple={multiselect}
-            type="file"
-            onChange={onInputChange}
-            onClick={onInputClick}
-          />
-          <div className="upload" data-rs-upload="">
-            <div className="upload__content">
-              {isFileUploaded
-            && (
-              <>
-                <div className="upload__text">
-                  <span className="text--alternative">
-                    {translations.UploadSuccessful}
-                  </span>
-                </div>
-                <p className="text--alternative">
-                  {translations.SuccessfulSubText}
-                </p>
-              </>
-            )}
-              {!isFileUploaded
-            && (
-              <>
-                <div className="upload__text">
-                  <span className="icon icon--inline">
-                    <Icon iconType="attachment" />
-                  </span>
-                  <span className="upload__add">
-                    {translations.AddFiles}
-                  </span>
-                  <span className="hidden--until-l">
-                    {' '}
-                    {translations.OrDropHere}
-                  </span>
-                </div>
-                <p>
-                  {translations.AlternativeText}
-                </p>
-              </>
-            )}
-            </div>
-            <div className="upload__content upload__content--drop">
-              <span>
-                {' '}
-                {translations.DropFileHere}
-              </span>
+          <div className="form-group__input">
+            <input
+              name={name}
+              accept={supportedMimeTypes}
+              disabled={isFileUploaded}
+              multiple={multiselect}
+              type="file"
+              onChange={onInputChange}
+              onClick={onInputClick}
+            />
+            <div className="upload" data-rs-upload="">
+              <div className="upload__content">
+                {isFileUploaded
+              && (
+                <>
+                  <div className="upload__text">
+                    <span className="text--alternative">
+                      {translations.UploadSuccessful}
+                    </span>
+                  </div>
+                  <p className="text--alternative">
+                    {translations.SuccessfulSubText}
+                  </p>
+                </>
+              )}
+                {!isFileUploaded
+              && (
+                <>
+                  <div className="upload__text">
+                    <span className="icon icon--inline">
+                      <Icon iconType="attachment" />
+                    </span>
+                    <span className="upload__add">
+                      {translations.AddFiles}
+                    </span>
+                    <span className="hidden--until-l">
+                      {' '}
+                      {translations.OrDropHere}
+                    </span>
+                  </div>
+                  <p>
+                    {translations.AlternativeText}
+                  </p>
+                </>
+              )}
+              </div>
+              <div className="upload__content upload__content--drop">
+                <span>
+                  {' '}
+                  {translations.DropFileHere}
+                </span>
+              </div>
             </div>
           </div>
+          <ul className="upload-list">{uploadedItems}</ul>
         </FormGroup>
       )}
-      <div>
-        { uploadedItems }
-      </div>
     </div>
   );
 }
