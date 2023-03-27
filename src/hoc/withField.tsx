@@ -17,6 +17,7 @@ export interface WithFieldProps {
   _formGroupProps?: object;
   onBlur?: (event: React.FocusEvent<HTMLInputElement | HTMLSelectElement>) => void;
   onChange?: (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
+  _withoutWrapper?: boolean;
 }
 
 const withField = <T extends WithFieldProps = WithFieldProps>(ChildComponent: React.FC<T>) => {

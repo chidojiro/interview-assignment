@@ -51,7 +51,7 @@ function UploadField({
   translations,
   gdsApiKey,
   gdsApiUrl,
-  ...rest
+  _withoutWrapper,
 }: FileFieldProps) {
   const [updatedFiles, setUpdatedFiles] = useState<UploadedFile | null>(null);
   // State used to control if the field is set to readonly or not.
@@ -168,7 +168,7 @@ function UploadField({
       {!isFilePreloaded && (
         <FormGroup
           {..._formGroupProps}
-          {...rest}
+          _withoutWrapper={_withoutWrapper}
           _configClasses={formGroupClasses}
         >
           <div className="form-group__input">
