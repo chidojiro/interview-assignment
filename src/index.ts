@@ -24,6 +24,7 @@ import ConfirmationModal from './components/overlays/ConfirmationModal';
 import Button from './components/button/Button';
 import Badge from './components/Badge';
 import Icon from './components/Icon';
+import ShowMore from './components/ShowMore';
 import { Notice, NoticeType } from './components/notifications/Notice';
 import { Toast } from './components/notifications/Toast';
 import FooterColumnNav from './components/footer/FooterColumnNav';
@@ -99,6 +100,7 @@ export {
   UserImageBlock,
   AccountInfo,
   UploadField,
+  ShowMore,
   // LocationInputField,
   // RadioButton,
   // TextArea,

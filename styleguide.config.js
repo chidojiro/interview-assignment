@@ -65,6 +65,7 @@ module.exports = {
         'src/components/notifications/Toast.tsx',
         'src/components/Block.tsx',
         'src/components/PagePreloader.tsx',
+        'src/components/ShowMore.tsx',
       ],
     },
     {
