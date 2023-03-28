@@ -3,19 +3,18 @@ import Button from './button/Button';
 
 interface ShowMoreProps {
   onClick: (event: React.MouseEvent | KeyboardEvent) => void;
-  jobsList: Array<Object>;
-  totalJobs: Array<Object>;
-  offsetPerPage: number;
+  listLength: number;
+  totalLength: number;
   ariaLabel: string;
-  textJobsSeen: string;
+  textSeen: string;
   textViewMore: string;
 }
 
-const ShowMore = ({ onClick, jobsList, totalJobs, ariaLabel = 'show more', textJobsSeen, textViewMore }: ShowMoreProps) => {
-  if (jobsList.length < 1 || totalJobs.length < 1) return null;
-  if (jobsList.length === totalJobs.length) return null;
+const ShowMore = ({ onClick, listLength, totalLength, ariaLabel = 'show more', textSeen, textViewMore }: ShowMoreProps) => {
+  if (listLength < 1 || totalLength < 1) return null;
+  if (listLength === totalLength) return null;
 
-  const indicatorAmount = (100 * jobsList.length) / totalJobs.length;
+  const indicatorAmount = (100 * listLength) / totalLength;
 
   const onPressShowMore = (event: KeyboardEvent) => {
     if (event.key === 'Enter') {
@@ -33,9 +32,9 @@ const ShowMore = ({ onClick, jobsList, totalJobs, ariaLabel = 'show more', textJ
         </div>
       </div>
       <div className="section-separator section-separator--border">
-        <span>{textJobsSeen}</span>
+        <span>{textSeen}</span>
       </div>
-      <Button href="#" className='button-m' aria-label={ariaLabel} handleClick={onClick} onKeyDown={onPressShowMore}>
+      <Button href="#" className='button--m' aria-label={ariaLabel} handleClick={onClick} onKeyDown={onPressShowMore}>
         {textViewMore}
       </Button>
     </div>
