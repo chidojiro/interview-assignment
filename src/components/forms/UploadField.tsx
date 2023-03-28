@@ -75,6 +75,7 @@ function UploadField({
   }, [files, gdsApiKey, gdsApiUrl]);
 
   let uploadedItems: JSX.Element[] = [];
+  const generalErrors: JSX.Element[] = [];
   const mimeTypes = [
     'application/pdf',
     'application/msword',
@@ -99,7 +100,7 @@ function UploadField({
 
       const resume = uploadedFile[0] ?? undefined;
       if (!resume?.error && resume?.file) {
-        setIsFileUploaded(true);
+        if (!resume?.generalError) setIsFileUploaded(true);
         const uploadedFileToken = await uploadTemporaryResume(gdsApiKey, gdsApiUrl, formDataName, resume.file);
         fileToken(uploadedFileToken.token);
       }
@@ -138,6 +139,8 @@ function UploadField({
           </span>
         </li>,
       );
+    } else if (Object.hasOwn(file, 'generalError')) {
+      generalErrors.push(<div key={`errorField-${file.name}`} className="form-group__feedback">{Object.hasOwn(file, 'generalError') && file.generalError ? file.generalError : null}</div>);
     } else {
       uploadedItems.push(
         <li
@@ -162,7 +165,7 @@ function UploadField({
     }
   });
 
-  const formGroupClasses = isFileUploaded ? 'form-group--upload form-group--read-only' : 'form-group--upload';
+  const formGroupClasses = `form-group--upload ${(isFileUploaded && !generalErrors.length) ? 'form-group--read-only' : ''} ${generalErrors.length ? 'form-group--error' : ''}`;
   return (
     <div>
       <FormGroup
@@ -228,6 +231,7 @@ function UploadField({
             </div>
           )}
           {uploadedItems && <ul className="upload-list">{uploadedItems}</ul>}
+          {generalErrors}
         </div>
       </FormGroup>
     </div>

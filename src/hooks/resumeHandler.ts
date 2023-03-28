@@ -23,6 +23,7 @@ export interface UploadedFile {
   name: string;
   id?: string;
   error?: string;
+  generalError?: string;
   file?: File;
 }
 
@@ -40,7 +41,7 @@ export type Data = {
 const validateFile = async (filesValidation: FilesValidation, file: File) => {
   const uploadedFile: UploadedFile = { name: file.name, file, error: '' };
   await filesValidation.size.validate(file.size).catch((e) => {
-    uploadedFile.error += e.message;
+    uploadedFile.generalError += e.message;
   });
   await filesValidation.mimeType.validate(file.type).catch((e) => {
     uploadedFile.error += e.message;
