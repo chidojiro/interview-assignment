@@ -165,25 +165,26 @@ function UploadField({
   const formGroupClasses = isFileUploaded ? 'form-group--upload form-group--read-only' : 'form-group--upload';
   return (
     <div>
-      {!isFilePreloaded && (
-        <FormGroup
-          {..._formGroupProps}
-          _withoutWrapper={_withoutWrapper}
-          _configClasses={formGroupClasses}
-        >
-          <div className="form-group__input">
-            <input
-              name={name}
-              accept={supportedMimeTypes}
-              disabled={isFileUploaded}
-              multiple={multiselect}
-              type="file"
-              onChange={onInputChange}
-              onClick={onInputClick}
-            />
-            <div className="upload" data-rs-upload="">
-              <div className="upload__content">
-                {isFileUploaded
+      <FormGroup
+        {..._formGroupProps}
+        _withoutWrapper={_withoutWrapper}
+        _configClasses={formGroupClasses}
+      >
+        <div>
+          {!isFilePreloaded && (
+            <div className="form-group__input">
+              <input
+                name={name}
+                accept={supportedMimeTypes}
+                disabled={isFileUploaded}
+                multiple={multiselect}
+                type="file"
+                onChange={onInputChange}
+                onClick={onInputClick}
+              />
+              <div className="upload" data-rs-upload="">
+                <div className="upload__content">
+                  {isFileUploaded
               && (
                 <>
                   <div className="upload__text">
@@ -196,7 +197,7 @@ function UploadField({
                   </p>
                 </>
               )}
-                {!isFileUploaded
+                  {!isFileUploaded
               && (
                 <>
                   <div className="upload__text">
@@ -216,18 +217,19 @@ function UploadField({
                   </p>
                 </>
               )}
-              </div>
-              <div className="upload__content upload__content--drop">
-                <span>
-                  {' '}
-                  {translations.DropFileHere}
-                </span>
+                </div>
+                <div className="upload__content upload__content--drop">
+                  <span>
+                    {' '}
+                    {translations.DropFileHere}
+                  </span>
+                </div>
               </div>
             </div>
-          </div>
+          )}
           {uploadedItems && <ul className="upload-list">{uploadedItems}</ul>}
-        </FormGroup>
-      )}
+        </div>
+      </FormGroup>
     </div>
   );
 }
