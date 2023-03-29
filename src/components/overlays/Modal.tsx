@@ -22,8 +22,8 @@ function Modal({
   children,
   footer,
   footerDivider = true,
-  footerDividerTop = true,
-  modalOverflow = true,
+  footerDividerTop = false,
+  modalOverflow = false,
 }: ModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
 
