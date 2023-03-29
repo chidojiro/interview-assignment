@@ -8,9 +8,8 @@ const forgottenPasswordLink = <a href="/forgotten-password">Forgotten password</
 
 const props = {
   name: 'password',
-  minChars: 8,
+  minChars: 10,
   validationSchema: {
-    minSign: '8 characters',
     useChar: '1 small letter',
     useUpper: '1 capital letter',
     useDigit: '1 number',
@@ -30,13 +29,13 @@ const props = {
 describe('PasswordField component tests', () => {
   test('renders the component with all props', () => {
     const { container, getByText } = render(
-      <PasswordField {...props} />
+      <PasswordField {...props} disableValidationRules={false} />
     );
 
     const forgottenPasswordText = getByText('Forgotten password');
     const input = container.querySelector('[type=\'password\']');
     const checkList = container.querySelector('[data-rs-password-validator-checklist]');
-    const minSign = getByText('8 characters');
+    const minSign = getByText('10 characters');
     const useChar = getByText('1 small letter');
     const useUpper = getByText('1 capital letter');
     const useDigit = getByText('1 number');
@@ -57,11 +56,11 @@ describe('PasswordField component tests', () => {
 
   test('renders the component with default props', () => {
     const { container, getByText } = render(
-      <PasswordField {...props} />,
+      <PasswordField {...props} disableValidationRules={false} />,
     );
 
     const checkList = container.querySelector('.password-validator__validate-list');
-    const minSign = getByText('8 characters');
+    const minSign = getByText('10 characters');
     const useChar = getByText('1 small letter');
     const useUpper = getByText('1 capital letter');
     const useDigit = getByText('1 number');
