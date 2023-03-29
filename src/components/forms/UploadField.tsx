@@ -29,7 +29,7 @@ interface FileFieldProps extends WithFieldProps {
   formDataName: string;
   multiselect?: boolean;
   maxSizeInBytes: number;
-  supportedMimeTypes?: string;
+  supportedMimeTypes: string;
   useGoogleDrive?: boolean,
   useDropbox?: boolean,
   touched?: boolean;
@@ -76,15 +76,7 @@ function UploadField({
 
   let uploadedItems: JSX.Element[] = [];
   const generalErrors: JSX.Element[] = [];
-  const mimeTypes = [
-    'application/pdf',
-    'application/msword',
-    'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-    'application/rtf',
-    'text/plain',
-    'image/jpeg',
-    'image/jpg',
-  ];
+  const mimeTypes = supportedMimeTypes.split(', ');
 
   const filesValidation = {
     size: yup.number()
