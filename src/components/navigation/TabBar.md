@@ -1,36 +1,36 @@
 ```jsx
 import { TabBar } from "@ffw/randstad-shared-components";
 
-<TabBar items={[
+<TabBar url="/my-randstad/" items={[
   {
     "title": "overview",
-    "href": "/my-randstad/",
+    "url": "/my-randstad/",
     "icon": "dashboard",
-    "isActive": "true"
+    "isActive": true,
   },
   {
     "title": "my applications",
-    "href": "/my-randstad/my-applications/",
+    "url": "/my-randstad/my-applications/",
     "icon": "briefcase",
-    "isActive": "false"
+    "isActive": false,
   },
   {
     "title": "job preferences",
-    "href": "/my-randstad/job-preferences/",
+    "url": "/my-randstad/job-preferences/",
     "icon": "filter",
-    "isActive": "false"
+    "isActive": false,
   },
   {
     "title": "personal information",
-    "href": "/my-randstad/personal-information/",
+    "url": "/my-randstad/personal-information/",
     "icon": "account-circle",
-    "isActive": "false"
+    "isActive": false,
   },
   {
     "title": "settings",
-    "href": "/my-randstad/my-account/",
+    "url": "/my-randstad/my-account/",
     "icon": "settings",
-    "isActive": "false"
+    "isActive": false,
   }
 ]} />;
 ```
