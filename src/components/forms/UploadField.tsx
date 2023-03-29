@@ -29,7 +29,7 @@ interface FileFieldProps extends WithFieldProps {
   formDataName: string;
   multiselect?: boolean;
   maxSizeInBytes: number;
-  supportedMimeTypes?: string;
+  supportedMimeTypes: string;
   useGoogleDrive?: boolean,
   useDropbox?: boolean,
   touched?: boolean;
@@ -75,15 +75,8 @@ function UploadField({
   }, [files, gdsApiKey, gdsApiUrl]);
 
   let uploadedItems: JSX.Element[] = [];
-  const mimeTypes = [
-    'application/pdf',
-    'application/msword',
-    'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-    'application/rtf',
-    'text/plain',
-    'image/jpeg',
-    'image/jpg',
-  ];
+  const generalErrors: JSX.Element[] = [];
+  const mimeTypes = supportedMimeTypes.split(', ');
 
   const filesValidation = {
     size: yup.number()
@@ -99,7 +92,7 @@ function UploadField({
 
       const resume = uploadedFile[0] ?? undefined;
       if (!resume?.error && resume?.file) {
-        setIsFileUploaded(true);
+        if (!resume?.generalError) setIsFileUploaded(true);
         const uploadedFileToken = await uploadTemporaryResume(gdsApiKey, gdsApiUrl, formDataName, resume.file);
         fileToken(uploadedFileToken.token);
       }
@@ -138,6 +131,8 @@ function UploadField({
           </span>
         </li>,
       );
+    } else if (Object.hasOwn(file, 'generalError')) {
+      generalErrors.push(<div key={`errorField-${file.name}`} className="form-group__feedback">{Object.hasOwn(file, 'generalError') && file.generalError ? file.generalError : null}</div>);
     } else {
       uploadedItems.push(
         <li
@@ -162,7 +157,7 @@ function UploadField({
     }
   });
 
-  const formGroupClasses = isFileUploaded ? 'form-group--upload form-group--read-only' : 'form-group--upload';
+  const formGroupClasses = `form-group--upload ${(isFileUploaded && !generalErrors.length) ? 'form-group--read-only' : ''} ${generalErrors.length ? 'form-group--error' : ''}`;
   return (
     <div>
       <FormGroup
@@ -228,6 +223,7 @@ function UploadField({
             </div>
           )}
           {uploadedItems && <ul className="upload-list">{uploadedItems}</ul>}
+          {generalErrors}
         </div>
       </FormGroup>
     </div>
