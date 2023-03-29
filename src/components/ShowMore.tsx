@@ -10,7 +10,7 @@ interface ShowMoreProps {
   textViewMore: string;
 }
 
-const ShowMore = ({ onClick, listLength, totalLength, ariaLabel = 'show more', textSeen, textViewMore }: ShowMoreProps) => {
+const ShowMore = ({ onClick, listLength, totalLength, ariaLabel, textSeen, textViewMore }: ShowMoreProps) => {
   if (listLength < 1 || totalLength < 1) return null;
   if (listLength === totalLength) return null;
 
