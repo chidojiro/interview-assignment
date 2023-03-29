@@ -53,8 +53,8 @@ const JobCard: React.FC<JobCardProps> = (props) => {
   const cardRef = useRef<HTMLLIElement | null>(null);
 
   const onLogoLoad = (event: any) => {
-    if (event.target.naturalHeight <= 1) {
-      logoRef.current.remove();
+    if (event?.target?.naturalHeight <= 1) {
+      logoRef?.current?.remove();
     } else {
       setRealLogoImg(event.target.naturalHeight > 1);
     }
@@ -77,11 +77,14 @@ useEffect(() => {
       <div className="cards__header">
         <div className="cards__logo-title-container">
           {enableLogo && logoSrcTagValue?.length && (
-            <div className={`cards__logo${realLogoImg ? "" : " hidden--visually"}`} ref={logoRef}>
-              <img className="cards__logo-image" alt={logoAltTagValue}
-                src={logoSrcTagValue}
-                onLoad={onLogoLoad} />
-            </div>)
+            <div>
+              <div className={`cards__logo ${realLogoImg ? "" : "hidden--visually"}`} ref={logoRef}>
+                <img className="cards__logo-image" alt={logoAltTagValue}
+                  src={logoSrcTagValue}
+                  onLoad={onLogoLoad} />
+              </div>
+            </div>
+            )
           }
           <h3 className="cards__title">
             <a href={url} tabIndex={0} className="cards__link" onMouseDown={onMouseDownClick}>
