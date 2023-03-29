@@ -6,23 +6,43 @@ test('Toggle exist', () => {
   const { container } = render(<Toggle
     name="marketing"
   />);
-  const toggleElement = container.querySelector('.switch switch__light');
+  const toggleElement = container.querySelector('.switch.switch__light');
   expect(toggleElement).toBeInTheDocument();
 });
 
 test('Toggle input has correct attributes', () => {
   const { container } = render(<Toggle
-    name="marketing"
+    name="marketing2"
   />);
-  const toggleElement = container.querySelector('.switch switch__dark');
+  const toggleElement = container.querySelector('.switch__light');
   expect(toggleElement)
     .toHaveAttribute(
-      'type',
-      'dark',
+      'data-rs-switch',
+      'marketing2',
     );
+});
+
+test('Toggle input has correct class - light', () => {
+  const { container } = render(<Toggle
+    name="marketing3"
+  />);
+  const toggleElement = container.querySelector('.switch');
   expect(toggleElement)
     .toHaveAttribute(
-      'name',
-      'marketing',
+      'class',
+      'switch switch__light',
     );
+});
+
+test('Toggle input has correct class - dark', () => {
+  const { container } = render(<Toggle
+    name="marketing4" type="dark"
+  />);
+  const toggleElement = container.querySelector('.switch');
+  expect(toggleElement)
+    .toHaveAttribute(
+      'class',
+      'switch switch__dark',
+    );
+  
 });
