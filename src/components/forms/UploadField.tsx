@@ -4,6 +4,7 @@ import FormatFileSize from '../../hooks/formatFileSize';
 import Icon from '../Icon';
 import withField, { WithFieldProps } from '../../hoc/withField';
 import FormGroup from '../form-group/FormGroup';
+import styles from 'styled-components';
 import {
   UploadedFile, AlreadyUploadedFile, uploadTemporaryResume, checkIfUserHasFile, getUploadedFiles,
 } from '../../hooks/resumeHandler';
@@ -38,6 +39,12 @@ interface FileFieldProps extends WithFieldProps {
   fileToken: (token: string) => void;
   translations: TranslationProps;
 }
+
+const UploadItem = styles.li`
+  & {
+    border-bottom: 1px solid var(--color-gray-20);
+  }
+`;
 
 function UploadField({
   multiselect,
@@ -135,7 +142,7 @@ function UploadField({
       generalErrors.push(<div key={`errorField-${file.name}`} className="form-group__feedback">{Object.hasOwn(file, 'generalError') && file.generalError ? file.generalError : null}</div>);
     } else {
       uploadedItems.push(
-        <li
+        <UploadItem
           className="closable upload-list__item upload-list__item--success"
           {...{ [`data-rs-file-upload-${index}`]: '' }}
           key={file.name}
@@ -152,7 +159,7 @@ function UploadField({
           >
             <Icon iconType="close-16" iconClassName="icon icon--inline icon--s" />
           </button>
-        </li>,
+        </UploadItem>,
       );
     }
   });
