@@ -36,6 +36,7 @@ import Footer from './components/footer/Footer';
 import GoogleRecaptcha, { GoogleRecaptchaRef } from './components/forms/GoogleRecaptcha';
 import MyEnvironmentLayout from './components/my-environment/MyEnvironmentLayout';
 import Section from './components/my-environment/Section';
+import JobCardList from './components/JobCard/JobCardList';
 import JobCard from './components/JobCard/JobCard';
 import JobItemMetadata from './components/JobCard/JobItemMetadata';
 import PagePreloader from './components/PagePreloader';
@@ -95,6 +96,7 @@ export {
   Toast,
   MyEnvironmentLayout,
   Section,
+  JobCardList,
   JobCard,
   JobItemMetadata,
   PagePreloader,
