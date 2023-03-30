@@ -1,7 +1,8 @@
+// @ts-nocheck
 import React from "react";
 import t from "prop-types";
 
-import replaceJsx from "@utils/replaceJsx";
+import replaceJsx from "../../../utils/replaceJsx";
 
 const ListItemMark = ({ children, inputValue = "" }) => {
   const regexSafeValue = inputValue.replace(/[-[\]/{}()*+?.\\^$|]/g, "\\$&");

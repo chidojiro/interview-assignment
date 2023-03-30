@@ -90,6 +90,7 @@ const Navigation = ({
       </nav>
       <NavigationModal>
         <nav className="navigation-accordion">
+          {/* @ts-ignore */}
           <MobileNavigation
             items={mainMenu}
             myRandstadUrl={myRandstadBaseUrl}

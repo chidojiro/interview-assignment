@@ -54,7 +54,7 @@ import UploadField from './components/forms/UploadField';
 // import ArticleOverviewList from "./components/article-overview/list/ArticleOverviewList";
 // import ArticleOverviewListItem from "./components/article-overview/list/ArticleOverviewListItem";
 // import Navigation from "./components/Navigation";
-// import Autosuggest from "./components/forms/Autosuggest";
+import Autosuggest from './components/forms/Autosuggest';
 // import Stackable from "./components/form-group/Stackable";
 
 export {
@@ -115,7 +115,7 @@ export {
   // ArticleOverviewListItem,
   // Navigation,
   // LanguageSwitcher,
-  // Autosuggest,
+  Autosuggest,
   // UtilityNavigation,
   // Stackable,
   // FormGroup,
