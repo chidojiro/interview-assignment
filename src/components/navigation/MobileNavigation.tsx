@@ -9,7 +9,7 @@ export interface MobileNavigationProps {
   myRandstadUrl?: string,
   myRandstadLabel?: string | React.ReactNode,
   myRandstadMenu?: Items[],
-  languagePrefix: string;
+  languagePrefix?: string;
 }
 
 const menuAttributes = (menuItemLength: number) => {
