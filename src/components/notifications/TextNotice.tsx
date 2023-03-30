@@ -16,7 +16,7 @@ interface TextNoticeProps {
 function TextNotice({
   children,
   background,
-  icon = 'check-16',
+  icon,
   ariaLabelClose = 'close',
   onClose,
 }: TextNoticeProps) {
@@ -49,7 +49,7 @@ function TextNotice({
             </button>
           </div>
           <div className="notice-text-only__description" data-rs-closable-fadeout="">
-            <Icon iconClassName="icon icon--inline icon--static" iconType={icon} />
+            {icon && <Icon iconClassName="icon icon--inline icon--static" iconType={icon} />}
             <div className="description">
               <p>
                 {children}
