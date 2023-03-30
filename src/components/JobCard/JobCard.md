@@ -1,8 +1,8 @@
 ```jsx
-import { JobCard } from "@ffw/randstad-shared-components";
+import { JobCard, JobCardList } from "@ffw/randstad-shared-components";
 import Icon from '../Icon';
 
-<ul>
+<JobCardList>
   <JobCard
       description="descriptif du posteSous la responsabilité d'un chef d'équipe, vos missions seront les suivantes:- La sécurisation de votre poste- Réaliser la pose de planchers et de rails (mise en place de scotch et de joints)- Effectuer la pose de luminaires provisoires- Mise en place de protections sur parois- Exécuter les opérations de nettoyage de votre poste de travail- Retirer des copeaux par système d'aspiration- Passer la soufflette à air compriméHoraires 2X8, sal"
       id="Job card id"
@@ -43,5 +43,5 @@ import Icon from '../Icon';
       lowerCased={false}
       activeView="grid"
   />
-</ul>
+</JobCardList>
 ```
