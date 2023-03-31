@@ -52,7 +52,7 @@ function Modal({
   }, [onClose]);
 
   return (
-    <div ref={modalRef} className="modal modal--active" data-rs-modal="modal">
+    <div ref={modalRef} className="modal" data-rs-modal="modal">
       <div
         className="modal__dialog bg-variant-brand-tertiary"
         role="dialog"
