@@ -41,12 +41,11 @@ export type Data = {
 const validateFile = async (filesValidation: FilesValidation, file: File) => {
   const uploadedFile: UploadedFile = { name: file.name, file, error: '' };
   await filesValidation.size.validate(file.size).catch((e) => {
-    uploadedFile.generalError += e.message;
+    uploadedFile.error = e.message;
   });
   await filesValidation.mimeType.validate(file.type).catch((e) => {
-    uploadedFile.error += e.message;
+    uploadedFile.error = e.message;
   });
-
   return uploadedFile;
 };
 

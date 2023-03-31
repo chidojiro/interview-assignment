@@ -18,6 +18,7 @@ export type TranslationProps = {
   DropFileHere: string | React.ReactNode,
   UserCvMaxSize: string,
   FilenamePattern: string,
+  UploadFieldError: string,
   UploadFieldSizes: string[],
 };
 
@@ -134,8 +135,31 @@ function UploadField({
           key={file.name}
         >
           <span className="upload-list__link" data-rs-closable-fadeout="">
-            {Object.hasOwn(file, 'error') && file.error ? file.error : null}
+            {file.name}
           </span>
+          <span className="upload-list__info text--alternative" data-rs-closable-fadeout="">{translations.UploadFieldError}</span>
+          <span className="tooltip">
+            {/* This element is interactive. */}
+            {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex */}
+            <span className="tooltip__trigger text--alternative" tabIndex={0}>
+              <Icon iconType="info" iconClassName="icon icon--inline" />
+              <span className="tooltip__content ">
+                <span className="tooltip__text">
+                  {Object.hasOwn(file, 'error') && file.error ? file.error : null}
+                </span>
+                <span className="tooltip__pointer" />
+              </span>
+            </span>
+          </span>
+          <button
+            className="button--icon-only upload-list__remove"
+            data-rs-closable={`data-rs-file-upload-${index}`}
+            onClick={() => removeFile()}
+            aria-label="Close"
+            type="button"
+          >
+            <Icon iconType="close-16" iconClassName="icon icon--inline icon--s" />
+          </button>
         </li>,
       );
     } else if (Object.hasOwn(file, 'generalError')) {
