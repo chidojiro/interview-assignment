@@ -9,7 +9,6 @@ interface ShowMoreProps {
   textSeen: string;
   textViewMore: string;
   classButton?: string;
-  props: object;
 }
 
 const ShowMore = ({ onClick, listLength, totalLength, ariaLabel, textSeen, textViewMore, classButton = 'button--m'}: ShowMoreProps) => {
