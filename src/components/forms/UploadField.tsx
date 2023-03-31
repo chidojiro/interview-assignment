@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import * as yup from 'yup';
+import styles from 'styled-components';
 import FormatFileSize from '../../hooks/formatFileSize';
 import Icon from '../Icon';
 import withField, { WithFieldProps } from '../../hoc/withField';
 import FormGroup from '../form-group/FormGroup';
-import styles from 'styled-components';
 import {
   UploadedFile, AlreadyUploadedFile, uploadTemporaryResume, checkIfUserHasFile, getUploadedFiles,
 } from '../../hooks/resumeHandler';
@@ -121,35 +121,23 @@ function UploadField({
     fileToken('');
   };
 
-  const removeButton = (
-    <button
-      className="button--icon-only upload-list__remove"
-      data-rs-closable="data-rs-file-upload-0"
-      onClick={() => removeFile()}
-      aria-label="Close"
-      type="button"
-    >
-      <Icon iconType="close-16" iconClassName="icon icon--inline icon--s" />
-    </button>
-  );
-
   [updatedFiles].forEach((file, index) => {
     if (file === null) {
       return;
     }
 
-    if (Object.hasOwn(file, 'error') && file.error) {
-      // Render errors.
-      uploadedItems.push(
-        <li
-          className="closable upload-list__item upload-list__item--error"
-          {...{ [`data-rs-file-upload-${index}`]: '' }}
-          key={file.name}
-        >
-          <span className="upload-list__link" data-rs-closable-fadeout="">
-            {file.name}
-          </span>
-          <span className="upload-list__info text--alternative" data-rs-closable-fadeout="">{translations.UploadFieldError}</span>
+    const successfulUpload = !(Object.hasOwn(file, 'error') && file.error);
+    uploadedItems.push(
+      <li
+        className={successfulUpload ? 'closable upload-list__item upload-list__item--success' : 'closable upload-list__item upload-list__item--error'}
+        {...{ [`data-rs-file-upload-${index}`]: '' }}
+        key={file.name}
+      >
+        <span className="upload-list__link" data-rs-closable-fadeout="">
+          {file.name}
+        </span>
+        <span className="upload-list__info text--alternative" data-rs-closable-fadeout="">{successfulUpload ? FormatFileSize(file?.file?.size as number, translations.UploadFieldSizes) || 0 : translations.UploadFieldError}</span>
+        {successfulUpload ? <Icon iconType="check" iconClassName="icon upload-list__success" /> : (
           <span className="tooltip">
             {/* This element is interactive. */}
             {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex */}
@@ -163,25 +151,18 @@ function UploadField({
               </span>
             </span>
           </span>
-          {removeButton}
-        </li>,
-      );
-    } else if (Object.hasOwn(file, 'generalError')) {
-      generalErrors.push(<div key={`errorField-${file.name}`} className="form-group__feedback">{Object.hasOwn(file, 'generalError') && file.generalError ? file.generalError : null}</div>);
-    } else {
-      uploadedItems.push(
-        <UploadItem
-          className="closable upload-list__item upload-list__item--success"
-          {...{ [`data-rs-file-upload-${index}`]: '' }}
-          key={file.name}
+        )}
+        <button
+          className="button--icon-only upload-list__remove"
+          data-rs-closable={`data-rs-file-upload-${index}`}
+          onClick={() => removeFile()}
+          aria-label="Close"
+          type="button"
         >
-          <span className="upload-list__link" data-rs-closable-fadeout="">{file.name}</span>
-          { file && file.file && file.file.size && <span className="upload-list__info text--alternative" data-rs-closable-fadeout="">{FormatFileSize(file?.file?.size as number, translations.UploadFieldSizes) || 0}</span> }
-          <Icon iconType="check" iconClassName="icon upload-list__success" />
-          {removeButton}
-        </UploadItem>,
-      );
-    }
+          <Icon iconType="close-16" iconClassName="icon icon--inline icon--s" />
+        </button>
+      </li>,
+    );
   });
 
   const formGroupClasses = `form-group--upload ${(isFileUploaded && !generalErrors.length) ? 'form-group--read-only' : ''} ${generalErrors.length ? 'form-group--error' : ''}`;
