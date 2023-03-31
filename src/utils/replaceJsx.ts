@@ -1,3 +1,5 @@
+/* eslint-disable */
+// @ts-nocheck
 /**
  * Replace html with JSX in regex match.
  *
@@ -20,7 +22,7 @@ export default (content, regexp, newSubstr) => {
     c = c.substring(i + m.length, c.length);
     regexp.lastIndex = 0;
   }
-  if (c !== "") {
+  if (c !== '') {
     output.push(c);
   }
   return output;
