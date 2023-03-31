@@ -121,6 +121,18 @@ function UploadField({
     fileToken('');
   };
 
+  const removeButton = (
+    <button
+      className="button--icon-only upload-list__remove"
+      data-rs-closable="data-rs-file-upload-0"
+      onClick={() => removeFile()}
+      aria-label="Close"
+      type="button"
+    >
+      <Icon iconType="close-16" iconClassName="icon icon--inline icon--s" />
+    </button>
+  );
+
   [updatedFiles].forEach((file, index) => {
     if (file === null) {
       return;
@@ -151,15 +163,7 @@ function UploadField({
               </span>
             </span>
           </span>
-          <button
-            className="button--icon-only upload-list__remove"
-            data-rs-closable={`data-rs-file-upload-${index}`}
-            onClick={() => removeFile()}
-            aria-label="Close"
-            type="button"
-          >
-            <Icon iconType="close-16" iconClassName="icon icon--inline icon--s" />
-          </button>
+          {removeButton}
         </li>,
       );
     } else if (Object.hasOwn(file, 'generalError')) {
@@ -174,15 +178,7 @@ function UploadField({
           <span className="upload-list__link" data-rs-closable-fadeout="">{file.name}</span>
           { file && file.file && file.file.size && <span className="upload-list__info text--alternative" data-rs-closable-fadeout="">{FormatFileSize(file?.file?.size as number, translations.UploadFieldSizes) || 0}</span> }
           <Icon iconType="check" iconClassName="icon upload-list__success" />
-          <button
-            className="button--icon-only upload-list__remove"
-            data-rs-closable={`data-rs-file-upload-${index}`}
-            onClick={() => removeFile()}
-            aria-label="Close"
-            type="button"
-          >
-            <Icon iconType="close-16" iconClassName="icon icon--inline icon--s" />
-          </button>
+          {removeButton}
         </UploadItem>,
       );
     }
