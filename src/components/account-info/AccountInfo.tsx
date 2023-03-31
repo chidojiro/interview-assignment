@@ -18,7 +18,7 @@ function AccountInfo({
   classNames = '',
 }: AccountInfoProps) {
   return (
-    <div className={`account-info ${classNames}`}>
+    <div className={`flex ${classNames}`}>
       <div className="account-info__block-left">
         <div className="account-info__initials account-info__initials">{initials}</div>
       </div>
