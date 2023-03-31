@@ -8,9 +8,11 @@ interface ShowMoreProps {
   ariaLabel: string;
   textSeen: string;
   textViewMore: string;
+  classButton?: string;
+  props: object;
 }
 
-const ShowMore = ({ onClick, listLength, totalLength, ariaLabel, textSeen, textViewMore }: ShowMoreProps) => {
+const ShowMore = ({ onClick, listLength, totalLength, ariaLabel, textSeen, textViewMore, classButton = 'button--m'}: ShowMoreProps) => {
   if (listLength < 1 || totalLength < 1) return null;
   if (listLength === totalLength) return null;
 
@@ -34,7 +36,7 @@ const ShowMore = ({ onClick, listLength, totalLength, ariaLabel, textSeen, textV
       <div className="section-separator section-separator--border">
         <span>{textSeen}</span>
       </div>
-      <Button href="#" className='button--m' aria-label={ariaLabel} handleClick={onClick} onKeyDown={onPressShowMore}>
+      <Button className={classButton} aria-label={ariaLabel} handleClick={onClick} onKeyDown={onPressShowMore}>
         {textViewMore}
       </Button>
     </div>
