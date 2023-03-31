@@ -128,7 +128,7 @@ function UploadField({
 
     const successfulUpload = !(Object.hasOwn(file, 'error') && file.error);
     uploadedItems.push(
-      <li
+      <UploadItem
         className={successfulUpload ? 'closable upload-list__item upload-list__item--success' : 'closable upload-list__item upload-list__item--error'}
         {...{ [`data-rs-file-upload-${index}`]: '' }}
         key={file.name}
@@ -161,7 +161,7 @@ function UploadField({
         >
           <Icon iconType="close-16" iconClassName="icon icon--inline icon--s" />
         </button>
-      </li>,
+      </UploadItem>,
     );
   });
 
