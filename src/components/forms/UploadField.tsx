@@ -120,7 +120,7 @@ function UploadField({
     }
 
     // Check first if we have a file object with size - if not, fallback to the size prop.
-    const size = file?.file?.size ? file?.file?.size as number : file?.size;
+    const size = (file?.file?.size || file?.file?.size === 0) ? file?.file?.size as number : file?.size;
     const successfulUpload = !(Object.hasOwn(file, 'error') && file.error);
     uploadedItems.push(
       <li
