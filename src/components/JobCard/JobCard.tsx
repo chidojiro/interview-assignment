@@ -12,17 +12,17 @@ interface JobCardProps extends JobItemMetadataProps {
   id: string;
   url: string;
   date: string;
-  enableLogo: boolean;
-  hasBackground: boolean;
-  activeView: 'grid' | 'list';
+  enableLogo?: boolean;
+  hasBackground?: boolean;
+  activeView?: 'grid' | 'list';
   viewJobText: string;
   closeText: string;
-  favoriteJobsEnabled: boolean;
-  favorited: boolean;
-  logoAltTagValue: string;
-  logoSrcTagValue: string;
-  infoIconAriaLabel: string;
-  closeIconAriaLabel: string;
+  favoriteJobsEnabled?: boolean;
+  favorited?: boolean;
+  logoAltTagValue?: string;
+  logoSrcTagValue?: string;
+  infoIconAriaLabel?: string;
+  closeIconAriaLabel?: string;
   onMouseDownClick: () => void;
 }
 
@@ -51,7 +51,23 @@ function FavoriteIcon({ id, favorite = false, size = 'l' }: FavoriteIconProps) {
 
 const JobCard: React.FC<JobCardProps> = (props) => {
   const {
-    hasBackground, url, onMouseDownClick, title, description, date, infoIconAriaLabel, id, viewJobText, closeIconAriaLabel, closeText, enableLogo, favoriteJobsEnabled, favorited, logoAltTagValue, logoSrcTagValue, activeView,
+    hasBackground = false,
+    url,
+    onMouseDownClick,
+    title,
+    description,
+    date,
+    infoIconAriaLabel,
+    id,
+    viewJobText,
+    closeIconAriaLabel,
+    closeText,
+    enableLogo = false,
+    favoriteJobsEnabled = false,
+    favorited = false,
+    logoAltTagValue = '',
+    logoSrcTagValue = '',
+    activeView = 'grid',
   } = props;
   const [realLogoImg, setRealLogoImg] = useState(true);
 
