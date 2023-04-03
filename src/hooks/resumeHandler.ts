@@ -17,11 +17,14 @@ type FieldError = {
 export interface AlreadyUploadedFile {
   filename: string;
   url: string;
+  contentLength: number;
 }
 
 export interface UploadedFile {
   name: string;
   id?: string;
+  // Size is optional. The real size of an uploaded file is inside the file prop. The size prop contains the size of the prefilled user resume, which cannot become a file object.
+  size?: number;
   error?: string;
   generalError?: string;
   file?: File;
@@ -160,8 +163,8 @@ const checkIfUserHasFile = async (files: AlreadyUploadedFile, gdsApiKey: string,
   const returnedFile = await getResumeFilename(gdsApiKey, gdsApiUrl);
   if (returnedFile) {
     const file: UploadedFile = {
-      // TODO: Add support for size in the future when GDS starts returning it.
       name: returnedFile.filename as string,
+      size: returnedFile.contentLength,
     };
     return file;
   }

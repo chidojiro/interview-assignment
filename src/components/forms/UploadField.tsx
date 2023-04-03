@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import * as yup from 'yup';
-import styles from 'styled-components';
 import FormatFileSize from '../../hooks/formatFileSize';
 import Icon from '../Icon';
 import withField, { WithFieldProps } from '../../hoc/withField';
@@ -120,6 +119,8 @@ function UploadField({
       return;
     }
 
+    // Check first if we have a file object with size - if not, fallback to the size prop.
+    const size = file?.file?.size ? file?.file?.size as number : file?.size;
     const successfulUpload = !(Object.hasOwn(file, 'error') && file.error);
     uploadedItems.push(
       <li
@@ -130,7 +131,7 @@ function UploadField({
         <span className="upload-list__link" data-rs-closable-fadeout="">
           {file.name}
         </span>
-        {!isFilePreloaded && <span className="upload-list__info text--alternative" data-rs-closable-fadeout="">{successfulUpload ? FormatFileSize(file?.file?.size as number, translations.UploadFieldSizes) || 0 : translations.UploadFieldError}</span>}
+        <span className="upload-list__info text--alternative" data-rs-closable-fadeout="">{successfulUpload ? FormatFileSize(size as number, translations.UploadFieldSizes) || 0 : translations.UploadFieldError}</span>
         {successfulUpload ? <Icon iconType="check" iconClassName="icon upload-list__success" /> : (
           <span className="tooltip tooltip--icon">
             {/* This element is interactive. */}
