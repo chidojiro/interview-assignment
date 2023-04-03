@@ -67,6 +67,7 @@ function Button({
       {...hrefTypeAttribute}
       {...onClickAttribute}
       {...rest}
+      disabled={disabled}
     >
       {icon && (
         <Icon
