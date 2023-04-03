@@ -5,7 +5,7 @@ import Icon from '../Icon';
 type TabBarItem = {
   title: string;
   url: string;
-  icon: string;
+  icon?: string;
   isActive: boolean;
 };
 
@@ -41,7 +41,7 @@ function TabBar({ items = [], url, RouterComponent }: TabBarProps) {
       ref.current?.removeChild(ref.current.children[indexRightArrow]);
     }
     new OrbitComponent(ref.current);
-  }, [url])
+  }, [url]);
 
   return (
     <>
@@ -50,19 +50,19 @@ function TabBar({ items = [], url, RouterComponent }: TabBarProps) {
           if (RouterComponent) {
             return (
               <RouterComponent
-                key={item.icon}
+                key={item.title}
                 href={item.url}
                 className={`tab-bar__item ${item.isActive ? 'active' : ''}`}
                 data-rs-tab-bar-item=""
               >
-                <Icon iconType={item.icon} />
+                {item.icon && <Icon iconType={item.icon} />}
                 {item.title}
               </RouterComponent>
             );
           }
           return (
-            <a key={item.icon} href={item.url} className={`tab-bar__item ${item.isActive ? 'active' : ''}`} data-rs-tab-bar-item="">
-              <Icon iconType={item.icon} />
+            <a key={item.title} href={item.url} className={`tab-bar__item ${item.isActive ? 'active' : ''}`} data-rs-tab-bar-item="">
+              {item.icon && <Icon iconType={item.icon} />}
               {item.title}
             </a>
           );

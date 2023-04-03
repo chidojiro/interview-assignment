@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import TabBar from '../../components/navigation/TabBar';
 
 const mockItems = [
@@ -35,6 +35,19 @@ const mockItems = [
   },
 ];
 
+const noIconItems = [
+  {
+    title: 'active applications',
+    url: '/#active',
+    isActive: true,
+  },
+  {
+    title: 'past applications',
+    url: '/#past',
+    isActive: false,
+  },
+];
+
 describe('TabBar', () => {
   it('renders the correct number of items', () => {
     render(<TabBar items={mockItems} />);
@@ -63,5 +76,20 @@ describe('TabBar', () => {
     expect(itemIcons[2]).toHaveAttribute('src', '/icons/filter.svg');
     expect(itemIcons[3]).toHaveAttribute('src', '/icons/account-circle.svg');
     expect(itemIcons[4]).toHaveAttribute('src', '/icons/settings.svg');
+  });
+
+  it('should render two tabs with no icons', async () => {
+    const { container } = render(<TabBar items={noIconItems} />);
+    render(<TabBar items={noIconItems} />);
+    const tabs = container.querySelectorAll('.tab-bar__item');
+    expect(tabs.length).toBe(2);
+  });
+
+  it('should change active tab', async () => {
+    const { container } = await render(<TabBar items={noIconItems} />);
+    const tabs = container.querySelectorAll('.tab-bar__item :not(.active)');
+    const inactiveTab = tabs[0];
+    fireEvent.click(inactiveTab);
+    expect(inactiveTab).toHaveClass('active');
   });
 });
