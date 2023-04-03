@@ -136,7 +136,7 @@ function UploadField({
         <span className="upload-list__link" data-rs-closable-fadeout="">
           {file.name}
         </span>
-        <span className="upload-list__info text--alternative" data-rs-closable-fadeout="">{successfulUpload ? FormatFileSize(file?.file?.size as number, translations.UploadFieldSizes) || 0 : translations.UploadFieldError}</span>
+        {!isFilePreloaded && <span className="upload-list__info text--alternative" data-rs-closable-fadeout="">{successfulUpload ? FormatFileSize(file?.file?.size as number, translations.UploadFieldSizes) || 0 : translations.UploadFieldError}</span>}
         {successfulUpload ? <Icon iconType="check" iconClassName="icon upload-list__success" /> : (
           <span className="tooltip">
             {/* This element is interactive. */}
