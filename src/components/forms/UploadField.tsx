@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import * as yup from 'yup';
-import styles from 'styled-components';
 import FormatFileSize from '../../hooks/formatFileSize';
 import Icon from '../Icon';
 import withField, { WithFieldProps } from '../../hoc/withField';
@@ -40,12 +39,6 @@ interface FileFieldProps extends WithFieldProps {
   fileToken: (token: string) => void;
   translations: TranslationProps;
 }
-
-const UploadItem = styles.li`
-  & {
-    border-bottom: 1px solid var(--color-gray-20);
-  }
-`;
 
 function UploadField({
   multiselect,
@@ -126,30 +119,32 @@ function UploadField({
       return;
     }
 
+    // Check first if we have a file object with size - if not, fallback to the size prop.
+    const size = file?.file?.size ? file?.file?.size as number : file?.size;
     const successfulUpload = !(Object.hasOwn(file, 'error') && file.error);
     uploadedItems.push(
-      <UploadItem
-        className={successfulUpload ? 'closable upload-list__item upload-list__item--success' : 'closable upload-list__item upload-list__item--error'}
+      <li
+        className={`closable upload-list__item divider ${successfulUpload ? 'upload-list__item--success' : 'upload-list__item--error'}`}
         {...{ [`data-rs-file-upload-${index}`]: '' }}
         key={file.name}
       >
         <span className="upload-list__link" data-rs-closable-fadeout="">
           {file.name}
         </span>
-        {!isFilePreloaded && <span className="upload-list__info text--alternative" data-rs-closable-fadeout="">{successfulUpload ? FormatFileSize(file?.file?.size as number, translations.UploadFieldSizes) || 0 : translations.UploadFieldError}</span>}
+        <span className="upload-list__info text--alternative" data-rs-closable-fadeout="">{successfulUpload ? FormatFileSize(size as number, translations.UploadFieldSizes) || 0 : translations.UploadFieldError}</span>
         {successfulUpload ? <Icon iconType="check" iconClassName="icon upload-list__success" /> : (
-          <span className="tooltip">
+          <span className="tooltip tooltip--icon">
             {/* This element is interactive. */}
             {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex */}
-            <span className="tooltip__trigger text--alternative" tabIndex={0}>
-              <Icon iconType="info" iconClassName="icon icon--inline" />
+            <div className="tooltip__trigger" tabIndex={0}>
+              <Icon iconType="info" iconClassName="icon" />
               <span className="tooltip__content ">
                 <span className="tooltip__text">
                   {Object.hasOwn(file, 'error') && file.error ? file.error : null}
                 </span>
                 <span className="tooltip__pointer" />
               </span>
-            </span>
+            </div>
           </span>
         )}
         <button
@@ -161,7 +156,7 @@ function UploadField({
         >
           <Icon iconType="close-16" iconClassName="icon icon--inline icon--s" />
         </button>
-      </UploadItem>,
+      </li>,
     );
   });
 
