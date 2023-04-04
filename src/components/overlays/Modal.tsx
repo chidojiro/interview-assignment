@@ -12,6 +12,7 @@ interface ModalProps {
   footerDivider?: boolean;
   footerDividerTop?: boolean;
   modalOverflow?: boolean;
+  bgVariantBrand?: string | undefined;
 }
 
 function Modal({
@@ -24,6 +25,7 @@ function Modal({
   footerDivider = true,
   footerDividerTop = false,
   modalOverflow = false,
+  bgVariantBrand,
 }: ModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
 
@@ -54,7 +56,7 @@ function Modal({
   return (
     <div ref={modalRef} className="modal" data-rs-modal="modal">
       <div
-        className="modal__dialog bg-variant-brand-tertiary"
+        className={`modal__dialog ${bgVariantBrand || 'bg-variant-brand-tertiary'}`}
         role="dialog"
         aria-modal="true"
         aria-labelledby="#"
