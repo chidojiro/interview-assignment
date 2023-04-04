@@ -7,8 +7,8 @@ import FooterSocials, { FooterSocial } from './FooterSocials';
 
 interface FooterProps {
   footerColumnNavLinks?: [];
-  socialNavLinks?: FooterSocial[];
-  bottomNavLinks?: [];
+  socialNavLinks?: FooterSocial[] | null;
+  bottomNavLinks?: [] | null;
   copyright?: string;
   className?: string;
 }
