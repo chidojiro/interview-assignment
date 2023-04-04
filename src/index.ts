@@ -56,6 +56,7 @@ import UploadField from './components/forms/UploadField';
 // import ArticleOverviewListItem from "./components/article-overview/list/ArticleOverviewListItem";
 // import Navigation from "./components/Navigation";
 import Autosuggest from './components/forms/Autosuggest';
+import Dropdown from './components/form-group/Dropdown';
 // import Stackable from "./components/form-group/Stackable";
 
 export {
@@ -121,6 +122,7 @@ export {
   // UtilityNavigation,
   // Stackable,
   // FormGroup,
+  Dropdown,
 };
 
 /**
