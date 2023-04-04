@@ -13,12 +13,12 @@ interface DropdownProps {
   required?: boolean;
   disabled?: boolean;
   touched?: boolean;
-  id?: string;
-  options?: Array<OptionsProps>;
+  id: string;
+  options: Array<OptionsProps>;
   onChange: (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
   onBlur?: () => void;
   value?: string;
-  name?: string;
+  name: string;
 }
 
 function Dropdown({ options, touched, defaultValue, error, label, required, disabled, value, name, id, onChange, ...rest }: DropdownProps): JSX.Element {
