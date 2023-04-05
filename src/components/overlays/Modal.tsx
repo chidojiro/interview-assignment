@@ -30,14 +30,16 @@ function Modal({
   useEffect(() => {
     const { Modal: ModalJS } = require('@ffw/randstad-local-orbit/js/components/modal');
     const ModalJSInit = new ModalJS(modalRef.current);
-    ModalJSInit.openModal(false);
+    ModalJSInit.openModal(true);
     const modalElement = modalRef.current;
 
     let timer: ReturnType<typeof setTimeout>;
 
     const closingModal = (event: Event) => {
       timer = setTimeout(() => {
+        /* onClose is for side-effects in the apps where you use the modal. */
         onClose?.(event);
+        ModalJSInit.closeModal(true);
       }, 350);
     };
 
@@ -45,7 +47,6 @@ function Modal({
     modalElement?.addEventListener('modal-close', closingModal);
 
     return () => {
-      ModalJSInit.closeModal(false);
       modalElement?.removeEventListener('modal-close', closingModal);
       clearTimeout(timer);
     };
