@@ -37,9 +37,9 @@ function Modal({
 
     const closingModal = (event: Event) => {
       timer = setTimeout(() => {
+        ModalJSInit.closeModal(true);
         /* onClose is for side-effects in the apps where you use the modal. */
         onClose?.(event);
-        ModalJSInit.closeModal(true);
       }, 350);
     };
 
