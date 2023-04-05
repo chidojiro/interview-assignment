@@ -133,9 +133,7 @@ const JobCard: React.FC<JobCardProps> = (props) => {
         {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex */}
         <div className="cards__info-wrapper" tabIndex={0} data-rs-card-show-backside aria-label={infoIconAriaLabel}>
           <span className="cards__info-button text--alternative">
-            <span className="icon icon--inline">
-              <Icon iconType="info" />
-            </span>
+            <Icon iconType="info" iconClassName="icon icon--inline" />
           </span>
         </div>
       </div>
@@ -152,9 +150,7 @@ const JobCard: React.FC<JobCardProps> = (props) => {
             tabIndex={-1}
             aria-label=""
           >
-            <span className="icon icon--inline">
-              <Icon iconType="eye" />
-            </span>
+            <Icon iconType="eye" iconClassName="icon icon--inline" />
             {viewJobText}
           </a>
           <div
@@ -164,9 +160,7 @@ const JobCard: React.FC<JobCardProps> = (props) => {
             role="button"
             aria-label={closeIconAriaLabel}
           >
-            <span className="icon icon--inline">
-              <Icon iconType="close" />
-            </span>
+            <Icon iconType="close" iconClassName="icon icon--inline" />
             <span className="button-text">{closeText}</span>
           </div>
         </div>
