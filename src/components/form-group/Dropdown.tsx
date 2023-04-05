@@ -1,50 +1,52 @@
 import React from 'react';
+import useLibrary from '../../hooks/useLibrary';
 import Icon from '../Icon';
+import cn from 'classnames';
+import withField from '../../hoc/withField';
+import FormGroup from '../form-group/FormGroup';
 
 type OptionsProps = {
   value: string | number;
   title: string | number;
-}
+};
 
 interface DropdownProps {
-  label?: string;
-  defaultValue?: string;
-  error?: string;
-  required?: boolean;
-  disabled?: boolean;
-  touched?: boolean;
   id: string;
+  name: string;
   options: Array<OptionsProps>;
+  libs: [],
+  defaultValue?: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
   onBlur?: () => void;
   value?: string;
-  name: string;
+  className?: string;
+  _formGroupProps?: object;
 }
 
-function Dropdown({ options, touched, defaultValue, error, label, required, disabled, value, name, id, onChange, ...rest }: DropdownProps): JSX.Element {
+function Dropdown({ options, defaultValue, className, value, name, id, libs, onChange, _formGroupProps, ...props }: DropdownProps): JSX.Element {
+  const [ref] = useLibrary(libs);
   return (
-    <div className={`form-group form-group--selection-control mb-m ${touched && error && 'form-group--error'}`}>
-      {label ? (
-        <div className="form-group__label">
-          {label}
-          {!required && <sup className="form-group__optional">optional</sup>}
-        </div>
-      ) : null}
-      <div className="form-group__input">
-        <select id={id} name={name} required={required} value={value || defaultValue} className={!value ? 'untouched' : ''} data-rs-untouched="" onChange={(event) => onChange(event as React.ChangeEvent<HTMLInputElement | HTMLSelectElement>)} disabled={disabled} {...rest}>
-          {defaultValue && <option value={defaultValue} disabled hidden>{defaultValue}</option>}
-          {options &&
-            options.map((item) => (
-              <option key={options.indexOf(item)} value={item.value}>
-                {item.title}
-              </option>
-            ))}
-        </select>
-        <Icon iconClassName="select-arrow icon" iconType="chevron-down" />
-      </div>
-      {touched && error ? <div className="form-group__feedback error">{error}</div> : null}
-    </div>
+    <FormGroup {..._formGroupProps}>
+      <select
+        id={id}
+        name={name}
+        className={cn('untouched', className)}
+        data-rs-untouched=""
+        ref={ref as React.RefObject<HTMLSelectElement>}
+        {...props}
+        onChange={(event) => onChange(event as React.ChangeEvent<HTMLInputElement | HTMLSelectElement>)}
+      >
+        {defaultValue && <option value={defaultValue}>{defaultValue}</option>}
+        {options &&
+          options.map((item) => (
+            <option key={options.indexOf(item)} value={item.value}>
+              {item.title}
+            </option>
+          ))}
+      </select>
+      <Icon iconClassName="select-arrow icon" iconType="chevron-down" />
+    </FormGroup>
   );
 }
 
-export default Dropdown;
+export default withField(Dropdown);

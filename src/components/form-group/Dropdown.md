@@ -12,14 +12,11 @@ const onChangeHandler = (event) => {
 
 <Dropdown
   label="Favorite number"
-  error="Please choose number"
   id="numbers"
   options={[{value:'first', title: 'first'}, {value:'second', title: 'second'}, {value:'third', title: 'third'}]}
   value={value}
   defaultValue="Choose number"
   name="numbers-dropdown"
   onChange={onChangeHandler}
-  required
-  touched={false}
 ></Dropdown>;
 ```

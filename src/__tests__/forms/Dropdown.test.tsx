@@ -18,7 +18,6 @@ describe('Dropdown component tests', () => {
         name="numbers-dropdown"
         onChange={(e) => console.log(e)}
         required
-        touched={false}
       ></Dropdown>,
     );
     const dropdownComponent = container.querySelector('.form-group__input select');
@@ -39,7 +38,6 @@ describe('Dropdown component tests', () => {
         name="numbers-dropdown"
         onChange={(e) => console.log(e)}
         required
-        touched={false}
       ></Dropdown>,
     );
     // @ts-ignore
@@ -48,29 +46,6 @@ describe('Dropdown component tests', () => {
     expect(dropdownComponent).toHaveAttribute('name', 'numbers-dropdown');
     expect(dropdownComponent).toHaveAttribute('id', 'numbers');
     expect(dropdownComponent).toHaveAttribute('required');
-  });
-
-  test('Dropdown is loading corretly label.', () => {
-    const { container } = render(
-      <Dropdown
-        label="Favorite number"
-        error="Please choose number"
-        id="numbers"
-        options={[
-          { value: 'first', title: 'first' },
-          { value: 'second', title: 'second' },
-          { value: 'third', title: 'third' },
-        ]}
-        name="numbers-dropdown"
-        onChange={(e) => console.log(e)}
-        required
-        touched={false}
-      ></Dropdown>,
-    );
-    // @ts-ignore
-    const dropdownComponent = container.querySelector('.form-group__label');
-
-    expect(dropdownComponent).toHaveTextContent('Favorite number');
   });
 
   test('Dropdown number of list correctly in case we have defaultValue.', () => {
@@ -88,7 +63,6 @@ describe('Dropdown component tests', () => {
         name="numbers-dropdown"
         onChange={(e) => console.log(e)}
         required
-        touched={false}
       ></Dropdown>,
     );
     // @ts-ignore
@@ -111,7 +85,6 @@ describe('Dropdown component tests', () => {
         name="numbers-dropdown"
         onChange={(e) => console.log(e)}
         required
-        touched={false}
       ></Dropdown>,
     );
     // @ts-ignore
@@ -133,7 +106,6 @@ describe('Dropdown component tests', () => {
         ]}
         name="numbers-dropdown"
         onChange={(e) => console.log(e)}
-        touched={false}
       ></Dropdown>,
     );
     // @ts-ignore
