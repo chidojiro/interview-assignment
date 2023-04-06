@@ -12,13 +12,17 @@ interface JobCardProps extends JobItemMetadataProps {
   id: string;
   url: string;
   date: string;
-  enableLogo: boolean;
-  hasBackground: boolean;
-  activeView: 'grid' | 'list';
-  favoriteJobsEnabled: boolean;
-  favorited: boolean;
-  logoAltTagValue: string;
-  logoSrcTagValue: string;
+  enableLogo?: boolean;
+  hasBackground?: boolean;
+  activeView?: 'grid' | 'list';
+  viewJobText: string;
+  closeText: string;
+  favoriteJobsEnabled?: boolean;
+  favorited?: boolean;
+  logoAltTagValue?: string;
+  logoSrcTagValue?: string;
+  infoIconAriaLabel?: string;
+  closeIconAriaLabel?: string;
   onMouseDownClick: () => void;
   translations: Translations
 }
@@ -36,23 +40,18 @@ interface FavoriteIconProps {
   size?: string;
 }
 
-function FavoriteIcon({
-  id,
-  favorite = false,
-  size = 'l'
-}: FavoriteIconProps) {
+function FavoriteIcon({ id, favorite = false, size = 'l' }: FavoriteIconProps) {
   const [iconFilled, setIconFilled] = useState(favorite);
   const iconClasses = cn('icon', {
     [`icon--${size}`]: size,
   }, 'icon--inline');
   return (
-    <button className={`icon__toggler icon--l ${favorite || iconFilled ? 'icon__toggler--active' : ''} `}
-            aria-pressed={favorite ? 'true' : 'false'} id={`fav-${id}`} onClick={() => setIconFilled((prev) => !prev)}>
+    <button className={`icon__toggler icon--l ${favorite || iconFilled ? 'icon__toggler--active' : ''} `} aria-pressed={favorite ? 'true' : 'false'} id={`fav-${id}`} onClick={() => setIconFilled((prev) => !prev)}>
       <span className={iconClasses}>
-        <Icon iconType="heart-30" iconClassName={null}/>
+        <Icon iconType="heart-30" iconClassName={null} />
       </span>
       <span className={iconClasses}>
-        <Icon iconType="heart-filled-30" iconClassName={null}/>
+        <Icon iconType="heart-filled-30" iconClassName={null} />
       </span>
     </button>
   );
@@ -60,19 +59,19 @@ function FavoriteIcon({
 
 const JobCard: React.FC<JobCardProps> = (props) => {
   const {
-    hasBackground,
+    hasBackground = false,
     url,
     onMouseDownClick,
     title,
     description,
     date,
     id,
-    enableLogo,
-    favoriteJobsEnabled,
-    favorited,
-    logoAltTagValue,
-    logoSrcTagValue,
-    activeView,
+    enableLogo = false,
+    favoriteJobsEnabled = false,
+    favorited = false,
+    logoAltTagValue = '',
+    logoSrcTagValue = '',
+    activeView = 'grid',
     translations,
   } = props;
   const [realLogoImg, setRealLogoImg] = useState(true);
@@ -128,7 +127,7 @@ const JobCard: React.FC<JobCardProps> = (props) => {
       <JobItemMetadata {...props} />
       {/* Safe here. */}
       {/* eslint-disable-next-line react/no-danger */}
-      <div className="cards__description" dangerouslySetInnerHTML={{__html: description}}/>
+      <div className="cards__description" dangerouslySetInnerHTML={{ __html: description }} />
       <div className="cards__footer">
         <div className="cards__time-info">
           <span className="cards__date text--alternative">
@@ -139,9 +138,7 @@ const JobCard: React.FC<JobCardProps> = (props) => {
         {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex */}
         <div className="cards__info-wrapper" tabIndex={0} data-rs-card-show-backside aria-label={translations.iconInfoAriaLabel}>
           <span className="cards__info-button text--alternative">
-            <span className="icon icon--inline">
-              <Icon iconType="info" />
-            </span>
+            <Icon iconType="info" iconClassName="icon icon--inline" />
           </span>
         </div>
       </div>
@@ -158,9 +155,7 @@ const JobCard: React.FC<JobCardProps> = (props) => {
             tabIndex={-1}
             aria-label=""
           >
-            <span className="icon icon--inline">
-              <Icon iconType="eye" />
-            </span>
+            <Icon iconType="eye" iconClassName="icon icon--inline" />
             {translations.viewJobText}
           </a>
           <div
@@ -170,9 +165,7 @@ const JobCard: React.FC<JobCardProps> = (props) => {
             role="button"
             aria-label={translations.closeIconAriaLabel}
           >
-            <span className="icon icon--inline">
-              <Icon iconType="close" />
-            </span>
+            <Icon iconType="close" iconClassName="icon icon--inline" />
             <span className="button-text">{translations.closeText}</span>
           </div>
         </div>

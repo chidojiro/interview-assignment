@@ -94,6 +94,11 @@ function ConfirmationModal({
     return () => document.removeEventListener('keydown', modalClose);
   }, [modalClose]);
 
+  useEffect(() => {
+    document.getElementsByTagName('html')[0].classList.add('modal-open');
+    return () => document.getElementsByTagName('html')[0].classList.remove('modal-open');
+  }, []);
+
   return (
     <ModalStyle className="modal modal--active" data-rs-modal="modal" onClick={(event: React.MouseEvent<HTMLDivElement>) => modalClose(event)}>
       {/* Tag <div> needed here according to the Orbit */}
