@@ -19,3 +19,7 @@ build:
     # Bluex account
     git remote set-url codecommit https://git-codecommit.eu-west-1.amazonaws.com/v1/repos/git-bluex-prd-bx-lib-react-components
     git push codecommit HEAD:refs/heads/$CI_COMMIT_REF_NAME
+    
+    aws s3 sync src/i18n/ s3://s3-bluex-dta-bx-dev2-localization/components_lib/default/ --exclude "*" --include "??.json"
+    aws s3 sync src/i18n/ s3://s3-bluex-dta-bx-ppr2-localization/components_lib/default/ --exclude "*" --include "??.json"
+    aws s3 sync src/i18n/ s3://s3-bluex-dta-bx-tst3-localization/components_lib/default/ --exclude "*" --include "??.json"
