@@ -56,14 +56,14 @@ function TabBar({ items = [], url, isIconTabBar = true, RouterComponent }: TabBa
                 className={`tab-bar__item ${item.isActive ? 'active' : ''}`}
                 data-rs-tab-bar-item=""
               >
-                {isIconTabBar && <Icon iconType={item.icon} />}
+                {item.icon && <Icon iconType={item.icon} />}
                 {item.title}
               </RouterComponent>
             );
           }
           return (
             <a key={item.title} href={item.url} className={`tab-bar__item ${item.isActive ? 'active' : ''}`} data-rs-tab-bar-item="">
-              {isIconTabBar && <Icon iconType={item.icon} />}
+              {item.icon && <Icon iconType={item.icon} />}
               {item.title}
             </a>
           );
