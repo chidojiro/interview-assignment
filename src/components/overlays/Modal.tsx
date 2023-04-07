@@ -15,7 +15,6 @@ interface ModalProps {
 }
 
 function Modal({
-  // needConfirm,
   title,
   onClose,
   ariaLabelClose,
@@ -49,8 +48,15 @@ function Modal({
     return () => {
       modalElement?.removeEventListener('modal-close', closingModal);
       clearTimeout(timer);
+      ModalJSInit.closeModal(true);
     };
-  }, [onClose]);
+    /**
+     * ESLint requires adding onClose as a dependency, but we know that it
+     * doesn't change and also we have wrapped it with useCallback from the
+     * parent component.
+     */
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div ref={modalRef} className="modal" data-rs-modal="modal">
