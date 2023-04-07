@@ -12,6 +12,7 @@ interface ModalProps {
   footerDivider?: boolean;
   footerDividerTop?: boolean;
   modalOverflow?: boolean;
+  bgVariantBrand?: string | undefined;
 }
 
 function Modal({
@@ -24,6 +25,7 @@ function Modal({
   footerDivider = true,
   footerDividerTop = false,
   modalOverflow = false,
+  bgVariantBrand,
 }: ModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
 
@@ -55,7 +57,7 @@ function Modal({
   return (
     <div ref={modalRef} className="modal" data-rs-modal="modal">
       <div
-        className="modal__dialog bg-variant-brand-tertiary"
+        className={`modal__dialog ${bgVariantBrand || 'bg-variant-brand-tertiary'}`}
         role="dialog"
         aria-modal="true"
         aria-labelledby="#"
@@ -73,12 +75,15 @@ function Modal({
             <Icon iconClassName={classNames('icon icon--l icon--inline hidden--until-l icon--alternative')} iconType="close-30" />
           </button>
         </div>
-        <div className={`modal__main ${modalOverflow ? 'modal__main--overflow' : ''}`} data-rs-modal-main="">
+        <div className={`modal__main ${modalOverflow ? 'modal__main--overflow' : ''} ${footer ? null : 'mb-m'}`} data-rs-modal-main="">
           {children}
         </div>
-        <div className={`modal__footer ${footerDivider ? 'divider' : ''} ${footerDividerTop ? 'divider--top' : ''}`} data-rs-modal-footer="">
-          {footer}
-        </div>
+        {footer ? (
+          <div className={`modal__footer ${footerDivider ? 'divider' : ''} ${footerDividerTop ? 'divider--top' : ''}`} data-rs-modal-footer="">
+            {footer}
+          </div>
+        )
+          : null }
       </div>
     </div>
   );
