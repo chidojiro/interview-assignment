@@ -44,6 +44,7 @@ import Preloader from './components/loaders/Preloader';
 import UserImageBlock from './components/UserImageBlock';
 import AccountInfo from './components/account-info/AccountInfo';
 import UploadField from './components/forms/UploadField';
+import SplitView from './components/SplitView';
 // import LocationInputField from "./components/forms/LocationInputField";
 // import RadioButton from "./components/forms/RadioButton";
 // import TextArea from "./components/forms/TextArea";
@@ -106,6 +107,7 @@ export {
   AccountInfo,
   UploadField,
   ShowMore,
+  SplitView,
   // LocationInputField,
   // RadioButton,
   // TextArea,
