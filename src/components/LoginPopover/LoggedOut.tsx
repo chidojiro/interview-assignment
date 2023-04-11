@@ -5,16 +5,23 @@ interface LoggedOutProps {
   children?: string | React.ReactNode;
   title?: string | React.ReactNode;
   registerUrl?: string;
-  registerTitle?: string;
   registerText?: string | React.ReactNode;
   loginUrl?: string;
-  loginTitle?: string;
   loginText?: string | React.ReactNode;
   RouterComponent?: React.FC<any>;
   callback?: () => void;
 }
 
-function LoggedOut({ title, children, registerUrl, registerText, loginUrl, loginText, RouterComponent, callback }: LoggedOutProps) {
+function LoggedOut({
+  title,
+  children,
+  registerUrl,
+  registerText,
+  loginUrl,
+  loginText,
+  RouterComponent,
+  callback,
+}: LoggedOutProps) {
   return (
     <>
       <div className="popover__title">
