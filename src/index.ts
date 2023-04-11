@@ -6,6 +6,8 @@ import InputField from './components/forms/InputField';
 import Checkbox from './components/forms/Checkbox';
 import Toggle from './components/forms/Toggle';
 import Block from './components/Block';
+import Header from './components/Header';
+import HeaderBrandsEnum from './components/Header/headerBrands.enum';
 import HeaderTitle from './components/headers/HeaderTitle/HeaderTitle';
 import HeaderText from './components/headers/HeaderText';
 import Breadcrumbs from './components/Breadcrumbs';
@@ -15,7 +17,7 @@ import Logo from './components/navigation/Logo';
 import MainMenu from './components/navigation/MainMenu';
 import MyRandstad from './components/navigation/MyRandstad';
 import UtilityNavigation from './components/navigation/UtilityNavigation';
-import SubMenu from './components/navigation/Submenu';
+import Submenu from './components/navigation/Submenu';
 import MobileNavigation from './components/navigation/MobileNavigation';
 import TabBar from './components/navigation/TabBar';
 import NavigationModal from './components/navigation/NavigationModal';
@@ -66,6 +68,8 @@ export {
   Checkbox,
   Toggle,
   Block,
+  Header,
+  HeaderBrandsEnum,
   FormGroup,
   HeaderTitle,
   HeaderText,
@@ -76,7 +80,7 @@ export {
   MainMenu,
   MyRandstad,
   UtilityNavigation,
-  SubMenu,
+  Submenu,
   MobileNavigation,
   NavigationModal,
   Modal,

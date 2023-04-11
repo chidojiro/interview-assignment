@@ -66,6 +66,10 @@ import WithLib from "@UI/hoc/WithLib"; // here webpack alias is used.
 export default WithLib(["untouched"])(UI(Sortbar)());
 ```
 
+## Build orbit-randstad css
+
+Go to `/src/assets` folder and run `gulp build` inside it.
+
 ## Contributors
 
 Please check the guide for [contributors](https://gitlab.workingpropeople.com/randstad-bluex/git-df-prd-bluex-lib-react-components/-/blob/dev/CONTRIBUTORS.md):
