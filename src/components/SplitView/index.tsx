@@ -17,6 +17,14 @@ export interface SplitViewProps extends BgColor {
   description?: string;
   buttonLink?: string;
   buttonText?: string;
+  /**
+   * Use this when per design there is less top padding. By default, this is not the case.
+   */
+  removeTopPadding?: boolean;
+  /**
+   * Use this when you want to change the Orbit's display of the mobile & desktop illustration.
+   */
+  narrowIllustration?: boolean;
 }
 
 function SplitView({
@@ -30,6 +38,8 @@ function SplitView({
   description,
   buttonLink,
   buttonText,
+  removeTopPadding,
+  narrowIllustration,
 }: SplitViewProps) {
   const backgroundColor = getBackground(bgColor);
   const mainClassNames = cn(
@@ -53,9 +63,22 @@ function SplitView({
       'media-block--half-width': photos && !illustration,
     },
   );
+  const bannerContentClassNames = cn(
+    'banner__content',
+    'content-block',
+    {
+      'l:pt-none': removeTopPadding,
+    },
+  );
+  const illustrationClassNames = cn(
+    {
+      'h-auto bottom-auto': narrowIllustration,
+    }
+  );
 
   const displayIllustration = illustration && (
     <img
+      className={illustrationClassNames}
       src={illustration}
       alt={altTitle}
     />
@@ -77,11 +100,11 @@ function SplitView({
           {displayIllustration}
           {displayPhotos}
         </div>
-        <div className="banner__content content-block">
+        <div className={bannerContentClassNames}>
           {eyebrow && <p className="content-block__eyebrow">{eyebrow}</p>}
           {title && <h2 className="content-block__title">{title}</h2>}
           {description && (
-            <p className="content-block__description">
+            <p className="content-block__description text-body-m l:text-body-l">
               {description}
             </p>
           )}

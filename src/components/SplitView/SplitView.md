@@ -11,7 +11,7 @@ import React from 'react';
     buttonLink="https://google.com/"
     buttonText="read stories"
     bgColor="secondary"
-    illustration="https://rxp-static-dev2.dta.randstad-bluex.com/my-randstad/src/assets/img/HandMoney_illustration_UseBackgroundBlue_RGB.svg"
+    illustration="https://s3-go-dta-orbit.s3-eu-west-1.amazonaws.com/mt/master/assets/image/components/banners/TextBalloonPhone/TextBalloonPhone_illustration_UseBackgroundTurquoise_RGB.svg"
   />
 
   <SplitView
