@@ -7,7 +7,6 @@ describe('Favorites component tests', () => {
     const className = 'favorites__counter';
     const { container } = render(
       <Favorites
-        maxCounter={0}
       />,
     );
 
@@ -16,23 +15,9 @@ describe('Favorites component tests', () => {
     expect(iconElement).toBeInTheDocument();
   });
 
-  test('should render Favorites right counter', () => {
-    const { container } = render(
-      <Favorites
-        maxCounter={3}
-      />,
-    );
-
-    const iconElement = container.querySelector('#maxCounter');
-    expect(iconElement).toHaveTextContent('3');
-  });
-
   test('should render Favorites right url', () => {
     const { container } = render(
-      <Favorites
-        maxCounter={3}
-        favoriteUrl='favoriteUrl'
-      />,
+      <Favorites favoriteUrl='favoriteUrl' />,
     );
 
     const iconElement = container.querySelector('.navigation__service-link');
@@ -42,7 +27,6 @@ describe('Favorites component tests', () => {
   test('should render Favorites right aria label', () => {
     const { container } = render(
       <Favorites
-        maxCounter={3}
         favoriteUrl='favoriteUrl'
         ariaLabel='my-favorites'
       />,

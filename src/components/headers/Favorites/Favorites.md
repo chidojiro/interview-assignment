@@ -1,21 +1,9 @@
-It could be NOT filled heart icon
+Favorite heart icon
 
 ```jsx
 import Favorites from './Favorites';
 <div className="bg-variant-white">
   <ul className="navigation__service">
-    <Favorites maxCounter={0} />
+    <Favorites />
   </ul>
 </div>;
-```
-
-It could be filled heart icon
-
-```jsx
-import Favorites from './Favorites';
-<div className="bg-variant-white">
-  <ul className="navigation__service">
-    <Favorites maxCounter={3} />
-  </ul>
-</div>;
-```
