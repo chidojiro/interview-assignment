@@ -45,6 +45,7 @@ import UserImageBlock from './components/UserImageBlock';
 import AccountInfo from './components/account-info/AccountInfo';
 import UploadField from './components/forms/UploadField';
 import SplitView from './components/SplitView';
+import HeaderIllustration from './components/HeaderIllustration';
 // import LocationInputField from "./components/forms/LocationInputField";
 // import RadioButton from "./components/forms/RadioButton";
 // import TextArea from "./components/forms/TextArea";
@@ -108,6 +109,7 @@ export {
   UploadField,
   ShowMore,
   SplitView,
+  HeaderIllustration,
   // LocationInputField,
   // RadioButton,
   // TextArea,
