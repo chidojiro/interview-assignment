@@ -16,7 +16,21 @@ interface TabBarProps {
   RouterComponent?: React.FC<any>;
 }
 
-function TabBar({ items = [], url, isIconTabBar = true, RouterComponent }: TabBarProps) {
+function checkUrlMatch(url: string | undefined, items: TabBarItem[]) {
+  let hasTabUrlMatch = false;
+  if (!url) return false;
+  items.forEach((item) => {
+    if (url === item.url) {
+      hasTabUrlMatch = true;
+    }
+  });
+
+  return hasTabUrlMatch;
+}
+
+function TabBar({
+  items = [], url, isIconTabBar = true, RouterComponent,
+}: TabBarProps) {
   const ref = useRef<HTMLInputElement>(null);
   const [firstLoad, setFirstLoad] = useState(false);
 
@@ -30,15 +44,13 @@ function TabBar({ items = [], url, isIconTabBar = true, RouterComponent }: TabBa
   }, [items]);
 
   useEffect(() => {
-    if(!firstLoad) return;
+    if (!firstLoad) return;
     if (firstLoad && ref.current?.children) {
       const indexLeftArrow = Array.from(ref.current?.children).findIndex((item) =>
-        item.hasAttribute('data-rs-tab-bar-fade-element-left'),
-      );
+        item.hasAttribute('data-rs-tab-bar-fade-element-left'));
       ref.current?.removeChild(ref.current.children[indexLeftArrow]);
       const indexRightArrow = Array.from(ref.current?.children).findIndex((item) =>
-        item.hasAttribute('data-rs-tab-bar-fade-element-right'),
-      );
+        item.hasAttribute('data-rs-tab-bar-fade-element-right'));
       ref.current?.removeChild(ref.current.children[indexRightArrow]);
     }
     new OrbitComponent(ref.current);
@@ -68,6 +80,15 @@ function TabBar({ items = [], url, isIconTabBar = true, RouterComponent }: TabBa
             </a>
           );
         })}
+        {
+          // Workaround for Orbit, because it requires to have an active item at all times
+          !checkUrlMatch(url, items)
+            && (
+          // No need for content, a dummy that won't appear.
+          // eslint-disable-next-line jsx-a11y/anchor-has-content,jsx-a11y/control-has-associated-label
+              <a href={url} className="tab-bar__item active hidden" data-rs-tab-bar-item="" />
+            )
+        }
         <div className="tab-bar__line" />
       </div>
     </>
