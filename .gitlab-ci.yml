@@ -21,7 +21,9 @@ build:
     git push codecommit HEAD:refs/heads/$CI_COMMIT_REF_NAME
     
     echo "Environment is"
-    echo ${CI_ENVIRONMENT_NAME}
+    echo $environment
+    echo "Environment ref is"
+    echo $environment_ref
     echo "Pipeline source is"
     echo ${CI_PIPELINE_SOURCE}
     echo "Commit branch"
