@@ -24,6 +24,14 @@ interface JobCardProps extends JobItemMetadataProps {
   infoIconAriaLabel?: string;
   closeIconAriaLabel?: string;
   onMouseDownClick: () => void;
+  translations: Translations
+}
+
+interface Translations {
+  iconInfoAriaLabel: string,
+  viewJobText: string,
+  closeIconAriaLabel: string,
+  closeText: string
 }
 
 interface FavoriteIconProps {
@@ -57,17 +65,14 @@ const JobCard: React.FC<JobCardProps> = (props) => {
     title,
     description,
     date,
-    infoIconAriaLabel,
     id,
-    viewJobText,
-    closeIconAriaLabel,
-    closeText,
     enableLogo = false,
     favoriteJobsEnabled = false,
     favorited = false,
     logoAltTagValue = '',
     logoSrcTagValue = '',
     activeView = 'grid',
+    translations,
   } = props;
   const [realLogoImg, setRealLogoImg] = useState(true);
 
@@ -131,7 +136,7 @@ const JobCard: React.FC<JobCardProps> = (props) => {
         </div>
         {/* Safe here. */}
         {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex */}
-        <div className="cards__info-wrapper" tabIndex={0} data-rs-card-show-backside aria-label={infoIconAriaLabel}>
+        <div className="cards__info-wrapper" tabIndex={0} data-rs-card-show-backside aria-label={translations.iconInfoAriaLabel}>
           <span className="cards__info-button text--alternative">
             <Icon iconType="info" iconClassName="icon icon--inline" />
           </span>
@@ -151,17 +156,17 @@ const JobCard: React.FC<JobCardProps> = (props) => {
             aria-label=""
           >
             <Icon iconType="eye" iconClassName="icon icon--inline" />
-            {viewJobText}
+            {translations.viewJobText}
           </a>
           <div
             className="cards__backside-footer--horizontal cards__backside-footer--close-backside"
             data-rs-card-hide-backside=""
             tabIndex={-1}
             role="button"
-            aria-label={closeIconAriaLabel}
+            aria-label={translations.closeIconAriaLabel}
           >
             <Icon iconType="close" iconClassName="icon icon--inline" />
-            <span className="button-text">{closeText}</span>
+            <span className="button-text">{translations.closeText}</span>
           </div>
         </div>
       </div>
