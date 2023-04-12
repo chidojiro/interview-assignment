@@ -11,7 +11,7 @@ type TabBarItem = {
 
 interface TabBarProps {
   items: Array<TabBarItem>;
-  url?: string;
+  currentUrl?: string;
   isIconTabBar?: boolean
   RouterComponent?: React.FC<any>;
 }
@@ -29,7 +29,7 @@ function checkUrlMatch(url: string | undefined, items: TabBarItem[]) {
 }
 
 function TabBar({
-  items = [], url, isIconTabBar = true, RouterComponent,
+  items = [], currentUrl, isIconTabBar = true, RouterComponent,
 }: TabBarProps) {
   const ref = useRef<HTMLInputElement>(null);
   const [firstLoad, setFirstLoad] = useState(false);
@@ -54,7 +54,7 @@ function TabBar({
       ref.current?.removeChild(ref.current.children[indexRightArrow]);
     }
     new OrbitComponent(ref.current);
-  }, [url]);
+  }, [currentUrl]);
 
   return (
     <>
@@ -82,11 +82,11 @@ function TabBar({
         })}
         {
           // Workaround for Orbit, because it requires to have an active item at all times
-          !checkUrlMatch(url, items)
+          !checkUrlMatch(currentUrl, items)
             && (
           // No need for content, a dummy that won't appear.
           // eslint-disable-next-line jsx-a11y/anchor-has-content,jsx-a11y/control-has-associated-label
-              <a href={url} className="tab-bar__item active hidden" data-rs-tab-bar-item="" />
+              <a href={currentUrl} className="tab-bar__item active hidden" data-rs-tab-bar-item="" />
             )
         }
         <div className="tab-bar__line" />
