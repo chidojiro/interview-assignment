@@ -1,5 +1,3 @@
-import Cookies from 'js-cookie';
-
 type PersonalInfo = {
   familyName: string;
   givenName: string;
@@ -21,20 +19,17 @@ type PersistData = {
 
 function getUserData(): PersistData {
   const persistData = localStorage.getItem('persist:root');
+  const data = JSON.parse(persistData as string);
   let loginStatus = false;
-  const idToken = Cookies.get('IdToken');
-  const refreshToken = Cookies.get('RefreshToken');
-  if (!idToken && !refreshToken) {
-    localStorage.removeItem('persist:root');
-    return { loginStatus };
+  if (data?.currentUser && data?.loginStatus && data?.loginStatus === 'true') {
+    const currentUser = JSON.parse(data.currentUser);
+    if (data.loginStatus === 'true') {
+      loginStatus = true;
+    }
+    return { currentUser, loginStatus };
   }
 
-  const data = JSON.parse(persistData as string);
-  const currentUser = JSON.parse(data.currentUser);
-  if (data.loginStatus === 'true') {
-    loginStatus = true;
-  }
-  return { currentUser, loginStatus };
+  return { loginStatus };
 }
 
 export default getUserData;

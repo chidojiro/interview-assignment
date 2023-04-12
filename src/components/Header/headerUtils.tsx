@@ -67,25 +67,6 @@ export function findElement(menu: Routes, prop: string, value: string): {id: str
 
   return element;
 }
-export const getLanguageItems = (currentUrl: string, localization: LocalizationTypes, routes: Routes) => {
-  const { locales, locale, defaultLocale } = localization;
-  if (locales && locale && defaultLocale) {
-    if (routes && routes[locale]) {
-      const matchedItem = findElement(routes[locale], 'url', currentUrl);
-      return locales.map((language) => {
-        const languagePrefix = language === defaultLocale ? '' : `/${language}`;
-        let foundUrl: any = matchedItem && matchedItem.id ? findElement(routes[language], 'id', matchedItem.id) : '';
-        foundUrl = foundUrl && foundUrl.url ? foundUrl.url : '';
-        const itemUrl = `${languagePrefix}${foundUrl}`;
-        return {
-          language,
-          isActive: language === locale,
-          url: itemUrl,
-        };
-      });
-    }
-  } else return [];
-};
 
 export const getHeaderClass = (brand: string): string => {
   switch (brand) {
