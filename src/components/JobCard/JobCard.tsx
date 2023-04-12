@@ -5,6 +5,7 @@ import { Card } from '@ffw/randstad-local-orbit/js/components/card';
 import cn from 'classnames';
 import Icon from '../Icon';
 import JobItemMetadata, { JobItemMetadataProps } from './JobItemMetadata';
+import FavoriteIcon from '../FavoriteIcon';
 
 interface JobCardProps extends JobItemMetadataProps {
   title: string;
@@ -23,6 +24,10 @@ interface JobCardProps extends JobItemMetadataProps {
   logoSrcTagValue?: string;
   infoIconAriaLabel?: string;
   closeIconAriaLabel?: string;
+  gdsApiKey: string;
+  gdsApiUrl: string;
+  jobPostingWebDetailId: string;
+  savedJobId: string;
   onMouseDownClick: () => void;
   translations: Translations
 }
@@ -32,29 +37,6 @@ interface Translations {
   viewJobText: string,
   closeIconAriaLabel: string,
   closeText: string
-}
-
-interface FavoriteIconProps {
-  id: string;
-  favorite: boolean;
-  size?: string;
-}
-
-function FavoriteIcon({ id, favorite = false, size = 'l' }: FavoriteIconProps) {
-  const [iconFilled, setIconFilled] = useState(favorite);
-  const iconClasses = cn('icon', {
-    [`icon--${size}`]: size,
-  }, 'icon--inline');
-  return (
-    <button className={`icon__toggler icon--l ${favorite || iconFilled ? 'icon__toggler--active' : ''} `} aria-pressed={favorite ? 'true' : 'false'} id={`fav-${id}`} onClick={() => setIconFilled((prev) => !prev)}>
-      <span className={iconClasses}>
-        <Icon iconType="heart-30" iconClassName={null} />
-      </span>
-      <span className={iconClasses}>
-        <Icon iconType="heart-filled-30" iconClassName={null} />
-      </span>
-    </button>
-  );
 }
 
 const JobCard: React.FC<JobCardProps> = (props) => {
@@ -72,7 +54,14 @@ const JobCard: React.FC<JobCardProps> = (props) => {
     logoAltTagValue = '',
     logoSrcTagValue = '',
     activeView = 'grid',
+<<<<<<< Updated upstream
     translations,
+=======
+    gdsApiKey,
+    gdsApiUrl,
+    jobPostingWebDetailId,
+    savedJobId,
+>>>>>>> Stashed changes
   } = props;
   const [realLogoImg, setRealLogoImg] = useState(true);
 
@@ -122,7 +111,7 @@ const JobCard: React.FC<JobCardProps> = (props) => {
             </a>
           </h3>
         </div>
-        {favoriteJobsEnabled && <FavoriteIcon id={id} favorite={favorited} />}
+        {favoriteJobsEnabled && <FavoriteIcon id={id} favorite={favorited} gdsApiKey={gdsApiKey} gdsApiUrl={gdsApiUrl} jobPostingWebDetailId={jobPostingWebDetailId} savedJobId={savedJobId} />}
       </div>
       <JobItemMetadata {...props} />
       {/* Safe here. */}
