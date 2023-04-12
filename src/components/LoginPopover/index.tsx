@@ -112,10 +112,8 @@ function LoginPopover({
             <LoggedOut
               callback={removeActiveClass}
               registerUrl={`${languagePrefix}${registerButton.url}`}
-              registerTitle={registerButton.title}
               registerText={registerText}
               loginUrl={`${languagePrefix}${loginButton.url}`}
-              loginTitle={loginButton.title}
               loginText={loginText}
               title={(
                 <>
