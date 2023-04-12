@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { BgColor } from '../../utils/getBackground';
-import getUserData from '../../utils/getUserData';
 import Logo from '../navigation/Logo';
 import MainMenu from '../navigation/MainMenu';
 import UtilityNavigation from '../navigation/UtilityNavigation';
@@ -13,9 +12,10 @@ import TabBar from '../navigation/TabBar';
 import Breadcrumbs from '../Breadcrumbs';
 import MyRandstad from '../MyRandstad';
 import {
-  getMainMenu, getLanguageItems, findElement, LocalizationTypes, Routes, getHeaderClass,
+  getMainMenu, findElement, LocalizationTypes, Routes, getHeaderClass,
 } from './headerUtils';
 import LoginPopover, { TranslationProps } from '../LoginPopover';
+import getUserData from '../../utils/getUserData';
 import HeaderBrandsEnum from './headerBrands.enum';
 
 type HeaderBrands =
@@ -82,12 +82,13 @@ function Header({
   languageSwitcherItems,
 }: HeaderProps) {
   const userData = getUserData();
+  // TO DO: currentUser.loginState state is needed because tabBar needs an active link on logout
   const [currentUser, setCurrentUser] = useState(userData);
 
   useEffect(() => {
     const newUserData = getUserData();
     if (currentUser.loginStatus !== newUserData.loginStatus) setCurrentUser(newUserData);
-  }, [currentUrl, currentUser]);
+  }, [localStorage.getItem('persist:root')]);
 
   const { locale, defaultLocale } = localization;
   const headerClass = getHeaderClass(brand);
@@ -101,11 +102,12 @@ function Header({
     .replace(/^\/\/?/, '/');
 
   // Get (ordered) languages from the s3 file and filter these with routes.
-  const languageItems = languageSwitcherItems || getLanguageItems(currentUrl ?? '', localization, submenuLinks) || [];
-  const mainMenuItems = getMainMenu((routes as Routes)[locale as string], baseUrl, currentUrl as string);
-  const utilityMenuItems = (routes as Routes)[locale as string]?.utility
-    ? (routes as Routes)[locale as string].utility
-    : [];
+  let menuLinks = [];
+  if (routes && (routes as Routes)[locale as string]) {
+    menuLinks = (routes as Routes)[locale as string];
+  }
+  const mainMenuItems = getMainMenu(menuLinks, baseUrl, currentUrl as string);
+  const utilityMenuItems = menuLinks && menuLinks?.utility ? menuLinks.utility : [];
 
   const logout = findElement(submenuLinks[locale as string], 'id', 'logout');
   const myRandstadLogoutUrl = logout && logout.url ? `${languagePrefix}${logout.url}` : '';
@@ -170,9 +172,9 @@ function Header({
               </ul>
               <div className="navigation__link-bar flex hidden--until-l">
                 <UtilityNavigation items={utilityMenuItems} />
-                <LanguageSwitcher items={languageItems} extraClasses="l:ml-s" />
+                <LanguageSwitcher items={languageSwitcherItems ? languageSwitcherItems : []} extraClasses="l:ml-s" />
               </div>
-              <div>
+              <div id="navigationPopup">
                 <LoginPopover isAuth={currentUser.loginStatus} links={submenuLinks} locale={locale} languagePrefix={languagePrefix} translations={popoverTranslations} userName={currentUser.currentUser?.personalInfo} logoutUrl={myRandstadLogoutUrl} RouterComponent={RouterComponent} currentRoute={currentRoute} />
               </div>
             </div>
@@ -185,9 +187,9 @@ function Header({
             )
               : null}
           </div>
-          {!isMyRandstad && breadcrumbs?.breadcrumbsItems && breadcrumbs?.breadcrumbsMobileItem
+          {breadcrumbs?.breadcrumbsItems && breadcrumbs?.breadcrumbsMobileItem
             ? (
-              <div className="navigation__bottom">
+              <div className="navigation__bottom pb-none">
                 <Breadcrumbs
                   bgColor={brand as BgColor['bgColor']}
                   items={breadcrumbs.breadcrumbsItems}
@@ -206,7 +208,7 @@ function Header({
               myRandstadMenu={tabBarMenu}
               languagePrefix={languagePrefix}
             />
-            <LanguageSwitcher items={languageItems} />
+            <LanguageSwitcher items={languageSwitcherItems ? languageSwitcherItems : []} />
           </nav>
         </NavigationModal>
       </header>
