@@ -1,0 +1,224 @@
+import React, { useEffect, useState } from 'react';
+import classNames from 'classnames';
+import { BgColor } from '../../utils/getBackground';
+import getUserData from '../../utils/getUserData';
+import Logo from '../navigation/Logo';
+import MainMenu from '../navigation/MainMenu';
+import UtilityNavigation from '../navigation/UtilityNavigation';
+import LanguageSwitcher from '../navigation/LanguageSwitcher';
+import Submenu from '../navigation/Submenu';
+import NavigationModal from '../navigation/NavigationModal';
+import MobileNavigation from '../navigation/MobileNavigation';
+import TabBar from '../navigation/TabBar';
+import Breadcrumbs from '../Breadcrumbs';
+import MyRandstad from '../MyRandstad';
+import {
+  getMainMenu, getLanguageItems, findElement, LocalizationTypes, Routes, getHeaderClass,
+} from './headerUtils';
+import LoginPopover, { TranslationProps } from '../LoginPopover';
+import HeaderBrandsEnum from './headerBrands.enum';
+
+type HeaderBrands =
+  | HeaderBrandsEnum.Primary
+  | HeaderBrandsEnum.Quaternary
+  | HeaderBrandsEnum.Quinary
+  | HeaderBrandsEnum.Senary
+  | HeaderBrandsEnum.Tertiary
+  | HeaderBrandsEnum.DarkBlue
+  | HeaderBrandsEnum.Blue
+  | HeaderBrandsEnum.Turquoise
+  | HeaderBrandsEnum.Red
+  | HeaderBrandsEnum.Yellow
+  | HeaderBrandsEnum.OffWhite
+  | HeaderBrandsEnum.White;
+
+type BreadcrumbsItems = {
+  title: string;
+  link: string;
+  isActive?: boolean | undefined;
+};
+
+type BreadcrumbsType = {
+  breadcrumbsItems: BreadcrumbsItems[];
+  breadcrumbsMobileItem: BreadcrumbsItems;
+};
+
+type BreadcrumbsUndefinedType = {
+  breadcrumbsItems?: undefined;
+  breadcrumbsMobileItem?: undefined;
+};
+
+type LanguageSwitcherItems = {
+  language: string,
+  isActive?: boolean,
+  url?: string
+};
+
+interface HeaderProps {
+  brand: HeaderBrands;
+  isMyRandstad: boolean;
+  routes: Routes;
+  submenuLinks: Routes;
+  localization: LocalizationTypes;
+  popoverTranslations?: TranslationProps;
+  currentUrl: string | undefined;
+  RouterComponent?: React.FC<any>;
+  breadcrumbs?: BreadcrumbsType | BreadcrumbsUndefinedType;
+  currentRoute?: string | undefined;
+  languageSwitcherItems?: LanguageSwitcherItems[]
+}
+
+function Header({
+  brand,
+  isMyRandstad = false,
+  submenuLinks,
+  routes,
+  localization,
+  popoverTranslations,
+  currentUrl,
+  RouterComponent,
+  breadcrumbs,
+  currentRoute,
+  languageSwitcherItems,
+}: HeaderProps) {
+  const userData = getUserData();
+  const [currentUser, setCurrentUser] = useState(userData);
+
+  useEffect(() => {
+    const newUserData = getUserData();
+    if (currentUser.loginStatus !== newUserData.loginStatus) setCurrentUser(newUserData);
+  }, [currentUrl, currentUser]);
+
+  const { locale, defaultLocale } = localization;
+  const headerClass = getHeaderClass(brand);
+
+  const homepageUrl = locale === defaultLocale ? '/' : `/${locale}/`;
+  const languagePrefix = locale === defaultLocale ? '' : `/${locale}`;
+  const dashboard = findElement(submenuLinks[locale as string], 'id', 'dashboard');
+  const myRandstadLabel = popoverTranslations && popoverTranslations.myRandstadTitle ? popoverTranslations.myRandstadTitle : '';
+  const baseUrl = dashboard && dashboard.url ? dashboard.url : '';
+  const myRandstadBaseUrl = (languagePrefix + baseUrl)
+    .replace(/^\/\/?/, '/');
+
+  // Get (ordered) languages from the s3 file and filter these with routes.
+  const languageItems = languageSwitcherItems || getLanguageItems(currentUrl ?? '', localization, submenuLinks) || [];
+  const mainMenuItems = getMainMenu((routes as Routes)[locale as string], baseUrl, currentUrl as string);
+  const utilityMenuItems = (routes as Routes)[locale as string]?.utility
+    ? (routes as Routes)[locale as string].utility
+    : [];
+
+  const logout = findElement(submenuLinks[locale as string], 'id', 'logout');
+  const myRandstadLogoutUrl = logout && logout.url ? `${languagePrefix}${logout.url}` : '';
+  const showMyRandstad = true;
+
+  let subMenu = isMyRandstad ? (submenuLinks as Routes)[locale as string].secondary : routes?.[locale as string]?.main?.[0]?.children;
+  subMenu = subMenu?.map((item: Routes) => {
+    if (item.url !== currentUrl) return item;
+    return {
+      ...item,
+      isActive: true,
+    };
+  });
+
+  let tabBarMenu = (submenuLinks as Routes)[locale as string].main;
+  if (currentUser.loginStatus && isMyRandstad) {
+    tabBarMenu = tabBarMenu.map((item: Routes) => {
+      if (item.url !== currentUrl) return item;
+      return {
+        ...item,
+        isActive: true,
+      };
+    });
+  }
+
+  return (
+    <>
+      <header
+        className={classNames('header', {
+          'my-randstad-logged-in': currentUser.loginStatus,
+        }, headerClass)}
+      >
+        <nav
+          className={classNames('navigation', {
+            'my-environment': currentUser.loginStatus && isMyRandstad,
+          })}
+          role="navigation"
+          id="block-main-navigation"
+        >
+          <div className="wrapper navigation__wrapper">
+            <div className="navigation__top">
+              <Logo homepageUrl={homepageUrl} />
+              <MainMenu items={mainMenuItems} />
+              <ul className="navigation__service navigation__service--minimal">
+                <MyRandstad
+                  label={myRandstadLabel}
+                  show={showMyRandstad}
+                  isAuth={currentUser.loginStatus}
+                  userName={currentUser.currentUser?.personalInfo}
+                />
+                <li className="navigation__service-item hidden--from-l">
+                  <button
+                    type="button"
+                    className="button--icon-only button--hamburger"
+                    data-rs-navigation-menu-icon=""
+                    data-rs-navigation-menu-labels=""
+                    aria-label="open menu"
+                  >
+                    <span className="icon icon--hamburger" />
+                  </button>
+                </li>
+              </ul>
+              <div className="navigation__link-bar flex hidden--until-l">
+                <UtilityNavigation items={utilityMenuItems} />
+                <LanguageSwitcher items={languageItems} extraClasses="l:ml-s" />
+              </div>
+              <div>
+                <LoginPopover isAuth={currentUser.loginStatus} links={submenuLinks} locale={locale} languagePrefix={languagePrefix} translations={popoverTranslations} userName={currentUser.currentUser?.personalInfo} logoutUrl={myRandstadLogoutUrl} RouterComponent={RouterComponent} currentRoute={currentRoute} />
+              </div>
+            </div>
+            { !isMyRandstad
+              ? (
+                <Submenu items={subMenu} />
+              ) : null}
+            { isMyRandstad && !currentUser.loginStatus ? (
+              <Submenu items={subMenu} RouterComponent={RouterComponent} />
+            )
+              : null}
+          </div>
+          {!isMyRandstad && breadcrumbs?.breadcrumbsItems && breadcrumbs?.breadcrumbsMobileItem
+            ? (
+              <div className="navigation__bottom">
+                <Breadcrumbs
+                  bgColor={brand as BgColor['bgColor']}
+                  items={breadcrumbs.breadcrumbsItems}
+                  mobileItem={breadcrumbs.breadcrumbsMobileItem}
+                />
+              </div>
+            ) : null }
+        </nav>
+        <NavigationModal>
+          <nav className="navigation-accordion">
+            <MobileNavigation
+              items={mainMenuItems}
+              myRandstadUrl={myRandstadBaseUrl}
+              showMyRandstad={showMyRandstad}
+              myRandstadLabel={myRandstadLabel}
+              myRandstadMenu={tabBarMenu}
+              languagePrefix={languagePrefix}
+            />
+            <LanguageSwitcher items={languageItems} />
+          </nav>
+        </NavigationModal>
+      </header>
+      { isMyRandstad && currentUser.loginStatus ? (
+        <div className="block bg-greyscale--grey-10 my-environment__sub-menu">
+          <div className="wrapper">
+            <TabBar items={tabBarMenu} url={currentUrl} RouterComponent={RouterComponent} />
+          </div>
+        </div>
+      ) : null}
+    </>
+  );
+}
+
+export default Header;
