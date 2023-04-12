@@ -1,13 +1,13 @@
 type ColorMap = {
-  [key: string]: string
-}
+  [key: string]: string;
+};
 
 export interface BgColor {
-  /** See more <a href="https://randstad.design/styleguide/colors/">here</a>*/
-  bgColor: "primary" | "secondary" | "tertiary" | "quaternary" | "quinary" | "senary" | "dark-blue",
+  /** See more <a href="https://randstad.design/styleguide/colors/">here</a> */
+  bgColor: 'primary' | 'secondary' | 'tertiary' | 'quaternary' | 'quinary' | 'senary' | 'dark-blue' | 'white';
 }
 
-export const getBackground = (color: BgColor['bgColor'], legacy: boolean = false) => {
+export const getBackground = (color: BgColor['bgColor'], legacy = false) => {
   // Handle legacy background classes.
   if (color && legacy) {
     return `bg-brand--${color}`;
@@ -15,25 +15,25 @@ export const getBackground = (color: BgColor['bgColor'], legacy: boolean = false
 
   // Color map of Orbit color support old and new color name.
   const colorMap: ColorMap = {
-    white: "white",
+    'white': 'white',
     // Old color names.
-    blue: "brand-primary",
-    "dark-blue": "brand-secondary",
-    "off-white": "brand-tertiary",
-    turquoise: "brand-quaternary",
-    yellow: "brand-senary",
-    red: "brand-quinary",
+    'blue': 'brand-primary',
+    'dark-blue': 'brand-secondary',
+    'off-white': 'brand-tertiary',
+    'turquoise': 'brand-quaternary',
+    'yellow': 'brand-senary',
+    'red': 'brand-quinary',
     // New color names.
-    primary: "brand-primary",
-    secondary: "brand-secondary",
-    tertiary: "brand-tertiary",
-    quaternary: "brand-quaternary",
-    senary: "brand-senary",
-    quinary: "brand-quinary",
+    'primary': 'brand-primary',
+    'secondary': 'brand-secondary',
+    'tertiary': 'brand-tertiary',
+    'quaternary': 'brand-quaternary',
+    'senary': 'brand-senary',
+    'quinary': 'brand-quinary',
   };
 
   const sphColorMap: ColorMap = {
-    "gradient-orange": "gradient-orange",
+    'gradient-orange': 'gradient-orange',
   };
 
   if (color && sphColorMap[color]) {
@@ -44,7 +44,5 @@ export const getBackground = (color: BgColor['bgColor'], legacy: boolean = false
     return `bg-variant-${colorMap[color]}`;
   }
 
-  console.warn(`Missing color ${color} for background class`);
-
-  return "";
+  return '';
 };

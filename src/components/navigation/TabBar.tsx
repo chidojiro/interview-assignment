@@ -12,10 +12,11 @@ type TabBarItem = {
 interface TabBarProps {
   items: Array<TabBarItem>;
   url?: string;
+  isIconTabBar?: boolean
   RouterComponent?: React.FC<any>;
 }
 
-function TabBar({ items = [], url, RouterComponent }: TabBarProps) {
+function TabBar({ items = [], url, isIconTabBar = true, RouterComponent }: TabBarProps) {
   const ref = useRef<HTMLInputElement>(null);
   const [firstLoad, setFirstLoad] = useState(false);
 
@@ -45,7 +46,7 @@ function TabBar({ items = [], url, RouterComponent }: TabBarProps) {
 
   return (
     <>
-      <div ref={ref} className="tab-bar tab-bar--icon" data-rs-tab-bar="" data-rs-tab-bar-animation-type="instant">
+      <div ref={ref} className={`tab-bar ${isIconTabBar ? 'tab-bar--icon' : ''}`} data-rs-tab-bar="" data-rs-tab-bar-animation-type="instant">
         {items.map((item) => {
           if (RouterComponent) {
             return (

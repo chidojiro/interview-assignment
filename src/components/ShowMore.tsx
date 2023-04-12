@@ -9,9 +9,12 @@ interface ShowMoreProps {
   textSeen: string;
   textViewMore: string;
   classButton?: string;
+  loading: boolean;
 }
 
-const ShowMore = ({ onClick, listLength, totalLength, ariaLabel, textSeen, textViewMore, classButton = 'button--m'}: ShowMoreProps) => {
+function ShowMore({
+  onClick, listLength, totalLength, ariaLabel, textSeen, textViewMore, classButton = 'button--m', loading,
+}: ShowMoreProps) {
   if (listLength < 1 || totalLength < 1) return null;
   if (listLength === totalLength) return null;
 
@@ -22,6 +25,13 @@ const ShowMore = ({ onClick, listLength, totalLength, ariaLabel, textSeen, textV
       onClick(event);
     }
   };
+
+  const buttonProps: { loader?: boolean, disabled?: boolean } = {};
+
+  if (loading) {
+    buttonProps.loader = loading;
+    buttonProps.disabled = loading;
+  }
 
   return (
     <div className="show-more">
@@ -35,11 +45,11 @@ const ShowMore = ({ onClick, listLength, totalLength, ariaLabel, textSeen, textV
       <div className="section-separator section-separator--border">
         <span>{textSeen}</span>
       </div>
-      <Button className={classButton} aria-label={ariaLabel} handleClick={onClick} onKeyDown={onPressShowMore}>
+      <Button {...buttonProps} className={classButton} aria-label={ariaLabel} handleClick={onClick} onKeyDown={onPressShowMore}>
         {textViewMore}
       </Button>
     </div>
   );
-};
+}
 
 export default ShowMore;

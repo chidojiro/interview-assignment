@@ -1,0 +1,6 @@
+{
+  "css": {
+    "src": "scss",
+    "build": "css"
+  }
+}

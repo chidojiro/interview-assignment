@@ -67,6 +67,8 @@ module.exports = {
         'src/components/Block.tsx',
         'src/components/PagePreloader.tsx',
         'src/components/ShowMore.tsx',
+        'src/components/SplitView/index.tsx',
+        'src/components/HeaderIllustration/index.tsx',
       ],
     },
     {

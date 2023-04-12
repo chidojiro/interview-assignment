@@ -16,6 +16,50 @@
     "tab-bar",
     "switch"
   ],
+  "scripts": {
+    "build": "rm -rf build && webpack --mode production",
+    "docs:dev": "styleguidist server",
+    "docs:build": "styleguidist build && cp -R ./src/docs-lib/assets ./styleguide/build",
+    "docs:deploy": "netlify deploy -p --auth ykXsQT6afSBt0Fy_qU4eNwNyM4wUBDSDOmPn5xfVfY8 --site ac073155-7614-4ee7-ab71-071171f68b95",
+    "docs:deploy-main": "netlify deploy -p --auth ykXsQT6afSBt0Fy_qU4eNwNyM4wUBDSDOmPn5xfVfY8 --site a0e2ce51-9e7e-4045-b2a4-5d2840bf6804",
+    "docs:fetch-assets": "node ./src/docs-lib/fetch-assets.js",
+    "test": "jest",
+    "lint": "eslint .",
+    "fmt": "prettier --write .",
+    "postinstall": "yarn docs:fetch-assets",
+    "build-css": "node_modules/.bin/gulp build --cwd assets"
+  },
+  "lint-staged": {
+    "*.{ts, tsx}": [
+      "eslint --fix",
+      "prettier --write",
+      "git add"
+    ],
+    "*.{json, md}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "dependencies": {
+    "@ffw/randstad-local-orbit": "git+ssh://git-codecommit.eu-west-1.amazonaws.com/v1/repos/git-df-prd-bluex-local-orbit#dev",
+    "@types/styled-components": "^5.1.26",
+    "@types/js-cookie": "^3.0.3",
+    "@typescript-eslint/parser": "^5.48.2",
+    "axios": "^0.27.2",
+    "classnames": "^2.3.2",
+    "cookies-next": "^2.1.1",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "prop-types": "^15.8.1",
+    "react-content-loader": "^6.2.0",
+    "react-google-recaptcha-enterprise": "^1.0.3",
+    "styled-components": "^5.3.6",
+    "yup": "^1.0.2"
+  },
   "devDependencies": {
     "@babel/core": "^7.13.8",
     "@babel/eslint-parser": "^7.13.10",
@@ -47,6 +91,7 @@
     "eslint-plugin-sonarjs": "^0.18.0",
     "eslint-plugin-write-good-comments": "^0.1.4",
     "eslint-plugin-xss": "^0.1.12",
+    "gulp": "^4.0.2",
     "husky": "^3.1.0",
     "install-peers": "^1.0.4",
     "isomorphic-fetch": "^3.0.0",
@@ -63,48 +108,6 @@
     "webpack": "^5.24.4",
     "webpack-cli": "^4.5.0",
     "xss": "^1.0.14"
-  },
-  "scripts": {
-    "build": "rm -rf build && webpack --mode production",
-    "docs:dev": "styleguidist server",
-    "docs:build": "styleguidist build && cp -R ./src/docs-lib/assets ./styleguide/build",
-    "docs:deploy": "netlify deploy -p --auth ykXsQT6afSBt0Fy_qU4eNwNyM4wUBDSDOmPn5xfVfY8 --site ac073155-7614-4ee7-ab71-071171f68b95",
-    "docs:deploy-main": "netlify deploy -p --auth ykXsQT6afSBt0Fy_qU4eNwNyM4wUBDSDOmPn5xfVfY8 --site a0e2ce51-9e7e-4045-b2a4-5d2840bf6804",
-    "docs:fetch-assets": "node ./src/docs-lib/fetch-assets.js",
-    "test": "jest",
-    "lint": "eslint .",
-    "fmt": "prettier --write .",
-    "postinstall": "yarn docs:fetch-assets"
-  },
-  "lint-staged": {
-    "*.{ts, tsx}": [
-      "eslint --fix",
-      "prettier --write",
-      "git add"
-    ],
-    "*.{json, md}": [
-      "prettier --write",
-      "git add"
-    ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "dependencies": {
-    "@ffw/randstad-local-orbit": "git+ssh://git-codecommit.eu-west-1.amazonaws.com/v1/repos/git-df-prd-bluex-local-orbit#dev",
-    "@types/styled-components": "^5.1.26",
-    "@typescript-eslint/parser": "^5.48.2",
-    "axios": "^0.27.2",
-    "classnames": "^2.3.2",
-    "cookies-next": "^2.1.1",
-    "eslint-config-airbnb-typescript": "^17.0.0",
-    "prop-types": "^15.8.1",
-    "styled-components": "^5.3.6",
-    "yup": "^1.0.2",
-    "react-google-recaptcha-enterprise": "^1.0.3",
-    "react-content-loader": "^6.2.0"
   },
   "moduleFileExtensions": [
     "js",
