@@ -21,11 +21,13 @@ build:
     git push codecommit HEAD:refs/heads/$CI_COMMIT_REF_NAME
     
     echo "Environment is"
-    echo ${ENVIRONMENT}
-    echo "Global branch is"
-    echo ${CI_MERGE_REQUEST_TARGET_BRANCH_NAME}
+    echo ${CI_ENVIRONMENT_NAME}
     echo "Pipeline source is"
     echo ${CI_PIPELINE_SOURCE}
+    echo "Commit branch"
+    echo ${CI_COMMIT_BRANCH}
+    echo "Commit ref"
+    echo ${CI_COMMIT_REF_NAME}
 
 #    aws s3 sync src/i18n/ s3://s3-bluex-dta-bx-dev2-localization/components_lib/default/ --exclude "*" --include "??.json"
 #    aws s3 sync src/i18n/ s3://s3-bluex-dta-bx-ppr2-localization/components_lib/default/ --exclude "*" --include "??.json"
