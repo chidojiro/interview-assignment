@@ -54,14 +54,11 @@ const JobCard: React.FC<JobCardProps> = (props) => {
     logoAltTagValue = '',
     logoSrcTagValue = '',
     activeView = 'grid',
-<<<<<<< Updated upstream
     translations,
-=======
     gdsApiKey,
     gdsApiUrl,
     jobPostingWebDetailId,
     savedJobId,
->>>>>>> Stashed changes
   } = props;
   const [realLogoImg, setRealLogoImg] = useState(true);
 
