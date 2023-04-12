@@ -8,7 +8,6 @@ describe('ShowMore component tests', () => {
     const [loading, setLoading] = useState(false);
     const { container } = render(
       <ShowMore
-        loading={false}
         listLength={10}
         totalLength={30}
         textSeen="Seen Items"
@@ -28,7 +27,6 @@ describe('ShowMore component tests', () => {
     const [loading, setLoading] = useState(false);
     const { container } = render(
       <ShowMore
-        loading={false}
         listLength={10}
         totalLength={30}
         textSeen="Seen Items"
@@ -51,7 +49,6 @@ describe('ShowMore component tests', () => {
     const [loading, setLoading] = useState(false);
     const { container } = render(
       <ShowMore
-        loading={false}
         listLength={10}
         totalLength={30}
         textSeen="Seen Items"
@@ -71,7 +68,6 @@ describe('ShowMore component tests', () => {
     const [loading, setLoading] = useState(false);
     const { container } = render(
       <ShowMore
-        loading={false}
         listLength={10}
         totalLength={30}
         textSeen="Seen Items"

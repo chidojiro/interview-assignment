@@ -59,6 +59,7 @@ interface HeaderProps {
   isMyRandstad: boolean;
   routes: Routes;
   submenuLinks: Routes;
+  favoriteJobs: React.ReactNode;
   localization: LocalizationTypes;
   popoverTranslations?: TranslationProps;
   currentUrl: string | undefined;
@@ -72,6 +73,7 @@ function Header({
   brand,
   isMyRandstad = false,
   submenuLinks,
+  favoriteJobs,
   routes,
   localization,
   popoverTranslations,
@@ -152,6 +154,7 @@ function Header({
               <Logo homepageUrl={homepageUrl} />
               <MainMenu items={mainMenuItems} />
               <ul className="navigation__service navigation__service--minimal">
+                {favoriteJobs}
                 <MyRandstad
                   label={myRandstadLabel}
                   show={showMyRandstad}
