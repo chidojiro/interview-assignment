@@ -4,7 +4,7 @@ import Button from '../button/Button';
 interface JobCardCTAProps {
   label: string;
   jobsPageUrl: string;
-  svgPath: string;
+  svgPath?: string;
   hasBackground?: string;
 }
 
@@ -12,8 +12,8 @@ const JobCardCTA: React.FC<JobCardCTAProps> = (props) => {
   const {
     jobsPageUrl,
     label,
-    hasBackground,
-    svgPath
+    svgPath,
+    hasBackground
   } = props;
 
   return (
