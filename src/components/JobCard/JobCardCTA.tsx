@@ -1,13 +1,13 @@
 import React from 'react';
 import Button from '../button/Button';
 
-interface JobCardDefaultProps {
+interface JobCardCTAProps {
   label: string;
   jobsPageUrl: string;
   hasBackground?: string;
 }
 
-const JobCardDefault: React.FC<JobCardDefaultProps> = (props) => {
+const JobCardCTA: React.FC<JobCardCTAProps> = (props) => {
   const {
     jobsPageUrl,
     label,
@@ -27,4 +27,4 @@ const JobCardDefault: React.FC<JobCardDefaultProps> = (props) => {
   );
 };
 
-export default JobCardDefault;
+export default JobCardCTA;
