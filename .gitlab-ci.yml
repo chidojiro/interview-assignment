@@ -5,13 +5,11 @@ stages:
 build:
   stage: build
   allow_failure: false
-  only:
-    - main
-    - tags
   tags:
     - randstad-bluex
+  # Execute for "main" branch and all tags, and do not execute when triggered externally.
   rules:
-    - if: $ENVIRONMENT == null && $CI_PIPELINE_SOURCE != "pipeline"
+    - if: $ENVIRONMENT == null && $CI_PIPELINE_SOURCE != "pipeline" && ($CI_COMMIT_BRANCH == "main" || $CI_COMMIT_TAG != "")
   script: |
     git remote add codecommit /fake-temp-url || true
     
@@ -28,6 +26,7 @@ translations_upload:
   allow_failure: false
   tags:
     - randstad-bluex
+  # Execute when externally triggered only.
   rules:
     - if: $ENVIRONMENT && $CI_PIPELINE_SOURCE == "pipeline"
   script: |
