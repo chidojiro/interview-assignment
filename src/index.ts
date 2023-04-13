@@ -40,6 +40,7 @@ import MyEnvironmentLayout from './components/my-environment/MyEnvironmentLayout
 import Section from './components/my-environment/Section';
 import JobCardList from './components/JobCard/JobCardList';
 import JobCard from './components/JobCard/JobCard';
+import JobCardCTA from './components/JobCard/JobCardCTA';
 import JobItemMetadata from './components/JobCard/JobItemMetadata';
 import PagePreloader from './components/PagePreloader';
 import Preloader from './components/loaders/Preloader';
@@ -105,6 +106,7 @@ export {
   Section,
   JobCardList,
   JobCard,
+  JobCardCTA,
   JobItemMetadata,
   PagePreloader,
   Preloader,
