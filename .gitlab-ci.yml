@@ -23,7 +23,6 @@ build:
 
 local_translations_upload:
   stage: s3_upload
-  allow_failure: false
   rules:
     - if: $ENVIRONMENT && $CI_PIPELINE_SOURCE == "pipeline"
   script: |
