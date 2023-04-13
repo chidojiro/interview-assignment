@@ -1,31 +1,30 @@
 import React, { useState, useEffect } from 'react';
-import { getFavorites } from '../../../hooks/favoritesHandler';
+import { getSavedJobs } from '../../../hooks/savedJobsHandler';
 import Icon from '../../Icon';
 
-interface FavoritesProps {
+interface HeaderSavedJobsProps {
   gdsApiKey?: string;
   gdsApiUrl?: string;
-  favoriteUrl?: string;
+  buttonUrl?: string;
   ariaLabel?: string;
 }
 
-function Favorites({ favoriteUrl, gdsApiKey, gdsApiUrl, ariaLabel }: FavoritesProps) {
+function HeaderSavedJobs({ buttonUrl, gdsApiKey, gdsApiUrl, ariaLabel }: HeaderSavedJobsProps) {
   const [maxCounter, setMaxCounter] = useState(0);
   useEffect(() => {
-    const getAllFavorites = async () => {
+    const getAllSavedJobs = async () => {
       if (gdsApiKey && gdsApiUrl) {
-        const allFavorites = await getFavorites(gdsApiKey, gdsApiUrl);
-        if (allFavorites) {
-          console.log(allFavorites);
-          setMaxCounter(allFavorites.totalElements);
+        const allSavedJObs = await getSavedJobs(gdsApiKey, gdsApiUrl);
+        if (allSavedJObs) {
+          setMaxCounter(allSavedJObs.totalElements);
         }
       }
     };
-    getAllFavorites();
+    getAllSavedJobs();
   }, [gdsApiKey, gdsApiUrl]);
   return (
     <li className="navigation__service-item">
-      <a href={favoriteUrl} className="navigation__service-link" aria-label={ariaLabel}>
+      <a href={buttonUrl} className="navigation__service-link" aria-label={ariaLabel}>
         {maxCounter === 0 ? (
           <Icon iconType="heart" iconClassName="icon icon--inline" />
         ) : (
@@ -39,4 +38,4 @@ function Favorites({ favoriteUrl, gdsApiKey, gdsApiUrl, ariaLabel }: FavoritesPr
   );
 }
 
-export default Favorites;
+export default HeaderSavedJobs;

@@ -1,7 +1,7 @@
 import { AxiosResponse } from 'axios';
 import { TalentAppApi } from './talentAppApi';
 
-export interface Favorites {
+export interface SavedJobs {
   totalElements: number;
 }
 
@@ -12,13 +12,13 @@ export type Data = {
 };
 
 // Function that checks if the current logged in user has an already uplaoded file.
-const getFavorites = async (gdsApiKey: string, gdsApiUrl: string): Promise<Favorites | undefined> => {
+const getSavedJobs = async (gdsApiKey: string, gdsApiUrl: string): Promise<SavedJobs | undefined> => {
   const talentApi = new TalentAppApi(gdsApiKey, gdsApiUrl);
 
-  const response = await talentApi.get<Data, AxiosResponse<Favorites>>('/me/saved-jobs').catch((err) => {
+  const response = await talentApi.get<Data, AxiosResponse<SavedJobs>>('/me/saved-jobs').catch((err) => {
     // Needed logging for error.
     // eslint-disable-next-line no-console
-    console.error('GetFavorites Error: ', err);
+    console.error('GetSavedJobs Error: ', err);
     return undefined;
   });
   if (response) {
@@ -28,4 +28,4 @@ const getFavorites = async (gdsApiKey: string, gdsApiUrl: string): Promise<Favor
   return undefined;
 };
 
-export { getFavorites };
+export { getSavedJobs };

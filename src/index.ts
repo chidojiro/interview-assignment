@@ -10,7 +10,7 @@ import Header from './components/Header';
 import HeaderBrandsEnum from './components/Header/headerBrands.enum';
 import HeaderTitle from './components/headers/HeaderTitle/HeaderTitle';
 import HeaderText from './components/headers/HeaderText';
-import Favorites from './components/headers/Favorites/Favorites';
+import Favorites from './components/headers/HeaderSavedJobs/HeaderSavedJobs';
 import Breadcrumbs from './components/Breadcrumbs';
 import LanguageSwitcher from './components/navigation/LanguageSwitcher';
 import ServiceLinks from './components/headers/ServiceLinks/ServiceLinks';

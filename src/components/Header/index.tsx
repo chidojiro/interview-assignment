@@ -17,6 +17,7 @@ import {
 import LoginPopover, { TranslationProps } from '../LoginPopover';
 import getUserData from '../../utils/getUserData';
 import HeaderBrandsEnum from './headerBrands.enum';
+import HeaderSavedJobs from '../headers/HeaderSavedJobs/HeaderSavedJobs';
 
 type HeaderBrands =
   | HeaderBrandsEnum.Primary
@@ -59,8 +60,9 @@ interface HeaderProps {
   isMyRandstad: boolean;
   routes: Routes;
   submenuLinks: Routes;
-  favoriteJobs: React.ReactNode;
   localization: LocalizationTypes;
+  gdsApiKey?: string;
+  gdsApiUrl?: string;
   popoverTranslations?: TranslationProps;
   currentUrl: string | undefined;
   RouterComponent?: React.FC<any>;
@@ -73,7 +75,8 @@ function Header({
   brand,
   isMyRandstad = false,
   submenuLinks,
-  favoriteJobs,
+  gdsApiKey,
+  gdsApiUrl,
   routes,
   localization,
   popoverTranslations,
@@ -154,7 +157,7 @@ function Header({
               <Logo homepageUrl={homepageUrl} />
               <MainMenu items={mainMenuItems} />
               <ul className="navigation__service navigation__service--minimal">
-                {favoriteJobs}
+                <HeaderSavedJobs gdsApiKey={gdsApiKey} gdsApiUrl={gdsApiUrl}/>
                 <MyRandstad
                   label={myRandstadLabel}
                   show={showMyRandstad}

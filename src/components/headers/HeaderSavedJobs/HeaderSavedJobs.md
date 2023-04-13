@@ -1,9 +1,9 @@
 Favorite heart icon
 
 ```jsx
-import Favorites from './Favorites';
+import HeaderSavedJobs from './HeaderSavedJobs';
 <div className="bg-variant-white">
   <ul className="navigation__service">
-    <Favorites />
+    <HeaderSavedJobs />
   </ul>
 </div>;

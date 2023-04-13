@@ -1,12 +1,12 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import Favorites from '../../components/headers/Favorites/Favorites';
+import HeaderSavedJobs from '../../components/headers/HeaderSavedJobs/HeaderSavedJobs';
 
-describe('Favorites component tests', () => {
-  test('should render Favorites the className', () => {
+describe('Saved Jobs component tests', () => {
+  test('should render Saved Jobs the className', () => {
     const className = 'favorites__counter';
     const { container } = render(
-      <Favorites
+      <HeaderSavedJobs
       />,
     );
 
@@ -15,25 +15,25 @@ describe('Favorites component tests', () => {
     expect(iconElement).toBeInTheDocument();
   });
 
-  test('should render Favorites right url', () => {
+  test('should render Saved Jobs right url', () => {
     const { container } = render(
-      <Favorites favoriteUrl='favoriteUrl' />,
+      <HeaderSavedJobs buttonUrl='savedUrl' />,
     );
 
     const iconElement = container.querySelector('.navigation__service-link');
-    expect(iconElement).toHaveAttribute('href','favoriteUrl',);
+    expect(iconElement).toHaveAttribute('href','savedUrl',);
   });
 
-  test('should render Favorites right aria label', () => {
+  test('should render Saved Jobs right aria label', () => {
     const { container } = render(
-      <Favorites
-        favoriteUrl='favoriteUrl'
-        ariaLabel='my-favorites'
+      <HeaderSavedJobs
+        buttonUrl='savedUrl'
+        ariaLabel='my-saved'
       />,
     );
 
     const iconElement = container.querySelector('.navigation__service-link');
-    expect(iconElement).toHaveAttribute('aria-label','my-favorites',);
+    expect(iconElement).toHaveAttribute('aria-label','my-saved',);
   });
 
 });
