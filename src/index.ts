@@ -51,7 +51,7 @@ import SplitView from './components/SplitView';
 import HeaderIllustration from './components/HeaderIllustration';
 // import LocationInputField from "./components/forms/LocationInputField";
 // import RadioButton from "./components/forms/RadioButton";
-// import TextArea from "./components/forms/TextArea";
+import TextArea from './components/forms/TextArea';
 // import Filter from "./components/Filter";
 // import Accordion from "./components/accordion/Accordion";
 // import AccordionItem from "./components/accordion/AccordionItem";
@@ -118,7 +118,7 @@ export {
   HeaderIllustration,
   // LocationInputField,
   // RadioButton,
-  // TextArea,
+  TextArea,
   // Filter,
   // Accordion,
   // AccordionItem,
