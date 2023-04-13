@@ -1,6 +1,6 @@
 stages:
   - build
-  - s3_upload
+  - translations_upload
 
 build:
   stage: build
@@ -10,6 +10,8 @@ build:
     - tags
   tags:
     - randstad-bluex
+  rules:
+    - if: $ENVIRONMENT == null && $CI_PIPELINE_SOURCE != "pipeline"
   script: |
     git remote add codecommit /fake-temp-url || true
     
@@ -21,13 +23,13 @@ build:
     git remote set-url codecommit https://git-codecommit.eu-west-1.amazonaws.com/v1/repos/git-bluex-prd-bx-lib-react-components
     git push codecommit HEAD:refs/heads/$CI_COMMIT_REF_NAME
 
-local_translations_upload:
-  stage: s3_upload
+translations_upload:
+  stage: translations_upload
   allow_failure: false
-  rules:
-    - if: $ENVIRONMENT && $CI_PIPELINE_SOURCE == "pipeline"
   tags:
     - randstad-bluex
+  rules:
+    - if: $ENVIRONMENT && $CI_PIPELINE_SOURCE == "pipeline"
   script: |
     echo "Translations uploaded for "
     echo $ENVIRONMENT
