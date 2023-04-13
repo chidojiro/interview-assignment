@@ -25,6 +25,8 @@ local_translations_upload:
   stage: s3_upload
   rules:
     - if: $ENVIRONMENT
+  tags:
+    - randstad-bluex
   script: |
     echo "Translations uploaded for "
     echo $ENVIRONMENT
