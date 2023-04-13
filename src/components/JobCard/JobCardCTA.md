@@ -1,10 +1,10 @@
 ```jsx
-import { JobCardDefault, JobCardList } from "@ffw/randstad-shared-components";
+import { JobCardCTA, JobCardList } from "@ffw/randstad-shared-components";
 import Icon from '../Icon';
 
 <JobCardList>
-  <JobCardDefault
-      label="Find Other Jobs" jobsPageUrl="/jobs"
+  <JobCardCTA
+      label="Find Other Jobs" jobsPageUrl="/jobs" svgPath={process.env.NEXT_PUBLIC_RESOURCE_PREFIX}
   />
-</JobCardList>
+</JobCardCTA>
 ```
