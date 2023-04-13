@@ -9,7 +9,7 @@ build:
     - randstad-bluex
   # Execute for "main" branch and all tags, and do not execute when triggered externally.
   rules:
-    - if: $ENVIRONMENT == null && $CI_PIPELINE_SOURCE != "pipeline" && ($CI_COMMIT_BRANCH == "main" || $CI_COMMIT_TAG != "")
+    - if: $ENVIRONMENT == null && $CI_PIPELINE_SOURCE != "pipeline" && ($CI_COMMIT_BRANCH == "main" || $CI_COMMIT_TAG)
   script: |
     echo "Commit tag"
     echo $CI_COMMIT_TAG
