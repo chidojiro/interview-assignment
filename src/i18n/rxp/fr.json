@@ -1,17 +1,13 @@
 {
-  "Lib.Components.JobCard.ShowDetails": "afficher les détails du travail",
-  "Lib.Components.Close": "fermer",
-  "Lib.Components.Info": "info",
-
-  "Lib.Components.Popup.myRandstad.Title": "mon randstad",
-  "Lib.Components.Popup.Logout.Title": "se déconnecter",
-  "Lib.Components.Popup.Favourites.AriaLabel": "emplois préférés",
-  "Lib.Components.Popup.Heading1": "Commencez votre",
-  "Lib.Components.Popup.Heading2": "recherche d'emploi",
-  "Lib.Components.Popup.Text1": "Inscrivez-vous en 1 minute",
-  "Lib.Components.Popup.Text2": "appliquez plus rapidement",
-  "Lib.Components.Popup.Text3": "trouver de meilleurs emplois correspondants",
-  "Lib.Components.Popup.Register.Text": "s'enregistrer gratuitement",
-  "Lib.Components.Popup.Login.Text": "se connecter à mon randstad",
-  "Lib.Components.Popup.Greeting.Hi": "Salut"
+  "Shared.Components.Popup.myRandstad.Title": "mon randstad",
+  "Shared.Components.Popup.Logout.Title": "se déconnecter",
+  "Shared.Components.Popup.Favourites.AriaLabel": "emplois préférés",
+  "Shared.Components.Popup.Heading1": "Commencez votre",
+  "Shared.Components.Popup.Heading2": "recherche d'emploi",
+  "Shared.Components.Popup.Text1": "Inscrivez-vous en 1 minute",
+  "Shared.Components.Popup.Text2": "appliquez plus rapidement",
+  "Shared.Components.Popup.Text3": "trouver de meilleurs emplois correspondants",
+  "Shared.Components.Popup.Register.Text": "s'enregistrer gratuitement",
+  "Shared.Components.Popup.Login.Text": "se connecter à mon randstad",
+  "Shared.Components.Popup.Greeting.Hi": "Salut"
 }

@@ -1,13 +1,13 @@
 {
-  "Lib.Components.Popup.myRandstad.Title": "my randstad",
-  "Lib.Components.Popup.Logout.Title": "log out",
-  "Lib.Components.Popup.Favourites.AriaLabel": "favorite jobs",
-  "Lib.Components.Popup.Heading1": "start your",
-  "Lib.Components.Popup.Heading2": "jobhunt",
-  "Lib.Components.Popup.Text1": "register in 1 minute",
-  "Lib.Components.Popup.Text2": "apply faster to jobs",
-  "Lib.Components.Popup.Text3": "have better matching jobs",
-  "Lib.Components.Popup.Register.Text": "register for free",
-  "Lib.Components.Popup.Login.Text": "log in to my randstad",
-  "Lib.Components.Popup.Greeting.Hi": "hi"
+  "Shared.Components.Popup.myRandstad.Title": "my randstad",
+  "Shared.Components.Popup.Logout.Title": "log out",
+  "Shared.Components.Popup.Favourites.AriaLabel": "favorite jobs",
+  "Shared.Components.Popup.Heading1": "start your",
+  "Shared.Components.Popup.Heading2": "jobhunt",
+  "Shared.Components.Popup.Text1": "register in 1 minute",
+  "Shared.Components.Popup.Text2": "apply faster to jobs",
+  "Shared.Components.Popup.Text3": "have better matching jobs",
+  "Shared.Components.Popup.Register.Text": "register for free",
+  "Shared.Components.Popup.Login.Text": "log in to my randstad",
+  "Shared.Components.Popup.Greeting.Hi": "hi"
 }
