@@ -31,7 +31,7 @@ type HeaderBrands =
   | HeaderBrandsEnum.Red
   | HeaderBrandsEnum.Yellow
   | HeaderBrandsEnum.OffWhite
-  | HeaderBrandsEnum.White;
+  | HeaderBrandsEnum.White
 
 type BreadcrumbsItems = {
   title: string;
@@ -61,8 +61,8 @@ interface HeaderProps {
   routes: Routes;
   submenuLinks: Routes;
   localization: LocalizationTypes;
-  gdsApiKey?: string;
-  gdsApiUrl?: string;
+  gdsApiKey: string;
+  gdsApiUrl: string;
   popoverTranslations?: TranslationProps;
   currentUrl: string | undefined;
   RouterComponent?: React.FC<any>;

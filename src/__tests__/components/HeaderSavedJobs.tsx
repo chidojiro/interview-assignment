@@ -6,7 +6,7 @@ describe('Saved Jobs component tests', () => {
   test('should render Saved Jobs the className', () => {
     const className = 'favorites__counter';
     const { container } = render(
-      <HeaderSavedJobs
+      <HeaderSavedJobs gdsApiKey="" gdsApiUrl=""
       />,
     );
 
@@ -17,7 +17,7 @@ describe('Saved Jobs component tests', () => {
 
   test('should render Saved Jobs right url', () => {
     const { container } = render(
-      <HeaderSavedJobs buttonUrl='savedUrl' />,
+      <HeaderSavedJobs gdsApiKey="" gdsApiUrl="" buttonUrl='savedUrl' />,
     );
 
     const iconElement = container.querySelector('.navigation__service-link');
@@ -27,6 +27,7 @@ describe('Saved Jobs component tests', () => {
   test('should render Saved Jobs right aria label', () => {
     const { container } = render(
       <HeaderSavedJobs
+        gdsApiKey="" gdsApiUrl=""
         buttonUrl='savedUrl'
         ariaLabel='my-saved'
       />,

@@ -28,4 +28,20 @@ const getSavedJobs = async (gdsApiKey: string, gdsApiUrl: string): Promise<Saved
   return undefined;
 };
 
-export { getSavedJobs };
+const getCountSavedJobs = async (gdsApiKey: string, gdsApiUrl: string): Promise<number | undefined> => {
+  if (gdsApiKey && gdsApiUrl) {
+    const response = await getSavedJobs(gdsApiKey, gdsApiUrl).catch((err) => {
+      // Needed logging for error.
+      // eslint-disable-next-line no-console
+      console.error('getCountSavedJobs Error: ', err);
+      return undefined;
+    });
+    if (response) {
+      return response.totalElements;
+    }
+  }
+
+  return undefined;
+};
+
+export { getSavedJobs, getCountSavedJobs };
