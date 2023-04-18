@@ -173,6 +173,7 @@ function UploadField({
             <div className="form-group__input">
               <input
                 name={name}
+                id={name.replace(' ','-')}
                 accept={supportedMimeTypes}
                 disabled={isFileUploaded}
                 multiple={multiselect}

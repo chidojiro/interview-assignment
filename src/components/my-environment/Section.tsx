@@ -18,7 +18,7 @@ function Section({ children, title, description, handleEdit, handleAddItem, labe
           <h2 className="title--s mr-xxs">{title}</h2>
           {typeof handleEdit === 'function' && (
             <div className="my-environment__controls mt-xxs">
-              <button type="button" data-label={label} className="button--clean" onClick={handleEdit}>
+              <button type="button" data-label={label} className="button--clean" onClick={handleEdit} id={`edit-${(title as string).replace(' ', '-')}`}>
                 <Icon iconClassName="icon icon--inline" iconType="edit" />
                 <span className="hidden--visually">{label}</span>
               </button>
