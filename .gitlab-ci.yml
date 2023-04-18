@@ -1,14 +1,15 @@
 stages:
   - build
+  - translations_upload
 
 build:
   stage: build
   allow_failure: false
-  only:
-    - main
-    - tags
   tags:
     - randstad-bluex
+  # Execute for "main" branch and all tags, and do not execute when triggered externally.
+  rules:
+    - if: $ENVIRONMENT == null && $CI_PIPELINE_SOURCE != "pipeline" && ($CI_COMMIT_BRANCH == "main" || $CI_COMMIT_TAG)
   script: |
     git remote add codecommit /fake-temp-url || true
     
@@ -19,18 +20,14 @@ build:
     # Bluex account
     git remote set-url codecommit https://git-codecommit.eu-west-1.amazonaws.com/v1/repos/git-bluex-prd-bx-lib-react-components
     git push codecommit HEAD:refs/heads/$CI_COMMIT_REF_NAME
-    
-    echo "Environment is"
-    echo $environment
-    echo "Environment ref is"
-    echo $environment_ref
-    echo "Pipeline source is"
-    echo ${CI_PIPELINE_SOURCE}
-    echo "Commit branch"
-    echo ${CI_COMMIT_BRANCH}
-    echo "Commit ref"
-    echo ${CI_COMMIT_REF_NAME}
 
-#    aws s3 sync src/i18n/ s3://s3-bluex-dta-bx-dev2-localization/components_lib/default/ --exclude "*" --include "??.json"
-#    aws s3 sync src/i18n/ s3://s3-bluex-dta-bx-ppr2-localization/components_lib/default/ --exclude "*" --include "??.json"
-#    aws s3 sync src/i18n/ s3://s3-bluex-dta-bx-tst3-localization/components_lib/default/ --exclude "*" --include "??.json"
+translations_upload:
+  stage: translations_upload
+  allow_failure: false
+  tags:
+    - randstad-bluex
+  # Execute when externally triggered only.
+  rules:
+    - if: $ENVIRONMENT && $CI_PIPELINE_SOURCE == "pipeline"
+  script: |
+    aws s3 sync src/i18n/ s3://s3-bluex-dta-bx-${ENVIRONMENT}2-localization/components_lib/default/ --exclude "*" --include "??.json"
