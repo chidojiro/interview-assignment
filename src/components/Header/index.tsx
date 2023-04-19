@@ -68,6 +68,11 @@ interface HeaderProps {
   languageSwitcherItems?: LanguageSwitcherItems[]
 }
 
+type Menu = {
+  main?: [];
+  utility?: [];
+}
+
 function Header({
   brand,
   isMyRandstad = false,
@@ -102,7 +107,7 @@ function Header({
     .replace(/^\/\/?/, '/');
 
   // Get (ordered) languages from the s3 file and filter these with routes.
-  let menuLinks = [];
+  let menuLinks: Menu  = {}
   if (routes && (routes as Routes)[locale as string]) {
     menuLinks = (routes as Routes)[locale as string];
   }
