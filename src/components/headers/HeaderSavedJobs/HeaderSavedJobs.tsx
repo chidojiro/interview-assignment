@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getCountSavedJobs } from '../../../hooks/savedJobsHandler';
+import { getTotal } from '../../../hooks/savedJobsHandler';
 import Icon from '../../Icon';
 
 interface HeaderSavedJobsProps {
@@ -11,25 +11,13 @@ interface HeaderSavedJobsProps {
 
 function HeaderSavedJobs({ buttonUrl, gdsApiKey, gdsApiUrl, ariaLabel }: HeaderSavedJobsProps) {
   const [maxCounter, setMaxCounter] = useState<number | null>(null);
-  const getTotal = async (gdsApiKey: string, gdsApiUrl: string) => {
-    if (gdsApiKey && gdsApiUrl) {
-      const total = await getCountSavedJobs(gdsApiKey, gdsApiUrl);
-      if (total) {
-        setMaxCounter(total);
-      }
-      return total;
-    }
-  };
 
   useEffect(() => {
-    if (localStorage.getItem('saved-jobs')) {
-      const data = JSON.parse(localStorage.getItem('saved-jobs') as string);
-      if (data.totalElements) {
-        setMaxCounter(data.totalElements);
-      }
-    } else {
-      getTotal(gdsApiKey, gdsApiUrl);
+    const getAll = async () => {
+      const total = await getTotal(gdsApiKey, gdsApiUrl, localStorage.getItem('saved-jobs'));
+      setMaxCounter(total);
     }
+    getAll();
   }, [gdsApiKey, gdsApiUrl, localStorage.getItem('saved-jobs')]);
 
   return (
