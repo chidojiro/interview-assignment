@@ -53,8 +53,8 @@ import HeaderIllustration from './components/HeaderIllustration';
 // import RadioButton from "./components/forms/RadioButton";
 // import TextArea from "./components/forms/TextArea";
 // import Filter from "./components/Filter";
-// import Accordion from "./components/accordion/Accordion";
-// import AccordionItem from "./components/accordion/AccordionItem";
+import Accordion from './components/accordion/Accordion';
+import AccordionItem from './components/accordion/AccordionItem';
 // import Sortbar from "./components/Sortbar";
 // import Pagination from "./components/Pagination";
 // import ArticleOverviewList from "./components/article-overview/list/ArticleOverviewList";
@@ -120,8 +120,8 @@ export {
   // RadioButton,
   // TextArea,
   // Filter,
-  // Accordion,
-  // AccordionItem,
+  Accordion,
+  AccordionItem,
   // Sortbar,
   // Pagination,
   // ArticleOverviewList,
