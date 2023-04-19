@@ -65,7 +65,13 @@ interface HeaderProps {
   RouterComponent?: React.FC<any>;
   breadcrumbs?: BreadcrumbsType | BreadcrumbsUndefinedType;
   currentRoute?: string | undefined;
-  languageSwitcherItems?: LanguageSwitcherItems[]
+  languageSwitcherItems?: LanguageSwitcherItems[];
+  useToast?: boolean;
+  toastSettings?: {
+    title: Record<string, string>;
+    buttonSuccessText: Record<string, string>;
+    buttonCloseText: Record<string, string>;
+  };
 }
 
 type Menu = {
@@ -85,6 +91,8 @@ function Header({
   breadcrumbs,
   currentRoute,
   languageSwitcherItems,
+  useToast = false,
+  toastSettings
 }: HeaderProps) {
   const userData = getUserData();
   // TO DO: currentUser.loginState state is needed because tabBar needs an active link on logout
@@ -177,7 +185,7 @@ function Header({
               </ul>
               <div className="navigation__link-bar flex hidden--until-l">
                 <UtilityNavigation items={utilityMenuItems} />
-                <LanguageSwitcher items={languageSwitcherItems ? languageSwitcherItems : []} extraClasses="l:ml-s" />
+                <LanguageSwitcher items={languageSwitcherItems ? languageSwitcherItems : []} extraClasses="l:ml-s" useToast={useToast} toastSettings={toastSettings} />
               </div>
               <div id="navigationPopup">
                 <LoginPopover isAuth={currentUser.loginStatus} links={submenuLinks} locale={locale} languagePrefix={languagePrefix} translations={popoverTranslations} userName={currentUser.currentUser?.personalInfo} logoutUrl={myRandstadLogoutUrl} RouterComponent={RouterComponent} currentRoute={currentRoute} />
