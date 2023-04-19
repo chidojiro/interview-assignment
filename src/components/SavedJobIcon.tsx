@@ -27,13 +27,14 @@ function SavedJobIcon({
     [`icon--${size}`]: size,
   }, 'icon--inline');
   const onIconClick = async () => {
+    if (returnJobPostingWebDetailId) {
+      returnJobPostingWebDetailId(jobPostingWebDetailId);
+    }
+
     if (id && typeof (id) === 'string') {
       await deleteSavedJobs(gdsApiKey, gdsApiUrl, id);
       await saveCountOfSavedJobs(gdsApiKey, gdsApiUrl);
       setIconFilled(false);
-      if (returnJobPostingWebDetailId) {
-        returnJobPostingWebDetailId(jobPostingWebDetailId);
-      }
     } else {
       await postSavedJobs(gdsApiKey, gdsApiUrl, jobPostingWebDetailId);
       await saveCountOfSavedJobs(gdsApiKey, gdsApiUrl);
