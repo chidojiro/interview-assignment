@@ -65,7 +65,18 @@ interface HeaderProps {
   RouterComponent?: React.FC<any>;
   breadcrumbs?: BreadcrumbsType | BreadcrumbsUndefinedType;
   currentRoute?: string | undefined;
-  languageSwitcherItems?: LanguageSwitcherItems[]
+  languageSwitcherItems?: LanguageSwitcherItems[];
+  useToast?: boolean;
+  toastSettings?: {
+    title: Record<string, string>;
+    buttonSuccessText: Record<string, string>;
+    buttonCloseText: Record<string, string>;
+  };
+}
+
+type Menu = {
+  main?: [];
+  utility?: [];
 }
 
 function Header({
@@ -80,6 +91,8 @@ function Header({
   breadcrumbs,
   currentRoute,
   languageSwitcherItems,
+  useToast = false,
+  toastSettings
 }: HeaderProps) {
   const userData = getUserData();
   // TO DO: currentUser.loginState state is needed because tabBar needs an active link on logout
@@ -102,7 +115,7 @@ function Header({
     .replace(/^\/\/?/, '/');
 
   // Get (ordered) languages from the s3 file and filter these with routes.
-  let menuLinks = [];
+  let menuLinks: Menu  = {}
   if (routes && (routes as Routes)[locale as string]) {
     menuLinks = (routes as Routes)[locale as string];
   }
@@ -172,7 +185,7 @@ function Header({
               </ul>
               <div className="navigation__link-bar flex hidden--until-l">
                 <UtilityNavigation items={utilityMenuItems} />
-                <LanguageSwitcher items={languageSwitcherItems ? languageSwitcherItems : []} extraClasses="l:ml-s" />
+                <LanguageSwitcher items={languageSwitcherItems ? languageSwitcherItems : []} extraClasses="l:ml-s" useToast={useToast} toastSettings={toastSettings} />
               </div>
               <div id="navigationPopup">
                 <LoginPopover isAuth={currentUser.loginStatus} links={submenuLinks} locale={locale} languagePrefix={languagePrefix} translations={popoverTranslations} userName={currentUser.currentUser?.personalInfo} logoutUrl={myRandstadLogoutUrl} RouterComponent={RouterComponent} currentRoute={currentRoute} />
@@ -215,7 +228,7 @@ function Header({
       { isMyRandstad && currentUser.loginStatus ? (
         <div className="block bg-greyscale--grey-10 my-environment__sub-menu">
           <div className="wrapper">
-            <TabBar items={tabBarMenu} url={currentUrl} RouterComponent={RouterComponent} />
+            <TabBar items={tabBarMenu} currentUrl={currentUrl} RouterComponent={RouterComponent} />
           </div>
         </div>
       ) : null}

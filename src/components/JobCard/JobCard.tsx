@@ -1,3 +1,5 @@
+// d
+/* eslint-disable react/function-component-definition */
 import React, {
   useEffect, useRef, useState, SyntheticEvent,
 } from 'react';
@@ -52,7 +54,10 @@ const JobCard: React.FC<JobCardProps> = (props) => {
     logoAltTagValue = '',
     logoSrcTagValue = '',
     activeView = 'grid',
-    translations,
+    closeText,
+    closeIconAriaLabel,
+    infoIconAriaLabel,
+    viewJobText,
     gdsApiKey,
     gdsApiUrl,
     jobPostingWebDetailId,
@@ -120,7 +125,7 @@ const JobCard: React.FC<JobCardProps> = (props) => {
         </div>
         {/* Safe here. */}
         {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex */}
-        <div className="cards__info-wrapper" tabIndex={0} data-rs-card-show-backside aria-label={translations.iconInfoAriaLabel}>
+        <div className="cards__info-wrapper" tabIndex={0} data-rs-card-show-backside aria-label={infoIconAriaLabel}>
           <span className="cards__info-button text--alternative">
             <Icon iconType="info" iconClassName="icon icon--inline" />
           </span>
@@ -140,17 +145,17 @@ const JobCard: React.FC<JobCardProps> = (props) => {
             aria-label=""
           >
             <Icon iconType="eye" iconClassName="icon icon--inline" />
-            {translations.viewJobText}
+            {viewJobText}
           </a>
           <div
             className="cards__backside-footer--horizontal cards__backside-footer--close-backside"
             data-rs-card-hide-backside=""
             tabIndex={-1}
             role="button"
-            aria-label={translations.closeIconAriaLabel}
+            aria-label={closeIconAriaLabel}
           >
             <Icon iconType="close" iconClassName="icon icon--inline" />
-            <span className="button-text">{translations.closeText}</span>
+            <span className="button-text">{closeText}</span>
           </div>
         </div>
       </div>

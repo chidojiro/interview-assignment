@@ -40,6 +40,7 @@ import MyEnvironmentLayout from './components/my-environment/MyEnvironmentLayout
 import Section from './components/my-environment/Section';
 import JobCardList from './components/JobCard/JobCardList';
 import JobCard from './components/JobCard/JobCard';
+import JobCardCTA from './components/JobCard/JobCardCTA';
 import JobItemMetadata from './components/JobCard/JobItemMetadata';
 import PagePreloader from './components/PagePreloader';
 import Preloader from './components/loaders/Preloader';
@@ -50,10 +51,10 @@ import SplitView from './components/SplitView';
 import HeaderIllustration from './components/HeaderIllustration';
 // import LocationInputField from "./components/forms/LocationInputField";
 // import RadioButton from "./components/forms/RadioButton";
-// import TextArea from "./components/forms/TextArea";
+import TextArea from './components/forms/TextArea';
 // import Filter from "./components/Filter";
-// import Accordion from "./components/accordion/Accordion";
-// import AccordionItem from "./components/accordion/AccordionItem";
+import Accordion from './components/accordion/Accordion';
+import AccordionItem from './components/accordion/AccordionItem';
 // import Sortbar from "./components/Sortbar";
 // import Pagination from "./components/Pagination";
 // import ArticleOverviewList from "./components/article-overview/list/ArticleOverviewList";
@@ -105,6 +106,7 @@ export {
   Section,
   JobCardList,
   JobCard,
+  JobCardCTA,
   JobItemMetadata,
   PagePreloader,
   Preloader,
@@ -116,10 +118,10 @@ export {
   HeaderIllustration,
   // LocationInputField,
   // RadioButton,
-  // TextArea,
+  TextArea,
   // Filter,
-  // Accordion,
-  // AccordionItem,
+  Accordion,
+  AccordionItem,
   // Sortbar,
   // Pagination,
   // ArticleOverviewList,
