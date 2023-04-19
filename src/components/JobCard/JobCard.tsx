@@ -2,15 +2,14 @@ import React, {
   useEffect, useRef, useState, SyntheticEvent,
 } from 'react';
 import { Card } from '@ffw/randstad-local-orbit/js/components/card';
-import cn from 'classnames';
 import Icon from '../Icon';
 import JobItemMetadata, { JobItemMetadataProps } from './JobItemMetadata';
-import FavoriteIcon from '../FavoriteIcon';
+import SavedJobIcon from '../SavedJobIcon';
 
 interface JobCardProps extends JobItemMetadataProps {
   title: string;
   description: string;
-  id: string;
+  id: string | boolean;
   url: string;
   date: string;
   enableLogo?: boolean;
@@ -18,7 +17,7 @@ interface JobCardProps extends JobItemMetadataProps {
   activeView?: 'grid' | 'list';
   viewJobText: string;
   closeText: string;
-  favoriteJobsEnabled?: boolean;
+  savedJobsEnabled?: boolean;
   favorited?: boolean;
   logoAltTagValue?: string;
   logoSrcTagValue?: string;
@@ -27,9 +26,9 @@ interface JobCardProps extends JobItemMetadataProps {
   gdsApiKey: string;
   gdsApiUrl: string;
   jobPostingWebDetailId: string;
-  savedJobId: string;
   onMouseDownClick: () => void;
   translations: Translations
+  returnJobPostingWebDetailId?: (jobPostingWebDetailId: string) => void;
 }
 
 interface Translations {
@@ -49,8 +48,7 @@ const JobCard: React.FC<JobCardProps> = (props) => {
     date,
     id,
     enableLogo = false,
-    favoriteJobsEnabled = false,
-    favorited = false,
+    savedJobsEnabled = false,
     logoAltTagValue = '',
     logoSrcTagValue = '',
     activeView = 'grid',
@@ -58,7 +56,7 @@ const JobCard: React.FC<JobCardProps> = (props) => {
     gdsApiKey,
     gdsApiUrl,
     jobPostingWebDetailId,
-    savedJobId,
+    returnJobPostingWebDetailId,
   } = props;
   const [realLogoImg, setRealLogoImg] = useState(true);
 
@@ -108,7 +106,7 @@ const JobCard: React.FC<JobCardProps> = (props) => {
             </a>
           </h3>
         </div>
-        {favoriteJobsEnabled && <FavoriteIcon id={id} favorite={favorited} gdsApiKey={gdsApiKey} gdsApiUrl={gdsApiUrl} jobPostingWebDetailId={jobPostingWebDetailId} savedJobId={savedJobId} />}
+        {savedJobsEnabled && <SavedJobIcon id={id} gdsApiKey={gdsApiKey} gdsApiUrl={gdsApiUrl} jobPostingWebDetailId={jobPostingWebDetailId} returnJobPostingWebDetailId={returnJobPostingWebDetailId} />}
       </div>
       <JobItemMetadata {...props} />
       {/* Safe here. */}
