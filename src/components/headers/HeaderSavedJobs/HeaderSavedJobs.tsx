@@ -22,8 +22,16 @@ function HeaderSavedJobs({ buttonUrl, gdsApiKey, gdsApiUrl, ariaLabel }: HeaderS
   };
 
   useEffect(() => {
-    getTotal(gdsApiKey, gdsApiUrl);
-  }, [gdsApiKey, gdsApiUrl]);
+    if (localStorage.getItem('saved-jobs')) {
+      const data = JSON.parse(localStorage.getItem('saved-jobs') as string);
+      if (data.totalElements) {
+        setMaxCounter(data.totalElements);
+      }
+    } else {
+      getTotal(gdsApiKey, gdsApiUrl);
+    }
+  }, [gdsApiKey, gdsApiUrl, localStorage.getItem('saved-jobs')]);
+
   return (
     <li className="navigation__service-item">
       <a href={buttonUrl} className="navigation__service-link" aria-label={ariaLabel}>
