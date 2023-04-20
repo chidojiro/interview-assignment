@@ -2,9 +2,9 @@ import React, {
   useEffect, useRef, useState, SyntheticEvent,
 } from 'react';
 import { Card } from '@ffw/randstad-local-orbit/js/components/card';
-import cn from 'classnames';
 import Icon from '../Icon';
 import JobItemMetadata, { JobItemMetadataProps } from './JobItemMetadata';
+import SavedJobIcon from '../SavedJobIcon';
 
 interface JobCardProps extends JobItemMetadataProps {
   title: string;
@@ -17,36 +17,18 @@ interface JobCardProps extends JobItemMetadataProps {
   activeView?: 'grid' | 'list';
   viewJobText: string;
   closeText: string;
-  favoriteJobsEnabled?: boolean;
+  savedJobsEnabled?: boolean;
   favorited?: boolean;
   logoAltTagValue?: string;
   logoSrcTagValue?: string;
   infoIconAriaLabel?: string;
   closeIconAriaLabel?: string;
+  gdsApiKey: string;
+  gdsApiUrl: string;
+  jobPostingWebDetailId: string;
   onMouseDownClick: () => void;
-}
-
-interface FavoriteIconProps {
-  id: string;
-  favorite: boolean;
-  size?: string;
-}
-
-function FavoriteIcon({ id, favorite = false, size = 'l' }: FavoriteIconProps) {
-  const [iconFilled, setIconFilled] = useState(favorite);
-  const iconClasses = cn('icon', {
-    [`icon--${size}`]: size,
-  }, 'icon--inline');
-  return (
-    <button className={`icon__toggler icon--l ${favorite || iconFilled ? 'icon__toggler--active' : ''} `} aria-pressed={favorite ? 'true' : 'false'} id={`fav-${id}`} onClick={() => setIconFilled((prev) => !prev)}>
-      <span className={iconClasses}>
-        <Icon iconType="heart-30" iconClassName={null} />
-      </span>
-      <span className={iconClasses}>
-        <Icon iconType="heart-filled-30" iconClassName={null} />
-      </span>
-    </button>
-  );
+  savedJobId: string | boolean;
+  returnJobPostingWebDetailId?: (jobPostingWebDetailId: string) => void;
 }
 
 const JobCard: React.FC<JobCardProps> = (props) => {
@@ -59,8 +41,7 @@ const JobCard: React.FC<JobCardProps> = (props) => {
     date,
     id,
     enableLogo = false,
-    favoriteJobsEnabled = false,
-    favorited = false,
+    savedJobsEnabled = false,
     logoAltTagValue = '',
     logoSrcTagValue = '',
     activeView = 'grid',
@@ -68,7 +49,11 @@ const JobCard: React.FC<JobCardProps> = (props) => {
     closeIconAriaLabel,
     infoIconAriaLabel,
     viewJobText,
-
+    gdsApiKey,
+    gdsApiUrl,
+    jobPostingWebDetailId,
+    savedJobId,
+    returnJobPostingWebDetailId,
   } = props;
   const [realLogoImg, setRealLogoImg] = useState(true);
 
@@ -118,7 +103,7 @@ const JobCard: React.FC<JobCardProps> = (props) => {
             </a>
           </h3>
         </div>
-        {favoriteJobsEnabled && <FavoriteIcon id={id} favorite={favorited} />}
+        {savedJobsEnabled && <SavedJobIcon gdsApiKey={gdsApiKey} gdsApiUrl={gdsApiUrl} jobPostingWebDetailId={jobPostingWebDetailId} savedJobId={savedJobId} returnJobPostingWebDetailId={returnJobPostingWebDetailId} />}
       </div>
       <JobItemMetadata {...props} />
       {/* Safe here. */}
