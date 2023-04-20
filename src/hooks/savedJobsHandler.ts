@@ -8,7 +8,7 @@ interface SavedJobsResponse {
 const getSavedJobs = async (gdsApiKey: string, gdsApiUrl: string): Promise<SavedJobsResponse> => {
   const talentApi = new TalentAppApi(gdsApiKey, gdsApiUrl);
 
-  return talentApi.get('/me/saved-jobs').then((res: AxiosResponse) => res.data);
+  return talentApi.get('/me/saved-jobs?size=1').then((res: AxiosResponse) => res.data);
 };
 
 const postSavedJobs = async (gdsApiKey: string, gdsApiUrl: string, jobPostingWebDetailId: string): Promise<void> => {

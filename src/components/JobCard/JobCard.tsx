@@ -11,7 +11,7 @@ import SavedJobIcon from '../SavedJobIcon';
 interface JobCardProps extends JobItemMetadataProps {
   title: string;
   description: string;
-  id: string | boolean;
+  id: string;
   url: string;
   date: string;
   enableLogo?: boolean;
@@ -30,6 +30,7 @@ interface JobCardProps extends JobItemMetadataProps {
   jobPostingWebDetailId: string;
   onMouseDownClick: () => void;
   translations: Translations
+  savedJobId: string | boolean;
   returnJobPostingWebDetailId?: (jobPostingWebDetailId: string) => void;
 }
 
@@ -61,6 +62,7 @@ const JobCard: React.FC<JobCardProps> = (props) => {
     gdsApiKey,
     gdsApiUrl,
     jobPostingWebDetailId,
+    savedJobId,
     returnJobPostingWebDetailId,
   } = props;
   const [realLogoImg, setRealLogoImg] = useState(true);
@@ -111,7 +113,7 @@ const JobCard: React.FC<JobCardProps> = (props) => {
             </a>
           </h3>
         </div>
-        {savedJobsEnabled && <SavedJobIcon id={id} gdsApiKey={gdsApiKey} gdsApiUrl={gdsApiUrl} jobPostingWebDetailId={jobPostingWebDetailId} returnJobPostingWebDetailId={returnJobPostingWebDetailId} />}
+        {savedJobsEnabled && <SavedJobIcon id={id} gdsApiKey={gdsApiKey} gdsApiUrl={gdsApiUrl} jobPostingWebDetailId={jobPostingWebDetailId} savedJobId={savedJobId} returnJobPostingWebDetailId={returnJobPostingWebDetailId} />}
       </div>
       <JobItemMetadata {...props} />
       {/* Safe here. */}
