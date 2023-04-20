@@ -5,10 +5,7 @@ import HeaderSavedJobs from '../../components/headers/HeaderSavedJobs/HeaderSave
 describe('Saved Jobs component tests', () => {
   test('should render Saved Jobs the className', () => {
     const className = 'favorites__counter';
-    const { container } = render(
-      <HeaderSavedJobs gdsApiKey="" gdsApiUrl=""
-      />,
-    );
+    const { container } = render(<HeaderSavedJobs gdsApiKey="" gdsApiUrl="" buttonUrl="" />);
 
     const iconElement = container.querySelector('#maxCounter');
     expect(iconElement).toHaveClass(className);
@@ -16,25 +13,16 @@ describe('Saved Jobs component tests', () => {
   });
 
   test('should render Saved Jobs right url', () => {
-    const { container } = render(
-      <HeaderSavedJobs gdsApiKey="" gdsApiUrl="" buttonUrl='savedUrl' />,
-    );
+    const { container } = render(<HeaderSavedJobs gdsApiKey="" gdsApiUrl="" buttonUrl="savedUrl" />);
 
     const iconElement = container.querySelector('.navigation__service-link');
-    expect(iconElement).toHaveAttribute('href','savedUrl',);
+    expect(iconElement).toHaveAttribute('href', 'savedUrl');
   });
 
   test('should render Saved Jobs right aria label', () => {
-    const { container } = render(
-      <HeaderSavedJobs
-        gdsApiKey="" gdsApiUrl=""
-        buttonUrl='savedUrl'
-        ariaLabel='my-saved'
-      />,
-    );
+    const { container } = render(<HeaderSavedJobs gdsApiKey="" gdsApiUrl="" buttonUrl="savedUrl" ariaLabel="my-saved" />);
 
     const iconElement = container.querySelector('.navigation__service-link');
-    expect(iconElement).toHaveAttribute('aria-label','my-saved',);
+    expect(iconElement).toHaveAttribute('aria-label', 'my-saved');
   });
-
 });

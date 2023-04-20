@@ -157,7 +157,7 @@ function Header({
               <Logo homepageUrl={homepageUrl} />
               <MainMenu items={mainMenuItems} />
               <ul className="navigation__service navigation__service--minimal">
-                <HeaderSavedJobs gdsApiKey={gdsApiKey} gdsApiUrl={gdsApiUrl}/>
+                <HeaderSavedJobs gdsApiKey={gdsApiKey} gdsApiUrl={gdsApiUrl} buttonUrl="" />
                 <MyRandstad
                   label={myRandstadLabel}
                   show={showMyRandstad}

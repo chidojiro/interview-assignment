@@ -5,7 +5,7 @@ import Icon from '../../Icon';
 interface HeaderSavedJobsProps {
   gdsApiKey: string;
   gdsApiUrl: string;
-  buttonUrl?: string;
+  buttonUrl: string;
   ariaLabel?: string;
 }
 
@@ -16,7 +16,7 @@ function HeaderSavedJobs({ buttonUrl, gdsApiKey, gdsApiUrl, ariaLabel }: HeaderS
     const getAll = async () => {
       const total = await getTotal(gdsApiKey, gdsApiUrl, localStorage.getItem('saved-jobs'));
       setMaxCounter(total);
-    }
+    };
     getAll();
   }, [gdsApiKey, gdsApiUrl, localStorage.getItem('saved-jobs')]);
 

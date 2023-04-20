@@ -22,7 +22,7 @@ export type Data = {
 const getSavedJobs = async (gdsApiKey: string, gdsApiUrl: string): Promise<SavedJobs | undefined> => {
   const talentApi = new TalentAppApi(gdsApiKey, gdsApiUrl);
 
-  const response = await talentApi.get<Data, AxiosResponse<SavedJobs>>('/me/saved-jobs').catch((err) => {
+  const response = await talentApi.get<Data, AxiosResponse<SavedJobs>>('/me/saved-jobs?size=1').catch((err) => {
     // Needed logging for error.
     // eslint-disable-next-line no-console
     console.error('GetSavedJobs Error: ', err);
@@ -41,7 +41,7 @@ const getTotal = async (gdsApiKey: string, gdsApiUrl: string, localStorage: any)
     if (data.totalElements) {
       return data.totalElements;
     }
-  } else if (gdsApiKey && gdsApiUrl) {
+  } else {
     const response = await getSavedJobs(gdsApiKey, gdsApiUrl).catch((err) => {
       // Needed logging for error.
       // eslint-disable-next-line no-console
