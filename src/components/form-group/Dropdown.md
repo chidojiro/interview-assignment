@@ -15,7 +15,7 @@ const onChangeHandler = (event) => {
   id="numbers"
   options={[{value:'first', title: 'first'}, {value:'second', title: 'second'}, {value:'third', title: 'third'}]}
   value={value}
-  defaultValue="Choose number"
+  defaultValue="first"
   name="numbers-dropdown"
   onChange={onChangeHandler}
 ></Dropdown>;

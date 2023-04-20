@@ -14,7 +14,7 @@ describe('Dropdown component tests', () => {
           { value: 'second', title: 'second' },
           { value: 'third', title: 'third' },
         ]}
-        defaultValue="Choose number"
+        defaultValue="second"
         name="numbers-dropdown"
         onChange={(e) => console.log(e)}
         required
@@ -59,7 +59,7 @@ describe('Dropdown component tests', () => {
           { value: 'second', title: 'second' },
           { value: 'third', title: 'third' },
         ]}
-        defaultValue="Choose number"
+        defaultValue="first"
         name="numbers-dropdown"
         onChange={(e) => console.log(e)}
         required
@@ -68,7 +68,7 @@ describe('Dropdown component tests', () => {
     // @ts-ignore
     const dropdownComponent = [...container.querySelectorAll('.form-group__input select option')];
 
-    expect(dropdownComponent.length).toBe(4);
+    expect(dropdownComponent.length).toBe(3);
   });
 
   test('Dropdown number of list correctly.', () => {
