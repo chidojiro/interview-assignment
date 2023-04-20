@@ -1,5 +1,3 @@
-// d
-/* eslint-disable react/function-component-definition */
 import React, {
   useEffect, useRef, useState, SyntheticEvent,
 } from 'react';
