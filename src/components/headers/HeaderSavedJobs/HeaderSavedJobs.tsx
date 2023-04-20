@@ -6,7 +6,7 @@ interface HeaderSavedJobsProps {
   gdsApiKey: string;
   gdsApiUrl: string;
   buttonUrl: string;
-  ariaLabel?: string;
+  ariaLabel: string;
 }
 
 function HeaderSavedJobs({ buttonUrl, gdsApiKey, gdsApiUrl, ariaLabel }: HeaderSavedJobsProps) {
