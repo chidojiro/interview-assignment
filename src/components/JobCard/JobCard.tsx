@@ -27,16 +27,8 @@ interface JobCardProps extends JobItemMetadataProps {
   gdsApiUrl: string;
   jobPostingWebDetailId: string;
   onMouseDownClick: () => void;
-  translations: Translations
   savedJobId: string | boolean;
   returnJobPostingWebDetailId?: (jobPostingWebDetailId: string) => void;
-}
-
-interface Translations {
-  iconInfoAriaLabel: string,
-  viewJobText: string,
-  closeIconAriaLabel: string,
-  closeText: string
 }
 
 const JobCard: React.FC<JobCardProps> = (props) => {
@@ -111,7 +103,7 @@ const JobCard: React.FC<JobCardProps> = (props) => {
             </a>
           </h3>
         </div>
-        {savedJobsEnabled && <SavedJobIcon id={id} gdsApiKey={gdsApiKey} gdsApiUrl={gdsApiUrl} jobPostingWebDetailId={jobPostingWebDetailId} savedJobId={savedJobId} returnJobPostingWebDetailId={returnJobPostingWebDetailId} />}
+        {savedJobsEnabled && <SavedJobIcon gdsApiKey={gdsApiKey} gdsApiUrl={gdsApiUrl} jobPostingWebDetailId={jobPostingWebDetailId} savedJobId={savedJobId} returnJobPostingWebDetailId={returnJobPostingWebDetailId} />}
       </div>
       <JobItemMetadata {...props} />
       {/* Safe here. */}

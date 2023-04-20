@@ -3,10 +3,9 @@ import React, {
 } from 'react';
 import cn from 'classnames';
 import Icon from './Icon';
-import { postSavedJobs, deleteSavedJobs, saveCountOfSavedJobs } from '../hooks/savedJobsHandler';
+import { postSavedJobs, deleteSavedJobs } from '../hooks/savedJobsHandler';
 
 interface SavedJobIconProps {
-  id: string;
   size?: string;
   gdsApiKey: string;
   gdsApiUrl: string;
@@ -16,7 +15,6 @@ interface SavedJobIconProps {
 }
 
 function SavedJobIcon({
-  id,
   size = 'l',
   gdsApiKey,
   gdsApiUrl,
@@ -38,17 +36,15 @@ function SavedJobIcon({
 
     if (savedJobId && typeof (savedJobId) === 'string') {
       await deleteSavedJobs(gdsApiKey, gdsApiUrl, savedJobId);
-      await saveCountOfSavedJobs(gdsApiKey, gdsApiUrl);
       setIconFilled(false);
     } else {
       await postSavedJobs(gdsApiKey, gdsApiUrl, jobPostingWebDetailId);
-      await saveCountOfSavedJobs(gdsApiKey, gdsApiUrl);
       setIconFilled('filled');
     }
   };
 
   return (
-    <button type="button" className={buttonClasses} aria-pressed={savedJobId ? 'true' : 'false'} id={`fav-${id}`} onClick={onIconClick}>
+    <button type="button" className={buttonClasses} aria-pressed={savedJobId ? 'true' : 'false'} id={`fav-${savedJobId}`} onClick={onIconClick}>
       <span className={iconClasses}>
         <Icon iconType="heart-30" iconClassName={null} />
       </span>
