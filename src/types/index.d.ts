@@ -3,6 +3,7 @@ declare module '@ffw/randstad-local-orbit/js/components/collapsible';
 declare module '@ffw/randstad-local-orbit/js/components/toggable';
 declare module '@ffw/randstad-local-orbit/original/js/components/password-visibility';
 declare module '@ffw/randstad-local-orbit/original/js/components/password-validator';
+declare module '@ffw/randstad-local-orbit/original/js/components/untouched';
 declare module '@ffw/randstad-local-orbit/original/js/components/tab-bar';
 declare module '@ffw/randstad-local-orbit/js/components/card';
 declare module '@ffw/randstad-local-orbit';
