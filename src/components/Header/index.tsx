@@ -68,6 +68,7 @@ interface HeaderProps {
   languageSwitcherItems?: LanguageSwitcherItems[];
   useToast?: boolean;
   toastSettings?: {
+    id: string;
     title: Record<string, string>;
     buttonSuccessText: Record<string, string>;
     buttonCloseText: Record<string, string>;

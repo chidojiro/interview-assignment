@@ -13,6 +13,7 @@ export interface LanguageSwitcherProps {
   extraClasses?: string,
   useToast?: boolean;
   toastSettings?: {
+    id: string;
     title: Record<string, string>;
     buttonSuccessText: Record<string, string>;
     buttonCloseText: Record<string, string>;
@@ -25,13 +26,15 @@ function LanguageSwitcher({ items, extraClasses, useToast = false, toastSettings
   const [selectedLanguage, setSelectedLanguage] = useState({href: "", lang: ""})
 
   const onClickHandler = (e: any) => {
-    e.preventDefault();
-    setToastOpen(prev => !prev)
+    if (useToast) {
+      e.preventDefault();
+      setToastOpen(prev => !prev)
 
-    const selectedElement = e.target;
-    const hrefValue = selectedElement?.getAttribute("href") || ""
-    const hrefLangValue = selectedElement?.getAttribute("hrefLang") || ""
-    setSelectedLanguage({href: hrefValue, lang: hrefLangValue})
+      const selectedElement = e.target;
+      const hrefValue = selectedElement?.getAttribute("href") || ""
+      const hrefLangValue = selectedElement?.getAttribute("hrefLang") || ""
+      setSelectedLanguage({href: hrefValue, lang: hrefLangValue})
+    }
   }
 
   const onSuccessHandler = () => {
@@ -60,7 +63,7 @@ function LanguageSwitcher({ items, extraClasses, useToast = false, toastSettings
       </ul>
       {(useToast && (toastOpen && toastSettings)) &&
         <Toast
-          id={toastSettings?.title[selectedLanguage.lang]}
+          id={toastSettings?.id}
           title={toastSettings?.title[selectedLanguage.lang]}
           onSuccess={onSuccessHandler}
           buttonSuccessText={toastSettings?.buttonSuccessText[selectedLanguage.lang]}
