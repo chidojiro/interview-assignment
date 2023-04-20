@@ -65,7 +65,14 @@ interface HeaderProps {
   RouterComponent?: React.FC<any>;
   breadcrumbs?: BreadcrumbsType | BreadcrumbsUndefinedType;
   currentRoute?: string | undefined;
-  languageSwitcherItems?: LanguageSwitcherItems[]
+  languageSwitcherItems?: LanguageSwitcherItems[];
+  useToast?: boolean;
+  toastSettings?: {
+    id: string;
+    title: Record<string, string>;
+    buttonSuccessText: Record<string, string>;
+    buttonCloseText: Record<string, string>;
+  };
 }
 
 type Menu = {
