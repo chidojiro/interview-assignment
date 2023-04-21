@@ -11,7 +11,7 @@ interface SavedJobsProps {
   gdsApiUrl: string;
   jobPostingWebDetailId: string;
   savedJobId?: string;
-  returnJobPostingWebDetailId: (jobPostingWebDetailId: string) => void;
+  returnJobPostingWebDetailId?: (jobPostingWebDetailId: string) => void;
 }
 
 interface JobCardProps extends JobItemMetadataProps {
