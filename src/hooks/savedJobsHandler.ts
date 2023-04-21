@@ -5,16 +5,38 @@ interface SavedJobsResponse {
   totalElements: number;
 }
 
-const getSavedJobs = async (gdsApiKey: string, gdsApiUrl: string): Promise<SavedJobsResponse> => {
+export type Data = {
+  // Data describes a generic abstract structure of request, which can be anything.
+  /* eslint-disable @typescript-eslint/no-explicit-any */
+  data: {
+    content: Array<object>;
+    pageNumber: number;
+    pageSize: number;
+    totalElements: number;
+    numberOfElements: number;
+    empty: boolean;
+  };
+};
+
+const getSavedJobsCount = async (gdsApiKey: string, gdsApiUrl: string): Promise<number | undefined> => {
   const talentApi = new TalentAppApi(gdsApiKey, gdsApiUrl);
 
-  return talentApi.get('/me/saved-jobs?size=1').then((res: AxiosResponse) => res.data);
+  const response = await talentApi.get<Data, AxiosResponse<SavedJobsResponse>>('/me/saved-jobs?size=1').catch((err) => {
+    // Needed logging for error.
+    // eslint-disable-next-line no-console
+    console.error('GetSavedJobs Error: ', err);
+    return undefined;
+  });
+  if (response) {
+    return response.data.totalElements;
+  }
+
+  return undefined;
 };
 
 const saveCountOfSavedJobs = async (gdsApiKey: string, gdsApiUrl: string) => {
-  const allSavedJobs: SavedJobsResponse = await getSavedJobs(gdsApiKey, gdsApiUrl);
   const numberOfSavedJobs: SavedJobsResponse = {
-    totalElements: allSavedJobs.totalElements,
+    totalElements: (await getSavedJobsCount(gdsApiKey, gdsApiUrl)) ?? 0,
   };
   localStorage.setItem('saved-jobs', JSON.stringify(numberOfSavedJobs));
 };
@@ -28,6 +50,23 @@ const postSavedJobs = async (gdsApiKey: string, gdsApiUrl: string, jobPostingWeb
   });
 };
 
+const getSavedJobsNumber = async (gdsApiKey: string, gdsApiUrl: string, localStorage: any) => {
+  if (localStorage) {
+    const data = JSON.parse(localStorage as string);
+    if (data.totalElements) {
+      return data.totalElements;
+    }
+  } else {
+    return getSavedJobsCount(gdsApiKey, gdsApiUrl).catch((err) => {
+      // Needed logging for error.
+      // eslint-disable-next-line no-console
+      console.error('getSavedJobsCount Error: ', err);
+      return undefined;
+    });
+  }
+  return undefined;
+};
+
 const deleteSavedJobs = async (gdsApiKey: string, gdsApiUrl: string, savedJobId: string): Promise<void> => {
   const talentApi = new TalentAppApi(gdsApiKey, gdsApiUrl);
 
@@ -37,4 +76,4 @@ const deleteSavedJobs = async (gdsApiKey: string, gdsApiUrl: string, savedJobId:
   });
 };
 
-export { getSavedJobs, postSavedJobs, deleteSavedJobs };
+export { getSavedJobsNumber, getSavedJobsCount, postSavedJobs, deleteSavedJobs };
