@@ -9,7 +9,7 @@ interface SavedJobIconProps {
   size?: string;
   gdsApiKey: string;
   gdsApiUrl: string;
-  savedJobId: string | boolean;
+  savedJobId?: string;
   jobPostingWebDetailId: string;
   returnJobPostingWebDetailId?: (jobPostingWebDetailId: string) => void;
 }
@@ -36,7 +36,7 @@ function SavedJobIcon({
 
     if (savedJobId && typeof (savedJobId) === 'string') {
       await deleteSavedJobs(gdsApiKey, gdsApiUrl, savedJobId);
-      setIconFilled(false);
+      setIconFilled('');
     } else {
       await postSavedJobs(gdsApiKey, gdsApiUrl, jobPostingWebDetailId);
       setIconFilled('filled');
