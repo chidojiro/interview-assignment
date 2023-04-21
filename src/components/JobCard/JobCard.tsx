@@ -6,6 +6,14 @@ import Icon from '../Icon';
 import JobItemMetadata, { JobItemMetadataProps } from './JobItemMetadata';
 import SavedJobIcon from '../SavedJobIcon';
 
+interface SavedJobsProps {
+  gdsApiKey: string;
+  gdsApiUrl: string;
+  jobPostingWebDetailId: string;
+  savedJobId?: string;
+  returnJobPostingWebDetailId: (jobPostingWebDetailId: string) => void;
+}
+
 interface JobCardProps extends JobItemMetadataProps {
   title: string;
   description: string;
@@ -18,17 +26,12 @@ interface JobCardProps extends JobItemMetadataProps {
   viewJobText: string;
   closeText: string;
   savedJobsEnabled?: boolean;
-  favorited?: boolean;
   logoAltTagValue?: string;
   logoSrcTagValue?: string;
   infoIconAriaLabel?: string;
   closeIconAriaLabel?: string;
-  gdsApiKey: string;
-  gdsApiUrl: string;
-  jobPostingWebDetailId: string;
+  savedJobsProps?: SavedJobsProps;
   onMouseDownClick: () => void;
-  savedJobId: string | boolean;
-  returnJobPostingWebDetailId?: (jobPostingWebDetailId: string) => void;
 }
 
 const JobCard: React.FC<JobCardProps> = (props) => {
@@ -49,11 +52,7 @@ const JobCard: React.FC<JobCardProps> = (props) => {
     closeIconAriaLabel,
     infoIconAriaLabel,
     viewJobText,
-    gdsApiKey,
-    gdsApiUrl,
-    jobPostingWebDetailId,
-    savedJobId,
-    returnJobPostingWebDetailId,
+    savedJobsProps,
   } = props;
   const [realLogoImg, setRealLogoImg] = useState(true);
 
@@ -103,7 +102,7 @@ const JobCard: React.FC<JobCardProps> = (props) => {
             </a>
           </h3>
         </div>
-        {savedJobsEnabled && <SavedJobIcon gdsApiKey={gdsApiKey} gdsApiUrl={gdsApiUrl} jobPostingWebDetailId={jobPostingWebDetailId} savedJobId={savedJobId} returnJobPostingWebDetailId={returnJobPostingWebDetailId} />}
+        {savedJobsEnabled && savedJobsProps && <SavedJobIcon gdsApiKey={savedJobsProps.gdsApiKey} gdsApiUrl={savedJobsProps.gdsApiUrl} jobPostingWebDetailId={savedJobsProps.jobPostingWebDetailId} savedJobId={savedJobsProps.savedJobId} returnJobPostingWebDetailId={savedJobsProps.returnJobPostingWebDetailId} />}
       </div>
       <JobItemMetadata {...props} />
       {/* Safe here. */}
