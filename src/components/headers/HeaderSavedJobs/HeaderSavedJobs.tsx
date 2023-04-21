@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getSavedJobsCount } from '../../../hooks/savedJobsHandler';
+import { getSavedJobsNumber } from '../../../hooks/savedJobsHandler';
 import Icon from '../../Icon';
 
 interface HeaderSavedJobsProps {
@@ -14,7 +14,7 @@ function HeaderSavedJobs({ buttonUrl, gdsApiKey, gdsApiUrl, ariaLabel }: HeaderS
 
   useEffect(() => {
     const getAll = async () => {
-      const total = await getSavedJobsCount(gdsApiKey, gdsApiUrl, localStorage.getItem('saved-jobs'));
+      const total = await getSavedJobsNumber(gdsApiKey, gdsApiUrl, localStorage.getItem('saved-jobs'));
       setMaxCounter(total);
     };
     getAll();

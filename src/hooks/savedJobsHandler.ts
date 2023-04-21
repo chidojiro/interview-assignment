@@ -19,7 +19,7 @@ export type Data = {
 };
 
 // Function that checks if the current logged in user has an already uplaoded file.
-const getSavedJobs = async (gdsApiKey: string, gdsApiUrl: string): Promise<number | undefined> => {
+const getSavedJobsCount = async (gdsApiKey: string, gdsApiUrl: string): Promise<number | undefined> => {
   const talentApi = new TalentAppApi(gdsApiKey, gdsApiUrl);
 
   const response = await talentApi.get<Data, AxiosResponse<SavedJobs>>('/me/saved-jobs?size=1').catch((err) => {
@@ -35,14 +35,14 @@ const getSavedJobs = async (gdsApiKey: string, gdsApiUrl: string): Promise<numbe
   return undefined;
 };
 
-const getSavedJobsCount = async (gdsApiKey: string, gdsApiUrl: string, localStorage: any) => {
+const getSavedJobsNumber = async (gdsApiKey: string, gdsApiUrl: string, localStorage: any) => {
   if (localStorage) {
     const data = JSON.parse(localStorage as string);
     if (data.totalElements) {
       return data.totalElements;
     }
   } else {
-    return getSavedJobs(gdsApiKey, gdsApiUrl).catch((err) => {
+    return getSavedJobsCount(gdsApiKey, gdsApiUrl).catch((err) => {
       // Needed logging for error.
       // eslint-disable-next-line no-console
       console.error('getSavedJobsCount Error: ', err);
@@ -52,4 +52,4 @@ const getSavedJobsCount = async (gdsApiKey: string, gdsApiUrl: string, localStor
   return undefined;
 };
 
-export { getSavedJobs, getSavedJobsCount };
+export { getSavedJobsNumber, getSavedJobsCount };
