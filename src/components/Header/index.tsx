@@ -31,7 +31,7 @@ type HeaderBrands =
   | HeaderBrandsEnum.Red
   | HeaderBrandsEnum.Yellow
   | HeaderBrandsEnum.OffWhite
-  | HeaderBrandsEnum.White
+  | HeaderBrandsEnum.White;
 
 type BreadcrumbsItems = {
   title: string;
@@ -61,7 +61,9 @@ interface HeaderProps {
   routes: Routes;
   submenuLinks: Routes;
   localization: LocalizationTypes;
-  savedJobsEnabled?: {gdsApiKey: string, gdsApiUrl: string}
+  savedJobsEnabled?: {
+    gdsApiKey: string, gdsApiUrl: string
+  }
   popoverTranslations?: TranslationProps;
   currentUrl: string | undefined;
   RouterComponent?: React.FC<any>;
@@ -99,6 +101,7 @@ function Header({
   const homepageUrl = locale === defaultLocale ? '/' : `/${locale}/`;
   const languagePrefix = locale === defaultLocale ? '' : `/${locale}`;
   const dashboard = findElement(submenuLinks[locale as string], 'id', 'dashboard');
+  const savedJobs = findElement(submenuLinks[locale as string], 'id', 'saved-jobs');
   const myRandstadLabel = popoverTranslations && popoverTranslations.myRandstadTitle ? popoverTranslations.myRandstadTitle : '';
   const baseUrl = dashboard && dashboard.url ? dashboard.url : '';
   const myRandstadBaseUrl = (languagePrefix + baseUrl)
@@ -155,7 +158,7 @@ function Header({
               <Logo homepageUrl={homepageUrl} />
               <MainMenu items={mainMenuItems} />
               <ul className="navigation__service navigation__service--minimal">
-                {savedJobsEnabled ? <HeaderSavedJobs gdsApiKey={savedJobsEnabled.gdsApiKey} gdsApiUrl={savedJobsEnabled.gdsApiUrl} buttonUrl="" ariaLabel="" /> : null}
+                {savedJobsEnabled ? <HeaderSavedJobs savedJobsEnabled={savedJobsEnabled} buttonUrl={savedJobs?.url || ''} ariaLabel="" /> : null}
                 <MyRandstad
                   label={myRandstadLabel}
                   show={showMyRandstad}
@@ -176,7 +179,7 @@ function Header({
               </ul>
               <div className="navigation__link-bar flex hidden--until-l">
                 <UtilityNavigation items={utilityMenuItems} />
-                <LanguageSwitcher items={languageSwitcherItems ? languageSwitcherItems : []} extraClasses="l:ml-s" />
+                <LanguageSwitcher items={languageSwitcherItems || []} extraClasses="l:ml-s" />
               </div>
               <div id="navigationPopup">
                 <LoginPopover isAuth={currentUser.loginStatus} links={submenuLinks} locale={locale} languagePrefix={languagePrefix} translations={popoverTranslations} userName={currentUser.currentUser?.personalInfo} logoutUrl={myRandstadLogoutUrl} RouterComponent={RouterComponent} currentRoute={currentRoute} />
@@ -212,7 +215,7 @@ function Header({
               myRandstadMenu={tabBarMenu}
               languagePrefix={languagePrefix}
             />
-            <LanguageSwitcher items={languageSwitcherItems ? languageSwitcherItems : []} />
+            <LanguageSwitcher items={languageSwitcherItems || []} />
           </nav>
         </NavigationModal>
       </header>

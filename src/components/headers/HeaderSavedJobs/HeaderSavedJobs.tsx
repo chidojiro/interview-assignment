@@ -3,22 +3,25 @@ import { getSavedJobsNumber } from '../../../hooks/savedJobsHandler';
 import Icon from '../../Icon';
 
 interface HeaderSavedJobsProps {
-  gdsApiKey: string;
-  gdsApiUrl: string;
+  savedJobsEnabled?: {
+    gdsApiKey: string, gdsApiUrl: string
+  }
   buttonUrl: string;
   ariaLabel: string;
 }
 
-function HeaderSavedJobs({ buttonUrl, gdsApiKey, gdsApiUrl, ariaLabel }: HeaderSavedJobsProps) {
+function HeaderSavedJobs({ buttonUrl, savedJobsEnabled, ariaLabel }: HeaderSavedJobsProps) {
   const [maxCounter, setMaxCounter] = useState<number | null>(null);
 
   useEffect(() => {
     const getAll = async () => {
-      const total = await getSavedJobsNumber(gdsApiKey, gdsApiUrl, localStorage.getItem('saved-jobs'));
+      if (!savedJobsEnabled) return;
+
+      const total = await getSavedJobsNumber(savedJobsEnabled.gdsApiKey, savedJobsEnabled.gdsApiUrl, localStorage.getItem('saved-jobs'));
       setMaxCounter(total);
     };
     getAll();
-  }, [gdsApiKey, gdsApiUrl, localStorage.getItem('saved-jobs')]);
+  }, [savedJobsEnabled, localStorage.getItem('saved-jobs')]);
 
   return (
     <li className="navigation__service-item">
