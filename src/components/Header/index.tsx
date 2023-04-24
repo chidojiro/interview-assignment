@@ -62,7 +62,7 @@ interface HeaderProps {
   submenuLinks: Routes;
   localization: LocalizationTypes;
   savedJobsEnabled?: {
-    gdsApiKey: string, gdsApiUrl: string
+    gdsApiKey: string, gdsApiUrl: string, ariaLabel: string,
   }
   popoverTranslations?: TranslationProps;
   currentUrl: string | undefined;
@@ -163,7 +163,7 @@ function Header({
                     gdsApiKey={savedJobsEnabled.gdsApiKey}
                     gdsApiUrl={savedJobsEnabled.gdsApiUrl}
                     buttonUrl={savedJobs?.url || ''}
-                    ariaLabel=""
+                    ariaLabel={savedJobsEnabled.ariaLabel}
                   />
                 ) : null}
                 <MyRandstad
