@@ -67,12 +67,12 @@ const getSavedJobsNumber = async (gdsApiKey: string, gdsApiUrl: string, localSto
   return undefined;
 };
 
-const deleteSavedJobs = async (gdsApiKey: string, gdsApiUrl: string, savedJobId: string): Promise<void> => {
+const deleteSavedJobs = async (gdsApiKey: string, gdsApiUrl: string, savedJobId: string): Promise<AxiosResponse> => {
   const talentApi = new TalentAppApi(gdsApiKey, gdsApiUrl);
 
-  await talentApi.delete(`/me/saved-jobs/${savedJobId}`).then((res: AxiosResponse) => {
+  return talentApi.delete(`/me/saved-jobs/${savedJobId}`).then((res: AxiosResponse) => {
     saveCountOfSavedJobs(gdsApiKey, gdsApiUrl);
-    return res.data;
+    return res;
   });
 };
 

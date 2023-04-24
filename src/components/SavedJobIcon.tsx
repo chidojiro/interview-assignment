@@ -30,13 +30,14 @@ function SavedJobIcon({
     'icon__toggler--active': savedJobId || iconFilled,
   });
   const onIconClick = async () => {
-    if (returnJobPostingWebDetailId) {
-      returnJobPostingWebDetailId(jobPostingWebDetailId);
-    }
 
     if (savedJobId && typeof (savedJobId) === 'string') {
       await deleteSavedJobs(gdsApiKey, gdsApiUrl, savedJobId);
       setIconFilled('');
+      const onSuccessfullDelete = await deleteSavedJobs(gdsApiKey, gdsApiUrl, savedJobId);
+      if (returnJobPostingWebDetailId && onSuccessfullDelete) {
+        returnJobPostingWebDetailId(jobPostingWebDetailId);
+      }
     } else {
       await postSavedJobs(gdsApiKey, gdsApiUrl, jobPostingWebDetailId);
       setIconFilled('filled');

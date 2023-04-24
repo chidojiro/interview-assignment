@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import Icon from '../Icon';
-import Button from '../button/Button';
+import Button, {ButtonVariants} from '../button/Button';
 
 type CloseEvents = React.MouseEvent | TouchEvent;
 
@@ -14,9 +14,10 @@ interface ToastProps {
   labelClose?: string;
   onClose?: () => void;
   onSuccess?: () => void;
+  successBtnVariant?: ButtonVariants;
 }
 
-function Toast({ title, anchor, id, buttonCloseText, buttonSuccessText, ariaLabelClose = 'close', labelClose = 'close', onSuccess, onClose }: ToastProps) {
+function Toast({ title, anchor, id, buttonCloseText, buttonSuccessText, ariaLabelClose = 'close', labelClose = 'close', onSuccess, onClose, successBtnVariant }: ToastProps) {
   const [closeToast, setCloseToast] = useState('');
 
   const attributes = {
@@ -75,7 +76,7 @@ function Toast({ title, anchor, id, buttonCloseText, buttonSuccessText, ariaLabe
 
   return (
     <>
-      <div className={`toast bg-variant-brand-secondary show toast--active ${closeToast}`}  {...attributes}>
+      <div className={`toast bg-variant-brand-secondary show toast--active ${closeToast}`} {...attributes}>
         <p className="toast__message">{title}</p>
         {(buttonCloseText || buttonSuccessText) && (
           <div className="toast__cta">
@@ -85,7 +86,7 @@ function Toast({ title, anchor, id, buttonCloseText, buttonSuccessText, ariaLabe
               </Button>
             )}
             {buttonSuccessText && (
-              <Button href="#" variant="filled" className="toast__cta ml-xs" small handleClick={(event: CloseEvents) => toastSubmit(event)}>
+              <Button href="#" variant={successBtnVariant} className="toast__cta ml-xs" small handleClick={(event: CloseEvents) => toastSubmit(event)}>
                 {buttonSuccessText}
               </Button>
             )}

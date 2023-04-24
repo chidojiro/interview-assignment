@@ -40,7 +40,6 @@ const showToast = () => {
 
   const toastSucccessHandler = () => {
     setToast(false);
-    console.log('ACCEPT');
   };
 
   return (
@@ -49,7 +48,42 @@ const showToast = () => {
       {toast && (
         <Toast
           title="Thanks, we will inform you about new job opportunities in your mailbox."
-          buttonSubmitText="Accept"
+          buttonSuccessText="Accept"
+          successBtnVariant="filled"
+          onClose={toastCloseHandler}
+          onSuccess={toastSucccessHandler}
+        />
+      )}
+    </>
+  );
+};
+
+showToast();
+```
+
+Toast only with one button without fill
+
+```jsx
+import { Toast } from '@ffw/randstad-shared-components';
+import React, { useState } from 'react';
+
+const showToast = () => {
+  const [toast, setToast] = useState(false);
+  const toastCloseHandler = () => {
+    setToast(false);
+  };
+
+  const toastSucccessHandler = () => {
+    setToast(false);
+  };
+
+  return (
+    <>
+      <button onClick={() => setToast(true)}>Show Toast</button>
+      {toast && (
+        <Toast
+          title="Thanks, we will inform you about new job opportunities in your mailbox."
+          buttonSuccessText="Accept"
           onClose={toastCloseHandler}
           onSuccess={toastSucccessHandler}
         />
@@ -88,6 +122,7 @@ const showToast = () => {
           title="Thanks, we will inform you about new job opportunities in your mailbox."
           buttonSubmitText="do it now"
           buttonCloseText="not now"
+          successBtnVariant="filled"
           onClose={toastCloseHandler}
           onSuccess={toastSucccessHandler}
         />
