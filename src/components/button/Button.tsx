@@ -4,7 +4,7 @@ import Icon from '../Icon';
 
 type ButtonTypes = 'button' | 'submit' | 'reset';
 
-type ButtonVariants = 'filled' | 'plain';
+export type ButtonVariants = 'filled' | 'plain';
 
 interface ButtonProps {
   children?: string;
