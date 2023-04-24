@@ -1,8 +1,15 @@
 import React from 'react';
 import cn from 'classnames';
+import { TextArea as OrbitComponent } from '@ffw/randstad-local-orbit/original/js/components/text-area';
+import { CharacterCounter } from '@ffw/randstad-local-orbit/original/js/components/character-counter';
+import { AutoResize } from '@ffw/randstad-local-orbit/original/js/components/auto-resize';
+/** Required libraries for this component
+ * - character-count
+ * - auto-resize
+ * - textarea
+ */
 
 import withField from '../../hoc/withField';
-import useLibrary from '../../hooks/useLibrary';
 import FormGroup from '../form-group/FormGroup';
 
 const defaultCharacterCounterLabels = {
@@ -23,13 +30,6 @@ interface TextAreaProps {
     characters?: string,
     charactersLeft?: string,
   },
-  /** Used to pass js Orbit library responsible for functionality. Note: This should passed on component setup so you don't have to pass it every time.
-   * Required libraries for this component
-   * - character-count
-   * - auto-resize
-   * - textarea
-   */
-  libs: [],
   /** Set text area max length */
   maxlength: number,
   /** @ignore Private props from HOC for easy setup. */
@@ -48,13 +48,22 @@ function TextArea({
   autoResize = true,
   characterCounter,
   expanded,
-  libs,
   _formGroupProps,
   characterCounterLabels = {},
   maxlength = 250,
   ...props
 }: TextAreaProps) {
-  const [ref] = useLibrary(libs);
+  const ref = React.useRef<HTMLTextAreaElement>(null);
+
+  React.useEffect(() => {
+    if (!ref.current) return;
+    if (!ref.current.dataset.rendered) {
+      ref.current.dataset.rendered = 'rendered';
+      new OrbitComponent(ref.current);
+      if (characterCounter) new CharacterCounter(ref.current);
+      if (autoResize) new AutoResize(ref.current);
+    }
+  }, [autoResize, characterCounter]);
 
   const characterCounterAttributes = characterCounter
     ? {
