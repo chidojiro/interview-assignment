@@ -32,7 +32,6 @@ function SavedJobIcon({
   const onIconClick = async () => {
 
     if (savedJobId && typeof (savedJobId) === 'string') {
-      await deleteSavedJobs(gdsApiKey, gdsApiUrl, savedJobId);
       setIconFilled('');
       const onSuccessfullDelete = await deleteSavedJobs(gdsApiKey, gdsApiUrl, savedJobId);
       if (returnJobPostingWebDetailId && onSuccessfullDelete) {
