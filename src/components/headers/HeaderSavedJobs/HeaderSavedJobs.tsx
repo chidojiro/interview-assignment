@@ -3,25 +3,29 @@ import { getSavedJobsNumber } from '../../../hooks/savedJobsHandler';
 import Icon from '../../Icon';
 
 interface HeaderSavedJobsProps {
-  savedJobsEnabled?: {
-    gdsApiKey: string, gdsApiUrl: string
-  }
+  gdsApiKey: string;
+  gdsApiUrl: string;
   buttonUrl: string;
   ariaLabel: string;
 }
 
-function HeaderSavedJobs({ buttonUrl, savedJobsEnabled, ariaLabel }: HeaderSavedJobsProps) {
-  const [maxCounter, setMaxCounter] = useState<number | null>(null);
+function HeaderSavedJobs({
+  buttonUrl,
+  gdsApiKey,
+  gdsApiUrl,
+  ariaLabel,
+}: HeaderSavedJobsProps) {
+  const [maxCounter, setMaxCounter] = useState<number>(0);
 
   useEffect(() => {
     const getAll = async () => {
-      if (!savedJobsEnabled) return;
-
-      const total = await getSavedJobsNumber(savedJobsEnabled.gdsApiKey, savedJobsEnabled.gdsApiUrl, localStorage.getItem('saved-jobs'));
-      setMaxCounter(total);
+      const total = await getSavedJobsNumber(gdsApiKey, gdsApiUrl, localStorage.getItem('saved-jobs'));
+      if (total) {
+        setMaxCounter(total);
+      }
     };
     getAll();
-  }, [savedJobsEnabled, localStorage.getItem('saved-jobs')]);
+  }, [gdsApiKey, gdsApiUrl, localStorage.getItem('saved-jobs')]);
 
   return (
     <li className="navigation__service-item">
@@ -32,7 +36,7 @@ function HeaderSavedJobs({ buttonUrl, savedJobsEnabled, ariaLabel }: HeaderSaved
           <Icon iconType="heart-filled" iconClassName="icon icon--inline" />
         )}
         <span className="favorites__counter" id="maxCounter">
-          {maxCounter === null ? '' : maxCounter}
+          {maxCounter}
         </span>
       </a>
     </li>

@@ -158,7 +158,14 @@ function Header({
               <Logo homepageUrl={homepageUrl} />
               <MainMenu items={mainMenuItems} />
               <ul className="navigation__service navigation__service--minimal">
-                {savedJobsEnabled ? <HeaderSavedJobs savedJobsEnabled={savedJobsEnabled} buttonUrl={savedJobs?.url || ''} ariaLabel="" /> : null}
+                {savedJobsEnabled ? (
+                  <HeaderSavedJobs
+                    gdsApiKey={savedJobsEnabled.gdsApiKey}
+                    gdsApiUrl={savedJobsEnabled.gdsApiUrl}
+                    buttonUrl={savedJobs?.url || ''}
+                    ariaLabel=""
+                  />
+                ) : null}
                 <MyRandstad
                   label={myRandstadLabel}
                   show={showMyRandstad}
