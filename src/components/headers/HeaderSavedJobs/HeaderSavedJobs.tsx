@@ -9,13 +9,20 @@ interface HeaderSavedJobsProps {
   ariaLabel: string;
 }
 
-function HeaderSavedJobs({ buttonUrl, gdsApiKey, gdsApiUrl, ariaLabel }: HeaderSavedJobsProps) {
-  const [maxCounter, setMaxCounter] = useState<number | null>(null);
+function HeaderSavedJobs({
+  buttonUrl,
+  gdsApiKey,
+  gdsApiUrl,
+  ariaLabel,
+}: HeaderSavedJobsProps) {
+  const [maxCounter, setMaxCounter] = useState<number>(0);
 
   useEffect(() => {
     const getAll = async () => {
       const total = await getSavedJobsNumber(gdsApiKey, gdsApiUrl, localStorage.getItem('saved-jobs'));
-      setMaxCounter(total);
+      if (total) {
+        setMaxCounter(total);
+      }
     };
     getAll();
   }, [gdsApiKey, gdsApiUrl, localStorage.getItem('saved-jobs')]);
@@ -29,7 +36,7 @@ function HeaderSavedJobs({ buttonUrl, gdsApiKey, gdsApiUrl, ariaLabel }: HeaderS
           <Icon iconType="heart-filled" iconClassName="icon icon--inline" />
         )}
         <span className="favorites__counter" id="maxCounter">
-          {maxCounter === null ? '' : maxCounter}
+          {maxCounter}
         </span>
       </a>
     </li>
