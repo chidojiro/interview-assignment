@@ -25,12 +25,11 @@ interface JobCardProps extends JobItemMetadataProps {
   activeView?: 'grid' | 'list';
   viewJobText: string;
   closeText: string;
-  savedJobsEnabled?: boolean;
   logoAltTagValue?: string;
   logoSrcTagValue?: string;
   infoIconAriaLabel?: string;
   closeIconAriaLabel?: string;
-  savedJobsProps?: SavedJobsProps;
+  savedJobsEnabled?: SavedJobsProps;
   onMouseDownClick: () => void;
 }
 
@@ -44,7 +43,6 @@ const JobCard: React.FC<JobCardProps> = (props) => {
     date,
     id,
     enableLogo = false,
-    savedJobsEnabled = false,
     logoAltTagValue = '',
     logoSrcTagValue = '',
     activeView = 'grid',
@@ -52,7 +50,7 @@ const JobCard: React.FC<JobCardProps> = (props) => {
     closeIconAriaLabel,
     infoIconAriaLabel,
     viewJobText,
-    savedJobsProps,
+    savedJobsEnabled,
   } = props;
   const [realLogoImg, setRealLogoImg] = useState(true);
 
@@ -102,7 +100,7 @@ const JobCard: React.FC<JobCardProps> = (props) => {
             </a>
           </h3>
         </div>
-        {savedJobsEnabled && savedJobsProps && <SavedJobIcon gdsApiKey={savedJobsProps.gdsApiKey} gdsApiUrl={savedJobsProps.gdsApiUrl} jobPostingWebDetailId={savedJobsProps.jobPostingWebDetailId} savedJobId={savedJobsProps.savedJobId} returnJobPostingWebDetailId={savedJobsProps.returnJobPostingWebDetailId} />}
+        {savedJobsEnabled && <SavedJobIcon gdsApiKey={savedJobsEnabled.gdsApiKey} gdsApiUrl={savedJobsEnabled.gdsApiUrl} jobPostingWebDetailId={savedJobsEnabled.jobPostingWebDetailId} savedJobId={savedJobsEnabled.savedJobId} returnJobPostingWebDetailId={savedJobsEnabled.returnJobPostingWebDetailId} />}
       </div>
       <JobItemMetadata {...props} />
       {/* Safe here. */}
