@@ -25,7 +25,6 @@ interface JobCardProps extends JobItemMetadataProps {
   activeView?: 'grid' | 'list';
   viewJobText: string;
   closeText: string;
-  savedJobsEnabled?: boolean;
   logoAltTagValue?: string;
   logoSrcTagValue?: string;
   infoIconAriaLabel?: string;
@@ -44,7 +43,6 @@ const JobCard: React.FC<JobCardProps> = (props) => {
     date,
     id,
     enableLogo = false,
-    savedJobsEnabled = false,
     logoAltTagValue = '',
     logoSrcTagValue = '',
     activeView = 'grid',
@@ -102,7 +100,7 @@ const JobCard: React.FC<JobCardProps> = (props) => {
             </a>
           </h3>
         </div>
-        {savedJobsEnabled && savedJobsProps && <SavedJobIcon gdsApiKey={savedJobsProps.gdsApiKey} gdsApiUrl={savedJobsProps.gdsApiUrl} jobPostingWebDetailId={savedJobsProps.jobPostingWebDetailId} savedJobId={savedJobsProps.savedJobId} returnJobPostingWebDetailId={savedJobsProps.returnJobPostingWebDetailId} />}
+        {savedJobsProps && <SavedJobIcon gdsApiKey={savedJobsProps.gdsApiKey} gdsApiUrl={savedJobsProps.gdsApiUrl} jobPostingWebDetailId={savedJobsProps.jobPostingWebDetailId} savedJobId={savedJobsProps.savedJobId} returnJobPostingWebDetailId={savedJobsProps.returnJobPostingWebDetailId} />}
       </div>
       <JobItemMetadata {...props} />
       {/* Safe here. */}
