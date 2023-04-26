@@ -7,7 +7,7 @@ type ButtonTypes = 'button' | 'submit' | 'reset';
 export type ButtonVariants = 'filled' | 'plain';
 
 interface ButtonProps {
-  children?: string;
+  children?: string | React.ReactNode;
   handleClick?: (event: React.MouseEvent<HTMLElement>) => void;
   type?: ButtonTypes;
   small?: boolean;
