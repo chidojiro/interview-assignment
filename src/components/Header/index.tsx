@@ -114,15 +114,18 @@ function Header({
 
   const homepageUrl = locale === defaultLocale ? '/' : `/${locale}/`;
   const languagePrefix = locale === defaultLocale ? '' : `/${locale}`;
-  const dashboard = findElement(submenuLinks[locale as string], 'id', 'dashboard');
   const savedJobs = findElement(submenuLinks[locale as string], 'id', 'saved-jobs');
+  const savedJobsBaseUrl = savedJobs && savedJobs.url ? savedJobs.url : '';
+  const savedJobsUrl = (languagePrefix + savedJobsBaseUrl)
+    .replace(/^\/\/?/, '/');
+  const dashboard = findElement(submenuLinks[locale as string], 'id', 'dashboard');
   const myRandstadLabel = popoverTranslations && popoverTranslations.myRandstadTitle ? popoverTranslations.myRandstadTitle : '';
   const baseUrl = dashboard && dashboard.url ? dashboard.url : '';
   const myRandstadBaseUrl = (languagePrefix + baseUrl)
     .replace(/^\/\/?/, '/');
 
   // Get (ordered) languages from the s3 file and filter these with routes.
-  let menuLinks: Menu  = {}
+  let menuLinks: Menu = {};
   if (routes && (routes as Routes)[locale as string]) {
     menuLinks = (routes as Routes)[locale as string];
   }
@@ -176,7 +179,7 @@ function Header({
                   <HeaderSavedJobs
                     gdsApiKey={savedJobsEnabled.gdsApiKey}
                     gdsApiUrl={savedJobsEnabled.gdsApiUrl}
-                    buttonUrl={savedJobs?.url || ''}
+                    buttonUrl={savedJobsUrl}
                     ariaLabel={savedJobsEnabled.ariaLabel}
                   />
                 ) : null}
