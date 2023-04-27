@@ -22,10 +22,15 @@ function HeaderSavedJobs({
       const total = await getSavedJobsNumber(gdsApiKey, gdsApiUrl, localStorage.getItem('saved-jobs'));
       if (total) {
         setMaxCounter(total);
+      } else {
+        setMaxCounter(0);
       }
     };
+    window.addEventListener('saved-jobs', () => {
+      getAll();
+    });
     getAll();
-  }, [gdsApiKey, gdsApiUrl, localStorage.getItem('saved-jobs')]);
+  }, [gdsApiKey, gdsApiUrl]);
 
   return (
     <li className="navigation__service-item">
