@@ -12,7 +12,7 @@ import TabBar from '../navigation/TabBar';
 import Breadcrumbs from '../Breadcrumbs';
 import MyRandstad from '../MyRandstad';
 import {
-  getMainMenu, findElement, LocalizationTypes, Routes, getHeaderClass,
+  getMainMenu, findElement, LocalizationTypes, Routes, getHeaderClass, generateUrl,
 } from './headerUtils';
 import LoginPopover, { TranslationProps } from '../LoginPopover';
 import getUserData from '../../utils/getUserData';
@@ -101,7 +101,7 @@ function Header({
   toastSettings
 }: HeaderProps) {
   const userData = getUserData();
-  // TO DO: currentUser.loginState state is needed because tabBar needs an active link on logout
+  // TO DO: currentUser.loginState state needed because tabBar needs an active link on logout
   const [currentUser, setCurrentUser] = useState(userData);
 
   useEffect(() => {
@@ -114,15 +114,14 @@ function Header({
 
   const homepageUrl = locale === defaultLocale ? '/' : `/${locale}/`;
   const languagePrefix = locale === defaultLocale ? '' : `/${locale}`;
-  const savedJobs = findElement(submenuLinks[locale as string], 'id', 'saved-jobs');
-  const savedJobsBaseUrl = savedJobs && savedJobs.url ? savedJobs.url : '';
-  const savedJobsUrl = (languagePrefix + savedJobsBaseUrl)
-    .replace(/^\/\/?/, '/');
+
+  const savedJobsUrl = generateUrl(languagePrefix, locale as string, 'saved-jobs', submenuLinks);
+  const myRandstadLogoutUrl = generateUrl(languagePrefix, locale as string, 'logout', submenuLinks);
+  const myRandstadBaseUrl = generateUrl(languagePrefix, locale as string, 'dashboard', submenuLinks);
+
   const dashboard = findElement(submenuLinks[locale as string], 'id', 'dashboard');
   const myRandstadLabel = popoverTranslations && popoverTranslations.myRandstadTitle ? popoverTranslations.myRandstadTitle : '';
   const baseUrl = dashboard && dashboard.url ? dashboard.url : '';
-  const myRandstadBaseUrl = (languagePrefix + baseUrl)
-    .replace(/^\/\/?/, '/');
 
   // Get (ordered) languages from the s3 file and filter these with routes.
   let menuLinks: Menu = {};
@@ -131,9 +130,6 @@ function Header({
   }
   const mainMenuItems = getMainMenu(menuLinks, baseUrl, currentUrl as string);
   const utilityMenuItems = menuLinks && menuLinks?.utility ? menuLinks.utility : [];
-
-  const logout = findElement(submenuLinks[locale as string], 'id', 'logout');
-  const myRandstadLogoutUrl = logout && logout.url ? `${languagePrefix}${logout.url}` : '';
   const showMyRandstad = true;
 
   let subMenu = isMyRandstad ? (submenuLinks as Routes)[locale as string].secondary : routes?.[locale as string]?.main?.[0]?.children;
