@@ -30,5 +30,4 @@ translations_upload:
   rules:
     - if: $environment && $CI_PIPELINE_SOURCE == "pipeline"
   script: |
-    set -x
-    aws s3 sync src/i18n/ s3://s3-bluex-dta-bx-${environment}2-localization/components_lib/default/ --exclude "*" --include "??.json"
+    AWS_PROFILE="s3-sync" aws s3 sync src/i18n/ s3://s3-bluex-dta-bx-${environment}2-localization/components_lib/default/ --exclude "*" --include "??.json"
