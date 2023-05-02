@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import withField, { WithFieldProps } from '../../hoc/withField';
 import FormGroup from '../form-group/FormGroup';
@@ -35,9 +35,29 @@ function InputField({
     ...props,
   };
 
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (inputRef.current?.type === 'number') {
+      const ignoreScroll = (e: WheelEvent) => {
+        if (e.target) {
+          (e.target as HTMLInputElement)?.blur();
+          e.stopPropagation();
+          setTimeout(() => {
+            (e.target as HTMLInputElement)?.focus();
+          }, 0);
+        }
+      };
+
+      if (inputRef.current) {
+        inputRef.current.addEventListener('wheel', ignoreScroll);
+      }
+    }
+  }, [inputRef]);
+
   return (
     <FormGroup {..._formGroupProps}>
-      <input {...otherFieldProps} />
+      <input {...otherFieldProps} ref={inputRef} />
     </FormGroup>
   );
 }

@@ -33,7 +33,7 @@ function Toggle({
   };
 
   return (
-    <div ref={ref} role="switch" aria-checked={checked} className={`switch__${type}`} data-rs-switch={name} onClick={onClick}>
+    <div ref={ref} role="switch" aria-checked={checked} className={`switch__${type}`} tabIndex={0} data-rs-switch={name} onClick={onClick}>
       <span className={`switch switch__${type}`}>
         <Icon iconClassName="icon" svgProps={{ className: 'checkmark' }} iconType="check-16" />
       </span>
