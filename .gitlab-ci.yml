@@ -30,4 +30,17 @@ translations_upload:
   rules:
     - if: $environment && $CI_PIPELINE_SOURCE == "pipeline"
   script: |
-    AWS_PROFILE="s3-sync" aws s3 sync src/i18n/ s3://s3-bluex-dta-bx-${environment}2-localization/components_lib/default/ --include "??.json"
+    
+    # s3-sync is the aws s3 profile used for the dev environments
+    AWS_S3_PROFILE="s3-sync"
+    
+    if [[ $environment == "test" ]]; then
+      environment="tst";
+    fi
+    
+    if [[ $environment == "prod" ]]; then
+      environment="prd";
+      AWS_S3_PROFILE="bx-codecommit";
+    fi
+    
+    AWS_PROFILE="$AWS_S3_PROFILE" aws s3 sync src/i18n/ s3://s3-bluex-dta-bx-${environment}2-localization/components_lib/default/ --include "??.json"
