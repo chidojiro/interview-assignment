@@ -34,11 +34,11 @@ translations_upload:
     # s3-sync is the aws s3 profile used for the dev environments
     AWS_S3_PROFILE="s3-sync"
     
-    if [[ $environment == "test" ]]; then
+    if [[ $ENVIRONMENT == "test" ]]; then
       ENVIRONMENT="tst";
     fi
     
-    if [[ $environment == "prod" ]]; then
+    if [[ $ENVIRONMENT == "prod" ]]; then
       ENVIRONMENT="prd";
       AWS_S3_PROFILE="bx-codecommit";
     fi
