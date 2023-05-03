@@ -45,9 +45,9 @@ interface TextAreaProps {
  * **Wrapped with `FormGroup` component and support all of its props.**
  */
 function TextArea({
-  autoResize = true,
+  autoResize = false,
   characterCounter,
-  expanded,
+  expanded = false,
   _formGroupProps,
   characterCounterLabels = {},
   maxlength = 250,
@@ -59,11 +59,11 @@ function TextArea({
     if (!ref.current) return;
     if (!ref.current.dataset.rendered) {
       ref.current.dataset.rendered = 'rendered';
-      new OrbitComponent(ref.current);
+      if (expanded) new OrbitComponent(ref.current);
       if (characterCounter) new CharacterCounter(ref.current);
       if (autoResize) new AutoResize(ref.current);
     }
-  }, [autoResize, characterCounter]);
+  }, [autoResize, characterCounter, expanded]);
 
   const characterCounterAttributes = characterCounter
     ? {
@@ -83,7 +83,7 @@ function TextArea({
     }
     : {};
 
-  const expandedAttributes = autoResize
+  const expandedAttributes = expanded
     ? {
       'data-rs-textarea': 'expand',
       rows: 1,
@@ -100,7 +100,7 @@ function TextArea({
         <textarea
           {...props}
           className={cn({
-            'fixed-size': !autoResize,
+            'fixed-size': !autoResize && !expanded,
             'textarea--expand': expanded,
           })}
           data-scl=""
