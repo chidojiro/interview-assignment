@@ -28,19 +28,19 @@ translations_upload:
     - randstad-bluex
   # Execute when externally triggered only.
   rules:
-    - if: $environment && $CI_PIPELINE_SOURCE == "pipeline"
+    - if: $ENVIRONMENT && $CI_PIPELINE_SOURCE == "pipeline"
   script: |
     
     # s3-sync is the aws s3 profile used for the dev environments
     AWS_S3_PROFILE="s3-sync"
     
     if [[ $environment == "test" ]]; then
-      environment="tst";
+      ENVIRONMENT="tst";
     fi
     
     if [[ $environment == "prod" ]]; then
-      environment="prd";
+      ENVIRONMENT="prd";
       AWS_S3_PROFILE="bx-codecommit";
     fi
     
-    AWS_PROFILE="$AWS_S3_PROFILE" aws s3 sync src/i18n/ s3://s3-bluex-dta-bx-${environment}2-localization/components_lib/default/ --include "??.json"
+    AWS_PROFILE="$AWS_S3_PROFILE" aws s3 sync src/i18n/ s3://s3-bluex-dta-bx-${ENVIRONMENT}2-localization/components_lib/default/ --include "??.json"
