@@ -4,9 +4,11 @@ import { BgColor, getBackground } from '../../utils/getBackground';
 
 export interface HeaderIllustrationProps extends BgColor {
   illustration?: string;
+  illustrationClasses?: string;
   narrowIllustration?: boolean;
   altTitle?: string;
   title?: string;
+  titleClasses?: string;
   description?: string;
   buttonLink?: string;
   buttonText?: string;
@@ -14,10 +16,12 @@ export interface HeaderIllustrationProps extends BgColor {
 
 function HeaderIllustration({
   illustration,
+  illustrationClasses,
   narrowIllustration,
   altTitle,
   bgColor = 'primary',
   title,
+  titleClasses,
   description,
   buttonLink,
   buttonText,
@@ -38,6 +42,7 @@ function HeaderIllustration({
       'px-m': !narrowIllustration,
       'px-xl': narrowIllustration,
     },
+    illustrationClasses,
   );
 
   const displayIllustration = illustration && (
@@ -50,7 +55,7 @@ function HeaderIllustration({
   return (
     <div className={headerClassNames}>
       <div className="header__wrapper wrapper flex flex-wrap">
-        <div className="header__content header__content--l content-block l:pt-none order-2 l:order-3">
+        <div className={`header__content header__content--l content-block ${titleClasses || 'l:pt-none order-2 l:order-3'}`}>
           {title && <h1 className="content-block__title">{title}</h1>}
           {description && (
             <p className="content-block__description text-body-m l:text-body-l">
