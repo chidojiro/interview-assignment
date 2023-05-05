@@ -43,4 +43,4 @@ translations_upload:
       AWS_S3_PROFILE="bx-codecommit";
     fi
     
-    AWS_PROFILE="$AWS_S3_PROFILE" aws s3 sync src/i18n/ s3://s3-bluex-dta-bx-${ENVIRONMENT}2-localization/components_lib/default/ --include "??.json"
+    AWS_PROFILE="$AWS_S3_PROFILE" aws s3 sync src/i18n/ s3://s3-bluex-dta-bx-${ENVIRONMENT}2-localization/components_lib/default/ --include "??.json" --grants full=id=9ad45dfc00439d89906f4ac4321f9cfc63a061e60782b351ca166be4a29ba2d2
