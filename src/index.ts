@@ -3,6 +3,7 @@ import PasswordField from './components/forms/PasswordField';
 import FieldError from './components/form-group/FieldError/FieldError';
 import SelectField from './components/forms/SelectField';
 import InputField from './components/forms/InputField';
+import DatePicker from './components/forms/DatePicker';
 import Checkbox from './components/forms/Checkbox';
 import Toggle from './components/forms/Toggle';
 import Block from './components/Block';
@@ -94,6 +95,7 @@ export {
   TextNotice,
   SelectField,
   InputField,
+  DatePicker,
   TabBar,
   FooterColumnNav,
   FooterBottomNav,
