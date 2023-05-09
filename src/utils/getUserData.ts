@@ -12,14 +12,19 @@ type CurrentUser = {
   personalInfo: PersonalInfo;
 };
 
-type PersistData = {
+export type PersistData = {
   currentUser?: CurrentUser;
   loginStatus: boolean;
 };
 
 function getUserData(): PersistData {
-  const persistData = localStorage.getItem('persist:root');
-  const data = JSON.parse(persistData as string);
+  if (typeof window === 'undefined') {
+    return {
+      loginStatus: false,
+    };
+  }
+  const data = JSON.parse(localStorage.getItem('persist:root') || '{}');
+
   let loginStatus = false;
   if (data?.currentUser && data?.loginStatus && data?.loginStatus === 'true') {
     const currentUser = JSON.parse(data.currentUser);
