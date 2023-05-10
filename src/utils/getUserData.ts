@@ -1,6 +1,7 @@
 type PersonalInfo = {
   familyName: string;
   givenName: string;
+  preferredName: string | undefined;
 };
 
 type CurrentUser = {
