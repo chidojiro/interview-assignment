@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import type { PersistData } from 'src/utils/getUserData';
+import type { PersistData } from '../utils/getUserData';
 
 function getProfileData(): PersistData | object {
   if (typeof window === 'undefined') return {};
