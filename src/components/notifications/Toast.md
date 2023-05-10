@@ -120,7 +120,7 @@ const showToast = () => {
       {toast && (
         <Toast
           title="Thanks, we will inform you about new job opportunities in your mailbox."
-          buttonSubmitText="do it now"
+          buttonSuccessText="do it now"
           buttonCloseText="not now"
           successBtnVariant="filled"
           onClose={toastCloseHandler}
