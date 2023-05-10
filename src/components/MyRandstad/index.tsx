@@ -13,8 +13,8 @@ export interface MyRandstadProps {
 function MyRandstad({
   isAuth, show, label, userName, userImgUrl,
 }: MyRandstadProps) {
-  const { givenName, familyName } = userName || { givenName: '', familyName: '' } as UserNameProps;
-  const userInitials = `${givenName.slice(0, 1).toUpperCase()}`;
+  const { givenName, familyName, preferredName } = userName || { givenName: '', familyName: '', preferredName: '' } as UserNameProps;
+  const userInitials = preferredName ? `${preferredName.slice(0, 1).toUpperCase()}` : `${givenName.slice(0, 1).toUpperCase()}`;
 
   if (!show) {
     return null;
@@ -40,14 +40,14 @@ function MyRandstad({
           <>
             <span className="icon icon--inline">
               {userImgUrl ? (
-                <img src={userImgUrl} alt={`${givenName} ${familyName}`} className="image--circle" />
+                <img src={userImgUrl} alt={`${preferredName || givenName} ${familyName}`} className="image--circle" />
               ) : (
                 <span className="navigation__service-my-randstad__placeholder">{userInitials}</span>
               )}
             </span>
             <Icon iconClassName="icon icon--xs icon--inline icon-chevron ml-none hidden--from-l" iconType="chevron-down-8" />
             <span id="navigation__service-user-text" className="hidden--until-l">
-              {givenName}
+              {preferredName || givenName}
             </span>
           </>
         )}
