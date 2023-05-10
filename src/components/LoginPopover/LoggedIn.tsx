@@ -21,7 +21,7 @@ function LoggedIn({
     <>
       <div className="popover__title">
         <div className="person-profile">
-          <div className="person-profile__profile ml-none">
+          <div className="person-profile__profile ml-none" style={{ wordBreak: 'break-word' }}>
             {title}
             {' '}
             <span className="text--emphasis">
