@@ -24,14 +24,13 @@ function getUserData(): PersistData {
       loginStatus: false,
     };
   }
-  const data = JSON.parse(localStorage.getItem('persist:root') || '{}');
+  const data = JSON.parse(localStorage.getItem('userState') || '{}');
 
   let loginStatus = false;
-  if (data?.currentUser && data?.loginStatus && data?.loginStatus === 'true') {
-    const currentUser = JSON.parse(data.currentUser);
-    if (data.loginStatus === 'true') {
-      loginStatus = true;
-    }
+  if (data?.currentUser && data?.loginStatus) {
+    const currentUser = data.currentUser;
+    loginStatus = data.loginStatus;
+
     return { currentUser, loginStatus };
   }
 

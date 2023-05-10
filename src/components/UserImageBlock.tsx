@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 type ImageSizeClasses = {
   'XS': string,
@@ -26,11 +26,17 @@ function UserImageBlock({ size, picture, initials }: UserImageBlockProps) {
     XL: 'avatar--XL',
   };
 
+  const [userInitials, setUserInitials] = useState('');
+
+  useEffect(() => {
+    setUserInitials(initials);
+  }, [initials]);
+
   return (
     <div className={`avatar avatar__initials ${sizeClasses[size]}`}>
       {picture && picture.url
         ? <img src={picture.url} alt={initials} sizes="100vw" />
-        : <span>{initials}</span>}
+        : <span>{userInitials}</span>}
     </div>
   );
 }
