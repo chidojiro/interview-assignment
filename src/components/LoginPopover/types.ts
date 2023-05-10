@@ -1,6 +1,7 @@
 export type UserNameProps = {
   givenName: string;
   familyName: string;
+  preferredName: string;
 };
 
 export type LinksType = {

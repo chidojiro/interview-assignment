@@ -15,7 +15,7 @@ interface LoggedInProps {
 function LoggedIn({
   menuLinks, logoutUrl, logoutText, userName, title, RouterComponent, callback,
 }: LoggedInProps) {
-  const { givenName, familyName } = userName as UserNameProps;
+  const { givenName, familyName, preferredName } = userName as UserNameProps;
 
   return (
     <>
@@ -25,7 +25,7 @@ function LoggedIn({
             {title}
             {' '}
             <span className="text--emphasis">
-              {givenName}
+              {preferredName || givenName}
               {' '}
               {familyName}
             </span>
