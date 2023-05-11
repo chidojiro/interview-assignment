@@ -21,6 +21,7 @@ interface DatePickerProps extends WithFieldProps {
   maxDate?: string;
   language?: string;
   _formGroupProps?: object;
+  ariaLabel: string;
 }
 
 /**
@@ -33,7 +34,8 @@ interface DatePickerProps extends WithFieldProps {
  */
 
 function DatePicker({
-  disabled,
+  ariaLabel,
+  disabled = false,
   placeholder,
   _formGroupProps,
   altFormat = 'd-m-Y',
@@ -63,7 +65,7 @@ function DatePicker({
     if (!ref.current) return;
     const { DatePicker: OrbitComponent } = require('@ffw/randstad-local-orbit/js/components/date-picker');
     new OrbitComponent(ref.current);
-  }, []);
+  }, [minDate, maxDate]);
 
   /**
    * The following useEffect attaches the onChange event to the second field
@@ -96,7 +98,7 @@ function DatePicker({
   return (
     <FormGroup {..._formGroupProps}>
       <div ref={ref} data-rs-datepicker="date-picker-component">
-        <button className="button--clean" type="button" tabIndex={-1} aria-label="Open datepicker" />
+        <button className="button--clean" type="button" tabIndex={-1} aria-label={ariaLabel} />
         <input
           type="hidden"
           data-rs-datepicker-input=""
