@@ -35,7 +35,7 @@ interface DatePickerProps extends WithFieldProps {
 
 function DatePicker({
   ariaLabel,
-  disabled = false,
+  disabled = undefined,
   placeholder,
   _formGroupProps,
   altFormat = 'd-m-Y',
@@ -51,15 +51,9 @@ function DatePicker({
   maxDate,
   language,
   onChange,
-  ...props
+  name,
 }: DatePickerProps): React.ReactElement {
   const ref = useRef(null);
-
-  const otherFieldProps = {
-    ...(placeholder && { placeholder }),
-    disabled,
-    ...props,
-  };
 
   useEffect(() => {
     if (!ref.current) return;
@@ -83,7 +77,7 @@ function DatePicker({
 
       const target = (ref.current as HTMLInputElement | null)?.querySelector('input.input') as HTMLInputElement;
       if (target) {
-        target.name = props.name;
+        target.name = name;
         if (onChange) {
           onChange({
             target,
@@ -101,6 +95,7 @@ function DatePicker({
         <button className="button--clean" type="button" tabIndex={-1} aria-label={ariaLabel} />
         <input
           type="hidden"
+          id={`${name}-datepicker`}
           data-rs-datepicker-input=""
           data-rs-datepicker-alt-format={altFormat}
           data-rs-datepicker-date-format={dateFormat}
@@ -119,10 +114,9 @@ function DatePicker({
           max={maxDate}
           min={minDate}
           required
-          placeholder="dd-mm-yyyy"
-          id="date-picker-component"
+          placeholder={placeholder}
+          disabled={disabled}
           className="flatpickr flatpickr-input"
-          {...otherFieldProps}
         />
         <span className="button--icon-only button--form-group-style" role="button" aria-label="">
           <Icon iconType="calendar" />
