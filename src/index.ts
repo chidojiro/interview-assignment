@@ -63,6 +63,8 @@ import AccordionItem from './components/accordion/AccordionItem';
 import Autosuggest from './components/forms/Autosuggest';
 import Dropdown from './components/form-group/Dropdown';
 // import Stackable from "./components/form-group/Stackable";
+import ApplicationProcess from './components/applicationProcess/ApplicationProcess';
+import ApplicationProcessCard from './components/applicationProcess/ApplicationProcessCard';
 
 export {
   PasswordField,
@@ -133,6 +135,8 @@ export {
   // Stackable,
   // FormGroup,
   Dropdown,
+  ApplicationProcess,
+  ApplicationProcessCard,
 };
 
 /**

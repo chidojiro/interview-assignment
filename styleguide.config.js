@@ -110,6 +110,11 @@ module.exports = {
       description: 'Job card component and its metadata fields component.',
     },
     {
+      name: 'Application Process',
+      components: 'src/components/applicationProcess/*.tsx',
+      description: 'Application process component and its cards components.',
+    },
+    {
       name: 'User',
       components: [
         'src/components/UserImageBlock.tsx',
