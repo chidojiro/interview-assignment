@@ -55,3 +55,20 @@ import { InputField } from "@ffw/randstad-shared-components";
   disabled="true"
 />;
 ```
+Currency field. The difference is that you should add these props<br/>
+formGroupClass="currency-format"<br/>
+currency="€"
+```jsx
+import { InputField } from "@ffw/randstad-shared-components";
+
+<InputField
+  type="text"
+  name="currency-1"
+  id="currency-1"
+  required
+  placeholder="ex. 5000"
+  label="Currency field"
+  formGroupClass="currency-format"
+  currency="€"
+/>;
+```
