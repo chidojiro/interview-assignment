@@ -48,7 +48,7 @@ describe('Autosuggest component tests', () => {
     );
 
     const input = await findByTestId('autosuggest') as HTMLInputElement;
-    // Test fast typing.
+    // Test debounce mechanism.
     await act(async () => {
       fireEvent.change(input, { target: { value: 'foo' } });
       await waitForDebounce(200);

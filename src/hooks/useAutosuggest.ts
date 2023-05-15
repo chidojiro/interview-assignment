@@ -63,7 +63,7 @@ export type UseAutosuggestParamTypes = {
     itemsStripWordList?: string[];
   };
 };
-// TODO refactor this hook into bunch of separate handlers.
+// It's not possible, unless to create bunch of utils/hook handlers which will complicate logic even more.
 /* eslint-disable sonarjs/cognitive-complexity */
 const useAutosuggest = ({
   items = [],

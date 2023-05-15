@@ -18,11 +18,10 @@ export interface WithFieldProps {
   onBlur?: (event: React.FocusEvent<HTMLInputElement | HTMLSelectElement>) => void;
   onChange?: (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement> | string) => void;
   _withoutWrapper?: boolean;
-  // todo move it into separate interface and extend this.
+  // Autosuggest specific props.
   items?: string[];
   onSelectItem?: (item: string) => void;
   noResultsText?: string;
-  // todo this have to be a default value.
   initialValue?: string;
   config?: object;
   placeholder?: string,
