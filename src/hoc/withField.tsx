@@ -18,13 +18,6 @@ export interface WithFieldProps {
   onBlur?: (event: React.FocusEvent<HTMLInputElement | HTMLSelectElement>) => void;
   onChange?: (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement> | string) => void;
   _withoutWrapper?: boolean;
-  // Autosuggest specific props.
-  items?: string[];
-  onSelectItem?: (item: string) => void;
-  noResultsText?: string;
-  initialValue?: string;
-  config?: object;
-  placeholder?: string,
 }
 
 const withField = <T extends WithFieldProps = WithFieldProps>(ChildComponent: React.FC<T>) => {

@@ -7,25 +7,38 @@ const waitForDebounce = (timeout = 310) => new Promise((resolve) => {
   setTimeout(resolve, timeout);
 });
 
+const renderAutosuggest = async (props?: object, typeInValue = '') => {
+  const config = {
+    id: 'customId',
+    required: false,
+    config: { skipFilter: true },
+    optionalLabel: 'optional label description',
+    formGroupLabel: 'Nice Autosuggest',
+    placeholder: 'Placeholder text',
+    'data-custom': 'custom-attr',
+    'data-testid': 'autosuggest',
+    ...props,
+  };
+
+  const wrapper = render(<Autosuggest name="suggestion-input" {...config} />);
+  if (typeInValue) {
+    const input = await wrapper.findByTestId(config['data-testid']) as HTMLInputElement;
+    await act(async () => {
+      fireEvent.change(input, { target: { value: typeInValue } });
+      await waitForDebounce();
+    });
+  }
+
+  return { ...wrapper, config };
+};
+
 describe('Autosuggest component tests', () => {
   test('Autosuggest renders correctly.', async () => {
-    const { findByText, findByDisplayValue } = render(
-      <Autosuggest
-        initialValue="input default value"
-        name="someName"
-        id="customId"
-        required={false}
-        optionalLabel="optional label description"
-        formGroupLabel="Nice Autosuggest"
-        placeholder="Placeholder text"
-        capitalize
-        data-custom="custom-attr"
-      />,
-    );
+    const { findByText, findByDisplayValue } = await renderAutosuggest({ initialValue: 'input default value' });
     expect(await findByText('Nice Autosuggest')).toBeTruthy();
     expect(await findByText('optional label description')).toBeTruthy();
     const input = await findByDisplayValue('input default value') as HTMLInputElement;
-    expect(input.name).toBe('someName');
+    expect(input.name).toBe('suggestion-input');
     expect(input.id).toBe('customId');
     expect(input.placeholder).toBe('Placeholder text');
     expect(input.dataset.custom).toBe('custom-attr');
@@ -36,16 +49,12 @@ describe('Autosuggest component tests', () => {
     const onChange = jest.fn();
     const onSelectItem = jest.fn();
 
-    const { findByTestId, findByText } = render(
-      <Autosuggest
-        items={['A1', 'A2', 'A3']}
-        config={{ skipFilter: true }}
-        onChange={onChange}
-        onSelectItem={onSelectItem}
-        name="someName"
-        data-testid="autosuggest"
-      />,
-    );
+    const { findByTestId, findByText } = await renderAutosuggest({
+      items: ['A1', 'A2', 'A3'],
+      config: { skipFilter: true },
+      onSelectItem,
+      onChange,
+    });
 
     const input = await findByTestId('autosuggest') as HTMLInputElement;
     // Test debounce mechanism.
@@ -79,47 +88,22 @@ describe('Autosuggest component tests', () => {
   });
 
   test('No results text is configurable.', async () => {
-    const { container, findByTestId, rerender } = render(
-      <Autosuggest
-        name="someName"
-        data-testid="autosuggest"
-      />,
-    );
+    const { container, rerender, config } = await renderAutosuggest({}, 'B');
 
-    const input = await findByTestId('autosuggest') as HTMLInputElement;
-    await act(async () => {
-      fireEvent.change(input, { target: { value: 'B' } });
-      await waitForDebounce();
-    });
     const noResults = container.querySelector('li.select-menu__item--no-result') as HTMLLIElement;
     // Default no results text.
     expect(noResults.textContent).toBe('no results, please try another search');
-
     // No results options provided.
-    rerender(
-      <Autosuggest
-        noResultsText="Custom text!"
-        name="someName"
-      />,
-    );
+    const newConfig = { ...config, noResultsText: 'Custom text!' };
+    rerender(<Autosuggest name="someName" {...newConfig} />);
     expect(noResults.textContent).toBe('Custom text!');
   });
 
   test('Matches have been highlighted in the dropdown.', async () => {
-    const { container, findByTestId, findByText } = render(
-      <Autosuggest
-        items={['Fancy item 1', 'Fancy item 2', 'Ordinary Item 3']}
-        name="someName"
-        config={{ skipFilter: true }}
-        data-testid="autosuggest"
-      />,
+    const { container, findByText } = await renderAutosuggest(
+      { items: ['Fancy item 1', 'Fancy item 2', 'Ordinary Item 3'] },
+      'Fancy',
     );
-
-    const input = await findByTestId('autosuggest') as HTMLInputElement;
-    await act(async () => {
-      fireEvent.change(input, { target: { value: 'Fancy' } });
-      await waitForDebounce();
-    });
     const suggestionList = container.querySelector('ul') as HTMLUListElement;
     const highlights = suggestionList.querySelectorAll('mark');
     expect(highlights.length).toBe(2);
@@ -129,59 +113,35 @@ describe('Autosuggest component tests', () => {
   });
 
   test('Skip filter configuration option works.', async () => {
-    const { container, findByTestId, rerender } = render(
-      <Autosuggest
-        items={['Fancy item 1', 'Fancy item 2', 'Ordinary Item 3']}
-        name="someName"
-        config={{ skipFilter: true }}
-        data-testid="autosuggest"
-      />,
+    const { container, rerender, config } = await renderAutosuggest(
+      { items: ['Fancy item 1', 'Fancy item 2', 'Ordinary Item 3'] },
+      'Fancy',
     );
-
-    const input = await findByTestId('autosuggest') as HTMLInputElement;
-    await act(async () => {
-      fireEvent.change(input, { target: { value: 'Fancy' } });
-      await waitForDebounce();
-    });
     const suggestionList = container.querySelector('ul') as HTMLUListElement;
     expect(suggestionList.children.length).toBe(3);
 
-    rerender(
-      <Autosuggest
-        items={['Fancy item 1', 'Fancy item 2', 'Item 3']}
-        name="someName"
-        data-testid="autosuggest"
-      />,
-    );
+    const newConfig = { ...config, config: { skipFilter: false } };
+    rerender(<Autosuggest name="someName" {...newConfig} />);
     expect(suggestionList.children.length).toBe(2);
   });
 
   test('Stop words configuration option works.', async () => {
     const includesStopWord = 'foo -region';
-    const { findByText, findByTestId, rerender } = render(
-      <Autosuggest
-        items={[includesStopWord, 'foo normal']}
-        name="someName"
-        config={{ skipFilter: true }}
-        data-testid="autosuggest"
-      />,
+    const {
+      findByText,
+      findByTestId,
+      rerender,
+      config,
+    } = await renderAutosuggest(
+      { items: [includesStopWord, 'foo normal'] },
+      'tre',
     );
     const input = await findByTestId('autosuggest') as HTMLInputElement;
-    await act(async () => {
-      fireEvent.change(input, { target: { value: 'tre' } });
-      await waitForDebounce();
-      fireEvent.click(await findByText(includesStopWord));
-    });
+    fireEvent.click(await findByText(includesStopWord));
     expect(input.value).toBe(includesStopWord);
 
-    rerender(
-      <Autosuggest
-        items={[includesStopWord, 'foo normal1']}
-        name="someName"
-        config={{ skipFilter: true, itemsStripWordList: [' -region'] }}
-        data-testid="autosuggest"
-      />,
-    );
+    const newConfig = { ...config, config: { skipFilter: true, itemsStripWordList: [' -region'] } };
+    rerender(<Autosuggest name="someName" {...newConfig} />);
     await act(async () => {
       fireEvent.change(input, { target: { value: 'tre' } });
       await waitForDebounce();
@@ -192,15 +152,16 @@ describe('Autosuggest component tests', () => {
 
   test('"Allow numeric" configuration option works for number inputs.', async () => {
     const includesNumericValue = 'Article title (3000)';
-    const { findByText, findByTestId, rerender } = render(
-      <Autosuggest
-        items={[includesNumericValue, 'foo normal']}
-        name="someName"
-        initialValue="4000"
-        config={{ skipFilter: true }}
-        data-testid="autosuggest"
-      />,
+    const {
+      findByText,
+      findByTestId,
+      rerender,
+      config,
+    } = await renderAutosuggest(
+      { items: [includesNumericValue, 'foo normal'], initialValue: '4000' },
+      'tre',
     );
+
     const input = await findByTestId('autosuggest') as HTMLInputElement;
     await act(async () => {
       fireEvent.change(input, { target: { value: 800 } });
@@ -209,14 +170,9 @@ describe('Autosuggest component tests', () => {
     });
     expect(input.value).toBe(includesNumericValue);
 
-    rerender(
-      <Autosuggest
-        items={[includesNumericValue, 'foo normal']}
-        name="someName"
-        config={{ skipFilter: true, allowNumericValue: true }}
-        data-testid="autosuggest"
-      />,
-    );
+    const newConfig = { ...config, config: { skipFilter: true, allowNumericValue: true } };
+    rerender(<Autosuggest name="someName" {...newConfig} />);
+
     await act(async () => {
       fireEvent.change(input, { target: { value: 900 } });
       await waitForDebounce();
@@ -227,19 +183,12 @@ describe('Autosuggest component tests', () => {
 
   test('Keyboard accessibility.', async () => {
     const activeSelector = 'li.select-menu__item--preselect';
-    const { container, findByTestId } = render(
-      <Autosuggest
-        items={['A', 'B', 'C']}
-        name="someName"
-        config={{ skipFilter: true }}
-        data-testid="autosuggest"
-      />,
+    const { container, findByTestId } = await renderAutosuggest(
+      { items: ['A', 'B', 'C'] },
+      'A',
     );
     const input = await findByTestId('autosuggest') as HTMLInputElement;
-    await act(async () => {
-      fireEvent.change(input, { target: { value: 'A' } });
-      await waitForDebounce();
-    });
+
     // Verify that first element selected by default.
     expect((container.querySelector(activeSelector) as HTMLLIElement).textContent).toBe('A');
 
