@@ -31,4 +31,15 @@ describe('Block left aligned exists', () => {
     expect(blockContent)
       .toHaveClass('block__content--align-right');
   });
+
+  test('renders with stacked class when stacked prop is true', () => {
+    const { container } = render(
+      <Block stacked={true}>
+        This is the block content.
+      </Block>
+    );
+
+    const blockWrapper = container.querySelector('.block__wrapper');
+    expect(blockWrapper).toHaveClass('block__wrapper--stacked');
+  });
 });
