@@ -38,6 +38,7 @@ const getValue = (inputValue: string, value: string, itemsStripWordList: string[
   if (allowNumericValue && Number.parseInt(inputValue, 10)) {
     // Select all numbers form the value.
     const match = value.match(/[0-9]+/);
+
     // Get last numbers from the match. Some values have numbers in their name. For example Test 1 (1000) should return 1000.
     realValue = match ? match[match.length - 1] : '';
   }
@@ -73,7 +74,6 @@ const useAutosuggest = ({
 }: UseAutosuggestParamTypes) => {
   const { skipFilter, allowNumericValue, itemsStripWordList = [] } = config;
   const onSelectItem = selectItemCb || (() => null);
-
   // States.
   const [open, setOpen] = useState(false);
   const [inputValue, setInputValue] = useState(initialValue);

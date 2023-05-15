@@ -45,7 +45,7 @@ function Autosuggest({
           <ul className="select-menu__list">
             {list && listItemProps && list.map((listItem, i) => (
               listItem !== undefined && (
-                // No unique id that we can be use for the key installed of index.
+                // No unique id that we can use for the key installed of index.
                 //  eslint-disable-next-line react/no-array-index-key
                 <li key={`list-item-${i}`} {...listItemProps(listItem, i)}>
                   <ListItemMark inputValue={inputValue}>{listItem}</ListItemMark>
