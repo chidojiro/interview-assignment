@@ -8,6 +8,9 @@ default is today (dd-mm-yyyy)
 import { DatePicker } from "@ffw/randstad-shared-components";
 
 <DatePicker
+  ariaLabel="Open date picker"
+  altFormat="d-m-Y"
+  dateFormat="Y-m-d"
   formGroupClass="form-group__input--button form-group--datepicker"
   name="datepicker-1"
   id="datepicker-1"
@@ -22,6 +25,9 @@ min-max date (dd-mm-yyyy)
 import { DatePicker } from "@ffw/randstad-shared-components";
 
 <DatePicker
+  ariaLabel="Open date picker"
+  altFormat="d-m-Y"
+  dateFormat="Y-m-d"
   formGroupClass="form-group__input--button form-group--datepicker"
   name="datepicker-1"
   id="datepicker-1"
@@ -38,6 +44,9 @@ disabled state
 import { DatePicker } from "@ffw/randstad-shared-components";
 
 <DatePicker
+  ariaLabel="Open date picker"
+  altFormat="d-m-Y"
+  dateFormat="Y-m-d"
   formGroupClass="form-group__input--button form-group--datepicker form-group--disabled"
   name="datepicker-1"
   id="datepicker-1"
@@ -53,6 +62,9 @@ dutch localisation [option 1] (by custom props as per Orbit's example)
 import { DatePicker } from "@ffw/randstad-shared-components";
 
 <DatePicker
+  ariaLabel="Open date picker"
+  altFormat="d-m-Y"
+  dateFormat="Y-m-d"
   formGroupClass="form-group__input--button form-group--datepicker"
   name="datepicker-1"
   id="datepicker-1"
@@ -70,6 +82,9 @@ french localisation [option 2] (by passing language prop and utilising localisat
 import { DatePicker } from "@ffw/randstad-shared-components";
 
 <DatePicker
+  ariaLabel="Open date picker"
+  altFormat="d-m-Y"
+  dateFormat="Y-m-d"
   formGroupClass="form-group__input--button form-group--datepicker"
   name="datepicker-1"
   id="datepicker-1"
@@ -85,6 +100,9 @@ show weeknumbers
 import { DatePicker } from "@ffw/randstad-shared-components";
 
 <DatePicker
+  ariaLabel="Open date picker"
+  altFormat="d-m-Y"
+  dateFormat="Y-m-d"
   formGroupClass="form-group__input--button form-group--datepicker"
   name="datepicker-1"
   id="datepicker-1"
@@ -100,6 +118,9 @@ first day is sunday
 import { DatePicker } from "@ffw/randstad-shared-components";
 
 <DatePicker
+  ariaLabel="Open date picker"
+  altFormat="d-m-Y"
+  dateFormat="Y-m-d"
   formGroupClass="form-group__input--button form-group--datepicker"
   name="datepicker-1"
   id="datepicker-1"

@@ -8,8 +8,8 @@ interface DatePickerProps extends WithFieldProps {
   value?: string;
   disabled?: boolean;
   placeholder?: string;
-  altFormat?: string;
-  dateFormat?: string;
+  altFormat: string;
+  dateFormat: string;
   defaultDate?: string;
   defaultDateIsCurrentDate?: true | '';
   firstWeekDay?: 'monday' | 'tuesday' | 'wednesday' | 'thursday' | 'friday' | 'saturday' | 'sunday';
@@ -38,8 +38,8 @@ function DatePicker({
   disabled = undefined,
   placeholder,
   _formGroupProps,
-  altFormat = 'd-m-Y',
-  dateFormat = 'Y-m-d',
+  altFormat,
+  dateFormat,
   defaultDate,
   defaultDateIsCurrentDate,
   firstWeekDay,
@@ -118,7 +118,7 @@ function DatePicker({
           disabled={disabled}
           className="flatpickr flatpickr-input"
         />
-        <span className="button--icon-only button--form-group-style" role="button" aria-label="">
+        <span className="button--icon-only button--form-group-style" role="button" aria-label={ariaLabel}>
           <Icon iconType="calendar" />
         </span>
       </div>
