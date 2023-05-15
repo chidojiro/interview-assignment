@@ -52,6 +52,7 @@ function DatePicker({
   language,
   onChange,
   name,
+  value,
 }: DatePickerProps): React.ReactElement {
   const ref = useRef(null);
 
@@ -116,6 +117,7 @@ function DatePicker({
           required
           placeholder={placeholder}
           disabled={disabled}
+          value={value}
           className="flatpickr flatpickr-input"
         />
         <span className="button--icon-only button--form-group-style" role="button" aria-label={ariaLabel}>
