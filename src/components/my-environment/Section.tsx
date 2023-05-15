@@ -2,6 +2,7 @@ import React from 'react';
 import Icon from '../Icon';
 
 type SectionTypes = {
+  createButtonId?: string;
   children?: React.ReactNode;
   title: string | React.ReactNode;
   description?: string | React.ReactNode;
@@ -11,7 +12,7 @@ type SectionTypes = {
   divider?: boolean;
 };
 function Section({
-  children, title, description, handleEdit, handleAddItem, label, divider = false,
+  children, title, description, handleEdit, handleAddItem, label, divider = false, createButtonId,
 }: SectionTypes) {
   return (
     <div className={`my-environment-container ${divider ? 'pb-m l:pb-l divider' : ''}`}>
@@ -20,7 +21,7 @@ function Section({
           <h2 className="title--s mr-xxs">{title}</h2>
           {typeof handleEdit === 'function' && (
             <div className="my-environment__controls mt-xxs" id={`edit-${(title as string).replace(' ', '-')}`}>
-              <button type="button" data-label={label} className="button--clean" onClick={handleEdit} id="create-item-button">
+              <button type="button" data-label={label} className="button--clean" onClick={handleEdit} id={createButtonId ? `create-item-button-${createButtonId}` : 'create-item-button'}>
                 <Icon iconClassName="icon icon--inline" iconType="edit" />
                 <span className="hidden--visually">{label}</span>
               </button>
@@ -33,7 +34,7 @@ function Section({
           </div>
         )}
         {typeof handleAddItem === 'function' && (
-          <button type="button" className="button button--s mt-s" onClick={handleAddItem} id="create-item-icon-button">
+          <button type="button" className="button button--s mt-s" onClick={handleAddItem} id={createButtonId ? `create-item-icon-button-${createButtonId}` : 'create-item-icon-button'}>
             <Icon iconClassName="icon icon--s icon--inline" iconType="add" />
             {label}
           </button>
