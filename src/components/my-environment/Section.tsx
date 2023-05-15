@@ -2,6 +2,7 @@ import React from 'react';
 import Icon from '../Icon';
 
 type SectionTypes = {
+  id: string;
   children?: React.ReactNode;
   title: string | React.ReactNode;
   description?: string | React.ReactNode;
@@ -11,10 +12,10 @@ type SectionTypes = {
   divider?: boolean;
 };
 function Section({
-  children, title, description, handleEdit, handleAddItem, label, divider = false,
+  children, title, description, handleEdit, handleAddItem, label, divider = false, id,
 }: SectionTypes) {
   return (
-    <div className={`my-environment-container ${divider ? 'pb-m l:pb-l divider' : ''}`}>
+    <div className={`my-environment-container ${divider ? 'pb-m l:pb-l divider' : ''}`} id={id}>
       <div className="my-environment-action-header mb-s l:mb-m">
         <div className="my-environment-header">
           <h2 className="title--s mr-xxs">{title}</h2>
