@@ -2,7 +2,7 @@ import React from 'react';
 import Icon from '../Icon';
 
 type SectionTypes = {
-  id?: string;
+  id: string;
   children?: React.ReactNode;
   title: string | React.ReactNode;
   description?: string | React.ReactNode;
