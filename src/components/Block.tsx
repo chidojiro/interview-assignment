@@ -13,6 +13,7 @@ interface Block {
   align?: 'left' | 'right';
   title?: string;
   stacked?: boolean;
+  blockHeaderClasses?: string;
   blockContentClasses?: string;
 }
 
@@ -28,6 +29,7 @@ function Block({
   align,
   title,
   stacked = false,
+  blockHeaderClasses = '',
   blockContentClasses = ''
 }: Block) {
   return (
@@ -39,7 +41,7 @@ function Block({
         'block__wrapper--stacked job-details': stacked
       })}>
         {title && (
-          <div className="block__header">
+          <div className={cn("block__header", blockHeaderClasses)}>
             <h2 className="block__title">{title}</h2>
           </div>
         )}
