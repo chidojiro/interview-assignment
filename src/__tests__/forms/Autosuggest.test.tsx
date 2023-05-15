@@ -42,10 +42,7 @@ describe('Autosuggest component tests', () => {
         config={{ skipFilter: true }}
         onChange={onChange}
         onSelectItem={onSelectItem}
-        initialValue="input default value"
-        required
         name="someName"
-        id="customId"
         data-testid="autosuggest"
       />,
     );
@@ -77,6 +74,7 @@ describe('Autosuggest component tests', () => {
       await waitForDebounce();
     });
     expect(onSelectItem).toHaveBeenCalledWith('A2');
+    expect(onChange).toHaveBeenCalledWith('A2');
     expect(input.value).toBe('A2');
   });
 
@@ -192,7 +190,7 @@ describe('Autosuggest component tests', () => {
     expect(input.value).toBe('foo');
   });
 
-  test('Allow numeric configuration option works for number inputs.', async () => {
+  test('"Allow numeric" configuration option works for number inputs.', async () => {
     const includesNumericValue = 'Article title (3000)';
     const { findByText, findByTestId, rerender } = render(
       <Autosuggest
@@ -228,6 +226,68 @@ describe('Autosuggest component tests', () => {
   });
 
   test('Keyboard accessibility.', async () => {
-    expect(1).toBe(1);
+    const activeSelector = 'li.select-menu__item--preselect';
+    const { container, findByTestId } = render(
+      <Autosuggest
+        items={['A', 'B', 'C']}
+        name="someName"
+        config={{ skipFilter: true }}
+        data-testid="autosuggest"
+      />,
+    );
+    const input = await findByTestId('autosuggest') as HTMLInputElement;
+    await act(async () => {
+      fireEvent.change(input, { target: { value: 'A' } });
+      await waitForDebounce();
+    });
+    // Verify that first element selected by default.
+    expect((container.querySelector(activeSelector) as HTMLLIElement).textContent).toBe('A');
+
+    // Go to the end of a list with arrow down.
+    fireEvent.keyDown(input, { key: 'ArrowDown', code: 'ArrowDown' });
+    expect((container.querySelector(activeSelector) as HTMLLIElement).textContent).toBe('B');
+    fireEvent.keyDown(input, { key: 'ArrowDown', code: 'ArrowDown' });
+    expect((container.querySelector(activeSelector) as HTMLLIElement).textContent).toBe('C');
+    fireEvent.keyDown(input, { key: 'ArrowDown', code: 'ArrowDown' });
+    expect((container.querySelector(activeSelector) as HTMLLIElement).textContent).toBe('C');
+
+    // Go to the top of a list with arrow up.
+    fireEvent.keyDown(input, { key: 'ArrowUp', code: 'ArrowUp' });
+    expect((container.querySelector(activeSelector) as HTMLLIElement).textContent).toBe('B');
+    fireEvent.keyDown(input, { key: 'ArrowUp', code: 'ArrowUp' });
+    expect((container.querySelector(activeSelector) as HTMLLIElement).textContent).toBe('A');
+    fireEvent.keyDown(input, { key: 'ArrowUp', code: 'ArrowUp' });
+    expect((container.querySelector(activeSelector) as HTMLLIElement).textContent).toBe('A');
+
+    // Verify that page up and down correspondingly move selection to the first and last elements.
+    fireEvent.keyDown(input, { key: 'PageDown', code: 'PageDown' });
+    expect((container.querySelector(activeSelector) as HTMLLIElement).textContent).toBe('C');
+    fireEvent.keyDown(input, { key: 'PageUp', code: 'PageUp' });
+    expect((container.querySelector(activeSelector) as HTMLLIElement).textContent).toBe('A');
+
+    // Verify that user can select item from the list using Enter or Tab.
+    fireEvent.keyDown(input, { key: 'ArrowDown', code: 'ArrowDown' });
+    fireEvent.keyDown(input, { key: 'Enter', code: 'Enter' });
+    expect(input.value).toBe('B');
+    expect(container.querySelector('ul')).toBeNull();
+    // Using tab.
+    await act(async () => {
+      fireEvent.change(input, { target: { value: 'A' } });
+      await waitForDebounce();
+    });
+    fireEvent.keyDown(input, { key: 'ArrowDown', code: 'ArrowDown' });
+    fireEvent.keyDown(input, { key: 'ArrowDown', code: 'ArrowDown' });
+    fireEvent.keyDown(input, { key: 'Tab', code: 'Tab' });
+    expect(input.value).toBe('C');
+    expect(container.querySelector('ul')).toBeNull();
+
+    // Verify that user can close suggestion box with Escape button.
+    await act(async () => {
+      fireEvent.change(input, { target: { value: 'A' } });
+      await waitForDebounce();
+    });
+    expect(container.querySelector('ul')).toBeTruthy();
+    fireEvent.keyDown(input, { key: 'Escape', code: 'Escape' });
+    expect(container.querySelector('ul')).toBeNull();
   });
 });

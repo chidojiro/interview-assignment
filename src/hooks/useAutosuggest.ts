@@ -160,7 +160,7 @@ const useAutosuggest = ({
     // Allow listed keys.
     if (!Object.values(keys).includes(code)) return;
 
-    const listWrapper = (wrapperRef.current as HTMLLIElement).querySelector('ul');
+    const listWrapper = (wrapperRef.current as HTMLElement).querySelector('ul');
     const itemsLength = listWrapper?.children.length || 0;
 
     // Keep track on press keys. Used in scroll functionality.
@@ -197,7 +197,7 @@ const useAutosuggest = ({
 
       case keys.Enter:
       case keys.Tab:
-        // Select preselect item or close the there is no results.
+        // Select preselect item or close if there is no results.
         if (activeListItemRef.current !== null) {
           (activeListItemRef.current as HTMLLIElement).click();
         } else {
