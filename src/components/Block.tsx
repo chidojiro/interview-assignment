@@ -12,6 +12,8 @@ interface Block {
   smallContentSize?: boolean;
   align?: 'left' | 'right';
   title?: string;
+  stacked?: boolean;
+  blockContentClasses?: string;
 }
 
 /**
@@ -25,20 +27,24 @@ function Block({
   smallContentSize,
   align,
   title,
+  stacked = false,
+  blockContentClasses = ''
 }: Block) {
   return (
     <div className={cn('block', {
       'block--filter': typeFilter,
     })}
     >
-      <div className="block__wrapper wrapper">
+      <div className={cn('block__wrapper wrapper', {
+        'block__wrapper--stacked job-details': stacked
+      })}>
         {title && (
           <div className="block__header">
             <h2 className="block__title">{title}</h2>
           </div>
         )}
         {beforeContent}
-        <div className={cn('block__content', {
+        <div className={cn('block__content', blockContentClasses, {
           'block__content--s': smallContentSize,
           [`block__content--align-${align}`]: align,
         })}
