@@ -16,10 +16,11 @@ function HeaderSavedJobs({
   ariaLabel,
 }: HeaderSavedJobsProps) {
   const [maxCounter, setMaxCounter] = useState<number>(0);
-  const savedJobs = typeof window !== 'undefined' && localStorage.getItem('saved-jobs');
 
   useEffect(() => {
     const getAll = async () => {
+      const savedJobs = typeof window !== 'undefined' && localStorage.getItem('saved-jobs');
+
       const total = await getSavedJobsNumber(gdsApiKey, gdsApiUrl, savedJobs);
       if (total) {
         setMaxCounter(total);
@@ -27,11 +28,10 @@ function HeaderSavedJobs({
         setMaxCounter(0);
       }
     };
-    window.addEventListener('saved-jobs', () => {
-      getAll();
-    });
     getAll();
-  }, [gdsApiKey, gdsApiUrl, savedJobs]);
+    window.addEventListener('saved-jobs', () => getAll());
+    return window.removeEventListener('saved-jobs', getAll);
+  }, [gdsApiKey, gdsApiUrl]);
 
   return (
     <li className="navigation__service-item">
