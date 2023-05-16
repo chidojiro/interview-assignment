@@ -1,4 +1,6 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import {
+  useEffect, useMemo, useRef, useState,
+} from 'react';
 
 import handleScrollBar from '../utils/handleScrollBar';
 import useDebounce from './useDebounce';
@@ -121,9 +123,9 @@ const useAutosuggest = ({
       const w = wrapperRef.current as HTMLLIElement;
 
       if (
-        w.className.includes('open') &&
-        !w.querySelector('ul')?.contains(target as HTMLElement) &&
-        !w.querySelector('input')?.contains(target as HTMLElement)
+        w.className.includes('open')
+        && !w.querySelector('ul')?.contains(target as HTMLElement)
+        && !w.querySelector('input')?.contains(target as HTMLElement)
       ) {
         setOpen(false);
       }
