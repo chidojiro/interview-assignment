@@ -5,6 +5,7 @@ import Toggle from '../../components/forms/Toggle';
 test('Toggle exist', () => {
   const { container } = render(<Toggle
     name="marketing"
+    checked={false}
   />);
   const toggleElement = container.querySelector('.switch.switch__light');
   expect(toggleElement).toBeInTheDocument();
@@ -13,6 +14,7 @@ test('Toggle exist', () => {
 test('Toggle input has correct attributes', () => {
   const { container } = render(<Toggle
     name="marketing2"
+    checked={false}
   />);
   const toggleElement = container.querySelector('.switch__light');
   expect(toggleElement)

@@ -13,7 +13,7 @@ interface StackableProps {
   hideLabel?: boolean,
   /** @ignore */
   children?: any,
-};
+}
 
 /**
  * Stackable form group component.
@@ -23,7 +23,7 @@ interface StackableProps {
  * ---
  * ### Cannot be used as a standalone component.
  */
-const Stackable = ({
+function Stackable({
   children,
   error,
   description,
@@ -33,11 +33,7 @@ const Stackable = ({
   hideLabel = false,
   optionalLabel = 'optional',
   required = true,
-}: StackableProps) => {
-  if (!label) {
-    console.error('Missing label for the legend. Fieldset tag requires a legend.');
-  }
-
+}: StackableProps) {
   let legend = label;
 
   if (label && capitalize) {
@@ -48,24 +44,28 @@ const Stackable = ({
     <fieldset
       className={cn('form-group', 'form-group--selection-control', className, {
         'form-group--error': error,
-      })}>
+      })}
+    >
       <legend className={cn('form-group__label', { hidden: hideLabel })}>
         {legend}
-        {!required && <span className='form-group__optional'> {optionalLabel}</span>}
+        {!required && (
+          <span className="form-group__optional">
+            {' '}
+            {optionalLabel}
+          </span>
+        )}
       </legend>
-      {React.Children.map(children, (child) => {
-        return (
-          <div className='form-group__input'>
-            {React.cloneElement(child, {
-              withFormGroup: false,
-            })}
-          </div>
-        );
-      })}
-      {error && <div className='form-group__feedback'>{error}</div>}
-      {description && <div className='form-group__message'>{description}</div>}
+      {React.Children.map(children, (child) => (
+        <div className="form-group__input">
+          {React.cloneElement(child, {
+            withFormGroup: false,
+          })}
+        </div>
+      ))}
+      {error && <div className="form-group__feedback">{error}</div>}
+      {description && <div className="form-group__message">{description}</div>}
     </fieldset>
   );
-};
+}
 
 export default Stackable;
