@@ -12,7 +12,7 @@ interface ContactPersonProps {
   emailAddress: string;
   phoneNumber: string;
   photo: string;
-  regionCode: string;
+  countryId: CountryCode | number;
   useLowerCase: boolean;
   overrides: {
     Override: string;
@@ -44,7 +44,7 @@ interface ContactPersonProps {
   dataLayerEmailClick: string;
 }
 
-const ContactPerson = ({ displayId, name, description, jobTitle, emailAddress, phoneNumber, photo, regionCode, useLowerCase, overrides, settings, translations, branchData, dataLayerEmailClick }: ContactPersonProps) => {
+const ContactPerson = ({ displayId, name, description, jobTitle, emailAddress, phoneNumber, photo, countryId, useLowerCase, overrides, settings, translations, branchData, dataLayerEmailClick }: ContactPersonProps) => {
 
   if (!emailAddress) {
     // If no consultant email is set, try to parse the email in user-friendly format.
@@ -133,7 +133,7 @@ const ContactPerson = ({ displayId, name, description, jobTitle, emailAddress, p
       return null;
     }
 
-    const parsedPhoneNumber = parsePhoneNumber(phoneNumber, regionCode, regionCode);
+    const parsedPhoneNumber = parsePhoneNumber(phoneNumber, countryId);
 
     return (
       <li className="contact-details__item">

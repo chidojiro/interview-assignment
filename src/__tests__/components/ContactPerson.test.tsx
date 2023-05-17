@@ -12,6 +12,7 @@ describe('ContactPerson component tests.', () => {
     phoneNumber: '+123456789',
     photo: 'avatar.jpg',
     regionCode: 'US',
+    countryId: 202,
     useLowerCase: true,
     overrides: {
       Override: '',

@@ -243,12 +243,9 @@ const countryCodeMapping = {
   241: 'ME',
 };
 
-const parsePhoneNumber = (phone: string, countryId: string | null = null, countryRegionCode = 'SE') => {
-  let countryCode = countryRegionCode;
-
-  if (countryId) {
-    countryCode = countryCodeMapping[countryId as keyof typeof countryCodeMapping] as CountryCode;
-  }
+const parsePhoneNumber = (phone: string, countryId: number | CountryCode) => {
+  const countryCode =
+    typeof countryId === 'number' ? (countryCodeMapping[countryId as keyof typeof countryCodeMapping] as CountryCode) : countryId;
 
   let phones = phone.split(' / ');
   if (phones.length > 1) {
