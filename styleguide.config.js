@@ -120,6 +120,11 @@ module.exports = {
         'src/components/UserImageBlock.tsx',
       ],
     },
+    {
+      name: 'Contact Person',
+      components: 'src/components/ContactPerson/*.tsx',
+      description: 'Contact Perston component from the jobs app details page.',
+    },
     // {
     //   name: 'Shared components',
     //   components: 'src/components/**/*.js',

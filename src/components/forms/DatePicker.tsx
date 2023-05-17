@@ -16,6 +16,7 @@ interface DatePickerProps extends WithFieldProps {
   longMonths?: string;
   shortMonths?: string;
   shortWeeks?: string;
+  clearText?: string;
   showWeekNumbers?: true | '';
   minDate?: string,
   maxDate?: string;
@@ -46,6 +47,7 @@ function DatePicker({
   longMonths = '',
   shortMonths = '',
   shortWeeks = '',
+  clearText,
   showWeekNumbers,
   minDate,
   maxDate,
@@ -110,7 +112,7 @@ function DatePicker({
           data-rs-datepicker-short-months={shortMonths}
           data-rs-datepicker-short-weeks={shortWeeks}
           data-rs-datepicker-weeknumbers={showWeekNumbers}
-          data-rs-datepicker-clear=""
+          data-rs-datepicker-clear={clearText}
           data-rs-datepicker-language={language}
           max={maxDate}
           min={minDate}

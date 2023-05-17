@@ -1098,9 +1098,9 @@
   resolved "https://registry.yarnpkg.com/@eslint/js/-/js-8.38.0.tgz#73a8a0d8aa8a8e6fe270431c5e72ae91b5337892"
   integrity sha512-IoD2MfUnOV58ghIHCiil01PcohxjbYR/qCxsoC+xNgUwh1EY8jOOrYmu3d3a71+tJJ23uscEV4X2HJWMsPJu4g==
 
-"@ffw/randstad-local-orbit@git+ssh://git-codecommit.eu-west-1.amazonaws.com/v1/repos/git-df-prd-bluex-local-orbit#dev":
+"@ffw/randstad-local-orbit@git+ssh://git-codecommit.eu-west-1.amazonaws.com/v1/repos/git-bluex-prd-bx-local-orbit#dev":
   version "1.2.0"
-  resolved "git+ssh://git-codecommit.eu-west-1.amazonaws.com/v1/repos/git-df-prd-bluex-local-orbit#fd9757f29745b04f395de3098029985be8f3de2e"
+  resolved "git+ssh://git-codecommit.eu-west-1.amazonaws.com/v1/repos/git-bluex-prd-bx-local-orbit#61cb2a343b9fe5c76fdec7d2f94666ad1bca5623"
   dependencies:
     babel-core "^6.26.3"
     babel-polyfill "^6.26.0"

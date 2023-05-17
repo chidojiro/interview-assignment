@@ -28,7 +28,7 @@ function getUserData(): PersistData {
 
   let loginStatus = false;
   if (data?.currentUser && data?.loginStatus) {
-    const currentUser = data.currentUser;
+    const { currentUser } = data;
     loginStatus = data.loginStatus;
 
     return { currentUser, loginStatus };
