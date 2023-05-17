@@ -25,15 +25,7 @@ function HeaderSavedJobs({
   useEffect(() => {
     const getAll = async () => {
       const savedJobs = localStorage.getItem('saved-jobs');
-      const store = localStorage.getItem('userState');
-      let isLoggedIn = false;
-      if (store) {
-        const parsedStore: StoreInterface = JSON.parse(store);
-        if (parsedStore?.loginStatus) {
-          isLoggedIn = true;
-        }
-      }
-      const total = await getSavedJobsNumber(gdsApiKey, gdsApiUrl, savedJobs, isLoggedIn);
+      const total = await getSavedJobsNumber(gdsApiKey, gdsApiUrl, savedJobs);
       if (total) {
         setMaxCounter(total);
       } else {

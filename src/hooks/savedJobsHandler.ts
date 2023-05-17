@@ -1,5 +1,6 @@
 import { AxiosResponse } from 'axios';
 import { TalentAppApi } from './talentAppApi';
+import getUserData from '../utils/getUserData';
 
 interface SavedJobsResponse {
   totalElements: number;
@@ -52,13 +53,14 @@ const postSavedJobs = async (gdsApiKey: string, gdsApiUrl: string, jobPostingWeb
   });
 };
 
-const getSavedJobsNumber = async (gdsApiKey: string, gdsApiUrl: string, localStorage: any, isLoggedIn: boolean) => {
+const getSavedJobsNumber = async (gdsApiKey: string, gdsApiUrl: string, localStorage: any) => {
+  const isLoggedIn = getUserData();
   if (localStorage) {
     const data = JSON.parse(localStorage as string);
     if (data.totalElements) {
       return data.totalElements;
     }
-  } else if (isLoggedIn) {
+  } else if (isLoggedIn.loginStatus) {
     return getSavedJobsCount(gdsApiKey, gdsApiUrl).catch((err) => {
       // Needed logging for error.
       // eslint-disable-next-line no-console
