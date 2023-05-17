@@ -9,5 +9,10 @@
   "Shared.Components.Popup.Text3": "trouver de meilleurs emplois correspondants",
   "Shared.Components.Popup.Register.Text": "s'enregistrer gratuitement",
   "Shared.Components.Popup.Login.Text": "se connecter à mon randstad",
-  "Shared.Components.Popup.Greeting.Hi": "Salut"
+  "Shared.Components.Popup.Greeting.Hi": "Salut",
+
+  "Shared.Components.DatePicker.LongMonths": "janvier, février, mars, avril, mai, juin, juilliet, août, septiembre, octobre, novembre, décember",
+  "Shared.Components.DatePicker.ShortMonths": "janv, févr, mars, avr, mai, juin, juill, août, sept, oct, nov, déc",
+  "Shared.Components.DatePicker.ShortWeeks": "dim, lun, mar, mer, jeu, ven, sam",
+  "Shared.Components.DatePicker.ClearText": "clear"
 }
