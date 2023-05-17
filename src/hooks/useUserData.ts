@@ -6,7 +6,7 @@ export default function useUserData() {
 
   useEffect(() => {
     function handleChangeStorage() {
-        setData(getUserData());
+      setData(getUserData());
     }
 
     window.addEventListener('storage', handleChangeStorage);
