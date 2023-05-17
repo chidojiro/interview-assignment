@@ -15,7 +15,7 @@ interface DropdownProps {
   name: string;
   options: Array<OptionsProps>;
   defaultValue?: string;
-  onChange?: (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement> | string) => void;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
   onBlur?: () => void;
   value?: string;
   className?: string;
@@ -54,7 +54,7 @@ function Dropdown({
         data-rs-untouched=""
         ref={ref as React.RefObject<HTMLSelectElement>}
         {...props}
-        onChange={(event) => onChange?.(event as React.ChangeEvent<HTMLInputElement | HTMLSelectElement> | string)}
+        onChange={(event) => onChange?.(event as React.ChangeEvent<HTMLInputElement | HTMLSelectElement>)}
       >
         {options
           && options.map((item) => (
