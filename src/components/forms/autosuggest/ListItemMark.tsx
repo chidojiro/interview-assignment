@@ -1,23 +1,20 @@
-// @ts-nocheck
-import React from "react";
-import t from "prop-types";
+import React from 'react';
+import replaceJsx from '../../../utils/replaceJsx';
 
-import replaceJsx from "../../../utils/replaceJsx";
+interface ListItemMarkProps {
+  children: string;
+  inputValue: string;
+}
 
-const ListItemMark = ({ children, inputValue = "" }) => {
-  const regexSafeValue = inputValue.replace(/[-[\]/{}()*+?.\\^$|]/g, "\\$&");
-
-  // if item matches, add mark to matched part to create highlighted text
-  let regex = new RegExp(regexSafeValue, "gi");
-
-  const response = () => replaceJsx(children, regex, (match, i) => <mark key={i}>{match}</mark>);
-
-  return <>{response()}</>;
-};
-
-ListItemMark.propTypes = {
-  children: t.any,
-  inputValue: t.string,
-};
+function ListItemMark({ children, inputValue } : ListItemMarkProps) {
+  const regexSafeValue = inputValue.replace(/[-[\]/{}()*+?.\\^$|]/g, '\\$&');
+  // If item matches, add mark to matched part to create highlighted text.
+  const regex = new RegExp(regexSafeValue, 'gi');
+  return (
+    <>
+      {replaceJsx(children, regex, (match: string, i: number) => <mark key={i}>{match}</mark>)}
+    </>
+  );
+}
 
 export default ListItemMark;

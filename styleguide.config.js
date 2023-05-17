@@ -110,10 +110,20 @@ module.exports = {
       description: 'Job card component and its metadata fields component.',
     },
     {
+      name: 'Application Process',
+      components: 'src/components/applicationProcess/*.tsx',
+      description: 'Application process component and its cards components.',
+    },
+    {
       name: 'User',
       components: [
         'src/components/UserImageBlock.tsx',
       ],
+    },
+    {
+      name: 'Contact Person',
+      components: 'src/components/ContactPerson/*.tsx',
+      description: 'Contact Perston component from the jobs app details page.',
     },
     // {
     //   name: 'Shared components',

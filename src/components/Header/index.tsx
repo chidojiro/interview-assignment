@@ -15,9 +15,10 @@ import {
   getMainMenu, findElement, LocalizationTypes, Routes, getHeaderClass, generateUrl,
 } from './headerUtils';
 import LoginPopover, { TranslationProps } from '../LoginPopover';
-import getUserData from '../../utils/getUserData';
+import getUserData, { PersistData } from '../../utils/getUserData';
 import HeaderBrandsEnum from './headerBrands.enum';
 import HeaderSavedJobs from '../headers/HeaderSavedJobs/HeaderSavedJobs';
+import useUserData from '../..//hooks/useUserData';
 
 type HeaderBrands =
   | HeaderBrandsEnum.Primary
@@ -100,14 +101,19 @@ function Header({
   useToast = false,
   toastSettings
 }: HeaderProps) {
-  const userData = getUserData();
   // TO DO: currentUser.loginState state needed because tabBar needs an active link on logout
-  const [currentUser, setCurrentUser] = useState(userData);
+  const [currentUser, setCurrentUser] = useState({} as PersistData);
+  const profileData = useUserData();
 
   useEffect(() => {
     const newUserData = getUserData();
-    if (currentUser.loginStatus !== newUserData.loginStatus) setCurrentUser(newUserData);
-  }, [localStorage.getItem('persist:root')]);
+      const { personalInfo: newPersonalInfo } = newUserData.currentUser || {};
+      const { personalInfo: currentUserPersonalInfo } = currentUser.currentUser || {};
+
+      if (currentUser.loginStatus !== newUserData.loginStatus ||
+        newPersonalInfo?.familyName !== currentUserPersonalInfo?.familyName ||
+        newPersonalInfo?.givenName !== currentUserPersonalInfo?.givenName) setCurrentUser(newUserData);
+  }, [profileData]);
 
   const { locale, defaultLocale } = localization;
   const headerClass = getHeaderClass(brand);

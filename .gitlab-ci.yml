@@ -40,7 +40,6 @@ translations_upload:
     
     if [[ $ENVIRONMENT == "prod" ]]; then
       ENVIRONMENT="prd";
-      AWS_S3_PROFILE="bx-codecommit";
     fi
     set -x
     AWS_PROFILE="$AWS_S3_PROFILE" aws s3 sync src/i18n/ s3://s3-bluex-dta-bx-${ENVIRONMENT}2-localization/components_lib/default/ --include "??.json" --grants full=id=9ad45dfc00439d89906f4ac4321f9cfc63a061e60782b351ca166be4a29ba2d2,id=c39407c258b649c24787709e277f4d48507596dcf9b9b57e0857222f678446f3

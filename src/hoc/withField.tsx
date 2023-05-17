@@ -10,13 +10,14 @@ export interface WithFieldProps {
   description?: string;
   afterContent?: React.ReactNode;
   capitalize?: boolean;
+  currency?: string;
   formGroupLabel?: string;
   label?: string;
   value?: string | number;
   withFormGroup?: boolean;
   _formGroupProps?: object;
   onBlur?: (event: React.FocusEvent<HTMLInputElement | HTMLSelectElement>) => void;
-  onChange?: (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement> | string) => void;
   _withoutWrapper?: boolean;
 }
 
@@ -32,6 +33,7 @@ const withField = <T extends WithFieldProps = WithFieldProps>(ChildComponent: Re
       description,
       afterContent,
       capitalize,
+      currency,
       formGroupLabel,
       label,
       withFormGroup,
@@ -45,6 +47,7 @@ const withField = <T extends WithFieldProps = WithFieldProps>(ChildComponent: Re
     const fieldProps = {
       name,
       required,
+      currency,
       id: fieldId,
       label: labelValue,
       ...rest,
