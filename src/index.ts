@@ -66,6 +66,7 @@ import Dropdown from './components/form-group/Dropdown';
 import Stackable from './components/form-group/Stackable';
 import ApplicationProcess from './components/applicationProcess/ApplicationProcess';
 import ApplicationProcessCard from './components/applicationProcess/ApplicationProcessCard';
+import ContactPerson from './components/ContactPerson';
 
 export {
   PasswordField,
@@ -139,6 +140,7 @@ export {
   Dropdown,
   ApplicationProcess,
   ApplicationProcessCard,
+  ContactPerson,
 };
 
 /**
