@@ -52,21 +52,22 @@ const postSavedJobs = async (gdsApiKey: string, gdsApiUrl: string, jobPostingWeb
   });
 };
 
-const getSavedJobsNumber = async (gdsApiKey: string, gdsApiUrl: string, localStorage: any) => {
+const getSavedJobsNumber = async (gdsApiKey: string, gdsApiUrl: string, localStorage: any, isLoggedIn: boolean) => {
   if (localStorage) {
     const data = JSON.parse(localStorage as string);
     if (data.totalElements) {
       return data.totalElements;
     }
-  } else {
+  } else if (isLoggedIn) {
     return getSavedJobsCount(gdsApiKey, gdsApiUrl).catch((err) => {
       // Needed logging for error.
       // eslint-disable-next-line no-console
       console.error('getSavedJobsCount Error: ', err);
       return undefined;
     });
+  } else {
+    return 0;
   }
-  return undefined;
 };
 
 const deleteSavedJobs = async (gdsApiKey: string, gdsApiUrl: string, savedJobId: string): Promise<AxiosResponse> => {
