@@ -49,7 +49,7 @@ const getValue = (inputValue: string, value: string, itemsStripWordList: string[
 export type UseAutosuggestParamTypes = {
   items?: string[];
   /** Triggered on input change */
-  onChange?: (event: string) => void;
+  onInputChange?: (event: string) => void;
   /** Triggered on item select */
   onSelectItem?: (newVal: string) => void;
   /** Set autosuggest initial initialValue. */
@@ -67,7 +67,7 @@ export type UseAutosuggestParamTypes = {
 /* eslint-disable sonarjs/cognitive-complexity */
 const useAutosuggest = ({
   items = [],
-  onChange: changeCb,
+  onInputChange: changeCb,
   onSelectItem: selectItemCb,
   initialValue = '',
   config = {},

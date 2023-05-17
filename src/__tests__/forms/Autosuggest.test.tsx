@@ -46,14 +46,14 @@ describe('Autosuggest component tests', () => {
   });
 
   test('Autosuggest callbacks have been triggered.', async () => {
-    const onChange = jest.fn();
+    const onInputChange = jest.fn();
     const onSelectItem = jest.fn();
 
     const { findByTestId, findByText } = await renderAutosuggest({
       items: ['A1', 'A2', 'A3'],
       config: { skipFilter: true },
       onSelectItem,
-      onChange,
+      onInputChange,
     });
 
     const input = await findByTestId('autosuggest') as HTMLInputElement;
@@ -66,14 +66,14 @@ describe('Autosuggest component tests', () => {
       fireEvent.change(input, { target: { value: 'Baz' } });
       await waitForDebounce(200);
     });
-    expect(onChange).toHaveBeenCalledTimes(0);
+    expect(onInputChange).toHaveBeenCalledTimes(0);
 
     await act(async () => {
       fireEvent.change(input, { target: { value: 'B' } });
       await waitForDebounce();
     });
 
-    expect(onChange).toHaveBeenCalledWith('B');
+    expect(onInputChange).toHaveBeenCalledWith('B');
     expect(await findByText('A1')).toBeTruthy();
     expect(await findByText('A2')).toBeTruthy();
     expect(await findByText('A3')).toBeTruthy();
@@ -83,7 +83,7 @@ describe('Autosuggest component tests', () => {
       await waitForDebounce();
     });
     expect(onSelectItem).toHaveBeenCalledWith('A2');
-    expect(onChange).toHaveBeenCalledWith('A2');
+    expect(onInputChange).toHaveBeenCalledWith('A2');
     expect(input.value).toBe('A2');
   });
 
