@@ -20,7 +20,7 @@ type AutosuggestPropTypes = UseAutosuggestParamTypes & {
  */
 function Autosuggest({
   items = [],
-  onChange,
+  onInputChange,
   onSelectItem,
   noResultsText,
   initialValue,
@@ -29,7 +29,7 @@ function Autosuggest({
   ...fieldProps
 }: AutosuggestPropTypes) {
   const [values, props] = useAutosuggest({
-    items, onChange, onSelectItem, config, initialValue,
+    items, onInputChange, onSelectItem, config, initialValue,
   });
 
   const {

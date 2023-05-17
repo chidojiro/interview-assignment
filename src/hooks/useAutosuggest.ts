@@ -1,6 +1,4 @@
-import {
-  useEffect, useMemo, useRef, useState,
-} from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 import handleScrollBar from '../utils/handleScrollBar';
 import useDebounce from './useDebounce';
@@ -51,7 +49,7 @@ const getValue = (inputValue: string, value: string, itemsStripWordList: string[
 export type UseAutosuggestParamTypes = {
   items?: string[];
   /** Triggered on input change */
-  onChange?: (event: string) => void;
+  onInputChange?: (event: string) => void;
   /** Triggered on item select */
   onSelectItem?: (newVal: string) => void;
   /** Set autosuggest initial initialValue. */
@@ -69,7 +67,7 @@ export type UseAutosuggestParamTypes = {
 /* eslint-disable sonarjs/cognitive-complexity */
 const useAutosuggest = ({
   items = [],
-  onChange: changeCb,
+  onInputChange: changeCb,
   onSelectItem: selectItemCb,
   initialValue = '',
   config = {},
@@ -123,9 +121,9 @@ const useAutosuggest = ({
       const w = wrapperRef.current as HTMLLIElement;
 
       if (
-        w.className.includes('open')
-        && !w.querySelector('ul')?.contains(target as HTMLElement)
-        && !w.querySelector('input')?.contains(target as HTMLElement)
+        w.className.includes('open') &&
+        !w.querySelector('ul')?.contains(target as HTMLElement) &&
+        !w.querySelector('input')?.contains(target as HTMLElement)
       ) {
         setOpen(false);
       }
