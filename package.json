@@ -47,7 +47,7 @@
     }
   },
   "dependencies": {
-    "@ffw/randstad-local-orbit": "git+ssh://git-codecommit.eu-west-1.amazonaws.com/v1/repos/git-df-prd-bluex-local-orbit#dev",
+    "@ffw/randstad-local-orbit": "git+ssh://git-codecommit.eu-west-1.amazonaws.com/v1/repos/git-bluex-prd-bx-local-orbit#dev",
     "@types/styled-components": "^5.1.26",
     "@types/js-cookie": "^3.0.3",
     "@typescript-eslint/parser": "^5.48.2",
