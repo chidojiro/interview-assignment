@@ -19,7 +19,7 @@ function HeaderSavedJobs({
 
   useEffect(() => {
     const getAll = async () => {
-      const savedJobs = typeof window !== 'undefined' && localStorage.getItem('saved-jobs');
+      const savedJobs = localStorage.getItem('saved-jobs');
 
       const total = await getSavedJobsNumber(gdsApiKey, gdsApiUrl, savedJobs);
       if (total) {
