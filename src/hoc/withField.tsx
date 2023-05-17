@@ -10,6 +10,7 @@ export interface WithFieldProps {
   description?: string;
   afterContent?: React.ReactNode;
   capitalize?: boolean;
+  currency?: string;
   formGroupLabel?: string;
   label?: string;
   value?: string | number;
@@ -32,6 +33,7 @@ const withField = <T extends WithFieldProps = WithFieldProps>(ChildComponent: Re
       description,
       afterContent,
       capitalize,
+      currency,
       formGroupLabel,
       label,
       withFormGroup,
@@ -45,6 +47,7 @@ const withField = <T extends WithFieldProps = WithFieldProps>(ChildComponent: Re
     const fieldProps = {
       name,
       required,
+      currency,
       id: fieldId,
       label: labelValue,
       ...rest,

@@ -19,8 +19,8 @@ export default (el: HTMLElement, ul: HTMLUListElement, keyPressed: string) => {
       list.scrollTop = elementHeight + elementOffsetTop - list.offsetHeight;
     }
   } else if (
-    elementOffsetTop - offsetTopFirstElement < list.scrollTop
-    || elementOffsetTop + elementHeight > list.scrollTop + list.offsetHeight
+    elementOffsetTop - offsetTopFirstElement < list.scrollTop ||
+    elementOffsetTop + elementHeight > list.scrollTop + list.offsetHeight
   ) {
     list.scrollTop = elementOffsetTop - offsetTopFirstElement;
   }

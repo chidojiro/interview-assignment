@@ -1,7 +1,7 @@
 ```jsx
 import { Block } from "@ffw/randstad-shared-components";
 
-<Block align="right" smallContentSize={false} title="This is right aligned content.">
+<Block align="right" smallContentSize={false} title="This is right aligned content." stacked={true}>
   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Bestiarum vero nullum iudicium puto. Si
   enim ad populum me vocas, eum. Nunc de hominis summo bono quaeritur; Ubi ut eam caperet aut
   quando? Si longus, levis dictata sunt. Nihil enim iam habes, quod ad corpus referas; Sed fortuna

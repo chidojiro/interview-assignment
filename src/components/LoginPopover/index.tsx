@@ -101,6 +101,11 @@ function LoginPopover({
     const popoverTrigger = document.querySelector('.navigation__service-my-randstad');
     if (popoverTrigger) {
       popoverTrigger.classList.remove('active');
+      // Since the login-popover stays open after click, we dispatch a click on the backdrop/overlay.
+      const overlay = document.querySelector('[data-rs-popover-overlay]');
+      if (overlay) {
+        (overlay as HTMLElement).click();
+      }
     }
   };
 

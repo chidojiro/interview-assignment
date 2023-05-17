@@ -19,17 +19,18 @@ function HeaderSavedJobs({
 
   useEffect(() => {
     const getAll = async () => {
-      const total = await getSavedJobsNumber(gdsApiKey, gdsApiUrl, localStorage.getItem('saved-jobs'));
+      const savedJobs = localStorage.getItem('saved-jobs');
+
+      const total = await getSavedJobsNumber(gdsApiKey, gdsApiUrl, savedJobs);
       if (total) {
         setMaxCounter(total);
       } else {
         setMaxCounter(0);
       }
     };
-    window.addEventListener('saved-jobs', () => {
-      getAll();
-    });
     getAll();
+    window.addEventListener('saved-jobs', () => getAll());
+    return window.removeEventListener('saved-jobs', getAll);
   }, [gdsApiKey, gdsApiUrl]);
 
   return (

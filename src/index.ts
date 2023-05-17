@@ -3,6 +3,7 @@ import PasswordField from './components/forms/PasswordField';
 import FieldError from './components/form-group/FieldError/FieldError';
 import SelectField from './components/forms/SelectField';
 import InputField from './components/forms/InputField';
+import DatePicker from './components/forms/DatePicker';
 import Checkbox from './components/forms/Checkbox';
 import Toggle from './components/forms/Toggle';
 import Block from './components/Block';
@@ -50,7 +51,7 @@ import UploadField from './components/forms/UploadField';
 import SplitView from './components/SplitView';
 import HeaderIllustration from './components/HeaderIllustration';
 // import LocationInputField from "./components/forms/LocationInputField";
-// import RadioButton from "./components/forms/RadioButton";
+import RadioButton from './components/forms/RadioButton';
 import TextArea from './components/forms/TextArea';
 // import Filter from "./components/Filter";
 import Accordion from './components/accordion/Accordion';
@@ -62,7 +63,10 @@ import AccordionItem from './components/accordion/AccordionItem';
 // import Navigation from "./components/Navigation";
 import Autosuggest from './components/forms/Autosuggest';
 import Dropdown from './components/form-group/Dropdown';
-// import Stackable from "./components/form-group/Stackable";
+import Stackable from './components/form-group/Stackable';
+import ApplicationProcess from './components/applicationProcess/ApplicationProcess';
+import ApplicationProcessCard from './components/applicationProcess/ApplicationProcessCard';
+import ContactPerson from './components/ContactPerson';
 
 export {
   PasswordField,
@@ -94,6 +98,7 @@ export {
   TextNotice,
   SelectField,
   InputField,
+  DatePicker,
   TabBar,
   FooterColumnNav,
   FooterBottomNav,
@@ -117,7 +122,7 @@ export {
   SplitView,
   HeaderIllustration,
   // LocationInputField,
-  // RadioButton,
+  RadioButton,
   TextArea,
   // Filter,
   Accordion,
@@ -130,9 +135,12 @@ export {
   // LanguageSwitcher,
   Autosuggest,
   // UtilityNavigation,
-  // Stackable,
+  Stackable,
   // FormGroup,
   Dropdown,
+  ApplicationProcess,
+  ApplicationProcessCard,
+  ContactPerson,
 };
 
 /**

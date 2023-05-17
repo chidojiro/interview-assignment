@@ -8,6 +8,7 @@ interface InputFieldProps extends WithFieldProps {
   type: string;
   value?: string;
   disabled?: boolean;
+  currency?: string;
   placeholder?: string;
   _formGroupProps?: object;
 }
@@ -25,6 +26,7 @@ function InputField({
   type = 'text',
   disabled,
   placeholder,
+  currency,
   _formGroupProps,
   ...props
 }: InputFieldProps): React.ReactElement {
@@ -49,6 +51,11 @@ function InputField({
 
   return (
     <FormGroup {..._formGroupProps}>
+      {currency ? (
+        <span className="text-ellipsis">
+          {currency}
+        </span>
+      ) : null as never}
       <input {...otherFieldProps} ref={inputRef} onWheel={ignoreScroll} />
     </FormGroup>
   );
