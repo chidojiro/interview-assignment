@@ -1,5 +1,6 @@
 import { AxiosResponse } from 'axios';
 import { TalentAppApi } from './talentAppApi';
+import getUserData from '../utils/getUserData';
 
 interface SavedJobsResponse {
   totalElements: number;
@@ -18,25 +19,35 @@ export type Data = {
   };
 };
 
-const getSavedJobsCount = async (gdsApiKey: string, gdsApiUrl: string): Promise<number | undefined> => {
-  const talentApi = new TalentAppApi(gdsApiKey, gdsApiUrl);
+const getSavedJobsCount = async (gdsApiKey: string, gdsApiUrl: string, checkLocalStorage = true): Promise<number> => {
+  const isLoggedIn = getUserData();
+  // TODO: This needs to work with anonymous users as well. Handle it when unblocked for anonymous users.
+  if (checkLocalStorage) {
+    const storage = localStorage.getItem('saved-jobs');
+    const data = JSON.parse(storage as string);
+    if (data.totalElements) {
+      return data.totalElements;
+    }
+  } else if (isLoggedIn.loginStatus) {
+    const talentApi = new TalentAppApi(gdsApiKey, gdsApiUrl);
 
-  const response = await talentApi.get<Data, AxiosResponse<SavedJobsResponse>>('/me/saved-jobs?size=1').catch((err) => {
-    // Needed logging for error.
-    // eslint-disable-next-line no-console
-    console.error('GetSavedJobs Error: ', err);
-    return undefined;
-  });
-  if (response) {
-    return response.data.totalElements;
+    const response = await talentApi.get<Data, AxiosResponse<SavedJobsResponse>>('/me/saved-jobs?size=1').catch((err) => {
+      // Needed logging for error.
+      // eslint-disable-next-line no-console
+      console.error('GetSavedJobs Error: ', err);
+      return undefined;
+    });
+    if (response) {
+      return response.data.totalElements;
+    }
   }
 
-  return undefined;
+  return 0;
 };
 
 const saveCountOfSavedJobs = async (gdsApiKey: string, gdsApiUrl: string) => {
   const numberOfSavedJobs: SavedJobsResponse = {
-    totalElements: (await getSavedJobsCount(gdsApiKey, gdsApiUrl)) ?? 0,
+    totalElements: await getSavedJobsCount(gdsApiKey, gdsApiUrl, false),
   };
   localStorage.setItem('saved-jobs', JSON.stringify(numberOfSavedJobs));
   const savedJobsEvent = new Event('saved-jobs');
@@ -52,23 +63,6 @@ const postSavedJobs = async (gdsApiKey: string, gdsApiUrl: string, jobPostingWeb
   });
 };
 
-const getSavedJobsNumber = async (gdsApiKey: string, gdsApiUrl: string, localStorage: any) => {
-  if (localStorage) {
-    const data = JSON.parse(localStorage as string);
-    if (data.totalElements) {
-      return data.totalElements;
-    }
-  } else {
-    return getSavedJobsCount(gdsApiKey, gdsApiUrl).catch((err) => {
-      // Needed logging for error.
-      // eslint-disable-next-line no-console
-      console.error('getSavedJobsCount Error: ', err);
-      return undefined;
-    });
-  }
-  return undefined;
-};
-
 const deleteSavedJobs = async (gdsApiKey: string, gdsApiUrl: string, savedJobId: string): Promise<AxiosResponse> => {
   const talentApi = new TalentAppApi(gdsApiKey, gdsApiUrl);
 
@@ -78,4 +72,4 @@ const deleteSavedJobs = async (gdsApiKey: string, gdsApiUrl: string, savedJobId:
   });
 };
 
-export { getSavedJobsNumber, getSavedJobsCount, postSavedJobs, deleteSavedJobs };
+export { getSavedJobsCount, postSavedJobs, deleteSavedJobs };
