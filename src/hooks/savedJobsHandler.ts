@@ -19,10 +19,12 @@ export type Data = {
   };
 };
 
-const getSavedJobsCount = async (gdsApiKey: string, gdsApiUrl: string, localStorage: any): Promise<number | undefined> => {
+const getSavedJobsCount = async (gdsApiKey: string, gdsApiUrl: string, checkLocalStorage = true): Promise<number> => {
   const isLoggedIn = getUserData();
-  if (localStorage) {
-    const data = JSON.parse(localStorage as string);
+  // TODO: This needs to work with anonymous users as well. Handle it when unblocked for anonymous users.
+  if (checkLocalStorage) {
+    const storage = localStorage.getItem('saved-jobs');
+    const data = JSON.parse(storage as string);
     if (data.totalElements) {
       return data.totalElements;
     }
@@ -40,12 +42,12 @@ const getSavedJobsCount = async (gdsApiKey: string, gdsApiUrl: string, localStor
     }
   }
 
-  return undefined;
+  return 0;
 };
 
 const saveCountOfSavedJobs = async (gdsApiKey: string, gdsApiUrl: string) => {
   const numberOfSavedJobs: SavedJobsResponse = {
-    totalElements: (await getSavedJobsCount(gdsApiKey, gdsApiUrl, null)) ?? 0,
+    totalElements: await getSavedJobsCount(gdsApiKey, gdsApiUrl, false),
   };
   localStorage.setItem('saved-jobs', JSON.stringify(numberOfSavedJobs));
   const savedJobsEvent = new Event('saved-jobs');

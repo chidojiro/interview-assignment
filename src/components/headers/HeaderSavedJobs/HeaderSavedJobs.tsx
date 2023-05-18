@@ -19,8 +19,7 @@ function HeaderSavedJobs({
 
   useEffect(() => {
     const getAll = async () => {
-      const savedJobs = localStorage.getItem('saved-jobs');
-      const total = await getSavedJobsCount(gdsApiKey, gdsApiUrl, savedJobs);
+      const total = await getSavedJobsCount(gdsApiKey, gdsApiUrl);
       if (total) {
         setMaxCounter(total);
       } else {
