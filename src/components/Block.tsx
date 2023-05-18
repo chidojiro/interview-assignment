@@ -1,7 +1,7 @@
 import React from 'react';
 import cn from 'classnames';
 
-interface Block {
+interface BlockProps {
   /** Rendered inside block_content */
   children: React.ReactNode;
   /** Rendered before block_content */
@@ -30,19 +30,20 @@ function Block({
   title,
   stacked = false,
   blockHeaderClasses = '',
-  blockContentClasses = ''
-}: Block) {
+  blockContentClasses = '',
+}: BlockProps) {
   return (
     <div className={cn('block', {
       'block--filter': typeFilter,
     })}
     >
       <div className={cn('block__wrapper wrapper', {
-        'block__wrapper--stacked job-details': stacked
-      })}>
+        'block__wrapper--stacked job-details': stacked,
+      })}
+      >
         {title && (
-          <div className={cn("block__header", blockHeaderClasses)}>
-            <h2 className="block__title">{title}</h2>
+          <div className={cn('block__header', blockHeaderClasses)}>
+            <h2 className='block__title'>{title}</h2>
           </div>
         )}
         {beforeContent}
