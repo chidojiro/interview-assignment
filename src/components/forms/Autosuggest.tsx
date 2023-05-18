@@ -1,14 +1,14 @@
 import React from 'react';
 
 import useAutosuggest, { UseAutosuggestParamTypes } from '../../hooks/useAutosuggest';
-import withField from '../../hoc/withField';
+import withField, { WithFieldProps } from '../../hoc/withField';
 import ListItemMark from './autosuggest/ListItemMark';
 import FormGroup from '../form-group/FormGroup';
 
-type AutosuggestPropTypes = UseAutosuggestParamTypes & {
+interface AutosuggestPropTypes extends WithFieldProps, UseAutosuggestParamTypes {
   noResultsText?: string,
   _formGroupProps?: object,
-};
+}
 
 /**
  * An input field which predicts the rest of a word a user is typing. See [here](https://randstad.design/components/core/forms/autosuggest/)
