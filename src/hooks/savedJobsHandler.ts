@@ -22,8 +22,8 @@ export type Data = {
 const getSavedJobsCount = async (gdsApiKey: string, gdsApiUrl: string, checkLocalStorage = true): Promise<number> => {
   const isLoggedIn = getUserData();
   // TODO: This needs to work with anonymous users as well. Handle it when unblocked for anonymous users.
-  if (checkLocalStorage) {
-    const storage = localStorage.getItem('saved-jobs');
+  const storage = localStorage.getItem('saved-jobs');
+  if (checkLocalStorage && storage) {
     const data = JSON.parse(storage as string);
     if (data.totalElements) {
       return data.totalElements;
