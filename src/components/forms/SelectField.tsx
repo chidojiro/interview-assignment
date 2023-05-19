@@ -1,5 +1,4 @@
 import React from 'react';
-import cn from 'classnames';
 
 import withField from '../../hoc/withField';
 import useLibrary from '../../hooks/useLibrary';
@@ -33,7 +32,7 @@ function SelectField({
   return (
     <FormGroup {..._formGroupProps}>
       <select
-        className={cn(className)}
+        className={className}
         data-rs-untouched=""
         data-scl=""
         ref={ref as React.RefObject<HTMLSelectElement>}
