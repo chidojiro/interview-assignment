@@ -33,7 +33,7 @@ function SelectField({
   return (
     <FormGroup {..._formGroupProps}>
       <select
-        className={cn('untouched', className)}
+        className={cn(className)}
         data-rs-untouched=""
         data-scl=""
         ref={ref as React.RefObject<HTMLSelectElement>}
