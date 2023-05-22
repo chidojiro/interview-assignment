@@ -13,8 +13,13 @@ merge_request_test:
   script: |
     echo Testing.
     nvm use 18
-    stat node_modules || AWS_PROFILE="bluex-codecommit" yarn install
-    yarn test
+    stat node_modules yarn install
+    yarn test --coverage
+  artifacts:
+    reports:
+      coverage_report:
+        coverage_format: cobertura
+        path: coverage/clover.xml
 
 build:
   stage: build
