@@ -5,7 +5,7 @@ stages:
 
 merge_request_test:
   stage: test
-  allow_failure: true
+  allow_failure: false
   only:
     - merge_requests
   tags:
@@ -13,13 +13,8 @@ merge_request_test:
   script: |
     echo Testing.
     nvm use 18
-    stat node_modules yarn install
-    yarn test --coverage
-  artifacts:
-    reports:
-      coverage_report:
-        coverage_format: cobertura
-        path: coverage/clover.xml
+    stat node_modules || yarn install
+    yarn test
 
 build:
   stage: build
