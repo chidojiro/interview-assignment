@@ -3,6 +3,7 @@ import React from 'react';
 import withField from '../../hoc/withField';
 import useLibrary from '../../hooks/useLibrary';
 import FormGroup from '../form-group/FormGroup';
+import Icon from '../Icon';
 
 interface SelectFieldProps {
   /** Rendered Select Options */
@@ -40,11 +41,7 @@ function SelectField({
       >
         {children}
       </select>
-      <span className="select-arrow icon">
-        <svg>
-          <use xlinkHref="/src/assets/img/icons.svg#chevron-down"></use>
-        </svg>
-      </span>
+      <Icon iconType="chevron-down" iconClassName="select-arrow icon" />
     </FormGroup>
   );
 }
