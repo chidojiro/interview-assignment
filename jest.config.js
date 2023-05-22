@@ -18,8 +18,9 @@ const config = {
   moduleFileExtensions: ['ts', 'tsx', 'js', 'json'],
   collectCoverageFrom: [
     '<rootDir>/src/components/**',
-    '<rootDir>/src/forms/**',
-    '<rootDir>/src/navigation/**',
+    '<rootDir>/src/hoc/**',
+    '<rootDir>/src/hooks/**',
+    '<rootDir>/src/utils/**',
   ],
 };
 
