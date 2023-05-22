@@ -50,8 +50,8 @@ function FormGroup({
   _configClasses,
   _withoutWrapper,
   withFormGroup = true,
-}: FormGroupProps): JSX.Element {
-  if (!withFormGroup && children) return <>{children}</>;
+}: FormGroupProps): JSX.Element | JSX.Element[] {
+  if (!withFormGroup && children) return children;
 
   const errorMessagesArray = error && ((Array.isArray(error) && error) || [error]);
 
