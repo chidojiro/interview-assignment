@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "baseUrl": "./",
+    "allowJs": true,
     "esModuleInterop": true,
     "jsx": "react",
     "module": "esnext",
@@ -8,9 +9,10 @@
     "lib": ["dom", "esnext"],
     "strict": true,
     "sourceMap": true,
-    "target": "esnext",
+    "target": "es5",
     "resolveJsonModule": true
   },
+  "include": ["**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules", "build"],
   "parserOptions": {
     "project": "./tsconfig.json"

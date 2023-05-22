@@ -9,6 +9,9 @@ yarn-error.log*
 **/docs-lib/assets
 styleguide
 
+# testing
+/coverage
+
 # Local Netlify folder
 .netlify
 
