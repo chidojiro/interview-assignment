@@ -43,7 +43,8 @@ import JobCardList from './components/JobCard/JobCardList';
 import JobCard from './components/JobCard/JobCard';
 import JobCardCTA from './components/JobCard/JobCardCTA';
 import JobItemMetadata from './components/JobCard/JobItemMetadata';
-import PagePreloader from './components/PagePreloader';
+import LayoutPreloader from './components/loaders/LayoutPreloader';
+import PagePreloader from './components/loaders/PagePreloader';
 import Preloader from './components/loaders/Preloader';
 import UserImageBlock from './components/UserImageBlock';
 import AccountInfo from './components/account-info/AccountInfo';
@@ -114,6 +115,7 @@ export {
   JobCard,
   JobCardCTA,
   JobItemMetadata,
+  LayoutPreloader,
   PagePreloader,
   Preloader,
   UserImageBlock,
