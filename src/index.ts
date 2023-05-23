@@ -68,8 +68,8 @@ import Stackable from './components/form-group/Stackable';
 import ApplicationProcess from './components/applicationProcess/ApplicationProcess';
 import ApplicationProcessCard from './components/applicationProcess/ApplicationProcessCard';
 import ContactPerson from './components/ContactPerson';
-import SummaryCard from './components/SummaryCard';
 import MultipleCheckboxSelect from './components/forms/MultipleCheckboxSelect';
+import SummaryCard from './components/SummaryCard';
 
 export {
   PasswordField,
@@ -145,13 +145,11 @@ export {
   ApplicationProcess,
   ApplicationProcessCard,
   ContactPerson,
-  SummaryCard,
   MultipleCheckboxSelect,
+  SummaryCard,
 };
 
 /**
  * Exporting interfaces and types.
  */
-export type {
-  NoticeType, TextNoticeBackground, FooterSocial, GoogleRecaptchaRef,
-};
+export type { NoticeType, TextNoticeBackground, FooterSocial, GoogleRecaptchaRef };
