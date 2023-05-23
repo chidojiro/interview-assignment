@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
-import { PreloaderProps } from './Preloader.props';
+import { PagePreloaderProps } from './PagePreloader.props';
 
-const Preloader: FC<PreloaderProps> = ({ image }) => {
+const PagePreloader: FC<PagePreloaderProps> = ({ image }) => {
   return (
     <div className="page-preloader flex justify-center items-center">
       {image}
@@ -10,4 +10,4 @@ const Preloader: FC<PreloaderProps> = ({ image }) => {
   );
 }
 
-export default Preloader;
+export default PagePreloader;
