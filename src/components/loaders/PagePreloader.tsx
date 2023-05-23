@@ -1,11 +1,18 @@
-import React, { FC } from 'react';
-import { PagePreloaderProps } from './PagePreloader.props';
+import React from 'react';
+import { Code, List } from 'react-content-loader';
 
-const PagePreloader: FC<PagePreloaderProps> = ({ image }) => {
+function PagePreloader() {
   return (
-    <div className="page-preloader flex justify-center items-center">
-      {image}
-      <span className="loader__wrapper"><span className="loader" /></span>
+    <div className="block__wrapper wrapper">
+      <div className="block__header">
+        <Code uniqueKey="loader-1" />
+      </div>
+      <div className="block__content block__content--xs block__content--align-right">
+        <ul className="list-items">
+          <List uniqueKey="loader-2" />
+          <List uniqueKey="loader-3" />
+        </ul>
+      </div>
     </div>
   );
 }

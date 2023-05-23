@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
 
-interface PagePreloaderProps {
+interface LayoutPreloaderProps {
   image: ReactNode;
 }
