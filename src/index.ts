@@ -69,6 +69,7 @@ import ApplicationProcess from './components/applicationProcess/ApplicationProce
 import ApplicationProcessCard from './components/applicationProcess/ApplicationProcessCard';
 import ContactPerson from './components/ContactPerson';
 import SummaryCard from './components/SummaryCard';
+import MultipleCheckboxSelect from './components/forms/MultipleCheckboxSelect';
 
 export {
   PasswordField,
@@ -145,9 +146,12 @@ export {
   ApplicationProcessCard,
   ContactPerson,
   SummaryCard,
+  MultipleCheckboxSelect,
 };
 
 /**
  * Exporting interfaces and types.
  */
-export type { NoticeType, TextNoticeBackground, FooterSocial, GoogleRecaptchaRef };
+export type {
+  NoticeType, TextNoticeBackground, FooterSocial, GoogleRecaptchaRef,
+};
