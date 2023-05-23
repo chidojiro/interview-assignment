@@ -68,6 +68,7 @@ import Stackable from './components/form-group/Stackable';
 import ApplicationProcess from './components/applicationProcess/ApplicationProcess';
 import ApplicationProcessCard from './components/applicationProcess/ApplicationProcessCard';
 import ContactPerson from './components/ContactPerson';
+import SummaryCard from './components/SummaryCard';
 
 export {
   PasswordField,
@@ -143,6 +144,7 @@ export {
   ApplicationProcess,
   ApplicationProcessCard,
   ContactPerson,
+  SummaryCard,
 };
 
 /**
