@@ -23,7 +23,7 @@ type Routes = {
 
 type PopoverArrowVariants = 'left' | 'center' | 'right';
 
-interface LoginPopover {
+interface LoginPopoverPropTypes {
   isAuth?: boolean;
   links?: object;
   locale?: string | undefined;
@@ -47,7 +47,7 @@ function LoginPopover({
   arrowVariant,
   RouterComponent,
   currentRoute,
-}: LoginPopover) {
+}: LoginPopoverPropTypes) {
   const [ref] = useOrbitComponent('popover');
   const overlayRef = useRef<HTMLDivElement>(null);
 
@@ -147,7 +147,7 @@ function LoginPopover({
           )}
         </div>
       </div>
-      <div ref={overlayRef} className="modal__overlay modal__overlay--light" data-rs-popover-overlay=""></div>
+      <div ref={overlayRef} className="modal__overlay modal__overlay--light" data-rs-popover-overlay="" />
     </>
   );
 }
