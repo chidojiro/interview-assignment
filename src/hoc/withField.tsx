@@ -13,7 +13,7 @@ export interface WithFieldProps {
   currency?: string;
   formGroupLabel?: string;
   label?: string;
-  value?: string | number;
+  value?: string | number | string[];
   withFormGroup?: boolean;
   _formGroupProps?: object;
   onBlur?: (event: React.FocusEvent<HTMLInputElement | HTMLSelectElement>) => void;
