@@ -4,7 +4,8 @@ interface SummaryCardProps {
   count: number;
   tabIndex: number;
   message?: string;
-  onClick: (e: React.UIEvent<HTMLSpanElement>) => void;
+  onClick?: (e: React.UIEvent<HTMLSpanElement>) => void;
+  stars?: boolean;
 }
 
 export default SummaryCardProps;
