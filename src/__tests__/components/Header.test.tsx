@@ -66,38 +66,25 @@ const defaultProps = {
     locale: 'en',
     defaultLocale: 'en',
   },
-  currentUrl: '/current-url/',
-  popoverTranslations: {
-    myRandstadTitle: 'myRnd title',
-    greeting: 'myRnd greeting',
-    registerText: 'myRnd register msg',
-    loginText: 'myRnd login',
-    logoutText: 'myRnd logout',
-    heading1: 'myRnd heading1',
-    heading2: 'myRnd heading2',
-    listText1: 'myRnd list1',
-    listText2: 'myRnd list2',
-    listText3: 'myRnd list3',
-  },
+  currentUrl: '/',
 };
 
 const renderHeader = (props: HeaderProps) => render(<Header {...props} />);
 
 describe('Header', () => {
-  test('should display proper sub-menu children', () => {
+  test('current url exists in the menu as the first level menu item', () => {
     const { container } = renderHeader({ ...defaultProps, ...{ currentUrl: '/parent-menu-url/' } });
     expect(container.querySelector('.navigation__menu--sub .navigation__menu-item')).toBeTruthy();
     expect(container.querySelector('.navigation__menu--main > .navigation__menu-item--active')).toBeTruthy();
   });
 
-  test('should not display sub-menu children', () => {
-    const { container } = renderHeader(defaultProps);
-    expect(container.querySelector('.navigation__menu--sub .navigation__menu-item')).toBeFalsy();
+  test('current url exists in the menu as the second level menu item', () => {
+    const { container } = renderHeader({ ...defaultProps, ...{ currentUrl: '/sub-menu-url/' } });
+    expect(container.querySelector('.navigation__menu--sub > .navigation__menu-item--active')).toBeTruthy();
   });
 
-  test('should display My Randstad submenu', () => {
-    const { container } = renderHeader({ ...defaultProps, ...{ isMyRandstad: true } });
-    const link = container.querySelector('.navigation__menu--sub .navigation__menu-item a');
-    expect(link).toHaveTextContent('my-rand-menu-title');
+  test('current url not exist in the menu', () => {
+    const { container } = renderHeader(defaultProps);
+    expect(container.querySelector('.navigation__menu--sub .navigation__menu-item')).toBeFalsy();
   });
 });

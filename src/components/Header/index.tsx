@@ -147,9 +147,9 @@ function Header({
   if (isMyRandstad) {
     subMenuItems = (submenuLinks as Routes)[locale as string].secondary;
   } else {
-    // Filter matched MenuItem by current url, from list of the Menus.
+    // Filter active menu item from the list of the Main menu.
     // Filter method returns a new array with a single element, we need an element data.
-    const subMenuObject = routes?.[locale as string]?.main.filter((menuItem: Items) => menuItem.url === currentUrl)[0];
+    const subMenuObject = mainMenuItems.filter((menuItem: Items) => menuItem.isActive)[0];
     // If menu item has a not empty children array, get them for further output.
     if (subMenuObject?.children?.length) {
       subMenuItems = subMenuObject.children;
