@@ -11,7 +11,10 @@ interface MultipleCheckboxSelectProps extends WithFieldProps {
   optionalLabel?: string | undefined;
   items: { id: string; name: string; }[]
   value: string[];
-  setFieldValue: (name: string, value: string[]) => void;
+  /** use  setFieldValue with formik filed state */
+  setFieldValue?: ((name: string, value: string[]) => void) | undefined;
+  /** use  setFieldValue with normal filed state */
+  setValue?: ((value: string[]) => void) | undefined;
   /** @ignore part of HTML props */
   _formGroupProps: object ;
   /** @ignore part of HTML props */
@@ -22,6 +25,7 @@ function MultipleCheckboxSelect({
   name,
   items,
   setFieldValue,
+  setValue,
   value,
   label,
   required,
@@ -29,6 +33,15 @@ function MultipleCheckboxSelect({
   disabled,
   _formGroupProps,
 }: MultipleCheckboxSelectProps) {
+  function onChange(updatedValue: string[]) {
+    if (setFieldValue) {
+      setFieldValue(name, updatedValue);
+    }
+    if (setValue) {
+      setValue(updatedValue);
+    }
+  }
+
   const renderItems = () => items.map((item) => (
     <div key={item.id} id={item.id}>
       <Checkbox
@@ -36,10 +49,12 @@ function MultipleCheckboxSelect({
         name={item.id}
         checked={value.includes(item.id)}
         onChange={() => {
-          if (value.includes(item.id)) {
-            setFieldValue(name, value.filter((sT) => sT !== item.id));
-          } else {
-            setFieldValue(name, [...value, item.id]);
+          if (setFieldValue || setValue) {
+            const updatedValue = value.includes(item.id)
+              ? value.filter((sT) => sT !== item.id)
+              : [...value, item.id];
+
+            onChange(updatedValue);
           }
         }}
         disabled={disabled}
