@@ -6,7 +6,7 @@ import Logo from '../navigation/Logo';
 import MainMenu from '../navigation/MainMenu';
 import UtilityNavigation from '../navigation/UtilityNavigation';
 import LanguageSwitcher from '../navigation/LanguageSwitcher';
-import Submenu from '../navigation/Submenu';
+import Submenu, { SubmenuItems } from '../navigation/Submenu';
 import NavigationModal from '../navigation/NavigationModal';
 import MobileNavigation from '../navigation/MobileNavigation';
 import TabBar from '../navigation/TabBar';
@@ -157,7 +157,7 @@ function Header({
   }
 
   // Set as active element whenever url matched route.
-  const subMenu = subMenuItems?.map((item: Routes) => {
+  const subMenu = subMenuItems?.map((item: SubmenuItems) => {
     if (item.url !== currentUrl) return item;
     return {
       ...item,
