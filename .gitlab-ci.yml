@@ -1,6 +1,20 @@
 stages:
   - build
   - translations_upload
+  - test
+
+merge_request_test:
+  stage: test
+  allow_failure: false
+  only:
+    - merge_requests
+  tags:
+    - randstad-bluex
+  script: |
+    echo Testing.
+    nvm use 18
+    stat node_modules || yarn install
+    yarn test
 
 build:
   stage: build
