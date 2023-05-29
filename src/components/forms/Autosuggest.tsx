@@ -8,6 +8,7 @@ import FormGroup from '../form-group/FormGroup';
 interface AutosuggestPropTypes extends WithFieldProps, UseAutosuggestParamTypes {
   noResultsText?: string,
   _formGroupProps?: object,
+  placeholder?: string;
 }
 
 /**
