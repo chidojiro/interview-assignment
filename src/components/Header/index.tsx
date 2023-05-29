@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { BgColor } from '../../utils/getBackground';
+import { Items } from '../navigation/types';
 import Logo from '../navigation/Logo';
 import MainMenu from '../navigation/MainMenu';
 import UtilityNavigation from '../navigation/UtilityNavigation';
@@ -18,7 +19,7 @@ import LoginPopover, { TranslationProps } from '../LoginPopover';
 import getUserData, { PersistData } from '../../utils/getUserData';
 import HeaderBrandsEnum from './headerBrands.enum';
 import HeaderSavedJobs from '../headers/HeaderSavedJobs/HeaderSavedJobs';
-import useUserData from '../..//hooks/useUserData';
+import useUserData from '../../hooks/useUserData';
 
 type HeaderBrands =
   | HeaderBrandsEnum.Primary
@@ -56,7 +57,7 @@ type LanguageSwitcherItems = {
   url?: string
 };
 
-interface HeaderProps {
+export interface HeaderProps {
   brand: HeaderBrands;
   isMyRandstad: boolean;
   routes: Routes;
@@ -83,7 +84,7 @@ interface HeaderProps {
 type Menu = {
   main?: [];
   utility?: [];
-}
+};
 
 function Header({
   brand,
@@ -99,7 +100,7 @@ function Header({
   currentRoute,
   languageSwitcherItems,
   useToast = false,
-  toastSettings
+  toastSettings,
 }: HeaderProps) {
   // TO DO: currentUser.loginState state needed because tabBar needs an active link on logout
   const [currentUser, setCurrentUser] = useState({} as PersistData);
@@ -107,12 +108,14 @@ function Header({
 
   useEffect(() => {
     const newUserData = getUserData();
-      const { personalInfo: newPersonalInfo } = newUserData.currentUser || {};
-      const { personalInfo: currentUserPersonalInfo } = currentUser.currentUser || {};
+    const { personalInfo: newPersonalInfo } = newUserData.currentUser || {};
+    const { personalInfo: currentUserPersonalInfo } = currentUser.currentUser || {};
 
-      if (currentUser.loginStatus !== newUserData.loginStatus ||
-        newPersonalInfo?.familyName !== currentUserPersonalInfo?.familyName ||
-        newPersonalInfo?.givenName !== currentUserPersonalInfo?.givenName) setCurrentUser(newUserData);
+    if (currentUser.loginStatus !== newUserData.loginStatus
+      || newPersonalInfo?.familyName !== currentUserPersonalInfo?.familyName
+      || newPersonalInfo?.givenName !== currentUserPersonalInfo?.givenName) {
+      setCurrentUser(newUserData);
+    }
   }, [profileData]);
 
   const { locale, defaultLocale } = localization;
@@ -138,8 +141,23 @@ function Header({
   const utilityMenuItems = menuLinks && menuLinks?.utility ? menuLinks.utility : [];
   const showMyRandstad = true;
 
-  let subMenu = isMyRandstad ? (submenuLinks as Routes)[locale as string].secondary : routes?.[locale as string]?.main?.[0]?.children;
-  subMenu = subMenu?.map((item: Routes) => {
+  let subMenuItems = [];
+
+  // Display separate second menu for the My Randstad.
+  if (isMyRandstad) {
+    subMenuItems = (submenuLinks as Routes)[locale as string].secondary;
+  } else {
+    // Filter active menu item from the list of the Main menu.
+    // Filter method returns a new array with a single element, we need an element data.
+    const subMenuObject = mainMenuItems.filter((menuItem: Items) => menuItem.isActive)[0];
+    // If menu item has a not empty children array, get them for further output.
+    if (subMenuObject?.children?.length) {
+      subMenuItems = subMenuObject.children;
+    }
+  }
+
+  // Set as active element whenever url matched route.
+  const subMenu = subMenuItems?.map((item: Routes) => {
     if (item.url !== currentUrl) return item;
     return {
       ...item,
@@ -208,7 +226,17 @@ function Header({
                 <LanguageSwitcher items={languageSwitcherItems || []} extraClasses="l:ml-s" useToast={useToast} toastSettings={toastSettings} />
               </div>
               <div id="navigationPopup">
-                <LoginPopover isAuth={currentUser.loginStatus} links={submenuLinks} locale={locale} languagePrefix={languagePrefix} translations={popoverTranslations} userName={currentUser.currentUser?.personalInfo} logoutUrl={myRandstadLogoutUrl} RouterComponent={RouterComponent} currentRoute={currentRoute} />
+                <LoginPopover
+                  isAuth={currentUser.loginStatus}
+                  links={submenuLinks}
+                  locale={locale}
+                  languagePrefix={languagePrefix}
+                  translations={popoverTranslations}
+                  userName={currentUser.currentUser?.personalInfo}
+                  logoutUrl={myRandstadLogoutUrl}
+                  RouterComponent={RouterComponent}
+                  currentRoute={currentRoute}
+                />
               </div>
             </div>
             { !isMyRandstad
