@@ -1,7 +1,7 @@
 import React from 'react';
 import { Items } from './types';
 
-interface SubmenuItems extends Items {
+export interface SubmenuItems extends Items {
   children: Items[]
 }
 
