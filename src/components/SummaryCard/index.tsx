@@ -9,6 +9,7 @@ function SummaryCard({
   tabIndex = 0,
   onClick,
   stars,
+  clickAreaAriaLabel = 'make entire card clickable',
 }: SummaryCardProps) {
   return (
     <div className="dashboard-card cards__item p-s l:py-s l:px-m">
@@ -17,13 +18,13 @@ function SummaryCard({
         {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
         <a href="#" className="link cards__link" tabIndex={tabIndex}>
           {title}
-          {onClick && (
+          {typeof onClick === 'function' && (
             <span
               role="button"
               tabIndex={0}
-              aria-label="make entire card clickable"
+              aria-label={clickAreaAriaLabel}
               className="make-entire-card-clickable"
-              onClick={(e) => onClick(e)}
+              onClick={onClick}
               onKeyDown={(e) => {
                 if (e.key === 'Enter') {
                   return onClick(e);

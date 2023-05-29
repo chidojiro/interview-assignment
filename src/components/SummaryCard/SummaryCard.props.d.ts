@@ -6,6 +6,7 @@ interface SummaryCardProps {
   message?: string;
   onClick?: (e: React.UIEvent<HTMLSpanElement>) => void;
   stars?: boolean;
+  clickAreaAriaLabel?: string;
 }
 
 export default SummaryCardProps;
