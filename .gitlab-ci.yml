@@ -27,10 +27,6 @@ build:
   script: |
     git remote add codecommit /fake-temp-url || true
     
-    # DF account
-    git remote set-url codecommit https://git-codecommit.eu-west-1.amazonaws.com/v1/repos/git-df-prd-bluex-lib-react-components
-    AWS_PROFILE="bluex-codecommit" git push codecommit HEAD:refs/heads/$CI_COMMIT_REF_NAME
-    
     # Bluex account
     git remote set-url codecommit https://git-codecommit.eu-west-1.amazonaws.com/v1/repos/git-bluex-prd-bx-lib-react-components
     git push codecommit HEAD:refs/heads/$CI_COMMIT_REF_NAME
