@@ -1,7 +1,6 @@
 import React from 'react';
 
 import withField, { WithFieldProps } from '../../hoc/withField';
-import Stackable from '../form-group/Stackable';
 import Checkbox from './Checkbox';
 import FormGroup from '../form-group/FormGroup';
 
@@ -43,7 +42,7 @@ function MultipleCheckboxSelect({
   }
 
   const renderItems = () => items.map((item) => (
-    <div key={item.id} id={item.id}>
+    <div key={item.id} id={item.id} className="mb-xs">
       <Checkbox
         checkboxLabel={item.name}
         name={item.id}
@@ -63,10 +62,8 @@ function MultipleCheckboxSelect({
   ));
 
   return (
-    <FormGroup {..._formGroupProps}>
-      <Stackable label={label} required={required} optionalLabel={optionalLabel}>
-        {renderItems()}
-      </Stackable>
+    <FormGroup {..._formGroupProps} label={label} required={required} optionalLabel={optionalLabel}>
+      {renderItems()}
     </FormGroup>
   );
 }
