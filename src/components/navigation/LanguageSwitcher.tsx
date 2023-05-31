@@ -20,28 +20,28 @@ export interface LanguageSwitcherProps {
   }
 }
 
-function LanguageSwitcher({ items, extraClasses, useToast = false, toastSettings }: LanguageSwitcherProps) {
-
+function LanguageSwitcher({
+  items, extraClasses, useToast = false, toastSettings,
+}: LanguageSwitcherProps) {
   const [toastOpen, setToastOpen] = useState(false);
-  const [selectedLanguage, setSelectedLanguage] = useState({href: "", lang: ""})
+  const [selectedLanguage, setSelectedLanguage] = useState({ href: '', lang: '' });
 
   const onClickHandler = (e: any) => {
     if (useToast) {
       e.preventDefault();
-      setToastOpen(prev => !prev)
+      setToastOpen((prev) => !prev);
 
       const selectedElement = e.target;
-      const hrefValue = selectedElement?.getAttribute("href") || ""
-      const hrefLangValue = selectedElement?.getAttribute("hrefLang") || ""
-      setSelectedLanguage({href: hrefValue, lang: hrefLangValue})
+      const hrefValue = selectedElement?.getAttribute('href') || '';
+      const hrefLangValue = selectedElement?.getAttribute('hrefLang') || '';
+      setSelectedLanguage({ href: hrefValue, lang: hrefLangValue });
     }
-  }
+  };
 
   const onSuccessHandler = () => {
-    window.location.href = selectedLanguage.href
-  }
+    window.location.href = selectedLanguage.href;
+  };
 
-  
   if (!items || (items && items.length < 2)) {
     return null;
   }
@@ -61,14 +61,16 @@ function LanguageSwitcher({ items, extraClasses, useToast = false, toastSettings
           </li>
         ))}
       </ul>
-      {(useToast && (toastOpen && toastSettings)) &&
+      {(useToast && (toastOpen && toastSettings)) && (
         <Toast
           id={toastSettings?.id}
           title={toastSettings?.title[selectedLanguage.lang]}
           onSuccess={onSuccessHandler}
           buttonSuccessText={toastSettings?.buttonSuccessText[selectedLanguage.lang]}
           buttonCloseText={toastSettings?.buttonCloseText[selectedLanguage.lang]}
-        />}
+          successBtnVariant="filled"
+        />
+      )}
     </>
   );
 }
