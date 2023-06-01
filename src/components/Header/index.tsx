@@ -269,7 +269,7 @@ function Header({
               myRandstadMenu={tabBarMenu}
               languagePrefix={languagePrefix}
             />
-            <LanguageSwitcher items={languageSwitcherItems || []} />
+            <LanguageSwitcher items={languageSwitcherItems || []} useToast={useToast} toastSettings={toastSettings} />
           </nav>
         </NavigationModal>
       </header>
