@@ -89,7 +89,7 @@ const useAutosuggest = ({
   const activeListItemRef = useRef(null);
 
   const debounceInputValue = useDebounce(inputValue);
-  const filterList = useMemo(() => items.filter((l) => l.toLowerCase().indexOf(inputValue.toLowerCase()) > -1), [items, inputValue]);
+  const filterList = useMemo(() => items.filter((l) => l.toLowerCase().indexOf(inputValue.trim().toLowerCase()) > -1), [items, inputValue]);
 
   const filteredList = skipFilter ? items : filterList;
   // Update the state of the input value whenever it's changed.
