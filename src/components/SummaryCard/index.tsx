@@ -12,7 +12,7 @@ function SummaryCard({
   clickAreaAriaLabel = 'make entire card clickable',
 }: SummaryCardProps) {
   return (
-    <div className="dashboard-card cards__item p-s l:py-s l:px-m">
+    <div className={`dashboard-card cards__item p-s l:py-s l:px-m ${stars ? 'col-span-full l:col-span-1' : ''}`}>
       <div className="dashboard-card--top mb-xxs">
         {/* This is anchor is not used but Orbit requires it because it has applied styles */}
         {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
