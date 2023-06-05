@@ -27,8 +27,8 @@ function HeaderSavedJobs({
       }
     };
     getAll();
-    window.addEventListener('saved-jobs', () => getAll());
-    return window.removeEventListener('saved-jobs', getAll);
+    window.addEventListener('saved-jobs', getAll);
+    return () => window.removeEventListener('saved-jobs', getAll);
   }, [gdsApiKey, gdsApiUrl]);
 
   return (
