@@ -61,6 +61,8 @@ export type UseAutosuggestParamTypes = {
     allowNumericValue?: boolean;
     /** Strip all words listed in the array from selected item initialValue. */
     itemsStripWordList?: string[];
+    /** Applies logic for multiselect configuration of the component */
+    isMultiSelect?: boolean;
   };
 };
 // It's not possible, unless to create bunch of utils/hook handlers which will complicate logic even more.
@@ -72,7 +74,7 @@ const useAutosuggest = ({
   initialValue = '',
   config = {},
 }: UseAutosuggestParamTypes) => {
-  const { skipFilter, allowNumericValue, itemsStripWordList = [] } = config;
+  const { skipFilter, allowNumericValue, itemsStripWordList = [], isMultiSelect = false } = config;
   const onSelectItem = selectItemCb || (() => null);
   // States.
   const [open, setOpen] = useState(false);
@@ -151,7 +153,7 @@ const useAutosuggest = ({
 
     if (previousInputValue === value) return;
 
-    setInputValue(value);
+    setInputValue(isMultiSelect ? '' : value);
     onSelectItem(value);
   };
 
