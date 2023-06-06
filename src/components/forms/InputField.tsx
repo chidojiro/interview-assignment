@@ -1,4 +1,4 @@
-import React, { WheelEvent, useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 
 import withField, { WithFieldProps } from '../../hoc/withField';
 import FormGroup from '../form-group/FormGroup';
@@ -14,7 +14,7 @@ interface InputFieldProps extends WithFieldProps {
 }
 
 /**
- * A field to enter data in a pre defined format. See [here](https://randstad.design/components/core/forms/input-field/)
+ * A field to enter data in a pre-defined format. See [here](https://randstad.design/components/core/forms/input-field/)
  *
  * ---
  * *Every other passed props will get added to `<input>`. Like "data-attribute" and "aria-label"*
@@ -39,15 +39,23 @@ function InputField({
 
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const ignoreScroll = (e: WheelEvent<HTMLInputElement>) => {
-    if (e.target && inputRef.current?.type === 'number') {
-      (e.target as HTMLInputElement).blur();
-      e.stopPropagation();
-      setTimeout(() => {
-        (e.target as HTMLInputElement).focus();
-      }, 0);
+  useEffect(() => {
+    const currentRef = inputRef.current;
+    const ignoreScroll = (e: globalThis.WheelEvent): void => {
+      if (e.target && inputRef.current?.type === 'number') {
+        e.preventDefault();
+      }
+    };
+    if (currentRef) {
+      currentRef.addEventListener('wheel', ignoreScroll);
     }
-  };
+
+    return () => {
+      if (currentRef) {
+        currentRef.removeEventListener('wheel', ignoreScroll);
+      }
+    };
+  }, [inputRef]);
 
   return (
     <FormGroup {..._formGroupProps}>
@@ -56,7 +64,7 @@ function InputField({
           {currency}
         </span>
       ) : null as never}
-      <input {...otherFieldProps} ref={inputRef} onWheel={ignoreScroll} />
+      <input {...otherFieldProps} ref={inputRef} />
     </FormGroup>
   );
 }

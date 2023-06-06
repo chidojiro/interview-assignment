@@ -62,7 +62,7 @@ currency="€"
 import { InputField } from "@ffw/randstad-shared-components";
 
 <InputField
-  type="text"
+  type="number"
   name="currency-1"
   id="currency-1"
   required
