@@ -4,5 +4,5 @@ export interface TagProps {
   onClick: () => void;
   variant?: 'primary' | 'secondary';
   size?: 'small' | 'normal';
-  areaLabel?: string;
+  ariaLabel?: string;
 }

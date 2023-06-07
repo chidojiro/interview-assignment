@@ -17,9 +17,9 @@ function Tag({
   onClick,
   variant = 'primary',
   size = 'normal',
-  areaLabel = 'remove',
+  ariaLabel = 'remove',
 }: TagProps) {
-  const tagClasses = cn('tag  tag--remove mb-xs mr-xs', {
+  const tagClasses = cn('tag tag--remove mb-xs mr-xs', {
     'tag--primary-7': variant === 'primary',
     'tag--secondary': variant === 'secondary',
     'tag--s': size === 'small',
@@ -51,7 +51,7 @@ function Tag({
         }}
         role="button"
         data-rs-tags-remove=""
-        aria-label={areaLabel}
+        aria-label={ariaLabel}
         id={`${id}-click`}
       >
         <span className="icon icon--s icon--inline">
