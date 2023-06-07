@@ -41,7 +41,7 @@ function Autosuggest({
   return (
     <FormGroup {..._formGroupProps}>
       <div {...wrapperProps}>
-        <input {...fieldProps} {...inputProps} type="text" autoComplete="off" />
+        <input {...fieldProps} {...inputProps} type="text" autoComplete="off" onKeyDown={(e) => open && e.key === 'Enter' && e.preventDefault()} />
         {open && (
           <ul className="select-menu__list">
             {list && listItemProps && list.map((listItem, i) => (
