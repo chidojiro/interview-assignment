@@ -51,8 +51,8 @@ function Tag({
   }
 
   return (
-    <div className={`tag tag--remove ${sizeClassName} ${variantClassName}`} data-rs-tags="" ref={ref} id={id}>
-      <span className="tag__text">
+    <div className={`tag tag--remove ${sizeClassName} ${variantClassName} mb-xs mr-xs`} data-rs-tags="" ref={ref} id={id} style={{ maxWidth: '100%' }}>
+      <span className="tag__text text-ellipsis">
         {title}
       </span>
       <div
