@@ -151,7 +151,7 @@ const useAutosuggest = ({
     setOpen(false);
     const value = getValue(inputValue, listItemValue, itemsStripWordList, allowNumericValue);
 
-    if (previousInputValue === value) return;
+    if (previousInputValue === value && !isMultiSelect) return;
 
     setInputValue(isMultiSelect ? '' : value);
     onSelectItem(value);
