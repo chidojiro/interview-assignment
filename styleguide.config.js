@@ -69,6 +69,7 @@ module.exports = {
         'src/components/ShowMore.tsx',
         'src/components/SplitView/index.tsx',
         'src/components/HeaderIllustration/index.tsx',
+        'src/components/Tag/Tag.tsx',
       ],
     },
     {
