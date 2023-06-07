@@ -1,6 +1,10 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import Tag from '../../components/Tag/Tag';
+import Tag from '../../components/Tag';
+
+/**
+ * The Tag component works with adding the hide-tag class upon removing and item. Typically it works with state.
+ */
 
 describe('Tag component tests', () => {
   const mockOnClick = jest.fn();
@@ -36,5 +40,19 @@ describe('Tag component tests', () => {
     expect(tag.parentElement).toHaveClass('tag--secondary');
     expect(tag.parentElement).toHaveClass('tag--remove');
     expect(tag.parentElement).toHaveClass('tag--s');
+  });
+
+  test('removes the tag item when the close icon is clicked', () => {
+    const { container, getByLabelText } = render(
+      <Tag id="tag1" title="Tag 1" onClick={mockOnClick} />,
+    );
+
+    const tag = getByLabelText('remove');
+    const closeButton = container.querySelector('[data-rs-tags-remove]');
+
+    fireEvent.click(closeButton as Element);
+
+    expect(mockOnClick).toHaveBeenCalledTimes(1);
+    expect(tag.parentElement).toHaveClass('hide-tag');
   });
 });

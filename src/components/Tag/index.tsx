@@ -1,24 +1,30 @@
 import React, { useEffect, useRef } from 'react';
 import { Tags } from '@ffw/randstad-local-orbit/original/js/components/tags';
+import cn from 'classnames';
 import Icon from '../Icon';
+import { TagProps } from './Tag.types';
 
-interface TagProps {
-  id: string;
-  title: string;
-  onClick: () => void;
-  variant?: 'primary' | 'secondary';
-  size?: 'small' | 'normal';
-}
+/**
+ *
+ * A tag component with the option to remove item. See [here](https://randstad.design/components/core/tags/)
+ *
+ */
 
+// TODO: Add select tag option here when needed.
 function Tag({
   id,
   title,
   onClick,
   variant = 'primary',
   size = 'normal',
+  ariaLabel = 'remove',
 }: TagProps) {
-  let variantClassName = '';
-  let sizeClassName = '';
+  const tagClasses = cn('tag tag--remove mb-xs mr-xs', {
+    'tag--primary-7': variant === 'primary',
+    'tag--secondary': variant === 'secondary',
+    'tag--s': size === 'small',
+  });
+
   const ref = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -28,31 +34,9 @@ function Tag({
     }
   }, []);
 
-  switch (variant) {
-    case 'primary':
-      variantClassName = 'tag--primary-7';
-      break;
-    case 'secondary':
-      variantClassName = 'tag--secondary';
-      break;
-    default:
-      variantClassName = 'tag--primary-7';
-  }
-
-  switch (size) {
-    case 'normal':
-      sizeClassName = '';
-      break;
-    case 'small':
-      sizeClassName = 'tag--s';
-      break;
-    default:
-      sizeClassName = '';
-  }
-
   return (
-    <div className={`tag tag--remove ${sizeClassName} ${variantClassName}`} data-rs-tags="" ref={ref} id={id}>
-      <span className="tag__text">
+    <div className={tagClasses} data-rs-tags="" ref={ref} id={id} style={{ maxWidth: '100%' }}>
+      <span className="tag__text text-ellipsis">
         {title}
       </span>
       <div
@@ -67,12 +51,12 @@ function Tag({
         }}
         role="button"
         data-rs-tags-remove=""
-        aria-label="remove"
+        aria-label={ariaLabel}
         id={`${id}-click`}
       >
         <span className="icon icon--s icon--inline">
           <Icon
-            iconType="close-16"
+            iconType={`close-${size === 'normal' ? '16' : '8'}`}
           />
         </span>
       </div>

@@ -70,7 +70,7 @@ import ApplicationProcessCard from './components/applicationProcess/ApplicationP
 import ContactPerson from './components/ContactPerson';
 import MultipleCheckboxSelect from './components/forms/MultipleCheckboxSelect';
 import SummaryCard from './components/SummaryCard';
-import Tag from './components/Tag/Tag';
+import Tag from './components/Tag';
 
 export {
   PasswordField,
