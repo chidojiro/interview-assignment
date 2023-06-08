@@ -35,6 +35,11 @@ export interface FilesValidation {
   mimeType: yup.StringSchema<string | undefined, yup.AnyObject, undefined, ''>;
 }
 
+export interface UpdateResumeStateProps {
+  filename: string;
+  contentLength: number | undefined;
+}
+
 export type Data = {
   // Data describes a generic abstract structure of request, which can be anything.
   /* eslint-disable @typescript-eslint/no-explicit-any */
