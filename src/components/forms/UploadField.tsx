@@ -5,7 +5,12 @@ import Icon from '../Icon';
 import withField, { WithFieldProps } from '../../hoc/withField';
 import FormGroup from '../form-group/FormGroup';
 import {
-  UploadedFile, AlreadyUploadedFile, uploadTemporaryResume, checkIfUserHasFile, getUploadedFiles,
+  UploadedFile,
+  AlreadyUploadedFile,
+  uploadTemporaryResume,
+  checkIfUserHasFile,
+  getUploadedFiles,
+  UpdateResumeStateProps,
 } from '../../hooks/resumeHandler';
 
 export type TranslationProps = {
@@ -38,6 +43,7 @@ interface FileFieldProps extends WithFieldProps {
   _formGroupProps?: object;
   fileToken: (token: string) => void;
   translations: TranslationProps;
+  setUploadedFilesToState?: (file: UpdateResumeStateProps) => void;
 }
 
 function UploadField({
@@ -53,6 +59,7 @@ function UploadField({
   gdsApiKey,
   gdsApiUrl,
   _withoutWrapper,
+  setUploadedFilesToState,
 }: FileFieldProps) {
   const [updatedFiles, setUpdatedFiles] = useState<UploadedFile | null>(null);
   // State used to control if the field is set to readonly or not.
@@ -96,6 +103,9 @@ function UploadField({
         if (!resume?.generalError) setIsFileUploaded(true);
         const uploadedFileToken = await uploadTemporaryResume(gdsApiKey, gdsApiUrl, formDataName, resume.file);
         fileToken(uploadedFileToken.token);
+        if (setUploadedFilesToState) {
+          setUploadedFilesToState({ filename: resume.name, contentLength: resume.file?.size });
+        }
       }
     }
   };
