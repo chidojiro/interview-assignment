@@ -48,6 +48,8 @@
     }
   ],
   "rules": {
+    "no-shadow": "off",
+    "@typescript-eslint/no-shadow": "error",
     "@typescript-eslint/no-var-requires": 0,
     "global-require": 0,
     "no-new": 0,
