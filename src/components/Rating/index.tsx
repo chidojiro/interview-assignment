@@ -9,22 +9,22 @@ import { RatingProps } from './Rating.types';
  */
 function Rating({ description, level, size }: RatingProps) {
   // Status is from 3 to 5 increments based on Orbit.
-  let status: number;
+  let maxLevels: number;
   switch (size) {
     case 's':
-      status = 3;
+      maxLevels = 3;
       break;
     case 'm':
-      status = 4;
+      maxLevels = 4;
       break;
     case 'l':
-      status = 5;
+      maxLevels = 5;
       break;
     default:
-      status = 3;
+      maxLevels = 5;
       break;
   }
-  const rating = level * (100 / status);
+  const rating = level * (100 / maxLevels);
 
   return (
     <div className="rating__wrapper">
