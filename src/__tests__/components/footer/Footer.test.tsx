@@ -2,19 +2,19 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import Footer, { FooterProps } from '../../../components/footer/Footer';
 
-jest.mock('../../components/footer/FooterColumnNav', () => function FooterColumnNav() {
+jest.mock('../../../components/footer/FooterColumnNav', () => function FooterColumnNav() {
   return <div data-testid="footer-columns-nav" />;
 });
 
-jest.mock('../../components/footer/FooterBottomNav', () => function FooterBottomNav() {
+jest.mock('../../../components/footer/FooterBottomNav', () => function FooterBottomNav() {
   return <div data-testid="footer-bottom-nav" />;
 });
 
-jest.mock('../../components/footer/FooterSocials', () => function FooterSocials() {
+jest.mock('../../../components/footer/FooterSocials', () => function FooterSocials() {
   return <div data-testid="footer-social" />;
 });
 
-jest.mock('../../components/footer/FooterCopyright', () => function FooterSocials() {
+jest.mock('../../../components/footer/FooterCopyright', () => function FooterSocials() {
   return <div data-testid="footer-copyright" />;
 });
 
