@@ -51,12 +51,12 @@ function AccordionItem({
           {subtitle && <p className="text--alternative pt-xs mb-none">{subtitle}</p>}
           <span className="hidden--from-l toggle-arrow icon">
             <svg>
-              <use xlinkHref="/src/assets/img/icons.svg#chevron-down" />
+              <use xlinkHref={`${process.env.NEXT_PUBLIC_RESOURCE_PREFIX}/src/assets/img/icons.svg#chevron-down`} />
             </svg>
           </span>
           <span className="hidden--until-l toggle-arrow icon icon--l">
             <svg>
-              <use xlinkHref="/src/assets/img/icons.svg#chevron-down-30" />
+              <use xlinkHref={`${process.env.NEXT_PUBLIC_RESOURCE_PREFIX}/src/assets/img/icons.svg#chevron-down-30`} />
             </svg>
           </span>
         </HeadingTag>

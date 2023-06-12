@@ -16,7 +16,7 @@ const ArrowLink = ({ data, direction, as }: ArrowLink) => {
         <span className="icon icon--inline" aria-hidden="true">
           <svg>
             <use
-              xlinkHref={`/src/assets/img/icons.svg#${direction === "left" ? "arrow-left" : "arrow-right"
+              xlinkHref={`${process.env.NEXT_PUBLIC_RESOURCE_PREFIX}/src/assets/img/icons.svg#${direction === "left" ? "arrow-left" : "arrow-right"
                 }`}></use>
           </svg>
         </span>
