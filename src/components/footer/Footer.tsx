@@ -1,14 +1,14 @@
 import React from 'react';
 import classNames from 'classnames';
-import FooterColumnNav from "./FooterColumnNav";
-import FooterBottomNav from './FooterBottomNav';
+import FooterColumnNav, { ColumnChildren } from './FooterColumnNav';
+import FooterBottomNav, { FooterLink } from './FooterBottomNav';
 import FooterCopyright from './FooterCopyright';
 import FooterSocials, { FooterSocial } from './FooterSocials';
 
-interface FooterProps {
-  footerColumnNavLinks?: [];
+export interface FooterProps {
+  footerColumnNavLinks?: ColumnChildren[] | undefined;
   socialNavLinks?: FooterSocial[] | null;
-  bottomNavLinks?: [] | null;
+  bottomNavLinks?: FooterLink[] | null;
   copyright?: string;
   className?: string;
 }
@@ -23,16 +23,18 @@ interface FooterProps {
  * @param copyright The copyright information, passed as string.
  * @returns Footer with all components that we have passed data for.
  */
-function Footer({ footerColumnNavLinks, socialNavLinks, bottomNavLinks, className, copyright }: FooterProps) {
-  if ( !socialNavLinks || !bottomNavLinks ) return null;
+function Footer({
+  footerColumnNavLinks, socialNavLinks, bottomNavLinks, className, copyright,
+}: FooterProps) {
+  if (!socialNavLinks || !bottomNavLinks) return null;
 
   return (
-    <footer className={classNames('footer footer--s', className)}>
+    <footer className={classNames('footer', className)}>
       <div className="footer__wrapper wrapper">
-        {footerColumnNavLinks && footerColumnNavLinks.length > 0 && <FooterColumnNav columns={footerColumnNavLinks}/>}
+        {footerColumnNavLinks && footerColumnNavLinks.length > 0 && <FooterColumnNav columns={footerColumnNavLinks} />}
         <div className="footer__grid">
-          {socialNavLinks && <FooterSocials items={socialNavLinks} />}
-          {bottomNavLinks && <FooterBottomNav items={bottomNavLinks} />}
+          {socialNavLinks && socialNavLinks.length > 0 && <FooterSocials items={socialNavLinks} />}
+          {bottomNavLinks && bottomNavLinks.length > 0 && <FooterBottomNav items={bottomNavLinks} />}
           {copyright && copyright.length > 0 && <FooterCopyright text={copyright} />}
         </div>
       </div>
