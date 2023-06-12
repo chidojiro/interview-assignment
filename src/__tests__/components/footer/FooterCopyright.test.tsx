@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import FooterCopyright from '../../components/footer/FooterCopyright';
+import FooterCopyright from '../../../components/footer/FooterCopyright';
 
 describe('FooterCopyright', () => {
   test('should render a HTML', () => {

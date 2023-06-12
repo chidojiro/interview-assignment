@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import FooterSocials from '../../components/footer/FooterSocials';
+import FooterSocials from '../../../components/footer/FooterSocials';
 
 const mockedSocial = [
   {

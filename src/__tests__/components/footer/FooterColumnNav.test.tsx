@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import FooterColumnNav from '../../components/footer/FooterColumnNav';
+import FooterColumnNav from '../../../components/footer/FooterColumnNav';
 
 const createColumn = (title = 'column1') => ({
   title,
