@@ -1,13 +1,15 @@
 import React from 'react';
 
-export interface FooterBottomNavProps {
-  items: {
-    title: string;
-    url: string;
-  }[]
+export interface FooterLink {
+  title: string;
+  url: string;
 }
 
-function FooterBottomNav({ items }: FooterBottomNavProps) {
+export interface FooterBottomNavInterface {
+  items: FooterLink[];
+}
+
+function FooterBottomNav({ items }: FooterBottomNavInterface) {
   return (
     <div className="footer__bottom-nav">
       <ul>

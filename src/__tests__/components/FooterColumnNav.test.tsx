@@ -1,137 +1,88 @@
 import React from 'react';
-import {render, screen} from '@testing-library/react';
+import { render } from '@testing-library/react';
 import FooterColumnNav from '../../components/footer/FooterColumnNav';
 
-describe('FooterColumnNav component tests', () => {
-  const columns = [
+const createColumn = (title = 'column1') => ({
+  title,
+  url: '/',
+  children: [
     {
-      "title": "column1",
-      "url": "/",
-      "children": [
+      title: 'employer solutions',
+      url: '/',
+      children: [
         {
-          "title": "employer solutions",
-          "url": "/",
-          "children": [
-            {
-              "title": "staffing & recruitment",
-              "url": "/employers/staffing-recruitment/staffing-and-recruitment",
-              "children": []
-            },
-            {
-              "title": "HR consulting",
-              "url": "/employers/hr-consulting",
-              "children": []
-            }
-          ]
+          title: 'staffing & recruitment',
+          url: '/employers/staffing-recruitment/staffing-and-recruitment',
+          children: [],
         },
         {
-          "title": "hire employees",
-          "url": "/",
-          "children": [
-            {
-              "title": "administrative support",
-              "url": "/employers/areas-of-expertise/administrative-support/",
-              "children": []
-            },
-            {
-              "title": "customer support",
-              "url": "/employers/areas-of-expertise/contact-centre-and-customer-care/",
-              "children": []
-            },
-            {
-              "title": "engineering",
-              "url": "/employers/areas-of-expertise/engineering/",
-              "children": []
-            }
-          ]
-        }
-      ]
+          title: 'HR consulting',
+          url: '/employers/hr-consulting',
+          children: [],
+        },
+      ],
     },
     {
-      "title": "column2",
-      "url": "/",
-      "children": [
+      title: 'hire employees',
+      url: '/',
+      children: [
         {
-          "title": "employer solutions",
-          "url": "/",
-          "children": [
-            {
-              "title": "staffing & recruitment",
-              "url": "/employers/staffing-recruitment/staffing-and-recruitment",
-              "children": []
-            },
-            {
-              "title": "HR consulting",
-              "url": "/employers/hr-consulting",
-              "children": []
-            }
-          ]
+          title: 'administrative support',
+          url: '/employers/areas-of-expertise/administrative-support/',
+          children: [],
         },
         {
-          "title": "hire employees",
-          "url": "/",
-          "children": [
-            {
-              "title": "administrative support",
-              "url": "/employers/areas-of-expertise/administrative-support/",
-              "children": []
-            },
-            {
-              "title": "customer support",
-              "url": "/employers/areas-of-expertise/contact-centre-and-customer-care/",
-              "children": []
-            },
-            {
-              "title": "engineering",
-              "url": "/employers/areas-of-expertise/engineering/",
-              "children": []
-            }
-          ]
-        }
-      ]
-    }
-  ];
-  render(<FooterColumnNav columns={columns} />);
+          title: 'customer support',
+          url: '/employers/areas-of-expertise/contact-centre-and-customer-care/',
+          children: [],
+        },
+        {
+          title: 'engineering',
+          url: '/employers/areas-of-expertise/engineering/',
+          children: [],
+        },
+      ],
+    },
+  ],
+});
 
-  const columnLength = columns.length;
-  const result = screen.getByTestId("footer-column-nav") as HTMLDivElement;
-  it("Column count should be the same as the one provided", () => {
-    expect(result.children.length).toBe(columnLength);
+const columns = [
+  createColumn(),
+  createColumn('column2'),
+];
+
+describe('FooterColumnNav', () => {
+  test('should render the same columns count as the one provided', () => {
+    const { container } = render(<FooterColumnNav columns={columns} />);
+    expect(container.querySelectorAll('.footer__column').length).toBe(columns.length);
   });
-  it("Adds another column and checks for the correct number of columns rendered", () => {
-    columns.push({
-      "title": "column3",
-      "url": "/",
-      "children": [
+
+  test('should not render links list container', () => {
+    const emptyColumn = [{
+      title: 'column title',
+      url: '/col-url/',
+      children: [],
+    }];
+
+    const { container } = render(<FooterColumnNav columns={emptyColumn} />);
+    expect(container.querySelector('.extensive-link-list')).toBeFalsy();
+  });
+
+  test('should render column title without links list', () => {
+    const emptyColumn = [{
+      title: 'column title',
+      url: '/col-url/',
+      children: [
         {
-          "title": "employer solutions",
-          "url": "/",
-          "children": [
-            {
-              "title": "staffing & recruitment",
-              "url": "/employers/staffing-recruitment/staffing-and-recruitment",
-              "children": []
-            },
-            {
-              "title": "HR consulting",
-              "url": "/employers/hr-consulting",
-              "children": []
-            }
-          ]
+          title: 'column title',
+          url: '/',
+          children: [],
         },
-        {
-          "title": "hire employees",
-          "url": "/",
-          "children": [
-            {
-              "title": "administrative support",
-              "url": "/employers/areas-of-expertise/administrative-support/",
-              "children": []
-            }
-          ]
-        }
-      ]
-    });
-    expect(result.children.length).toBe(columnLength);
+      ],
+    }];
+
+    const { container } = render(<FooterColumnNav columns={emptyColumn} />);
+    expect(container.querySelector('.extensive-link-list__list-title')?.textContent).toBe('column title');
+    expect(container.querySelector('.collapsible__content ul')).toBeFalsy();
   });
 });

@@ -4,9 +4,11 @@ interface FooterCopyrightProps {
   text: string
 }
 
-function FooterCopyright({text}: FooterCopyrightProps) {
+function FooterCopyright({ text }: FooterCopyrightProps) {
   return (
-    <div className="footer__info" dangerouslySetInnerHTML={{__html: text}} />
+    // Data from s3Bucket comes as string with HTML.
+    // eslint-disable-next-line react/no-danger
+    <div className="footer__info" dangerouslySetInnerHTML={{ __html: text }} />
   );
 }
 

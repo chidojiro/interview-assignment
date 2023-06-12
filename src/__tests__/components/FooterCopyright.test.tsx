@@ -1,16 +1,16 @@
 import React from 'react';
-import { render, within } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import FooterCopyright from '../../components/footer/FooterCopyright';
 
-describe('FooterCopyright component tests', () => {
-  const text = "Example text";
+describe('FooterCopyright', () => {
+  test('should render a HTML', () => {
+    const html = '<p data-testid="paragraph-tag">copyright text</p>';
+    // Data from s3Bucket comes as string with HTML.
+    // eslint-disable-next-line xss/no-mixed-html
+    const { container, getByTestId } = render(<FooterCopyright text={html} />);
+    const footer = container.querySelector('.footer__info');
 
-  render(<FooterCopyright text={text}/>);
-  const { findByText } = within(document.querySelector(".footer__info") as HTMLElement);
-  it("Checks if the provided text is rendered.", async () => {
-    const result = await findByText(text).then(result => {
-      return result.innerHTML;
-    });
-    expect(result).toBe(text);
-  })
+    expect(getByTestId('paragraph-tag')).toBeTruthy();
+    expect(footer?.textContent).toBe('copyright text');
+  });
 });
