@@ -48,6 +48,7 @@ interface FileFieldProps extends WithFieldProps {
 
 function UploadField({
   multiselect,
+  id,
   name,
   files,
   formDataName,
@@ -183,7 +184,7 @@ function UploadField({
             <div className="form-group__input">
               <input
                 name={name}
-                id={name}
+                id={id}
                 accept={supportedMimeTypes}
                 disabled={isFileUploaded}
                 multiple={multiselect}

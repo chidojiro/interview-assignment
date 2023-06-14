@@ -22,7 +22,7 @@ function GoogleRecaptcha({
   innerRef,
 }: GRecaptchaProps) {
   return (
-    <div className={`form-group form-group__input ${touched && error && 'form-group--error'}`}>
+    <div className={`form-group form-group__input ${touched && error ? 'form-group--error' : ''}`}>
       <ReCAPTCHA
         ref={innerRef}
         sitekey={sitekey}
