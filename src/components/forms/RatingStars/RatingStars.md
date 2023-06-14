@@ -26,12 +26,14 @@ const items =[
     }
   ];
 
-<RatingStars
-  name="rating1"
-  stars={items}
-  label="Rating"
-  value=""
-/>
+<div className="bg-variant-brand-primary">
+    <RatingStars
+      name="rating1"
+      stars={items}
+      label="Rating"
+      value=""
+    />
+</div>
 ```
 Rating Stars with prefilled value
 
@@ -64,10 +66,12 @@ const items =[
 
 const [value, setValue] = useState('Intermediate');
 
-<RatingStars
-  name="rating2"
-  stars={items}
-  label="Rating"
-  value={value}
-/>
+<div className="bg-variant-brand-tertiary">
+    <RatingStars
+      name="rating2"
+      stars={items}
+      label="Rating"
+      value={value}
+    />
+</div>
 ```

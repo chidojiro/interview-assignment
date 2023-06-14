@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import cn from 'classnames';
 import { RatingStarsProps, StarItem } from './RatingStars.types';
-import Icon from '../Icon';
+import Icon from '../../Icon';
 
 export default function RatingStars({
   stars,
@@ -55,7 +56,10 @@ export default function RatingStars({
   }, [onChange, propName, stars, value]);
 
   return (
-    <div className={`form-group form-group--input ${error ? 'form-group--error' : ''}`}>
+    <div className={cn('form-group form-group--input', {
+      'form-group--error': error,
+    })}
+    >
       <div className="form__label">
         <span className="form-group__label">
           <span>{ label }</span>

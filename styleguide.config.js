@@ -88,7 +88,7 @@ module.exports = {
     },
     {
       name: 'Form elements',
-      components: 'src/components/forms/*.tsx',
+      components: 'src/components/forms/**/*.tsx',
       description: 'Form components - Input, Checkbox, etc.',
     },
     {
