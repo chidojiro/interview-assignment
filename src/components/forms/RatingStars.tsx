@@ -30,12 +30,11 @@ export default function RatingStars({
       for (const star of stars) {
         const { id, name } = star;
         const starIndex = starsArr.findIndex((starItem: string) => starItem === id);
-        const checked = starIndex === valueIndex ? { checked: true } : {};
         starsItemsArray.push(
           <React.Fragment key={id}>
             <input
               className="ratings__input no--visually"
-              {...checked}
+              checked={starIndex === valueIndex}
               name={propName}
               type="radio"
               id={`star${id}`}
