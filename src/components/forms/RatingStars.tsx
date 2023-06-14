@@ -18,10 +18,7 @@ export default function RatingStars({
         // This default checked element is needed because orbit expect zero hidden star.
         starsItemsArray.push(
           <React.Fragment key={0}>
-            <input value={0} id="star0-0" checked type="radio" name={propName} className="ratings__input no--visually" />
-            <label className="hidden--visually" htmlFor="star0-0">
-              <span className="hidden--visually" />
-            </label>
+            <input value={0} id="star0-0" checked type="radio" name={propName} className="ratings__input no--visually" onChange={onChange} />
           </React.Fragment>,
         );
       }
@@ -58,7 +55,7 @@ export default function RatingStars({
   }, [onChange, propName, stars, value]);
 
   return (
-    <div className={`form-group form-group--input bg-variant-brand-tertiary ${error && 'form-group--error'}`}>
+    <div className={`form-group form-group--input ${error ? 'form-group--error' : ''}`}>
       <div className="form__label">
         <span className="form-group__label">
           <span>{ label }</span>
