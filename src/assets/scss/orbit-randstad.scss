@@ -1,1 +1,3 @@
-@import '../../node_modules/@ffw/randstad-local-orbit/scss/orbit-randstad.scss';
+@use '../../node_modules/@ffw/randstad-local-orbit/scss/orbit-randstad.scss' with (
+  $font-assets-path: '~@randstad-design/orbit-multitheme/src/assets/font'
+);

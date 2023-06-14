@@ -4,7 +4,7 @@ export interface StarItem {
   id: string;
   name: string;
 }
-export interface RadioStarsProps {
+export interface RatingStarsProps {
   name: string;
   value: string;
   error?: ReactNode;
