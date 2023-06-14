@@ -72,6 +72,7 @@ import MultipleCheckboxSelect from './components/forms/MultipleCheckboxSelect';
 import SummaryCard from './components/SummaryCard';
 import Tag from './components/Tag';
 import Rating from './components/Rating';
+import RatingStars from './components/forms/RatingStars';
 
 export {
   PasswordField,
@@ -151,6 +152,7 @@ export {
   SummaryCard,
   Tag,
   Rating,
+  RatingStars,
 };
 
 /**
