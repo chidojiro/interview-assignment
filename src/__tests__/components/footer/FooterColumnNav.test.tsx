@@ -85,4 +85,20 @@ describe('FooterColumnNav', () => {
     expect(container.querySelector('.extensive-link-list__list-title')?.textContent).toBe('column title');
     expect(container.querySelector('.collapsible__content ul')).toBeFalsy();
   });
+
+  test('should be rendered with Orbit attributes', () => {
+    const { container } = render(<FooterColumnNav columns={columns} />);
+    const columnList = container.querySelectorAll('.extensive-link-list__item');
+
+    columnList.forEach((list) => {
+      const collapsibleTrigger = list.querySelector('.collapsible__trigger') as HTMLDivElement;
+      const collapsibleContent = list.querySelector('.collapsible__content') as HTMLDivElement;
+
+      expect(collapsibleTrigger).toHaveAttribute('data-rs-toggable');
+      expect(collapsibleTrigger).toHaveAttribute('data-rs-collapsible');
+
+      expect(collapsibleContent).toHaveAttribute('data-rs-collapsible-content');
+      expect(collapsibleContent).toHaveAttribute('aria-hidden', 'true');
+    });
+  });
 });
