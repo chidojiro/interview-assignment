@@ -71,6 +71,7 @@ module.exports = {
         'src/components/HeaderIllustration/index.tsx',
         'src/components/Tag/index.tsx',
         'src/components/Rating/index.tsx',
+        'src/components/ShowMoreToggle/index.tsx',
       ],
     },
     {
