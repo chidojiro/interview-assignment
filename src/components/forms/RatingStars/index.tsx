@@ -46,7 +46,7 @@ export default function RatingStars({
             >
               <Icon iconType="star-filled-30" iconClassName="" />
             </label>
-            <span className="ratings__description text--alternative">{name}</span>
+            <span className="ratings__description text--alternative" style={{ whiteSpace: 'normal' }}>{name}</span>
           </React.Fragment>,
         );
       }
