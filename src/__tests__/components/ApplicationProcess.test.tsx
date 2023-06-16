@@ -1,14 +1,13 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import ApplicationProcess from '../../components/applicationProcess/ApplicationProcess'
-import ApplicationProcessCard from '../../components/applicationProcess/ApplicationProcessCard'
+import ApplicationProcess from '../../components/ApplicationProcess/ApplicationProcess';
+import ApplicationProcessCard from '../../components/ApplicationProcess/ApplicationProcessCard';
 
 describe('ApplicationProcess', () => {
   it('renders correctly', () => {
     const backgroundColor = 'Test background color';
     const title = 'Test Wrapper Title';
     const description = 'Test Wrapper Description';
-    const index = 1;
     const cardTitle = 'Test Card';
     const cardDescription = 'Test Description';
     const testImg = 'test-img.jpg';
@@ -24,7 +23,6 @@ describe('ApplicationProcess', () => {
         description={description}
       >
         <ApplicationProcessCard
-          index={index}
           cardTitle={cardTitle}
           cardDescription={cardDescription}
           cardImage={testImg}
@@ -33,7 +31,7 @@ describe('ApplicationProcess', () => {
           badgeColor={badgeColor}
           itemNumber={itemNumber}
         />
-      </ApplicationProcess>
+      </ApplicationProcess>,
     );
 
     const wrapperTitle = getByText(title);
@@ -82,7 +80,6 @@ describe('ApplicationProcess', () => {
         {cardData.map((card) => (
           <ApplicationProcessCard
             key={card.index}
-            index={card.index}
             cardTitle={card.cardTitle}
             cardDescription={card.cardDescription}
             cardImage={card.cardImage}
@@ -92,7 +89,7 @@ describe('ApplicationProcess', () => {
             itemNumber={card.itemNumber}
           />
         ))}
-      </ApplicationProcess>
+      </ApplicationProcess>,
     );
 
     const card1Title = getByText('Test Card 1');

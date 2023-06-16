@@ -1,33 +1,21 @@
-import React from "react";
+import React from 'react';
+import { ApplicationProcessCardProp } from './ApplicationProcessCard.types';
 
-interface ApplicationProcessCardProp {
-  index: number,
-  cardTitle: string,
-  cardDescription: string,
-  cardImage: string,
-  accessibilityItemNumber: string,
-  cardColor: string,
-  badgeColor: string,
-  itemNumber: string,
-}
-
-
-const ApplicationProcessCard = ({
-  index,
+function ApplicationProcessCard({
   cardTitle,
   cardDescription,
   cardImage,
   accessibilityItemNumber,
-  cardColor, badgeColor,
-  itemNumber
-}: ApplicationProcessCardProp) => {
-
+  cardColor,
+  badgeColor,
+  itemNumber,
+}: ApplicationProcessCardProp) {
   return (
-    <li key={index} className="blog-overview__item">
+    <li className="blog-overview__item">
       <div className="banner" data-rs-carousel-image="data-rs-carousel-image">
         <div className={`banner__wrapper ${cardColor}`}>
           <div className="banner__media media-block">
-            <img src={`/jobs-app/src/assets/img/application-process/${cardImage}.svg`} alt={accessibilityItemNumber}/>
+            <img src={`/jobs-app/src/assets/img/application-process/${cardImage}.svg`} alt={accessibilityItemNumber} />
           </div>
           <div className="banner__content content-block">
             <span aria-hidden="true" className={`badge badge--l ${badgeColor}`}>
@@ -40,6 +28,6 @@ const ApplicationProcessCard = ({
       </div>
     </li>
   );
-};
+}
 
 export default ApplicationProcessCard;

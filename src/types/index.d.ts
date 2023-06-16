@@ -7,6 +7,7 @@ declare module '@ffw/randstad-local-orbit/original/js/components/password-valida
 declare module '@ffw/randstad-local-orbit/original/js/components/untouched';
 declare module '@ffw/randstad-local-orbit/original/js/components/tab-bar';
 declare module '@ffw/randstad-local-orbit/js/components/card';
+declare module '@ffw/randstad-local-orbit/js/components/carousel';
 declare module '@ffw/randstad-local-orbit/original/js/components/text-area';
 declare module '@ffw/randstad-local-orbit/original/js/components/character-counter';
 declare module '@ffw/randstad-local-orbit/original/js/components/auto-resize';
