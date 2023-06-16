@@ -1,4 +1,5 @@
 import React from 'react';
+import cn from 'classnames';
 import ReCAPTCHA from 'react-google-recaptcha-enterprise';
 
 export type GoogleRecaptchaRef = {
@@ -22,7 +23,7 @@ function GoogleRecaptcha({
   innerRef,
 }: GRecaptchaProps) {
   return (
-    <div className={`form-group form-group__input ${touched && error && 'form-group--error'}`}>
+    <div className={cn('form-group', 'form-group__input', { 'form-group--error': touched && error })}>
       <ReCAPTCHA
         ref={innerRef}
         sitekey={sitekey}
