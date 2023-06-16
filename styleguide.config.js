@@ -113,7 +113,7 @@ module.exports = {
     },
     {
       name: 'Application Process',
-      components: 'src/components/applicationProcess/*.tsx',
+      components: 'src/components/ApplicationProcess/*.tsx',
       description: 'Application process component and its cards components.',
     },
     {
