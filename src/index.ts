@@ -51,6 +51,7 @@ import AccountInfo from './components/account-info/AccountInfo';
 import UploadField from './components/forms/UploadField';
 import SplitView from './components/SplitView';
 import HeaderIllustration from './components/HeaderIllustration';
+import ShowMoreToggle from './components/ShowMoreToggle';
 // import LocationInputField from "./components/forms/LocationInputField";
 import RadioButton from './components/forms/RadioButton';
 import TextArea from './components/forms/TextArea';
@@ -150,6 +151,7 @@ export {
   ContactPerson,
   MultipleCheckboxSelect,
   SummaryCard,
+  ShowMoreToggle,
   Tag,
   Rating,
   RatingStars,
