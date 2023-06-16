@@ -7,13 +7,9 @@ function ShowMoreToggle({
   if (!items || !items.length || items.length <= maxItemsShown) return null;
 
   return (
-    // Anchor tag uses orbit for styling.
-    // eslint-disable-next-line jsx-a11y/anchor-is-valid,react/react-in-jsx-scope
     <div className="text-center mt-m">
-      {/* Anchor tag uses orbit for styling. */}
-      {/* eslint-disable-next-line jsx-a11y/anchor-is-valid,react/react-in-jsx-scope */}
       <a
-        href="#"
+        href="#?"
         onClick={(e) => {
           e.preventDefault();
           handleClick();
