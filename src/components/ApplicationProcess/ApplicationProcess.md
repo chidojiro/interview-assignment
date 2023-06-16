@@ -12,7 +12,7 @@ import { ApplicationProcess, ApplicationProcessCard } from "@ffw/randstad-shared
     accessibilityItemNumber={'1 of 3'}
     cardColor={'bg-variant-brand-secondary'}
     badgeColor={'bg-variant-brand-tertiary'}
-    itemNumber={'1 of 2'}
+    itemNumber={'1 of 3'}
   />
   <ApplicationProcessCard
     cardTitle={'Test Card 2'}
@@ -21,7 +21,7 @@ import { ApplicationProcess, ApplicationProcessCard } from "@ffw/randstad-shared
     accessibilityItemNumber={'2 of 3'}
     cardColor={'bg-variant-brand-secondary'}
     badgeColor={'bg-variant-brand-tertiary'}
-    itemNumber={'1 of 2'}
+    itemNumber={'2 of 3'}
   />
   <ApplicationProcessCard
     cardTitle={'Test Card 3'}
@@ -30,7 +30,7 @@ import { ApplicationProcess, ApplicationProcessCard } from "@ffw/randstad-shared
     accessibilityItemNumber={'3 of 3'}
     cardColor={'bg-variant-brand-secondary'}
     badgeColor={'bg-variant-brand-tertiary'}
-    itemNumber={'1 of 2'}
+    itemNumber={'3 of 3'}
   />
 </ApplicationProcess>
 ```
