@@ -44,7 +44,7 @@ function SavedJobIcon({
   };
 
   return (
-    <button type="button" className={buttonClasses} aria-pressed={savedJobId ? 'true' : 'false'} id={`fav-${savedJobId}`} onClick={onIconClick}>
+    <button type="button" className={buttonClasses} aria-label="saved job icon" aria-pressed={savedJobId ? 'true' : 'false'} id={`fav-${savedJobId}`} onClick={onIconClick}>
       <span className={iconClasses}>
         <Icon iconType="heart-30" iconClassName={null} />
       </span>
