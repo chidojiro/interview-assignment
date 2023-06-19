@@ -63,6 +63,10 @@ function DatePicker({
     if (!ref.current) return;
     const { DatePicker: OrbitComponent } = require('@ffw/randstad-local-orbit/js/components/date-picker');
     new OrbitComponent(ref.current);
+  }, [minDate, maxDate]);
+
+  useEffect(() => {
+    if (!ref.current) return;
     const target = (ref.current as HTMLInputElement | null)?.querySelector('input.input') as HTMLInputElement;
     if (target) {
       if (id) {
@@ -70,7 +74,7 @@ function DatePicker({
       }
       target.name = name;
     }
-  }, [minDate, maxDate, id, name]);
+  }, [id, name]);
 
   /**
    * The following useEffect attaches the onChange event to the second field
