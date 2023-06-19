@@ -2,7 +2,6 @@
 import { ApplicationProcessCard } from "@ffw/randstad-shared-components";
 
 <ApplicationProcessCard
-  index={1}
   cardTitle={'Test Card'}
   cardDescription={'Test Card Description'}
   cardImage={'testImg'}
