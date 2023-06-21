@@ -72,6 +72,8 @@ module.exports = {
         'src/components/Tag/index.tsx',
         'src/components/Rating/index.tsx',
         'src/components/ShowMoreToggle/index.tsx',
+        'src/components/MetaInfoCard/index.tsx',
+        'src/components/MetaInfoCard/MetaInfoCardItems/index.tsx',
       ],
     },
     {
