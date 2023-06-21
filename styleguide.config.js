@@ -72,9 +72,12 @@ module.exports = {
         'src/components/Tag/index.tsx',
         'src/components/Rating/index.tsx',
         'src/components/ShowMoreToggle/index.tsx',
-        'src/components/MetaInfoCard/index.tsx',
-        'src/components/MetaInfoCard/MetaInfoCardItems/index.tsx',
       ],
+    },
+    {
+      name: 'Cards',
+      components: 'src/components/cards/**/*.tsx',
+      description: 'Card components such as Job card, Meta info cards, Dashboard cards, etc.',
     },
     {
       name: 'Form Groups',
