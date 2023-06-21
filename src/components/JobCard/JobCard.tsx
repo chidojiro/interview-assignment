@@ -11,6 +11,7 @@ interface SavedJobsProps {
   gdsApiUrl: string;
   jobPostingWebDetailId: string;
   savedJobId?: string;
+  ariaLabel?: string;
   returnJobPostingWebDetailId?: (jobPostingWebDetailId: string) => void;
 }
 
@@ -29,6 +30,7 @@ interface JobCardProps extends JobItemMetadataProps {
   logoSrcTagValue?: string;
   infoIconAriaLabel?: string;
   closeIconAriaLabel?: string;
+  savedJobIconAriaLabel?: string;
   savedJobsEnabled?: SavedJobsProps;
   onMouseDownClick: () => void;
 }
@@ -51,6 +53,7 @@ const JobCard: React.FC<JobCardProps> = (props) => {
     infoIconAriaLabel,
     viewJobText,
     savedJobsEnabled,
+    savedJobIconAriaLabel = 'saved job icon',
   } = props;
   const [realLogoImg, setRealLogoImg] = useState(true);
 
@@ -100,7 +103,7 @@ const JobCard: React.FC<JobCardProps> = (props) => {
             </a>
           </h3>
         </div>
-        {savedJobsEnabled && <SavedJobIcon gdsApiKey={savedJobsEnabled.gdsApiKey} gdsApiUrl={savedJobsEnabled.gdsApiUrl} jobPostingWebDetailId={savedJobsEnabled.jobPostingWebDetailId} savedJobId={savedJobsEnabled.savedJobId} returnJobPostingWebDetailId={savedJobsEnabled.returnJobPostingWebDetailId} />}
+        {savedJobsEnabled && <SavedJobIcon gdsApiKey={savedJobsEnabled.gdsApiKey} gdsApiUrl={savedJobsEnabled.gdsApiUrl} jobPostingWebDetailId={savedJobsEnabled.jobPostingWebDetailId} savedJobId={savedJobsEnabled.savedJobId} ariaLabel={savedJobIconAriaLabel} returnJobPostingWebDetailId={savedJobsEnabled.returnJobPostingWebDetailId} />}
       </div>
       <JobItemMetadata {...props} />
       {/* Safe here. */}
