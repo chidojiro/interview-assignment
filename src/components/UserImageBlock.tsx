@@ -1,12 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
-type ImageSizeClasses = {
-  'XS': string,
-  'S': string,
-  'M': string,
-  'L': string,
-  'XL': string,
-};
+import { ImageSizeClasses } from './ImageSizeClasses.types';
 
 type UserImageBlockProps = {
   size: keyof ImageSizeClasses,
@@ -24,6 +17,7 @@ function UserImageBlock({ size, picture, initials }: UserImageBlockProps) {
     M: 'avatar--M',
     L: 'avatar--L',
     XL: 'avatar--XL',
+    XXL: 'avatar--XXL',
   };
 
   const [userInitials, setUserInitials] = useState('');
