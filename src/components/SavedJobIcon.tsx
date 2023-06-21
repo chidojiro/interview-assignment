@@ -11,6 +11,7 @@ interface SavedJobIconProps {
   gdsApiUrl: string;
   savedJobId?: string;
   jobPostingWebDetailId: string;
+  ariaLabel?: string;
   returnJobPostingWebDetailId?: (jobPostingWebDetailId: string) => void;
 }
 
@@ -20,6 +21,7 @@ function SavedJobIcon({
   gdsApiUrl,
   savedJobId,
   jobPostingWebDetailId,
+  ariaLabel,
   returnJobPostingWebDetailId,
 }: SavedJobIconProps) {
   const [iconFilled, setIconFilled] = useState(savedJobId);
@@ -44,7 +46,7 @@ function SavedJobIcon({
   };
 
   return (
-    <button type="button" className={buttonClasses} aria-pressed={savedJobId ? 'true' : 'false'} id={`fav-${savedJobId}`} onClick={onIconClick}>
+    <button type="button" className={buttonClasses} aria-label={ariaLabel} aria-pressed={savedJobId ? 'true' : 'false'} id={`fav-${savedJobId}`} onClick={onIconClick}>
       <span className={iconClasses}>
         <Icon iconType="heart-30" iconClassName={null} />
       </span>
