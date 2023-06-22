@@ -9,7 +9,7 @@ function MetaInfoCard({
   titleColor,
   children,
 }: MetaInfoCardProps) {
-  const backgroundColor = getBackground(bgColor || 'tertiary');
+  const backgroundColor = getBackground(bgColor);
 
   return (
     <div className={cn('meta-content py-m px-s l:p-l', backgroundColor)}>
