@@ -8,7 +8,7 @@ function SocialLinks({ items, iconsSize = 'l' }: SocialLinksTypes) {
   return (
     <ul className="social__list ">
       {items.map((item) => (
-        <li className="social__item">
+        <li className="social__item" key={item.title}>
           <a className="social__link" href={item.url} title={item.title} target="_blank" rel="noopener noreferrer">
             <Icon
               iconType={item.icon}

@@ -1,3 +1,4 @@
+  PersonProfile component used in ContactDetails.
   ```jsx
   import PersonProfile from "./index.tsx";
 

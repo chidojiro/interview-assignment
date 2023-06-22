@@ -14,7 +14,7 @@ export type PersonTypes = {
 
 export interface PersonProfileTypes {
   size?: keyof ImageSizeClasses;
-  person: PersonTypes;
+  person: PersonTypes | null;
   avatarClasses?: string;
   personProfileClasses?: string;
   personInfoClasses?: string;

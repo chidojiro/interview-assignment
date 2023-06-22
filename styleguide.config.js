@@ -73,6 +73,7 @@ module.exports = {
         'src/components/Rating/index.tsx',
         'src/components/PersonProfile/index.tsx',
         'src/components/SocialLinks/index.tsx',
+        'src/components/ContactDetails/index.tsx',
         'src/components/ShowMoreToggle/index.tsx',
       ],
     },
