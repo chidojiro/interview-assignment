@@ -68,13 +68,15 @@ import Dropdown from './components/form-group/Dropdown';
 import Stackable from './components/form-group/Stackable';
 import ApplicationProcess from './components/ApplicationProcess/ApplicationProcess';
 import ApplicationProcessCard from './components/ApplicationProcess/ApplicationProcessCard';
+import { ApplicationProcessCardProp } from './components/ApplicationProcess/ApplicationProcessCard.types';
 import ContactPerson from './components/ContactPerson';
 import MultipleCheckboxSelect from './components/forms/MultipleCheckboxSelect';
 import SummaryCard from './components/SummaryCard';
 import Tag from './components/Tag';
 import Rating from './components/Rating';
 import RatingStars from './components/forms/RatingStars';
-import { ApplicationProcessCardProp } from './components/ApplicationProcess/ApplicationProcessCard.types';
+import MetaInfoCard from './components/cards/MetaInfoCard';
+import MetaInfoCardItems from './components/cards/MetaInfoCard/MetaInfoCardItems';
 
 export {
   PasswordField,
@@ -156,6 +158,8 @@ export {
   Tag,
   Rating,
   RatingStars,
+  MetaInfoCard,
+  MetaInfoCardItems,
 };
 
 /**

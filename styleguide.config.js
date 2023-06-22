@@ -75,6 +75,11 @@ module.exports = {
       ],
     },
     {
+      name: 'Cards',
+      components: 'src/components/cards/**/*.tsx',
+      description: 'Card components such as Job card, Meta info cards, Dashboard cards, etc.',
+    },
+    {
       name: 'Form Groups',
       components: 'src/components/form-group/**/*.tsx',
       description: 'Provides wrapper components for form elements',
