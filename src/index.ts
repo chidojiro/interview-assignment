@@ -74,6 +74,7 @@ import SummaryCard from './components/SummaryCard';
 import Tag from './components/Tag';
 import Rating from './components/Rating';
 import RatingStars from './components/forms/RatingStars';
+import { ApplicationProcessCardProp } from './components/ApplicationProcess/ApplicationProcessCard.types';
 
 export {
   PasswordField,
@@ -160,4 +161,4 @@ export {
 /**
  * Exporting interfaces and types.
  */
-export type { NoticeType, TextNoticeBackground, FooterSocial, GoogleRecaptchaRef };
+export type { NoticeType, TextNoticeBackground, FooterSocial, GoogleRecaptchaRef, ApplicationProcessCardProp };
