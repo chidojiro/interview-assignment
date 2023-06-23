@@ -74,6 +74,7 @@ import SummaryCard from './components/SummaryCard';
 import Tag from './components/Tag';
 import Rating from './components/Rating';
 import RatingStars from './components/forms/RatingStars';
+import ContactDetails from './components/ContactDetails';
 
 export {
   PasswordField,
@@ -155,6 +156,7 @@ export {
   Tag,
   Rating,
   RatingStars,
+  ContactDetails,
 };
 
 /**
