@@ -78,6 +78,7 @@ import RatingStars from './components/forms/RatingStars';
 import MetaInfoCard from './components/cards/MetaInfoCard';
 import MetaInfoCardItems from './components/cards/MetaInfoCard/MetaInfoCardItems';
 import ContactDetails from './components/ContactDetails';
+import PersonProfile from './components/PersonProfile';
 
 export {
   PasswordField,
@@ -162,6 +163,7 @@ export {
   MetaInfoCard,
   MetaInfoCardItems,
   ContactDetails,
+  PersonProfile,
 };
 
 /**
