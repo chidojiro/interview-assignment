@@ -44,6 +44,7 @@ describe('ApplicationProcess', () => {
     expect(cardTitleElement).toBeInTheDocument();
     expect(cardDescriptionElement).toBeInTheDocument();
   });
+
   it('renders multiple cards', () => {
     const backgroundColor = 'Test background color';
     const title = 'Test Wrapper Title';
@@ -94,8 +95,16 @@ describe('ApplicationProcess', () => {
 
     const card1Title = getByText('Test Card 1');
     const card2Title = getByText('Test Card 2');
+    const card1Description = getByText('Test Description 1');
+    const card2Description = getByText('Test Description 2');
+    const car1ItemNumber = getByText('1 of 2');
+    const car2ItemNumber = getByText('2 of 2');
 
     expect(card1Title).toBeInTheDocument();
     expect(card2Title).toBeInTheDocument();
+    expect(card1Description).toBeInTheDocument();
+    expect(card2Description).toBeInTheDocument();
+    expect(car1ItemNumber).toBeInTheDocument();
+    expect(car2ItemNumber).toBeInTheDocument();
   });
 });
