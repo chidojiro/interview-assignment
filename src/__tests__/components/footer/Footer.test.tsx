@@ -1,6 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import Footer, { FooterProps } from '../../../components/footer/Footer';
+import Footer from '../../../components/footer/Footer';
+import { FooterProps } from '../../../components/footer/Footer/Footer.types';
 
 jest.mock('../../../components/footer/FooterColumnNav', () => function FooterColumnNav() {
   return <div data-testid="footer-columns-nav" />;
