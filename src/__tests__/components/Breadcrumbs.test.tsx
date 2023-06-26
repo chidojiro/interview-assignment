@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import Breadcrumbs from '../../components/headers/Breadcrumbs/Breadcrumbs';
+import Breadcrumbs from '../../components/headers/Breadcrumbs';
 
 describe('Breadcrumbs tests', () => {
   test('Breadcrumbs render correctly', () => {

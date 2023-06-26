@@ -1,13 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getSavedJobsCount } from '../../../hooks/savedJobsHandler';
 import Icon from '../../Icon';
-
-interface HeaderSavedJobsProps {
-  gdsApiKey: string;
-  gdsApiUrl: string;
-  buttonUrl: string;
-  ariaLabel: string;
-}
+import { HeaderSavedJobsProps } from './HeaderSavedJobs.types';
 
 function HeaderSavedJobs({
   buttonUrl,

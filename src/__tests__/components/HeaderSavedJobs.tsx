@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import HeaderSavedJobs from '../../components/headers/HeaderSavedJobs/HeaderSavedJobs';
+import HeaderSavedJobs from '../../components/headers/HeaderSavedJobs';
 
 describe('Saved Jobs component tests', () => {
   test('should render Saved Jobs the className', () => {

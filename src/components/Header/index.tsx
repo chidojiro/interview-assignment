@@ -18,7 +18,7 @@ import {
 import LoginPopover, { TranslationProps } from '../LoginPopover';
 import getUserData, { PersistData } from '../../utils/getUserData';
 import HeaderBrandsEnum from './headerBrands.enum';
-import HeaderSavedJobs from '../headers/HeaderSavedJobs/HeaderSavedJobs';
+import HeaderSavedJobs from '../headers/HeaderSavedJobs';
 import useUserData from '../../hooks/useUserData';
 
 type HeaderBrands =
