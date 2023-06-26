@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import LanguageSwitcher from '../../components/headers/LanguageSwitcher';
+import LanguageSwitcher from '../../../components/headers/LanguageSwitcher';
 
 describe('Language Switcher tests', () => {
   test('Language Switcher exist', () => {

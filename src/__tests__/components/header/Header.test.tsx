@@ -1,9 +1,10 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import Header, { HeaderProps } from '../../components/Header';
-import HeaderBrandsEnum from '../../components/Header/headerBrands.enum';
+import { HeaderProps } from 'src/components/headers/Header/Header.types';
+import Header from '../../../components/headers/Header';
+import HeaderBrandsEnum from '../../../components/headers/Header/headerBrands.enum';
 
-jest.mock('../../components/LoginPopover', () => jest.fn().mockImplementation(() => <div className="mockedLoginPopover" />));
+jest.mock('../../../components/headers/LoginPopover', () => jest.fn().mockImplementation(() => <div className="mockedLoginPopover" />));
 
 const defaultProps = {
   brand: HeaderBrandsEnum.DarkBlue,

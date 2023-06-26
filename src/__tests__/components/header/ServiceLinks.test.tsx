@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import ServiceLinks from '../../components/headers/ServiceLinks';
+import ServiceLinks from '../../../components/headers/ServiceLinks';
 
 describe('Service Links tests', () => {
   test('Service Links render correctly', () => {

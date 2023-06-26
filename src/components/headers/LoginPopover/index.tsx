@@ -1,21 +1,8 @@
 import React, { useEffect, useRef } from 'react';
-import useOrbitComponent from '../../hooks/useOrbitComponent';
+import useOrbitComponent from '../../../hooks/useOrbitComponent';
 import LoggedOut from './LoggedOut';
 import LoggedIn from './LoggedIn';
-import { LinksType, UserNameProps } from './types';
-
-export type TranslationProps = {
-  myRandstadTitle: string | React.ReactNode;
-  greeting: string | React.ReactNode;
-  registerText: string | React.ReactNode;
-  loginText: string | React.ReactNode;
-  logoutText: string | React.ReactNode;
-  heading1: string | React.ReactNode;
-  heading2: string | React.ReactNode;
-  listText1: string | React.ReactNode;
-  listText2: string | React.ReactNode;
-  listText3: string | React.ReactNode;
-};
+import { LinksType, TranslationProps, UserNameProps } from './LoginPopover.types';
 
 type Routes = {
   [key: string]: any;
@@ -122,7 +109,9 @@ function LoginPopover({
               loginText={loginText}
               title={(
                 <>
-                  {heading1} <span className="text--emphasis">{heading2}</span>
+                  {heading1}
+                  {' '}
+                  <span className="text--emphasis">{heading2}</span>
                 </>
               )}
               RouterComponent={RouterComponent}

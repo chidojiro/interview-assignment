@@ -1,18 +1,7 @@
 import React from 'react';
 import cn from 'classnames';
-import { BgColor, getBackground } from '../../utils/getBackground';
-
-export interface HeaderIllustrationProps extends BgColor {
-  illustration?: string;
-  illustrationClasses?: string;
-  narrowIllustration?: boolean;
-  altTitle?: string;
-  title?: string;
-  titleClasses?: string;
-  description?: string;
-  buttonLink?: string;
-  buttonText?: string;
-}
+import { getBackground } from '../../../utils/getBackground';
+import { HeaderIllustrationProps } from './HeaderIllustration.types';
 
 function HeaderIllustration({
   illustration,

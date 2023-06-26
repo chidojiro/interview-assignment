@@ -1,16 +1,6 @@
 import React from 'react';
-import Button from '../button/Button';
-
-interface LoggedOutProps {
-  children?: string | React.ReactNode;
-  title?: string | React.ReactNode;
-  registerUrl?: string;
-  registerText?: string | React.ReactNode;
-  loginUrl?: string;
-  loginText?: string | React.ReactNode;
-  RouterComponent?: React.FC<any>;
-  callback?: () => void;
-}
+import Button from '../../button/Button';
+import { LoggedOutProps } from './LoginPopover.types';
 
 function LoggedOut({
   title,

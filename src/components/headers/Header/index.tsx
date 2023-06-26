@@ -1,90 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
-import { BgColor } from '../../utils/getBackground';
-import { Items } from '../navigation/types';
-import Logo from '../navigation/Logo';
-import MainMenu from '../navigation/MainMenu';
-import UtilityNavigation from '../navigation/UtilityNavigation';
-import LanguageSwitcher from '../navigation/LanguageSwitcher';
-import Submenu, { SubmenuItems } from '../navigation/Submenu';
-import NavigationModal from '../navigation/NavigationModal';
-import MobileNavigation from '../navigation/MobileNavigation';
-import TabBar from '../navigation/TabBar';
+import { BgColor } from '../../../utils/getBackground';
+import { Items } from '../../navigation/types';
+import Logo from '../../navigation/Logo';
+import MainMenu from '../../navigation/MainMenu';
+import UtilityNavigation from '../../navigation/UtilityNavigation';
+import LanguageSwitcher from '../../navigation/LanguageSwitcher';
+import Submenu, { SubmenuItems } from '../../navigation/Submenu';
+import NavigationModal from '../../navigation/NavigationModal';
+import MobileNavigation from '../../navigation/MobileNavigation';
+import TabBar from '../../navigation/TabBar';
 import Breadcrumbs from '../Breadcrumbs';
-import MyRandstad from '../MyRandstad';
+import MyRandstad from '../../MyRandstad';
 import {
-  getMainMenu, findElement, LocalizationTypes, Routes, getHeaderClass, generateUrl,
+  getMainMenu, findElement, Routes, getHeaderClass, generateUrl,
 } from './headerUtils';
-import LoginPopover, { TranslationProps } from '../LoginPopover';
-import getUserData, { PersistData } from '../../utils/getUserData';
-import HeaderBrandsEnum from './headerBrands.enum';
-import HeaderSavedJobs from '../headers/HeaderSavedJobs';
-import useUserData from '../../hooks/useUserData';
-
-type HeaderBrands =
-  | HeaderBrandsEnum.Primary
-  | HeaderBrandsEnum.Quaternary
-  | HeaderBrandsEnum.Quinary
-  | HeaderBrandsEnum.Senary
-  | HeaderBrandsEnum.Tertiary
-  | HeaderBrandsEnum.DarkBlue
-  | HeaderBrandsEnum.Blue
-  | HeaderBrandsEnum.Turquoise
-  | HeaderBrandsEnum.Red
-  | HeaderBrandsEnum.Yellow
-  | HeaderBrandsEnum.OffWhite
-  | HeaderBrandsEnum.White;
-
-type BreadcrumbsItems = {
-  title: string;
-  link: string;
-  isActive?: boolean | undefined;
-};
-
-type BreadcrumbsType = {
-  breadcrumbsItems: BreadcrumbsItems[];
-  breadcrumbsMobileItem: BreadcrumbsItems;
-};
-
-type BreadcrumbsUndefinedType = {
-  breadcrumbsItems?: undefined;
-  breadcrumbsMobileItem?: undefined;
-};
-
-type LanguageSwitcherItems = {
-  language: string,
-  isActive?: boolean,
-  url?: string
-};
-
-export interface HeaderProps {
-  brand: HeaderBrands;
-  isMyRandstad: boolean;
-  routes: Routes;
-  submenuLinks: Routes;
-  localization: LocalizationTypes;
-  savedJobsEnabled?: {
-    gdsApiKey: string, gdsApiUrl: string, ariaLabel: string,
-  }
-  popoverTranslations?: TranslationProps;
-  currentUrl: string | undefined;
-  RouterComponent?: React.FC<any>;
-  breadcrumbs?: BreadcrumbsType | BreadcrumbsUndefinedType;
-  currentRoute?: string | undefined;
-  languageSwitcherItems?: LanguageSwitcherItems[];
-  useToast?: boolean;
-  toastSettings?: {
-    id: string;
-    title: Record<string, string>;
-    buttonSuccessText: Record<string, string>;
-    buttonCloseText: Record<string, string>;
-  };
-}
-
-type Menu = {
-  main?: [];
-  utility?: [];
-};
+import LoginPopover from '../LoginPopover';
+import getUserData, { PersistData } from '../../../utils/getUserData';
+import HeaderSavedJobs from '../HeaderSavedJobs';
+import useUserData from '../../../hooks/useUserData';
+import { HeaderProps, Menu } from './Header.types';
 
 function Header({
   brand,

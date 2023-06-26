@@ -1,16 +1,6 @@
 import React from 'react';
-import Icon from '../Icon';
-import { UserNameProps, LinksType } from './types';
-
-interface LoggedInProps {
-  title: string | React.ReactNode;
-  menuLinks?: Array<LinksType>;
-  userName?: UserNameProps;
-  logoutUrl?: string;
-  logoutText?: string | React.ReactNode;
-  RouterComponent?: React.FC<any>;
-  callback?: () => void;
-}
+import Icon from '../../Icon';
+import { UserNameProps, LoggedInProps } from './LoginPopover.types';
 
 function LoggedIn({
   menuLinks, logoutUrl, logoutText, userName, title, RouterComponent, callback,

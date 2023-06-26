@@ -1,6 +1,6 @@
 import React from 'react';
 import Icon from '../Icon';
-import { UserNameProps } from '../LoginPopover/types';
+import { UserNameProps } from '../headers/LoginPopover/LoginPopover.types';
 
 export interface MyRandstadProps {
   show?: boolean;

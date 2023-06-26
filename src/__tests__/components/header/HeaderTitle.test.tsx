@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import HeaderTitle from '../../components/headers/HeaderTitle';
+import HeaderTitle from '../../../components/headers/HeaderTitle';
 
 describe('HeaderTitle component tests', () => {
   test('Header title exist and has right text content', () => {
@@ -16,7 +16,10 @@ describe('HeaderTitle component tests', () => {
     const { container } = render(
       <HeaderTitle>
         <>
-          hello there <a href="#">gorgeous</a>.
+          hello there
+          {' '}
+          <a href="#">gorgeous</a>
+          .
         </>
       </HeaderTitle>,
     );
