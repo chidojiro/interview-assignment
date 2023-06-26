@@ -1,13 +1,5 @@
 import React from 'react';
-
-export interface FooterLink {
-  title: string;
-  url: string;
-}
-
-export interface FooterBottomNavInterface {
-  items: FooterLink[];
-}
+import { FooterBottomNavInterface } from './FooterBottomNav.types';
 
 function FooterBottomNav({ items }: FooterBottomNavInterface) {
   return (

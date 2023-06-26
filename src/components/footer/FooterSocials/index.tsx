@@ -1,15 +1,6 @@
 import React from 'react';
-import Icon from '../Icon';
-
-export interface FooterSocial {
-  url: string,
-  title: string,
-  icon: string,
-}
-
-export interface FooterSocialsProps {
-  items: FooterSocial[];
-}
+import Icon from '../../Icon';
+import { FooterSocialsProps } from './FooterSocials.types';
 
 function FooterSocials({ items }: FooterSocialsProps) {
   return (

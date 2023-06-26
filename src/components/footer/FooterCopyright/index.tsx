@@ -1,8 +1,5 @@
 import React from 'react';
-
-interface FooterCopyrightProps {
-  text: string
-}
+import { FooterCopyrightProps } from './FooterCopyright.types';
 
 function FooterCopyright({ text }: FooterCopyrightProps) {
   return (

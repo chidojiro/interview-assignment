@@ -1,17 +1,10 @@
 import React from 'react';
 import classNames from 'classnames';
-import FooterColumnNav, { ColumnChildren } from './FooterColumnNav';
-import FooterBottomNav, { FooterLink } from './FooterBottomNav';
-import FooterCopyright from './FooterCopyright';
-import FooterSocials, { FooterSocial } from './FooterSocials';
-
-export interface FooterProps {
-  footerColumnNavLinks?: ColumnChildren[] | undefined;
-  socialNavLinks?: FooterSocial[] | null;
-  bottomNavLinks?: FooterLink[] | null;
-  copyright?: string;
-  className?: string;
-}
+import { FooterProps } from './Footer.types';
+import FooterColumnNav from '../FooterColumnNav';
+import FooterBottomNav from '../FooterBottomNav';
+import FooterSocials from '../FooterSocials';
+import FooterCopyright from '../FooterCopyright';
 
 /**
  * Footer container.
