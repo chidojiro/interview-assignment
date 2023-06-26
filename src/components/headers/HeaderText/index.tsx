@@ -1,19 +1,6 @@
 import React from 'react';
-import { BgColor, getBackground } from '../../utils/getBackground';
-
-interface Header extends BgColor {
-  /** @deprecated use `bgColor` instead. */
-  variation?: BgColor['bgColor'],
-  titleTop: string | React.ReactNode,
-  titleBottom?: string | React.ReactNode,
-  /** Used for header description. */
-  children?: React.ReactNode,
-  cta?: {
-    title: string,
-    href: string,
-  },
-  classes?: string[],
-}
+import { getBackground } from '../../../utils/getBackground';
+import { Header } from './HeaderText.types';
 
 /**
  * A header which only consists out of text. See [here](https://randstad.design/components/examples/headers/text/)

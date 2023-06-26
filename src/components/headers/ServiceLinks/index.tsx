@@ -1,13 +1,5 @@
 import React from 'react';
-
-interface ServiceLink {
-  serviceTitle: string;
-  serviceUrl: string;
-}
-
-interface ServiceLinksProps {
-  links: ServiceLink[];
-}
+import { ServiceLinksProps } from './ServiceLinks.types';
 
 function ServiceLinks({ links }: ServiceLinksProps) {
   return (

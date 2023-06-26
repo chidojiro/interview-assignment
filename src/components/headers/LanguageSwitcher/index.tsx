@@ -1,9 +1,5 @@
 import React from 'react';
-
-interface LanguageSwitcherProps {
-  activeLanguage: string;
-  languages: string[];
-}
+import { LanguageSwitcherProps } from './LanguageSwitcher.types';
 
 function LanguageSwitcher({
   activeLanguage,

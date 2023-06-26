@@ -1,8 +1,5 @@
 import React from 'react';
-
-interface HeaderTitleProps {
-  children: string | JSX.Element;
-}
+import { HeaderTitleProps } from './HeaderTitle.types';
 
 function HeaderTitle({ children }: HeaderTitleProps) {
   return (
