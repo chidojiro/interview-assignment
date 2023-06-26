@@ -4,7 +4,8 @@ Color depends on the parent class
 
 Parent class "bg-variant-brand-secondary"
 ```jsx
-import HeaderTitle from "./HeaderTitle";
+import { HeaderTitle }  from '@ffw/randstad-shared-components';
+
 
 <header className="header header--text header--compact bg-variant-brand-secondary">
   <HeaderTitle>hello there gorgeous.</HeaderTitle>

@@ -1,5 +1,5 @@
 ```jsx
-import LanguageSwitcher from './LanguageSwitcher';
+import { LanguageSwitcher }  from '@ffw/randstad-shared-components';
 
 <LanguageSwitcher activeLanguage='en' languages={['en', 'fr', 'ak']} />;
 ```
