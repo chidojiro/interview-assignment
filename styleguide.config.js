@@ -60,7 +60,6 @@ module.exports = {
         'src/components/Badge.tsx',
         'src/components/button/Button.tsx',
         'src/components/Block.tsx',
-        'src/components/PagePreloader.tsx',
         'src/components/ShowMore.tsx',
         'src/components/SplitView/index.tsx',
         'src/components/Tag/index.tsx',
@@ -90,6 +89,11 @@ module.exports = {
       name: 'Notifications',
       components: 'src/components/notifications/**/*.tsx',
       description: 'Notification components such as Toast, Notice, TextNotice, etc.',
+    },
+    {
+      name: 'Loaders & Preloaders',
+      components: 'src/components/loaders/**/*.tsx',
+      description: 'Preloader, LayoutPreloader and other loading components.',
     },
     {
       name: 'Form Groups',

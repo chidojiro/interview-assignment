@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import PagePreloader from '../../components/loaders/PagePreloader';
+import PagePreloader from '../../../components/loaders/PagePreloader';
 
 describe('PagePreload component tests', () => {
   test('PagePreloader renders correctly', () => {

@@ -1,7 +1,7 @@
-import React, { FC } from 'react';
-import { LayoutPreloaderProps } from './LayoutPreloader.props';
+import React from 'react';
+import { LayoutPreloaderProps } from './LayoutPreloader.types';
 
-const LayoutPreloader: FC<LayoutPreloaderProps> = ({ image }) => {
+function LayoutPreloader({ image }: LayoutPreloaderProps) {
   return (
     <div className="page-preloader flex justify-center items-center">
       {image}
