@@ -28,15 +28,17 @@ import Button from './components/button/Button';
 import Badge from './components/Badge';
 import Icon from './components/Icon';
 import ShowMore from './components/ShowMore';
-import { Notice, NoticeType } from './components/notifications/Notice';
-import { TextNotice, TextNoticeBackground } from './components/notifications/TextNotice';
-import { Toast } from './components/notifications/Toast';
+import Notice from './components/notifications/Notice';
+import { NoticeType } from './components/notifications/Notice/Notice.types';
+import TextNotice from './components/notifications/TextNotice';
+import { TextNoticeBackground } from './components/notifications/TextNotice/TextNotice.types';
+import Toast from './components/notifications/Toast';
+import Footer from './components/footer/Footer';
 import FooterColumnNav from './components/footer/FooterColumnNav';
 import FooterBottomNav from './components/footer/FooterBottomNav';
 import FooterCopyright from './components/footer/FooterCopyright';
 import FooterSocials from './components/footer/FooterSocials';
 import { FooterSocial } from './components/footer/FooterSocials/FooterSocials.types';
-import Footer from './components/footer/Footer';
 import GoogleRecaptcha, { GoogleRecaptchaRef } from './components/forms/GoogleRecaptcha';
 import MyEnvironmentLayout from './components/my-environment/MyEnvironmentLayout';
 import Section from './components/my-environment/Section';
@@ -53,17 +55,10 @@ import UploadField from './components/forms/UploadField';
 import SplitView from './components/SplitView';
 import HeaderIllustration from './components/headers/HeaderIllustration';
 import ShowMoreToggle from './components/ShowMoreToggle';
-// import LocationInputField from "./components/forms/LocationInputField";
 import RadioButton from './components/forms/RadioButton';
 import TextArea from './components/forms/TextArea';
-// import Filter from "./components/Filter";
 import Accordion from './components/accordion/Accordion';
 import AccordionItem from './components/accordion/AccordionItem';
-// import Sortbar from "./components/Sortbar";
-// import Pagination from "./components/Pagination";
-// import ArticleOverviewList from "./components/article-overview/list/ArticleOverviewList";
-// import ArticleOverviewListItem from "./components/article-overview/list/ArticleOverviewListItem";
-// import Navigation from "./components/Navigation";
 import Autosuggest from './components/forms/Autosuggest';
 import Dropdown from './components/form-group/Dropdown';
 import Stackable from './components/form-group/Stackable';
@@ -141,16 +136,8 @@ export {
   // Filter,
   Accordion,
   AccordionItem,
-  // Sortbar,
-  // Pagination,
-  // ArticleOverviewList,
-  // ArticleOverviewListItem,
-  // Navigation,
-  // LanguageSwitcher,
   Autosuggest,
-  // UtilityNavigation,
   Stackable,
-  // FormGroup,
   Dropdown,
   ApplicationProcess,
   ApplicationProcessCard,

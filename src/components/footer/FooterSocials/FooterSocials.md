@@ -3,7 +3,8 @@ Footer Socials
 Color of icon depends on wrapper brand class.
 
 ```jsx
-import FooterSocials from './FooterSocials';
+import { FooterSocials } from "@ffw/randstad-shared-components";
+
 
 <FooterSocials items={
     [

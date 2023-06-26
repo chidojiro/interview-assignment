@@ -2,7 +2,7 @@ const path = require('path');
 const { withCustomConfig, getDefaultExportForFile } = require('react-docgen-typescript');
 
 const pkg = require('./package.json');
-const webpackConfig = require('./webpack.config.js');
+const webpackConfig = require('./webpack.config');
 
 const config = { ...webpackConfig };
 
@@ -57,18 +57,12 @@ module.exports = {
     {
       name: 'Shared components',
       components: [
-        'src/components/headers/**/*.tsx',
-        'src/components/footer/**/*.tsx',
         'src/components/Badge.tsx',
         'src/components/button/Button.tsx',
-        'src/components/notifications/Notice.tsx',
-        'src/components/notifications/TextNotice.tsx',
-        'src/components/notifications/Toast.tsx',
         'src/components/Block.tsx',
         'src/components/PagePreloader.tsx',
         'src/components/ShowMore.tsx',
         'src/components/SplitView/index.tsx',
-        'src/components/HeaderIllustration/index.tsx',
         'src/components/Tag/index.tsx',
         'src/components/Rating/index.tsx',
         'src/components/PersonProfile/index.tsx',
@@ -78,9 +72,24 @@ module.exports = {
       ],
     },
     {
+      name: 'Headers',
+      components: 'src/components/headers/**/*.tsx',
+      description: 'Header components like navigation, breadcrumbs, etc.',
+    },
+    {
+      name: 'Footer',
+      components: 'src/components/footer/**/*.tsx',
+      description: 'Footer components - Columns, Socials, etc.',
+    },
+    {
       name: 'Cards',
       components: 'src/components/cards/**/*.tsx',
       description: 'Card components such as Job card, Meta info cards, Dashboard cards, etc.',
+    },
+    {
+      name: 'Notifications',
+      components: 'src/components/notifications/**/*.tsx',
+      description: 'Notification components such as Toast, Notice, TextNotice, etc.',
     },
     {
       name: 'Form Groups',
@@ -136,33 +145,5 @@ module.exports = {
       components: 'src/components/ContactPerson/*.tsx',
       description: 'Contact Perston component from the jobs app details page.',
     },
-    // {
-    //   name: 'Shared components',
-    //   components: 'src/components/**/*.js',
-    //   ignore: [
-    //     'src/components/accordion/**',
-    //     'src/components/forms/**',
-    //     'src/components/form-group/**',
-    //     'src/components/headers/**',
-    //     'src/components/article-overview/**',
-    //   ],
-    // },
-    // { name: 'Accordion', components: 'src/components/accordion/**/*.js' },
-    //     {
-    //   name: 'Form Groups',
-    //   components: 'src/components/form-group/**/*.js',
-    //   description: 'Provides wrapper components for form elements',
-    // },
-    // { name: 'Forms', components: 'src/components/forms/**/*.tsx' },
-    // { name: 'Headers', components: 'src/components/headers/**/*.js' },
-    // {
-    //   name: 'Article Overview',
-    //   sections: [
-    //     {
-    //       name: 'List',
-    //       components: 'src/components/article-overview/list/**/*.js',
-    //     },
-    //   ],
-    // },
   ],
 };

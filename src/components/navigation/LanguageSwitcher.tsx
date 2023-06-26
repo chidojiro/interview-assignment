@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Toast } from '../notifications/Toast';
-// import { Toast } from '@ffw/randstad-shared-components';
+import Toast from '../notifications/Toast';
 
 interface Items {
   language: string,

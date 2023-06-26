@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { Notice } from '../../components/notifications/Notice';
+import Notice from '../../../components/notifications/Notice';
 
 describe('Notice component tests', () => {
   test('Notice exist', () => {
@@ -20,6 +20,8 @@ describe('Notice component tests', () => {
     ['Notice subtle', { type: 'subtle' }, 'face-sad'],
   ]) {
     test(`${title} has icon ${expectedIcon} `, () => {
+      // TODO: Review this ts-ignore. Someone has added it, but I don't know why.
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       const { container } = render(<Notice {...props}>test</Notice>);
       const noticeIconElement = container.querySelector('svg use');

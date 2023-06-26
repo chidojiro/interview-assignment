@@ -1,22 +1,8 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { Toast as OrbitComponent } from '@ffw/randstad-local-orbit/js/components/toast';
-import Icon from '../Icon';
-import Button, { ButtonVariants } from '../button/Button';
-
-type CloseEvents = React.MouseEvent | TouchEvent;
-
-interface ToastProps {
-  id: string;
-  title: string;
-  anchor?: string;
-  buttonCloseText?: string;
-  buttonSuccessText?: string;
-  ariaLabelClose?: string;
-  labelClose?: string;
-  onClose?: () => void;
-  onSuccess?: () => void;
-  successBtnVariant?: ButtonVariants;
-}
+import Icon from '../../Icon';
+import Button from '../../button/Button';
+import { CloseEvents, ToastProps } from './Toast.types';
 
 function Toast({
   title, anchor, id, buttonCloseText, buttonSuccessText, ariaLabelClose = 'close', labelClose = 'close', onSuccess, onClose, successBtnVariant,
@@ -62,7 +48,7 @@ function Toast({
 
   useEffect(() => {
     if (buttonCloseText || buttonSuccessText) {
-      return;
+      return undefined;
     }
     const timer = setTimeout(() => {
       setCloseToast('closable--closed');
@@ -106,6 +92,7 @@ function Toast({
         </div>
       )}
       <button
+        type="button"
         className="button--icon-only"
         aria-label={ariaLabelClose}
         data-rs-closable={`data-rs-toast-${id}`}
@@ -119,4 +106,4 @@ function Toast({
   );
 }
 
-export { Toast };
+export default Toast;

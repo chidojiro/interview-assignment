@@ -14,7 +14,7 @@ import Breadcrumbs from '../Breadcrumbs';
 import MyRandstad from '../../MyRandstad';
 import {
   getMainMenu, findElement, Routes, getHeaderClass, generateUrl,
-} from './headerUtils';
+} from '../../../utils/headerUtils';
 import LoginPopover from '../LoginPopover';
 import getUserData, { PersistData } from '../../../utils/getUserData';
 import HeaderSavedJobs from '../HeaderSavedJobs';

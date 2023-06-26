@@ -1,18 +1,7 @@
 import React, { useCallback } from 'react';
 import classNames from 'classnames';
-import Icon from '../Icon';
-
-export type TextNoticeBackground = 'tint-7' | 'primary-tint-7' | 'primary' | 'secondary' | 'tertiary' | 'quaternary' | 'quinary' | 'senary';
-
-type CloseEvents = React.MouseEvent | KeyboardEvent | TouchEvent;
-interface TextNoticeProps {
-  children: string | JSX.Element | (string | JSX.Element)[];
-  background: TextNoticeBackground;
-  backgroundClass?: string;
-  icon?: string;
-  ariaLabelClose?: string;
-  onClose?: () => void;
-}
+import Icon from '../../Icon';
+import { CloseEvents, TextNoticeProps } from './TextNotice.types';
 
 function TextNotice({
   children,
@@ -67,4 +56,4 @@ function TextNotice({
   );
 }
 
-export { TextNotice };
+export default TextNotice;
