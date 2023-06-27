@@ -17,8 +17,7 @@ function PersonProfile({
     XXL: 'avatar--XXL',
   };
 
-  if (!person) return null;
-  if (!person.name) return null;
+  if (!person || !person.name) return null;
 
   return (
     <div className={cn('person__profile', personProfileClasses)}>
