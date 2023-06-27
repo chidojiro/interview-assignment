@@ -10,6 +10,8 @@ function ContactDetails({
   let avatarClasses = 'mb-s l:mb-none l:mr-s';
   if (type === 'meet-the-team') avatarClasses = 'mb-s';
 
+  if (!profiles || !profiles[0].name) return null;
+
   return (
     <div className={cn('block', backgroundClass)}>
       <div className={cn({
