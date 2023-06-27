@@ -114,9 +114,9 @@ module.exports = {
       description: 'Form components - Input, Checkbox, etc.',
     },
     {
-      name: 'Button',
-      components: 'src/components/button/**/*.tsx',
-      description: 'Provides wrapper components for button element.',
+      name: 'Buttons',
+      components: 'src/components/buttons/**/*.tsx',
+      description: 'Button elements.',
     },
     {
       name: 'Overlays',
