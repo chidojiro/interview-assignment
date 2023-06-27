@@ -22,12 +22,17 @@ export type Data = {
 const getSavedJobsCount = async (gdsApiKey: string, gdsApiUrl: string, checkLocalStorage = true): Promise<number> => {
   const isLoggedIn = getUserData();
   // TODO: This needs to work with anonymous users as well. Handle it when unblocked for anonymous users.
-  const storage = localStorage.getItem('saved-jobs');
-  if (checkLocalStorage && storage) {
-    const data = JSON.parse(storage as string);
+  const savedJobs = isLoggedIn.savedJobsTotalElements ?? localStorage.getItem('saved-jobs');
+  // Anon user
+  if (checkLocalStorage && savedJobs && !isLoggedIn.savedJobsTotalElements) {
+    const data = JSON.parse(savedJobs as unknown as string);
     if (data.totalElements) {
       return data.totalElements;
     }
+    // logged in and savedJobsTotalElements > 0
+  } else if (checkLocalStorage && isLoggedIn.savedJobsTotalElements) {
+    return +savedJobs;
+    // After login, calls api
   } else if (isLoggedIn.loginStatus) {
     const talentApi = new TalentAppApi(gdsApiKey, gdsApiUrl);
 
@@ -49,7 +54,11 @@ const saveCountOfSavedJobs = async (gdsApiKey: string, gdsApiUrl: string) => {
   const numberOfSavedJobs: SavedJobsResponse = {
     totalElements: await getSavedJobsCount(gdsApiKey, gdsApiUrl, false),
   };
-  localStorage.setItem('saved-jobs', JSON.stringify(numberOfSavedJobs));
+  const userData = getUserData();
+  if (userData.loginStatus) {
+    userData.savedJobsTotalElements = numberOfSavedJobs.totalElements;
+    await localStorage.setItem('userState', JSON.stringify(userData));
+  }
   const savedJobsEvent = new Event('saved-jobs');
   window.dispatchEvent(savedJobsEvent);
 };
