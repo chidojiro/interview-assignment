@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { Toast as OrbitComponent } from '@ffw/randstad-local-orbit/js/components/toast';
 import Icon from '../../Icon';
-import Button from '../../button/Button';
+import Button from '../../buttons/Button';
 import { CloseEvents, ToastProps } from './Toast.types';
 
 function Toast({

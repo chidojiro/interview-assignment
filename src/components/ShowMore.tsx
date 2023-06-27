@@ -1,5 +1,5 @@
 import React, { KeyboardEvent } from 'react';
-import Button from './button/Button';
+import Button from './buttons/Button';
 
 interface ShowMoreProps {
   onClick: (event: React.MouseEvent | KeyboardEvent) => void;

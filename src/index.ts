@@ -24,7 +24,7 @@ import TabBar from './components/navigation/TabBar';
 import NavigationModal from './components/overlays/NavigationModal';
 import Modal from './components/overlays/Modal';
 import ConfirmationModal from './components/overlays/ConfirmationModal';
-import Button from './components/button/Button';
+import Button from './components/buttons/Button';
 import Badge from './components/Badge';
 import Icon from './components/Icon';
 import ShowMore from './components/ShowMore';

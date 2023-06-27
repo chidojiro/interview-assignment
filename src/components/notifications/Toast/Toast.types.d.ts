@@ -1,4 +1,4 @@
-import { ButtonVariants } from '../../button/Button';
+import { ButtonVariants } from '../../buttons/Button/Button.types';
 
 type CloseEvents = React.MouseEvent | TouchEvent;
 
