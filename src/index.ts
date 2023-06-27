@@ -75,8 +75,10 @@ import MetaInfoCard from './components/cards/MetaInfoCard';
 import MetaInfoCardItems from './components/cards/MetaInfoCard/MetaInfoCardItems';
 import ContactDetails from './components/ContactDetails';
 import PersonProfile from './components/PersonProfile';
+import Pagination from './components/pagination/Pagination';
 
 export {
+  Pagination,
   PasswordField,
   Checkbox,
   Toggle,

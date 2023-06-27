@@ -8,6 +8,7 @@ import { Pagination } from "@ffw/randstad-shared-components";
     { text: "3", url: "#" },
     { text: "4", url: "#" },
   ]}
+  previousArrowLink={{text: "prev", url: "#"}}
   nextArrowLink={{ text: "next", url: "#" }}
 />;
 ```

@@ -149,5 +149,10 @@ module.exports = {
       components: 'src/components/ContactPerson/*.tsx',
       description: 'Contact Perston component from the jobs app details page.',
     },
+    {
+      name: 'Pagination',
+      components: 'src/components/pagination/**/*.tsx',
+      description: 'Pagination components.',
+    },
   ],
 };
