@@ -59,7 +59,7 @@ import RadioButton from './components/forms/RadioButton';
 import TextArea from './components/forms/TextArea';
 import Accordion from './components/accordion/Accordion';
 import AccordionItem from './components/accordion/AccordionItem';
-import Autosuggest from './components/forms/Autosuggestt';
+import Autosuggest from './components/forms/Autosuggest';
 import Dropdown from './components/forms/Dropdown';
 import Stackable from './components/forms/Stackable';
 import ApplicationProcess from './components/ApplicationProcess/ApplicationProcess';
