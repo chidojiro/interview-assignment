@@ -1,19 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import classNames from 'classnames';
-import Icon from '../Icon';
-
-type CloseEvents = React.MouseEvent | KeyboardEvent | TouchEvent | Event;
-interface ModalProps {
-  title: string;
-  ariaLabelClose?: string;
-  children?: string | React.ReactNode;
-  onClose?: (event: CloseEvents) => void;
-  footer?: React.ReactNode;
-  footerDivider?: boolean;
-  footerDividerTop?: boolean;
-  modalOverflow?: boolean;
-  bgVariantBrand?: string | undefined;
-}
+import Icon from '../../Icon';
+import { ModalProps } from './Modal.types';
 
 function Modal({
   title,

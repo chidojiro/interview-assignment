@@ -1,19 +1,9 @@
 import React, { useEffect, useCallback } from 'react';
 import classNames from 'classnames';
 import styles, { keyframes } from 'styled-components';
-import Icon from '../Icon';
-import Button from '../button/Button';
-
-type CloseEvents = React.MouseEvent | KeyboardEvent | TouchEvent;
-interface ConfirmationModalProps {
-  title: string;
-  content: string;
-  ariaLabelClose?: string;
-  confirmButtonText?: string;
-  cancelButtonText?: string;
-  onClose: (event: CloseEvents) => void;
-  onSubmit?: (event: React.MouseEvent) => void;
-}
+import Icon from '../../Icon';
+import Button from '../../button/Button';
+import { CloseEvents, ConfirmationModalProps } from './ConfirmationModal.types';
 
 const popupEnter = keyframes`
   0% { opacity: 0; }

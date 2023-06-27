@@ -21,7 +21,7 @@ import UtilityNavigation from './components/navigation/UtilityNavigation';
 import Submenu from './components/navigation/Submenu';
 import MobileNavigation from './components/navigation/MobileNavigation';
 import TabBar from './components/navigation/TabBar';
-import NavigationModal from './components/navigation/NavigationModal';
+import NavigationModal from './components/overlays/NavigationModal';
 import Modal from './components/overlays/Modal';
 import ConfirmationModal from './components/overlays/ConfirmationModal';
 import Button from './components/button/Button';

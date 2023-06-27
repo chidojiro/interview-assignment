@@ -7,7 +7,7 @@ import MainMenu from '../../navigation/MainMenu';
 import UtilityNavigation from '../../navigation/UtilityNavigation';
 import LanguageSwitcher from '../../navigation/LanguageSwitcher';
 import Submenu, { SubmenuItems } from '../../navigation/Submenu';
-import NavigationModal from '../../navigation/NavigationModal';
+import NavigationModal from '../../overlays/NavigationModal';
 import MobileNavigation from '../../navigation/MobileNavigation';
 import TabBar from '../../navigation/TabBar';
 import Breadcrumbs from '../Breadcrumbs';
