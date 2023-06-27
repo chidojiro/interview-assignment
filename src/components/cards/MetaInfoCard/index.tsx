@@ -12,7 +12,7 @@ function MetaInfoCard({
   const backgroundColor = getBackground(bgColor);
 
   return (
-    <div className={cn('meta-content py-m px-s l:p-l', backgroundColor)}>
+    <div className={cn('meta-content wrapper py-m', backgroundColor)}>
       {title && (
         <p className={cn('meta-content__title', { [`text-brand-${titleColor}`]: titleColor })}>
           {title}
