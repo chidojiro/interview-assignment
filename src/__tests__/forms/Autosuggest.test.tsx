@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent, act } from '@testing-library/react';
-import Autosuggest from '../../components/forms/Autosuggest';
+import Autosuggest from '../../components/forms/Autosuggestt';
 
 // Autosuggest field prevents user fast typing with a debounce technology.
 const waitForDebounce = (timeout = 310) => new Promise((resolve) => {

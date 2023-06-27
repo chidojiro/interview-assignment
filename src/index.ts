@@ -1,6 +1,6 @@
-import FormGroup from './components/form-group/FormGroup';
+import FormGroup from './components/forms/FormGroup';
 import PasswordField from './components/forms/PasswordField';
-import FieldError from './components/form-group/FieldError/FieldError';
+import FieldError from './components/forms/FieldError';
 import SelectField from './components/forms/SelectField';
 import InputField from './components/forms/InputField';
 import DatePicker from './components/forms/DatePicker';
@@ -39,7 +39,7 @@ import FooterBottomNav from './components/footer/FooterBottomNav';
 import FooterCopyright from './components/footer/FooterCopyright';
 import FooterSocials from './components/footer/FooterSocials';
 import { FooterSocial } from './components/footer/FooterSocials/FooterSocials.types';
-import GoogleRecaptcha, { GoogleRecaptchaRef } from './components/forms/GoogleRecaptcha';
+import GoogleRecaptcha from './components/forms/GoogleRecaptcha';
 import MyEnvironmentLayout from './components/my-environment/MyEnvironmentLayout';
 import Section from './components/my-environment/Section';
 import JobCardList from './components/JobCard/JobCardList';
@@ -59,9 +59,9 @@ import RadioButton from './components/forms/RadioButton';
 import TextArea from './components/forms/TextArea';
 import Accordion from './components/accordion/Accordion';
 import AccordionItem from './components/accordion/AccordionItem';
-import Autosuggest from './components/forms/Autosuggest';
-import Dropdown from './components/form-group/Dropdown';
-import Stackable from './components/form-group/Stackable';
+import Autosuggest from './components/forms/Autosuggestt';
+import Dropdown from './components/forms/Dropdown';
+import Stackable from './components/forms/Stackable';
 import ApplicationProcess from './components/ApplicationProcess/ApplicationProcess';
 import ApplicationProcessCard from './components/ApplicationProcess/ApplicationProcessCard';
 import { ApplicationProcessCardProp } from './components/ApplicationProcess/ApplicationProcessCard.types';
@@ -76,6 +76,7 @@ import MetaInfoCardItems from './components/cards/MetaInfoCard/MetaInfoCardItems
 import ContactDetails from './components/ContactDetails';
 import PersonProfile from './components/PersonProfile';
 import Pagination from './components/pagination/Pagination';
+import { GoogleRecaptchaRef } from './components/forms/GoogleRecaptcha/GoogleRecaptcha.types';
 
 export {
   Pagination,

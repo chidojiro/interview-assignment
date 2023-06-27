@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, waitFor } from '@testing-library/react';
 import RadioButton from '../../components/forms/RadioButton';
-import Stackable from '../../components/form-group/Stackable';
+import Stackable from '../../components/forms/Stackable';
 
 describe('RadioButton component tests', () => {
   test('RadioButton renders correctly with required props', () => {

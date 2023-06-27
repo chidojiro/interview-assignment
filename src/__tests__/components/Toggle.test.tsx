@@ -38,7 +38,8 @@ test('Toggle input has correct class - light', () => {
 
 test('Toggle input has correct class - dark', () => {
   const { container } = render(<Toggle
-    name="marketing4" type="dark"
+    name="marketing4"
+    type="dark"
   />);
   const toggleElement = container.querySelector('.switch');
   expect(toggleElement)
@@ -46,5 +47,4 @@ test('Toggle input has correct class - dark', () => {
       'class',
       'switch switch__dark',
     );
-  
 });

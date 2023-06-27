@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import Dropdown from '../../components/form-group/Dropdown';
+import Dropdown from '../../components/forms/Dropdown';
 
 describe('Dropdown component tests', () => {
   test('Dropdown renders correctly.', () => {
@@ -18,7 +18,7 @@ describe('Dropdown component tests', () => {
         name="numbers-dropdown"
         onChange={(e) => console.log(e)}
         required
-      ></Dropdown>,
+      />,
     );
     const dropdownComponent = container.querySelector('.form-group__input select');
     expect(dropdownComponent).toBeInTheDocument();
@@ -38,7 +38,7 @@ describe('Dropdown component tests', () => {
         name="numbers-dropdown"
         onChange={(e) => console.log(e)}
         required
-      ></Dropdown>,
+      />,
     );
     // @ts-ignore
     const dropdownComponent = container.querySelector('.form-group__input select');
@@ -63,7 +63,7 @@ describe('Dropdown component tests', () => {
         name="numbers-dropdown"
         onChange={(e) => console.log(e)}
         required
-      ></Dropdown>,
+      />,
     );
     // @ts-ignore
     const dropdownComponent = [...container.querySelectorAll('.form-group__input select option')];
@@ -85,7 +85,7 @@ describe('Dropdown component tests', () => {
         name="numbers-dropdown"
         onChange={(e) => console.log(e)}
         required
-      ></Dropdown>,
+      />,
     );
     // @ts-ignore
     const dropdownComponent = [...container.querySelectorAll('.form-group__input select option')];
@@ -106,7 +106,7 @@ describe('Dropdown component tests', () => {
         ]}
         name="numbers-dropdown"
         onChange={(e) => console.log(e)}
-      ></Dropdown>,
+      />,
     );
     // @ts-ignore
     const dropdownComponent = [...container.querySelectorAll('.form-group__input select option')];
@@ -115,6 +115,4 @@ describe('Dropdown component tests', () => {
     expect(dropdownComponent[1]).toHaveTextContent('second');
     expect(dropdownComponent[2]).toHaveTextContent('third');
   });
-
-  
 });
