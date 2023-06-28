@@ -49,3 +49,26 @@ export type TranslationProps = {
   listText2: string | React.ReactNode;
   listText3: string | React.ReactNode;
 };
+
+export type Routes = {
+  // disable eslint for type any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [key: string]: any;
+};
+
+type PopoverArrowVariants = 'left' | 'center' | 'right';
+
+export interface LoginPopoverPropTypes {
+  isAuth?: boolean;
+  links?: object;
+  locale?: string | undefined;
+  languagePrefix: string;
+  translations?: TranslationProps | undefined;
+  userName?: UserNameProps;
+  arrowVariant?: PopoverArrowVariants;
+  logoutUrl?: string;
+  currentRoute?: string | undefined;
+  // disable eslint for type any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  RouterComponent?: React.FC<any>;
+}

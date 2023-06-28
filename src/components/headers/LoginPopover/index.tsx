@@ -2,26 +2,9 @@ import React, { useEffect, useRef } from 'react';
 import useOrbitComponent from '../../../hooks/useOrbitComponent';
 import LoggedOut from './LoggedOut';
 import LoggedIn from './LoggedIn';
-import { LinksType, TranslationProps, UserNameProps } from './LoginPopover.types';
-
-type Routes = {
-  [key: string]: any;
-};
-
-type PopoverArrowVariants = 'left' | 'center' | 'right';
-
-interface LoginPopoverPropTypes {
-  isAuth?: boolean;
-  links?: object;
-  locale?: string | undefined;
-  languagePrefix: string;
-  translations?: TranslationProps | undefined;
-  userName?: UserNameProps;
-  arrowVariant?: PopoverArrowVariants;
-  logoutUrl?: string;
-  currentRoute?: string | undefined;
-  RouterComponent?: React.FC<any>;
-}
+import {
+  LinksType, LoginPopoverPropTypes, Routes, TranslationProps,
+} from './LoginPopover.types';
 
 function LoginPopover({
   isAuth,
