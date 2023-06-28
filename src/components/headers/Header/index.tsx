@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
+import { SubmenuItems } from 'src/components/navigation/Submenu/Submenu.types';
 import { BgColor } from '../../../utils/getBackground';
-import { Items } from '../../navigation/types';
+import { Items } from '../../navigation/navigation.types';
 import Logo from '../../navigation/Logo';
 import MainMenu from '../../navigation/MainMenu';
 import UtilityNavigation from '../../navigation/UtilityNavigation';
 import LanguageSwitcher from '../../navigation/LanguageSwitcher';
-import Submenu, { SubmenuItems } from '../../navigation/Submenu';
+import Submenu from '../../navigation/Submenu';
 import NavigationModal from '../../overlays/NavigationModal';
 import MobileNavigation from '../../navigation/MobileNavigation';
 import TabBar from '../../navigation/TabBar';

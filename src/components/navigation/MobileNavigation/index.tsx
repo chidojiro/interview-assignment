@@ -1,16 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Collapsible } from '@ffw/randstad-local-orbit/js/components/collapsible';
 import { Toggable } from '@ffw/randstad-local-orbit/js/components/toggable';
-import { Items } from './types';
-
-export interface MobileNavigationProps {
-  items?: Items[],
-  showMyRandstad?: boolean,
-  myRandstadUrl?: string,
-  myRandstadLabel?: string | React.ReactNode,
-  myRandstadMenu?: Items[],
-  languagePrefix?: string;
-}
+import { MobileNavigationProps } from './MobileNavigation.types';
 
 const menuAttributes = (menuItemLength: number) => {
   // If item has children, return expanded attributes.
@@ -25,7 +16,7 @@ const menuAttributes = (menuItemLength: number) => {
 };
 
 function MobileNavigation({
-  items, myRandstadUrl, showMyRandstad, myRandstadLabel, myRandstadMenu, languagePrefix
+  items, myRandstadUrl, showMyRandstad, myRandstadLabel, myRandstadMenu, languagePrefix,
 }: MobileNavigationProps) {
   const ref = useRef<Array<HTMLDivElement | null>>([]);
   const mobileMenuRef = useRef<HTMLDivElement | null>(null);
