@@ -22,20 +22,19 @@ export type Data = {
 const getSavedJobsCount = async (gdsApiKey: string, gdsApiUrl: string, checkLocalStorage = true): Promise<number> => {
   const isLoggedIn = getUserData();
   // TODO: This needs to work with anonymous users as well. Handle it when unblocked for anonymous users.
-  const savedJobs = isLoggedIn.savedJobsTotalElements ?? localStorage.getItem('saved-jobs');
+  const savedJobs = localStorage.getItem('saved-jobs');
   // Anon user
-  if (checkLocalStorage && savedJobs && !isLoggedIn.savedJobsTotalElements) {
-    const data = JSON.parse(savedJobs as unknown as string);
+  if (checkLocalStorage && savedJobs && !isLoggedIn.savedJobs.totalElements) {
+    const data = JSON.parse(savedJobs);
     if (data.totalElements) {
       return data.totalElements;
     }
-    // logged in and savedJobsTotalElements > 0
-  } else if (checkLocalStorage && isLoggedIn.savedJobsTotalElements) {
-    return +savedJobs;
+    // logged in
+  } else if (checkLocalStorage && isLoggedIn.savedJobs) {
+    return isLoggedIn.savedJobs.totalElements;
     // After login, calls api
   } else if (isLoggedIn.loginStatus) {
     const talentApi = new TalentAppApi(gdsApiKey, gdsApiUrl);
-
     const response = await talentApi.get<Data, AxiosResponse<SavedJobsResponse>>('/me/saved-jobs?size=1').catch((err) => {
       // Needed logging for error.
       // eslint-disable-next-line no-console
@@ -56,7 +55,7 @@ const saveCountOfSavedJobs = async (gdsApiKey: string, gdsApiUrl: string) => {
   };
   const userData = getUserData();
   if (userData.loginStatus) {
-    userData.savedJobsTotalElements = numberOfSavedJobs.totalElements;
+    userData.savedJobs.totalElements = numberOfSavedJobs.totalElements;
     await localStorage.setItem('userState', JSON.stringify(userData));
   }
   const savedJobsEvent = new Event('saved-jobs');

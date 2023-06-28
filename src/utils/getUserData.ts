@@ -16,26 +16,30 @@ type CurrentUser = {
 export type PersistData = {
   currentUser?: CurrentUser;
   loginStatus: boolean;
-  savedJobsTotalElements: number;
+  savedJobs: {
+    totalElements: number,
+  };
 };
 
 function getUserData(): PersistData {
   if (typeof window === 'undefined') {
     return {
       loginStatus: false,
-      savedJobsTotalElements: 0,
+      savedJobs: {
+        totalElements: 0,
+      },
     };
   }
   const data = JSON.parse(localStorage.getItem('userState') || '{}');
 
   let loginStatus = false;
   if (data?.currentUser && data?.loginStatus) {
-    const { currentUser, savedJobsTotalElements } = data;
+    const { currentUser, savedJobs } = data;
     loginStatus = data.loginStatus;
-    return { currentUser, loginStatus, savedJobsTotalElements };
+    return { currentUser, loginStatus, savedJobs };
   }
 
-  return { loginStatus, savedJobsTotalElements: 0 };
+  return { loginStatus, savedJobs: data.savedJobs };
 }
 
 export default getUserData;
