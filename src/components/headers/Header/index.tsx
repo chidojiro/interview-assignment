@@ -12,7 +12,7 @@ import NavigationModal from '../../overlays/NavigationModal';
 import MobileNavigation from '../../navigation/MobileNavigation';
 import TabBar from '../../navigation/TabBar';
 import Breadcrumbs from '../Breadcrumbs';
-import MyRandstad from '../../MyRandstad';
+import MyRandstad from '../../navigation/MyRandstad';
 import {
   getMainMenu, findElement, Routes, getHeaderClass, generateUrl,
 } from '../../../utils/headerUtils';

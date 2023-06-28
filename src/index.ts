@@ -17,7 +17,6 @@ import LanguageSwitcher from './components/navigation/LanguageSwitcher';
 import ServiceLinks from './components/headers/ServiceLinks';
 import Logo from './components/navigation/Logo';
 import MainMenu from './components/navigation/MainMenu';
-import MyRandstad from './components/navigation/MyRandstad';
 import UtilityNavigation from './components/navigation/UtilityNavigation';
 import Submenu from './components/navigation/Submenu';
 import MobileNavigation from './components/navigation/MobileNavigation';
@@ -96,7 +95,6 @@ export {
   ServiceLinks,
   Logo,
   MainMenu,
-  MyRandstad,
   UtilityNavigation,
   Submenu,
   MobileNavigation,
