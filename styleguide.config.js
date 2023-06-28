@@ -55,23 +55,19 @@ module.exports = {
 
   sections: [
     {
-      name: 'Shared components',
-      components: [
-        'src/components/button/Button.tsx',
-        'src/components/ShowMore.tsx',
-        'src/components/SplitView/index.tsx',
-        'src/components/Tag/index.tsx',
-        'src/components/Rating/index.tsx',
-        'src/components/PersonProfile/index.tsx',
-        'src/components/SocialLinks/index.tsx',
-        'src/components/ContactDetails/index.tsx',
-        'src/components/ShowMoreToggle/index.tsx',
-      ],
-    },
-    {
       name: 'Common',
       components: 'src/components/common/**/*.tsx',
       description: 'Uncategorized components.',
+    },
+    {
+      name: 'Accordion',
+      components: 'src/components/accordion/**/*.tsx',
+      description: 'Accordion components',
+    },
+    {
+      name: 'Contacts',
+      components: 'src/components/contacts/**/*.tsx',
+      description: 'Components such as avatar, contact details, profiles',
     },
     {
       name: 'Headers',
@@ -94,7 +90,7 @@ module.exports = {
       description: 'Notification components such as Toast, Notice, TextNotice, etc.',
     },
     {
-      name: 'Loaders & Preloaders',
+      name: 'Loaders',
       components: 'src/components/loaders/**/*.tsx',
       description: 'Preloader, LayoutPreloader and other loading components.',
     },
@@ -102,6 +98,11 @@ module.exports = {
       name: 'Navigation',
       components: 'src/components/navigation/**/*.tsx',
       description: 'Navigation components used across the applications.',
+    },
+    {
+      name: 'Indicators',
+      components: 'src/components/indicators/**/*.tsx',
+      description: 'Percentage, Rating, Step, Strength, etc.',
     },
     {
       name: 'Form elements',
@@ -120,24 +121,18 @@ module.exports = {
     },
     {
       name: 'My Environment',
-      components: 'src/components/my-environment/*.tsx',
+      components: 'src/components/my-environment/**/*.tsx',
       description: 'My Environment components',
     },
     {
-      name: 'Application Process',
-      components: 'src/components/ApplicationProcess/*.tsx',
-      description: 'Application process component and its cards components.',
+      name: 'Carousels',
+      components: 'src/components/carousels/**/*.tsx',
+      description: 'Carousels such as Application process cards',
     },
     {
-      name: 'User',
-      components: [
-        'src/components/UserImageBlock.tsx',
-      ],
-    },
-    {
-      name: 'Contact Person',
-      components: 'src/components/ContactPerson/*.tsx',
-      description: 'Contact Perston component from the jobs app details page.',
+      name: 'Show more',
+      components: 'src/components/show-more/**/*.tsx',
+      description: 'Component to let the user show more results of list or card type content.',
     },
     {
       name: 'Pagination',

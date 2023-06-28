@@ -1,10 +1,10 @@
-import React, { useEffect, useRef } from "react";
-import Original from "react-styleguidist/lib/client/rsg-components/ReactExample/ReactExample";
-import packageConf from "../../package.json";
+import React, { useEffect, useRef } from 'react';
+import Original from 'react-styleguidist/lib/client/rsg-components/ReactExample/ReactExample';
+import packageConf from '../../package.json';
 
 interface MappedLibs {
-  "character-count": string;
-  "text-area": string;
+  'character-count': string;
+  'text-area': string;
 }
 
 interface OrbitLibrary {
@@ -12,8 +12,8 @@ interface OrbitLibrary {
 }
 
 const mappedLibs: MappedLibs = {
-  "character-count": "character-counter",
-  "text-area": "textarea",
+  'character-count': 'character-counter',
+  'text-area': 'textarea',
 };
 
 function injectOrbitJs(el: any) {
@@ -37,8 +37,8 @@ function attachLibrary(lib: string, els: HTMLElement[]) {
     return;
   }
 
-  Orbit &&
-    els.forEach((el) => {
+  Orbit
+    && els.forEach((el) => {
       new Orbit(el);
     });
 }
