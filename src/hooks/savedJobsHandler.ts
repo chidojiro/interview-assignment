@@ -20,20 +20,20 @@ export type Data = {
 };
 
 const getSavedJobsCount = async (gdsApiKey: string, gdsApiUrl: string, checkLocalStorage = true): Promise<number> => {
-  const isLoggedIn = getUserData();
+  const userData = getUserData();
   // TODO: This needs to work with anonymous users as well. Handle it when unblocked for anonymous users.
   const savedJobs = localStorage.getItem('saved-jobs');
   // Anon user
-  if (checkLocalStorage && savedJobs && !isLoggedIn.savedJobs.totalElements) {
+  if (checkLocalStorage && savedJobs && !userData.savedJobs.totalElements) {
     const data = JSON.parse(savedJobs);
     if (data.totalElements) {
       return data.totalElements;
     }
     // logged in
-  } else if (checkLocalStorage && isLoggedIn.savedJobs) {
-    return isLoggedIn.savedJobs.totalElements;
+  } else if (checkLocalStorage && userData.savedJobs) {
+    return userData.savedJobs.totalElements;
     // After login, calls api
-  } else if (isLoggedIn.loginStatus) {
+  } else if (userData.loginStatus) {
     const talentApi = new TalentAppApi(gdsApiKey, gdsApiUrl);
     const response = await talentApi.get<Data, AxiosResponse<SavedJobsResponse>>('/me/saved-jobs?size=1').catch((err) => {
       // Needed logging for error.
