@@ -2,40 +2,12 @@ import React, {
   useEffect, useRef, useState, SyntheticEvent,
 } from 'react';
 import { Card } from '@ffw/randstad-local-orbit/js/components/card';
-import Icon from '../Icon';
-import JobItemMetadata, { JobItemMetadataProps } from './JobItemMetadata';
-import SavedJobIcon from '../SavedJobIcon';
+import { JobCardProps } from './JobCard.types';
+import Icon from '../../Icon';
+import JobItemMetadata from './JobItemMetadata';
+import SavedJobIcon from '../../SavedJobIcon';
 
-interface SavedJobsProps {
-  gdsApiKey: string;
-  gdsApiUrl: string;
-  jobPostingWebDetailId: string;
-  savedJobId?: string;
-  ariaLabel?: string;
-  returnJobPostingWebDetailId?: (jobPostingWebDetailId: string) => void;
-}
-
-interface JobCardProps extends JobItemMetadataProps {
-  title: string;
-  description: string;
-  id: string;
-  url: string;
-  date: string;
-  enableLogo?: boolean;
-  hasBackground?: boolean;
-  activeView?: 'grid' | 'list';
-  viewJobText: string;
-  closeText: string;
-  logoAltTagValue?: string;
-  logoSrcTagValue?: string;
-  infoIconAriaLabel?: string;
-  closeIconAriaLabel?: string;
-  savedJobIconAriaLabel?: string;
-  savedJobsEnabled?: SavedJobsProps;
-  onMouseDownClick: () => void;
-}
-
-const JobCard: React.FC<JobCardProps> = (props) => {
+function JobCard(props: JobCardProps) {
   const {
     hasBackground = false,
     url,
@@ -153,6 +125,6 @@ const JobCard: React.FC<JobCardProps> = (props) => {
       </div>
     </li>
   );
-};
+}
 
 export default JobCard;

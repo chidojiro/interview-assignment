@@ -129,11 +129,6 @@ module.exports = {
       description: 'My Environment components',
     },
     {
-      name: 'Job card',
-      components: 'src/components/JobCard/*.tsx',
-      description: 'Job card component and its metadata fields component.',
-    },
-    {
       name: 'Application Process',
       components: 'src/components/ApplicationProcess/*.tsx',
       description: 'Application process component and its cards components.',

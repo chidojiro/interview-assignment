@@ -11,6 +11,7 @@ import Header from './components/headers/Header';
 import HeaderBrandsEnum from './components/headers/Header/headerBrands.enum';
 import HeaderTitle from './components/headers/HeaderTitle';
 import HeaderText from './components/headers/HeaderText';
+import HeaderSavedJobs from './components/headers/HeaderSavedJobs';
 import Breadcrumbs from './components/headers/Breadcrumbs';
 import LanguageSwitcher from './components/navigation/LanguageSwitcher';
 import ServiceLinks from './components/headers/ServiceLinks';
@@ -42,10 +43,12 @@ import { FooterSocial } from './components/footer/FooterSocials/FooterSocials.ty
 import GoogleRecaptcha from './components/forms/GoogleRecaptcha';
 import MyEnvironmentLayout from './components/my-environment/MyEnvironmentLayout';
 import Section from './components/my-environment/Section';
-import JobCardList from './components/JobCard/JobCardList';
-import JobCard from './components/JobCard/JobCard';
-import JobCardCTA from './components/JobCard/JobCardCTA';
-import JobItemMetadata from './components/JobCard/JobItemMetadata';
+import JobCardList from './components/cards/JobCard/JobCardList';
+import JobCard from './components/cards/JobCard';
+import JobCardCTA from './components/cards/JobCard/JobCardCTA';
+import JobItemMetadata from './components/cards/JobCard/JobItemMetadata';
+import MetaInfoCard from './components/cards/MetaInfoCard';
+import MetaInfoCardItems from './components/cards/MetaInfoCard/MetaInfoCardItems';
 import LayoutPreloader from './components/loaders/LayoutPreloader';
 import PagePreloader from './components/loaders/PagePreloader';
 import Preloader from './components/loaders/Preloader';
@@ -71,8 +74,6 @@ import SummaryCard from './components/SummaryCard';
 import Tag from './components/Tag';
 import Rating from './components/Rating';
 import RatingStars from './components/forms/RatingStars';
-import MetaInfoCard from './components/cards/MetaInfoCard';
-import MetaInfoCardItems from './components/cards/MetaInfoCard/MetaInfoCardItems';
 import ContactDetails from './components/ContactDetails';
 import PersonProfile from './components/PersonProfile';
 import Pagination from './components/pagination/Pagination';
@@ -85,6 +86,7 @@ export {
   Toggle,
   Block,
   Header,
+  HeaderSavedJobs,
   HeaderBrandsEnum,
   FormGroup,
   HeaderTitle,

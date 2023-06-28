@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import JobCardCTA from '../../components/JobCard/JobCardCTA';
+import JobCardCTA from '../../../components/cards/JobCard/JobCardCTA';
 
 describe('JobCardCTA tests', () => {
   test('Renders a JobCardCTA.', () => {
@@ -10,18 +10,18 @@ describe('JobCardCTA tests', () => {
     expect(element).toBeInTheDocument();
   });
 
-  test(`JobCardCTA has icon.`, () => {
+  test('JobCardCTA has icon.', () => {
     render(<JobCardCTA label="Find jobs" jobsPageUrl="/jobs" />);
     const element = document.querySelector('.cards__item img');
 
-    expect(element).toHaveAttribute('src', `/src/assets/img/Binoculars_illustration_UseBackgroundBlue_RGB.svg`);
+    expect(element).toHaveAttribute('src', '/src/assets/img/Binoculars_illustration_UseBackgroundBlue_RGB.svg');
   });
 
   test('Renders a JobCardCTA to have correct url.', () => {
     render(<JobCardCTA label="Find jobs" jobsPageUrl="/jobs" />);
 
     const element = document.querySelector('.cards__footer a');
-    expect(element).toHaveAttribute('href', `/jobs`);
+    expect(element).toHaveAttribute('href', '/jobs');
   });
 
   test('Renders a JobCardCTA to have correct label.', () => {

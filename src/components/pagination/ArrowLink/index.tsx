@@ -1,6 +1,6 @@
 import React from 'react';
 import LinkElement from '../LinkElement';
-import { ArrowLinkProps } from './ArrowLink.props';
+import { ArrowLinkProps } from './ArrowLink.types';
 
 function ArrowLink({ data, direction, as }: ArrowLinkProps) {
   if (!data) return null;

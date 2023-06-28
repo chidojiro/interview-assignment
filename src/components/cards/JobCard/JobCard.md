@@ -1,6 +1,6 @@
 ```jsx
 import { JobCard, JobCardList } from "@ffw/randstad-shared-components";
-import Icon from '../Icon';
+import Icon from '../../Icon';
 
 <JobCardList>
   <JobCard

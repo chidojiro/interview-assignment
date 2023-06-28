@@ -1,12 +1,7 @@
 import React from 'react';
 import cn from 'classnames';
-import useOrbitComponent from '../../hooks/useOrbitComponent';
-
-interface JobCardListProps {
-  activeView?: 'grid' | 'list';
-  isSlider?: boolean;
-  children: React.ReactNode;
-}
+import useOrbitComponent from '../../../../hooks/useOrbitComponent';
+import { JobCardListProps } from './JobCardList.types';
 
 function JobCardList({
   activeView = 'grid',

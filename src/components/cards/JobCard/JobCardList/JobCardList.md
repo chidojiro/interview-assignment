@@ -2,7 +2,6 @@ JobCardList with Carousel on mobile.
 
 ```jsx
 import { JobCardList, JobCard } from "@ffw/randstad-shared-components";
-import Icon from '../Icon';
 
 <JobCardList isSlider={true}>
   <JobCard

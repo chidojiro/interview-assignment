@@ -1,7 +1,6 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
-import { within } from '@testing-library/dom';
-import JobCard from '../../components/JobCard/JobCard';
+import { render, screen, within } from '@testing-library/react';
+import JobCard from '../../../components/cards/JobCard';
 
 const closeIconAreaLabel = 'Test Info icon aria-lbel';
 const infoIconAriaLabel = 'Test Close icon aria-label';

@@ -1,12 +1,6 @@
 import React from 'react';
-import Button from '../buttons/Button';
-
-interface JobCardCTAProps {
-  label: string;
-  jobsPageUrl: string;
-  svgPath?: string;
-  hasBackground?: string;
-}
+import Button from '../../../buttons/Button';
+import { JobCardCTAProps } from './JobCardCTA.types';
 
 function JobCardCTA(props: JobCardCTAProps) {
   const {
