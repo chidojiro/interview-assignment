@@ -1,21 +1,7 @@
 import React from 'react';
 import cn from 'classnames';
-import Icon from './common/Icon';
-
-interface BadgeProps {
-  children: string;
-  color?:
-  | 'primary'
-  | 'secondary'
-  | 'tertiary'
-  | 'positive'
-  | 'negative'
-  | 'senary'
-  | 'primary-tint-7'
-  | 'tertiary-shade-110';
-  icon?: string;
-  size?: 's' | 'l' | 'xl';
-}
+import Icon from '../Icon';
+import { BadgeProps } from './Badge.types';
 
 /**
  * Badges are labels which hold small amounts of information. See [here](https://randstad.design/components/core/badge/)

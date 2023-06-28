@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import Block from '../../components/Block';
+import Block from '../../../components/common/Block';
 
 describe('Block left aligned exists', () => {
   test('should render block with left aligned text', () => {
@@ -34,9 +34,9 @@ describe('Block left aligned exists', () => {
 
   test('renders with stacked class when stacked prop is true', () => {
     const { container } = render(
-      <Block stacked={true}>
+      <Block stacked>
         This is the block content.
-      </Block>
+      </Block>,
     );
 
     const blockWrapper = container.querySelector('.block__wrapper');

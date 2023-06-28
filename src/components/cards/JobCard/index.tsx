@@ -5,7 +5,7 @@ import { Card } from '@ffw/randstad-local-orbit/js/components/card';
 import { JobCardProps } from './JobCard.types';
 import Icon from '../../common/Icon';
 import JobItemMetadata from './JobItemMetadata';
-import SavedJobIcon from '../../SavedJobIcon';
+import SavedJobIcon from './SavedJobIcon';
 
 function JobCard(props: JobCardProps) {
   const {

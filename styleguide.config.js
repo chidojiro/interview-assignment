@@ -57,9 +57,7 @@ module.exports = {
     {
       name: 'Shared components',
       components: [
-        'src/components/Badge.tsx',
         'src/components/button/Button.tsx',
-        'src/components/Block.tsx',
         'src/components/ShowMore.tsx',
         'src/components/SplitView/index.tsx',
         'src/components/Tag/index.tsx',
@@ -69,6 +67,11 @@ module.exports = {
         'src/components/ContactDetails/index.tsx',
         'src/components/ShowMoreToggle/index.tsx',
       ],
+    },
+    {
+      name: 'Common',
+      components: 'src/components/common/**/*.tsx',
+      description: 'Uncategorized components.',
     },
     {
       name: 'Headers',

@@ -2,18 +2,9 @@ import React, {
   useState,
 } from 'react';
 import cn from 'classnames';
-import Icon from './common/Icon';
-import { postSavedJobs, deleteSavedJobs } from '../hooks/savedJobsHandler';
-
-interface SavedJobIconProps {
-  size?: string;
-  gdsApiKey: string;
-  gdsApiUrl: string;
-  savedJobId?: string;
-  jobPostingWebDetailId: string;
-  ariaLabel?: string;
-  returnJobPostingWebDetailId?: (jobPostingWebDetailId: string) => void;
-}
+import Icon from '../../../common/Icon';
+import { postSavedJobs, deleteSavedJobs } from '../../../../hooks/savedJobsHandler';
+import { SavedJobIconProps } from './SavedJobIcon.types';
 
 function SavedJobIcon({
   size = 'l',
@@ -32,7 +23,6 @@ function SavedJobIcon({
     'icon__toggler--active': savedJobId || iconFilled,
   });
   const onIconClick = async () => {
-
     if (savedJobId && typeof (savedJobId) === 'string') {
       setIconFilled('');
       const onSuccessfullDelete = await deleteSavedJobs(gdsApiKey, gdsApiUrl, savedJobId);

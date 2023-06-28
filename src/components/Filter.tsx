@@ -1,7 +1,7 @@
-import React, { useRef } from "react";
-import useLibrary, { Library } from "../hooks/useLibrary";
+import React, { useRef } from 'react';
+import useLibrary, { Library } from '../hooks/useLibrary';
 
-interface Filter extends Library {
+interface FilterProps extends Library {
   title: string,
   mobileTitle: string,
   children: any,
@@ -14,7 +14,7 @@ interface Filter extends Library {
  * A bundle of different form elements and manipulating the page of search results. See [here](https://randstad.design/components/core/filters/blog/)
  *
  */
-const Filter = ({
+function Filter({
   title,
   mobileTitle,
   children,
@@ -22,7 +22,7 @@ const Filter = ({
   clearLink,
   closeMobileOnSubmit = true,
   libs,
-}: Filter) => {
+}: FilterProps) {
   const [ref] = useLibrary<HTMLDivElement>(libs);
   const closeButtonRef = useRef<SVGSVGElement>(null);
 
@@ -30,7 +30,7 @@ const Filter = ({
 
   const clickElement = (ref: typeof closeButtonRef) => {
     ref.current && ref.current.dispatchEvent(
-      new MouseEvent("click", {
+      new MouseEvent('click', {
         view: window,
         bubbles: true,
         cancelable: true,
@@ -43,7 +43,7 @@ const Filter = ({
     transformedFooter = { ...footer } as React.ReactElement;
 
     // Prevents breaking if there is more than one child.
-    if (typeof transformedFooter.props.children !== "object" && closeMobileOnSubmit) {
+    if (typeof transformedFooter.props.children !== 'object' && closeMobileOnSubmit) {
       const clickFunc = (inheritClickEvent: () => void) => () => {
         // Fire inherit click event
         if (inheritClickEvent) {
@@ -64,7 +64,7 @@ const Filter = ({
       <div className="filter__toggle" data-rs-filter-refine-search="" role="button" aria-label="">
         <span className="icon icon--inline hidden--from-l text-brand-primary">
           <svg>
-            <use xlinkHref={`${process.env.NEXT_PUBLIC_RESOURCE_PREFIX}/src/assets/img/icons.svg#filter`}></use>
+            <use xlinkHref={`${process.env.NEXT_PUBLIC_RESOURCE_PREFIX}/src/assets/img/icons.svg#filter`} />
           </svg>
         </span>
         <span>{title}</span>
@@ -74,7 +74,7 @@ const Filter = ({
           <span className="filter__title">{mobileTitle}</span>
           <span className="icon icon--inline">
             <svg data-rs-filter-close="" ref={closeButtonRef}>
-              <use xlinkHref={`${process.env.NEXT_PUBLIC_RESOURCE_PREFIX}/src/assets/img/icons.svg#close`}></use>
+              <use xlinkHref={`${process.env.NEXT_PUBLIC_RESOURCE_PREFIX}/src/assets/img/icons.svg#close`} />
             </svg>
           </span>
         </div>
@@ -90,6 +90,6 @@ const Filter = ({
       </div>
     </div>
   );
-};
+}
 
 export default Filter;
