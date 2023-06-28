@@ -47,8 +47,9 @@ interface ContactPersonProps {
   dataLayerEmailClick: string;
 }
 
-const ContactPerson = ({ displayId, name, description, jobTitle, emailAddress, phoneNumber, photo, countryId, useLowerCase, overrides, settings, translations, branchData, dataLayerEmailClick }: ContactPersonProps) => {
-
+function ContactPerson({
+  displayId, name, description, jobTitle, emailAddress, phoneNumber, photo, countryId, useLowerCase, overrides, settings, translations, branchData, dataLayerEmailClick,
+}: ContactPersonProps) {
   if (!emailAddress) {
     // If no consultant email is set, try to parse the email in user-friendly format.
     const parsedEmail = parseEmail(emailAddress);
@@ -66,7 +67,7 @@ const ContactPerson = ({ displayId, name, description, jobTitle, emailAddress, p
   // Get contact person data from cms.
   // Extending contact person from DOVA if needed.
   if (Object.keys(overrides).length > 0) {
-    if (overrides.Override && overrides.Override === "override") {
+    if (overrides.Override && overrides.Override === 'override') {
       name = overrides.Name ? overrides.Name : name;
       description = overrides.Description ? overrides.Description : description;
       jobTitle = overrides.JobTitle ? overrides.JobTitle : jobTitle;
@@ -100,27 +101,26 @@ const ContactPerson = ({ displayId, name, description, jobTitle, emailAddress, p
 
     if (!isValidName.test(name)) {
       return null;
-    } else {
-      let nameSplit = name.split(" ");
-      let firstName = nameSplit[0];
-      let lastName = '';
-
-      // Start from second word in name.
-      for (let i = 1; i < nameSplit.length; i++) {
-        if (nameSplit[i][0] && nameSplit[i][0] === nameSplit[i][0].toUpperCase()) {
-          lastName = nameSplit[i][0];
-          break;
-        }
-      }
-
-      return firstName[0].toUpperCase() + lastName;
     }
+    const nameSplit = name.split(' ');
+    const firstName = nameSplit[0];
+    let lastName = '';
+
+    // Start from second word in name.
+    for (let i = 1; i < nameSplit.length; i++) {
+      if (nameSplit[i][0] && nameSplit[i][0] === nameSplit[i][0].toUpperCase()) {
+        lastName = nameSplit[i][0];
+        break;
+      }
+    }
+
+    return firstName[0].toUpperCase() + lastName;
   };
 
   const renderAvatar = () => {
     if (photo) {
       return <img src={photo} alt={name} title={name} />;
-    } else if (extractInitials(name)) {
+    } if (extractInitials(name)) {
       return <span>{extractInitials(name)}</span>;
     }
   };
@@ -140,9 +140,12 @@ const ContactPerson = ({ displayId, name, description, jobTitle, emailAddress, p
 
     return (
       <li className="contact-details__item">
-        <a className="contact-details__link" href={`tel:${parsedPhoneNumber}`}
-          aria-label="">
-          <Icon iconType={"phone"} iconClassName={"icon fill-brand--dark-blue icon--inline"} />
+        <a
+          className="contact-details__link"
+          href={`tel:${parsedPhoneNumber}`}
+          aria-label=""
+        >
+          <Icon iconType="phone" iconClassName="icon fill-brand--dark-blue icon--inline" />
           <span>{parsedPhoneNumber}</span>
         </a>
       </li>
@@ -167,27 +170,28 @@ const ContactPerson = ({ displayId, name, description, jobTitle, emailAddress, p
 
     return (
       <li className="contact-details__item">
-        <a className="contact-details__link" href={`mailto:${emailField}?subject=${mailToSubject}`}
-          onMouseDown={() => eval(dataLayerEmailClick)}>
-          <Icon iconType={"email"} iconClassName={"icon fill-brand--dark-blue icon--inline"} />
+        <a
+          className="contact-details__link"
+          href={`mailto:${emailField}?subject=${mailToSubject}`}
+          onMouseDown={() => eval(dataLayerEmailClick)}
+        >
+          <Icon iconType="email" iconClassName="icon fill-brand--dark-blue icon--inline" />
           <span>{emailField}</span>
         </a>
       </li>
     );
-  }
+  };
 
   const renderOffice = () => {
     // TODO: Will eventually come from the API;
     const contactPersonBranchData = {
       title: branchData.title,
-      url: branchData.url
-    }
+      url: branchData.url,
+    };
 
-    const renderOfficeIcon = (icon = 'building') => {
-      return (
-        <Icon iconType={icon} iconClassName={"icon fill-brand--dark-blue icon--inline"} />
-      );
-    }
+    const renderOfficeIcon = (icon = 'building') => (
+      <Icon iconType={icon} iconClassName="icon fill-brand--dark-blue icon--inline" />
+    );
 
     if (!contactPersonBranchData || !contactPersonBranchData.title || !contactPersonBranchData.url || !settings?.showOfficeOrBranch) {
       return null;
@@ -204,7 +208,7 @@ const ContactPerson = ({ displayId, name, description, jobTitle, emailAddress, p
   };
 
   return (
-    <div className={`block job-details-reordered-component`}>
+    <div className="block job-details-reordered-component">
       <div className="block__wrapper wrapper">
         <div className="block__header">
           <h2 className="block__title">{translations.title}</h2>
@@ -212,20 +216,25 @@ const ContactPerson = ({ displayId, name, description, jobTitle, emailAddress, p
         </div>
         <div className="block__content contact-person">
           <div className="person__profile">
-            {photo ? <div className="avatar avatar--XXL mb-s l:mb-none l:mr-s">
-              {renderAvatar()}
-            </div> : <div className="avatar avatar--XXL avatar__initials mb-s l:mb-none l:mr-s">
-              {renderAvatar()}
-            </div>}
+            {photo ? (
+              <div className="avatar avatar--XXL mb-s l:mb-none l:mr-s">
+                {renderAvatar()}
+              </div>
+            ) : (
+              <div className="avatar avatar--XXL avatar__initials mb-s l:mb-none l:mr-s">
+                {renderAvatar()}
+              </div>
+            )}
             <div className="person__info">
               <h3
-                className={`person__name ${!useLowerCase ? 'text-transform--none' : ''}`}>
+                className={`person__name ${!useLowerCase ? 'text-transform--none' : ''}`}
+              >
                 {contactName}
               </h3>
-              {(jobTitle && settings.showTitle) ?
-                <p className="person__title text--alternative">{jobTitle}</p> : null}
-              {(description && settings.showBiography) ?
-                <p>{description.substring(0, 200)}</p> : null}
+              {(jobTitle && settings.showTitle)
+                ? <p className="person__title text--alternative">{jobTitle}</p> : null}
+              {(description && settings.showBiography)
+                ? <p>{description.substring(0, 200)}</p> : null}
               <ul className="contact-details">
                 {renderPhone()}
                 {renderEmail()}
@@ -236,7 +245,7 @@ const ContactPerson = ({ displayId, name, description, jobTitle, emailAddress, p
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default ContactPerson;

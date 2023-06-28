@@ -3,7 +3,7 @@ import React, {
 } from 'react';
 import cn from 'classnames';
 import Icon from '../../../common/Icon';
-import { postSavedJobs, deleteSavedJobs } from '../../../../hooks/savedJobsHandler';
+import { postSavedJobs, deleteSavedJobs } from '../../../../utils/savedJobsHandler';
 import { SavedJobIconProps } from './SavedJobIcon.types';
 
 function SavedJobIcon({

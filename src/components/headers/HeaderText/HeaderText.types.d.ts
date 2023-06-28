@@ -1,4 +1,4 @@
-import { BgColor, getBackground } from '../../../utils/getBackground';
+import { BgColor } from '../../../utils/getBackground/getBackground.types';
 
 export interface Header extends BgColor {
   /** @deprecated use `bgColor` instead. */

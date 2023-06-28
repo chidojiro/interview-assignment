@@ -1,7 +1,8 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 
-import handleScrollBar from '../utils/handleScrollBar';
-import useDebounce from './useDebounce';
+import handleScrollBar from '../../utils/handleScrollBar';
+import useDebounce from '../useDebounce';
+import { UseAutosuggestParamTypes } from './useAutosuggest.types';
 
 const keys = {
   Up: 'ArrowUp',
@@ -46,25 +47,6 @@ const getValue = (inputValue: string, value: string, itemsStripWordList: string[
   return realValue;
 };
 
-export type UseAutosuggestParamTypes = {
-  items?: string[];
-  /** Triggered on input change */
-  onInputChange?: (event: string) => void;
-  /** Triggered on item select */
-  onSelectItem?: (newVal: string) => void;
-  /** Set autosuggest initial initialValue. */
-  initialValue?: string;
-  config?: {
-    /** Skip autosuggest filter. Work as `use-exact-values`. Used when working with elastic search filter which is more complex. */
-    skipFilter?: boolean;
-    /** Allow numeric values in the input. When enter numbers it will return the match numbers from item. */
-    allowNumericValue?: boolean;
-    /** Strip all words listed in the array from selected item initialValue. */
-    itemsStripWordList?: string[];
-    /** Applies logic for multiselect configuration of the component */
-    isMultiSelect?: boolean;
-  };
-};
 // It's not possible, unless to create bunch of utils/hook handlers which will complicate logic even more.
 /* eslint-disable sonarjs/cognitive-complexity */
 const useAutosuggest = ({

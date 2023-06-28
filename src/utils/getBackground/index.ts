@@ -1,13 +1,6 @@
-type ColorMap = {
-  [key: string]: string;
-};
+import { BgColor, ColorMap } from './getBackground.types';
 
-export interface BgColor {
-  /** See more <a href="https://randstad.design/styleguide/colors/">here</a> */
-  bgColor: 'primary' | 'secondary' | 'tertiary' | 'quaternary' | 'quinary' | 'senary' | 'dark-blue' | 'white';
-}
-
-export const getBackground = (color: BgColor['bgColor'], legacy = false) => {
+const getBackground = (color: BgColor['bgColor'], legacy = false) => {
   // Handle legacy background classes.
   if (color && legacy) {
     return `bg-brand--${color}`;
@@ -46,3 +39,5 @@ export const getBackground = (color: BgColor['bgColor'], legacy = false) => {
 
   return '';
 };
+
+export default getBackground;

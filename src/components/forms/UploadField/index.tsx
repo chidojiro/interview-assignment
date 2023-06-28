@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import * as yup from 'yup';
-import FormatFileSize from '../../../hooks/formatFileSize';
+import FormatFileSize from '../../../utils/formatFileSize';
 import Icon from '../../common/Icon';
 import withField, { WithFieldProps } from '../../../hoc/withField';
 import FormGroup from '../FormGroup';
 import {
-  UploadedFile,
-  AlreadyUploadedFile,
   uploadTemporaryResume,
   checkIfUserHasFile,
   getUploadedFiles,
+} from '../../../utils/resumeHandler';
+import {
+  UploadedFile,
+  AlreadyUploadedFile,
   UpdateResumeStateProps,
-} from '../../../hooks/resumeHandler';
+} from '../../../utils/resumeHandler/resumeHandler.types';
 
 export type TranslationProps = {
   UploadSuccessful: string | React.ReactNode,

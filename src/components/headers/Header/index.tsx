@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { SubmenuItems } from 'src/components/navigation/Submenu/Submenu.types';
-import { BgColor } from '../../../utils/getBackground';
+import { PersistData } from 'src/utils/getUserData/getUserData.type';
+import { Routes } from 'src/utils/headerUtils/headerUtils.types';
+import { BgColor } from '../../../utils/getBackground/getBackground.types';
 import { Items } from '../../navigation/navigation.types';
 import Logo from '../../navigation/Logo';
 import MainMenu from '../../navigation/MainMenu';
@@ -14,10 +16,10 @@ import TabBar from '../../navigation/TabBar';
 import Breadcrumbs from '../Breadcrumbs';
 import MyRandstad from '../../navigation/MyRandstad';
 import {
-  getMainMenu, findElement, Routes, getHeaderClass, generateUrl,
-} from '../../../utils/headerUtils';
+  getMainMenu, findElement, getHeaderClass, generateUrl,
+} from '../../../utils/headerUtils/headerUtils';
 import LoginPopover from '../LoginPopover';
-import getUserData, { PersistData } from '../../../utils/getUserData';
+import getUserData from '../../../utils/getUserData';
 import HeaderSavedJobs from '../HeaderSavedJobs';
 import useUserData from '../../../hooks/useUserData';
 import { HeaderProps, Menu } from './Header.types';

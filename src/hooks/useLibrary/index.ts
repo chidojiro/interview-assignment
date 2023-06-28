@@ -1,8 +1,8 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef } from 'react';
 
 export interface Library {
   /** Used to pass js Orbit library responsible for functionality. Note: This should passed on component setup so you don't have to pass it every time. */
-  libs: [],
+  libs: [];
 }
 
 const useLibrary = <T>(libs: []) => {
@@ -11,6 +11,8 @@ const useLibrary = <T>(libs: []) => {
   useEffect(() => {
     if (!libs) return;
 
+    // No explicit any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     libs.forEach((Item: any) => {
       new Item(ref.current);
     });

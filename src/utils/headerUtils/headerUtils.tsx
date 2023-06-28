@@ -1,23 +1,4 @@
-type Menu = {
-  main?: [];
-};
-
-type MenuItem = {
-  title: string;
-  url: string;
-  children: [];
-  icon: string;
-};
-
-export type Routes = {
-  [key: string]: any;
-};
-
-export type LocalizationTypes = {
-  locales: string[] | undefined,
-  locale: string | undefined,
-  defaultLocale: string | undefined,
-};
+import { Menu, MenuItem, Routes } from './headerUtils.types';
 
 export const getCurrentMenuItemUrl = (mainMenuItems:[], baseUrl: string, currentUrl: string) =>
   // Get the menu item url that best matches the current url
@@ -57,7 +38,7 @@ export const getMainMenu = (menu: Menu, baseUrl: string, currentUrl: string) => 
   });
 };
 
-export function findElement(menu: Routes, prop: string, value: string): {id: string, url: string, title: string} | null {
+export function findElement(menu: Routes, prop: string, value: string): { id: string, url: string, title: string } | null {
   let element = null;
   Object.keys(menu).find((menuItem) => {
     Object.keys(menu[menuItem]).find((item) => {

@@ -1,4 +1,4 @@
-type MatchCallback = (match: string, i: number) => JSX.Element;
+import { MatchCallback } from './replaceJsx.types';
 
 /**
  * Replace html with JSX in regex match.

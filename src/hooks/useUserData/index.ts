@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import getUserData from '../utils/getUserData';
+import getUserData from '../../utils/getUserData';
 
 export default function useUserData() {
   const [data, setData] = useState(getUserData());

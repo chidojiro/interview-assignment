@@ -1,5 +1,5 @@
 import React from 'react';
-import { getBackground } from '../../../utils/getBackground';
+import getBackground from '../../../utils/getBackground';
 import { Header } from './HeaderText.types';
 
 /**

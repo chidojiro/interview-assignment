@@ -1,23 +1,7 @@
 import { AxiosResponse } from 'axios';
-import { TalentAppApi } from './talentAppApi';
-import getUserData from '../utils/getUserData';
-
-interface SavedJobsResponse {
-  totalElements: number;
-}
-
-export type Data = {
-  // Data describes a generic abstract structure of request, which can be anything.
-  /* eslint-disable @typescript-eslint/no-explicit-any */
-  data: {
-    content: Array<object>;
-    pageNumber: number;
-    pageSize: number;
-    totalElements: number;
-    numberOfElements: number;
-    empty: boolean;
-  };
-};
+import { Data, TalentAppApi } from '../talentAppApi';
+import getUserData from '../getUserData';
+import { SavedJobsResponse } from './savedJobsHandler.types';
 
 const getSavedJobsCount = async (gdsApiKey: string, gdsApiUrl: string, checkLocalStorage = true): Promise<number> => {
   const userData = getUserData();
