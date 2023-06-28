@@ -96,11 +96,6 @@ module.exports = {
       description: 'Preloader, LayoutPreloader and other loading components.',
     },
     {
-      name: 'Form Groups',
-      components: 'src/components/form-group/**/*.tsx',
-      description: 'Provides wrapper components for form elements',
-    },
-    {
       name: 'Navigation',
       // components: 'src/components/navigation/**/*.tsx',
       components: [

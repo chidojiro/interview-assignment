@@ -10,16 +10,17 @@ const onChange = () => {
   files={[]}
   multiselect={false}
   maxSizeInBytes={8 * 1024 * 1024}
+  supportedMimeTypes="application/pdf, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/rtf, text/plain, image/jpeg, image/jpg"
   fileToken={'fileToken'}
   translations={{
-    UploadSuccessful: <FormattedMessage id="UploadField.UploadSuccessful" />,
-    SuccessfulSubText: <FormattedMessage id="UploadField.SuccessfulSubText" />,
-    AddFiles: <FormattedMessage id="UploadField.AddFiles" />,
-    OrDropHere: <FormattedMessage id="UploadField.OrDropHere" />,
-    AlternativeText: intl.formatMessage({ id: 'UploadField.AlternativeText' }, { allowedFiles: mimeTypesToExtensions(mimeTypes.join(', ')), maxFileSize: '8' }),
-    DropFileHere: <FormattedMessage id="UploadField.DropFileHere" />,
-    UserCvMaxSize: intl.formatMessage({ id: 'Schema.UserCv.MaxSize' }, { n: '8' }),
-    FilenamePattern: intl.formatMessage({ id: 'Schema.UserCv.Filename.Pattern' }),
+    UploadSuccessful: 'upload successful',
+    SuccessfulSubText: 'remove files to reactive upload',
+    AddFiles: 'add files',
+    OrDropHere: 'or drop files here',
+    AlternativeText: '{allowedFiles} / max {maxFileSize} mb',
+    DropFileHere: 'drop files here',
+    UserCvMaxSize: 'we only allow files up to {n} mb, please try again',
+    FilenamePattern: 'unsupported file type',
   }}
 />;
 ```
