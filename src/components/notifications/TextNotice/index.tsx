@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import classNames from 'classnames';
-import Icon from '../../Icon';
+import Icon from '../../common/Icon';
 import { CloseEvents, TextNoticeProps } from './TextNotice.types';
 
 function TextNotice({

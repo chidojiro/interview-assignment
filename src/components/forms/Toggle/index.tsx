@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch } from '@ffw/randstad-local-orbit/js/components/switch';
 import withField from '../../../hoc/withField';
-import Icon from '../../Icon';
+import Icon from '../../common/Icon';
 import { ToggleProps, ToggleType } from './Toggle.types';
 
 function Toggle({

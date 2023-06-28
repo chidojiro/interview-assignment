@@ -1,6 +1,6 @@
 // INFO: This component went under restructuring, but it needs ESLint fixes and optimization.
 import React from 'react';
-import Icon from '../../../Icon';
+import Icon from '../../../common/Icon';
 import { JobItemMetadataProps } from './JobItemMetadata.types';
 
 function JobItemMetadata({

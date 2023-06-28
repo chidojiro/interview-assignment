@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import cn from 'classnames';
 import { RatingStarsProps, StarItem } from './RatingStars.types';
-import Icon from '../../Icon';
+import Icon from '../../common/Icon';
 
 export default function RatingStars({
   stars,

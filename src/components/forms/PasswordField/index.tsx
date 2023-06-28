@@ -5,7 +5,7 @@ import { PasswordValidator } from '@ffw/randstad-local-orbit/original/js/compone
 import withField from '../../../hoc/withField';
 import FormGroup from '../FormGroup';
 import Label from '../Label';
-import Svg from '../../base/Svg';
+import Svg from '../../common/Svg';
 import { PasswordFieldProps } from './PasswordField.types';
 
 /**

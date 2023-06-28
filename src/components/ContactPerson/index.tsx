@@ -1,8 +1,8 @@
-import React from 'react'
+import React from 'react';
+import { CountryCode } from 'libphonenumber-js';
 import parseEmail from '../../utils/parseEmail';
 import parsePhoneNumber from '../../utils/parsePhoneNumber';
-import Icon from '../Icon';
-import { CountryCode } from 'libphonenumber-js';
+import Icon from '../common/Icon';
 
 interface ContactPersonProps {
   displayId: string;

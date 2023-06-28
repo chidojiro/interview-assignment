@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { TabBar as OrbitComponent } from '@ffw/randstad-local-orbit/original/js/components/tab-bar';
-import Icon from '../Icon';
+import Icon from '../common/Icon';
 
 type TabBarItem = {
   title: string;

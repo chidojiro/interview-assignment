@@ -3,7 +3,7 @@ import cn from 'classnames';
 import { Untouched } from '@ffw/randstad-local-orbit/original/js/components/untouched';
 import withField from '../../../hoc/withField';
 import FormGroup from '../FormGroup';
-import Icon from '../../Icon';
+import Icon from '../../common/Icon';
 import { DropdownProps } from './Dropdown.types';
 
 function Dropdown({

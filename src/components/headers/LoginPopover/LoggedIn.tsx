@@ -1,5 +1,5 @@
 import React from 'react';
-import Icon from '../../Icon';
+import Icon from '../../common/Icon';
 import { UserNameProps, LoggedInProps } from './LoginPopover.types';
 
 function LoggedIn({

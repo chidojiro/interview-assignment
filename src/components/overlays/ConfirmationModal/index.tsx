@@ -1,7 +1,7 @@
 import React, { useEffect, useCallback } from 'react';
 import classNames from 'classnames';
 import styles, { keyframes } from 'styled-components';
-import Icon from '../../Icon';
+import Icon from '../../common/Icon';
 import Button from '../../buttons/Button';
 import { CloseEvents, ConfirmationModalProps } from './ConfirmationModal.types';
 

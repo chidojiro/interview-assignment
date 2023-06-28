@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import * as yup from 'yup';
 import FormatFileSize from '../../../hooks/formatFileSize';
-import Icon from '../../Icon';
+import Icon from '../../common/Icon';
 import withField, { WithFieldProps } from '../../../hoc/withField';
 import FormGroup from '../FormGroup';
 import {

@@ -2,7 +2,7 @@ import React from 'react';
 import cn from 'classnames';
 import { ImageSizeClasses } from '../ImageSizeClasses.types';
 import { PersonProfileTypes } from './PersonProfile.types';
-import Icon from '../Icon';
+import Icon from '../common/Icon';
 import SocialLinks from '../SocialLinks';
 
 function PersonProfile({

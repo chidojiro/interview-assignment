@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import withField from '../../../hoc/withField';
 import FormGroup from '../FormGroup';
-import Icon from '../../Icon';
+import Icon from '../../common/Icon';
 import { DatePickerProps } from './DatePicker.types';
 
 /**

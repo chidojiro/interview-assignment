@@ -1,12 +1,12 @@
-import React from "react";
-import useLibrary, { Library } from "../hooks/useLibrary";
-import Svg from "../components/base/Svg";
+import React from 'react';
+import useLibrary, { Library } from '../hooks/useLibrary';
+import Svg from './common/Svg';
 
-interface Sortbar extends Library {
+interface SortbarProps extends Library {
   count: string,
   selectLabel: string,
   /** `attrubutes` are spread in the component. You can pass from `data-attributes` to events */
-  selectAttributes?: React.ComponentPropsWithoutRef<"select">,
+  selectAttributes?: React.ComponentPropsWithoutRef<'select'>,
   selectOptions?: { [key: string]: string },
   untouched?: boolean,
 }
@@ -15,12 +15,14 @@ interface Sortbar extends Library {
  * Enables to filter and sort content on the page. See [here](https://randstad.design/components/core/filters/blog/)
  *
  */
-const Sortbar = ({ count, selectLabel, selectAttributes, selectOptions, untouched, libs }: Sortbar) => {
+function Sortbar({
+  count, selectLabel, selectAttributes, selectOptions, untouched, libs,
+}: SortbarProps) {
   const [ref] = useLibrary<HTMLSelectElement>(libs);
   const { id, ...attr } = selectAttributes || {};
 
   if (!id) {
-    console.warn("Sortbar: selectAttributes should contain an id");
+    console.warn('Sortbar: selectAttributes should contain an id');
   }
 
   return (
@@ -28,7 +30,8 @@ const Sortbar = ({ count, selectLabel, selectAttributes, selectOptions, untouche
       <div
         className="sortbar l:divider"
         data-rs-toggable-group="toggable-group__item--active"
-        data-scl="">
+        data-scl=""
+      >
         <span className="sortbar__count text-ellipsis">{count}</span>
         <div className="form-group">
           <label className="form-group__label hidden--visually" htmlFor={id}>
@@ -40,11 +43,12 @@ const Sortbar = ({ count, selectLabel, selectAttributes, selectOptions, untouche
               required
               data-rs-untouched=""
               {...attr}
-              className={untouched ? "untouched" : ""}
+              className={untouched ? 'untouched' : ''}
               data-scl=""
-              ref={ref}>
-              {selectOptions &&
-                Object.keys(selectOptions).map((item) => (
+              ref={ref}
+            >
+              {selectOptions
+                && Object.keys(selectOptions).map((item) => (
                   <option key={item} value={item}>
                     {selectOptions[item]}
                   </option>
@@ -58,6 +62,6 @@ const Sortbar = ({ count, selectLabel, selectAttributes, selectOptions, untouche
       </div>
     </div>
   );
-};
+}
 
 export default Sortbar;

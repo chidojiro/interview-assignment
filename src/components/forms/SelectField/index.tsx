@@ -3,7 +3,7 @@ import React from 'react';
 import withField from '../../../hoc/withField';
 import useLibrary from '../../../hooks/useLibrary';
 import FormGroup from '../FormGroup';
-import Icon from '../../Icon';
+import Icon from '../../common/Icon';
 import { SelectFieldProps } from './SelectField.types';
 
 /**

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Tags } from '@ffw/randstad-local-orbit/original/js/components/tags';
 import cn from 'classnames';
-import Icon from '../Icon';
+import Icon from '../common/Icon';
 import { TagProps } from './Tag.types';
 
 /**

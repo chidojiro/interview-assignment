@@ -1,6 +1,6 @@
 import React from 'react';
 import cn from 'classnames';
-import Icon from '../Icon';
+import Icon from '../common/Icon';
 import { SocialLinksTypes } from './SocialLinks.types';
 
 // Component used in PersonProfile for ContactDetails.

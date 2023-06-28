@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Collapsible } from '@ffw/randstad-local-orbit/js/components/collapsible';
 import { Toggable } from '@ffw/randstad-local-orbit/js/components/toggable';
-import Icon from '../../Icon';
+import Icon from '../../common/Icon';
 import { FooterColumnNavProps } from './FooterColumnNav.types';
 
 export default function FooterColumnNav({ columns }: FooterColumnNavProps) {

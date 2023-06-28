@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import classNames from 'classnames';
-import Icon from '../../Icon';
+import Icon from '../../common/Icon';
 import { ModalProps } from './Modal.types';
 
 function Modal({

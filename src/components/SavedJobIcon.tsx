@@ -2,7 +2,7 @@ import React, {
   useState,
 } from 'react';
 import cn from 'classnames';
-import Icon from './Icon';
+import Icon from './common/Icon';
 import { postSavedJobs, deleteSavedJobs } from '../hooks/savedJobsHandler';
 
 interface SavedJobIconProps {

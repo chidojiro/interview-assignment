@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import Icon from '../../components/Icon';
+import Icon from '../../components/common/Icon';
 
 describe('Icon component tests', () => {
   test('should render icon and the className', () => {

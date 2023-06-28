@@ -27,7 +27,7 @@ import Modal from './components/overlays/Modal';
 import ConfirmationModal from './components/overlays/ConfirmationModal';
 import Button from './components/buttons/Button';
 import Badge from './components/Badge';
-import Icon from './components/Icon';
+import Icon from './components/common/Icon';
 import ShowMore from './components/ShowMore';
 import Notice from './components/notifications/Notice';
 import { NoticeType } from './components/notifications/Notice/Notice.types';
