@@ -2,7 +2,7 @@ const path = require('path');
 const { withCustomConfig, getDefaultExportForFile } = require('react-docgen-typescript');
 
 const pkg = require('./package.json');
-const webpackConfig = require('./webpack.config.js');
+const webpackConfig = require('./webpack.config');
 
 const config = { ...webpackConfig };
 
@@ -55,27 +55,29 @@ module.exports = {
 
   sections: [
     {
-      name: 'Shared components',
-      components: [
-        'src/components/headers/**/*.tsx',
-        'src/components/footer/**/*.tsx',
-        'src/components/Badge.tsx',
-        'src/components/button/Button.tsx',
-        'src/components/notifications/Notice.tsx',
-        'src/components/notifications/TextNotice.tsx',
-        'src/components/notifications/Toast.tsx',
-        'src/components/Block.tsx',
-        'src/components/PagePreloader.tsx',
-        'src/components/ShowMore.tsx',
-        'src/components/SplitView/index.tsx',
-        'src/components/HeaderIllustration/index.tsx',
-        'src/components/Tag/index.tsx',
-        'src/components/Rating/index.tsx',
-        'src/components/PersonProfile/index.tsx',
-        'src/components/SocialLinks/index.tsx',
-        'src/components/ContactDetails/index.tsx',
-        'src/components/ShowMoreToggle/index.tsx',
-      ],
+      name: 'Common',
+      components: 'src/components/common/**/*.tsx',
+      description: 'Uncategorized components.',
+    },
+    {
+      name: 'Accordion',
+      components: 'src/components/accordion/**/*.tsx',
+      description: 'Accordion components',
+    },
+    {
+      name: 'Contacts',
+      components: 'src/components/contacts/**/*.tsx',
+      description: 'Components such as avatar, contact details, profiles',
+    },
+    {
+      name: 'Headers',
+      components: 'src/components/headers/**/*.tsx',
+      description: 'Header components like navigation, breadcrumbs, etc.',
+    },
+    {
+      name: 'Footer',
+      components: 'src/components/footer/**/*.tsx',
+      description: 'Footer components - Columns, Socials, etc.',
     },
     {
       name: 'Cards',
@@ -83,17 +85,24 @@ module.exports = {
       description: 'Card components such as Job card, Meta info cards, Dashboard cards, etc.',
     },
     {
-      name: 'Form Groups',
-      components: 'src/components/form-group/**/*.tsx',
-      description: 'Provides wrapper components for form elements',
+      name: 'Notifications',
+      components: 'src/components/notifications/**/*.tsx',
+      description: 'Notification components such as Toast, Notice, TextNotice, etc.',
+    },
+    {
+      name: 'Loaders',
+      components: 'src/components/loaders/**/*.tsx',
+      description: 'Preloader, LayoutPreloader and other loading components.',
     },
     {
       name: 'Navigation',
-      // components: 'src/components/navigation/**/*.tsx',
-      components: [
-        'src/components/navigation/TabBar.tsx',
-      ],
+      components: 'src/components/navigation/**/*.tsx',
       description: 'Navigation components used across the applications.',
+    },
+    {
+      name: 'Indicators',
+      components: 'src/components/indicators/**/*.tsx',
+      description: 'Percentage, Rating, Step, Strength, etc.',
     },
     {
       name: 'Form elements',
@@ -101,9 +110,9 @@ module.exports = {
       description: 'Form components - Input, Checkbox, etc.',
     },
     {
-      name: 'Button',
-      components: 'src/components/button/**/*.tsx',
-      description: 'Provides wrapper components for button element.',
+      name: 'Buttons',
+      components: 'src/components/buttons/**/*.tsx',
+      description: 'Button elements.',
     },
     {
       name: 'Overlays',
@@ -112,57 +121,23 @@ module.exports = {
     },
     {
       name: 'My Environment',
-      components: 'src/components/my-environment/*.tsx',
+      components: 'src/components/my-environment/**/*.tsx',
       description: 'My Environment components',
     },
     {
-      name: 'Job card',
-      components: 'src/components/JobCard/*.tsx',
-      description: 'Job card component and its metadata fields component.',
+      name: 'Carousels',
+      components: 'src/components/carousels/**/*.tsx',
+      description: 'Carousels such as Application process cards',
     },
     {
-      name: 'Application Process',
-      components: 'src/components/ApplicationProcess/*.tsx',
-      description: 'Application process component and its cards components.',
+      name: 'Show more',
+      components: 'src/components/show-more/**/*.tsx',
+      description: 'Component to let the user show more results of list or card type content.',
     },
     {
-      name: 'User',
-      components: [
-        'src/components/UserImageBlock.tsx',
-      ],
+      name: 'Pagination',
+      components: 'src/components/pagination/**/*.tsx',
+      description: 'Pagination components.',
     },
-    {
-      name: 'Contact Person',
-      components: 'src/components/ContactPerson/*.tsx',
-      description: 'Contact Perston component from the jobs app details page.',
-    },
-    // {
-    //   name: 'Shared components',
-    //   components: 'src/components/**/*.js',
-    //   ignore: [
-    //     'src/components/accordion/**',
-    //     'src/components/forms/**',
-    //     'src/components/form-group/**',
-    //     'src/components/headers/**',
-    //     'src/components/article-overview/**',
-    //   ],
-    // },
-    // { name: 'Accordion', components: 'src/components/accordion/**/*.js' },
-    //     {
-    //   name: 'Form Groups',
-    //   components: 'src/components/form-group/**/*.js',
-    //   description: 'Provides wrapper components for form elements',
-    // },
-    // { name: 'Forms', components: 'src/components/forms/**/*.tsx' },
-    // { name: 'Headers', components: 'src/components/headers/**/*.js' },
-    // {
-    //   name: 'Article Overview',
-    //   sections: [
-    //     {
-    //       name: 'List',
-    //       components: 'src/components/article-overview/list/**/*.js',
-    //     },
-    //   ],
-    // },
   ],
 };

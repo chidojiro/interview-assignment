@@ -1,5 +1,5 @@
 ```jsx
-import ServiceLinks from './ServiceLinks';
+import { ServiceLinks }  from '@ffw/randstad-shared-components';
 
 <ServiceLinks links={
     [
