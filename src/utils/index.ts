@@ -4,7 +4,8 @@ import * as savedJobsHandler from './savedJobsHandler';
 import FormatFileSize from './formatFileSize';
 import * as resumeHandler from './resumeHandler';
 import { AlreadyUploadedFile } from './resumeHandler/resumeHandler.types';
+import getUserData from './getUserData';
 
-export { savedJobsHandler, FormatFileSize, resumeHandler };
+export { savedJobsHandler, FormatFileSize, resumeHandler, getUserData };
 
 export type { AlreadyUploadedFile };
