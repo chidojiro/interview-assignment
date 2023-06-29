@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
-import { SubmenuItems } from 'src/components/navigation/Submenu/Submenu.types';
-import { PersistData } from 'src/utils/getUserData/getUserData.type';
-import { Routes } from 'src/utils/headerUtils/headerUtils.types';
+import { Routes } from '../../../utils/headerUtils/headerUtils.types';
+import { PersistData } from '../../../utils/getUserData/getUserData.type';
+import { SubmenuItems } from '../../navigation/Submenu/Submenu.types';
 import { BgColor } from '../../../utils/getBackground/getBackground.types';
 import { Items } from '../../navigation/navigation.types';
 import Logo from '../../navigation/Logo';

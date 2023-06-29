@@ -1,6 +1,6 @@
 import { TranslationProps } from '../../../components/headers/LoginPopover/LoginPopover.types';
 import HeaderBrandsEnum from './headerBrands.enum';
-import { LocalizationTypes, Routes } from '../../../utils/headerUtils/headerUtils';
+import { LocalizationTypes, Routes } from '../../../utils/headerUtils/headerUtils.types';
 
 export type HeaderBrands =
   | HeaderBrandsEnum.Primary

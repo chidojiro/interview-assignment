@@ -1,7 +1,7 @@
 import React from 'react';
-import { UserNameProps } from 'src/components/headers/LoginPopover/LoginPopover.types';
 import Icon from '../../common/Icon';
 import { MyRandstadProps } from './MyRandstad.types';
+import { UserNameProps } from '../../headers/LoginPopover/LoginPopover.types';
 
 function MyRandstad({
   isAuth, show, label, userName, userImgUrl,
