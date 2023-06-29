@@ -1,6 +1,6 @@
 import React from 'react';
 import getBackground from '../../../utils/getBackground';
-import useOrbitComponent from '../../../hooks/useUserOrbitComponent';
+import useOrbitComponent from '../../../hooks/useOrbitComponent';
 import { NavigationModalProps } from './NavigationModal.types';
 
 function NavigationModal({ children }: NavigationModalProps) {

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import useOrbitComponent from '../../../hooks/useUserOrbitComponent';
+import useOrbitComponent from '../../../hooks/useOrbitComponent';
 import LoggedOut from './LoggedOut';
 import LoggedIn from './LoggedIn';
 import {

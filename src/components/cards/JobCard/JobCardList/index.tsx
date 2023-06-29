@@ -1,6 +1,6 @@
 import React from 'react';
 import cn from 'classnames';
-import useOrbitComponent from '../../../../hooks/useUserOrbitComponent';
+import useOrbitComponent from '../../../../hooks/useOrbitComponent';
 import { JobCardListProps } from './JobCardList.types';
 
 function JobCardList({
