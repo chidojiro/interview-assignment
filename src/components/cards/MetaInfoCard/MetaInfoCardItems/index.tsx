@@ -1,5 +1,5 @@
 import React from 'react';
-import Icon from '../../../common/Icon';
+import Icon from '../../../Icon';
 import { MetaInfoCardItem, MetaInfoCardItemsProps } from './MetaInfoCardItems.types';
 
 function MetaInfoCardItems({ items }: MetaInfoCardItemsProps) {
