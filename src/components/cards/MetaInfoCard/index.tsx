@@ -1,6 +1,6 @@
 import React from 'react';
 import cn from 'classnames';
-import { getBackground } from '../../../utils/getBackground';
+import getBackground from '../../../utils/getBackground';
 import { MetaInfoCardProps } from './MetaInfoCard.types';
 
 function MetaInfoCard({

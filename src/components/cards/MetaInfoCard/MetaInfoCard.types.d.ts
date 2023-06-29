@@ -1,4 +1,4 @@
-import { BgColor } from '../../../utils/getBackground';
+import { BgColor } from '../../../utils/getBackground/getBackground.types';
 
 export interface MetaInfoCardProps extends Partial<BgColor> {
   title?: string;
