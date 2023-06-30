@@ -14,6 +14,7 @@ const showToast = () => {
       <button onClick={() => setToast(true)}>Show Toast</button>
       {toast && (
         <Toast
+          id="toast-id"
           title="Thanks, we will inform you about new job opportunities in your mailbox."
           onClose={toastCloseHandler}
         />
@@ -47,6 +48,7 @@ const showToast = () => {
       <button onClick={() => setToast(true)}>Show Toast</button>
       {toast && (
         <Toast
+          id="toast-id"
           title="Thanks, we will inform you about new job opportunities in your mailbox."
           buttonSuccessText="Accept"
           successBtnVariant="filled"
@@ -82,6 +84,7 @@ const showToast = () => {
       <button onClick={() => setToast(true)}>Show Toast</button>
       {toast && (
         <Toast
+          id="toast-id"
           title="Thanks, we will inform you about new job opportunities in your mailbox."
           buttonSuccessText="Accept"
           onClose={toastCloseHandler}
@@ -119,6 +122,7 @@ const showToast = () => {
       <button onClick={() => setToast(true)}>Show Toast</button>
       {toast && (
         <Toast
+          id="toast-id"
           title="Thanks, we will inform you about new job opportunities in your mailbox."
           buttonSuccessText="do it now"
           buttonCloseText="not now"
