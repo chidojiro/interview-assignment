@@ -1,4 +1,3 @@
-// Toast.test.tsx
 import React from 'react';
 import {
   render,
