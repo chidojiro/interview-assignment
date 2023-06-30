@@ -76,6 +76,9 @@ import ContactDetails from './components/contacts/ContactDetails';
 import PersonProfile from './components/contacts/PersonProfile';
 import UserImageBlock from './components/contacts/UserImageBlock';
 import Pagination from './components/pagination/Pagination';
+import Chat from './components/chat/Chat';
+import ChatReply from './components/chat/ChatReply';
+import ChatLoader from './components/chat/ChatLoader';
 import { GoogleRecaptchaRef } from './components/forms/GoogleRecaptcha/GoogleRecaptcha.types';
 
 export {
@@ -155,6 +158,9 @@ export {
   MetaInfoCardItems,
   ContactDetails,
   PersonProfile,
+  Chat,
+  ChatReply,
+  ChatLoader,
 };
 
 /**

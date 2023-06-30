@@ -139,5 +139,10 @@ module.exports = {
       components: 'src/components/pagination/**/*.tsx',
       description: 'Pagination components.',
     },
+    {
+      name: 'Chat',
+      components: 'src/components/chat/Chat/*.tsx',
+      description: 'Chat component used for pre-screening.',
+    },
   ],
 };
