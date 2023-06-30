@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import JobCardCTA from '../../../components/cards/JobCard/JobCardCTA';
+import JobCardCTA from '../../../../components/cards/JobCard/JobCardCTA';
 
 describe('JobCardCTA tests', () => {
   test('Renders a JobCardCTA.', () => {
