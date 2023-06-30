@@ -6,6 +6,8 @@ Official guidelines for working with the library. [Confluence link](https://glob
 
 Support documention for all available components. [Styleguide link](https://bluex-shared-components-docs-main.netlify.app/)
 
+`main branch is used as a starting point for the RXP Shared components.`
+
 `master branch is used for older version used in my randstad BE/YT.`
 
 ## What's inside the box
@@ -14,6 +16,9 @@ Support documention for all available components. [Styleguide link](https://blue
 - [react-styleguidist](https://react-styleguidist.js.org/)
 - React
 - Webpack
+- classnames (library to manage classes)
+- Jest & React testing library
+- Typescript
 
 ## Getting started
 
@@ -68,7 +73,6 @@ import WithLib from "@UI/hoc/WithLib"; // here webpack alias is used.
 export default WithLib(["untouched"])(UI(Sortbar)());
 ```
 
-
 ## Creating & updating components
 
 1.  Create the component in the src/components folder. The folder should include the following (may defer based on the case):  
@@ -86,7 +90,9 @@ export default WithLib(["untouched"])(UI(Sortbar)());
 ### **Aliases that can be used inside the applications (add to tsconfig.json)**
 
 ``"@UI": ["node_modules/@ffw/randstad-shared-components"],``
+
 ``"@UIHooks": ["node_modules/@ffw/randstad-shared-components/src/hooks"],``  
+
 ``"@UIUtils": ["node_modules/@ffw/randstad-shared-components/src/utils"],``
 ### **Using the Styleguide**
 
