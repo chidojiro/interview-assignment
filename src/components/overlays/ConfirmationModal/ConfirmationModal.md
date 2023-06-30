@@ -1,4 +1,4 @@
-Modal
+Confirmation Modal
 
 ```jsx
 import { Button, ConfirmationModal } from '@ffw/randstad-shared-components';
