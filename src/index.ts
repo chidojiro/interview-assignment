@@ -82,6 +82,8 @@ import ChatLoader from './components/chat/ChatLoader';
 import Tag from './components/tags/Tag';
 import TagCheckbox from './components/tags/TagCheckbox';
 import { GoogleRecaptchaRef } from './components/forms/GoogleRecaptcha/GoogleRecaptcha.types';
+import LinkElement from './components/pagination/LinkElement';
+import ArrowLink from './components/pagination/ArrowLink';
 
 export {
   Pagination,
@@ -165,6 +167,8 @@ export {
   Chat,
   ChatReply,
   ChatLoader,
+  LinkElement,
+  ArrowLink,
 };
 
 /**
