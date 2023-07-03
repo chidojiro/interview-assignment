@@ -23,9 +23,8 @@ module.exports = {
   ],
 
   getComponentPathLine(componentPath) {
-    const name = path.basename(componentPath, '.tsx');
-
-    return `import { ${name} } from '${pkg.name}/build';`;
+    const folderName = path.basename(path.dirname(componentPath));
+    return `import { ${folderName} } from '${pkg.name}';`;
   },
 
   styleguideComponents: {
@@ -52,6 +51,9 @@ module.exports = {
     shouldRemoveUndefinedFromOptional: true,
     shouldExtractLiteralValuesFromEnum: true,
   }).parse,
+
+  // This option will hide components from the styleguide that do not have .md file.
+  skipComponentsWithoutExample: true,
 
   sections: [
     {
