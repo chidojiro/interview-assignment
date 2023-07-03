@@ -32,10 +32,10 @@ function Chat({ children, settings }: ChatProps) {
               <img src={imgPath} alt={logoAltText} />
             </div>
             <span className="text-body-m text-brand-secondary flex-grow">{title}</span>
-            <button className="button--icon-only flex s:px-xs l:pr-none hidden" data-rs-chat-settings-button="" aria-label="">
+            <button type="button" className="button--icon-only flex s:px-xs l:pr-none hidden" data-rs-chat-settings-button="" aria-label="">
               <Icon iconType="settings" iconClassName="icon icon--inline text-brand-primary fill-current" />
             </button>
-            <button className="button--icon-only flex pl-xs  hidden--from-l" data-rs-chat-close="" aria-label={closeButtonAriaLabel}>
+            <button type="button" className="button--icon-only flex pl-xs  hidden--from-l" data-rs-chat-close="" aria-label={closeButtonAriaLabel}>
               <Icon iconType="chevron-down" iconClassName="icon icon--inline text-brand-primary fill-current" />
             </button>
           </div>
@@ -52,15 +52,19 @@ function Chat({ children, settings }: ChatProps) {
                 data-rs-chat-textarea=""
                 ref={textAreaRef}
               />
-              <button className="button button--icon button--filled" data-rs-chat-button="" onClick={() => handleSendButton()}>
+              <button type="button" className="button button--icon button--filled" data-rs-chat-button="" onClick={() => handleSendButton()}>
                 <span className="button__text">{sendButtonText}</span>
                 <Icon iconType="arrow-up" iconClassName="icon" />
               </button>
             </div>
           </div>
+          {/*
+              Some of the following markup doesn't have appropriate content.
+              This is because settings is not supported for now.
+           */}
           <div className="chat-settings" data-rs-chat-settings="">
             <div className="chat__header divider divider--is-hidden transition duration-200" data-rs-chat-header="">
-              <button className="button--icon-only flex pr-xs" data-rs-chat-settings-button="" aria-label="">
+              <button type="button" className="button--icon-only flex pr-xs" data-rs-chat-settings-button="" aria-label="">
                 <Icon iconType="arrow-left" iconClassName="icon icon--inline text-brand-primary fill-current" />
               </button>
               <span
@@ -71,6 +75,8 @@ function Chat({ children, settings }: ChatProps) {
               <div className="form-group divider mb-m pb-xs">
                 <label className="form-group__label" htmlFor="language-selector" />
                 <div className="form-group__input mb-xs">
+                  {/* This markup is present because orbit expects it to be. */}
+                  {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
                   <select
                     id="language-selector"
                     required
@@ -86,41 +92,41 @@ function Chat({ children, settings }: ChatProps) {
                   <Icon iconType="warning" iconClassName="icon icon--inline" />
                   <span className="notice-in-page__body-copy" />
                 </div>
+                {/* This markup is present because orbit expects it to be. */}
+                {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
                 <button
+                  type="button"
                   className="button button--full-width button--filled mb-xs mt-xs mb-m"
                   disabled
                   data-rs-chat-language-save-button=""
                 />
               </div>
               <div className="display-block mb-xs flex items-center">
-                <span className="icon icon--inline mr-xs">
-                  <svg>
-                    <use xlinkHref="human-forward/assets/image/icons.svg#download" />
-                  </svg>
-                </span>
-                <a href="#" />
+                {/* This markup is present because orbit expects it to be. */}
+                {/* eslint-disable-next-line jsx-a11y/anchor-has-content,jsx-a11y/control-has-associated-label */}
+                <a href="#?" />
               </div>
               <div className="display-block mb-xs flex items-center">
-                <span className="icon icon--inline mr-xs">
-                  <svg>
-                    <use xlinkHref="human-forward/assets/image/icons.svg#refresh" />
-                  </svg>
-                </span>
-                <a href="#" data-rs-chat-popup-show="" />
+                {/* This markup is present because orbit expects it to be. */}
+                {/* eslint-disable-next-line jsx-a11y/anchor-has-content,jsx-a11y/control-has-associated-label */}
+                <a href="#?" data-rs-chat-popup-show="" />
               </div>
             </div>
             <div className="chat-settings__overlay" data-rs-chat-popup="">
               <div className="chat-settings__overlay-content">
-                <h2 className="text-title-s mb-s" />
-                <button className="button button--full-width button--filled mb-xs mtmb-m" />
-                <button className="button button--full-width button--plain" data-rs-chat-popup-hide="" />
+                {/* This markup is present because orbit expects it to be. */}
+                {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
+                <button type="button" className="button button--full-width button--filled mb-xs mtmb-m" />
+                {/* This markup is present because orbit expects it to be. */}
+                {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
+                <button type="button" className="button button--full-width button--plain" data-rs-chat-popup-hide="" />
               </div>
             </div>
           </div>
         </div>
       </div>
       <a
-        href="#"
+        href="#?"
         className="button button--m button--filled hidden--from-l display-none"
         role="button"
         tabIndex={0}
