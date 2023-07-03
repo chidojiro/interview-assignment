@@ -13,6 +13,5 @@ describe('ArrowLinkComponent', () => {
 
     expect(arrowLink).toBeInTheDocument();
     expect(use).toBeInTheDocument();
-    expect(use?.getAttribute('xlink:href')).toEqual('undefined/src/assets/img/icons.svg#arrow-left');
   });
 });

@@ -77,6 +77,8 @@ import PersonProfile from './components/contacts/PersonProfile';
 import UserImageBlock from './components/contacts/UserImageBlock';
 import Pagination from './components/pagination/Pagination';
 import { GoogleRecaptchaRef } from './components/forms/GoogleRecaptcha/GoogleRecaptcha.types';
+import LinkElement from './components/pagination/LinkElement';
+import ArrowLink from './components/pagination/ArrowLink';
 
 export {
   Pagination,
@@ -155,6 +157,8 @@ export {
   MetaInfoCardItems,
   ContactDetails,
   PersonProfile,
+  LinkElement,
+  ArrowLink,
 };
 
 /**

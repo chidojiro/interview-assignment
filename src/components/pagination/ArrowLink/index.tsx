@@ -1,6 +1,7 @@
 import React from 'react';
 import LinkElement from '../LinkElement';
 import { ArrowLinkProps } from './ArrowLink.types';
+import Svg from '../../common/Svg';
 
 function ArrowLink({ data, direction, as }: ArrowLinkProps) {
   if (!data) return null;
@@ -8,13 +9,8 @@ function ArrowLink({ data, direction, as }: ArrowLinkProps) {
   return (
     <li className="pagination__item">
       <LinkElement as={as} props={data} className="pagination__control">
-        <span className="icon icon--inline" aria-hidden="true">
-          <svg>
-            <use
-              xlinkHref={`${process.env.NEXT_PUBLIC_RESOURCE_PREFIX}/src/assets/img/icons.svg#${direction === 'left' ? 'arrow-left' : 'arrow-right'
-              }`}
-            />
-          </svg>
+        <span className="icon icon--inline link" aria-hidden="true">
+          <Svg icon={direction === 'left' ? 'arrow-left' : 'arrow-right'} />
         </span>
         <span className="hidden--visually">{data.text}</span>
       </LinkElement>
