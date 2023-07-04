@@ -9,7 +9,6 @@ import DatePicker from './components/forms/DatePicker';
 import Checkbox from './components/forms/Checkbox';
 import Toggle from './components/forms/Toggle';
 import Block from './components/common/Block';
-import Tag from './components/common/Tag';
 import SplitView from './components/common/SplitView';
 import Header from './components/headers/Header';
 import HeaderBrandsEnum from './components/headers/Header/headerBrands.enum';
@@ -80,6 +79,8 @@ import Pagination from './components/pagination/Pagination';
 import Chat from './components/chat/Chat';
 import ChatReply from './components/chat/ChatReply';
 import ChatLoader from './components/chat/ChatLoader';
+import Tag from './components/tags/Tag';
+import TagCheckbox from './components/tags/TagCheckbox';
 import { GoogleRecaptchaRef } from './components/forms/GoogleRecaptcha/GoogleRecaptcha.types';
 
 export {
@@ -154,6 +155,7 @@ export {
   SummaryCard,
   ShowMoreToggle,
   Tag,
+  TagCheckbox,
   Rating,
   RatingStars,
   MetaInfoCard,
