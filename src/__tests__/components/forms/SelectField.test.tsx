@@ -2,8 +2,8 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import SelectField from '../../../components/forms/SelectField';
 
-describe('RatingStart component tests', () => {
-  test('RatingStart renders correctly with required props', () => {
+describe('SelectField component tests', () => {
+  test('SelectField renders correctly with required props', () => {
     const { container } = render(
       <SelectField label="country" name="country" required description="we need your country for taxes">
         <option value="">select your country ...</option>
