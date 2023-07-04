@@ -97,6 +97,7 @@ export default WithLib(["untouched"])(UI(Sortbar)());
 ### **Using the Styleguide**
 
 1.  Run  **yarn docs:dev**  inside the main folder of the repository to see the Styleguide and demo of all components that have .md files and are described.
+2. Files without .md file won't be shown in the Styleguide (**skipComponentsWithoutExample**: true)
 
 ## Build orbit-randstad css
 

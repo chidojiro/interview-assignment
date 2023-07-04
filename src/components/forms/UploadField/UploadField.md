@@ -1,10 +1,6 @@
 ```jsx
 import { UploadField } from "@ffw/randstad-shared-components";
 
-const onChange = () => {
-    
-}
-
 <UploadField
   name="resume"
   files={[]}

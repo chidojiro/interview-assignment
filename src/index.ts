@@ -80,6 +80,9 @@ import Chat from './components/chat/Chat';
 import ChatReply from './components/chat/ChatReply';
 import ChatLoader from './components/chat/ChatLoader';
 import { GoogleRecaptchaRef } from './components/forms/GoogleRecaptcha/GoogleRecaptcha.types';
+import LinkElement from './components/pagination/LinkElement';
+import ArrowLink from './components/pagination/ArrowLink';
+import Sortbar from './components/forms/Sortbar';
 
 export {
   Pagination,
@@ -161,6 +164,9 @@ export {
   Chat,
   ChatReply,
   ChatLoader,
+  LinkElement,
+  ArrowLink,
+  Sortbar,
 };
 
 /**
