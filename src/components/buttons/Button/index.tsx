@@ -23,7 +23,7 @@ function Button({
   fullWidth,
   href,
   svgClasses = '',
-  className,
+  className = '',
   RouterComponent,
   ...rest
 }: ButtonProps) {
