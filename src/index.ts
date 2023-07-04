@@ -56,6 +56,7 @@ import SummaryCard from './components/cards/SummaryCard';
 import LayoutPreloader from './components/loaders/LayoutPreloader';
 import PagePreloader from './components/loaders/PagePreloader';
 import Preloader from './components/loaders/Preloader';
+import Loader from './components/loaders/Loader';
 import HeaderIllustration from './components/headers/HeaderIllustration';
 import RadioButton from './components/forms/RadioButton';
 import TextArea from './components/forms/TextArea';
@@ -130,6 +131,7 @@ export {
   LayoutPreloader,
   PagePreloader,
   Preloader,
+  Loader,
   UserImageBlock,
   AccountInfo,
   UploadField,
