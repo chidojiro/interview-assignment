@@ -2,8 +2,8 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import Sortbar from '../../../components/forms/Sortbar';
 
-describe('RatingStart component tests', () => {
-  test('RatingStart renders correctly with required props', () => {
+describe('Sortbar component tests', () => {
+  test('Sortbar renders correctly with required props', () => {
     const { container } = render(
       <Sortbar
         count="jobs 1 to 10 of 8180"
@@ -17,7 +17,7 @@ describe('RatingStart component tests', () => {
     expect(selectField).toBeInTheDocument();
   });
 
-  test('RatingStart renders correctly untouched class', () => {
+  test('Sortbar renders correctly untouched class', () => {
     const { container } = render(
       <Sortbar
         count="jobs 1 to 10 of 8180"
