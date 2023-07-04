@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import Modal from '../../../components/overlays/Modal';
 
-describe('ModalComponent', () => {
+describe('Modal component', () => {
   it('Modal is rendered with all of its props', () => {
     const { container } = render(
       <Modal

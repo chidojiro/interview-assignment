@@ -2,8 +2,8 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import UploadField from '../../../components/forms/UploadField';
 
-describe('Stackable component tests', () => {
-  test('Stackable renders correctly with its props', () => {
+describe('UploadField component tests', () => {
+  test('UploadField renders correctly with its props', () => {
     const { container } = render(
       <UploadField
         name="resume"
