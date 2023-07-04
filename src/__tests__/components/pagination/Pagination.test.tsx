@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import Pagination from '../../../components/pagination/Pagination';
 
-describe('PaginationComponent', () => {
+describe('Pagination component', () => {
   it('Pagination is rendered with all of its props', () => {
     const { container } = render(
       <Pagination
