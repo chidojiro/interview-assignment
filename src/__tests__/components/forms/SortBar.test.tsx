@@ -9,6 +9,7 @@ describe('Sortbar component tests', () => {
         count="jobs 1 to 10 of 8180"
         selectLabel="sort on"
         selectOptions={{ '': 'sort on ...', date: 'Date', location: 'Location' }}
+        selectAttributes={{ id: 'test' }}
         libs={[]}
       />,
     );
@@ -24,6 +25,7 @@ describe('Sortbar component tests', () => {
         selectLabel="sort on"
         selectOptions={{ '': 'sort on ...', date: 'Date', location: 'Location' }}
         libs={[]}
+        selectAttributes={{ id: 'test' }}
         untouched
       />,
     );
