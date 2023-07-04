@@ -61,7 +61,7 @@ describe('RatingStars component tests', () => {
     expect(ratingItems[4]).toHaveAttribute(attr, items[4].id);
   });
 
-  test('RatingStars renders correctly with value', () => {
+  test('RatingStars renders correctly with value', async () => {
     const { container } = render(
       <RatingStars
         name="test2"
@@ -71,11 +71,11 @@ describe('RatingStars component tests', () => {
         value="Intermediate"
       />,
     );
-    const ratingStarsElement = container.querySelector('rating-dynamic');
-    waitFor(() => expect(ratingStarsElement).toBeInTheDocument());
+    const ratingStarsElement = container.querySelector('.rating-dynamic');
+    await waitFor(() => expect(ratingStarsElement).toBeInTheDocument());
     const radioInput = document.querySelector('input[type=radio]:checked') as HTMLInputElement;
-    waitFor(() => expect(radioInput).toBeInTheDocument());
-    waitFor(() => expect(radioInput?.value).toEqual('Intermediate'));
+    await waitFor(() => expect(radioInput).toBeInTheDocument());
+    await waitFor(() => expect(radioInput?.value).toEqual('Intermediate'));
 
     const ratingItemsInputs = container.getElementsByTagName('input');
     expect(ratingItemsInputs[0]).not.toHaveAttribute('checked');
