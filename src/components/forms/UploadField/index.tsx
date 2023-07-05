@@ -106,10 +106,11 @@ function UploadField({
         if (!resume?.generalError) setIsFileUploaded(true);
         try {
           const uploadedFileToken = await uploadTemporaryResume(gdsApiKey, gdsApiUrl, formDataName, resume.file);
+          fileToken(uploadedFileToken.token);
+
           if (setUploadedFilesToState) {
             setUploadedFilesToState({ filename: resume.name, contentLength: resume.file?.size });
           }
-          fileToken(uploadedFileToken.token);
         } catch (e: unknown) {
           resume.error = (e as Error).message;
           setUpdatedFiles([resume]);
