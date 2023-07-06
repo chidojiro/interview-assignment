@@ -14,8 +14,8 @@ export type FieldError = {
 
 export interface AlreadyUploadedFile {
   filename: string;
-  url: string;
-  contentLength: number;
+  url?: string;
+  contentLength?: number;
 }
 
 export interface UploadedFile {
