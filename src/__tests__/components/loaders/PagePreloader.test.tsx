@@ -1,6 +1,7 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import {render, screen} from '@testing-library/react';
 import PagePreloader from '../../../components/loaders/PagePreloader';
+import ShowMoreToggle from "../../../components/show-more/ShowMoreToggle";
 
 describe('PagePreload component tests', () => {
   test('PagePreloader renders correctly', () => {
@@ -9,5 +10,10 @@ describe('PagePreload component tests', () => {
 
     expect(pagePreloader)
       .toBeInTheDocument();
+  });
+
+  test('PagePreloader should render without header', () => {
+    const { container } = render(<PagePreloader header={false} />);
+    expect(container.querySelector('.block__header')).not.toBeInTheDocument();
   });
 });
