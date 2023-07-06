@@ -98,10 +98,10 @@ function UploadField({
 
   const onInputChange = async (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>): Promise<void> => {
     const uploadedFile = await getUploadedFiles(event, filesValidation);
-    if (uploadedFile) {
+    if (uploadedFile && getUploadedFiles.length > 0) {
       setUpdatedFiles([uploadedFile[0]]);
 
-      const resume = uploadedFile[0] ?? undefined;
+      const resume = uploadedFile[0];
       if (!resume?.error && resume?.file) {
         if (!resume?.generalError) setIsFileUploaded(true);
         try {
@@ -135,7 +135,7 @@ function UploadField({
   };
 
   updatedFiles.forEach((file, index) => {
-    if (file === null) {
+    if (!file) {
       return;
     }
 
