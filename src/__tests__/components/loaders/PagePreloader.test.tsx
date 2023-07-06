@@ -1,7 +1,6 @@
 import React from 'react';
-import {render, screen} from '@testing-library/react';
+import { render } from '@testing-library/react';
 import PagePreloader from '../../../components/loaders/PagePreloader';
-import ShowMoreToggle from "../../../components/show-more/ShowMoreToggle";
 
 describe('PagePreload component tests', () => {
   test('PagePreloader renders correctly', () => {
