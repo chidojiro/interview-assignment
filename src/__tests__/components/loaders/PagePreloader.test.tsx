@@ -10,4 +10,9 @@ describe('PagePreload component tests', () => {
     expect(pagePreloader)
       .toBeInTheDocument();
   });
+
+  test('PagePreloader should render without header', () => {
+    const { container } = render(<PagePreloader header={false} />);
+    expect(container.querySelector('.block__header')).not.toBeInTheDocument();
+  });
 });
