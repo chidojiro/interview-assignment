@@ -64,7 +64,7 @@ function UploadField({
   _withoutWrapper,
   setUploadedFilesToState,
 }: FileFieldProps) {
-  const [updatedFiles, setUpdatedFiles] = useState<UploadedFile | null>(null);
+  const [updatedFiles, setUpdatedFiles] = useState<UploadedFile[]>([]);
   // State used to control if the field is set to readonly or not.
   const [isFileUploaded, setIsFileUploaded] = useState<boolean>(false);
   const [isFilePreloaded, setIsFilePreloaded] = useState<boolean>(false);
@@ -76,7 +76,7 @@ function UploadField({
       if (files && Object.keys(files).length !== 0) {
         const alreadyUploadedFile = await checkIfUserHasFile(files, gdsApiKey, gdsApiUrl);
         if (alreadyUploadedFile) {
-          setUpdatedFiles(alreadyUploadedFile);
+          setUpdatedFiles([alreadyUploadedFile]);
           setIsFileUploaded(true);
           setIsFilePreloaded(true);
         }
@@ -98,16 +98,23 @@ function UploadField({
 
   const onInputChange = async (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>): Promise<void> => {
     const uploadedFile = await getUploadedFiles(event, filesValidation);
-    if (uploadedFile) {
-      setUpdatedFiles(uploadedFile[0]);
+    if (uploadedFile && getUploadedFiles.length > 0) {
+      setUpdatedFiles([uploadedFile[0]]);
 
-      const resume = uploadedFile[0] ?? undefined;
+      const resume = uploadedFile[0];
       if (!resume?.error && resume?.file) {
         if (!resume?.generalError) setIsFileUploaded(true);
-        const uploadedFileToken = await uploadTemporaryResume(gdsApiKey, gdsApiUrl, formDataName, resume.file);
-        fileToken(uploadedFileToken.token);
-        if (setUploadedFilesToState) {
-          setUploadedFilesToState({ filename: resume.name, contentLength: resume.file?.size });
+        try {
+          const uploadedFileToken = await uploadTemporaryResume(gdsApiKey, gdsApiUrl, formDataName, resume.file);
+          fileToken(uploadedFileToken.token);
+
+          if (setUploadedFilesToState) {
+            setUploadedFilesToState({ filename: resume.name, contentLength: resume.file?.size });
+          }
+        } catch (e: unknown) {
+          resume.error = (e as Error).message;
+          setUpdatedFiles([resume]);
+          setIsFileUploaded(true);
         }
       }
     }
@@ -121,14 +128,14 @@ function UploadField({
 
   const removeFile = () => {
     uploadedItems = [];
-    setUpdatedFiles(null);
+    setUpdatedFiles([]);
     setIsFileUploaded(false);
     setIsFilePreloaded(false);
     fileToken('');
   };
 
-  [updatedFiles].forEach((file, index) => {
-    if (file === null) {
+  updatedFiles.forEach((file, index) => {
+    if (!file) {
       return;
     }
 
@@ -197,38 +204,38 @@ function UploadField({
               <div className="upload" data-rs-upload="">
                 <div className="upload__content">
                   {isFileUploaded
-              && (
-                <>
-                  <div className="upload__text">
-                    <span className="text--alternative">
-                      {translations.UploadSuccessful}
-                    </span>
-                  </div>
-                  <p className="text--alternative">
-                    {translations.SuccessfulSubText}
-                  </p>
-                </>
-              )}
+                    && (
+                      <>
+                        <div className="upload__text">
+                          <span className="text--alternative">
+                            {translations.UploadSuccessful}
+                          </span>
+                        </div>
+                        <p className="text--alternative">
+                          {translations.SuccessfulSubText}
+                        </p>
+                      </>
+                    )}
                   {!isFileUploaded
-              && (
-                <>
-                  <div className="upload__text">
-                    <span className="icon icon--inline">
-                      <Icon iconType="attachment" />
-                    </span>
-                    <span className="upload__add">
-                      {translations.AddFiles}
-                    </span>
-                    <span className="hidden--until-l">
-                      {' '}
-                      {translations.OrDropHere}
-                    </span>
-                  </div>
-                  <p>
-                    {translations.AlternativeText}
-                  </p>
-                </>
-              )}
+                    && (
+                      <>
+                        <div className="upload__text">
+                          <span className="icon icon--inline">
+                            <Icon iconType="attachment" />
+                          </span>
+                          <span className="upload__add">
+                            {translations.AddFiles}
+                          </span>
+                          <span className="hidden--until-l">
+                            {' '}
+                            {translations.OrDropHere}
+                          </span>
+                        </div>
+                        <p>
+                          {translations.AlternativeText}
+                        </p>
+                      </>
+                    )}
                 </div>
                 <div className="upload__content upload__content--drop">
                   <span>

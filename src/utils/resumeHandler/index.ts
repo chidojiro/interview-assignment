@@ -24,7 +24,7 @@ const getUploadedFiles = async (event: React.ChangeEvent<HTMLInputElement | HTML
     uploadedFile = await Promise.all(filesPromises);
     return uploadedFile;
   }
-  return null;
+  return [];
 };
 
 const uploadTemporaryResume = async (gdsApiKey: string, gdsApiUrl: string, formDataName: string, file: File): Promise<TempDocument> => {
