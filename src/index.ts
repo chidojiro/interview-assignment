@@ -84,6 +84,7 @@ import LinkElement from './components/pagination/LinkElement';
 import ArrowLink from './components/pagination/ArrowLink';
 import Sortbar from './components/forms/Sortbar';
 import MyRandstad from './components/navigation/MyRandstad';
+import SavedJobIcon from './components/cards/JobCard/SavedJobIcon';
 
 export {
   Pagination,
@@ -168,6 +169,7 @@ export {
   ArrowLink,
   Sortbar,
   MyRandstad,
+  SavedJobIcon,
 };
 
 /**
