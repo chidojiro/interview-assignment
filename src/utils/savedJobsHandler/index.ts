@@ -2,6 +2,7 @@ import { AxiosResponse } from 'axios';
 import { Data, TalentAppApi } from '../talentAppApi';
 import getUserData from '../getUserData';
 import { SavedJobsResponse } from './savedJobsHandler.types';
+import searchByJobId from '../searchApi/searchByJobId';
 
 const getSavedJobsCount = async (gdsApiKey: string, gdsApiUrl: string, checkLocalStorage = true): Promise<number> => {
   const userData = getUserData();
@@ -64,4 +65,8 @@ const deleteSavedJobs = async (gdsApiKey: string, gdsApiUrl: string, savedJobId:
   });
 };
 
-export { getSavedJobsCount, postSavedJobs, deleteSavedJobs };
+const handleAnonymousSavedJobs = async (searchApiUrl: string, searchApiKey: string, jobId: string) => {
+  await searchByJobId(searchApiUrl, searchApiKey, jobId);
+};
+
+export { getSavedJobsCount, postSavedJobs, deleteSavedJobs, handleAnonymousSavedJobs };
