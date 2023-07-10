@@ -2,7 +2,7 @@ This is a variation of the ShowMore component. It renders either all or a predet
 
 ```jsx
 import React, { useState } from 'react'
-import ShowMoreToggle from './index';
+import { ShowMoreToggle } from '@ffw/randstad-shared-components';
 
 const [isViewAllOpen, setIsViewAllOpen] = useState(false);
 const arrayOfItems = [1, 2, 3, 4, 5];

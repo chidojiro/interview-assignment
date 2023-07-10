@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import cn from 'classnames';
 import { TagCheckboxProps } from './TagCheckbox.types';
 
@@ -7,27 +7,26 @@ function TagCheckbox({
   value,
   className,
   handleChange,
-  checked = false,
 }: TagCheckboxProps) {
-  const [tagChecked, setTagChecked] = useState(checked ?? false);
-
-  const tagClassNames = cn('tag tag--add', className, {
-    'tag__checked-background-color': tagChecked,
-  });
+  const ref = React.useRef(null);
 
   const handleCheckbox = () => {
-    setTagChecked(!tagChecked);
-
     if (handleChange) {
       handleChange();
     }
   };
 
+  React.useEffect(() => {
+    if (!ref.current) return;
+    const { Tags: OrbitComponent } = require('@ffw/randstad-local-orbit/original/js/components/tags');
+    new OrbitComponent(ref.current);
+  }, []);
+
   return (
-    <div className={tagClassNames} data-rs-tags="" tabIndex={0} role="checkbox" aria-checked aria-labelledby={label}>
+    <div ref={ref} className={cn('tag tag--add', className)} data-rs-tags="" tabIndex={0} role="checkbox" aria-checked aria-labelledby={label}>
       <label htmlFor={label} className="tag__checkbox selection-control selection-control--checkbox">
         <span className="selection-control__input">
-          <input defaultChecked={tagChecked} onChange={handleCheckbox} id={label} type="checkbox" data-rs-tags-checkbox="" tabIndex={-1} value={value} />
+          <input onChange={handleCheckbox} id={label} type="checkbox" data-rs-tags-checkbox="" tabIndex={-1} value={value} />
           <span className="icon selection-control__control" aria-hidden="true">
             <svg viewBox="0 0 16 16">
               <polyline points="2.1,8.5 6.2,12.4 13.9,5.1" />

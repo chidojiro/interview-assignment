@@ -79,6 +79,8 @@ import Pagination from './components/pagination/Pagination';
 import Chat from './components/chat/Chat';
 import ChatReply from './components/chat/ChatReply';
 import ChatLoader from './components/chat/ChatLoader';
+import ChatMultiSelect from './components/chat/ChatMultiSelect';
+import ChatQuickSuggest from './components/chat/ChatQuickSuggest';
 import Tag from './components/tags/Tag';
 import TagCheckbox from './components/tags/TagCheckbox';
 import { GoogleRecaptchaRef } from './components/forms/GoogleRecaptcha/GoogleRecaptcha.types';
@@ -168,6 +170,8 @@ export {
   Chat,
   ChatReply,
   ChatLoader,
+  ChatMultiSelect,
+  ChatQuickSuggest,
   LinkElement,
   ArrowLink,
   Sortbar,
