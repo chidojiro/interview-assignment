@@ -6,7 +6,7 @@ describe('Account info component exists', () => {
   test('should render Account info', () => {
     const { container } = render(
       <AccountInfo initials="GS" fullName="Guenther Steiner" classNames="test">
-        <div id="children"> Children</div>
+        <span id="children"> Children</span>
       </AccountInfo>,
     );
 
