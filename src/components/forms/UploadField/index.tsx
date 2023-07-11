@@ -46,6 +46,7 @@ interface FileFieldProps extends WithFieldProps {
   fileToken: (token: string) => void;
   translations: TranslationProps;
   setUploadedFilesToState?: (file: UpdateResumeStateProps) => void;
+  setFieldErrors?: (errMessage: string) => void
 }
 
 function UploadField({
@@ -63,9 +64,10 @@ function UploadField({
   gdsApiUrl,
   _withoutWrapper,
   setUploadedFilesToState,
+  setFieldErrors,
 }: FileFieldProps) {
   const [updatedFiles, setUpdatedFiles] = useState<UploadedFile[]>([]);
-  // State used to control if the field is set to readonly or not.
+  // State used to control if the field set to readonly or not.
   const [isFileUploaded, setIsFileUploaded] = useState<boolean>(false);
   const [isFilePreloaded, setIsFilePreloaded] = useState<boolean>(false);
 
@@ -115,6 +117,9 @@ function UploadField({
           resume.error = (e as Error).message;
           setUpdatedFiles([resume]);
           setIsFileUploaded(true);
+          if (setFieldErrors) {
+            setFieldErrors(resume?.error);
+          }
         }
       }
     }
@@ -132,6 +137,9 @@ function UploadField({
     setIsFileUploaded(false);
     setIsFilePreloaded(false);
     fileToken('');
+    if (setFieldErrors) {
+      setFieldErrors('');
+    }
   };
 
   updatedFiles.forEach((file, index) => {
