@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Collapsible } from '@ffw/randstad-local-orbit/js/components/collapsible';
 import { Toggable } from '@ffw/randstad-local-orbit/js/components/toggable';
+import Svg from '../../common/Svg';
 import { AccordionItemInterface } from './AccordionItem.types';
 
 /**
@@ -42,14 +43,10 @@ function AccordionItem({
           {title}
           {subtitle && <p className="text--alternative pt-xs mb-none">{subtitle}</p>}
           <span className="hidden--from-l toggle-arrow icon">
-            <svg>
-              <use xlinkHref={`${process.env.NEXT_PUBLIC_RESOURCE_PREFIX}/src/assets/img/icons.svg#chevron-down`} />
-            </svg>
+            <Svg icon="chevron-down" />
           </span>
           <span className="hidden--until-l toggle-arrow icon icon--l">
-            <svg>
-              <use xlinkHref={`${process.env.NEXT_PUBLIC_RESOURCE_PREFIX}/src/assets/img/icons.svg#chevron-down-30`} />
-            </svg>
+            <Svg icon="chevron-down-30" />
           </span>
         </HeadingTag>
       </div>
