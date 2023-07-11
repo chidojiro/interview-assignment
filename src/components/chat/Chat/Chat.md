@@ -74,11 +74,11 @@ Chat component embedded.
     <ChatReply type="user">
       Single line sentence 😀
     </ChatReply>
-    <ChatReply type="bot" >
+    <ChatReply type="bot">
       What do you see?
     </ChatReply>
     <ChatQuickSuggest items={quickSuggestItems} />
-    <ChatReply type="bot" >
+    <ChatReply type="bot">
       What languages do you speak?
     </ChatReply>
     <ChatMultiSelect items={multiSelectItems} />
