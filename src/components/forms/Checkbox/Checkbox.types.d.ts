@@ -7,4 +7,5 @@ export interface CheckboxProps extends WithFieldProps {
   disabled?: boolean;
   /** @ignore Private props from HOC for easy setup. */
   _formGroupProps?: object;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
 }
