@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import Accordion from '../../../../components/accordion/Accordion';
-import AccordionItem from '../../../../components/accordion/AccordionItem';
+import Accordion from '../../../components/accordion/Accordion';
+import AccordionItem from '../../../components/accordion/AccordionItem';
 
 describe('Accordion', () => {
   it('should render', () => {

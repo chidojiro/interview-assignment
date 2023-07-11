@@ -1,6 +1,6 @@
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
-import AccordionItem from '../../../../components/accordion/AccordionItem';
+import AccordionItem from '../../../components/accordion/AccordionItem';
 
 const dataRsCollapsibleContentAttr = 'data-rs-collapsible-content';
 
