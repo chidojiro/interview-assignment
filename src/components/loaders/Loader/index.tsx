@@ -2,8 +2,8 @@ import React from 'react';
 import cn from 'classnames';
 import { LoaderProps } from './Loader.types';
 
-function Loader({ color }: LoaderProps) {
-  const loaderClassNames = cn('loader__wrapper', {
+function Loader({ color, className }: LoaderProps) {
+  const loaderClassNames = cn('loader__wrapper', className, {
     [`loader__wrapper--${color}`]: color,
   });
 

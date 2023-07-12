@@ -32,4 +32,12 @@ describe('Loader Component', () => {
     expect(loaderWrapper).not.toHaveClass('loader__wrapper--brand-secondary');
     expect(loaderWrapper).not.toHaveClass('loader__wrapper--gray-20');
   });
+
+  test('renders with custom className', () => {
+    const { container } = render(<Loader className="mx-xl my-xl" />);
+
+    const loaderWrapper = container.querySelector('.loader__wrapper');
+    expect(loaderWrapper).toBeInTheDocument();
+    expect(loaderWrapper).toHaveClass('mx-xl my-xl');
+  });
 });

@@ -1,6 +1,7 @@
 import React from 'react';
 import cn from 'classnames';
 import FormGroup from '../FormGroup';
+import Loader from '../../loaders/Loader';
 import withField from '../../../hoc/withField';
 import { CheckboxProps } from './Checkbox.types';
 
@@ -42,7 +43,7 @@ function Checkbox({
           </span>
         </span>
         <span className="selection-control__label">{checkboxLabel}</span>
-        {loader && <span className="loader__wrapper pt-xxs pl-xs pb-none"><span className="loader" /></span>}
+        {loader && <Loader className="pt-xxs pl-xs pb-none" />}
       </label>
     </FormGroup>
   );
