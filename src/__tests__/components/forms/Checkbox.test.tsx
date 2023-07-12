@@ -69,4 +69,19 @@ describe('Checkbox', () => {
     fireEvent.click(checkboxElement);
     expect(onChangeMock).toHaveBeenCalled();
   });
+
+  test('Check if checkbox has loader', () => {
+    const { container } = render(
+      <Checkbox
+        name="consent"
+        formGroupLabel="Data protection"
+        checkboxLabel="Consent Further information on data processing by Randstad"
+        loader
+        onChange={onChangeMock}
+      />,
+    );
+    const loader = container.querySelector('.loader__wrapper');
+
+    expect(loader).toBeInTheDocument();
+  });
 });

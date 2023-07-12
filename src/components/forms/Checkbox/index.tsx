@@ -1,6 +1,5 @@
 import React from 'react';
 import cn from 'classnames';
-
 import FormGroup from '../FormGroup';
 import withField from '../../../hoc/withField';
 import { CheckboxProps } from './Checkbox.types';
@@ -16,6 +15,7 @@ import { CheckboxProps } from './Checkbox.types';
 function Checkbox({
   id,
   checked = false,
+  loader = false,
   checkboxLabel,
   disabled,
   _formGroupProps,
@@ -30,7 +30,7 @@ function Checkbox({
       <label
         htmlFor={id}
         className={cn('selection-control', 'selection-control--checkbox', {
-          'selection-control--disabled': disabled,
+          'selection-control--disabled': disabled || loader,
         })}
       >
         <span className="selection-control__input">
@@ -42,6 +42,7 @@ function Checkbox({
           </span>
         </span>
         <span className="selection-control__label">{checkboxLabel}</span>
+        {loader && <span className="loader__wrapper pt-xxs pl-xs pb-none"><span className="loader" /></span>}
       </label>
     </FormGroup>
   );
