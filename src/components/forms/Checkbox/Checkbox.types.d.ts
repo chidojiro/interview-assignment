@@ -2,6 +2,7 @@ import { WithFieldProps } from '../../../hoc/withField';
 
 export interface CheckboxProps extends WithFieldProps {
   checked?: boolean | undefined;
+  loader?: boolean | undefined;
   checkboxLabel: React.ReactElement | string;
   /** @ignore part of HTML props */
   disabled?: boolean;
