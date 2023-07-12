@@ -142,6 +142,11 @@ module.exports = {
       description: 'Pagination components.',
     },
     {
+      name: 'Tags',
+      components: 'src/components/tags/**/*.tsx',
+      description: 'Label, filter, categorize or organize content using keywords that describe them.',
+    },
+    {
       name: 'Chat',
       components: 'src/components/chat/Chat/*.tsx',
       description: 'Chat component used for pre-screening.',

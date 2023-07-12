@@ -9,7 +9,6 @@ import DatePicker from './components/forms/DatePicker';
 import Checkbox from './components/forms/Checkbox';
 import Toggle from './components/forms/Toggle';
 import Block from './components/common/Block';
-import Tag from './components/common/Tag';
 import SplitView from './components/common/SplitView';
 import Header from './components/headers/Header';
 import HeaderBrandsEnum from './components/headers/Header/headerBrands.enum';
@@ -56,6 +55,7 @@ import SummaryCard from './components/cards/SummaryCard';
 import LayoutPreloader from './components/loaders/LayoutPreloader';
 import PagePreloader from './components/loaders/PagePreloader';
 import Preloader from './components/loaders/Preloader';
+import Loader from './components/loaders/Loader';
 import HeaderIllustration from './components/headers/HeaderIllustration';
 import RadioButton from './components/forms/RadioButton';
 import TextArea from './components/forms/TextArea';
@@ -79,6 +79,10 @@ import Pagination from './components/pagination/Pagination';
 import Chat from './components/chat/Chat';
 import ChatReply from './components/chat/ChatReply';
 import ChatLoader from './components/chat/ChatLoader';
+import ChatMultiSelect from './components/chat/ChatMultiSelect';
+import ChatQuickSuggest from './components/chat/ChatQuickSuggest';
+import Tag from './components/tags/Tag';
+import TagCheckbox from './components/tags/TagCheckbox';
 import { GoogleRecaptchaRef } from './components/forms/GoogleRecaptcha/GoogleRecaptcha.types';
 import LinkElement from './components/pagination/LinkElement';
 import ArrowLink from './components/pagination/ArrowLink';
@@ -135,6 +139,7 @@ export {
   LayoutPreloader,
   PagePreloader,
   Preloader,
+  Loader,
   UserImageBlock,
   AccountInfo,
   UploadField,
@@ -156,6 +161,7 @@ export {
   SummaryCard,
   ShowMoreToggle,
   Tag,
+  TagCheckbox,
   Rating,
   RatingStars,
   MetaInfoCard,
@@ -165,11 +171,13 @@ export {
   Chat,
   ChatReply,
   ChatLoader,
+  ChatMultiSelect,
+  ChatQuickSuggest,
+  MyRandstad,
+  SavedJobIcon,
   LinkElement,
   ArrowLink,
   Sortbar,
-  MyRandstad,
-  SavedJobIcon,
 };
 
 /**
