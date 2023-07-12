@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import SummaryCard from '../../../../../components/cards/SummaryCard';
+import SummaryCard from '../../../../components/cards/SummaryCard';
 
 describe('SummaryCard', () => {
   test('renders the component with count', () => {
