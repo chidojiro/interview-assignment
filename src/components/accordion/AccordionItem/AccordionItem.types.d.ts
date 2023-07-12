@@ -4,5 +4,5 @@ export interface AccordionItemInterface {
   subtitle?: string;
   expanded?: boolean;
   HeadingTag?: keyof JSX.IntrinsicElements;
-  ariaLabel: string;
+  ariaLabel?: string;
 }

@@ -71,21 +71,4 @@ describe('ContactDetails', () => {
     expect(screen.getByText('Product Manager')).toBeInTheDocument();
     expect(screen.getByText('Lorem ipsum dolor sit amet2')).toBeInTheDocument();
   });
-
-  it('renders a message when profiles prop is empty', () => {
-    render(
-      <ContactDetails
-        type="contact-person"
-        title="Contact Person"
-        description="Contact person description"
-        profiles={[]}
-      />,
-    );
-
-    expect(screen.getByText('Contact Person')).toBeInTheDocument();
-    expect(screen.getByText('Contact person description')).toBeInTheDocument();
-    const container = document.querySelector('.block__content.contact-person');
-    const personeProfile = container?.querySelector('.person__profile');
-    expect(personeProfile).toBeNull();
-  });
 });

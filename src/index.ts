@@ -83,6 +83,8 @@ import { GoogleRecaptchaRef } from './components/forms/GoogleRecaptcha/GoogleRec
 import LinkElement from './components/pagination/LinkElement';
 import ArrowLink from './components/pagination/ArrowLink';
 import Sortbar from './components/forms/Sortbar';
+import MyRandstad from './components/navigation/MyRandstad';
+import SavedJobIcon from './components/cards/JobCard/SavedJobIcon';
 
 export {
   Pagination,
@@ -139,7 +141,6 @@ export {
   ShowMore,
   SplitView,
   HeaderIllustration,
-  // LocationInputField,
   RadioButton,
   TextArea,
   // Filter,
@@ -167,6 +168,8 @@ export {
   LinkElement,
   ArrowLink,
   Sortbar,
+  MyRandstad,
+  SavedJobIcon,
 };
 
 /**

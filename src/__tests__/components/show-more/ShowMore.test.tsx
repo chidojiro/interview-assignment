@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { render } from '@testing-library/react';
 import ShowMore from '../../../components/show-more/ShowMore';
 
 describe('ShowMore component tests', () => {
   test('should render show more indicator and the className', () => {
     const className = 'show-more__indicator';
-    const [loading, setLoading] = useState(false);
     const { container } = render(
       <ShowMore
         listLength={10}
@@ -13,8 +12,8 @@ describe('ShowMore component tests', () => {
         textSeen="Seen Items"
         textViewMore="View More"
         ariaLabel="show more"
-        loading={loading}
-        onClick={() => setLoading(true)}
+        loading={false}
+        onClick={() => {}}
       />,
     );
 
@@ -24,7 +23,6 @@ describe('ShowMore component tests', () => {
   });
 
   test('should render a tag and check for button button--m className', () => {
-    const [loading, setLoading] = useState(false);
     const { container } = render(
       <ShowMore
         listLength={10}
@@ -32,21 +30,17 @@ describe('ShowMore component tests', () => {
         textSeen="Seen Items"
         textViewMore="View More"
         ariaLabel="show more"
-        loading={loading}
-        onClick={() => setLoading(true)}
+        loading={false}
+        onClick={() => {}}
       />,
     );
-    const ShowMoreLink = container.querySelector('a');
 
-    expect(ShowMoreLink)
-      .toHaveAttribute(
-        'class',
-        'button button--m',
-      );
+    const showMoreLink = container.querySelector('button');
+    expect(showMoreLink).toBeInTheDocument();
+    expect(showMoreLink).toHaveClass('button button--m');
   });
 
   test('should render textSeen prop value', () => {
-    const [loading, setLoading] = useState(false);
     const { container } = render(
       <ShowMore
         listLength={10}
@@ -54,8 +48,8 @@ describe('ShowMore component tests', () => {
         textSeen="Seen Items"
         textViewMore="View More"
         ariaLabel="show more"
-        loading={loading}
-        onClick={() => setLoading(true)}
+        loading={false}
+        onClick={() => {}}
       />,
     );
     const SeenText = container.querySelector('.section-separator span');
@@ -65,7 +59,6 @@ describe('ShowMore component tests', () => {
   });
 
   test('should render textViewMore prop value', () => {
-    const [loading, setLoading] = useState(false);
     const { container } = render(
       <ShowMore
         listLength={10}
@@ -73,8 +66,8 @@ describe('ShowMore component tests', () => {
         textSeen="Seen Items"
         textViewMore="View More"
         ariaLabel="show more"
-        loading={loading}
-        onClick={() => setLoading(true)}
+        loading={false}
+        onClick={() => {}}
       />,
     );
     const textViewMore = container.querySelector('.button.button--m');

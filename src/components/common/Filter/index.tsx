@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import useLibrary from '../../../hooks/useLibrary';
 import { FilterProps } from './Filter.types';
+import Svg from '../Svg';
 
 /**
  * A bundle of different form elements and manipulating the page of search results. See [here](https://randstad.design/components/core/filters/blog/)
@@ -55,9 +56,7 @@ function Filter({
     <div className="filter" data-rs-filter="" ref={ref}>
       <div className="filter__toggle" data-rs-filter-refine-search="" role="button" aria-label="">
         <span className="icon icon--inline hidden--from-l text-brand-primary">
-          <svg>
-            <use xlinkHref={`${process.env.NEXT_PUBLIC_RESOURCE_PREFIX}/src/assets/img/icons.svg#filter`} />
-          </svg>
+          <Svg icon="filter" />
         </span>
         <span>{title}</span>
       </div>
