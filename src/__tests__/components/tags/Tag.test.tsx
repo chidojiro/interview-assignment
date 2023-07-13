@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import Tag from '../../../components/common/Tag';
+import Tag from '../../../components/tags/Tag';
 
 /**
  * The Tag component works with adding the hide-tag class upon removing and item. Typically it works with state.

@@ -132,6 +132,8 @@ function UploadField({
             setFieldErrors(resume?.error);
           }
         }
+      } else if (resume && resume.error && setFieldErrors) {
+        setFieldErrors(resume.error);
       }
     }
   };

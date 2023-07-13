@@ -17,3 +17,15 @@ const onChange = () => {
   onChange={onChange}
   checkboxLabel={<>Test <a href="/example">link</a> component</>}/>
 ```
+
+Single checkbox in loading state
+
+```jsx
+import { Checkbox } from "@ffw/randstad-shared-components";
+
+<Checkbox
+  name="email-1"
+  formGroupLabel="job specialism"
+  loader
+  checkboxLabel={<>Test <a href="/example">link</a> component</>}/>
+```
