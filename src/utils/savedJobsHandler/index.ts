@@ -4,17 +4,10 @@ import getUserData from '../getUserData';
 import { LocalStorageSavedJob, LocalStorageSavedJobs, SavedJobsResponse } from './savedJobsHandler.types';
 import searchByJobId from '../searchApi/searchByJobId';
 import { RXPJob } from '../searchApi/types';
+import getSavedJobsLocalStorage from '../savedJobsLocalStorage/getSavedJobsLocalStorage';
+import saveSavedJobsToLocalStorage from '../savedJobsLocalStorage/saveSavedJobsToLocalStorage';
 
 const savedJobsLocalStorageKey = 'saved-jobs';
-
-export const getSavedJobsLocalStorage = (): LocalStorageSavedJobs | undefined =>
-  JSON.parse(localStorage.getItem(savedJobsLocalStorageKey) as string) as LocalStorageSavedJobs;
-
-export const removeSavedJobsLocalStorage = () => {
-  localStorage.removeItem(savedJobsLocalStorageKey);
-  const event = new Event(savedJobsLocalStorageKey);
-  window.dispatchEvent(event);
-};
 
 const getSavedJobsCount = async (gdsApiKey: string, gdsApiUrl: string, checkLocalStorage = true): Promise<number> => {
   const userData = getUserData();
@@ -80,12 +73,6 @@ const deleteSavedJobs = async (gdsApiKey: string, gdsApiUrl: string, savedJobId:
     saveCountOfSavedJobs(gdsApiKey, gdsApiUrl);
     return res;
   });
-};
-export const saveSavedJobsToLocalStorage = (savedJobs: LocalStorageSavedJobs) => {
-  localStorage.setItem(savedJobsLocalStorageKey, JSON.stringify(savedJobs));
-
-  const event = new Event(savedJobsLocalStorageKey);
-  window.dispatchEvent(event);
 };
 
 export const transferSavedJobStructure = (job: RXPJob): LocalStorageSavedJob => ({
@@ -156,7 +143,6 @@ const handleAnonymousSavedJobs = async (searchApiUrl: string, searchApiKey: stri
   savedJobs.totalElements += 1;
 
   saveSavedJobsToLocalStorage(savedJobs);
-
   return true;
 };
 
