@@ -47,7 +47,8 @@ interface FileFieldProps extends WithFieldProps {
   fileToken: (token: string) => void;
   translations: TranslationProps;
   setUploadedFilesToState?: (file: UpdateResumeStateProps) => void;
-  setFieldErrors?: (errMessage: string) => void
+  setFieldErrors?: (errMessage: string) => void,
+  setIsUploaded?: (isFilled: boolean) => void
 }
 
 function UploadField({
@@ -66,6 +67,7 @@ function UploadField({
   _withoutWrapper,
   setUploadedFilesToState,
   setFieldErrors,
+  setIsUploaded,
 }: FileFieldProps) {
   const [updatedFiles, setUpdatedFiles] = useState<UploadedFile[]>([]);
   // State used to control if the field set to readonly or not.
@@ -90,13 +92,15 @@ function UploadField({
         setUpdatedFiles([alreadyUploadedFile]);
         setIsFileUploaded(true);
         setIsFilePreloaded(true);
+        if (setIsUploaded) setIsUploaded(true);
       } else {
         setIsFileUploaded(false);
         setIsFilePreloaded(false);
+        if (setIsUploaded) setIsUploaded(false);
       }
     };
     checkForFile();
-  }, [files, gdsApiKey, gdsApiUrl]);
+  }, [files, gdsApiKey, gdsApiUrl, setIsUploaded]);
 
   let uploadedItems: JSX.Element[] = [];
   const generalErrors: JSX.Element[] = [];
@@ -123,6 +127,9 @@ function UploadField({
 
           if (setUploadedFilesToState) {
             setUploadedFilesToState({ filename: resume.name, contentLength: resume.file?.size });
+            if (setIsUploaded) {
+              setIsUploaded(true);
+            }
           }
         } catch (e: unknown) {
           resume.error = (e as Error).message;
@@ -152,6 +159,9 @@ function UploadField({
     fileToken('');
     if (setFieldErrors) {
       setFieldErrors('');
+    }
+    if (setIsUploaded) {
+      setIsUploaded(false);
     }
   };
 
