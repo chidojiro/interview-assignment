@@ -2,16 +2,13 @@ import React from 'react';
 import { render, fireEvent, act } from '@testing-library/react';
 import SavedJobIcon from '../../../../../components/cards/JobCard/SavedJobIcon';
 import { postSavedJobs, deleteSavedJobs } from '../../../../../utils/savedJobsHandler';
+import getUserData from '../../../../../utils/getUserData';
+import Mock = jest.Mock;
 
 // Mock the functions used in the component
 jest.mock('../../../../../utils/savedJobsHandler', () => ({
   postSavedJobs: jest.fn(),
   deleteSavedJobs: jest.fn(),
-}));
-
-jest.mock('../../../../../utils/getUserData/index.ts', () => ({
-  __esModule: true,
-  default: () => ({ loginStatus: true }),
 }));
 
 // Mock the Icon component
@@ -20,7 +17,12 @@ jest.mock('../../../../../components/common/Icon', () => ({
   default: () => <span>MockIcon</span>,
 }));
 
-describe('SavedJobIcon component tests', () => {
+jest.mock('../../../../../utils/getUserData');
+
+// Mock the Icon component
+describe('SavedJobIcon logged in user component tests', () => {
+  (getUserData as Mock).mockImplementation(() => ({ loginStatus: true }));
+
   afterEach(() => {
     jest.clearAllMocks();
   });
