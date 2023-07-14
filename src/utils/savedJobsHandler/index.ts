@@ -1,21 +1,35 @@
 import { AxiosResponse } from 'axios';
 import { Data, TalentAppApi } from '../talentAppApi';
 import getUserData from '../getUserData';
-import { SavedJobsResponse } from './savedJobsHandler.types';
+import { LocalStorageSavedJob, LocalStorageSavedJobs, SavedJobsResponse } from './savedJobsHandler.types';
 import searchByJobId from '../searchApi/searchByJobId';
+import { RXPJob } from '../searchApi/types';
+
+const savedJobsLocalStorageKey = 'saved-jobs';
+
+export const getSavedJobsLocalStorage = (): LocalStorageSavedJobs | undefined =>
+  JSON.parse(localStorage.getItem(savedJobsLocalStorageKey) as string) as LocalStorageSavedJobs;
+
+export const removeSavedJobsLocalStorage = () => {
+  localStorage.removeItem(savedJobsLocalStorageKey);
+  const event = new Event(savedJobsLocalStorageKey);
+  window.dispatchEvent(event);
+};
 
 const getSavedJobsCount = async (gdsApiKey: string, gdsApiUrl: string, checkLocalStorage = true): Promise<number> => {
   const userData = getUserData();
   // TODO: This needs to work with anonymous users as well. Handle it when unblocked for anonymous users.
-  const savedJobs = localStorage.getItem('saved-jobs');
+  const savedJobs = getSavedJobsLocalStorage();
   // Anon user
-  if (checkLocalStorage && savedJobs && !userData.savedJobs.totalElements) {
-    const data = JSON.parse(savedJobs);
-    if (data.totalElements) {
-      return data.totalElements;
+  if (checkLocalStorage && !userData.loginStatus) {
+    if (!savedJobs) {
+      return 0;
+    }
+    if (savedJobs.totalElements) {
+      return savedJobs.totalElements;
     }
     // logged in
-  } else if (checkLocalStorage && userData.savedJobs) {
+  } else if (checkLocalStorage && userData.savedJobs && userData.savedJobs.totalElements) {
     return userData.savedJobs.totalElements;
     // After login, calls api
   } else if (userData.loginStatus) {
@@ -40,10 +54,13 @@ const saveCountOfSavedJobs = async (gdsApiKey: string, gdsApiUrl: string) => {
   };
   const userData = getUserData();
   if (userData.loginStatus) {
+    if (!userData.savedJobs) {
+      userData.savedJobs = { totalElements: 0 };
+    }
     userData.savedJobs.totalElements = numberOfSavedJobs.totalElements;
     await localStorage.setItem('userState', JSON.stringify(userData));
   }
-  const savedJobsEvent = new Event('saved-jobs');
+  const savedJobsEvent = new Event(savedJobsLocalStorageKey);
   window.dispatchEvent(savedJobsEvent);
 };
 
@@ -64,9 +81,83 @@ const deleteSavedJobs = async (gdsApiKey: string, gdsApiUrl: string, savedJobId:
     return res;
   });
 };
+export const saveSavedJobsToLocalStorage = (savedJobs: LocalStorageSavedJobs) => {
+  localStorage.setItem(savedJobsLocalStorageKey, JSON.stringify(savedJobs));
 
-const handleAnonymousSavedJobs = async (searchApiUrl: string, searchApiKey: string, jobId: string) => {
-  await searchByJobId(searchApiUrl, searchApiKey, jobId);
+  const event = new Event(savedJobsLocalStorageKey);
+  window.dispatchEvent(event);
+};
+
+export const transferSavedJobStructure = (job: RXPJob): LocalStorageSavedJob => ({
+  id: job.id,
+  job: {
+    jobPosting: {
+      jobDescription: job.description.description,
+      jobTitle: job.jobTitle,
+      workLocationAddresses: [job.workLocationAddress],
+      webDetail: {
+        id: job.id,
+      },
+      employmentCategories: [job.jobInformation.jobType],
+    },
+  },
+  createdDate: job.postingDetail.postingTime,
+});
+
+/**
+ * This method will handle the functionality for the anonymous saved jobs heart icon.
+ *
+ * @param searchApiUrl
+ *  The Search Api's url.
+ * @param searchApiKey
+ *  The Search Api's key.
+ * @param jobId
+ *  The jobId that we need to process.
+ *
+ *  @returns boolean
+ *    Used for if we need to fill the heart icon, or unfill it.
+ *    true = we need to fill it.
+ *    false = we need to unfill it.
+ */
+const handleAnonymousSavedJobs = async (searchApiUrl: string, searchApiKey: string, jobId: string): Promise<boolean> => {
+  let savedJobs: LocalStorageSavedJobs | undefined = getSavedJobsLocalStorage();
+  if (savedJobs && savedJobs.content) {
+    // Search if we have the job in the local storage.
+    const found = savedJobs.content.findIndex((r) => r.id === jobId);
+    // If we find it, then we must delete it.
+    if (found !== -1) {
+      savedJobs.content.splice(found, 1);
+      if (!savedJobs.totalElements) {
+        savedJobs.totalElements = 1;
+      }
+
+      savedJobs.totalElements -= 1;
+
+      saveSavedJobsToLocalStorage(savedJobs);
+      return false;
+    }
+  }
+
+  if (!savedJobs) {
+    savedJobs = {};
+  }
+
+  if (!savedJobs.content) {
+    savedJobs.content = [];
+  }
+
+  if (!savedJobs.totalElements) {
+    savedJobs.totalElements = 0;
+  }
+
+  // If we got here, then this means that we need to add to the array
+  const result = await searchByJobId(searchApiUrl, searchApiKey, jobId);
+  savedJobs.content.push(transferSavedJobStructure(result));
+  savedJobs.totalElements += 1;
+
+  saveSavedJobsToLocalStorage(savedJobs);
+
+  return true;
 };
 
 export { getSavedJobsCount, postSavedJobs, deleteSavedJobs, handleAnonymousSavedJobs };

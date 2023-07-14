@@ -29,7 +29,15 @@ function SavedJobIcon({
     const { loginStatus } = getUserData();
 
     if (!loginStatus) {
-      await handleAnonymousSavedJobs(searchApiUrl, searchApiKey, jobPostingWebDetailId);
+      const filled = await handleAnonymousSavedJobs(searchApiUrl, searchApiKey, jobPostingWebDetailId);
+      if (filled) {
+        setIconFilled('filled');
+      } else {
+        if (returnJobPostingWebDetailId) {
+          returnJobPostingWebDetailId(jobPostingWebDetailId);
+        }
+        setIconFilled('');
+      }
     } else if (savedJobId && typeof (savedJobId) === 'string') {
       setIconFilled('');
       const onSuccessfullDelete = await deleteSavedJobs(gdsApiKey, gdsApiUrl, savedJobId);

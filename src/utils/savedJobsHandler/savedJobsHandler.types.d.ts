@@ -14,3 +14,30 @@ export type Data = {
     empty: boolean;
   };
 };
+
+export type Job = {
+  jobPosting: {
+    jobDescription: string;
+    jobTitle: string;
+    workLocationAddresses: [
+      {
+        locality: string;
+      },
+    ];
+    webDetail: {
+      id: string;
+    };
+    employmentCategories: string[];
+  };
+};
+
+export type LocalStorageSavedJob = {
+  id: string;
+  job: Job;
+  createdDate: string;
+};
+
+export type LocalStorageSavedJobs = {
+  content?: LocalStorageSavedJob[];
+  totalElements?: number;
+};
