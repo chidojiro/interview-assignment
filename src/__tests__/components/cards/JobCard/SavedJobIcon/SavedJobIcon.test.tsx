@@ -9,6 +9,11 @@ jest.mock('../../../../../utils/savedJobsHandler', () => ({
   deleteSavedJobs: jest.fn(),
 }));
 
+jest.mock('../../../../../utils/getUserData/index.ts', () => ({
+  __esModule: true,
+  default: () => ({ loginStatus: true }),
+}));
+
 // Mock the Icon component
 jest.mock('../../../../../components/common/Icon', () => ({
   __esModule: true,
@@ -23,6 +28,8 @@ describe('SavedJobIcon component tests', () => {
   it('renders the component with the filled icon if savedJobId is provided', () => {
     const { container } = render(
       <SavedJobIcon
+        searchApiUrl="1234"
+        searchApiKey="https://exmaple.com/api/search"
         size="l"
         gdsApiKey="12345"
         gdsApiUrl="https://example.com/api"
@@ -47,6 +54,8 @@ describe('SavedJobIcon component tests', () => {
   it('renders the component with the empty icon if savedJobId is not provided', () => {
     const { container } = render(
       <SavedJobIcon
+        searchApiUrl="https://example.com/search/api"
+        searchApiKey="1234"
         size="l"
         gdsApiKey="12345"
         gdsApiUrl="https://example.com/api"
@@ -70,6 +79,8 @@ describe('SavedJobIcon component tests', () => {
   it('calls postSavedJobs when savedJobId is not provided and the button is clicked', async () => {
     const { container } = render(
       <SavedJobIcon
+        searchApiUrl="https://example.com/search/api"
+        searchApiKey="1234"
         size="l"
         gdsApiKey="12345"
         gdsApiUrl="https://example.com/api"
@@ -92,6 +103,8 @@ describe('SavedJobIcon component tests', () => {
   test('calls deleteSavedJobs and returnJobPostingWebDetailId when savedJobId is provided and the button is clicked', () => {
     const { container } = render(
       <SavedJobIcon
+        searchApiUrl="https://example.com/search/api"
+        searchApiKey="1234"
         size="l"
         gdsApiKey="12345"
         gdsApiUrl="https://example.com/api"

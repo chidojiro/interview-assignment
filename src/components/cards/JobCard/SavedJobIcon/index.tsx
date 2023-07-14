@@ -5,7 +5,7 @@ import cn from 'classnames';
 import Icon from '../../../common/Icon';
 import { postSavedJobs, deleteSavedJobs, handleAnonymousSavedJobs } from '../../../../utils/savedJobsHandler';
 import { SavedJobIconProps } from './SavedJobIcon.types';
-import { getUserData } from '../../../../utils';
+import getUserData from '../../../../utils/getUserData';
 
 function SavedJobIcon({
   size = 'l',
