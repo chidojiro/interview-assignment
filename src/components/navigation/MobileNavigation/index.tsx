@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Collapsible } from '@ffw/randstad-local-orbit/js/components/collapsible';
 import { Toggable } from '@ffw/randstad-local-orbit/js/components/toggable';
+import Svg from '../../common/Svg';
 import { MobileNavigationProps } from './MobileNavigation.types';
 
 const menuAttributes = (menuItemLength: number) => {
@@ -62,9 +63,7 @@ function MobileNavigation({
               <a href={menuItem.url}>{menuItem.title}</a>
               {menuItem.children && menuItem.children.length ? (
                 <span className="icon toggle-arrow" data-rs-collapsible-button="" role="button">
-                  <svg>
-                    <use xlinkHref={`${process.env.NEXT_PUBLIC_RESOURCE_PREFIX}/src/assets/img/icons.svg#chevron-down`} />
-                  </svg>
+                  <Svg icon="chevron-down" />
                 </span>
               ) : (
                 ''

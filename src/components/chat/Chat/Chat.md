@@ -1,14 +1,12 @@
 Chat component embedded.
   ```jsx
-  import Chat from "./index.tsx";
-  import ChatLoader from "../ChatLoader";
-  import ChatReply from "../ChatReply";
+  import { Chat, ChatLoader, ChatReply, ChatMultiSelect, ChatQuickSuggest } from '@ffw/randstad-shared-components';
   
   const handleClick = () => {
-      console.log('Chat Send Button clicked');
-      if (window && window.orbit && window.orbit.chatInstance) {
-        window.orbit.chatInstance.userInputToSpeechBubble();
-      }
+    console.log('Chat Send Button clicked');
+    if (window && window.orbit && window.orbit.chatInstance) {
+      window.orbit.chatInstance.userInputToSpeechBubble();
+    }
   }
   const settings = {
     title: 'Virtual Assistant',
@@ -17,6 +15,45 @@ Chat component embedded.
     startConversationButtonText: 'start conversation',
     handleSendButton: handleClick,
   };
+
+  const quickSuggestItems = [
+    {
+      value: 'London',
+    },
+    {
+      value: 'Chesterton',
+    },
+    {
+      value: 'Very long name to see what happens when it spans more than one line',
+    },
+  ];
+
+  const multiSelectItems = [
+    {
+      value: 'English',
+      label: 'English',
+    },
+    {
+      value: 'French',
+      label: 'French',
+    },
+    {
+      value: 'Dutch',
+      label: 'Dutch',
+    },
+    {
+      value: 'German',
+      label: 'German',
+    },
+    {
+      value: 'Spanish',
+      label: 'Spanish',
+    },
+    {
+      value: 'Italian',
+      label: 'Italian',
+    },
+  ];
 
   <Chat settings={settings}>
     <ChatReply type="bot" first={true} >
@@ -37,5 +74,13 @@ Chat component embedded.
     <ChatReply type="user">
       Single line sentence 😀
     </ChatReply>
+    <ChatReply type="bot">
+      What do you see?
+    </ChatReply>
+    <ChatQuickSuggest items={quickSuggestItems} />
+    <ChatReply type="bot">
+      What languages do you speak?
+    </ChatReply>
+    <ChatMultiSelect items={multiSelectItems} />
   </Chat>
   ```

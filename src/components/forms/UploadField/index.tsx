@@ -14,6 +14,7 @@ import {
   AlreadyUploadedFile,
   UpdateResumeStateProps,
 } from '../../../utils/resumeHandler/resumeHandler.types';
+import Preloader from '../../loaders/Preloader';
 
 export type TranslationProps = {
   UploadSuccessful: string | React.ReactNode,
@@ -46,6 +47,7 @@ interface FileFieldProps extends WithFieldProps {
   fileToken: (token: string) => void;
   translations: TranslationProps;
   setUploadedFilesToState?: (file: UpdateResumeStateProps) => void;
+  setFieldErrors?: (errMessage: string) => void
 }
 
 function UploadField({
@@ -63,23 +65,34 @@ function UploadField({
   gdsApiUrl,
   _withoutWrapper,
   setUploadedFilesToState,
+  setFieldErrors,
 }: FileFieldProps) {
   const [updatedFiles, setUpdatedFiles] = useState<UploadedFile[]>([]);
-  // State used to control if the field is set to readonly or not.
-  const [isFileUploaded, setIsFileUploaded] = useState<boolean>(false);
-  const [isFilePreloaded, setIsFilePreloaded] = useState<boolean>(false);
+  // State used to control if the field set to readonly or not.
+  const [isFileUploaded, setIsFileUploaded] = useState<boolean>();
+  const [isFilePreloaded, setIsFilePreloaded] = useState<boolean>();
 
   const maxSizeForCv = 1048576 * maxSizeInBytes;
 
   useEffect(() => {
-    const checkForFile = async () => {
+    const getAlreadyUploadedFile = () => {
       if (files && Object.keys(files).length !== 0) {
-        const alreadyUploadedFile = await checkIfUserHasFile(files, gdsApiKey, gdsApiUrl);
-        if (alreadyUploadedFile) {
-          setUpdatedFiles([alreadyUploadedFile]);
-          setIsFileUploaded(true);
-          setIsFilePreloaded(true);
-        }
+        return checkIfUserHasFile(files, gdsApiKey, gdsApiUrl);
+      }
+
+      return false;
+    };
+
+    const checkForFile = async () => {
+      const alreadyUploadedFile = await getAlreadyUploadedFile();
+
+      if (alreadyUploadedFile) {
+        setUpdatedFiles([alreadyUploadedFile]);
+        setIsFileUploaded(true);
+        setIsFilePreloaded(true);
+      } else {
+        setIsFileUploaded(false);
+        setIsFilePreloaded(false);
       }
     };
     checkForFile();
@@ -115,7 +128,12 @@ function UploadField({
           resume.error = (e as Error).message;
           setUpdatedFiles([resume]);
           setIsFileUploaded(true);
+          if (setFieldErrors) {
+            setFieldErrors(resume?.error);
+          }
         }
+      } else if (resume && resume.error && setFieldErrors) {
+        setFieldErrors(resume.error);
       }
     }
   };
@@ -132,6 +150,9 @@ function UploadField({
     setIsFileUploaded(false);
     setIsFilePreloaded(false);
     fileToken('');
+    if (setFieldErrors) {
+      setFieldErrors('');
+    }
   };
 
   updatedFiles.forEach((file, index) => {
@@ -189,7 +210,8 @@ function UploadField({
         _configClasses={formGroupClasses}
       >
         <div>
-          {!isFilePreloaded && (
+          {isFilePreloaded === undefined && isFileUploaded === undefined && <Preloader />}
+          {isFilePreloaded === false && (
             <div className="form-group__input">
               <input
                 name={name}
@@ -203,7 +225,7 @@ function UploadField({
               />
               <div className="upload" data-rs-upload="">
                 <div className="upload__content">
-                  {isFileUploaded
+                  {isFileUploaded === true
                     && (
                       <>
                         <div className="upload__text">
@@ -216,7 +238,7 @@ function UploadField({
                         </p>
                       </>
                     )}
-                  {!isFileUploaded
+                  {isFileUploaded === false
                     && (
                       <>
                         <div className="upload__text">

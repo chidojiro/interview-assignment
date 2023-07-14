@@ -4,7 +4,16 @@ import { ChatProps } from './Chat.types';
 
 function Chat({ children, settings }: ChatProps) {
   const {
-    title, closeButtonAriaLabel, logoAltText = 'logo Randstad', textAreaPlaceholder = 'start typing ...', sendButtonText = 'send', startConversationButtonText, handleSendButton,
+    title,
+    closeButtonAriaLabel,
+    logoAltText = 'logo Randstad',
+    textAreaPlaceholder = 'start typing ...',
+    sendButtonText = 'send',
+    deselectButtonText = 'deselect',
+    submitButtonText = 'submit',
+    selectedOptionsText = 'selected',
+    startConversationButtonText,
+    handleSendButton,
   } = settings;
   const ref = useRef(null);
   const textAreaRef = useRef(null);
@@ -24,7 +33,7 @@ function Chat({ children, settings }: ChatProps) {
   }, []);
 
   return (
-    <>
+    <div className="bluex-chat-bot" data-chatbot-id="some-chat-id" data-chatbot-init-timeout="120" data-chatbot-re-init="true" data-chatbot-dynamo-langcode="en" data-chatbot-langcode="en">
       <div className="chat chat--embed" data-rs-chat="" ref={ref}>
         <div className="chat__wrapper">
           <div className="chat__header divider" data-rs-chat-header="">
@@ -43,7 +52,7 @@ function Chat({ children, settings }: ChatProps) {
             {children}
           </div>
           <div className="chat__footer divider divider--top">
-            <div className="flex items-end">
+            <div className="flex items-end" data-rs-chat-input>
               <textarea
                 className="mr-xs flex-1 textarea--expand"
                 placeholder={textAreaPlaceholder}
@@ -56,6 +65,17 @@ function Chat({ children, settings }: ChatProps) {
                 <span className="button__text">{sendButtonText}</span>
                 <Icon iconType="arrow-up" iconClassName="icon" />
               </button>
+            </div>
+            <div className="flex flex-col justify-center items-center hidden" data-rs-chat-tags-dialog="" aria-hidden="true">
+              <div className="mb-xxs" data-rs-chat-tags-dialog-label="@tag selected">
+                1
+                {' '}
+                {selectedOptionsText}
+              </div>
+              <div className="buttons-group">
+                <button type="button" className="button button--s mr-xxs" data-rs-chat-tags-deselect-button="" aria-hidden="true">{deselectButtonText}</button>
+                <button type="button" className="button button--s button--filled" data-rs-chat-tags-submit-button="" aria-hidden="true">{submitButtonText}</button>
+              </div>
             </div>
           </div>
           {/*
@@ -135,7 +155,7 @@ function Chat({ children, settings }: ChatProps) {
         <Icon iconType="chat" iconClassName="icon icon--inline" />
         {startConversationButtonText}
       </a>
-    </>
+    </div>
   );
 }
 

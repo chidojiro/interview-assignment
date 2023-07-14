@@ -16,10 +16,10 @@ export default function RatingStars({
     if (stars?.length) {
       const starsItemsArray = [];
       if (!value) {
-        // This default checked element is needed because orbit expect zero hidden star.
+        // This default checked element required because orbit expect zero hidden star.
         starsItemsArray.push(
           <React.Fragment key={0}>
-            <input value={0} id="star0-0" checked type="radio" name={propName} className="ratings__input no--visually" onChange={onChange} />
+            <input value={0} id="star0-0" checked type="radio" name={propName} className="ratings__input no--visually" onChange={(event) => onChange?.(event as React.ChangeEvent<HTMLInputElement>)} />
           </React.Fragment>,
         );
       }
@@ -37,7 +37,7 @@ export default function RatingStars({
               type="radio"
               id={`star${id}`}
               value={id}
-              onChange={onChange}
+              onChange={(event) => onChange?.(event as React.ChangeEvent<HTMLInputElement>)}
             />
             <label
               className="icon icon--inline"

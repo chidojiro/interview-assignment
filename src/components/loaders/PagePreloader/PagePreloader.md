@@ -5,3 +5,9 @@ import { PagePreloader } from "@ffw/randstad-shared-components";
 
 <PagePreloader />
 ```
+
+```jsx
+import { PagePreloader } from "@ffw/randstad-shared-components";
+
+<PagePreloader header={false} />
+```

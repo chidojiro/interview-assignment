@@ -6,6 +6,9 @@ export type ChatSettings = {
   logoAltText?: string;
   textAreaPlaceholder?: string;
   sendButtonText?: string | React.ReactNode;
+  deselectButtonText?: string | React.ReactNode;
+  submitButtonText?: string | React.ReactNode;
+  selectedOptionsText?: string;
   startConversationButtonText: string | React.ReactNode;
   handleSendButton: () => void;
 };
@@ -18,7 +21,26 @@ declare global {
   interface Window {
     orbit: {
       chatInstance: {
+        addEventHandlers: () => void;
+        handleHeaderDivider: () => void;
+        toggleInputButton: () => void;
+        openChat: () => void;
+        closeChat: () => void;
+        quickSuggestButtonsHandler: () => void;
+        getArrayOfSelectedTags: () => void;
+        tagHandler: () => void;
+        handleTagDialogButtons: () => void;
+        createSpeechBubble: () => void;
         userInputToSpeechBubble: () => void;
+        toggleSettingsHandler: () => void;
+        languageSelectorHandler: () => void;
+        popUpHandler: () => void;
+        languageSaveButtonHandler: () => void;
+        openAndCloseSettings: () => void;
+        handleButtonKeys: () => void;
+        classes: () => void;
+        attributes: () => void;
+        getSelector: () => void;
       };
     };
   }
