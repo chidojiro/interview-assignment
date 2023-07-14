@@ -5,7 +5,7 @@ import { LocalStorageSavedJob, LocalStorageSavedJobs, SavedJobsResponse } from '
 import searchByJobId from '../searchApi/searchByJobId';
 import { RXPJob } from '../searchApi/types';
 import getSavedJobsLocalStorage from '../savedJobsLocalStorage/getSavedJobsLocalStorage';
-import saveSavedJobsToLocalStorage from '../savedJobsLocalStorage/saveSavedJobsToLocalStorage';
+import saveSavedJobsToLocalStorage from '../savedJobsLocalStorage/saveSavedJobsLocalStorage';
 
 const savedJobsLocalStorageKey = 'saved-jobs';
 

@@ -6,7 +6,18 @@ import FormatFileSize from './formatFileSize';
 import * as resumeHandler from './resumeHandler';
 import { AlreadyUploadedFile } from './resumeHandler/resumeHandler.types';
 import getUserData from './getUserData';
+import getSavedJobsLocalStorage from './savedJobsLocalStorage/getSavedJobsLocalStorage';
+import removeSavedJobsFromLocalStorage from './savedJobsLocalStorage/removeSavedJobsLocalStorage';
+import saveSavedJobsToLocalStorage from './savedJobsLocalStorage/saveSavedJobsLocalStorage';
 
-export { savedJobsHandler, FormatFileSize, resumeHandler, getUserData };
+export {
+  savedJobsHandler,
+  FormatFileSize,
+  resumeHandler,
+  getUserData,
+  getSavedJobsLocalStorage,
+  removeSavedJobsFromLocalStorage,
+  saveSavedJobsToLocalStorage,
+};
 
 export type { AlreadyUploadedFile, LocalStorageSavedJob, LocalStorageSavedJobs, Job };

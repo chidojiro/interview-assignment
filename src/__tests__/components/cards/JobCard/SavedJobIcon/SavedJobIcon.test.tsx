@@ -9,7 +9,7 @@ import {
 import getUserData from '../../../../../utils/getUserData';
 import searchByJobId from '../../../../../utils/searchApi/searchByJobId';
 import getSavedJobsLocalStorage from '../../../../../utils/savedJobsLocalStorage/getSavedJobsLocalStorage';
-import saveSavedJobsToLocalStorage from '../../../../../utils/savedJobsLocalStorage/saveSavedJobsToLocalStorage';
+import saveSavedJobsToLocalStorage from '../../../../../utils/savedJobsLocalStorage/saveSavedJobsLocalStorage';
 
 import Mock = jest.Mock;
 
@@ -22,7 +22,7 @@ jest.mock('../../../../../utils/savedJobsHandler', () => ({
 
 jest.mock('../../../../../utils/searchApi/searchByJobId');
 jest.mock('../../../../../utils/savedJobsLocalStorage/getSavedJobsLocalStorage');
-jest.mock('../../../../../utils/savedJobsLocalStorage/saveSavedJobsToLocalStorage');
+jest.mock('../../../../../utils/savedJobsLocalStorage/saveSavedJobsLocalStorage');
 
 // Mock the Icon component
 jest.mock('../../../../../components/common/Icon', () => ({
