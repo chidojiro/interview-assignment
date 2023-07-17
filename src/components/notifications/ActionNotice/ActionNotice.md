@@ -29,7 +29,7 @@ import { ActionNotice } from '@ffw/randstad-shared-components';
 
 ```
 
-Tertiary action notice with text as a child
+Tertiary action notice with text as a child and primary button only
 
 ```jsx
 
@@ -38,7 +38,6 @@ import { ActionNotice } from '@ffw/randstad-shared-components';
 <ActionNotice 
   background="tertiary"
   primaryButtonText="check hours"
-  secondaryButtonText="change"
 >
   did you work 32 hours last week?
 </ActionNotice>

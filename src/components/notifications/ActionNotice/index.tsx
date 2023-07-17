@@ -1,4 +1,5 @@
 import React from 'react';
+import cn from 'classnames';
 import { ActionNoticeProps } from './ActionNotice.types';
 import Button from '../../buttons/Button';
 
@@ -17,13 +18,17 @@ function ActionNotice({
         <div className="notice-action__text">
           {children}
         </div>
-        <div className={`button-group ${buttonsReversed ? 'button-group--reverse-on-l' : ''}`}>
-          <Button href="#" handleClick={onPrimaryButtonClick}>
-            {primaryButtonText}
-          </Button>
-          <Button href="#" variant="plain" handleClick={onSecondaryButtonClick}>
-            {secondaryButtonText}
-          </Button>
+        <div className={cn('button-group', { 'button-group--reverse-on-l': buttonsReversed })}>
+          {primaryButtonText && (
+            <Button handleClick={onPrimaryButtonClick}>
+              {primaryButtonText}
+            </Button>
+          )}
+          {secondaryButtonText && (
+            <Button variant="plain" handleClick={onSecondaryButtonClick}>
+              {secondaryButtonText}
+            </Button>
+          )}
         </div>
       </div>
     </div>
