@@ -11,7 +11,6 @@ const savedJobsLocalStorageKey = 'saved-jobs';
 
 const getSavedJobsCount = async (gdsApiKey: string, gdsApiUrl: string, checkLocalStorage = true): Promise<number> => {
   const userData = getUserData();
-  // TODO: This needs to work with anonymous users as well. Handle it when unblocked for anonymous users.
   const savedJobs = getSavedJobsLocalStorage();
   // Anon user
   if (checkLocalStorage && !userData.loginStatus) {

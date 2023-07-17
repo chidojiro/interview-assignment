@@ -32,6 +32,18 @@ jest.mock('../../../../../components/common/Icon', () => ({
 
 jest.mock('../../../../../utils/getUserData');
 
+const commonProps = {
+  searchApiUrl: 'https://exmaple.com/api/search',
+  searchApiKey: '1234',
+  size: 'l',
+  gdsApiKey: '12345',
+  gdsApiUrl: 'https://example.com/api',
+  jobPostingWebDetailId: 'def456',
+  ariaLabel: 'Save Job',
+};
+
+const dummySavedJobId = 'abc123';
+
 describe('SavedJobIcon component tests', () => {
   afterEach(() => {
     jest.clearAllMocks();
@@ -39,16 +51,7 @@ describe('SavedJobIcon component tests', () => {
 
   it('renders the component with the filled icon if savedJobId is provided', () => {
     const { container } = render(
-      <SavedJobIcon
-        searchApiUrl="1234"
-        searchApiKey="https://exmaple.com/api/search"
-        size="l"
-        gdsApiKey="12345"
-        gdsApiUrl="https://example.com/api"
-        savedJobId="abc123"
-        jobPostingWebDetailId="def456"
-        ariaLabel="Save Job"
-      />,
+      <SavedJobIcon {...commonProps} savedJobId={dummySavedJobId} />,
     );
 
     const button = container.querySelector('button');
@@ -65,15 +68,7 @@ describe('SavedJobIcon component tests', () => {
 
   it('renders the component with the empty icon if savedJobId is not provided', () => {
     const { container } = render(
-      <SavedJobIcon
-        searchApiUrl="https://example.com/search/api"
-        searchApiKey="1234"
-        size="l"
-        gdsApiKey="12345"
-        gdsApiUrl="https://example.com/api"
-        jobPostingWebDetailId="def456"
-        ariaLabel="Save Job"
-      />,
+      <SavedJobIcon {...commonProps} />,
     );
 
     const button = container.querySelector('button');
@@ -109,13 +104,7 @@ describe('SavedJobIcon component tests', () => {
 
     const { container } = render(
       <SavedJobIcon
-        searchApiUrl="https://example.com/search/api"
-        searchApiKey="1234"
-        size="l"
-        gdsApiKey="12345"
-        gdsApiUrl="https://example.com/api"
-        jobPostingWebDetailId="def456"
-        ariaLabel="Save Job"
+        {...commonProps}
       />,
     );
 
@@ -136,13 +125,7 @@ describe('SavedJobIcon component tests', () => {
     (getUserData as Mock).mockImplementation(() => ({ loginStatus: true }));
     const { container } = render(
       <SavedJobIcon
-        searchApiUrl="https://example.com/search/api"
-        searchApiKey="1234"
-        size="l"
-        gdsApiKey="12345"
-        gdsApiUrl="https://example.com/api"
-        jobPostingWebDetailId="def456"
-        ariaLabel="Save Job"
+        {...commonProps}
       />,
     );
 
@@ -161,14 +144,8 @@ describe('SavedJobIcon component tests', () => {
     (getUserData as Mock).mockImplementation(() => ({ loginStatus: true }));
     const { container } = render(
       <SavedJobIcon
-        searchApiUrl="https://example.com/search/api"
-        searchApiKey="1234"
-        size="l"
-        gdsApiKey="12345"
-        gdsApiUrl="https://example.com/api"
-        savedJobId="abc123"
-        jobPostingWebDetailId="def456"
-        ariaLabel="Save Job"
+        {...commonProps}
+        savedJobId={dummySavedJobId}
         returnJobPostingWebDetailId={() => {
         }}
       />,
