@@ -1,4 +1,4 @@
-import { PersistData } from './getUserData.type';
+import { PersistData } from './types';
 
 function getUserData(): PersistData {
   if (typeof window === 'undefined') {
