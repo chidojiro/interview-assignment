@@ -19,8 +19,8 @@ export interface ChatProps {
 }
 declare global {
   interface Window {
-    orbit: {
-      chatInstance: {
+    orbit?: {
+      chatInstance?: {
         addEventHandlers: () => void;
         handleHeaderDivider: () => void;
         toggleInputButton: () => void;
