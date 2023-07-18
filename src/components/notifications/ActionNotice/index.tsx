@@ -13,18 +13,19 @@ function ActionNotice({
   children,
 }: ActionNoticeProps) {
   return (
+
     <div className={`block bg-variant-brand-${background} notice-action`}>
       <div className="wrapper notice-action__wrapper">
         <div className="notice-action__text">
           {children}
         </div>
         <div className={cn('button-group', { 'button-group--reverse-on-l': buttonsReversed })}>
-          {primaryButtonText && (
+          {primaryButtonText && onPrimaryButtonClick && (
             <Button handleClick={onPrimaryButtonClick}>
               {primaryButtonText}
             </Button>
           )}
-          {secondaryButtonText && (
+          {secondaryButtonText && onSecondaryButtonClick && (
             <Button variant="plain" handleClick={onSecondaryButtonClick}>
               {secondaryButtonText}
             </Button>

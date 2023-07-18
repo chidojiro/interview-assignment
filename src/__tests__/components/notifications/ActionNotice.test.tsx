@@ -32,23 +32,23 @@ describe('Action notice component tests', () => {
 
   it('renders the component with secondary button', () => {
     const props: ActionNoticeProps = {
-      children: 'Test Content',
+      children: 'Test Content 2',
       background: 'secondary',
       primaryButtonText: 'Primary Button 2',
-      secondaryButtonText: 'Secondary Button',
+      secondaryButtonText: 'Secondary Button 2',
       onPrimaryButtonClick: primaryButtonClickMock,
       onSecondaryButtonClick: secondaryButtonClickMock,
     };
 
     const { getByText } = renderComponent(props);
 
-    const contentElement = getByText('Test Content');
+    const contentElement = getByText('Test Content 2');
     expect(contentElement).toBeInTheDocument();
 
     const primaryButtonElement = getByText('Primary Button 2');
     expect(primaryButtonElement).toBeInTheDocument();
 
-    const secondaryButtonElement = getByText('Secondary Button');
+    const secondaryButtonElement = getByText('Secondary Button 2');
     expect(secondaryButtonElement).toBeInTheDocument();
   });
 
@@ -56,13 +56,13 @@ describe('Action notice component tests', () => {
     const props: ActionNoticeProps = {
       children: 'Test Content',
       background: 'primary',
-      primaryButtonText: 'Primary Button',
+      primaryButtonText: 'Primary Button 3',
       onPrimaryButtonClick: primaryButtonClickMock,
     };
 
     const { getByText } = renderComponent(props);
 
-    const primaryButtonElement = getByText('Primary Button');
+    const primaryButtonElement = getByText('Primary Button 3');
     fireEvent.click(primaryButtonElement);
 
     expect(primaryButtonClickMock).toHaveBeenCalledTimes(1);
@@ -84,5 +84,35 @@ describe('Action notice component tests', () => {
     fireEvent.click(secondaryButtonElement);
 
     expect(secondaryButtonClickMock).toHaveBeenCalledTimes(1);
+  });
+
+  it('does not render primary button if onPrimaryButtonClick is undefined', () => {
+    const props: ActionNoticeProps = {
+      children: 'Test Content',
+      background: 'primary',
+      primaryButtonText: 'Primary Button',
+      onPrimaryButtonClick: primaryButtonClickMock,
+    };
+
+    const { queryByText } = renderComponent(props);
+
+    const primaryButtonElement = queryByText('Primary Button');
+    expect(primaryButtonElement).toBeNull();
+  });
+
+  it('does not render secondary button if onSecondaryButtonClick is undefined', () => {
+    const props: ActionNoticeProps = {
+      children: 'Test Content',
+      background: 'secondary',
+      primaryButtonText: 'Primary Button',
+      secondaryButtonText: 'Secondary Button',
+      onPrimaryButtonClick: primaryButtonClickMock,
+      onSecondaryButtonClick: undefined,
+    };
+
+    const { queryByText } = renderComponent(props);
+
+    const secondaryButtonElement = queryByText('Secondary Button');
+    expect(secondaryButtonElement).toBeNull();
   });
 });

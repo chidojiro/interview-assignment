@@ -6,7 +6,9 @@ import { ActionNotice } from '@ffw/randstad-shared-components';
 <ActionNotice 
   background="primary"
   primaryButtonText="check hours"
+  onPrimaryButtonClick={() => {console.log("Primary button clicked!")}}
   secondaryButtonText="change"
+  onSecondaryButtonClick={() => {console.log("Secondary button clicked!")}}
 >
   did you work 32 hours last week?
 </ActionNotice>
@@ -21,7 +23,9 @@ import { ActionNotice } from '@ffw/randstad-shared-components';
 <ActionNotice 
   background="secondary"
   primaryButtonText="check hours"
+  onPrimaryButtonClick={() => {console.log("Primary button clicked!")}}
   secondaryButtonText="change"
+  onSecondaryButtonClick={() => {console.log("Secondary button clicked!")}}
   buttonsReversed={false}
 >
   did you work 32 hours last week?
@@ -38,6 +42,7 @@ import { ActionNotice } from '@ffw/randstad-shared-components';
 <ActionNotice 
   background="tertiary"
   primaryButtonText="check hours"
+  onPrimaryButtonClick={() => {console.log("Primary button clicked!")}}
 >
   did you work 32 hours last week?
 </ActionNotice>
@@ -53,7 +58,9 @@ import { ActionNotice } from '@ffw/randstad-shared-components';
 <ActionNotice 
   background="quaternary"
   primaryButtonText="check hours"
+  onPrimaryButtonClick={() => {console.log("Primary button clicked!")}}
   secondaryButtonText="change"
+  onSecondaryButtonClick={() => {console.log("Secondary button clicked!")}}
 >
   did you work 32 hours last week?
 </ActionNotice>
@@ -68,7 +75,9 @@ import { ActionNotice } from '@ffw/randstad-shared-components';
 <ActionNotice 
   background="quinary"
   primaryButtonText="check hours"
+  onPrimaryButtonClick={() => {console.log("Primary button clicked!")}}
   secondaryButtonText="change"
+  onSecondaryButtonClick={() => {console.log("Secondary button clicked!")}}
 >
   did you work 32 hours last week?
 </ActionNotice>
@@ -83,7 +92,9 @@ import { ActionNotice } from '@ffw/randstad-shared-components';
 <ActionNotice 
   background="senary"
   primaryButtonText="check hours"
+  onPrimaryButtonClick={() => {console.log("Primary button clicked!")}}
   secondaryButtonText="change"
+  onSecondaryButtonClick={() => {console.log("Secondary button clicked!")}}
 >
   did you work 32 hours last week?
 </ActionNotice>

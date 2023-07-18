@@ -5,7 +5,7 @@ export interface ActionNoticeProps {
   background: ActionNoticeBackground;
   primaryButtonText: string;
   secondaryButtonText?: string;
-  onPrimaryButtonClick?: (event: React.MouseEvent) => void;
+  onPrimaryButtonClick: (event: React.MouseEvent) => void;
   onSecondaryButtonClick?: (event: React.MouseEvent) => void;
   buttonsReversed?: boolean;
 }
