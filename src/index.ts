@@ -35,6 +35,7 @@ import ShowMoreToggle from './components/show-more/ShowMoreToggle';
 import Notice from './components/notifications/Notice';
 import { NoticeType } from './components/notifications/Notice/Notice.types';
 import TextNotice from './components/notifications/TextNotice';
+import ActionNotice from './components/notifications/ActionNotice';
 import { TextNoticeBackground } from './components/notifications/TextNotice/TextNotice.types';
 import Toast from './components/notifications/Toast';
 import Footer from './components/footer/Footer';
@@ -119,6 +120,7 @@ export {
   FieldError,
   Notice,
   TextNotice,
+  ActionNotice,
   SelectField,
   InputField,
   DatePicker,
