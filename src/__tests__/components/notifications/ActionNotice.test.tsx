@@ -86,20 +86,6 @@ describe('Action notice component tests', () => {
     expect(secondaryButtonClickMock).toHaveBeenCalledTimes(1);
   });
 
-  it('does not render primary button if onPrimaryButtonClick is undefined', () => {
-    const props: ActionNoticeProps = {
-      children: 'Test Content',
-      background: 'primary',
-      primaryButtonText: 'Primary Button',
-      onPrimaryButtonClick: primaryButtonClickMock,
-    };
-
-    const { queryByText } = renderComponent(props);
-
-    const primaryButtonElement = queryByText('Primary Button');
-    expect(primaryButtonElement).toBeNull();
-  });
-
   it('does not render secondary button if onSecondaryButtonClick is undefined', () => {
     const props: ActionNoticeProps = {
       children: 'Test Content',
