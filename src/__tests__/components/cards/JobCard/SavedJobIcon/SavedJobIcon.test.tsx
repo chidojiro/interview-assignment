@@ -40,6 +40,7 @@ const commonProps = {
   gdsApiUrl: 'https://example.com/api',
   jobPostingWebDetailId: 'def456',
   ariaLabel: 'Save Job',
+  locale: 'en',
 };
 
 const dummySavedJobId = 'abc123';

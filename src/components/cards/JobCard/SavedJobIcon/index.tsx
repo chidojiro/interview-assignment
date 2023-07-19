@@ -17,6 +17,7 @@ function SavedJobIcon({
   jobPostingWebDetailId,
   ariaLabel,
   returnJobPostingWebDetailId,
+  locale,
 }: SavedJobIconProps) {
   const [iconFilled, setIconFilled] = useState(savedJobId);
   const iconClasses = cn('icon', {
@@ -29,10 +30,10 @@ function SavedJobIcon({
     const { loginStatus } = getUserData();
 
     if (!loginStatus) {
-      const filled = await handleAnonymousSavedJobs(searchApiUrl, searchApiKey, jobPostingWebDetailId);
-      if (filled) {
+      const filled = await handleAnonymousSavedJobs(searchApiUrl, searchApiKey, jobPostingWebDetailId, locale);
+      if (filled && !iconFilled) {
         setIconFilled('filled');
-      } else {
+      } else if (!filled && iconFilled) {
         if (returnJobPostingWebDetailId) {
           returnJobPostingWebDetailId(jobPostingWebDetailId);
         }
