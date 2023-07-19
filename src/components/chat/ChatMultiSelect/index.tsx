@@ -7,8 +7,8 @@ function ChatMultiSelect({ items }: ChatMultiSelectProps) {
     const multiSelectButtons = document.querySelector('[data-rs-chat-tags]');
     if (!multiSelectButtons) return;
 
-    if ((window as Window).orbit && (window as Window).orbit.chatInstance) {
-      (window as Window).orbit.chatInstance.handleTagDialogButtons();
+    if ((window as Window).orbit && (window as Window).orbit?.chatInstance) {
+      (window as Window).orbit?.chatInstance?.handleTagDialogButtons();
     }
   }, []);
 
