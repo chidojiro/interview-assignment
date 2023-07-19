@@ -3,13 +3,13 @@ import { JobItemMetadataProps } from './JobItemMetadata/JobItemMetadata.types';
 interface SavedJobsProps {
   gdsApiKey: string;
   gdsApiUrl: string;
-
   searchApiUrl: string;
   searchApiKey: string;
   jobPostingWebDetailId: string;
   savedJobId?: string;
   ariaLabel?: string;
   returnJobPostingWebDetailId?: (jobPostingWebDetailId: string) => void;
+  locale: string;
 }
 
 export interface JobCardProps extends JobItemMetadataProps {

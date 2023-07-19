@@ -99,13 +99,15 @@ export const transferSavedJobStructure = (job: RXPJob): LocalStorageSavedJob => 
  *  The Search Api's key.
  * @param jobId
  *  The jobId that we need to process.
+ * @param locale
+ *  The current locale of the app.
  *
  *  @returns boolean
  *    Used for if we need to fill the heart icon, or unfill it.
  *    true = we need to fill it.
  *    false = we need to unfill it.
  */
-const handleAnonymousSavedJobs = async (searchApiUrl: string, searchApiKey: string, jobId: string): Promise<boolean> => {
+const handleAnonymousSavedJobs = async (searchApiUrl: string, searchApiKey: string, jobId: string, locale: string): Promise<boolean> => {
   let savedJobs: LocalStorageSavedJobs | undefined = getSavedJobsLocalStorage();
   if (savedJobs && savedJobs.content) {
     // Search if we have the job in the local storage.
@@ -136,12 +138,19 @@ const handleAnonymousSavedJobs = async (searchApiUrl: string, searchApiKey: stri
     savedJobs.totalElements = 0;
   }
 
-  // If we got here, then this means that we need to add to the array
-  const result = await searchByJobId(searchApiUrl, searchApiKey, jobId);
+  // If we got here, then this means that we need to query the api for the job.
+  const result = await searchByJobId(searchApiUrl, searchApiKey, jobId, locale);
+
+  // If there is no result, this means that there is some kind of error. We return false, as we don't want to update anything.
+  if (!result) {
+    return false;
+  }
+
   savedJobs.content.push(transferSavedJobStructure(result));
   savedJobs.totalElements += 1;
 
   saveSavedJobsToLocalStorage(savedJobs);
+
   return true;
 };
 

@@ -40,4 +40,6 @@ export type LocalStorageSavedJob = {
 export type LocalStorageSavedJobs = {
   content?: LocalStorageSavedJob[];
   totalElements?: number;
+  pageNumber?: number;
+  pageSize?: number;
 };

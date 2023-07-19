@@ -1,6 +1,6 @@
 import { Menu, MenuItem, Routes } from './headerUtils.types';
 
-export const getCurrentMenuItemUrl = (mainMenuItems:[], baseUrl: string, currentUrl: string) =>
+export const getCurrentMenuItemUrl = (mainMenuItems: MenuItem[], baseUrl: string, currentUrl: string) =>
   // Get the menu item url that best matches the current url
   // (from a two level navigation - without homepage "/" that will always match)
   mainMenuItems
