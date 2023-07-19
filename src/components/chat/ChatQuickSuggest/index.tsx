@@ -4,8 +4,8 @@ import Button from '../../buttons/Button';
 
 function ChatQuickSuggest({ items }: ChatQuickSuggestProps) {
   useEffect(() => {
-    if ((window as Window).orbit && (window as Window).orbit.chatInstance) {
-      (window as Window).orbit.chatInstance.quickSuggestButtonsHandler();
+    if ((window as Window).orbit && (window as Window).orbit?.chatInstance) {
+      (window as Window).orbit?.chatInstance?.quickSuggestButtonsHandler();
     }
   }, []);
 
