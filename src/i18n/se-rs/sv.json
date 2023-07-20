@@ -1,0 +1,18 @@
+{
+  "Shared.Components.Popup.myRandstad.Title": "my randstad",
+  "Shared.Components.Popup.Logout.Title": "log out",
+  "Shared.Components.Popup.Favourites.AriaLabel": "favorite jobs",
+  "Shared.Components.Popup.Heading1": "start your",
+  "Shared.Components.Popup.Heading2": "jobhunt",
+  "Shared.Components.Popup.Text1": "register in 1 minute",
+  "Shared.Components.Popup.Text2": "apply faster to jobs",
+  "Shared.Components.Popup.Text3": "have better matching jobs",
+  "Shared.Components.Popup.Register.Text": "register for free",
+  "Shared.Components.Popup.Login.Text": "log in to my randstad",
+  "Shared.Components.Popup.Greeting.Hi": "hi",
+
+  "Shared.Components.DatePicker.LongMonths": "january, february, march, april, may, june, july, august, september, october, november, december",
+  "Shared.Components.DatePicker.ShortMonths": "jan, feb, mar, apr, may, jun, jul, aug, sept, oct, nov, dec",
+  "Shared.Components.DatePicker.ShortWeeks": "su, mo, tu, we, th, fr, sa",
+  "Shared.Components.DatePicker.ClearText": "clear"
+}
