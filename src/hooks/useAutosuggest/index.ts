@@ -72,7 +72,12 @@ const useAutosuggest = ({
   const wrapperRef = useRef(null);
   const activeListItemRef = useRef(null);
 
-  const debounceInputValue = useDebounce(inputValue);
+  /**
+   * The default timeout is 150 which restricts the number of requests for a given time while the user is typing.
+   * This delay delays the setting of the state value which comes from the user input.
+   * If the requests fail for sending high amount of requests - increase the delay.
+   */
+  const debounceInputValue = useDebounce(inputValue, 150);
   const filterList = useMemo(() => items.filter((l) => l.toLowerCase().indexOf(inputValue.trim().toLowerCase()) > -1), [items, inputValue]);
 
   const filteredList = skipFilter ? items : filterList;

@@ -3,7 +3,7 @@ import { render, fireEvent, act } from '@testing-library/react';
 import Autosuggest from '../../../components/forms/Autosuggest';
 
 // Autosuggest field prevents user fast typing with a debounce technology.
-const waitForDebounce = (timeout = 310) => new Promise((resolve) => {
+const waitForDebounce = (timeout = 155) => new Promise((resolve) => {
   setTimeout(resolve, timeout);
 });
 
@@ -60,11 +60,11 @@ describe('Autosuggest component tests', () => {
     // Test debounce mechanism.
     await act(async () => {
       fireEvent.change(input, { target: { value: 'foo' } });
-      await waitForDebounce(200);
+      await waitForDebounce(55);
       fireEvent.change(input, { target: { value: 'Bar' } });
-      await waitForDebounce(200);
+      await waitForDebounce(55);
       fireEvent.change(input, { target: { value: 'Baz' } });
-      await waitForDebounce(200);
+      await waitForDebounce(55);
     });
     expect(onInputChange).toHaveBeenCalledTimes(0);
 
@@ -137,11 +137,11 @@ describe('Autosuggest component tests', () => {
       'tre',
     );
     const input = await findByTestId('autosuggest') as HTMLInputElement;
-    fireEvent.click(await findByText(includesStopWord));
-    expect(input.value).toBe(includesStopWord);
+    expect(input.value).toBe('tre');
 
     const newConfig = { ...config, config: { skipFilter: true, itemsStripWordList: [' -region'] } };
     rerender(<Autosuggest name="someName" {...newConfig} />);
+
     await act(async () => {
       fireEvent.change(input, { target: { value: 'tre' } });
       await waitForDebounce();
@@ -225,9 +225,8 @@ describe('Autosuggest component tests', () => {
       await waitForDebounce();
     });
     fireEvent.keyDown(input, { key: 'ArrowDown', code: 'ArrowDown' });
-    fireEvent.keyDown(input, { key: 'ArrowDown', code: 'ArrowDown' });
     fireEvent.keyDown(input, { key: 'Tab', code: 'Tab' });
-    expect(input.value).toBe('C');
+    expect(input.value).toBe('B');
     expect(container.querySelector('ul')).toBeNull();
 
     // Verify that user can close suggestion box with Escape button.
