@@ -3,7 +3,7 @@ import cn from 'classnames';
 import { ChatReplyProps } from './ChatReply';
 
 function ChatReply({
-  type, first = false, logoAltText = 'logo Randstad', children,
+  type, first = false, logoAltText = 'logo Randstad', children, ...props
 }: ChatReplyProps) {
   const imgPath = !process.env.NEXT_PUBLIC_RESOURCE_PREFIX ? '/src/assets/img/randstad-wings.jpg' : `${process.env.NEXT_PUBLIC_RESOURCE_PREFIX}/src/assets/img/randstad-wings.jpg`;
   return (
@@ -18,9 +18,9 @@ function ChatReply({
           <img src={imgPath} alt={logoAltText} />
         </div>
       )}
-      <div className={cn(`chat__content chat__content--${type} speech-bubble speech-bubble--${type}`)}>
-        {children}
-      </div>
+      {/* Chat replies come as string with HTML. */}
+      {/* eslint-disable-next-line react/no-danger */}
+      <div className={cn(`chat__content chat__content--${type} speech-bubble speech-bubble--${type}`)} {...props} dangerouslySetInnerHTML={{ __html: children || '' }} />
     </div>
   );
 }

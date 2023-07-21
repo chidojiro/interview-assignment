@@ -1,8 +1,12 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import cn from 'classnames';
 import Icon from '../../common/Icon';
 import { ChatProps } from './Chat.types';
+import ChatReply from '../ChatReply';
+import ChatLoader from '../ChatLoader';
+import ChatQuickSuggest from '../ChatQuickSuggest';
 
-function Chat({ children, settings }: ChatProps) {
+function Chat({ settings, replies }: ChatProps) {
   const {
     title,
     closeButtonAriaLabel,
@@ -13,8 +17,11 @@ function Chat({ children, settings }: ChatProps) {
     submitButtonText = 'submit',
     selectedOptionsText = 'selected',
     startConversationButtonText,
+    hiddenByDefault = true,
     handleSendButton,
   } = settings;
+  const [loading, setLoading] = useState(true);
+  const [replyComponents, setReplyComponents] = useState<React.ReactNode[]>([]);
   const ref = useRef(null);
   const textAreaRef = useRef(null);
   const imgPath = !process.env.NEXT_PUBLIC_RESOURCE_PREFIX ? '/src/assets/img/randstad-wings.jpg' : `${process.env.NEXT_PUBLIC_RESOURCE_PREFIX}/src/assets/img/randstad-wings.jpg`;
@@ -32,11 +39,34 @@ function Chat({ children, settings }: ChatProps) {
     new OrbitComponent(textAreaRef.current);
   }, []);
 
+  useEffect(() => {
+    if (replies) {
+      const newReplies = replies.map((reply, index: number) => {
+        if (reply.text) {
+          return <ChatReply type="bot" key={`reply-${reply.text}`} first={index === 0}>{reply.text}</ChatReply>;
+        }
+        if (reply.qs) {
+          const quickSuggestItems = reply.qs.map(((quickSuggest) => ({ value: quickSuggest.text })));
+          return <ChatQuickSuggest key={`quick-sugguset-${quickSuggestItems[0].value}`} items={quickSuggestItems} />;
+        }
+        return null;
+      });
+      setLoading(false);
+      setReplyComponents(newReplies);
+    }
+  }, [replies]);
+
   return (
     <div className="bluex-chat-bot" data-chatbot-id="some-chat-id" data-chatbot-init-timeout="120" data-chatbot-re-init="true" data-chatbot-dynamo-langcode="en" data-chatbot-langcode="en">
-      <div className="chat chat--embed" data-rs-chat="" ref={ref}>
+      <div
+        className={cn('chat chat--embed', {
+          'display-none': hiddenByDefault,
+        })}
+        data-rs-chat=""
+        ref={ref}
+      >
         <div className="chat__wrapper">
-          <div className="chat__header divider" data-rs-chat-header="">
+          <div className="chat__header divider divider--is-hidden" data-rs-chat-header="">
             <div className="avatar aspect-ratio aspect-ratio--1-1 avatar--S mr-xs">
               <img src={imgPath} alt={logoAltText} />
             </div>
@@ -49,7 +79,8 @@ function Chat({ children, settings }: ChatProps) {
             </button>
           </div>
           <div className="chat__box" data-rs-chat-box="chat" data-rs-textarea-scroll-area="">
-            {children}
+            {replyComponents}
+            {loading && <ChatLoader />}
           </div>
           <div className="chat__footer divider divider--top">
             <div className="flex items-end" data-rs-chat-input>
@@ -147,7 +178,7 @@ function Chat({ children, settings }: ChatProps) {
       </div>
       <a
         href="#?"
-        className="button button--m button--filled hidden--from-l display-none"
+        className="button button--m button--filled hidden--from-l display-none chat-minimized--button"
         role="button"
         tabIndex={0}
         data-rs-chat-minimized="false"
