@@ -9,6 +9,7 @@ import getUserData from './getUserData';
 import getSavedJobsLocalStorage from './savedJobsLocalStorage/getSavedJobsLocalStorage';
 import removeSavedJobsFromLocalStorage from './savedJobsLocalStorage/removeSavedJobsLocalStorage';
 import saveSavedJobsToLocalStorage from './savedJobsLocalStorage/saveSavedJobsLocalStorage';
+import { gtmScriptInitializer, gtmDataLayerPushHandler } from './gtm/index';
 
 export {
   savedJobsHandler,
@@ -18,6 +19,8 @@ export {
   getSavedJobsLocalStorage,
   removeSavedJobsFromLocalStorage,
   saveSavedJobsToLocalStorage,
+  gtmScriptInitializer,
+  gtmDataLayerPushHandler,
 };
 
 export type { AlreadyUploadedFile, LocalStorageSavedJob, LocalStorageSavedJobs, Job };
