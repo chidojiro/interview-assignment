@@ -62,6 +62,7 @@ export interface HeaderProps {
     buttonSuccessText: Record<string, string>;
     buttonCloseText: Record<string, string>;
   };
+  gtmId?: string;
 }
 
 type Menu = {
