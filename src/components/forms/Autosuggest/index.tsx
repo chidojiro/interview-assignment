@@ -4,6 +4,7 @@ import useAutosuggest from '../../../hooks/useAutosuggest';
 import withField from '../../../hoc/withField';
 import ListItemMark from './ListItemMark';
 import FormGroup from '../FormGroup';
+import Icon from '../../common/Icon';
 import { AutosuggestPropTypes } from './Autosuggest.types';
 
 /**
@@ -15,6 +16,8 @@ import { AutosuggestPropTypes } from './Autosuggest.types';
  * **Wrapped with `FormGroup` component and support its props.**
  */
 function Autosuggest({
+  customInput = false,
+  customInputLabel = 'Add:',
   items = [],
   onInputChange,
   onSelectItem,
@@ -32,18 +35,31 @@ function Autosuggest({
     open, inputValue, list, isNoResults,
   } = values;
 
-  const { inputProps, wrapperProps, listItemProps } = props;
+  const {
+    inputProps,
+    wrapperProps,
+    listItemProps,
+  } = props;
+
   return (
     <FormGroup {..._formGroupProps}>
       <div {...wrapperProps}>
         <input {...fieldProps} {...inputProps} type="text" autoComplete="off" onKeyDown={(e) => open && e.key === 'Enter' && e.preventDefault()} />
         {open && (
           <ul className="select-menu__list">
+            {customInput && listItemProps && (
+              <li {...listItemProps(inputValue, 0, true)}>
+                <Icon iconType="add" />
+                {customInputLabel}
+                {' '}
+                {inputValue}
+              </li>
+            )}
             {list && listItemProps && list.map((listItem, i) => (
               listItem !== undefined && (
                 // No unique id that we can use for the key installed of index.
                 //  eslint-disable-next-line react/no-array-index-key
-                <li key={`list-item-${i}`} {...listItemProps(listItem, i)}>
+                <li key={`list-item-${i}`} {...listItemProps(listItem, customInput ? i + 1 : i)}>
                   <ListItemMark inputValue={inputValue}>{listItem}</ListItemMark>
                 </li>
               )

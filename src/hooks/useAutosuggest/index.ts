@@ -20,6 +20,7 @@ const classes = {
   },
   item: {
     base: 'select-menu__item',
+    action: 'select-menu__item--action',
     active: 'select-menu__item--preselect',
   },
 };
@@ -213,7 +214,7 @@ const useAutosuggest = ({
   };
 
   // This should be pass to the items in the list
-  const listItemProps = (listItem: string, index: number) => {
+  const listItemProps = (listItem: string, index: number, customValue?: boolean) => {
     const active = selectedIndex === index;
     // Active item should get ref.
     const ref = active ? { ref: activeListItemRef } : {};
@@ -221,7 +222,7 @@ const useAutosuggest = ({
     return {
       onMouseEnter: () => setSelectedIndex(index),
       onClick: () => handleSelectedItem(listItem),
-      className: `${classes.item.base} ${active ? classes.item.active : ''}`,
+      className: `${classes.item.base} ${active ? classes.item.active : ''} ${customValue ? classes.item.action : ''}`,
       ...ref,
     };
   };
