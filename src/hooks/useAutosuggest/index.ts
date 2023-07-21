@@ -121,10 +121,10 @@ const useAutosuggest = ({
   // Event handlers.
   const handleInputChange = ({ target }: React.ChangeEvent) => {
     const { value } = target as HTMLInputElement;
+    if (previousInputValue === value) return;
+
     // Close the list if value is empty.
     setOpen(!!value);
-
-    if (previousInputValue === value) return;
 
     setInputValue(value);
   };
