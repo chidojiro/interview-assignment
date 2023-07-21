@@ -1,6 +1,6 @@
-import { CustomWindow } from './types';
+import { CustomWindow, DataLayerEventObjectType } from './types';
 
-export function gtmDataLayerPushHandler(eventDataObject: Record<string, object>) {
+export function gtmDataLayerPushHandler(eventDataObject: DataLayerEventObjectType) {
   (window as unknown as CustomWindow).dataLayer = (window as unknown as CustomWindow).dataLayer || [];
   // Pushes { event_params: null }, as in documentation, before every event.
   (window as unknown as CustomWindow).dataLayer.push({ event_params: null });
