@@ -1,9 +1,9 @@
 import { AxiosResponse } from 'axios';
-import { Data, TalentAppApi } from '../talentAppApi';
-import getUserData from '../getUserData';
+import { Data, TalentAppApi } from '../../talentAppApi';
+import getUserData from '../../getUserData';
 import { LocalStorageSavedJob, LocalStorageSavedJobs, SavedJobsResponse } from './savedJobsHandler.types';
-import searchByJobId from '../searchApi/searchByJobId';
-import { RXPJob } from '../searchApi/types';
+import searchByJobId from '../../searchApi/searchByJobId';
+import { RXPJob } from '../../searchApi/types';
 import getSavedJobsLocalStorage from '../savedJobsLocalStorage/getSavedJobsLocalStorage';
 import saveSavedJobsToLocalStorage from '../savedJobsLocalStorage/saveSavedJobsLocalStorage';
 
