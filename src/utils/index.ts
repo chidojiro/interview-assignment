@@ -9,7 +9,7 @@ import getUserData from './getUserData';
 import getSavedJobsLocalStorage from './savedJobsLocalStorage/getSavedJobsLocalStorage';
 import removeSavedJobsFromLocalStorage from './savedJobsLocalStorage/removeSavedJobsLocalStorage';
 import saveSavedJobsToLocalStorage from './savedJobsLocalStorage/saveSavedJobsLocalStorage';
-import { gtmScriptInitializer, gtmDataLayerPushHandler } from './gtm/index';
+import { gtmScriptInitializer, gtmDataLayerPushHandler } from './gtm';
 import { DataLayerEventObjectType } from './gtm/types';
 
 export {
