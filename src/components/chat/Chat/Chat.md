@@ -13,74 +13,29 @@ Chat component embedded.
     closeButtonAriaLabel: 'close button aria label',
     logoAltText: 'logo Randstad',
     startConversationButtonText: 'start conversation',
+    hiddenByDefault: false,
     handleSendButton: handleClick,
   };
 
-  const quickSuggestItems = [
-    {
-      value: 'London',
-    },
-    {
-      value: 'Chesterton',
-    },
-    {
-      value: 'Very long name to see what happens when it spans more than one line',
-    },
-  ];
+const replies = [
+  {
+    // Chat api returns html.
+    // eslint-disable-next-line xss/no-mixed-html
+    text: "Welcome back, <span translate=\"no\">Test</span>. I see you're interested in our <span translate=\"no\">Open Temp test job 1</span> job in <span translate=\"no\">Jönköping, None</span>. It should take about 3 minutes to find out if this job is well suited to you. Would you like to get to it?",
+  },
+  {
+    qs: [
+      {
+        value: 'Yes',
+        text: 'Yes',
+      },
+      {
+        value: 'No',
+        text: 'No',
+      },
+    ],
+  },
+];
 
-  const multiSelectItems = [
-    {
-      value: 'English',
-      label: 'English',
-    },
-    {
-      value: 'French',
-      label: 'French',
-    },
-    {
-      value: 'Dutch',
-      label: 'Dutch',
-    },
-    {
-      value: 'German',
-      label: 'German',
-    },
-    {
-      value: 'Spanish',
-      label: 'Spanish',
-    },
-    {
-      value: 'Italian',
-      label: 'Italian',
-    },
-  ];
-
-  <Chat settings={settings}>
-    <ChatReply type="bot" first={true} >
-      Welcome, I am your virtual application assistant. Thank you for your
-      interest in working for
-      {' '}
-      <a href="#" target="_blank" className="link">Amazon</a>
-      . I will
-      help you complete your application. 🔥
-    </ChatReply>
-    <ChatReply type="bot" >
-      Fill in your name below
-    </ChatReply>
-    <ChatLoader />
-    <ChatReply type="user" first={true}>
-      This is a multi line sentence. You can have more than two beautiful lines.
-    </ChatReply>
-    <ChatReply type="user">
-      Single line sentence 😀
-    </ChatReply>
-    <ChatReply type="bot">
-      What do you see?
-    </ChatReply>
-    <ChatQuickSuggest items={quickSuggestItems} />
-    <ChatReply type="bot">
-      What languages do you speak?
-    </ChatReply>
-    <ChatMultiSelect items={multiSelectItems} />
-  </Chat>
+  <Chat settings={settings} replies={replies} />
   ```

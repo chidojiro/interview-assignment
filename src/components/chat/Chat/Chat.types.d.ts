@@ -10,11 +10,20 @@ export type ChatSettings = {
   submitButtonText?: string | React.ReactNode;
   selectedOptionsText?: string;
   startConversationButtonText: string | React.ReactNode;
+  hiddenByDefault?: boolean;
   handleSendButton: () => void;
 };
 
+export type Reply = {
+  text?: string;
+  qs?: Array<{
+    value: string | number;
+    text: string;
+  }>;
+};
+
 export interface ChatProps {
-  children?: React.ReactNode | React.ReactNode[];
+  replies?: Reply[];
   settings: ChatSettings;
 }
 declare global {
