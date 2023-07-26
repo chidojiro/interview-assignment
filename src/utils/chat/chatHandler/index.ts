@@ -30,7 +30,8 @@ const initChat = async (
       console.error('ChatInit Error: ', err);
       return undefined;
     });
-  if (response) {
+
+  if (response && response.status === 200) {
     return response?.data;
   }
 
