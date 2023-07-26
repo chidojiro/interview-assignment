@@ -1,4 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, {
+  useEffect, useRef, useState, KeyboardEvent,
+} from 'react';
 import cn from 'classnames';
 import Icon from '../../common/Icon';
 import { ChatProps } from './Chat.types';
@@ -25,6 +27,12 @@ function Chat({ settings, replies }: ChatProps) {
   const ref = useRef(null);
   const textAreaRef = useRef(null);
   const imgPath = !process.env.NEXT_PUBLIC_RESOURCE_PREFIX ? '/src/assets/img/randstad-wings.jpg' : `${process.env.NEXT_PUBLIC_RESOURCE_PREFIX}/src/assets/img/randstad-wings.jpg`;
+
+  const handleSendOnEnterPress = (e: KeyboardEvent) => {
+    if ((e.target as HTMLTextAreaElement).value.trim().length && e.key === 'Enter') {
+      handleSendButton();
+    }
+  };
 
   useEffect(() => {
     if (!ref.current) return;
@@ -65,7 +73,7 @@ function Chat({ settings, replies }: ChatProps) {
         data-rs-chat=""
         ref={ref}
       >
-        <div className="chat__wrapper">
+        <div className="chat__wrapper" data-rs-chat-main>
           <div className="chat__header divider divider--is-hidden" data-rs-chat-header="">
             <div className="avatar aspect-ratio aspect-ratio--1-1 avatar--S mr-xs">
               <img src={imgPath} alt={logoAltText} />
@@ -91,6 +99,7 @@ function Chat({ settings, replies }: ChatProps) {
                 data-rs-textarea="expand"
                 data-rs-chat-textarea=""
                 ref={textAreaRef}
+                onKeyDown={handleSendOnEnterPress}
               />
               <button type="button" className="button button--icon button--filled" data-rs-chat-button="" onClick={() => handleSendButton()}>
                 <span className="button__text">{sendButtonText}</span>
