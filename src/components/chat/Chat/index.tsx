@@ -8,7 +8,10 @@ import ChatReply from '../ChatReply';
 import ChatLoader from '../ChatLoader';
 import ChatQuickSuggest from '../ChatQuickSuggest';
 
-function Chat({ settings, replies }: ChatProps) {
+function Chat({
+  settings,
+  replies,
+}: ChatProps) {
   const {
     title,
     closeButtonAriaLabel,
@@ -21,6 +24,8 @@ function Chat({ settings, replies }: ChatProps) {
     startConversationButtonText,
     hiddenByDefault = true,
     handleSendButton,
+    handleOnChange,
+    handleQuickSuggest,
   } = settings;
   const [loading, setLoading] = useState(true);
   const [replyComponents, setReplyComponents] = useState<React.ReactNode[]>([]);
@@ -45,7 +50,19 @@ function Chat({ settings, replies }: ChatProps) {
     if (!textAreaRef.current) return;
     const { TextArea: OrbitComponent } = require('@ffw/randstad-local-orbit/original/js/components/text-area');
     new OrbitComponent(textAreaRef.current);
-  }, []);
+
+    if (handleOnChange && window.orbit?.chatInstance) {
+      window.orbit.chatInstance.textarea.addEventListener('input', handleOnChange);
+    }
+
+    // We need to delete the handleOnChange event.
+    // eslint-disable-next-line consistent-return
+    return () => {
+      if (handleOnChange && window.orbit?.chatInstance) {
+        window.orbit.chatInstance.textarea.removeEventListener('input', handleOnChange);
+      }
+    };
+  }, [handleOnChange]);
 
   useEffect(() => {
     if (replies) {
@@ -54,15 +71,15 @@ function Chat({ settings, replies }: ChatProps) {
           return <ChatReply type="bot" key={`reply-${reply.text}`} first={index === 0}>{reply.text}</ChatReply>;
         }
         if (reply.qs) {
-          const quickSuggestItems = reply.qs.map(((quickSuggest) => ({ value: quickSuggest.text })));
-          return <ChatQuickSuggest key={`quick-sugguset-${quickSuggestItems[0].value}`} items={quickSuggestItems} />;
+          const quickSuggestItems = reply.qs.map(((quickSuggest) => ({ value: quickSuggest.text, payload: quickSuggest.payload, text: '' })));
+          return <ChatQuickSuggest key={`quick-sugguset-${quickSuggestItems[0].value}`} items={quickSuggestItems} handleQuickSuggest={handleQuickSuggest} />;
         }
         return null;
       });
       setLoading(false);
       setReplyComponents(newReplies);
     }
-  }, [replies]);
+  }, [replies, handleQuickSuggest]);
 
   return (
     <div className="bluex-chat-bot" data-chatbot-id="some-chat-id" data-chatbot-init-timeout="120" data-chatbot-re-init="true" data-chatbot-dynamo-langcode="en" data-chatbot-langcode="en">

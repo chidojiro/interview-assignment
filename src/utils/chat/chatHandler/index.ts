@@ -38,4 +38,33 @@ const initChat = async (
   return undefined;
 };
 
-export { initChat };
+const continueConversation = async (
+  chatId: string,
+  chatApiKey: string,
+  chatApiUrl: string,
+  conversationId: string,
+  responseId: string,
+  request_type: string,
+  reply_text?: string,
+  data?: string,
+) => {
+  const chatApi = new ChatApi(chatId, chatApiKey, chatApiUrl);
+
+  try {
+    const response = await chatApi.continueConversation<Data, AxiosResponse<ChatConversation>>(chatApiKey, conversationId, responseId, {
+      request_type,
+      reply_text,
+      data,
+    });
+
+    return response.data;
+  } catch (error) {
+    // We need to log the error.
+    // eslint-disable-next-line no-console
+    console.error('Error continue conversation ', error);
+  }
+
+  return undefined;
+};
+
+export { initChat, continueConversation };

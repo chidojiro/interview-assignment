@@ -7,6 +7,12 @@ export type Data = {
   [id: string]: any;
 };
 
+export type ContinueRequest = {
+  request_type: string;
+  reply_text?: string;
+  data?: string;
+};
+
 export class ChatApi {
   axiosInstance = axios.create({});
 
@@ -40,13 +46,26 @@ export class ChatApi {
       timezoneName: chatTimezone,
       dateFormat: chatDateFormat,
     };
-
     const headers = {
       'Content-Type': 'application/json',
       'x-api-key': chatApiKey,
     };
 
     return this.axiosInstance.post(url, data, { headers });
+  }
+
+  async continueConversation<T = Data, R = AxiosResponse<T>>(
+    apiKey: string,
+    conversationId: string,
+    responseId: string,
+    request: ContinueRequest,
+  ): Promise<R> {
+    const url = `${this.chatApiUrl}${conversationId}/${responseId}`;
+    const headers = {
+      'Content-Type': 'application/json',
+      'x-api-key': apiKey,
+    };
+    return this.axiosInstance.post(url, request, { headers });
   }
 }
 
