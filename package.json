@@ -28,7 +28,8 @@
     "lint": "eslint .",
     "fmt": "prettier --write .",
     "postinstall": "yarn docs:fetch-assets",
-    "build-css": "node_modules/.bin/gulp build --cwd assets"
+    "build-css": "node_modules/.bin/gulp build --cwd assets",
+    "update-orbit": "yarn upgrade @ffw/randstad-local-orbit"
   },
   "lint-staged": {
     "*.{ts, tsx}": [
