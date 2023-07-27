@@ -10,7 +10,7 @@ import getSavedJobsLocalStorage from './savedJobsLocalStorage/getSavedJobsLocalS
 import removeSavedJobsFromLocalStorage from './savedJobsLocalStorage/removeSavedJobsLocalStorage';
 import saveSavedJobsToLocalStorage from './savedJobsLocalStorage/saveSavedJobsLocalStorage';
 import { gtmScriptInitializer, gtmDataLayerPushHandler } from './gtm';
-import { DataLayerEventObjectType } from './gtm/types';
+import type { DataLayerEventObjectType } from './gtm/types';
 
 export {
   savedJobsHandler,
