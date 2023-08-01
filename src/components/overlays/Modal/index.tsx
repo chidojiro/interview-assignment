@@ -13,6 +13,7 @@ function Modal({
   footerDividerTop = false,
   modalOverflow = false,
   bgVariantBrand,
+  disableBrowserHistory = false,
 }: ModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
 
@@ -48,8 +49,18 @@ function Modal({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const additionalAttributes: { [key:string]: string } = {};
+  if (disableBrowserHistory) {
+    additionalAttributes['data-rs-modal-disable-window-history'] = '';
+  }
+
   return (
-    <div ref={modalRef} className="modal" data-rs-modal="modal">
+    <div
+      ref={modalRef}
+      className="modal"
+      data-rs-modal="modal"
+      {...additionalAttributes}
+    >
       <div
         className={`modal__dialog ${bgVariantBrand || 'bg-variant-brand-tertiary'}`}
         role="dialog"

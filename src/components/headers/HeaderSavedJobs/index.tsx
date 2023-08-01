@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getSavedJobsCount } from '../../../utils/savedJobsHandler';
+import { getSavedJobsCount } from '../../../utils/savedJobs/savedJobsHandler';
 import Icon from '../../common/Icon';
 import { HeaderSavedJobsProps } from './HeaderSavedJobs.types';
 

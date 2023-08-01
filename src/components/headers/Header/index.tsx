@@ -23,6 +23,7 @@ import getUserData from '../../../utils/getUserData';
 import HeaderSavedJobs from '../HeaderSavedJobs';
 import useUserData from '../../../hooks/useUserData';
 import { HeaderProps, Menu } from './Header.types';
+import { gtmScriptInitializer } from '../../../utils';
 
 function Header({
   brand,
@@ -39,6 +40,7 @@ function Header({
   languageSwitcherItems,
   useToast = false,
   toastSettings,
+  gtmId,
 }: HeaderProps) {
   // TO DO: currentUser.loginState state needed because tabBar needs an active link on logout
   const [currentUser, setCurrentUser] = useState({} as PersistData);
@@ -55,6 +57,12 @@ function Header({
       setCurrentUser(newUserData);
     }
   }, [profileData]);
+
+  useEffect(() => {
+    if (gtmId) {
+      gtmScriptInitializer(window, document, 'script', 'dataLayer', gtmId);
+    }
+  }, [gtmId]);
 
   const { locale, defaultLocale } = localization;
   const headerClass = getHeaderClass(brand);

@@ -3,7 +3,7 @@ import React, {
 } from 'react';
 import cn from 'classnames';
 import Icon from '../../../common/Icon';
-import { postSavedJobs, deleteSavedJobs, handleAnonymousSavedJobs } from '../../../../utils/savedJobsHandler';
+import { postSavedJobs, deleteSavedJobs, handleAnonymousSavedJobs } from '../../../../utils/savedJobs/savedJobsHandler';
 import { SavedJobIconProps } from './SavedJobIcon.types';
 import getUserData from '../../../../utils/getUserData';
 

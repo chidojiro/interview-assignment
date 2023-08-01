@@ -4,25 +4,25 @@ import SavedJobIcon from '../../../../../components/cards/JobCard/SavedJobIcon';
 import {
   postSavedJobs,
   deleteSavedJobs,
-} from '../../../../../utils/savedJobsHandler';
+} from '../../../../../utils/savedJobs/savedJobsHandler';
 
 import getUserData from '../../../../../utils/getUserData';
 import searchByJobId from '../../../../../utils/searchApi/searchByJobId';
-import getSavedJobsLocalStorage from '../../../../../utils/savedJobsLocalStorage/getSavedJobsLocalStorage';
-import saveSavedJobsToLocalStorage from '../../../../../utils/savedJobsLocalStorage/saveSavedJobsLocalStorage';
+import getSavedJobsLocalStorage from '../../../../../utils/savedJobs/savedJobsLocalStorage/getSavedJobsLocalStorage';
+import saveSavedJobsToLocalStorage from '../../../../../utils/savedJobs/savedJobsLocalStorage/saveSavedJobsLocalStorage';
 
 import Mock = jest.Mock;
 
 // Mock the functions used in the component
-jest.mock('../../../../../utils/savedJobsHandler', () => ({
+jest.mock('../../../../../utils/savedJobs/savedJobsHandler', () => ({
   postSavedJobs: jest.fn(),
   deleteSavedJobs: jest.fn(),
-  handleAnonymousSavedJobs: jest.requireActual('../../../../../utils/savedJobsHandler').handleAnonymousSavedJobs,
+  handleAnonymousSavedJobs: jest.requireActual('../../../../../utils/savedJobs/savedJobsHandler').handleAnonymousSavedJobs,
 }));
 
 jest.mock('../../../../../utils/searchApi/searchByJobId');
-jest.mock('../../../../../utils/savedJobsLocalStorage/getSavedJobsLocalStorage');
-jest.mock('../../../../../utils/savedJobsLocalStorage/saveSavedJobsLocalStorage');
+jest.mock('../../../../../utils/savedJobs/savedJobsLocalStorage/getSavedJobsLocalStorage');
+jest.mock('../../../../../utils/savedJobs/savedJobsLocalStorage/saveSavedJobsLocalStorage');
 
 // Mock the Icon component
 jest.mock('../../../../../components/common/Icon', () => ({

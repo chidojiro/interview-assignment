@@ -46,7 +46,7 @@ function JobItemMetadata({
   const WorkHours = () => {
     if (!workHours) return null;
     return (
-      <li className="cards__meta-item">
+      <li className="cards__meta-item" data-testid="work-hours">
         <span className="icon icon--inline">
           <Icon svgProps={fourthOptionAriaLabel} iconType={fourthOptionIcon || 'clock'} iconClassName={null} />
         </span>
@@ -72,7 +72,7 @@ function JobItemMetadata({
     if (!duration) return null;
 
     return (
-      <li className="cards__meta-item">
+      <li className="cards__meta-item" data-testid="duration">
         <span className="icon icon--inline">
           <Icon svgProps={fourthOptionAriaLabel} iconType={fourthOptionIcon || 'calendar'} iconClassName={null} />
         </span>
@@ -85,7 +85,7 @@ function JobItemMetadata({
     if (!division) return null;
 
     return (
-      <li className="cards__meta-item">
+      <li className="cards__meta-item" data-testid="division">
         <span className="icon icon--inline">
           <Icon svgProps={fourthOptionAriaLabel} iconType={fourthOptionIcon || 'building'} iconClassName={null} />
         </span>
@@ -97,7 +97,7 @@ function JobItemMetadata({
   const Sector = () => {
     if (!sector) return null;
     return (
-      <li className="cards__meta-item">
+      <li className="cards__meta-item" data-testid="sector">
         <span className="icon icon--inline">
           <Icon svgProps={fourthOptionAriaLabel} iconType={fourthOptionIcon || 'factory'} iconClassName={null} />
         </span>
@@ -138,7 +138,7 @@ function JobItemMetadata({
       {
         (enableJobType && jobType)
         && (
-          <li className="cards__meta-item">
+          <li className="cards__meta-item" data-testid="job-type">
             <span className="icon icon--inline">
               <Icon svgProps={jobTypeIconAttributes || {}} iconType={jobTypeIcon || 'briefcase'} iconClassName={null} />
             </span>
@@ -149,7 +149,7 @@ function JobItemMetadata({
       {
         (enableSalary && salary)
         && (
-          <li className="cards__meta-item">
+          <li className="cards__meta-item" data-testid="salary">
             <span className="icon icon--inline">
               <Icon svgProps={salaryIconAttributes || {}} iconType={salaryIcon || 'salary'} iconClassName={null} />
             </span>

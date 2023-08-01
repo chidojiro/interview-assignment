@@ -10,4 +10,5 @@ export interface ModalProps {
   footerDividerTop?: boolean;
   modalOverflow?: boolean;
   bgVariantBrand?: string | undefined;
+  disableBrowserHistory?: boolean;
 }
