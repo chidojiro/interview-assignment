@@ -4,8 +4,8 @@ import useAutosuggest from '../../../hooks/useAutosuggest';
 import withField from '../../../hoc/withField';
 import ListItemMark from './ListItemMark';
 import FormGroup from '../FormGroup';
-import Icon from '../../common/Icon';
-import { AutosuggestPropTypes } from './Autosuggest.types';
+import Svg from '../../common/Svg';
+import type { AutosuggestPropTypes } from './Autosuggest.types';
 
 /**
  * An input field which predicts the rest of a word a user is typing. See [here](https://randstad.design/components/core/forms/autosuggest/)
@@ -18,6 +18,7 @@ import { AutosuggestPropTypes } from './Autosuggest.types';
 function Autosuggest({
   customInput = false,
   customInputLabel = 'Add:',
+  customInputIcon = 'add',
   items = [],
   onInputChange,
   onSelectItem,
@@ -49,7 +50,7 @@ function Autosuggest({
           <ul className="select-menu__list">
             {customInput && listItemProps && (
               <li {...listItemProps(inputValue, 0, true)}>
-                <Icon iconType="add" />
+                <Svg icon={customInputIcon} />
                 {customInputLabel}
                 {' '}
                 {inputValue}
