@@ -51,6 +51,7 @@ function Chat({
     const { TextArea: OrbitComponent } = require('@ffw/randstad-local-orbit/original/js/components/text-area');
     new OrbitComponent(textAreaRef.current);
 
+    // TODO: use textare ref.
     if (handleOnChange && window.orbit?.chatInstance) {
       window.orbit.chatInstance.textarea.addEventListener('input', handleOnChange);
     }
@@ -71,8 +72,8 @@ function Chat({
           return <ChatReply type="bot" key={`reply-${reply.text}`} first={index === 0}>{reply.text}</ChatReply>;
         }
         if (reply.qs) {
-          const quickSuggestItems = reply.qs.map(((quickSuggest) => ({ value: quickSuggest.text, payload: quickSuggest.payload, text: '' })));
-          return <ChatQuickSuggest key={`quick-sugguset-${quickSuggestItems[0].value}`} items={quickSuggestItems} handleQuickSuggest={handleQuickSuggest} />;
+          const quickSuggestItems = reply.qs.map(((quickSuggest) => ({ payload: quickSuggest.payload, text: quickSuggest.text })));
+          return <ChatQuickSuggest key={`quick-sugguset-${quickSuggestItems[0].text}`} items={quickSuggestItems} handleQuickSuggest={handleQuickSuggest} />;
         }
         return null;
       });

@@ -10,6 +10,10 @@ import getSavedJobsLocalStorage from './savedJobs/savedJobsLocalStorage/getSaved
 import removeSavedJobsFromLocalStorage from './savedJobs/savedJobsLocalStorage/removeSavedJobsLocalStorage';
 import saveSavedJobsToLocalStorage from './savedJobs/savedJobsLocalStorage/saveSavedJobsLocalStorage';
 import getSavedJobs from './savedJobs/getSavedJobs';
+import postInitChat from './chatApi/postInitChat';
+import { ContinueRequestType } from './chatApi/postContinueConversation/types';
+import { ConversationReply } from './chatApi/types';
+import postContinueConversation from './chatApi/postContinueConversation';
 import { gtmScriptInitializer, gtmDataLayerPushHandler } from './gtm';
 import type { DataLayerEventObjectType } from './gtm/types';
 
@@ -24,6 +28,9 @@ export {
   getSavedJobs,
   gtmScriptInitializer,
   gtmDataLayerPushHandler,
+  postInitChat,
+  postContinueConversation,
+  ContinueRequestType,
 };
 
-export type { AlreadyUploadedFile, LocalStorageSavedJob, LocalStorageSavedJobs, Job, DataLayerEventObjectType };
+export type { AlreadyUploadedFile, LocalStorageSavedJob, LocalStorageSavedJobs, Job, DataLayerEventObjectType, ConversationReply };

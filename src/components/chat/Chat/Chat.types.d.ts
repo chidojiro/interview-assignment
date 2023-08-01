@@ -1,4 +1,6 @@
 import React from 'react';
+import { ConversationReply } from '../../../utils';
+import { ConversationQuickSuggest } from '../../../utils/chatApi/types';
 
 export type BaseEvent = {
   target: {
@@ -19,22 +21,11 @@ export type ChatSettings = {
   hiddenByDefault?: boolean;
   handleSendButton: () => void;
   handleOnChange?: (event: BaseEvent) => void;
-  handleQuickSuggest?: (item: QuickSuggest) => void;
-};
-
-export type QuickSuggest = {
-  payload: string;
-  value: number | string;
-  text: string;
-};
-
-export type Reply = {
-  text?: string;
-  qs?: Array<QuickSuggest>;
+  handleQuickSuggest?: (item: ConversationQuickSuggest) => void;
 };
 
 export interface ChatProps {
-  replies?: Reply[];
+  replies?: ConversationReply[];
   settings: ChatSettings;
 }
 

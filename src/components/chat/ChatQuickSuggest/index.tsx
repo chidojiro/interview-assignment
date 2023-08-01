@@ -18,11 +18,11 @@ function ChatQuickSuggest({ items, handleQuickSuggest }: ChatQuickSuggestProps) 
               handleQuickSuggest(item);
             }
           }}
-          key={item.value}
+          key={item.text}
           data-rs-chat-quick-suggest-button
           className="chat__content chat__content--bot button button--s button--dark-blue"
         >
-          {item.value}
+          {item.text}
         </Button>
       ))}
     </div>
