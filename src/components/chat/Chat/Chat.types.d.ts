@@ -54,8 +54,8 @@ declare global {
         attributes: () => void;
         getSelector: () => void;
         textarea: {
-          addEventListener: (event: string, handler: (e: BaseEvent) => void) => void;
-          removeEventListener: (event: string, handler: (e: BaseEvent) => void) => void;
+          addEventListener: (event: string, handler: (e: { target: { value: string } }) => void) => void;
+          removeEventListener: (event: string, handler: (e: { target: { value: string } }) => void) => void;
         };
       };
     };

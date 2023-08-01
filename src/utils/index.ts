@@ -12,7 +12,7 @@ import saveSavedJobsToLocalStorage from './savedJobs/savedJobsLocalStorage/saveS
 import getSavedJobs from './savedJobs/getSavedJobs';
 import postInitChat from './chatApi/postInitChat';
 import { ContinueRequestType } from './chatApi/postContinueConversation/types';
-import { ConversationReply } from './chatApi/types';
+import { ConversationReply, ConversationQuickSuggest } from './chatApi/types';
 import postContinueConversation from './chatApi/postContinueConversation';
 import { gtmScriptInitializer, gtmDataLayerPushHandler } from './gtm';
 import type { DataLayerEventObjectType } from './gtm/types';
@@ -33,4 +33,12 @@ export {
   ContinueRequestType,
 };
 
-export type { AlreadyUploadedFile, LocalStorageSavedJob, LocalStorageSavedJobs, Job, DataLayerEventObjectType, ConversationReply };
+export type {
+  AlreadyUploadedFile,
+  LocalStorageSavedJob,
+  LocalStorageSavedJobs,
+  Job,
+  DataLayerEventObjectType,
+  ConversationReply,
+  ConversationQuickSuggest,
+};
