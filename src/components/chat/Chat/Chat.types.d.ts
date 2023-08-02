@@ -1,6 +1,5 @@
 import React from 'react';
-import { ConversationReply } from '../../../utils';
-import { ConversationQuickSuggest } from '../../../utils/chatApi/types';
+import type { ConversationQuickSuggest, ConversationReply } from '../../../utils/chatApi/types';
 
 export type BaseEvent = {
   target: {

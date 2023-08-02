@@ -1,4 +1,4 @@
-import { ConversationReply, ConversationSupportedLanguage } from '../types';
+import type { ConversationReply, ConversationSupportedLanguage } from '../types';
 
 export type ChatInitRequest = {
   idToken: string;

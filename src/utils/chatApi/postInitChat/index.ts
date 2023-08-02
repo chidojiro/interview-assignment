@@ -1,6 +1,6 @@
 import { getCookie } from 'cookies-next';
 import ChatApi from '../index';
-import { ChatInitRequest, ChatInitResponse } from './types';
+import type { ChatInitRequest, ChatInitResponse } from './types';
 
 async function postInitChat(
   chatId: string,

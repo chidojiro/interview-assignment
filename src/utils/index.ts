@@ -11,10 +11,11 @@ import removeSavedJobsFromLocalStorage from './savedJobs/savedJobsLocalStorage/r
 import saveSavedJobsToLocalStorage from './savedJobs/savedJobsLocalStorage/saveSavedJobsLocalStorage';
 import getSavedJobs from './savedJobs/getSavedJobs';
 import postInitChat from './chatApi/postInitChat';
-import { ContinueRequestType } from './chatApi/postContinueConversation/types';
-import { ConversationReply, ConversationQuickSuggest } from './chatApi/types';
 import postContinueConversation from './chatApi/postContinueConversation';
 import { gtmScriptInitializer, gtmDataLayerPushHandler } from './gtm';
+
+import { ContinueRequestType } from './chatApi/postContinueConversation/types';
+import type { ConversationReply, ConversationQuickSuggest } from './chatApi/types';
 import type { DataLayerEventObjectType } from './gtm/types';
 
 export {

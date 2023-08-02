@@ -1,5 +1,5 @@
 import ChatApi from '../index';
-import { ContinueRequest, ContinueRequestType, ContinueResponse } from './types';
+import type { ContinueRequest, ContinueRequestType, ContinueResponse } from './types';
 
 const postContinueConversation = async (
   chatId: string,

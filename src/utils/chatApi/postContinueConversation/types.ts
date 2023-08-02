@@ -1,4 +1,4 @@
-import { ConversationReply } from '../types';
+import type { ConversationReply } from '../types';
 
 export type ContinueRequest = {
   request_type: ContinueRequestType;
