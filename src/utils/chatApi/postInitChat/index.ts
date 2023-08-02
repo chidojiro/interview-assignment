@@ -11,10 +11,7 @@ async function postInitChat(
   chatDateFormat: string,
   locale: string,
 ): Promise<ChatInitResponse | undefined> {
-  const chatApi = new ChatApi(chatId, chatApiKey);
-
-  const url = `${chatApiUrl}${chatId}`;
-
+  const chatApi = new ChatApi(chatId, chatApiUrl, chatApiKey);
   const idToken = getCookie('IdToken') as string;
   const data: ChatInitRequest = {
     idToken,
@@ -25,7 +22,7 @@ async function postInitChat(
   };
 
   try {
-    const response = await chatApi.post(url, data);
+    const response = await chatApi.post(`/init/${chatId}`, data);
     return response.data;
   } catch (error) {
     // Log the error.
