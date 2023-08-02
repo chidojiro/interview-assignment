@@ -5,8 +5,9 @@ class ChatApi {
 
   private readonly chatId: string;
 
-  constructor(chatId: string, chatApiKey: string) {
+  constructor(chatId: string, chatUrl: string, chatApiKey: string) {
     this.axiosInstance = axios.create({
+      baseURL: chatUrl,
       headers: {
         'x-api-key': chatApiKey,
         'Content-Type': 'application/json',
