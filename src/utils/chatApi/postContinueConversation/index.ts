@@ -20,8 +20,7 @@ const postContinueConversation = async (
       data,
     };
 
-    const url = `/continue/${conversationId}/${responseId}`;
-    const response = await chatApi.post(url, request);
+    const response = await chatApi.post(`/continue/${conversationId}/${responseId}`, request);
     return response.data;
   } catch (error) {
     // We need to log the error.
