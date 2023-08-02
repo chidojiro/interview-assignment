@@ -10,6 +10,7 @@ import getUserData from '../../../../../utils/getUserData';
 import searchByJobId from '../../../../../utils/searchApi/searchByJobId';
 import getSavedJobsLocalStorage from '../../../../../utils/savedJobs/savedJobsLocalStorage/getSavedJobsLocalStorage';
 import saveSavedJobsToLocalStorage from '../../../../../utils/savedJobs/savedJobsLocalStorage/saveSavedJobsLocalStorage';
+import { CustomWindow } from '../../../../../utils/gtm/types';
 
 import Mock = jest.Mock;
 
@@ -41,13 +42,19 @@ const commonProps = {
   jobPostingWebDetailId: 'def456',
   ariaLabel: 'Save Job',
   locale: 'en',
+  title: 'Test Job',
 };
 
 const dummySavedJobId = 'abc123';
 
 describe('SavedJobIcon component tests', () => {
+  beforeEach(() => {
+    (window as unknown as CustomWindow).dataLayer = [];
+  });
+
   afterEach(() => {
     jest.clearAllMocks();
+    delete (window as unknown as { dataLayer?: string[] }).dataLayer;
   });
 
   it('renders the component with the filled icon if savedJobId is provided', () => {
@@ -120,6 +127,7 @@ describe('SavedJobIcon component tests', () => {
     expect(searchByJobId).toHaveBeenCalled();
     expect(getSavedJobsLocalStorage).toHaveBeenCalled();
     expect(saveSavedJobsToLocalStorage).toHaveBeenCalled();
+    expect((window as unknown as CustomWindow).dataLayer).toEqual([{ event_params: null }, { event: 'interaction', event_params: { action: 'add', event_name: 'job_save', item_name: 'Test Job' } }]);
   });
 
   it('calls postSavedJobs when savedJobId is not provided and the button is clicked, for logged in users.', async () => {
@@ -139,6 +147,7 @@ describe('SavedJobIcon component tests', () => {
 
     expect(postSavedJobs).toHaveBeenCalledTimes(1);
     expect(postSavedJobs).toHaveBeenCalledWith('12345', 'https://example.com/api', 'def456');
+    expect((window as unknown as CustomWindow).dataLayer).toEqual([{ event_params: null }, { event: 'interaction', event_params: { action: 'add', event_name: 'job_save', item_name: 'Test Job' } }]);
   });
 
   test('calls deleteSavedJobs and returnJobPostingWebDetailId when savedJobId is provided and the button is clicked', () => {
