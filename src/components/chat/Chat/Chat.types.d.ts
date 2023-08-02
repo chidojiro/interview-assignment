@@ -21,6 +21,7 @@ export type ChatSettings = {
   handleSendButton: () => void;
   handleOnChange?: (event: BaseEvent) => void;
   handleQuickSuggest?: (item: ConversationQuickSuggest) => void;
+  replyLoading?: boolean;
 };
 
 export interface ChatProps {
