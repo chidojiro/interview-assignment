@@ -1,4 +1,11 @@
 import React from 'react';
+import type { ConversationQuickSuggest, ConversationReply } from '../../../utils/chatApi/types';
+
+export type BaseEvent = {
+  target: {
+    value: string;
+  };
+};
 
 export type ChatSettings = {
   title: string | React.ReactNode;
@@ -12,20 +19,16 @@ export type ChatSettings = {
   startConversationButtonText: string | React.ReactNode;
   hiddenByDefault?: boolean;
   handleSendButton: () => void;
-};
-
-export type Reply = {
-  text?: string;
-  qs?: Array<{
-    value: string | number;
-    text: string;
-  }>;
+  handleOnChange?: (event: BaseEvent) => void;
+  handleQuickSuggest?: (item: ConversationQuickSuggest) => void;
+  replyLoading?: boolean;
 };
 
 export interface ChatProps {
-  replies?: Reply[];
+  replies?: ConversationReply[];
   settings: ChatSettings;
 }
+
 declare global {
   interface Window {
     orbit?: {
@@ -50,6 +53,10 @@ declare global {
         classes: () => void;
         attributes: () => void;
         getSelector: () => void;
+        textarea: {
+          addEventListener: (event: string, handler: (e: { target: { value: string } }) => void) => void;
+          removeEventListener: (event: string, handler: (e: { target: { value: string } }) => void) => void;
+        };
       };
     };
   }

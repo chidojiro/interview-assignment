@@ -8,7 +8,10 @@ import ChatReply from '../ChatReply';
 import ChatLoader from '../ChatLoader';
 import ChatQuickSuggest from '../ChatQuickSuggest';
 
-function Chat({ settings, replies }: ChatProps) {
+function Chat({
+  settings,
+  replies,
+}: ChatProps) {
   const {
     title,
     closeButtonAriaLabel,
@@ -21,11 +24,15 @@ function Chat({ settings, replies }: ChatProps) {
     startConversationButtonText,
     hiddenByDefault = true,
     handleSendButton,
+    handleOnChange,
+    handleQuickSuggest,
+    replyLoading,
   } = settings;
-  const [loading, setLoading] = useState(true);
   const [replyComponents, setReplyComponents] = useState<React.ReactNode[]>([]);
+  const [replyIndexes, setReplyIndexes] = useState<Array<number>>([]);
   const ref = useRef(null);
   const textAreaRef = useRef(null);
+  const chatBoxRef = useRef(null);
   const imgPath = !process.env.NEXT_PUBLIC_RESOURCE_PREFIX ? '/src/assets/img/randstad-wings.jpg' : `${process.env.NEXT_PUBLIC_RESOURCE_PREFIX}/src/assets/img/randstad-wings.jpg`;
 
   const handleSendOnEnterPress = (e: KeyboardEvent) => {
@@ -45,24 +52,48 @@ function Chat({ settings, replies }: ChatProps) {
     if (!textAreaRef.current) return;
     const { TextArea: OrbitComponent } = require('@ffw/randstad-local-orbit/original/js/components/text-area');
     new OrbitComponent(textAreaRef.current);
-  }, []);
+
+    // TODO: use textare ref.
+    if (handleOnChange && window.orbit?.chatInstance) {
+      window.orbit.chatInstance.textarea.addEventListener('input', handleOnChange);
+    }
+
+    // We need to delete the handleOnChange event.
+    // eslint-disable-next-line consistent-return
+    return () => {
+      if (handleOnChange && window.orbit?.chatInstance) {
+        window.orbit.chatInstance.textarea.removeEventListener('input', handleOnChange);
+      }
+    };
+  }, [handleOnChange]);
 
   useEffect(() => {
     if (replies) {
       const newReplies = replies.map((reply, index: number) => {
         if (reply.text) {
-          return <ChatReply type="bot" key={`reply-${reply.text}`} first={index === 0}>{reply.text}</ChatReply>;
+          return <ChatReply type="bot" key={`reply-${reply.text}`} first={!!replyIndexes.find((element) => element === index) || index === 0}>{reply.text}</ChatReply>;
         }
         if (reply.qs) {
-          const quickSuggestItems = reply.qs.map(((quickSuggest) => ({ value: quickSuggest.text })));
-          return <ChatQuickSuggest key={`quick-sugguset-${quickSuggestItems[0].value}`} items={quickSuggestItems} />;
+          const quickSuggestItems = reply.qs.map(((quickSuggest) => ({ payload: quickSuggest.payload, text: quickSuggest.text })));
+          return <ChatQuickSuggest key={`quick-sugguset-${quickSuggestItems[0].text}`} items={quickSuggestItems} handleQuickSuggest={handleQuickSuggest} />;
         }
         return null;
       });
-      setLoading(false);
       setReplyComponents(newReplies);
+      setReplyIndexes((prevState) => {
+        if (!replyIndexes.find((el) => el === replies.length)) {
+          return [...prevState, replies?.length];
+        }
+        return [...prevState];
+      });
     }
-  }, [replies]);
+  }, [replies, handleQuickSuggest]);
+
+  useEffect(() => {
+    if (chatBoxRef && chatBoxRef.current) {
+      (chatBoxRef.current as HTMLElement).scrollTop = (chatBoxRef.current as HTMLElement).scrollHeight;
+    }
+  }, [replyComponents]);
 
   return (
     <div className="bluex-chat-bot" data-chatbot-id="some-chat-id" data-chatbot-init-timeout="120" data-chatbot-re-init="true" data-chatbot-dynamo-langcode="en" data-chatbot-langcode="en">
@@ -86,9 +117,9 @@ function Chat({ settings, replies }: ChatProps) {
               <Icon iconType="chevron-down" iconClassName="icon icon--inline text-brand-primary fill-current" />
             </button>
           </div>
-          <div className="chat__box" data-rs-chat-box="chat" data-rs-textarea-scroll-area="">
+          <div className="chat__box" data-rs-chat-box="chat" data-rs-textarea-scroll-area="" ref={chatBoxRef}>
             {replyComponents}
-            {loading && <ChatLoader />}
+            {replyLoading && <ChatLoader logoAltText={logoAltText} />}
           </div>
           <div className="chat__footer divider divider--top">
             <div className="flex items-end" data-rs-chat-input>

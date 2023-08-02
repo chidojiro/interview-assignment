@@ -1,5 +1,7 @@
+import type { ConversationQuickSuggest } from '../../../utils/chatApi/types';
+
 export interface ChatQuickSuggestProps {
-  items: Array<{
-    value: string | number;
-  }>;
+  items: Array<ConversationQuickSuggest>;
+
+  handleQuickSuggest?: (item: ConversationQuickSuggest) => void;
 }

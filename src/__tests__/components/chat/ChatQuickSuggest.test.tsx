@@ -6,8 +6,8 @@ import { ChatQuickSuggestProps } from '../../../components/chat/ChatQuickSuggest
 describe('ChatQuickSuggest', () => {
   test('renders without error when items are provided', () => {
     const items: ChatQuickSuggestProps['items'] = [
-      { value: 'Option 1' },
-      { value: 'Option 2' },
+      { text: 'Option 1', payload: '' },
+      { text: 'Option 2', payload: '' },
     ];
 
     const { getByText } = render(<ChatQuickSuggest items={items} />);
