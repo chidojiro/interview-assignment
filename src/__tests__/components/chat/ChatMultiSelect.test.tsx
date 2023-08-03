@@ -5,8 +5,8 @@ import ChatMultiSelect from '../../../components/chat/ChatMultiSelect';
 describe('ChatMultiSelect', () => {
   it('renders the component correctly', () => {
     const items = [
-      { value: '1', label: 'Item 1' },
-      { value: '2', label: 'Item 2' },
+      { param: '1', text: 'Item 1' },
+      { param: '2', text: 'Item 2' },
     ];
 
     const { container } = render(

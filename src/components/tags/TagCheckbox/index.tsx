@@ -23,7 +23,7 @@ function TagCheckbox({
   }, []);
 
   return (
-    <div ref={ref} className={cn('tag tag--add', className)} data-rs-tags="" tabIndex={0} role="checkbox" aria-checked aria-labelledby={label}>
+    <div ref={ref} className={cn('tag tag--add', className)} tabIndex={0} role="checkbox" aria-checked aria-labelledby={label}>
       <label htmlFor={label} className="tag__checkbox selection-control selection-control--checkbox">
         <span className="selection-control__input">
           <input onChange={handleCheckbox} id={label} type="checkbox" data-rs-tags-checkbox tabIndex={-1} value={value} />
