@@ -2,7 +2,7 @@ import React, {
   useState,
 } from 'react';
 import cn from 'classnames';
-import { gtmDataLayerPushHandler } from '../../../../utils/gtm';
+import saveJobEvent from '../../../../utils/gtmEvents';
 import Icon from '../../../common/Icon';
 import { postSavedJobs, deleteSavedJobs, handleAnonymousSavedJobs } from '../../../../utils/savedJobs/savedJobsHandler';
 import { SavedJobIconProps } from './SavedJobIcon.types';
@@ -29,19 +29,6 @@ function SavedJobIcon({
     'icon__toggler--active': savedJobId || iconFilled,
   });
 
-  function createGtmSaveJobEvent(add: boolean) {
-    const event = {
-      event: 'interaction',
-      event_params: {
-        event_name: 'job_save',
-        item_name: title,
-        action: add ? 'add' : 'remove',
-      },
-    };
-
-    gtmDataLayerPushHandler(event);
-  }
-
   const onIconClick = async () => {
     const { loginStatus } = getUserData();
 
@@ -50,14 +37,14 @@ function SavedJobIcon({
       if (filled && !iconFilled) {
         setIconFilled('filled');
 
-        createGtmSaveJobEvent(true);
+        saveJobEvent(title, true);
       } else if (!filled && iconFilled) {
         if (returnJobPostingWebDetailId) {
           returnJobPostingWebDetailId(jobPostingWebDetailId);
         }
         setIconFilled('');
 
-        createGtmSaveJobEvent(false);
+        saveJobEvent(title, false);
       }
     } else if (savedJobId && typeof (savedJobId) === 'string') {
       setIconFilled('');
@@ -66,12 +53,12 @@ function SavedJobIcon({
         returnJobPostingWebDetailId(jobPostingWebDetailId);
       }
 
-      createGtmSaveJobEvent(false);
+      saveJobEvent(title, false);
     } else {
       await postSavedJobs(gdsApiKey, gdsApiUrl, jobPostingWebDetailId);
       setIconFilled('filled');
 
-      createGtmSaveJobEvent(true);
+      saveJobEvent(title, true);
     }
   };
 
