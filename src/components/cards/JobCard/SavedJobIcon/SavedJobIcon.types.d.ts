@@ -9,4 +9,5 @@ export interface SavedJobIconProps {
   ariaLabel?: string;
   returnJobPostingWebDetailId?: (jobPostingWebDetailId: string) => void;
   locale: string;
+  title: string;
 }
