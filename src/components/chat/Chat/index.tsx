@@ -7,6 +7,7 @@ import { ChatProps } from './Chat.types';
 import ChatReply from '../ChatReply';
 import ChatLoader from '../ChatLoader';
 import ChatQuickSuggest from '../ChatQuickSuggest';
+import { ChatMultiSelect } from '../../../index';
 
 function Chat({
   settings,
@@ -76,6 +77,9 @@ function Chat({
         if (reply.qs) {
           const quickSuggestItems = reply.qs.map(((quickSuggest) => ({ payload: quickSuggest.payload, text: quickSuggest.text })));
           return <ChatQuickSuggest key={`quick-sugguset-${quickSuggestItems[0].text}`} items={quickSuggestItems} handleQuickSuggest={handleQuickSuggest} />;
+        }
+        if (reply.ms) {
+          return <ChatMultiSelect items={reply.ms.items} key={`multi-select-${reply.text}`} />;
         }
         return null;
       });

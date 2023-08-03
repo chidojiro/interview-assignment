@@ -3,9 +3,23 @@ type ConversationQuickSuggest = {
   payload: string;
 };
 
+export type ConversationMultiSelectItem = {
+  text: string;
+  param: string;
+};
+
+type ConversationMultiSelect = {
+  intent: string;
+  param: string;
+  submit: string;
+  hint: string;
+  items: Array<ConversationMultiSelectItem>;
+};
+
 export type ConversationReply = {
   text?: string;
   qs?: Array<ConversationQuickSuggest>;
+  ms?: ConversationMultiSelect;
 };
 
 export type ConversationSupportedLanguage = {

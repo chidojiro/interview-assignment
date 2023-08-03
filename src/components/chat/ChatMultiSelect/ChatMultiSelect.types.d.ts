@@ -1,6 +1,5 @@
+import { ConversationMultiSelectItem } from '../../../utils/chatApi/types';
+
 export interface ChatMultiSelectProps {
-  items: Array<{
-    label: string | number;
-    value: string | number;
-  }>;
+  items: Array<ConversationMultiSelectItem>;
 }

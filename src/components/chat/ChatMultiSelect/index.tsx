@@ -8,6 +8,7 @@ function ChatMultiSelect({ items }: ChatMultiSelectProps) {
     if (!multiSelectButtons) return;
 
     if ((window as Window).orbit && (window as Window).orbit?.chatInstance) {
+      console.log(window.orbit?.chatInstance);
       (window as Window).orbit?.chatInstance?.handleTagDialogButtons();
     }
   }, []);
@@ -17,10 +18,10 @@ function ChatMultiSelect({ items }: ChatMultiSelectProps) {
       <div className="chat__content chat__content--bot">
         {items.map((item) => (
           <TagCheckbox
-            key={item.value}
+            key={item.param}
             className="mb-xxs mr-xxs"
-            value={item.value as string}
-            label={item.label as string}
+            value={item.param as string}
+            label={item.text as string}
           />
         ))}
       </div>
