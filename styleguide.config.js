@@ -40,7 +40,7 @@ module.exports = {
       links: [
         {
           rel: 'stylesheet',
-          href: 'https://uk-static-dev2.dta.randstad-bluex.com/articles/static/assets/css/orbit-randstad.css',
+          href: 'src/assets/css/orbit-randstad.css',
         },
       ],
     },

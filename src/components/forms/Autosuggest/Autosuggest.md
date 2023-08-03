@@ -22,7 +22,7 @@ import { Autosuggest } from "@ffw/randstad-shared-components";
     "Ely",
     "Exeter",
   ]}
-  onChange={(item) => console.log(item, "onChange")}
+  onInputChange={(item) => console.log(item, "onChange")}
   onSelectItem={(item) => console.log(item, "onSelectItem")}
 />;
 ```
@@ -39,7 +39,7 @@ import { Autosuggest } from "@ffw/randstad-shared-components";
   placeholder="select your city ..."
   label="city"
   config={{ skipFilter: true }}
-  onChange={(item) => console.log(item)}
+  onInputChange={(item) => console.log(item)}
   items={[
     "Bath",
     "Birmingham",
@@ -70,7 +70,7 @@ import { Autosuggest } from "@ffw/randstad-shared-components";
       placeholder="select your city ..."
       label="city"
       config={{ allowNumericValue: true }}
-      onChange={(item) => console.log(item)}
+      onInputChange={(item) => console.log(item)}
       items={[
         "Bruxelles (1047)",
         "Bruxelles (1043)",
@@ -111,7 +111,7 @@ import { Autosuggest } from "@ffw/randstad-shared-components";
       placeholder="select your city ..."
       label="city"
       config={{ itemsStripWordList: ["Région:", "Département:"], allowNumericValue: true }}
-      onChange={(item) => console.log(item)}
+      onInputChange={(item) => console.log(item)}
       items={[
         "Région: Auvergne-Rhône-Alpes",
         "Département: Ain (01)",
@@ -124,4 +124,66 @@ import { Autosuggest } from "@ffw/randstad-shared-components";
       ]}
     />
   );
+```
+
+With custom input
+```jsx
+import { Autosuggest } from "@ffw/randstad-shared-components";
+
+<Autosuggest
+  customInput
+  name="text-2"
+  id="text-2"
+  required
+  placeholder="select your city ..."
+  label="city"
+  items={[
+    "Bath",
+    "Birmingham",
+    "Bradford",
+    "Brighton & Hove",
+    "Bristol",
+    "Cambridge",
+    "Canterbury",
+    "Carlisle",
+    "Derby",
+    "Durham",
+    "Ely",
+    "Exeter",
+  ]}
+  onInputChange={(item) => console.log(item, "onChange")}
+  onSelectItem={(item) => console.log(item, "onSelectItem")}
+/>;
+```
+
+With custom input that has custom label and icon
+```jsx
+import { Autosuggest } from "@ffw/randstad-shared-components";
+
+<Autosuggest
+  customInput
+  customInputLabel="My custom input:"
+  customInputIcon="search"
+  name="text-3"
+  id="text-3"
+  required
+  placeholder="select your city ..."
+  label="city"
+  items={[
+    "Bath",
+    "Birmingham",
+    "Bradford",
+    "Brighton & Hove",
+    "Bristol",
+    "Cambridge",
+    "Canterbury",
+    "Carlisle",
+    "Derby",
+    "Durham",
+    "Ely",
+    "Exeter",
+  ]}
+  onInputChange={(item) => console.log(item, "onChange")}
+  onSelectItem={(item) => console.log(item, "onSelectItem")}
+/>;
 ```

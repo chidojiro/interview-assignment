@@ -238,4 +238,46 @@ describe('Autosuggest component tests', () => {
     fireEvent.keyDown(input, { key: 'Escape', code: 'Escape' });
     expect(container.querySelector('ul')).toBeNull();
   });
+
+  test('renders custom input when customInput is true', async () => {
+    const { container, findByDisplayValue } = await renderAutosuggest({ initialValue: 'custom input default value', customInput: true });
+    const input = (await findByDisplayValue('custom input default value')) as HTMLInputElement;
+    fireEvent.change(input, { target: { value: 'Some custom value' } });
+    const customInputAction = container.querySelector('.select-menu__item--action') as HTMLElement;
+    expect(customInputAction).toBeInTheDocument();
+  });
+
+  test('does not render custom input when customInput is false / undefined', async () => {
+    const { container, findByDisplayValue } = await renderAutosuggest({ initialValue: 'custom input default value' });
+    const input = (await findByDisplayValue('custom input default value')) as HTMLInputElement;
+    fireEvent.change(input, { target: { value: 'Some custom value' } });
+    const customInputAction = container.querySelector('.select-menu__item--action') as HTMLElement;
+    expect(customInputAction).not.toBeInTheDocument();
+  });
+
+  test('renders default custom input label when customInput is true', async () => {
+    const { container, findByDisplayValue } = await renderAutosuggest({ initialValue: 'custom input default value', customInput: true });
+    const input = (await findByDisplayValue('custom input default value')) as HTMLInputElement;
+    fireEvent.change(input, { target: { value: 'Some custom value' } });
+    expect(container).toHaveTextContent('Add:');
+  });
+
+  test('renders custom input label when customInput is true and customInputLabel is defined', async () => {
+    const { container, findByDisplayValue } = await renderAutosuggest({
+      initialValue: 'custom input default value',
+      customInput: true,
+      customInputLabel: 'My custom input label:',
+    });
+    const input = (await findByDisplayValue('custom input default value')) as HTMLInputElement;
+    fireEvent.change(input, { target: { value: 'Some custom value' } });
+    expect(container).toHaveTextContent('My custom input label:');
+  });
+
+  test('renders custom input icon when customInput is true', async () => {
+    const { container, findByDisplayValue } = await renderAutosuggest({ initialValue: 'custom input default value', customInput: true });
+    const input = (await findByDisplayValue('custom input default value')) as HTMLInputElement;
+    fireEvent.change(input, { target: { value: 'Some custom value' } });
+    const customInputIcon = container.querySelector('.select-menu__item--action svg') as HTMLElement;
+    expect(customInputIcon).toBeInTheDocument();
+  });
 });
