@@ -10,6 +10,7 @@ test('Modal exist', () => {
       cancelButtonText="cancel"
       content="Do you really want to delete your account? This action can not be undone."
       onClose={() => {}}
+      onCancelClick={() => {}}
       onSubmit={() => {}}
     />,
   );
@@ -25,6 +26,7 @@ test('Check if has group label', () => {
       cancelButtonText="cancel"
       content="Do you really want to delete your account? This action can not be undone."
       onClose={() => {}}
+      onCancelClick={() => {}}
       onSubmit={() => {}}
     />,
   );
