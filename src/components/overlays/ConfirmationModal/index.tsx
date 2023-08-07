@@ -135,8 +135,8 @@ function ConfirmationModal({
             <Button href="#" variant="filled" fullWidth handleClick={onSubmit}>
               {confirmButtonText}
             </Button>
-            <Button href="#" variant="plain" fullWidth handleClick={(event: CloseEvents) => modalClose(event)}>
-              {confirmButtonText}
+            <Button href="#" variant="plain" fullWidth handleClick={(event: CloseEvents) => modalCancel(event)}>
+              {cancelButtonText}
             </Button>
           </div>
           <div className="button-group hidden--until-l button-group--options">
