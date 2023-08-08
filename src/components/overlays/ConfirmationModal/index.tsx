@@ -57,6 +57,7 @@ function ConfirmationModal({
   title = 'are you sure?',
   content,
   onClose,
+  onCancelClick,
   onSubmit,
   ariaLabelClose = 'close',
   confirmButtonText = 'yes',
@@ -77,6 +78,18 @@ function ConfirmationModal({
       }, 200);
     },
     [onClose],
+  );
+
+  const modalCancel = useCallback(
+    (event: CloseEvents) => {
+      event.preventDefault();
+      event.stopPropagation();
+      document.getElementsByClassName('modal')[0].classList.add('modal-exit');
+      setTimeout(() => {
+        onCancelClick?.(event);
+      }, 200);
+    },
+    [onCancelClick],
   );
 
   useEffect(() => {
@@ -122,15 +135,15 @@ function ConfirmationModal({
             <Button href="#" variant="filled" fullWidth handleClick={onSubmit}>
               {confirmButtonText}
             </Button>
-            <Button href="#" variant="plain" fullWidth handleClick={(event: CloseEvents) => modalClose(event)}>
-              {confirmButtonText}
+            <Button href="#" variant="plain" fullWidth handleClick={(event: CloseEvents) => modalCancel(event)}>
+              {cancelButtonText}
             </Button>
           </div>
           <div className="button-group hidden--until-l button-group--options">
             <Button href="#" variant="filled" handleClick={onSubmit}>
               {confirmButtonText}
             </Button>
-            <Button href="#" variant="plain" handleClick={(event: CloseEvents) => modalClose(event)}>
+            <Button href="#" variant="plain" handleClick={(event: CloseEvents) => modalCancel(event)}>
               {cancelButtonText}
             </Button>
           </div>
