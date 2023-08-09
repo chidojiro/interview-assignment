@@ -2,8 +2,9 @@ import type { ConversationReply } from '../types';
 
 export type ContinueRequest = {
   request_type: ContinueRequestType;
+  idToken: string;
   reply_text?: string;
-  data?: string;
+  data?: string | string[];
 };
 
 export enum ContinueRequestType {

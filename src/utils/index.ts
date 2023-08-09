@@ -15,7 +15,7 @@ import postContinueConversation from './chatApi/postContinueConversation';
 import { gtmScriptInitializer, gtmDataLayerPushHandler } from './gtm';
 
 import { ContinueRequestType } from './chatApi/postContinueConversation/types';
-import type { ConversationReply, ConversationQuickSuggest } from './chatApi/types';
+import type { ConversationReply, ConversationQuickSuggest, ConversationMultiSelect, ConversationMultiSelectItem } from './chatApi/types';
 import type { DataLayerEventObjectType } from './gtm/types';
 
 export {
@@ -42,4 +42,6 @@ export type {
   DataLayerEventObjectType,
   ConversationReply,
   ConversationQuickSuggest,
+  ConversationMultiSelect,
+  ConversationMultiSelectItem,
 };

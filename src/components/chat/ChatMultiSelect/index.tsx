@@ -2,25 +2,35 @@ import React, { useEffect } from 'react';
 import { ChatMultiSelectProps } from './ChatMultiSelect.types';
 import TagCheckbox from '../../tags/TagCheckbox';
 
-function ChatMultiSelect({ items }: ChatMultiSelectProps) {
-  useEffect(() => {
-    const multiSelectButtons = document.querySelector('[data-rs-chat-tags]');
-    if (!multiSelectButtons) return;
+function ChatMultiSelect({ items, onMultiSelectChange }: ChatMultiSelectProps) {
+  const ref = React.useRef<HTMLDivElement>(null);
 
-    if ((window as Window).orbit && (window as Window).orbit?.chatInstance) {
-      (window as Window).orbit?.chatInstance?.handleTagDialogButtons();
+  useEffect(() => {
+    if (!ref.current) return;
+    if (!ref.current.dataset.rendered) {
+      // We add ref and data attribute - React renders elements twice and respectively attaches the event listeners twice.
+      ref.current.dataset.rendered = 'rendered';
+      const multiSelectButtons = document.querySelector('[data-rs-chat-tags]');
+      if (!multiSelectButtons) return;
+
+      if ((window as Window).orbit && (window as Window).orbit?.chatInstance) {
+        (window as Window).orbit?.chatInstance?.tagHandler();
+      }
     }
   }, []);
 
   return (
-    <div className="chat-content__wrapper chat-content__wrapper--first" data-rs-chat-tags data-rs-chat-content="bot">
+    <div className="chat-content__wrapper chat-content__wrapper--first" data-rs-chat-tags data-rs-chat-content="bot" ref={ref}>
       <div className="chat__content chat__content--bot">
         {items.map((item) => (
           <TagCheckbox
-            key={item.value}
+            handleChange={() => {
+              onMultiSelectChange(item);
+            }}
+            key={item.param}
             className="mb-xxs mr-xxs"
-            value={item.value as string}
-            label={item.label as string}
+            value={item.param as string}
+            label={item.text as string}
           />
         ))}
       </div>

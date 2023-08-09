@@ -1,12 +1,12 @@
 import React, {
-  useEffect, useRef, useState, KeyboardEvent,
+  useEffect, useRef, KeyboardEvent,
 } from 'react';
 import cn from 'classnames';
 import Icon from '../../common/Icon';
 import { ChatProps } from './Chat.types';
-import ChatReply from '../ChatReply';
 import ChatLoader from '../ChatLoader';
-import ChatQuickSuggest from '../ChatQuickSuggest';
+import ChatSettings from '../ChatSettings';
+import useHandleChatReplies from '../../../hooks/useHandleChatReplies';
 
 function Chat({
   settings,
@@ -26,15 +26,18 @@ function Chat({
     handleSendButton,
     handleOnChange,
     handleQuickSuggest,
+    handleMultiSelectSubmit,
     replyLoading,
   } = settings;
-  const [replyComponents, setReplyComponents] = useState<React.ReactNode[]>([]);
-  const [replyIndexes, setReplyIndexes] = useState<Array<number>>([]);
   const ref = useRef(null);
   const textAreaRef = useRef(null);
   const chatBoxRef = useRef(null);
-  const imgPath = !process.env.NEXT_PUBLIC_RESOURCE_PREFIX ? '/src/assets/img/randstad-wings.jpg' : `${process.env.NEXT_PUBLIC_RESOURCE_PREFIX}/src/assets/img/randstad-wings.jpg`;
 
+  const {
+    replyComponents, clearMultiSelect, submitMultiSelect,
+  } = useHandleChatReplies(replies, handleQuickSuggest, handleMultiSelectSubmit);
+
+  const imgPath = !process.env.NEXT_PUBLIC_RESOURCE_PREFIX ? '/src/assets/img/randstad-wings.jpg' : `${process.env.NEXT_PUBLIC_RESOURCE_PREFIX}/src/assets/img/randstad-wings.jpg`;
   const handleSendOnEnterPress = (e: KeyboardEvent) => {
     if ((e.target as HTMLTextAreaElement).value.trim().length && e.key === 'Enter') {
       handleSendButton();
@@ -66,28 +69,6 @@ function Chat({
       }
     };
   }, [handleOnChange]);
-
-  useEffect(() => {
-    if (replies) {
-      const newReplies = replies.map((reply, index: number) => {
-        if (reply.text) {
-          return <ChatReply type="bot" key={`reply-${reply.text}`} first={!!replyIndexes.find((element) => element === index) || index === 0}>{reply.text}</ChatReply>;
-        }
-        if (reply.qs) {
-          const quickSuggestItems = reply.qs.map(((quickSuggest) => ({ payload: quickSuggest.payload, text: quickSuggest.text })));
-          return <ChatQuickSuggest key={`quick-sugguset-${quickSuggestItems[0].text}`} items={quickSuggestItems} handleQuickSuggest={handleQuickSuggest} />;
-        }
-        return null;
-      });
-      setReplyComponents(newReplies);
-      setReplyIndexes((prevState) => {
-        if (!replyIndexes.find((el) => el === replies.length)) {
-          return [...prevState, replies?.length];
-        }
-        return [...prevState];
-      });
-    }
-  }, [replies, handleQuickSuggest]);
 
   useEffect(() => {
     if (chatBoxRef && chatBoxRef.current) {
@@ -144,76 +125,16 @@ function Chat({
                 {selectedOptionsText}
               </div>
               <div className="buttons-group">
-                <button type="button" className="button button--s mr-xxs" data-rs-chat-tags-deselect-button="" aria-hidden="true">{deselectButtonText}</button>
-                <button type="button" className="button button--s button--filled" data-rs-chat-tags-submit-button="" aria-hidden="true">{submitButtonText}</button>
+                <button type="button" className="button button--s mr-xxs" data-rs-chat-tags-deselect-button="" aria-hidden="true" onClick={clearMultiSelect}>
+                  {deselectButtonText}
+                </button>
+                <button type="button" className="button button--s button--filled" data-rs-chat-tags-submit-button="" aria-hidden="true" onClick={submitMultiSelect}>
+                  {submitButtonText}
+                </button>
               </div>
             </div>
           </div>
-          {/*
-              Some of the following markup doesn't have appropriate content.
-              This is because settings is not supported for now.
-           */}
-          <div className="chat-settings" data-rs-chat-settings="">
-            <div className="chat__header divider divider--is-hidden transition duration-200" data-rs-chat-header="">
-              <button type="button" className="button--icon-only flex pr-xs" data-rs-chat-settings-button="" aria-label="">
-                <Icon iconType="arrow-left" iconClassName="icon icon--inline text-brand-primary fill-current" />
-              </button>
-              <span
-                className=" chat-settings__title text-title-xs text-brand-secondary flex-grow ml-xxs "
-              />
-            </div>
-            <div className="chat__box pt-xxs" data-rs-chat-box="settings">
-              <div className="form-group divider mb-m pb-xs">
-                <label className="form-group__label" htmlFor="language-selector" />
-                <div className="form-group__input mb-xs">
-                  {/* This markup is present because orbit expects it to be. */}
-                  {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
-                  <select
-                    id="language-selector"
-                    required
-                    data-rs-untouched=""
-                    data-rs-chat-language-selector=""
-                  />
-                  <Icon iconType="chevron-down" iconClassName="select-arrow icon" />
-                </div>
-                <div
-                  className="notice-in-page notice-in-page--warning mb-xs display-none"
-                  data-rs-chat-language-notification=""
-                >
-                  <Icon iconType="warning" iconClassName="icon icon--inline" />
-                  <span className="notice-in-page__body-copy" />
-                </div>
-                {/* This markup is present because orbit expects it to be. */}
-                {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
-                <button
-                  type="button"
-                  className="button button--full-width button--filled mb-xs mt-xs mb-m"
-                  disabled
-                  data-rs-chat-language-save-button=""
-                />
-              </div>
-              <div className="display-block mb-xs flex items-center">
-                {/* This markup is present because orbit expects it to be. */}
-                {/* eslint-disable-next-line jsx-a11y/anchor-has-content,jsx-a11y/control-has-associated-label */}
-                <a href="#?" />
-              </div>
-              <div className="display-block mb-xs flex items-center">
-                {/* This markup is present because orbit expects it to be. */}
-                {/* eslint-disable-next-line jsx-a11y/anchor-has-content,jsx-a11y/control-has-associated-label */}
-                <a href="#?" data-rs-chat-popup-show="" />
-              </div>
-            </div>
-            <div className="chat-settings__overlay" data-rs-chat-popup="">
-              <div className="chat-settings__overlay-content">
-                {/* This markup is present because orbit expects it to be. */}
-                {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
-                <button type="button" className="button button--full-width button--filled mb-xs mtmb-m" />
-                {/* This markup is present because orbit expects it to be. */}
-                {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
-                <button type="button" className="button button--full-width button--plain" data-rs-chat-popup-hide="" />
-              </div>
-            </div>
-          </div>
+          <ChatSettings />
         </div>
       </div>
       <a
