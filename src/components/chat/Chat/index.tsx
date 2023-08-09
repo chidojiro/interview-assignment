@@ -7,7 +7,8 @@ import { ChatProps } from './Chat.types';
 import ChatReply from '../ChatReply';
 import ChatLoader from '../ChatLoader';
 import ChatQuickSuggest from '../ChatQuickSuggest';
-import { ChatMultiSelect } from '../../../index';
+import ChatMultiSelect from '../ChatMultiSelect/index';
+import { ConversationMultiSelect, ConversationMultiSelectItem } from '../../../utils/chatApi/types';
 
 function Chat({
   settings,
@@ -27,10 +28,19 @@ function Chat({
     handleSendButton,
     handleOnChange,
     handleQuickSuggest,
+    handleMultiselectSubmit,
     replyLoading,
   } = settings;
   const [replyComponents, setReplyComponents] = useState<React.ReactNode[]>([]);
   const [replyIndexes, setReplyIndexes] = useState<Array<number>>([]);
+  const [selectedItems, setSelectedItems] = useState<Array<ConversationMultiSelectItem>>([]);
+  const [multiSelectData, setMultiSelectData] = useState<ConversationMultiSelect>({
+    submit: '',
+    items: [],
+    intent: '',
+    param: '',
+    hint: '',
+  });
   const ref = useRef(null);
   const textAreaRef = useRef(null);
   const chatBoxRef = useRef(null);
@@ -39,6 +49,17 @@ function Chat({
   const handleSendOnEnterPress = (e: KeyboardEvent) => {
     if ((e.target as HTMLTextAreaElement).value.trim().length && e.key === 'Enter') {
       handleSendButton();
+    }
+  };
+
+  const handleOnMultiSelectChange = (item: ConversationMultiSelectItem) => {
+    const found = selectedItems.findIndex((predicated) => predicated.param === item.param);
+    if (found !== -1) {
+      const selectedItemsCopy = [...selectedItems];
+      selectedItemsCopy.splice(found, 1);
+      setSelectedItems(selectedItemsCopy);
+    } else {
+      setSelectedItems((oldState) => ([...oldState, item]));
     }
   };
 
@@ -79,7 +100,8 @@ function Chat({
           return <ChatQuickSuggest key={`quick-sugguset-${quickSuggestItems[0].text}`} items={quickSuggestItems} handleQuickSuggest={handleQuickSuggest} />;
         }
         if (reply.ms) {
-          return <ChatMultiSelect items={reply.ms.items} key={`multi-select-${reply.text}`} />;
+          setMultiSelectData(reply.ms);
+          return <ChatMultiSelect onMultiSelectChange={handleOnMultiSelectChange} items={reply.ms.items} key={`multi-select-${reply.text}`} />;
         }
         return null;
       });
@@ -91,7 +113,7 @@ function Chat({
         return [...prevState];
       });
     }
-  }, [replies, handleQuickSuggest]);
+  }, [replies, handleQuickSuggest, selectedItems, setSelectedItems, replyIndexes]);
 
   useEffect(() => {
     if (chatBoxRef && chatBoxRef.current) {
@@ -148,8 +170,30 @@ function Chat({
                 {selectedOptionsText}
               </div>
               <div className="buttons-group">
-                <button type="button" className="button button--s mr-xxs" data-rs-chat-tags-deselect-button="" aria-hidden="true">{deselectButtonText}</button>
-                <button type="button" className="button button--s button--filled" data-rs-chat-tags-submit-button="" aria-hidden="true">{submitButtonText}</button>
+                <button
+                  type="button"
+                  className="button button--s mr-xxs"
+                  data-rs-chat-tags-deselect-button=""
+                  aria-hidden="true"
+                  onClick={() => {
+                    setSelectedItems([]);
+                  }}
+                >
+                  {deselectButtonText}
+                </button>
+                <button
+                  type="button"
+                  className="button button--s button--filled"
+                  data-rs-chat-tags-submit-button=""
+                  aria-hidden="true"
+                  onClick={() => {
+                    if (handleMultiselectSubmit) {
+                      handleMultiselectSubmit(multiSelectData, selectedItems);
+                    }
+                  }}
+                >
+                  {submitButtonText}
+                </button>
               </div>
             </div>
           </div>

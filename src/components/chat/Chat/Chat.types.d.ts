@@ -1,5 +1,10 @@
 import React from 'react';
-import type { ConversationQuickSuggest, ConversationReply } from '../../../utils/chatApi/types';
+import type {
+  ConversationMultiSelect,
+  ConversationMultiSelectItem,
+  ConversationQuickSuggest,
+  ConversationReply,
+} from '../../../utils/chatApi/types';
 
 export type BaseEvent = {
   target: {
@@ -21,6 +26,7 @@ export type ChatSettings = {
   handleSendButton: () => void;
   handleOnChange?: (event: BaseEvent) => void;
   handleQuickSuggest?: (item: ConversationQuickSuggest) => void;
+  handleMultiselectSubmit?: (data: ConversationMultiSelect, selectedItems: Array<ConversationMultiSelectItem>) => void;
   replyLoading?: boolean;
 };
 

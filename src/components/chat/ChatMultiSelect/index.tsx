@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { ChatMultiSelectProps } from './ChatMultiSelect.types';
 import TagCheckbox from '../../tags/TagCheckbox';
-import { ConversationMultiSelectItem } from '../../../utils/chatApi/types';
 
-function ChatMultiSelect({ items }: ChatMultiSelectProps) {
-  const [selectedItems, setSelectedItems] = useState<Array<ConversationMultiSelectItem>>([]);
+function ChatMultiSelect({ items, onMultiSelectChange }: ChatMultiSelectProps) {
   const ref = React.useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -27,14 +25,7 @@ function ChatMultiSelect({ items }: ChatMultiSelectProps) {
         {items.map((item) => (
           <TagCheckbox
             handleChange={() => {
-              const found = selectedItems.findIndex((predicated) => predicated.param === item.param);
-              if (found !== -1) {
-                const selectedItemsCopy = [...selectedItems];
-                selectedItemsCopy.splice(found, 1);
-                setSelectedItems(selectedItemsCopy);
-              } else {
-                setSelectedItems((oldItems) => [...oldItems, item]);
-              }
+              onMultiSelectChange(item);
             }}
             key={item.param}
             className="mb-xxs mr-xxs"

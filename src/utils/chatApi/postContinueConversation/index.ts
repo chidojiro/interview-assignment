@@ -1,3 +1,4 @@
+import { getCookie } from 'cookies-next';
 import ChatApi from '../index';
 import type { ContinueRequest, ContinueRequestType, ContinueResponse } from './types';
 
@@ -12,9 +13,11 @@ const postContinueConversation = async (
   data?: string,
 ): Promise<ContinueResponse | undefined> => {
   const chatApi = new ChatApi(chatId, chatApiUrl, chatApiKey);
+  const idToken = getCookie('IdToken') as string;
 
   try {
     const request: ContinueRequest = {
+      idToken,
       reply_text,
       request_type,
       data,
