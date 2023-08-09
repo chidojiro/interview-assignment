@@ -1,3 +1,5 @@
+import { KeyboardEvent } from 'react';
+
 function getKeyCodeOnKeyDownEvent(event: KeyboardEvent) {
   let keyCode;
   if (event != null) {
