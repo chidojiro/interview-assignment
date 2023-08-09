@@ -125,9 +125,14 @@ const useAutosuggest = ({
   }, []);
 
   // Event handlers.
-  const handleInputChange = ({ target }: React.ChangeEvent) => {
+  const handleInputChange = ({ nativeEvent, target }: React.ChangeEvent) => {
     const { value } = target as HTMLInputElement;
-    if (previousInputValue === value) return;
+    if (previousInputValue === value) {
+      if (nativeEvent.type === 'focusin') {
+        setOpen(!!value);
+      }
+      return;
+    }
 
     // Close the list if value is empty.
     setOpen(!!value);
