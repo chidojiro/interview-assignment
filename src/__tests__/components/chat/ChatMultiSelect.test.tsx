@@ -11,7 +11,7 @@ describe('ChatMultiSelect', () => {
 
     const { container } = render(
       <div data-testid="chat-multi-select">
-        <ChatMultiSelect items={items} />
+        <ChatMultiSelect onMultiSelectChange={() => {}} items={items} />
       </div>,
     );
 
@@ -27,16 +27,16 @@ describe('ChatMultiSelect', () => {
   });
 
   it('calls handleTagDialogButtons method when mounted', () => {
-    const handleTagDialogButtonsMock = jest.fn();
+    const tagHandler = jest.fn();
     (window as any).orbit = {
       chatInstance: {
-        handleTagDialogButtons: handleTagDialogButtonsMock,
+        tagHandler,
       },
     };
 
-    render(<ChatMultiSelect items={[]} />);
+    render(<ChatMultiSelect onMultiSelectChange={() => {}} items={[]} />);
 
     // Check if handleTagDialogButtons method calls
-    expect(handleTagDialogButtonsMock).toHaveBeenCalledTimes(1);
+    expect(tagHandler).toHaveBeenCalledTimes(1);
   });
 });

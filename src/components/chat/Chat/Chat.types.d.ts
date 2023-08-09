@@ -26,7 +26,7 @@ export type ChatSettings = {
   handleSendButton: () => void;
   handleOnChange?: (event: BaseEvent) => void;
   handleQuickSuggest?: (item: ConversationQuickSuggest) => void;
-  handleMultiselectSubmit?: (data: ConversationMultiSelect, selectedItems: Array<ConversationMultiSelectItem>) => void;
+  handleMultiSelectSubmit?: (data: ConversationMultiSelect, selectedItems: Array<ConversationMultiSelectItem>) => void;
   replyLoading?: boolean;
 };
 
