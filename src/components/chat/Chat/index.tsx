@@ -71,6 +71,11 @@ function Chat({
   }, [handleOnChange]);
 
   useEffect(() => {
+    if (replyLoading || !textAreaRef.current) return;
+    (textAreaRef.current as HTMLTextAreaElement).focus();
+  }, [replyLoading]);
+
+  useEffect(() => {
     if (chatBoxRef && chatBoxRef.current) {
       (chatBoxRef.current as HTMLElement).scrollTop = (chatBoxRef.current as HTMLElement).scrollHeight;
     }
@@ -105,6 +110,7 @@ function Chat({
           <div className="chat__footer divider divider--top">
             <div className="flex items-end" data-rs-chat-input>
               <textarea
+                disabled={replyLoading}
                 className="mr-xs flex-1 textarea--expand"
                 placeholder={textAreaPlaceholder}
                 rows={1}
