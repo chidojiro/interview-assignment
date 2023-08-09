@@ -58,7 +58,7 @@ function useHandleChatReplies(
         }
         if (reply.ms) {
           setMultiSelectData(reply.ms);
-          return <ChatMultiSelect onMultiSelectChange={handleOnMultiSelectChange} items={reply.ms.items} key={`multi-select-${reply.text}`} />;
+          return <ChatMultiSelect onMultiSelectChange={handleOnMultiSelectChange} items={reply.ms.items} key={`multi-select-${reply.ms.items[0].text}`} />;
         }
         return null;
       });

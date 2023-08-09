@@ -1,4 +1,4 @@
-import { ConversationMultiSelectItem } from '../../../utils/chatApi/types';
+import type { ConversationMultiSelectItem } from '../../../utils/chatApi/types';
 
 export interface ChatMultiSelectProps {
   items: Array<ConversationMultiSelectItem>;
