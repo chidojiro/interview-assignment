@@ -70,7 +70,7 @@ function useHandleChatReplies(
         return [...prevState];
       });
     }
-  }, [replies, handleQuickSuggest, selectedItems, setSelectedItems, replyIndexes]);
+  }, [replies, handleQuickSuggest, selectedItems, setSelectedItems]);
 
   return {
     replyComponents, multiSelectData, clearMultiSelect, submitMultiSelect,
