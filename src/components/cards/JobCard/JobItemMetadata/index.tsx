@@ -26,8 +26,8 @@ function JobItemMetadata({
   fourthOptionIcon,
   fourthOptionAriaLabelValue,
   lowerCased = false,
-  enableEvergreenJob = false,
-  evergreenJobText
+  evergreenJobText,
+  evergreenJobIcon,
 }: JobItemMetadataProps) {
   const fourthOptionAriaLabel = { 'aria-label': fourthOptionAriaLabelValue };
 
@@ -127,13 +127,14 @@ function JobItemMetadata({
   return (
     <ul className="cards__meta">
       {
-        (enableEvergreenJob && evergreenJobText) 
-        && (<li className="cards__meta-item" data-testid="evergreen">
-              <span className="icon icon--inline">
-                <Icon iconType={'label'} iconClassName={null} />
-              </span>
-              {fieldValue(evergreenJobText)}
-            </li>
+        (evergreenJobText)
+        && (
+          <li className="cards__meta-item" data-testid="evergreen">
+            <span className="icon icon--inline">
+              <Icon iconType={evergreenJobIcon || 'label'} iconClassName={null} />
+            </span>
+            {fieldValue(evergreenJobText)}
+          </li>
         )
       }
       {

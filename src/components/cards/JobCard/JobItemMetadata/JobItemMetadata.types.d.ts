@@ -34,6 +34,6 @@ export interface JobItemMetadataProps {
   fourthOptionAriaLabelValue?: string;
 
   lowerCased?: boolean;
-  enableEvergreenJob?: boolean;
+  evergreenJobIcon?: string;
   evergreenJobText?: string;
 }
