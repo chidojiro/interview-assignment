@@ -18,11 +18,11 @@ const replies = [
   {
     qs: [
       {
-        value: 'Yes',
+        payload: 'Yes',
         text: 'Yes',
       },
       {
-        value: 'No',
+        payload: 'No',
         text: 'No',
       },
     ],
