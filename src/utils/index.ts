@@ -13,6 +13,7 @@ import getSavedJobs from './savedJobs/getSavedJobs';
 import postInitChat from './chatApi/postInitChat';
 import postContinueConversation from './chatApi/postContinueConversation';
 import { gtmScriptInitializer, gtmDataLayerPushHandler } from './gtm';
+import getKeyCodeOnKeyDownEvent from './getKeyCodeOnKeyDownEvent';
 
 import { ContinueRequestType } from './chatApi/postContinueConversation/types';
 import type { ConversationReply, ConversationQuickSuggest, ConversationMultiSelect, ConversationMultiSelectItem } from './chatApi/types';
@@ -32,6 +33,7 @@ export {
   postInitChat,
   postContinueConversation,
   ContinueRequestType,
+  getKeyCodeOnKeyDownEvent,
 };
 
 export type {
