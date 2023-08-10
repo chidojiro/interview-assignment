@@ -150,13 +150,13 @@ describe('SavedJobIcon component tests', () => {
     expect((window as unknown as CustomWindow).dataLayer).toEqual([{ event_params: null }, { event: 'interaction', event_params: { action: 'add', event_name: 'job_save', item_name: 'Test Job' } }]);
   });
 
-  test('calls deleteSavedJobs and returnJobPostingWebDetailId when savedJobId is provided and the button is clicked', () => {
+  test('calls deleteSavedJobs and returnJobPostingDetails when savedJobId is provided and the button is clicked', () => {
     (getUserData as Mock).mockImplementation(() => ({ loginStatus: true }));
     const { container } = render(
       <SavedJobIcon
         {...commonProps}
         savedJobId={dummySavedJobId}
-        returnJobPostingWebDetailId={() => {
+        returnJobPostingDetails={() => {
         }}
       />,
     );
