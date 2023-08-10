@@ -42,7 +42,7 @@ function Chat({
   } = useHandleContinueConversation(replies, setChatReplies, conversationData, setConversationData, replyLoading, setReplyLoading, jobId, applicationId);
   const {
     replyComponents, clearMultiSelect, submitMultiSelect,
-  } = useHandleChatReplies(replies, handleQuickSuggest, handleMultiSelectSubmit);
+  } = useHandleChatReplies(replies, replyLoading, handleQuickSuggest, handleMultiSelectSubmit);
 
   const imgPath = !process.env.NEXT_PUBLIC_RESOURCE_PREFIX ? '/src/assets/img/randstad-wings.jpg' : `${process.env.NEXT_PUBLIC_RESOURCE_PREFIX}/src/assets/img/randstad-wings.jpg`;
   const handleSendOnEnterPress = (e: KeyboardEvent) => {

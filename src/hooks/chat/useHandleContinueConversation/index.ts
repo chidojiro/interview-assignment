@@ -86,7 +86,9 @@ function useHandleContinueConversation(
       ...data,
       items: selected,
     };
-    handleContinueConversation(ContinueRequestType.QUICK_SUGGEST, combinedData);
+    if (!replyLoading) {
+      handleContinueConversation(ContinueRequestType.QUICK_SUGGEST, combinedData);
+    }
   };
 
   return {

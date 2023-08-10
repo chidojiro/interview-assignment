@@ -11,6 +11,7 @@ import type {
 
 function useHandleChatReplies(
   replies: ConversationReply[] | undefined,
+  replyLoading: boolean,
   handleQuickSuggest?: (item: ConversationQuickSuggest) => void,
   handleMultiselectSubmit?: (data: ConversationMultiSelect, selectedItems: Array<ConversationMultiSelectItem>) => void,
 ) {
@@ -26,7 +27,9 @@ function useHandleChatReplies(
   });
 
   const clearMultiSelect = () => {
-    setSelectedItems([]);
+    if (!replyLoading) {
+      setSelectedItems([]);
+    }
   };
 
   const submitMultiSelect = () => {
