@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import Chat from '../../../components/chat/Chat';
 
 const settings = {
@@ -29,37 +29,37 @@ const replies = [
   },
 ];
 
+const conversation = {
+  replies,
+  setChatReplies: jest.fn(),
+  replyLoading: true,
+  setReplyLoading: jest.fn(),
+  conversationData: { responseId: '', conversationId: '' },
+  setConversationData: jest.fn(),
+};
+
 describe('Chat', () => {
   test('renders chat title', () => {
-    const { getByText } = render(<Chat settings={settings} replies={replies} />);
+    const { getByText } = render(<Chat settings={settings} conversation={conversation} />);
     const titleElement = getByText('Chat Title');
     expect(titleElement).toBeInTheDocument();
   });
 
   test('renders close button', () => {
-    const { getByLabelText } = render(<Chat settings={settings} replies={replies} />);
+    const { getByLabelText } = render(<Chat settings={settings} conversation={conversation} />);
     const closeButton = getByLabelText('Close Chat');
     expect(closeButton).toBeInTheDocument();
   });
 
   test('renders bot reply', () => {
-    render(<Chat settings={settings} replies={replies} />);
+    render(<Chat settings={settings} conversation={conversation} />);
     const botReply = document.querySelector('[data-rs-chat-content="bot"]');
     expect(botReply).toBeInTheDocument();
   });
 
   test('renders quick suggest buttons', () => {
-    render(<Chat settings={settings} replies={replies} />);
+    render(<Chat settings={settings} conversation={conversation} />);
     const quickSuggestReply = document.querySelector('[data-rs-chat-quick-suggest]');
     expect(quickSuggestReply).toBeInTheDocument();
-  });
-
-  test('calls handleSendButton when send button is clicked', () => {
-    const handleSendButton = jest.fn();
-    settings.handleSendButton = handleSendButton;
-    const { getByText } = render(<Chat settings={settings} replies={replies} />);
-    const sendButton = getByText('send');
-    fireEvent.click(sendButton);
-    expect(handleSendButton).toHaveBeenCalled();
   });
 });

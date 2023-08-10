@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import ChatReply from '../../components/chat/ChatReply';
-import ChatQuickSuggest from '../../components/chat/ChatQuickSuggest';
-import ChatMultiSelect from '../../components/chat/ChatMultiSelect';
+import ChatReply from '../../../components/chat/ChatReply';
+import ChatQuickSuggest from '../../../components/chat/ChatQuickSuggest';
+import ChatMultiSelect from '../../../components/chat/ChatMultiSelect';
 import type {
   ConversationMultiSelect,
   ConversationMultiSelectItem,
   ConversationQuickSuggest,
   ConversationReply,
-} from '../../utils/chatApi/types';
+} from '../../../utils/chat/chatApi/types';
 
 function useHandleChatReplies(
   replies: ConversationReply[] | undefined,
@@ -70,7 +70,9 @@ function useHandleChatReplies(
         return [...prevState];
       });
     }
-  }, [replies, handleQuickSuggest, selectedItems, setSelectedItems]);
+    // We need to check for the replies update.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [replies, selectedItems]);
 
   return {
     replyComponents, multiSelectData, clearMultiSelect, submitMultiSelect,

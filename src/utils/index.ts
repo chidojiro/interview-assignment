@@ -10,12 +10,17 @@ import getSavedJobsLocalStorage from './savedJobs/savedJobsLocalStorage/getSaved
 import removeSavedJobsFromLocalStorage from './savedJobs/savedJobsLocalStorage/removeSavedJobsLocalStorage';
 import saveSavedJobsToLocalStorage from './savedJobs/savedJobsLocalStorage/saveSavedJobsLocalStorage';
 import getSavedJobs from './savedJobs/getSavedJobs';
-import postInitChat from './chatApi/postInitChat';
-import postContinueConversation from './chatApi/postContinueConversation';
+import postInitChat from './chat/chatApi/postInitChat';
+import postContinueConversation from './chat/chatApi/postContinueConversation';
 import { gtmScriptInitializer, gtmDataLayerPushHandler } from './gtm';
 
-import { ContinueRequestType } from './chatApi/postContinueConversation/types';
-import type { ConversationReply, ConversationQuickSuggest, ConversationMultiSelect, ConversationMultiSelectItem } from './chatApi/types';
+import { ContinueRequestType } from './chat/chatApi/postContinueConversation/types';
+import type {
+  ConversationReply,
+  ConversationQuickSuggest,
+  ConversationMultiSelect,
+  ConversationMultiSelectItem,
+} from './chat/chatApi/types';
 import type { DataLayerEventObjectType } from './gtm/types';
 
 export {

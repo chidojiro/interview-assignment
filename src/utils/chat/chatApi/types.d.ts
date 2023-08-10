@@ -27,3 +27,8 @@ export type ConversationSupportedLanguage = {
   name: string;
   native_name: string;
 };
+
+export type ConversationData = {
+  conversationId: string;
+  responseId: string;
+};
