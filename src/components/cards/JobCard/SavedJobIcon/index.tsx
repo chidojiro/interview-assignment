@@ -18,7 +18,7 @@ function SavedJobIcon({
   jobPostingWebDetailId,
   ariaLabel,
   title,
-  returnJobPostingWebDetailId,
+  returnJobPostingDetails,
   locale,
 }: SavedJobIconProps) {
   const [iconFilled, setIconFilled] = useState(savedJobId);
@@ -39,8 +39,8 @@ function SavedJobIcon({
 
         saveJobEvent(title, true);
       } else if (!filled && iconFilled) {
-        if (returnJobPostingWebDetailId) {
-          returnJobPostingWebDetailId(jobPostingWebDetailId);
+        if (returnJobPostingDetails) {
+          returnJobPostingDetails(jobPostingWebDetailId, title);
         }
         setIconFilled('');
 
@@ -49,8 +49,8 @@ function SavedJobIcon({
     } else if (savedJobId && typeof (savedJobId) === 'string') {
       setIconFilled('');
       const onSuccessfullDelete = await deleteSavedJobs(gdsApiKey, gdsApiUrl, savedJobId);
-      if (returnJobPostingWebDetailId && onSuccessfullDelete) {
-        returnJobPostingWebDetailId(jobPostingWebDetailId);
+      if (returnJobPostingDetails && onSuccessfullDelete) {
+        returnJobPostingDetails(jobPostingWebDetailId, title);
       }
 
       saveJobEvent(title, false);

@@ -8,7 +8,7 @@ interface SavedJobsProps {
   jobPostingWebDetailId: string;
   savedJobId?: string;
   ariaLabel?: string;
-  returnJobPostingWebDetailId?: (jobPostingWebDetailId: string) => void;
+  returnJobPostingDetails?: (jobPostingWebDetailId: string, jobPostingTitle: string) => void;
   locale: string;
 }
 
