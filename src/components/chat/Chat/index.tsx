@@ -1,16 +1,20 @@
 import React, {
-  useEffect, useRef, KeyboardEvent,
+  useEffect, useRef, KeyboardEvent, useState,
 } from 'react';
 import cn from 'classnames';
 import Icon from '../../common/Icon';
-import { ChatProps } from './Chat.types';
+import type { BaseEvent, ChatProps } from './Chat.types';
 import ChatLoader from '../ChatLoader';
 import ChatSettings from '../ChatSettings';
-import useHandleChatReplies from '../../../hooks/useHandleChatReplies';
+import useHandleChatReplies from '../../../hooks/chat/useHandleChatReplies';
+import useHandleContinueConversation from '../../../hooks/chat/useHandleContinueConversation';
 
 function Chat({
   settings,
-  replies,
+  conversation,
+  jobId,
+  applicationId,
+
 }: ChatProps) {
   const {
     title,
@@ -23,16 +27,19 @@ function Chat({
     selectedOptionsText = 'selected',
     startConversationButtonText,
     hiddenByDefault = true,
-    handleSendButton,
-    handleOnChange,
-    handleQuickSuggest,
-    handleMultiSelectSubmit,
-    replyLoading,
   } = settings;
   const ref = useRef(null);
   const textAreaRef = useRef(null);
   const chatBoxRef = useRef(null);
 
+  const {
+    replies, setChatReplies, conversationData, setConversationData, setReplyLoading, replyLoading,
+  } = conversation;
+
+  const [input, setInput] = useState('');
+  const {
+    handleSendButton, handleQuickSuggest, handleMultiSelectSubmit,
+  } = useHandleContinueConversation(replies, setChatReplies, conversationData, setConversationData, replyLoading, setReplyLoading, jobId, applicationId);
   const {
     replyComponents, clearMultiSelect, submitMultiSelect,
   } = useHandleChatReplies(replies, handleQuickSuggest, handleMultiSelectSubmit);
@@ -40,7 +47,7 @@ function Chat({
   const imgPath = !process.env.NEXT_PUBLIC_RESOURCE_PREFIX ? '/src/assets/img/randstad-wings.jpg' : `${process.env.NEXT_PUBLIC_RESOURCE_PREFIX}/src/assets/img/randstad-wings.jpg`;
   const handleSendOnEnterPress = (e: KeyboardEvent) => {
     if ((e.target as HTMLTextAreaElement).value.trim().length && e.key === 'Enter') {
-      handleSendButton();
+      handleSendButton(input);
     }
   };
 
@@ -52,23 +59,27 @@ function Chat({
   }, []);
 
   useEffect(() => {
+    const handleChange = (e: BaseEvent) => {
+      setInput(e.target.value);
+    };
+
     if (!textAreaRef.current) return;
     const { TextArea: OrbitComponent } = require('@ffw/randstad-local-orbit/original/js/components/text-area');
     new OrbitComponent(textAreaRef.current);
 
     // TODO: use textare ref.
-    if (handleOnChange && window.orbit?.chatInstance) {
-      window.orbit.chatInstance.textarea.addEventListener('input', handleOnChange);
+    if (handleChange && window.orbit?.chatInstance) {
+      window.orbit.chatInstance.textarea.addEventListener('input', handleChange);
     }
 
     // We need to delete the handleOnChange event.
     // eslint-disable-next-line consistent-return
     return () => {
-      if (handleOnChange && window.orbit?.chatInstance) {
-        window.orbit.chatInstance.textarea.removeEventListener('input', handleOnChange);
+      if (handleChange && window.orbit?.chatInstance) {
+        window.orbit.chatInstance.textarea.removeEventListener('input', handleChange);
       }
     };
-  }, [handleOnChange]);
+  }, []);
 
   useEffect(() => {
     if (replyLoading || !textAreaRef.current) return;
@@ -79,7 +90,7 @@ function Chat({
     if (chatBoxRef && chatBoxRef.current) {
       (chatBoxRef.current as HTMLElement).scrollTop = (chatBoxRef.current as HTMLElement).scrollHeight;
     }
-  }, [replyComponents]);
+  }, [replyComponents, replyLoading]);
 
   return (
     <div className="bluex-chat-bot" data-chatbot-id="some-chat-id" data-chatbot-init-timeout="120" data-chatbot-re-init="true" data-chatbot-dynamo-langcode="en" data-chatbot-langcode="en">
@@ -119,7 +130,7 @@ function Chat({
                 ref={textAreaRef}
                 onKeyDown={handleSendOnEnterPress}
               />
-              <button type="button" className="button button--icon button--filled" data-rs-chat-button="" onClick={() => handleSendButton()}>
+              <button type="button" className="button button--icon button--filled" data-rs-chat-button="" onClick={() => handleSendButton(input)}>
                 <span className="button__text">{sendButtonText}</span>
                 <Icon iconType="arrow-up" iconClassName="icon" />
               </button>
