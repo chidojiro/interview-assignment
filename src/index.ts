@@ -90,7 +90,7 @@ import ArrowLink from './components/pagination/ArrowLink';
 import Sortbar from './components/forms/Sortbar';
 import MyRandstad from './components/navigation/MyRandstad';
 import SavedJobIcon from './components/cards/JobCard/SavedJobIcon';
-import { JobCardProps } from './components/cards/JobCard/JobCard.types';
+import { JobCardProps, SavedJobsProps } from './components/cards/JobCard/JobCard.types';
 import { MetaItemIcons } from './components/cards/JobCard/JobItemMetadata/JobItemMetadata.types';
 
 export {
@@ -187,4 +187,13 @@ export {
 /**
  * Exporting interfaces and types.
  */
-export type { NoticeType, TextNoticeBackground, FooterSocial, GoogleRecaptchaRef, ApplicationProcessCardProp, JobCardProps, MetaItemIcons };
+export type {
+  NoticeType,
+  TextNoticeBackground,
+  FooterSocial,
+  GoogleRecaptchaRef,
+  ApplicationProcessCardProp,
+  JobCardProps,
+  MetaItemIcons,
+  SavedJobsProps,
+};
