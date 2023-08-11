@@ -1,6 +1,4 @@
-import { KeyboardEvent } from 'react';
-
-function getKeyCodeOnKeyDownEvent(event: KeyboardEvent) {
+function getKeyCodeOnKeyDownEvent(event: KeyboardEventInit) {
   let keyCode;
   if (event != null) {
     if (typeof event.code === 'undefined') {
