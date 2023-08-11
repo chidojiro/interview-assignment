@@ -1,4 +1,4 @@
-export type MetaItemIcons = 'marker' | 'briefcase' | 'salary';
+export type MetaItemIcons = 'marker' | 'briefcase' | 'salary' | '';
 
 export interface JobItemMetadataProps {
   location: string;
