@@ -1,4 +1,5 @@
-export type MetaItemIcons = 'marker' | 'briefcase' | 'salary';
+// Empty string added because sometimes the data coming from the metadata service is empty.
+export type MetaItemIcons = 'marker' | 'briefcase' | 'salary' | '';
 
 export interface JobItemMetadataProps {
   location: string;
