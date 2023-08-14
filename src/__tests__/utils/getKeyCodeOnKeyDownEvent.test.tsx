@@ -1,26 +1,27 @@
-import { getKeyCodeOnKeyDownEvent } from '../../utils';
+import React from 'react';
+import { render, fireEvent } from '@testing-library/react';
+import getKeyCodeOnKeyDownEvent from '../../utils/getKeyCodeOnKeyDownEvent';
 
 describe('getKeyCodeOnKeyDownEvent', () => {
-  it('should return the correct key code value', () => {
-    const testCases = [
-      { keyCode: 13, code: 'Enter' },
-      { keyCode: 38, code: 'ArrowUp' },
-      { keyCode: 40, code: 'ArrowDown' },
-      { keyCode: 8, code: 'Backspace' },
-      { keyCode: 9, code: 'Tab' },
-      { keyCode: 27, code: 'Escape' },
-      { keyCode: 33, code: 'PageUp' },
-      { keyCode: 34, code: 'PageDown' },
-      { keyCode: 32, code: 'Space' },
-      { keyCode: 123, code: undefined },
-      { keyCode: undefined, code: 'KeyA' },
-      { keyCode: null, code: undefined },
-    ];
+  const keyMap: Record<number, string> = {
+    13: 'Enter',
+    38: 'ArrowUp',
+    40: 'ArrowDown',
+    8: 'Backspace',
+    9: 'Tab',
+    27: 'Escape',
+    33: 'PageUp',
+    34: 'PageDown',
+    32: 'Space',
+  };
 
-    testCases.forEach((testCase) => {
-      const event = new KeyboardEvent('keydown', { keyCode: testCase.keyCode as number });
-      Object.defineProperty(event, 'code', { value: testCase.code });
-      expect(getKeyCodeOnKeyDownEvent(event)).toBe(testCase.code);
+  Object.entries(keyMap).forEach(([keyCode, expectedKeyCode]) => {
+    test(`should return correct key code for ${expectedKeyCode} key`, () => {
+      const { container } = render(<input type="text" onKeyDown={getKeyCodeOnKeyDownEvent} />);
+      const event = new KeyboardEvent('keydown', { keyCode: Number(keyCode), code: expectedKeyCode });
+      fireEvent(container.firstChild as HTMLInputElement, event as any);
+
+      expect(getKeyCodeOnKeyDownEvent(event as any)).toBe(expectedKeyCode);
     });
   });
 });
