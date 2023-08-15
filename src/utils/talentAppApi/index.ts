@@ -1,50 +1,11 @@
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
-import authStorage from 'src/utils/auth/authStorage';
-import AuthManager from '../auth/AuthManager';
+import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
+import getAxiosInstance from '../getAxiosInstance';
 
 export type Data = {
   // Data describes a generic abstract structure of request, which can be anything.
   /* eslint-disable @typescript-eslint/no-explicit-any */
   [id: string]: any;
 };
-
-const AxiosInstances = new Map<string, AxiosInstance>();
-
-function getAxiosInstance(gdsApiKey: string, gdsApiUrl: string) {
-  const instanceKey = `${gdsApiUrl}?${gdsApiKey}`;
-  let axiosInstance = AxiosInstances.get(instanceKey);
-
-  if (!axiosInstance) {
-    axiosInstance = axios.create({
-      baseURL: gdsApiUrl,
-      params: {
-        apikey: gdsApiKey,
-      },
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-
-    const authManager = new AuthManager(authStorage, { apiKey: gdsApiKey, baseUrl: gdsApiUrl });
-
-    axiosInstance.interceptors.request.use(async (config) => {
-      const result = config;
-      const isClient = typeof window !== 'undefined';
-      if (isClient) {
-        const idToken = await authManager.getValidatedIdToken();
-        if (typeof idToken === 'string') {
-          result.headers = config.headers ?? {};
-          result.headers.Authorization = `Bearer ${idToken}`;
-        }
-      }
-      return result;
-    });
-
-    AxiosInstances.set(instanceKey, axiosInstance);
-  }
-
-  return axiosInstance;
-}
 
 /**
  * Wraps around Axios and provides options of app-specific context to requests.
