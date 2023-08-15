@@ -1,54 +1,11 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
-import authStorage from '../auth/authStorage';
-import refreshIdToken from '../auth/refreshIdToken';
+import authManager from '../auth/authManager';
 
 export type Data = {
   // Data describes a generic abstract structure of request, which can be anything.
   /* eslint-disable @typescript-eslint/no-explicit-any */
   [id: string]: any;
 };
-
-let idTokenPromise: Promise<string | undefined> | null = null;
-
-function getValidatedIdToken() {
-  if (!idTokenPromise) {
-    idTokenPromise = new Promise<string | undefined>((resolve, reject) => {
-      setTimeout(() => {
-        const refreshToken = authStorage.getRefreshToken();
-
-        if (!refreshToken) {
-          resolve(undefined);
-          idTokenPromise = null;
-          return;
-        }
-
-        const idToken = authStorage.getIdToken();
-
-        if (typeof idToken === 'string' && !authStorage.willIdTokenExpireIn(idToken, 60 /* sec */)) {
-          // We have valid IdToken, which will not going to expire too soon.
-          resolve(idToken);
-          idTokenPromise = null;
-          return;
-        }
-
-        // Here we have RefreshToken, and IdToken is either missing, invalid or is about to expire.
-        // Trying to refresh IdToken.
-        refreshIdToken()
-          .then((response) => {
-            resolve(response?.idToken);
-            idTokenPromise = null;
-            return response?.idToken;
-          })
-          .catch((ex) => {
-            reject(ex);
-            idTokenPromise = null;
-          });
-      }, 0);
-    });
-  }
-
-  return idTokenPromise;
-}
 
 /**
  * Wraps around Axios and provides options of app-specific context to requests.
@@ -70,7 +27,7 @@ export class TalentAppApi {
       const result = config;
       const isClient = typeof window !== 'undefined';
       if (isClient) {
-        const idToken = await getValidatedIdToken();
+        const idToken = await authManager.getValidatedIdToken();
         if (typeof idToken === 'string') {
           result.headers = config.headers ?? {};
           result.headers.Authorization = `Bearer ${idToken}`;
