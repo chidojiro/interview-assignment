@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { getCookie } from 'cookies-next';
 import jwtDecode, { InvalidTokenError } from 'jwt-decode';
-import refreshIdToken from '../refreshIdToken';
+import refreshIdToken from '../auth/refreshIdToken';
 
 export type Data = {
   // Data describes a generic abstract structure of request, which can be anything.
