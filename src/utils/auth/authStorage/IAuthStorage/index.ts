@@ -1,0 +1,12 @@
+/**
+ * An abstraction representing authentication data storage
+ */
+interface IAuthStorage<OptionsType> {
+  getIdToken(): string | undefined;
+  setIdToken(idToken: string, options?: OptionsType): void;
+  getRefreshToken(): string | undefined;
+  setRefreshToken(refreshToken: string, expiresInSecs?: number): void;
+  deleteTokens(options?: OptionsType): void;
+}
+
+export default IAuthStorage;
