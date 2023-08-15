@@ -1,5 +1,6 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
-import authManager from '../auth/authManager';
+import authStorage from 'src/utils/auth/authStorage';
+import AuthManager from '../auth/AuthManager';
 
 export type Data = {
   // Data describes a generic abstract structure of request, which can be anything.
@@ -7,14 +8,14 @@ export type Data = {
   [id: string]: any;
 };
 
-/**
- * Wraps around Axios and provides options of app-specific context to requests.
- */
-export class TalentAppApi {
-  private readonly axiosInstance: AxiosInstance;
+const AxiosInstances = new Map<string, AxiosInstance>();
 
-  constructor(gdsApiKey: string, gdsApiUrl: string) {
-    this.axiosInstance = axios.create({
+function getAxiosInstance(gdsApiKey: string, gdsApiUrl: string) {
+  const instanceKey = `${gdsApiUrl}?${gdsApiKey}`;
+  let axiosInstance = AxiosInstances.get(instanceKey);
+
+  if (!axiosInstance) {
+    axiosInstance = axios.create({
       baseURL: gdsApiUrl,
       params: {
         apikey: gdsApiKey,
@@ -23,7 +24,10 @@ export class TalentAppApi {
         'Content-Type': 'application/json',
       },
     });
-    this.axiosInstance.interceptors.request.use(async (config) => {
+
+    const authManager = new AuthManager(authStorage, { apiKey: gdsApiKey, baseUrl: gdsApiUrl });
+
+    axiosInstance.interceptors.request.use(async (config) => {
       const result = config;
       const isClient = typeof window !== 'undefined';
       if (isClient) {
@@ -35,6 +39,21 @@ export class TalentAppApi {
       }
       return result;
     });
+
+    AxiosInstances.set(instanceKey, axiosInstance);
+  }
+
+  return axiosInstance;
+}
+
+/**
+ * Wraps around Axios and provides options of app-specific context to requests.
+ */
+export class TalentAppApi {
+  private readonly axiosInstance: AxiosInstance;
+
+  constructor(gdsApiKey: string, gdsApiUrl: string) {
+    this.axiosInstance = getAxiosInstance(gdsApiKey, gdsApiUrl);
   }
 
   async post<T = Data, R = AxiosResponse<T>, D = Data>(url: string, data?: D, config?: AxiosRequestConfig<D>): Promise<R> {

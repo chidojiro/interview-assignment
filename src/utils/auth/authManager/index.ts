@@ -1,14 +1,19 @@
 import IAuthStorage from '../authStorage/AbstractAuthStorage';
-import authStorage from '../authStorage';
-import { refreshIdTokenResponse } from './types';
+import { refreshIdTokenResponse, GdsConfigOptions } from './types';
 
+/**
+ * A class responsible for refreshing IdToken
+ */
 class AuthManager<OptionsType> {
   public readonly authStorage: IAuthStorage<OptionsType>;
 
   private idTokenPromise: Promise<string | undefined> | null = null;
 
-  constructor(storage: IAuthStorage<OptionsType>) {
+  private gdsConfigOptions: GdsConfigOptions;
+
+  constructor(storage: IAuthStorage<OptionsType>, gdsConfigOptions: GdsConfigOptions) {
     this.authStorage = storage;
+    this.gdsConfigOptions = { ...gdsConfigOptions };
   }
 
   public async getValidatedIdToken() {
@@ -53,17 +58,16 @@ class AuthManager<OptionsType> {
 
   private async refreshIdToken(): Promise<refreshIdTokenResponse> {
     const refreshToken = this.authStorage.getRefreshToken();
-    const apiKey = process.env.NEXT_PUBLIC_DOMAIN_SERVICES_API_PUBLIC_KEY as string;
     if (!refreshToken) {
       return Promise.reject();
     }
 
     const params = new URLSearchParams([
-      ['apikey', apiKey],
+      ['apikey', this.gdsConfigOptions.apiKey],
       ['refreshToken', refreshToken],
     ]);
 
-    const response = await fetch(`${process.env.NEXT_PUBLIC_DOMAIN_SERVICES_API_BASE_URL}/tokens/refresh?${params}`, {
+    const response = await fetch(`${this.gdsConfigOptions.baseUrl}/tokens/refresh?${params}`, {
       headers: {
         'Content-Type': 'application/json',
       },
@@ -80,6 +84,4 @@ class AuthManager<OptionsType> {
   }
 }
 
-const authManager = new AuthManager(authStorage);
-
-export default authManager;
+export default AuthManager;

@@ -4,3 +4,8 @@ export type refreshIdTokenResponse = {
   idToken: string;
   tokenType: string;
 };
+
+export type GdsConfigOptions = {
+  apiKey: string;
+  baseUrl: string;
+};
