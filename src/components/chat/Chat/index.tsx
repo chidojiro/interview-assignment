@@ -142,7 +142,7 @@ function Chat({
               </button>
             </div>
             <div className="flex flex-col justify-center items-center hidden" data-rs-chat-tags-dialog="" aria-hidden="true">
-              <div className="mb-xxs" data-rs-chat-tags-dialog-label="@tag selected">
+              <div className="mb-xxs" data-rs-chat-tags-dialog-label={`@tag ${selectedOptionsText}`}>
                 1
                 {' '}
                 {selectedOptionsText}
