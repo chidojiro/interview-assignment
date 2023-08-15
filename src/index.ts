@@ -199,3 +199,5 @@ export type {
   MetaItemIcons,
   SavedJobsProps,
 };
+
+export { default as getAxiosInstance } from './utils/getAxiosInstance';
