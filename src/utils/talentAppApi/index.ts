@@ -1,6 +1,6 @@
-import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
-import { getCookie } from 'cookies-next';
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import jwtDecode, { InvalidTokenError } from 'jwt-decode';
+import authStorage from '../auth/authStorage';
 import refreshIdToken from '../auth/refreshIdToken';
 
 export type Data = {
@@ -9,13 +9,11 @@ export type Data = {
   [id: string]: any;
 };
 
-const authorizationCookieName = 'IdToken';
-
 /**
  * Retrieve the current non-expired IdToken (if any)
  */
 function getIdToken() {
-  const idToken = getCookie(authorizationCookieName);
+  const idToken = authStorage.getIdToken();
   if (typeof idToken !== 'string') {
     // No IdToken
     return undefined;
@@ -51,7 +49,7 @@ function getValidatedIdToken() {
   if (!idTokenPromise) {
     idTokenPromise = new Promise<string | undefined>((resolve, reject) => {
       const idToken = getIdToken();
-      const refreshToken = getCookie('RefreshToken');
+      const refreshToken = authStorage.getRefreshToken();
 
       setTimeout(() => {
         if (typeof idToken === 'string' || !refreshToken) {
@@ -81,7 +79,7 @@ function getValidatedIdToken() {
  * Wraps around Axios and provides options of app-specific context to requests.
  */
 export class TalentAppApi {
-  axiosInstance = axios.create({});
+  private readonly axiosInstance: AxiosInstance;
 
   constructor(gdsApiKey: string, gdsApiUrl: string) {
     this.axiosInstance = axios.create({
@@ -106,10 +104,6 @@ export class TalentAppApi {
       return result;
     });
   }
-
-  authorizationCookieName = authorizationCookieName;
-
-  isAuthorization = () => getCookie(this.authorizationCookieName);
 
   async post<T = Data, R = AxiosResponse<T>, D = Data>(url: string, data?: D, config?: AxiosRequestConfig<D>): Promise<R> {
     return this.axiosInstance.post(url, data, config);

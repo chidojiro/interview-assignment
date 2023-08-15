@@ -1,8 +1,8 @@
-import { getCookie, setCookie } from 'cookies-next';
 import { refreshIdTokenResponse } from './types';
+import authStorage from '../authStorage';
 
 const refreshIdToken = async (): Promise<refreshIdTokenResponse> => {
-  const refreshToken = getCookie('RefreshToken') as string;
+  const refreshToken = authStorage.getRefreshToken();
   const apiKey = process.env.NEXT_PUBLIC_DOMAIN_SERVICES_API_PUBLIC_KEY as string;
   if (!refreshToken) {
     return Promise.reject();
@@ -23,7 +23,9 @@ const refreshIdToken = async (): Promise<refreshIdTokenResponse> => {
     throw new Error(response.statusText);
   }
   const refreshResponse = await response.json();
-  setCookie('IdToken', refreshResponse.idToken);
+
+  authStorage.setIdToken(refreshResponse.idToken);
+
   return refreshResponse;
 };
 
