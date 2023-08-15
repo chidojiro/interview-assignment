@@ -1,7 +1,7 @@
 const fetchAsset = require('./fetchAsset');
 const packageConf = require('../../package.json');
 
-const credentials = Buffer.from('RandstadWeb:RXPPlatform!2022').toString('base64');
+const credentials = Buffer.from('RandstadWeb:WelcomeToRXPWeb!2023').toString('base64');
 const auth = { Authorization: `Basic ${credentials}` };
 const headers = { headers: auth };
 
