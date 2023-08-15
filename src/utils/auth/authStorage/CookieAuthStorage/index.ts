@@ -1,6 +1,6 @@
 import { deleteCookie, getCookie, setCookie } from 'cookies-next';
 import type { CookieSerializeOptions } from 'cookie';
-import jwtDecode from 'jwt-decode';
+import jwtDecode, { InvalidTokenError } from 'jwt-decode';
 import IAuthStorage from '../IAuthStorage';
 
 const refreshTokenExpirationDays = process.env.NEXT_PUBLIC_REFRESH_TOKEN_EXPIRATION_DAYS as string;
@@ -35,8 +35,17 @@ class CookieAuthStorage implements IAuthStorage<CookieSerializeOptions> {
   // Helper method
   // eslint-disable-next-line class-methods-use-this
   public idTokenExpiresAt(idToken: string) {
-    const decoded: { exp: number } = jwtDecode(idToken);
-    return new Date(decoded.exp * 1000); // exp is in seconds
+    try {
+      const decoded: { exp: number } = jwtDecode(idToken);
+      return new Date(decoded.exp * 1000); // exp is in seconds
+    } catch (ex) {
+      if (ex instanceof InvalidTokenError) {
+        // Unable to decode token, behave as if there is token, which expires now.
+        return new Date();
+      }
+
+      throw ex;
+    }
   }
 
   /**
@@ -49,6 +58,10 @@ class CookieAuthStorage implements IAuthStorage<CookieSerializeOptions> {
     const expiresAt = this.idTokenExpiresAt(idToken);
 
     return expiresAt.getTime() - now.getTime();
+  }
+
+  public willIdTokenExpireIn(idToken: string, seconds: number) {
+    return this.idTokenExpiresAfter(idToken) < seconds;
   }
 
   public getRefreshToken() {
