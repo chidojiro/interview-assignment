@@ -1,6 +1,6 @@
 export interface MetaCardOptionProps {
   dataTestId: string;
-  iconType: 'building' | 'clock' | 'education' | 'calendar' | 'factory' | 'label' | 'marker' | 'briefcase' | 'salary' | string;
+  iconType: string;
   fieldValue: string;
   svgProps?: object;
 }
