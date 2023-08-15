@@ -1,7 +1,7 @@
 // INFO: This component went under restructuring, but it needs ESLint fixes and optimization.
 import React from 'react';
-import Icon from '../../../common/Icon';
 import { JobItemMetadataProps } from './JobItemMetadata.types';
+import MetaCardOption from './MetaCardOption';
 
 function JobItemMetadata({
   location,
@@ -29,150 +29,141 @@ function JobItemMetadata({
   evergreenJobText,
   evergreenJobIcon,
 }: JobItemMetadataProps) {
-  const fourthOptionAriaLabel = { 'aria-label': fourthOptionAriaLabelValue };
-
   const fieldValue = (value: string) => (lowerCased ? value.toLowerCase() : value);
 
-  const ClientName = () => {
+  const renderClientName = () => {
     if (!clientName) return null;
     return (
-      <li className="cards__meta-item" data-testid="fourth-option-client-name-id">
-        <span className="icon icon--inline">
-          <Icon svgProps={fourthOptionAriaLabel} iconType={fourthOptionIcon || 'building'} iconClassName={null} />
-        </span>
-        {fieldValue(clientName)}
-      </li>
-    );
-  };
+      <MetaCardOption 
+        dataTestId={"fourth-option-client-name-id"} 
+        iconType={fourthOptionIcon || 'building'}
+        fieldValue={fieldValue(clientName)}
+        svgProps={{ 'aria-label': fourthOptionAriaLabelValue }} 
+      />
+    )
+  }
 
-  const WorkHours = () => {
+  const renderWorkHours = () => {
     if (!workHours) return null;
     return (
-      <li className="cards__meta-item" data-testid="work-hours">
-        <span className="icon icon--inline">
-          <Icon svgProps={fourthOptionAriaLabel} iconType={fourthOptionIcon || 'clock'} iconClassName={null} />
-        </span>
-        {fieldValue(workHours)}
-      </li>
-    );
-  };
+      <MetaCardOption 
+        dataTestId={"work-hours"} 
+        iconType={fourthOptionIcon || 'clock'} 
+        fieldValue={fieldValue(workHours)} 
+        svgProps={{ 'aria-label': fourthOptionAriaLabelValue }} 
+      />
+    )
+}
 
-  const Education = () => {
+  const renderEducation = () => {
     if (!education) return null;
-
     return (
-      <li className="cards__meta-item" data-testid="fourth-option-education-id">
-        <span className="icon icon--inline">
-          <Icon svgProps={fourthOptionAriaLabel} iconType={fourthOptionIcon || 'education'} iconClassName={null} />
-        </span>
-        {fieldValue(education)}
-      </li>
-    );
-  };
+      <MetaCardOption 
+        dataTestId={"fourth-option-education-id"} 
+        iconType={fourthOptionIcon || 'education'} 
+        fieldValue={fieldValue(education)}
+        svgProps={{ 'aria-label': fourthOptionAriaLabelValue }} 
+      />
+    )
+  }
 
-  const Duration = () => {
+  const renderDuration = () => {
     if (!duration) return null;
-
     return (
-      <li className="cards__meta-item" data-testid="duration">
-        <span className="icon icon--inline">
-          <Icon svgProps={fourthOptionAriaLabel} iconType={fourthOptionIcon || 'calendar'} iconClassName={null} />
-        </span>
-        {fieldValue(duration)}
-      </li>
-    );
-  };
+      <MetaCardOption 
+        dataTestId={"duration"} 
+        iconType={fourthOptionIcon || 'calendar'} 
+        fieldValue={fieldValue(duration)}
+        svgProps={{ 'aria-label': fourthOptionAriaLabelValue }} 
+      />
+    )
+}
 
-  const Division = () => {
+  const renderDivision = () => {
     if (!division) return null;
-
     return (
-      <li className="cards__meta-item" data-testid="division">
-        <span className="icon icon--inline">
-          <Icon svgProps={fourthOptionAriaLabel} iconType={fourthOptionIcon || 'building'} iconClassName={null} />
-        </span>
-        {fieldValue(division)}
-      </li>
-    );
-  };
+      <MetaCardOption 
+        dataTestId={"division"} 
+        iconType={fourthOptionIcon || 'building'} 
+        fieldValue={fieldValue(division)}
+        svgProps={{ 'aria-label': fourthOptionAriaLabelValue }} 
+      />
+    )
+}
 
-  const Sector = () => {
+  const renderSector = () => {
     if (!sector) return null;
     return (
-      <li className="cards__meta-item" data-testid="sector">
-        <span className="icon icon--inline">
-          <Icon svgProps={fourthOptionAriaLabel} iconType={fourthOptionIcon || 'factory'} iconClassName={null} />
-        </span>
-        {fieldValue(sector)}
-      </li>
-    );
-  };
+      <MetaCardOption 
+        dataTestId={"sector"} 
+        iconType={fourthOptionIcon || 'factory'} 
+        fieldValue={fieldValue(sector)}
+        svgProps={{ 'aria-label': fourthOptionAriaLabelValue }} 
+      />
+    )
+}
 
   const fourthMetaCardOptions = {
-    client_name_settings: ClientName,
-    hours_settings: WorkHours,
-    education_settings: Education,
-    duration_settings: Duration,
-    division_settings: Division,
-    sector_settings: Sector,
+    client_name_settings: renderClientName,
+    hours_settings: renderWorkHours,
+    education_settings: renderEducation,
+    duration_settings: renderDuration,
+    division_settings: renderDivision,
+    sector_settings: renderSector,
   };
 
-  const FourthMetaCardOption = fourthOptionField ? fourthMetaCardOptions[fourthOptionField] : null;
-
-  const FourthOptionMetaComponent = () => {
-    if (!FourthMetaCardOption) return null;
-    return <FourthMetaCardOption />;
-  };
+  const renderFourthMetaCardOption = () => {
+    if (fourthOptionField) return null;
+    return fourthMetaCardOptions[fourthOptionField!]();
+  }
 
   return (
     <ul className="cards__meta">
       {
         (evergreenJobText)
         && (
-          <li className="cards__meta-item" data-testid="evergreen">
-            <span className="icon icon--inline">
-              <Icon iconType={evergreenJobIcon || 'label'} iconClassName={null} />
-            </span>
-            {fieldValue(evergreenJobText)}
-          </li>
+          <MetaCardOption 
+            dataTestId={"evergreen"} 
+            iconType={evergreenJobIcon || 'label'} 
+            fieldValue={fieldValue(evergreenJobText)}
+            svgProps={{}} 
+          />
         )
       }
       {
         (enableLocation && location)
         && (
-          <li className="cards__meta-item" data-testid="location-testId">
-            <span className="icon icon--inline">
-              <Icon svgProps={locationIconAttributes || {}} iconType={locationIcon || 'marker'} iconClassName={null} />
-            </span>
-            {fieldValue(location)}
-          </li>
+          <MetaCardOption 
+            dataTestId={"location-testId"} 
+            iconType={locationIcon || 'marker'} 
+            fieldValue={fieldValue(location)}
+            svgProps={locationIconAttributes || {}} 
+          />
         )
       }
       {
         (enableJobType && jobType)
         && (
-          <li className="cards__meta-item" data-testid="job-type">
-            <span className="icon icon--inline">
-              <Icon svgProps={jobTypeIconAttributes || {}} iconType={jobTypeIcon || 'briefcase'} iconClassName={null} />
-            </span>
-            {fieldValue(jobType)}
-          </li>
+          <MetaCardOption 
+            dataTestId={"job-type"} 
+            iconType={jobTypeIcon || 'briefcase'} 
+            fieldValue={fieldValue(jobType)}
+            svgProps={jobTypeIconAttributes || {}} 
+          />
         )
       }
       {
         (enableSalary && salary)
         && (
-          <li className="cards__meta-item" data-testid="salary">
-            <span className="icon icon--inline">
-              <Icon svgProps={salaryIconAttributes || {}} iconType={salaryIcon || 'salary'} iconClassName={null} />
-            </span>
-            {fieldValue(salary)}
-          </li>
+          <MetaCardOption 
+            dataTestId={"salary"} 
+            iconType={salaryIcon || 'salary'} 
+            fieldValue={fieldValue(salary)}
+            svgProps={salaryIconAttributes || {}} 
+          />
         )
       }
-
-      <FourthOptionMetaComponent />
-
+      {renderFourthMetaCardOption()}
     </ul>
   );
 }
