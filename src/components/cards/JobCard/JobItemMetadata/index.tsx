@@ -113,8 +113,8 @@ function JobItemMetadata({
   };
 
   const renderFourthMetaCardOption = () => {
-    if (fourthOptionField) return null;
-    return fourthMetaCardOptions[fourthOptionField!]();
+    if (!fourthOptionField) return null;
+    return fourthMetaCardOptions[fourthOptionField]();
   }
 
   return (
