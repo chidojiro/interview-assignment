@@ -1,4 +1,4 @@
-type ConversationQuickSuggest = {
+export type ConversationQuickSuggest = {
   text: string;
   payload: string;
 };
@@ -8,7 +8,7 @@ export type ConversationMultiSelectItem = {
   param: string;
 };
 
-type ConversationMultiSelect = {
+export type ConversationMultiSelect = {
   intent: string;
   param: string;
   submit: string;
@@ -22,13 +22,7 @@ export type ConversationReply = {
   ms?: ConversationMultiSelect;
 };
 
-export type ConversationSupportedLanguage = {
-  id: string;
-  name: string;
-  native_name: string;
-};
-
-export type ConversationData = {
-  conversationId: string;
-  responseId: string;
-};
+export enum ContinueRequestType {
+  TEXT_REPLY = 'TEXT_REPLY',
+  QUICK_SUGGEST = 'QUICK_SUGGEST',
+}

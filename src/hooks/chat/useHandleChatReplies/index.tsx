@@ -7,7 +7,8 @@ import type {
   ConversationMultiSelectItem,
   ConversationQuickSuggest,
   ConversationReply,
-} from '../../../utils/chat/chatApi/types';
+} from '../../../utils/chat/types';
+import checkForMultiSelects from '../../../utils/chat/checkForMultiSelects';
 
 function useHandleChatReplies(
   replies: ConversationReply[] | undefined,
@@ -35,6 +36,7 @@ function useHandleChatReplies(
   const submitMultiSelect = () => {
     if (handleMultiselectSubmit) {
       handleMultiselectSubmit(multiSelectData, selectedItems);
+      checkForMultiSelects();
     }
   };
 
@@ -56,7 +58,7 @@ function useHandleChatReplies(
           return <ChatReply type="bot" key={`reply-${reply.text}`} first={!!replyIndexes.find((element) => element === index) || index === 0}>{reply.text}</ChatReply>;
         }
         if (reply.qs) {
-          const quickSuggestItems = reply.qs.map(((quickSuggest) => ({ payload: quickSuggest.payload, text: quickSuggest.text })));
+          const quickSuggestItems = reply.qs.map(((quickSuggest: ConversationQuickSuggest) => ({ payload: quickSuggest.payload, text: quickSuggest.text })));
           return <ChatQuickSuggest key={`quick-sugguset-${quickSuggestItems[0].text}`} items={quickSuggestItems} handleQuickSuggest={handleQuickSuggest} />;
         }
         if (reply.ms) {
