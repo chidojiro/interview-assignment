@@ -13,10 +13,11 @@ function useHandleContinueConversation(
   setReplyLoading: (loading: React.SetStateAction<boolean>) => void,
   jobId: string | undefined,
   applicationId: string | undefined,
+  setMultiSelectText: (multiSelectText: React.SetStateAction<string | null>) => void,
 ) {
   // Reducing cognitive complexity will break the logic.
   // eslint-disable-next-line sonarjs/cognitive-complexity
-  const handleContinueConversation = (requestType: ContinueRequestType, data: unknown) => {
+  const handleContinueConversation = (requestType: ContinueRequestType, data: unknown, isMultiSelect = false) => {
     setReplyLoading(true);
 
     let replyText = '';
@@ -63,6 +64,9 @@ function useHandleContinueConversation(
           }
         }
         setReplyLoading(false);
+        if (isMultiSelect) {
+          setMultiSelectText(replyText);
+        }
         return true;
       })
       .catch((error) => {
@@ -87,7 +91,7 @@ function useHandleContinueConversation(
       items: selected,
     };
     if (!replyLoading) {
-      handleContinueConversation(ContinueRequestType.QUICK_SUGGEST, combinedData);
+      handleContinueConversation(ContinueRequestType.QUICK_SUGGEST, combinedData, true);
     }
   };
 

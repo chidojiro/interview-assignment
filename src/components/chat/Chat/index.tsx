@@ -37,9 +37,10 @@ function Chat({
   } = conversation;
 
   const [input, setInput] = useState('');
+  const [multiSelectText, setMultiSelectText] = useState<React.SetStateAction<string | null>>(null);
   const {
     handleSendButton, handleQuickSuggest, handleMultiSelectSubmit,
-  } = useHandleContinueConversation(replies, setChatReplies, conversationData, setConversationData, replyLoading, setReplyLoading, jobId, applicationId);
+  } = useHandleContinueConversation(replies, setChatReplies, conversationData, setConversationData, replyLoading, setReplyLoading, jobId, applicationId, setMultiSelectText);
   const {
     replyComponents, clearMultiSelect, submitMultiSelect,
   } = useHandleChatReplies(replies, replyLoading, handleQuickSuggest, handleMultiSelectSubmit);
@@ -84,7 +85,12 @@ function Chat({
   useEffect(() => {
     if (replyLoading || !textAreaRef.current) return;
     (textAreaRef.current as HTMLTextAreaElement).focus();
-  }, [replyLoading]);
+    if (multiSelectText && !replyLoading && window && window.orbit && window.orbit.chatInstance && window.orbit.chatInstance.textarea) {
+      (window.orbit.chatInstance.textarea as HTMLTextAreaElement).value = multiSelectText as string;
+      window.orbit.chatInstance.userInputToSpeechBubble();
+      setMultiSelectText(null);
+    }
+  }, [multiSelectText, replyLoading]);
 
   useEffect(() => {
     if (chatBoxRef && chatBoxRef.current) {
@@ -136,7 +142,7 @@ function Chat({
               </button>
             </div>
             <div className="flex flex-col justify-center items-center hidden" data-rs-chat-tags-dialog="" aria-hidden="true">
-              <div className="mb-xxs" data-rs-chat-tags-dialog-label="@tag selected">
+              <div className="mb-xxs" data-rs-chat-tags-dialog-label={`@tag ${selectedOptionsText}`}>
                 1
                 {' '}
                 {selectedOptionsText}
