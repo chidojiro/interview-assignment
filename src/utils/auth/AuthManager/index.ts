@@ -1,17 +1,17 @@
-import IAuthStorage from '../authStorage/AbstractAuthStorage';
+import AbstractAuthStorage from '../authStorage/AbstractAuthStorage';
 import { refreshIdTokenResponse, GdsConfigOptions } from './types';
 
 /**
  * A class responsible for refreshing IdToken
  */
 class AuthManager<OptionsType> {
-  public readonly authStorage: IAuthStorage<OptionsType>;
+  public readonly authStorage: AbstractAuthStorage<OptionsType>;
 
   private idTokenPromise: Promise<string | undefined> | null = null;
 
   private gdsConfigOptions: GdsConfigOptions;
 
-  constructor(storage: IAuthStorage<OptionsType>, gdsConfigOptions: GdsConfigOptions) {
+  constructor(storage: AbstractAuthStorage<OptionsType>, gdsConfigOptions: GdsConfigOptions) {
     this.authStorage = storage;
     this.gdsConfigOptions = { ...gdsConfigOptions };
   }
