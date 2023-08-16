@@ -12,13 +12,8 @@ import saveSavedJobsToLocalStorage from './savedJobs/savedJobsLocalStorage/saveS
 import getSavedJobs from './savedJobs/getSavedJobs';
 import { gtmScriptInitializer, gtmDataLayerPushHandler } from './gtm';
 import getKeyCodeOnKeyDownEvent from './getKeyCodeOnKeyDownEvent';
-import type {
-  ContinueRequestType,
-  ConversationReply,
-  ConversationQuickSuggest,
-  ConversationMultiSelect,
-  ConversationMultiSelectItem,
-} from './chat/types';
+import type { ConversationReply, ConversationQuickSuggest, ConversationMultiSelect, ConversationMultiSelectItem } from './chat/types';
+import { ContinueRequestType } from './chat/types';
 import type { DataLayerEventObjectType } from './gtm/types';
 
 export {
