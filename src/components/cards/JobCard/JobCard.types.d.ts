@@ -29,5 +29,5 @@ export interface JobCardProps extends JobItemMetadataProps {
   closeIconAriaLabel?: string;
   savedJobIconAriaLabel?: string;
   savedJobsEnabled?: SavedJobsProps;
-  onMouseDownClick: () => void;
+  onMouseDownClick?: () => void;
 }
