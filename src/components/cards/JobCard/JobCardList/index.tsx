@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import cn from 'classnames';
-import useOrbitComponent from '../../../../hooks/useOrbitComponent';
+import Slider from 'react-slick';
 import { JobCardListProps } from './JobCardList.types';
+import useIsMobile from '../../../../hooks/useIsMobile';
 
 function JobCardList({
   activeView = 'grid',
@@ -12,19 +13,37 @@ function JobCardList({
     [`cards__list--format-${activeView}`]: activeView && !isSlider,
     'cards__list--format-carousel carousel--on-s carousel--on-m ': isSlider,
   });
+  const isMobile = useIsMobile();
+  const settings = {
+    arrows: false,
+    infinite: false,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    mobileFirst: true,
+    swipeToSlide: true,
+    className: listClasses,
+  };
 
-  const [ref] = useOrbitComponent('carousel');
-
-  const dataAttr = isSlider ? {
-    'data-rs-carousel': 'cards',
-    ref,
-  } : {};
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      // Triggering resize to fix a bug related to slides/job cards sizes.
+      window.dispatchEvent(new Event('resize'));
+    }
+  }, []);
 
   return (
     <div className="cards">
-      <ul className={listClasses} {...dataAttr}>
-        {children}
-      </ul>
+      {isSlider && isMobile ? (
+        <ul>
+          <Slider {...settings}>
+            {children}
+          </Slider>
+        </ul>
+      ) : (
+        <ul className={listClasses}>
+          {children}
+        </ul>
+      )}
     </div>
   );
 }
