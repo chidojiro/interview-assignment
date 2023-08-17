@@ -1,8 +1,7 @@
 import { deleteCookie, getCookie, setCookie } from 'cookies-next';
 import type { CookieSerializeOptions } from 'cookie';
 import IAuthStorage from '../AbstractAuthStorage';
-
-const refreshTokenExpirationDays = process.env.NEXT_PUBLIC_REFRESH_TOKEN_EXPIRATION_DAYS as string;
+import getCookieOptions from '../../getCookieOptions';
 
 interface CookieAuthStorageOptions {
   idTokenName: string;
@@ -27,9 +26,10 @@ class CookieAuthStorage extends IAuthStorage<CookieSerializeOptions> {
     return undefined;
   }
 
-  public setIdToken(idToken: string, options: CookieSerializeOptions = {}) {
+  public setIdToken(idToken: string) {
     const expires = this.idTokenExpiresAt(idToken);
-    setCookie(this.options.idTokenName, idToken, { ...options, expires });
+    const idTokenOptions = getCookieOptions({ expires });
+    setCookie(this.options.idTokenName, idToken, idTokenOptions);
   }
 
   public getRefreshToken() {
@@ -41,25 +41,23 @@ class CookieAuthStorage extends IAuthStorage<CookieSerializeOptions> {
   }
 
   public setRefreshToken(refreshToken: string, expiresInSecs?: number) {
+    let refreshTokenOptions: CookieSerializeOptions | undefined;
+
     if (expiresInSecs !== undefined) {
-      const extraOptions: CookieSerializeOptions = {
+      refreshTokenOptions = {
         encode: String,
         // secure: true,
         sameSite: 'strict',
         // httpOnly: true,
         expires: new Date(Date.now() + expiresInSecs * 1000),
       };
-      setCookie(this.options.refreshTokenName, refreshToken, {
-        ...extraOptions,
-        expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * +refreshTokenExpirationDays),
-      });
-    } else {
-      setCookie(this.options.refreshTokenName, refreshToken);
     }
+    setCookie(this.options.refreshTokenName, refreshToken, refreshTokenOptions);
   }
 
   public deleteTokens(): void {
-    deleteCookie(this.options.idTokenName);
+    const idTokenCookieOptions = getCookieOptions();
+    deleteCookie(this.options.idTokenName, idTokenCookieOptions);
     deleteCookie(this.options.refreshTokenName);
   }
 }
