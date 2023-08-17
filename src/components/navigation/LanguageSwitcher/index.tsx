@@ -41,7 +41,6 @@ function LanguageSwitcher({
   const onSuccessHandler = () => {
     window.location.href = selectedLanguage.href;
     items.filter(item => {
-      console.log("ITEM", item)
       dataLayerLanguageSwitch(item.filters as object, item.language as string, selectedLanguage.lang as string);
     })
   };
