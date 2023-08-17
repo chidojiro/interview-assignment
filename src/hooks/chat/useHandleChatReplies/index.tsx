@@ -28,6 +28,7 @@ function useHandleChatReplies(
   };
 
   const [replyIndexes, setReplyIndexes] = useState<Array<number>>([]);
+  const [multiSelectText, setMultiSelectText] = useState<string | null>(null);
   const selectedItems = useRef<Array<ConversationMultiSelectItem>>([]);
   const multiSelectData = useRef<ConversationMultiSelect>(initalMultiselectData);
 
@@ -38,13 +39,22 @@ function useHandleChatReplies(
     }
   };
 
+  useEffect(() => {
+    if (multiSelectText && !replyLoading && window && window.orbit && window.orbit.chatInstance && window.orbit.chatInstance.textarea) {
+      (window.orbit.chatInstance.textarea as HTMLTextAreaElement).value = multiSelectText as string;
+      window.orbit.chatInstance.userInputToSpeechBubble();
+      setMultiSelectText(null);
+    }
+  }, [replyLoading, multiSelectText]);
+
   const handleSubmitMultiSelect = () => {
     if (!handleMultiSelectSubmit) return;
     setReplyLoading(true);
     handleMultiSelectSubmit(multiSelectData.current, selectedItems.current).then((response) => {
+      setMultiSelectText('');
+      setReplyLoading(false);
       handleContinueResponse(ContinueRequestType.QUICK_SUGGEST, response, setReplies);
       checkForMultiSelects();
-      setReplyLoading(false);
       selectedItems.current = [];
       multiSelectData.current = initalMultiselectData;
       return true;
@@ -87,7 +97,7 @@ function useHandleChatReplies(
   const replyComponents = useHandleReplyComponents(replies, replyIndexes, handleOnMultiSelectChange, handleQuickSuggest);
 
   return {
-    replyComponents, selectedItems, multiSelectData, clearMultiSelect, handleSubmitMultiSelect,
+    replyComponents, selectedItems, multiSelectData, clearMultiSelect, handleSubmitMultiSelect, multiSelectText,
   };
 }
 
