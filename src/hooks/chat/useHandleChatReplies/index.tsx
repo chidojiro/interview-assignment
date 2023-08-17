@@ -1,7 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import ChatReply from '../../../components/chat/ChatReply';
-import ChatQuickSuggest from '../../../components/chat/ChatQuickSuggest';
-import ChatMultiSelect from '../../../components/chat/ChatMultiSelect';
+import React, { useEffect, useRef, useState } from 'react';
 import type {
   ConversationMultiSelect,
   ConversationMultiSelectItem,
@@ -12,6 +9,7 @@ import { ContinueRequestType } from '../../../utils/chat/types';
 import { ContinueResponse } from '../../../components/chat/Chat/Chat.types';
 import handleContinueResponse from '../../../utils/chat/handleContinueResponse';
 import checkForMultiSelects from '../../../utils/chat/checkForMultiSelects';
+import useHandleReplyComponents from '../useHandleReplyComponents';
 
 function useHandleChatReplies(
   replies: ConversationReply[] | undefined,
@@ -21,76 +19,72 @@ function useHandleChatReplies(
   handleQuickSuggest?: (item: ConversationQuickSuggest) => void,
   handleMultiSelectSubmit?: (data: ConversationMultiSelect, selected: ConversationMultiSelectItem[]) => Promise<ContinueResponse>,
 ) {
-  const [replyIndexes, setReplyIndexes] = useState<Array<number>>([]);
-  const [replyComponents, setReplyComponents] = useState<React.ReactNode[]>([]);
-  const [selectedItems, setSelectedItems] = useState<Array<ConversationMultiSelectItem>>([]);
-  const [multiSelectData, setMultiSelectData] = useState<ConversationMultiSelect>({
+  const initalMultiselectData = {
     submit: '',
     items: [],
     intent: '',
     param: '',
     hint: '',
-  });
+  };
+
+  const [replyIndexes, setReplyIndexes] = useState<Array<number>>([]);
+  const selectedItems = useRef<Array<ConversationMultiSelectItem>>([]);
+  const multiSelectData = useRef<ConversationMultiSelect>(initalMultiselectData);
 
   const clearMultiSelect = () => {
     if (!replyLoading) {
-      setSelectedItems([]);
+      selectedItems.current = [];
+      multiSelectData.current = initalMultiselectData;
     }
   };
 
   const handleSubmitMultiSelect = () => {
     if (!handleMultiSelectSubmit) return;
     setReplyLoading(true);
-    handleMultiSelectSubmit(multiSelectData, selectedItems).then((response) => {
+    handleMultiSelectSubmit(multiSelectData.current, selectedItems.current).then((response) => {
       handleContinueResponse(ContinueRequestType.QUICK_SUGGEST, response, setReplies);
       checkForMultiSelects();
       setReplyLoading(false);
+      selectedItems.current = [];
+      multiSelectData.current = initalMultiselectData;
       return true;
     }).catch((error) => {
       // We need to log the error.
       // eslint-disable-next-line no-console
       console.error(`Error multi select submit ${error}`);
+      selectedItems.current = [];
+      multiSelectData.current = initalMultiselectData;
     });
   };
 
   const handleOnMultiSelectChange = (item: ConversationMultiSelectItem) => {
-    const found = selectedItems.findIndex((predicated) => predicated.param === item.param);
+    const found = selectedItems.current.findIndex((predicated) => predicated.param === item.param);
     if (found !== -1) {
-      const selectedItemsCopy = [...selectedItems];
-      selectedItemsCopy.splice(found, 1);
-      setSelectedItems(selectedItemsCopy);
+      selectedItems.current.splice(found, 1);
     } else {
-      setSelectedItems((oldState) => ([...oldState, item]));
+      selectedItems.current = [...selectedItems.current, item];
     }
   };
 
   useEffect(() => {
     if (replies) {
-      const newReplies = replies.map((reply, index: number) => {
-        if (reply.text) {
-          return <ChatReply type="bot" key={`reply-${reply.text}`} first={!!replyIndexes.find((element) => element === index) || index === 0}>{reply.text}</ChatReply>;
-        }
-        if (reply.qs) {
-          const quickSuggestItems = reply.qs.map(((quickSuggest: ConversationQuickSuggest) => ({ payload: quickSuggest.payload, text: quickSuggest.text })));
-          return <ChatQuickSuggest key={`quick-sugguset-${quickSuggestItems[0].text}`} items={quickSuggestItems} handleQuickSuggest={handleQuickSuggest} />;
-        }
-        if (reply.ms) {
-          setMultiSelectData(reply.ms);
-          return <ChatMultiSelect onMultiSelectChange={handleOnMultiSelectChange} items={reply.ms.items} key={`multi-select-${reply.ms.items[0].text}`} />;
-        }
-        return null;
-      });
-      setReplyComponents(newReplies);
+      // We will update the chat reply indexes on every new replies, basically.
       setReplyIndexes((prevState) => {
-        if (!replyIndexes.find((el) => el === replies.length)) {
+        if (!prevState.find((el) => el === replies.length)) {
           return [...prevState, replies?.length];
         }
         return [...prevState];
       });
+
+      replies.forEach((reply) => {
+        if (reply.ms) {
+          multiSelectData.current = reply.ms;
+        }
+      });
     }
-    // We need to check for the replies update.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [replies, selectedItems]);
+  }, [replies]);
+
+  const replyComponents = useHandleReplyComponents(replies, replyIndexes, handleOnMultiSelectChange, handleQuickSuggest);
 
   return {
     replyComponents, selectedItems, multiSelectData, clearMultiSelect, handleSubmitMultiSelect,
