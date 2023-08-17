@@ -1,5 +1,5 @@
-import AuthManager from 'src/utils/auth/AuthManager';
-import authStorage from 'src/utils/auth/authStorage';
+import AuthManager from '../AuthManager';
+import authStorage from '../authStorage';
 
 const AuthManagers = new Map<string, AuthManager<unknown>>();
 

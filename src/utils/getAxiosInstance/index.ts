@@ -1,5 +1,5 @@
 import axios, { AxiosInstance } from 'axios';
-import getAuthManager from 'src/utils/auth/getAuthManager';
+import getAuthManager from '../auth/getAuthManager';
 
 // A runtime cache of "GDS ready" axios instances.
 //

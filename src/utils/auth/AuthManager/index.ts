@@ -1,3 +1,4 @@
+import axios, { AxiosInstance } from 'axios';
 import AbstractAuthStorage from '../authStorage/AbstractAuthStorage';
 import { refreshIdTokenResponse, GdsConfigOptions } from './types';
 
@@ -9,11 +10,22 @@ class AuthManager<OptionsType> {
 
   private idTokenPromise: Promise<string | undefined> | null = null;
 
-  private gdsConfigOptions: GdsConfigOptions;
+  /**
+   * Axios instance used to make refresh token requests
+   */
+  private axiosInstance: AxiosInstance;
 
   constructor(storage: AbstractAuthStorage<OptionsType>, gdsConfigOptions: GdsConfigOptions) {
     this.authStorage = storage;
-    this.gdsConfigOptions = { ...gdsConfigOptions };
+    this.axiosInstance = axios.create({
+      baseURL: gdsConfigOptions.baseUrl,
+      params: {
+        apikey: gdsConfigOptions.apiKey,
+      },
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
   }
 
   public async getValidatedIdToken() {
@@ -56,31 +68,21 @@ class AuthManager<OptionsType> {
     return this.idTokenPromise;
   }
 
-  private async refreshIdToken(): Promise<refreshIdTokenResponse> {
+  public async refreshIdToken() {
     const refreshToken = this.authStorage.getRefreshToken();
     if (!refreshToken) {
       return Promise.reject();
     }
 
-    const params = new URLSearchParams([
-      ['apikey', this.gdsConfigOptions.apiKey],
-      ['refreshToken', refreshToken],
-    ]);
-
-    const response = await fetch(`${this.gdsConfigOptions.baseUrl}/tokens/refresh?${params}`, {
-      headers: {
-        'Content-Type': 'application/json',
+    const response = await this.axiosInstance.post<refreshIdTokenResponse>('/tokens/refresh', undefined, {
+      params: {
+        refreshToken,
       },
-      method: 'POST',
     });
-    if (!response.ok) {
-      throw new Error(response.statusText);
-    }
-    const refreshResponse = await response.json();
 
-    this.authStorage.setIdToken(refreshResponse.idToken);
+    this.authStorage.setIdToken(response.data.idToken);
 
-    return refreshResponse;
+    return response.data;
   }
 }
 
