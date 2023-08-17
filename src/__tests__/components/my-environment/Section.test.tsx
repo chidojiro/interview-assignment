@@ -80,6 +80,31 @@ describe('Section component tests', () => {
     expect(handleEdit).toHaveBeenCalledTimes(1);
   });
 
+  it('renders the component with delete button', () => {
+    const handleDelete = jest.fn();
+
+    const { container, getByText } = render(
+      <Section
+        id="my-section"
+        title="My Section"
+        handleDelete={handleDelete}
+        label="Delete"
+      >
+        <div>Section content</div>
+      </Section>,
+    );
+
+    const sectionElement = container.querySelector('#my-section');
+    expect(sectionElement).toBeInTheDocument();
+
+    const deleteButton = getByText('Delete');
+    expect(deleteButton).toBeInTheDocument();
+    expect(deleteButton.parentElement).toHaveAttribute('data-label', 'Delete');
+
+    fireEvent.click(deleteButton);
+    expect(handleDelete).toHaveBeenCalledTimes(1);
+  });
+
   it('renders the component with add item button', () => {
     const handleAddItem = jest.fn();
 

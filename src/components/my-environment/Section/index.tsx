@@ -3,19 +3,27 @@ import Icon from '../../common/Icon';
 import { SectionTypes } from './Section.types';
 
 function Section({
-  children, title, description, handleEdit, handleAddItem, label, divider = false, id,
+  children, title, titleLink, description, handleEdit, handleAddItem, handleDelete, label, divider = false, id,
 }: SectionTypes) {
   return (
     <div className={`my-environment-container ${divider ? 'pb-m l:pb-l divider' : ''}`} id={id}>
       <div className="my-environment-action-header mb-s l:mb-m">
         <div className="my-environment-header">
-          <h2 className="title--s mr-xxs">{title}</h2>
-          {typeof handleEdit === 'function' && (
+          <h2 className="title--s mr-xxs">{titleLink ? <a href={titleLink}>{title}</a> : title}</h2>
+          {(typeof handleEdit === 'function' || typeof handleDelete === 'function') && (
             <div className="my-environment__controls mt-xxs" id={`edit-${(title as string).replace(' ', '-')}`}>
-              <button type="button" data-label={label} className="button--clean" onClick={handleEdit} id="create-item-button">
-                <Icon iconClassName="icon icon--inline" iconType="edit" />
-                <span className="hidden--visually">{label}</span>
-              </button>
+              {handleEdit && (
+                <button type="button" data-label={label} className="button--clean" onClick={handleEdit} id="create-item-button">
+                  <Icon iconClassName="icon icon--inline" iconType="edit" />
+                  <span className="hidden--visually">{label}</span>
+                </button>
+              )}
+              {handleDelete && (
+                <button type="button" data-label={label} className="button--clean" onClick={handleDelete} id="delete-item-button">
+                  <Icon iconClassName="icon icon--inline" iconType="trash" />
+                  <span className="hidden--visually">{label}</span>
+                </button>
+              )}
             </div>
           )}
         </div>
