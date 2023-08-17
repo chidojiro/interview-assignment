@@ -2,6 +2,7 @@ export interface Items {
   language: string;
   isActive?: boolean;
   url?: string;
+  filters?: object;
 }
 
 export interface LanguageSwitcherProps {
