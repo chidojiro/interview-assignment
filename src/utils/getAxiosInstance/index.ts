@@ -1,5 +1,6 @@
 import axios, { AxiosInstance } from 'axios';
 import getAuthManager from '../auth/getAuthManager';
+import { GdsConfigOptions } from '../auth/AuthManager/types';
 
 // A runtime cache of "GDS ready" axios instances.
 //
@@ -10,22 +11,22 @@ const AxiosInstances = new Map<string, AxiosInstance>();
 /**
  * Get an already created axios instance or create (and initialize) a new one.
  */
-function getAxiosInstance(gdsApiKey: string, gdsApiUrl: string) {
-  const instanceKey = `${gdsApiUrl}?${gdsApiKey}`;
+function getAxiosInstance(gdsConfigOptions: GdsConfigOptions) {
+  const instanceKey = `${gdsConfigOptions.baseUrl}?${gdsConfigOptions.apiKey}`;
   let axiosInstance = AxiosInstances.get(instanceKey);
 
   if (!axiosInstance) {
     axiosInstance = axios.create({
-      baseURL: gdsApiUrl,
+      baseURL: gdsConfigOptions.baseUrl,
       params: {
-        apikey: gdsApiKey,
+        apikey: gdsConfigOptions.apiKey,
       },
       headers: {
         'Content-Type': 'application/json',
       },
     });
 
-    const authManager = getAuthManager(gdsApiKey, gdsApiUrl);
+    const authManager = getAuthManager(gdsConfigOptions);
 
     axiosInstance.interceptors.request.use(async (config) => {
       const result = config;

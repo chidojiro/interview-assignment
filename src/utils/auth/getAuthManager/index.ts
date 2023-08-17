@@ -1,13 +1,14 @@
+import { GdsConfigOptions } from '../AuthManager/types';
 import AuthManager from '../AuthManager';
 import authStorage from '../authStorage';
 
 const AuthManagers = new Map<string, AuthManager<unknown>>();
 
-function getAuthManager(gdsBaseUrl: string, gdsApiKey: string) {
-  const hash = `${gdsBaseUrl}?${gdsApiKey}`;
+function getAuthManager(gdsConfigOptions: GdsConfigOptions) {
+  const hash = `${gdsConfigOptions.baseUrl}?${gdsConfigOptions.apiKey}`;
   let authManager = AuthManagers.get(hash);
   if (!authManager) {
-    authManager = new AuthManager(authStorage, { apiKey: gdsApiKey, baseUrl: gdsBaseUrl });
+    authManager = new AuthManager(authStorage, gdsConfigOptions);
     AuthManagers.set(hash, authManager);
   }
 
