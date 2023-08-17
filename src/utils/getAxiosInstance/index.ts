@@ -1,6 +1,5 @@
 import axios, { AxiosInstance } from 'axios';
-import authStorage from '../auth/authStorage';
-import AuthManager from '../auth/AuthManager';
+import getAuthManager from 'src/utils/auth/getAuthManager';
 
 // A runtime cache of "GDS ready" axios instances.
 //
@@ -26,7 +25,7 @@ function getAxiosInstance(gdsApiKey: string, gdsApiUrl: string) {
       },
     });
 
-    const authManager = new AuthManager(authStorage, { apiKey: gdsApiKey, baseUrl: gdsApiUrl });
+    const authManager = getAuthManager(gdsApiKey, gdsApiUrl);
 
     axiosInstance.interceptors.request.use(async (config) => {
       const result = config;

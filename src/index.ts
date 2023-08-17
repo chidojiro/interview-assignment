@@ -201,4 +201,4 @@ export type {
 };
 
 export { default as getAxiosInstance } from './utils/getAxiosInstance';
-export { default as authStorage } from './utils/auth/authStorage';
+export { default as getAuthManager } from './utils/auth/getAuthManager';
