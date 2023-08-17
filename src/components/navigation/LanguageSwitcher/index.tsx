@@ -29,9 +29,10 @@ function LanguageSwitcher({
     const event = {
       event: 'interaction',
       event_params: {
+        event_name: 'language_switch',
         current_language: currentLanguage,
         switched_language: newLanguage,
-        action: hasFilters ? 'true' : 'false',
+        filters_active: hasFilters ? 'true' : 'false',
       },
     };
     gtmDataLayerPushHandler(event);
