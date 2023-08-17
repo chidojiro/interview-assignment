@@ -12,6 +12,19 @@ export type BaseEvent = {
   };
 };
 
+export type ConversationData = {
+  conversationId: string;
+  responseId: string;
+};
+
+export type ContinueResponse = {
+  state: string;
+  response_id: string;
+  replies: Array<ConversationReply>;
+  language: string;
+  undo_available: string;
+};
+
 export type ChatSettings = {
   title: string | React.ReactNode;
   closeButtonAriaLabel: string;
@@ -23,14 +36,16 @@ export type ChatSettings = {
   selectedOptionsText?: string;
   startConversationButtonText: string | React.ReactNode;
   hiddenByDefault?: boolean;
-  handleSendButton?: (text: string) => void;
-  handleQuickSuggest?: (item: ConversationQuickSuggest) => void;
-  handleMultiSelectSubmit?: (data: ConversationMultiSelect, selected: Array<ConversationMultiSelectItem>) => void;
+  handleSendButton?: (text: string) => Promise<ContinueResponse>;
+  handleQuickSuggest?: (item: ConversationQuickSuggest) => Promise<ContinueResponse>;
+  handleMultiSelectSubmit?: (data: ConversationMultiSelect, selected: Array<ConversationMultiSelectItem>) => Promise<ContinueResponse>;
 };
 
 export interface ChatProps {
   replies: Array<ConversationReply>;
+  setReplies: (data: React.SetStateAction<Array<ConversationReply>>) => void;
   replyLoading: boolean;
+  setReplyLoading: (loading: React.SetStateAction<boolean>) => void;
   settings: ChatSettings;
 }
 

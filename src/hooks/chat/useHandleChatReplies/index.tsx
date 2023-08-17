@@ -8,13 +8,18 @@ import type {
   ConversationQuickSuggest,
   ConversationReply,
 } from '../../../utils/chat/types';
+import { ContinueRequestType } from '../../../utils/chat/types';
+import { ContinueResponse } from '../../../components/chat/Chat/Chat.types';
+import handleContinueResponse from '../../../utils/chat/handleContinueResponse';
 import checkForMultiSelects from '../../../utils/chat/checkForMultiSelects';
 
 function useHandleChatReplies(
   replies: ConversationReply[] | undefined,
+  setReplies: (replies: React.SetStateAction<Array<ConversationReply>>) => void,
   replyLoading: boolean,
+  setReplyLoading: (loading: React.SetStateAction<boolean>) => void,
   handleQuickSuggest?: (item: ConversationQuickSuggest) => void,
-  handleMultiselectSubmit?: (data: ConversationMultiSelect, selectedItems: Array<ConversationMultiSelectItem>) => void,
+  handleMultiSelectSubmit?: (data: ConversationMultiSelect, selected: ConversationMultiSelectItem[]) => Promise<ContinueResponse>,
 ) {
   const [replyIndexes, setReplyIndexes] = useState<Array<number>>([]);
   const [replyComponents, setReplyComponents] = useState<React.ReactNode[]>([]);
@@ -33,11 +38,19 @@ function useHandleChatReplies(
     }
   };
 
-  const submitMultiSelect = () => {
-    if (handleMultiselectSubmit) {
-      handleMultiselectSubmit(multiSelectData, selectedItems);
+  const handleSubmitMultiSelect = () => {
+    if (!handleMultiSelectSubmit) return;
+    setReplyLoading(true);
+    handleMultiSelectSubmit(multiSelectData, selectedItems).then((response) => {
+      handleContinueResponse(ContinueRequestType.QUICK_SUGGEST, response, setReplies);
       checkForMultiSelects();
-    }
+      setReplyLoading(false);
+      return true;
+    }).catch((error) => {
+      // We need to log the error.
+      // eslint-disable-next-line no-console
+      console.error(`Error multi select submit ${error}`);
+    });
   };
 
   const handleOnMultiSelectChange = (item: ConversationMultiSelectItem) => {
@@ -80,7 +93,7 @@ function useHandleChatReplies(
   }, [replies, selectedItems]);
 
   return {
-    replyComponents, multiSelectData, clearMultiSelect, submitMultiSelect,
+    replyComponents, selectedItems, multiSelectData, clearMultiSelect, handleSubmitMultiSelect,
   };
 }
 

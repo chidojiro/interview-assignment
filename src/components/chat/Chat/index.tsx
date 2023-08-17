@@ -1,5 +1,5 @@
 import React, {
-  useEffect, useRef, KeyboardEvent, useState,
+  KeyboardEvent, useEffect, useRef, useState,
 } from 'react';
 import cn from 'classnames';
 import Icon from '../../common/Icon';
@@ -7,11 +7,15 @@ import type { BaseEvent, ChatProps } from './Chat.types';
 import ChatLoader from '../ChatLoader';
 import ChatSettings from '../ChatSettings';
 import useHandleChatReplies from '../../../hooks/chat/useHandleChatReplies';
+import { ContinueRequestType, ConversationQuickSuggest } from '../../../utils';
+import handleContinueResponse from '../../../utils/chat/handleContinueResponse';
 
 function Chat({
-  settings,
   replies,
+  setReplies,
   replyLoading,
+  setReplyLoading,
+  settings,
 
 }: ChatProps) {
   const {
@@ -34,14 +38,48 @@ function Chat({
   const chatBoxRef = useRef(null);
 
   const [input, setInput] = useState('');
+
+  const quickSuggestHandler = (item: ConversationQuickSuggest) => {
+    if (!handleQuickSuggest) return;
+    setReplyLoading(true);
+    handleQuickSuggest(item).then((response) => {
+      handleContinueResponse(ContinueRequestType.QUICK_SUGGEST, response, setReplies);
+      setReplyLoading(false);
+      return true;
+    }).catch((error) => {
+      // We need to log the error.
+      // eslint-disable-next-line no-console
+      console.error(`Error continue conversation ${error}`);
+    });
+  };
+
   const {
-    replyComponents, clearMultiSelect, submitMultiSelect,
-  } = useHandleChatReplies(replies, replyLoading, handleQuickSuggest, handleMultiSelectSubmit);
+    replyComponents, clearMultiSelect, handleSubmitMultiSelect,
+  } = useHandleChatReplies(replies, setReplies, replyLoading, setReplyLoading, quickSuggestHandler, handleMultiSelectSubmit);
 
   const imgPath = !process.env.NEXT_PUBLIC_RESOURCE_PREFIX ? '/src/assets/img/randstad-wings.jpg' : `${process.env.NEXT_PUBLIC_RESOURCE_PREFIX}/src/assets/img/randstad-wings.jpg`;
+
+  const handleTextSubmit = () => {
+    if (!handleSendButton) return;
+    if (window && window.orbit && window.orbit.chatInstance) {
+      window.orbit.chatInstance.userInputToSpeechBubble();
+    }
+
+    setReplyLoading(true);
+    handleSendButton(input).then((response) => {
+      handleContinueResponse(ContinueRequestType.TEXT_REPLY, response, setReplies);
+      setReplyLoading(false);
+      return true;
+    }).catch((error) => {
+      // We need to log the error
+      // eslint-disable-next-line no-console
+      console.error(`Error handleContinueResponse ${error}`);
+      setReplyLoading(false);
+    });
+  };
   const handleSendOnEnterPress = (e: KeyboardEvent) => {
     if ((e.target as HTMLTextAreaElement).value.trim().length && e.key === 'Enter' && handleSendButton) {
-      handleSendButton(input);
+      handleTextSubmit();
     }
   };
 
@@ -124,7 +162,7 @@ function Chat({
                 ref={textAreaRef}
                 onKeyDown={handleSendOnEnterPress}
               />
-              <button type="button" className="button button--icon button--filled" data-rs-chat-button="" onClick={() => { if (handleSendButton) handleSendButton(input); }}>
+              <button type="button" className="button button--icon button--filled" data-rs-chat-button="" onClick={() => { handleTextSubmit(); }}>
                 <span className="button__text">{sendButtonText}</span>
                 <Icon iconType="arrow-up" iconClassName="icon" />
               </button>
@@ -139,7 +177,7 @@ function Chat({
                 <button type="button" className="button button--s mr-xxs" data-rs-chat-tags-deselect-button="" aria-hidden="true" onClick={clearMultiSelect}>
                   {deselectButtonText}
                 </button>
-                <button type="button" className="button button--s button--filled" data-rs-chat-tags-submit-button="" aria-hidden="true" onClick={submitMultiSelect}>
+                <button type="button" className="button button--s button--filled" data-rs-chat-tags-submit-button="" aria-hidden="true" onClick={handleSubmitMultiSelect}>
                   {submitButtonText}
                 </button>
               </div>

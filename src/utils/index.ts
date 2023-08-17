@@ -13,6 +13,7 @@ import getSavedJobs from './savedJobs/getSavedJobs';
 import { gtmScriptInitializer, gtmDataLayerPushHandler } from './gtm';
 import getKeyCodeOnKeyDownEvent from './getKeyCodeOnKeyDownEvent';
 import type { ConversationReply, ConversationQuickSuggest, ConversationMultiSelect, ConversationMultiSelectItem } from './chat/types';
+import prepareContinueRequest from './chat/prepareContinueRequest';
 import { ContinueRequestType } from './chat/types';
 import type { DataLayerEventObjectType } from './gtm/types';
 
@@ -29,6 +30,7 @@ export {
   gtmDataLayerPushHandler,
   ContinueRequestType,
   getKeyCodeOnKeyDownEvent,
+  prepareContinueRequest,
 };
 
 export type {
