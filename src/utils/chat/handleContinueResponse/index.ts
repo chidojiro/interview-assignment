@@ -1,6 +1,6 @@
-import { ContinueResponse } from '../../../components/chat/Chat/Chat.types';
 import { ContinueRequestType, ConversationReply } from '../types';
 import checkForMultiSelects from '../checkForMultiSelects';
+import { ContinueResponse } from './types';
 
 function handleContinueResponse(
   requestType: ContinueRequestType,

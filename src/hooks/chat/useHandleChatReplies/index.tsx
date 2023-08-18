@@ -6,9 +6,9 @@ import type {
   ConversationReply,
 } from '../../../utils/chat/types';
 import { ContinueRequestType } from '../../../utils/chat/types';
-import { ContinueResponse } from '../../../components/chat/Chat/Chat.types';
 import handleContinueResponse from '../../../utils/chat/handleContinueResponse';
 import useHandleReplyComponents from '../useHandleReplyComponents';
+import { ContinueResponse } from '../../../utils';
 
 function useHandleChatReplies(
   replies: ConversationReply[] | undefined,
