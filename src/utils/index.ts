@@ -16,6 +16,8 @@ import type { ConversationReply, ConversationQuickSuggest, ConversationMultiSele
 import prepareContinueRequest from './chat/prepareContinueRequest';
 import { ContinueRequestType } from './chat/types';
 import type { DataLayerEventObjectType } from './gtm/types';
+import type { ContinueResponse } from './chat/handleContinueResponse/types';
+import type { ContinueRequest } from './chat/prepareContinueRequest/types';
 
 export {
   savedJobsHandler,
@@ -43,4 +45,6 @@ export type {
   ConversationQuickSuggest,
   ConversationMultiSelect,
   ConversationMultiSelectItem,
+  ContinueResponse,
+  ContinueRequest,
 };

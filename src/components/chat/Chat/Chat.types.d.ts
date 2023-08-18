@@ -5,6 +5,7 @@ import type {
   ConversationQuickSuggest,
   ConversationReply,
 } from '../../../utils/chat/types';
+import { ContinueResponse } from '../../../utils/chat/handleContinueResponse/types';
 
 export type BaseEvent = {
   target: {
@@ -15,14 +16,6 @@ export type BaseEvent = {
 export type ConversationData = {
   conversationId: string;
   responseId: string;
-};
-
-export type ContinueResponse = {
-  state: string;
-  response_id: string;
-  replies: Array<ConversationReply>;
-  language: string;
-  undo_available: string;
 };
 
 export type ChatSettings = {
