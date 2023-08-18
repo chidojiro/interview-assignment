@@ -8,7 +8,6 @@ import type {
 import { ContinueRequestType } from '../../../utils/chat/types';
 import { ContinueResponse } from '../../../components/chat/Chat/Chat.types';
 import handleContinueResponse from '../../../utils/chat/handleContinueResponse';
-import checkForMultiSelects from '../../../utils/chat/checkForMultiSelects';
 import useHandleReplyComponents from '../useHandleReplyComponents';
 
 function useHandleChatReplies(
@@ -28,9 +27,9 @@ function useHandleChatReplies(
   };
 
   const [replyIndexes, setReplyIndexes] = useState<Array<number>>([]);
-  const [multiSelectText, setMultiSelectText] = useState<string | null>(null);
   const selectedItems = useRef<Array<ConversationMultiSelectItem>>([]);
   const multiSelectData = useRef<ConversationMultiSelect>(initalMultiselectData);
+  const multiSelectResponse = useRef<ContinueResponse>();
 
   const clearMultiSelect = () => {
     if (!replyLoading) {
@@ -40,23 +39,44 @@ function useHandleChatReplies(
   };
 
   useEffect(() => {
-    if (multiSelectText && !replyLoading && window && window.orbit && window.orbit.chatInstance && window.orbit.chatInstance.textarea) {
-      (window.orbit.chatInstance.textarea as HTMLTextAreaElement).value = multiSelectText as string;
+    if (!replyLoading && multiSelectResponse.current && window && window.orbit && window.orbit.chatInstance && window.orbit.chatInstance.textarea) {
+      (window.orbit.chatInstance.textarea as HTMLTextAreaElement).value = selectedItems.current.map((r) => r.text).join(', ');
       window.orbit.chatInstance.userInputToSpeechBubble();
-      setMultiSelectText(null);
+
+      handleContinueResponse(ContinueRequestType.QUICK_SUGGEST, multiSelectResponse.current, setReplies);
+      selectedItems.current = [];
+      multiSelectResponse.current = undefined;
+      multiSelectData.current = initalMultiselectData;
     }
-  }, [replyLoading, multiSelectText]);
+    /**
+     * We are unable to have the exaustive-deps eslint rule here because this is essentially a hack to simulate
+     * a user text input based of the selected multiselect text values.
+     *
+     * Essentially because we are combining vanilla js + react js we need to wait for the reply loading to be false,
+     * which signals that the response is ready to used by the replies for rendering fresh reply components @see handleContinueResponse, useHandleReplyComponents.
+     *
+     * Firstly we need to make sure that the window.orbit.chatInstance.userInputToSpeechBubble() function called
+     * and the text reply is properly rendered on the screen. This is important to call first, because otherwise it
+     * creates a desync and the front-end renders the text reply after the actual replies from the response, which we don't want
+     * as this breaks the user experience. After this done, the handleContinueResponse called, which basically updates the replies state, which in turn will render new reply components.  @see handleContinueResponse, useHandleReplyComponents.
+     *
+     * This way the replies and text input are properly synced.
+     *
+     * TLDR;
+     * We need to keep eye for the replyLoading state, other states are either unessecary or create rendering loops,
+     * which can't fixed as this is a hack and would create more hacks in turn.
+     *
+     *
+     */
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [replyLoading]);
 
   const handleSubmitMultiSelect = () => {
     if (!handleMultiSelectSubmit) return;
     setReplyLoading(true);
     handleMultiSelectSubmit(multiSelectData.current, selectedItems.current).then((response) => {
-      setMultiSelectText('');
+      multiSelectResponse.current = response;
       setReplyLoading(false);
-      handleContinueResponse(ContinueRequestType.QUICK_SUGGEST, response, setReplies);
-      checkForMultiSelects();
-      selectedItems.current = [];
-      multiSelectData.current = initalMultiselectData;
       return true;
     }).catch((error) => {
       // We need to log the error.
@@ -97,7 +117,7 @@ function useHandleChatReplies(
   const replyComponents = useHandleReplyComponents(replies, replyIndexes, handleOnMultiSelectChange, handleQuickSuggest);
 
   return {
-    replyComponents, selectedItems, multiSelectData, clearMultiSelect, handleSubmitMultiSelect, multiSelectText,
+    replyComponents, selectedItems, multiSelectData, clearMultiSelect, handleSubmitMultiSelect,
   };
 }
 

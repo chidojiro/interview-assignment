@@ -1,5 +1,6 @@
 import { ContinueResponse } from '../../../components/chat/Chat/Chat.types';
 import { ContinueRequestType, ConversationReply } from '../types';
+import checkForMultiSelects from '../checkForMultiSelects';
 
 function handleContinueResponse(
   requestType: ContinueRequestType,
@@ -9,6 +10,8 @@ function handleContinueResponse(
   if (response && response.replies) {
     setReplies((oldReplies) => [...oldReplies, ...response.replies]);
   }
+
+  checkForMultiSelects();
 }
 
 export default handleContinueResponse;
