@@ -10,19 +10,14 @@ import getSavedJobsLocalStorage from './savedJobs/savedJobsLocalStorage/getSaved
 import removeSavedJobsFromLocalStorage from './savedJobs/savedJobsLocalStorage/removeSavedJobsLocalStorage';
 import saveSavedJobsToLocalStorage from './savedJobs/savedJobsLocalStorage/saveSavedJobsLocalStorage';
 import getSavedJobs from './savedJobs/getSavedJobs';
-import postInitChat from './chat/chatApi/postInitChat';
-import postContinueConversation from './chat/chatApi/postContinueConversation';
 import { gtmScriptInitializer, gtmDataLayerPushHandler } from './gtm';
 import getKeyCodeOnKeyDownEvent from './getKeyCodeOnKeyDownEvent';
-
-import { ContinueRequestType } from './chat/chatApi/postContinueConversation/types';
-import type {
-  ConversationReply,
-  ConversationQuickSuggest,
-  ConversationMultiSelect,
-  ConversationMultiSelectItem,
-} from './chat/chatApi/types';
+import type { ConversationReply, ConversationQuickSuggest, ConversationMultiSelect, ConversationMultiSelectItem } from './chat/types';
+import prepareContinueRequest from './chat/prepareContinueRequest';
+import { ContinueRequestType } from './chat/types';
 import type { DataLayerEventObjectType } from './gtm/types';
+import type { ContinueResponse } from './chat/handleContinueResponse/types';
+import type { ContinueRequest } from './chat/prepareContinueRequest/types';
 
 export {
   savedJobsHandler,
@@ -35,10 +30,9 @@ export {
   getSavedJobs,
   gtmScriptInitializer,
   gtmDataLayerPushHandler,
-  postInitChat,
-  postContinueConversation,
   ContinueRequestType,
   getKeyCodeOnKeyDownEvent,
+  prepareContinueRequest,
 };
 
 export type {
@@ -51,4 +45,6 @@ export type {
   ConversationQuickSuggest,
   ConversationMultiSelect,
   ConversationMultiSelectItem,
+  ContinueResponse,
+  ContinueRequest,
 };

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import type { ChatQuickSuggestProps } from './ChatQuickSuggest.types';
 import Button from '../../buttons/Button';
-import type { ConversationQuickSuggest } from '../../../utils/chat/chatApi/types';
+import type { ConversationQuickSuggest } from '../../../utils';
 
 const handleClick = (item: ConversationQuickSuggest, fn? : (item: ConversationQuickSuggest) => void) => {
   if (fn) {

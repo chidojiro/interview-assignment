@@ -1,4 +1,4 @@
-import type { ConversationQuickSuggest } from '../../../utils/chat/chatApi/types';
+import type { ConversationQuickSuggest } from '../../../utils';
 
 export interface ChatQuickSuggestProps {
   items: Array<ConversationQuickSuggest>;

@@ -1,84 +1,112 @@
-import React, { useEffect, useState } from 'react';
-import ChatReply from '../../../components/chat/ChatReply';
-import ChatQuickSuggest from '../../../components/chat/ChatQuickSuggest';
-import ChatMultiSelect from '../../../components/chat/ChatMultiSelect';
+import React, {
+  useEffect, useMemo, useRef, useState,
+} from 'react';
 import type {
   ConversationMultiSelect,
   ConversationMultiSelectItem,
   ConversationQuickSuggest,
   ConversationReply,
-} from '../../../utils/chat/chatApi/types';
+} from '../../../utils/chat/types';
+import { ContinueRequestType } from '../../../utils/chat/types';
+import handleContinueResponse from '../../../utils/chat/handleContinueResponse';
+import useHandleReplyComponents from '../useHandleReplyComponents';
+import { ContinueResponse } from '../../../utils';
 
 function useHandleChatReplies(
   replies: ConversationReply[] | undefined,
+  setReplies: (replies: React.SetStateAction<Array<ConversationReply>>) => void,
   replyLoading: boolean,
+  setReplyLoading: (loading: React.SetStateAction<boolean>) => void,
+  conversationFinished: boolean,
+  setConversationFinished: (finished: React.SetStateAction<boolean>) => void,
   handleQuickSuggest?: (item: ConversationQuickSuggest) => void,
-  handleMultiselectSubmit?: (data: ConversationMultiSelect, selectedItems: Array<ConversationMultiSelectItem>) => void,
+  handleMultiSelectSubmit?: (data: ConversationMultiSelect, selected: ConversationMultiSelectItem[]) => Promise<ContinueResponse>,
 ) {
-  const [replyIndexes, setReplyIndexes] = useState<Array<number>>([]);
-  const [replyComponents, setReplyComponents] = useState<React.ReactNode[]>([]);
-  const [selectedItems, setSelectedItems] = useState<Array<ConversationMultiSelectItem>>([]);
-  const [multiSelectData, setMultiSelectData] = useState<ConversationMultiSelect>({
+  const initialMultiselectData = useMemo(() => ({
     submit: '',
     items: [],
     intent: '',
     param: '',
     hint: '',
-  });
+  }), []);
+
+  const [replyIndexes, setReplyIndexes] = useState<Array<number>>([]);
+  const selectedItems = useRef<Array<ConversationMultiSelectItem>>([]);
+  const multiSelectData = useRef<ConversationMultiSelect>(initialMultiselectData);
+  const multiSelectResponse = useRef<ContinueResponse>();
+  /**
+   * This state will control the multiselect text bubble simulation.
+   */
+  const [showTextBubble, setShowTextBubble] = useState(false);
 
   const clearMultiSelect = () => {
     if (!replyLoading) {
-      setSelectedItems([]);
+      selectedItems.current = [];
+      multiSelectData.current = initialMultiselectData;
     }
   };
 
-  const submitMultiSelect = () => {
-    if (handleMultiselectSubmit) {
-      handleMultiselectSubmit(multiSelectData, selectedItems);
+  useEffect(() => {
+    if (showTextBubble && multiSelectResponse.current && window && window.orbit && window.orbit.chatInstance && window.orbit.chatInstance.textarea) {
+      (window.orbit.chatInstance.textarea as HTMLTextAreaElement).value = selectedItems.current.map((r) => r.text).join(', ');
+      window.orbit.chatInstance.userInputToSpeechBubble();
+      setShowTextBubble(false);
+
+      handleContinueResponse(ContinueRequestType.QUICK_SUGGEST, multiSelectResponse.current, setReplies, setConversationFinished);
+      selectedItems.current = [];
+      multiSelectData.current = initialMultiselectData;
     }
+  }, [initialMultiselectData, setConversationFinished, setReplies, showTextBubble]);
+
+  const handleSubmitMultiSelect = () => {
+    if (!handleMultiSelectSubmit) return;
+    setReplyLoading(true);
+    handleMultiSelectSubmit(multiSelectData.current, selectedItems.current).then((response) => {
+      multiSelectResponse.current = response;
+      setReplyLoading(false);
+      setShowTextBubble(true);
+
+      return true;
+    }).catch((error) => {
+      // We need to log the error.
+      // eslint-disable-next-line no-console
+      console.error(`Error multi select submit ${error}`);
+      selectedItems.current = [];
+      multiSelectData.current = initialMultiselectData;
+    });
   };
 
   const handleOnMultiSelectChange = (item: ConversationMultiSelectItem) => {
-    const found = selectedItems.findIndex((predicated) => predicated.param === item.param);
+    const found = selectedItems.current.findIndex((predicated) => predicated.param === item.param);
     if (found !== -1) {
-      const selectedItemsCopy = [...selectedItems];
-      selectedItemsCopy.splice(found, 1);
-      setSelectedItems(selectedItemsCopy);
+      selectedItems.current.splice(found, 1);
     } else {
-      setSelectedItems((oldState) => ([...oldState, item]));
+      selectedItems.current = [...selectedItems.current, item];
     }
   };
 
   useEffect(() => {
     if (replies) {
-      const newReplies = replies.map((reply, index: number) => {
-        if (reply.text) {
-          return <ChatReply type="bot" key={`reply-${reply.text}`} first={!!replyIndexes.find((element) => element === index) || index === 0}>{reply.text}</ChatReply>;
-        }
-        if (reply.qs) {
-          const quickSuggestItems = reply.qs.map(((quickSuggest) => ({ payload: quickSuggest.payload, text: quickSuggest.text })));
-          return <ChatQuickSuggest key={`quick-sugguset-${quickSuggestItems[0].text}`} items={quickSuggestItems} handleQuickSuggest={handleQuickSuggest} />;
-        }
-        if (reply.ms) {
-          setMultiSelectData(reply.ms);
-          return <ChatMultiSelect onMultiSelectChange={handleOnMultiSelectChange} items={reply.ms.items} key={`multi-select-${reply.ms.items[0].text}`} />;
-        }
-        return null;
-      });
-      setReplyComponents(newReplies);
+      // We will update the chat reply indexes on every new replies, basically.
       setReplyIndexes((prevState) => {
-        if (!replyIndexes.find((el) => el === replies.length)) {
+        if (!prevState.find((el) => el === replies.length)) {
           return [...prevState, replies?.length];
         }
         return [...prevState];
       });
+
+      replies.forEach((reply) => {
+        if (reply.ms) {
+          multiSelectData.current = reply.ms;
+        }
+      });
     }
-    // We need to check for the replies update.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [replies, selectedItems]);
+  }, [replies]);
+
+  const replyComponents = useHandleReplyComponents(replies, replyIndexes, handleOnMultiSelectChange, handleQuickSuggest);
 
   return {
-    replyComponents, multiSelectData, clearMultiSelect, submitMultiSelect,
+    replyComponents, selectedItems, multiSelectData, clearMultiSelect, handleSubmitMultiSelect,
   };
 }
 

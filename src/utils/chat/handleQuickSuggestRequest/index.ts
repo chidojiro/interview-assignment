@@ -1,4 +1,4 @@
-import type { ConversationMultiSelect, ConversationQuickSuggest } from '../chatApi/types';
+import type { ConversationMultiSelect, ConversationQuickSuggest } from '../types';
 
 const handleQuickSuggestRequest = (data: unknown): { dataRequest: string | undefined; textRequest: string } => {
   let dataRequest;
