@@ -38,12 +38,13 @@ function Chat({
   const chatBoxRef = useRef(null);
 
   const [input, setInput] = useState('');
+  const [conversationFinished, setConversationFinished] = useState(false);
 
   const quickSuggestHandler = (item: ConversationQuickSuggest) => {
-    if (!handleQuickSuggest) return;
+    if (!handleQuickSuggest || conversationFinished) return;
     setReplyLoading(true);
     handleQuickSuggest(item).then((response) => {
-      handleContinueResponse(ContinueRequestType.QUICK_SUGGEST, response, setReplies);
+      handleContinueResponse(ContinueRequestType.QUICK_SUGGEST, response, setReplies, setConversationFinished);
       setReplyLoading(false);
       return true;
     }).catch((error) => {
@@ -55,7 +56,7 @@ function Chat({
 
   const {
     replyComponents, clearMultiSelect, handleSubmitMultiSelect,
-  } = useHandleChatReplies(replies, setReplies, replyLoading, setReplyLoading, quickSuggestHandler, handleMultiSelectSubmit);
+  } = useHandleChatReplies(replies, setReplies, replyLoading, setReplyLoading, conversationFinished, setConversationFinished, quickSuggestHandler, handleMultiSelectSubmit);
 
   const imgPath = !process.env.NEXT_PUBLIC_RESOURCE_PREFIX ? '/src/assets/img/randstad-wings.jpg' : `${process.env.NEXT_PUBLIC_RESOURCE_PREFIX}/src/assets/img/randstad-wings.jpg`;
 
@@ -65,9 +66,11 @@ function Chat({
       window.orbit.chatInstance.userInputToSpeechBubble();
     }
 
+    if (conversationFinished) return;
+
     setReplyLoading(true);
     handleSendButton(input).then((response) => {
-      handleContinueResponse(ContinueRequestType.TEXT_REPLY, response, setReplies);
+      handleContinueResponse(ContinueRequestType.TEXT_REPLY, response, setReplies, setConversationFinished);
       setReplyLoading(false);
       return true;
     }).catch((error) => {

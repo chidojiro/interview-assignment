@@ -1,4 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, {
+  useEffect, useMemo, useRef, useState,
+} from 'react';
 import type {
   ConversationMultiSelect,
   ConversationMultiSelectItem,
@@ -15,20 +17,22 @@ function useHandleChatReplies(
   setReplies: (replies: React.SetStateAction<Array<ConversationReply>>) => void,
   replyLoading: boolean,
   setReplyLoading: (loading: React.SetStateAction<boolean>) => void,
+  conversationFinished: boolean,
+  setConversationFinished: (finished: React.SetStateAction<boolean>) => void,
   handleQuickSuggest?: (item: ConversationQuickSuggest) => void,
   handleMultiSelectSubmit?: (data: ConversationMultiSelect, selected: ConversationMultiSelectItem[]) => Promise<ContinueResponse>,
 ) {
-  const initalMultiselectData = {
+  const initialMultiselectData = useMemo(() => ({
     submit: '',
     items: [],
     intent: '',
     param: '',
     hint: '',
-  };
+  }), []);
 
   const [replyIndexes, setReplyIndexes] = useState<Array<number>>([]);
   const selectedItems = useRef<Array<ConversationMultiSelectItem>>([]);
-  const multiSelectData = useRef<ConversationMultiSelect>(initalMultiselectData);
+  const multiSelectData = useRef<ConversationMultiSelect>(initialMultiselectData);
   const multiSelectResponse = useRef<ContinueResponse>();
   /**
    * This state will control the multiselect text bubble simulation.
@@ -38,7 +42,7 @@ function useHandleChatReplies(
   const clearMultiSelect = () => {
     if (!replyLoading) {
       selectedItems.current = [];
-      multiSelectData.current = initalMultiselectData;
+      multiSelectData.current = initialMultiselectData;
     }
   };
 
@@ -48,9 +52,11 @@ function useHandleChatReplies(
       window.orbit.chatInstance.userInputToSpeechBubble();
       setShowTextBubble(false);
 
-      handleContinueResponse(ContinueRequestType.QUICK_SUGGEST, multiSelectResponse.current, setReplies);
+      handleContinueResponse(ContinueRequestType.QUICK_SUGGEST, multiSelectResponse.current, setReplies, setConversationFinished);
+      selectedItems.current = [];
+      multiSelectData.current = initialMultiselectData;
     }
-  }, [setReplies, showTextBubble]);
+  }, [initialMultiselectData, setConversationFinished, setReplies, showTextBubble]);
 
   const handleSubmitMultiSelect = () => {
     if (!handleMultiSelectSubmit) return;
@@ -66,7 +72,7 @@ function useHandleChatReplies(
       // eslint-disable-next-line no-console
       console.error(`Error multi select submit ${error}`);
       selectedItems.current = [];
-      multiSelectData.current = initalMultiselectData;
+      multiSelectData.current = initialMultiselectData;
     });
   };
 
