@@ -9,4 +9,5 @@ export type SectionTypes = {
   handleAddItem?: () => void;
   label?: string | React.ReactNode;
   divider?: boolean;
+  actionHeaderStyles?: string;
 };
