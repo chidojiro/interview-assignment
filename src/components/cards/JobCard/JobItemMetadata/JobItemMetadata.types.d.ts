@@ -1,5 +1,13 @@
 // Empty string added because sometimes the data coming from the metadata service is empty.
 export type MetaItemIcons = 'marker' | 'briefcase' | 'salary' | '';
+export type FourthOptionFieldValues =
+  | 'client_name_settings'
+  | 'hours_settings'
+  | 'education_settings'
+  | 'duration_settings'
+  | 'division_settings'
+  | 'sector_settings';
+export type FourthOptionIconType = 'building' | 'clock' | 'education' | 'calendar' | 'factory';
 
 export interface JobItemMetadataProps {
   location: string;
@@ -24,14 +32,8 @@ export interface JobItemMetadataProps {
   enableSalary?: boolean;
   enableJobType?: boolean;
 
-  fourthOptionField?:
-    | 'client_name_settings'
-    | 'hours_settings'
-    | 'education_settings'
-    | 'duration_settings'
-    | 'division_settings'
-    | 'sector_settings';
-  fourthOptionIcon?: 'building' | 'clock' | 'education' | 'calendar' | 'factory';
+  fourthOptionField?: FourthOptionFieldValues;
+  fourthOptionIcon?: FourthOptionIconType;
   fourthOptionAriaLabelValue?: string;
 
   lowerCased?: boolean;
