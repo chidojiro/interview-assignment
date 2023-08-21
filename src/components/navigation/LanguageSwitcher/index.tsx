@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Toast from '../../notifications/Toast';
 import { LanguageSwitcherProps } from './LanguageSwitcher.types';
-import { gtmDataLayerPushHandler } from '../../../utils/gtm';
+import { languageSwitchEvent } from '../../../utils/gtmEvents';
 
 function LanguageSwitcher({
   items, extraClasses, useToast = false, toastSettings,
@@ -21,27 +21,16 @@ function LanguageSwitcher({
     }
   };
 
-  const dataLayerLanguageSwitch = (query: object, currentLanguage: string, newLanguage: string) => {
-    let hasFilters = false;
-    if (query && Object.keys(query).length !== 0){
-      hasFilters = true;
-    }
-    const event = {
-      event: 'interaction',
-      event_params: {
-        event_name: 'language_switch',
-        current_language: currentLanguage,
-        switched_language: newLanguage,
-        filters_active: hasFilters ? 'true' : 'false',
-      },
-    };
-    gtmDataLayerPushHandler(event);
-  }
-
   const onSuccessHandler = () => {
     window.location.href = selectedLanguage.href;
+    let hasFilters = false;
     items.filter(item => {
-      dataLayerLanguageSwitch(item.filters as object, item.language as string, selectedLanguage.lang as string);
+      if (item.isActive) {
+        if (item.filters && Object.keys(item.filters).length !== 0){
+          hasFilters = true;
+        }
+        languageSwitchEvent(item.language as string, selectedLanguage.lang as string, hasFilters as boolean);
+      }
     })
   };
 
