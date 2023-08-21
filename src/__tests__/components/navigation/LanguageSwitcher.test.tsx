@@ -1,11 +1,28 @@
 import React from 'react';
-import { fireEvent, render } from '@testing-library/react';
+import { fireEvent, render, act, waitFor } from '@testing-library/react';
 import LanguageSwitcher from '../../../components/navigation/LanguageSwitcher';
+import { CustomWindow } from '../../../utils/gtm/types';
+
+import Mock = jest.Mock;
+
+// Autosuggest field prevents user fast typing with a debounce technology.
+const waitForDebounce = (timeout = 155) => new Promise((resolve) => {
+  setTimeout(resolve, timeout);
+});
 
 describe('LanguageSwitcher component tests', () => {
+  beforeEach(() => {
+    (window as unknown as CustomWindow).dataLayer = [];
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
+    delete (window as unknown as { dataLayer?: string[] }).dataLayer;
+  });
+
   const items = [
-    { language: 'en', isActive: true, url: '/en' },
-    { language: 'fr', isActive: false, url: '/fr' },
+    { language: 'en', isActive: true, url: '/en', filters: { query: 'test'} },
+    { language: 'fr', isActive: false, url: '/fr', filters: {} },
   ];
 
   const toastSettings = {
@@ -72,5 +89,30 @@ describe('LanguageSwitcher component tests', () => {
 
     expect(languageLink).toHaveAttribute('href', '/fr');
     expect(languageLink).toHaveAttribute('hrefLang', 'fr');
+  });
+
+  it('does dataLayer event works correctly', async () => {
+    const { container } = render(<LanguageSwitcher items={items} useToast toastSettings={toastSettings} />);
+    
+    const buttonSwitch = container.querySelector('.language-link');
+    expect(buttonSwitch).toBeInTheDocument();
+
+    await act(async () => {
+      fireEvent.click(buttonSwitch as HTMLButtonElement);
+    });
+    
+    await act(async () => {
+      jest.advanceTimersByTime(2000);
+    });
+
+    const button = container.querySelector('.button--filled');
+    expect(button).toBeInTheDocument();
+    expect(button?.textContent).toBe('success fr');
+
+    await act(async () => {
+      fireEvent.click(button as HTMLButtonElement);
+    });
+    
+    await waitFor(() => expect((window as unknown as CustomWindow).dataLayer).toEqual([{ event_params: null }, { event: 'interaction', event_params: { event_name: 'language_switch', current_language: 'en', switched_language: 'fr', filters_active: 'true' } }]))
   });
 });

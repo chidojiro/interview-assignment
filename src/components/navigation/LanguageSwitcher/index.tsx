@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Toast from '../../notifications/Toast';
 import { LanguageSwitcherProps } from './LanguageSwitcher.types';
+import { languageSwitchEvent } from '../../../utils/gtmEvents';
 
 function LanguageSwitcher({
   items, extraClasses, useToast = false, toastSettings,
@@ -22,6 +23,15 @@ function LanguageSwitcher({
 
   const onSuccessHandler = () => {
     window.location.href = selectedLanguage.href;
+    let hasFilters = false;
+    items.filter(item => {
+      if (item.isActive) {
+        if (item.filters && Object.keys(item.filters).length !== 0){
+          hasFilters = true;
+        }
+        languageSwitchEvent(item.language as string, selectedLanguage.lang as string, hasFilters as boolean);
+      }
+    })
   };
 
   if (!items || (items && items.length < 2)) {
