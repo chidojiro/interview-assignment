@@ -91,7 +91,11 @@ import Sortbar from './components/forms/Sortbar';
 import MyRandstad from './components/navigation/MyRandstad';
 import SavedJobIcon from './components/cards/JobCard/SavedJobIcon';
 import { JobCardProps, SavedJobsProps } from './components/cards/JobCard/JobCard.types';
-import { MetaItemIcons } from './components/cards/JobCard/JobItemMetadata/JobItemMetadata.types';
+import {
+  MetaItemIcons,
+  FourthOptionFieldValues,
+  FourthOptionIconType,
+} from './components/cards/JobCard/JobItemMetadata/JobItemMetadata.types';
 import MetaCardOption from './components/cards/JobCard/JobItemMetadata/MetaCardOption';
 
 export {
@@ -198,4 +202,6 @@ export type {
   JobCardProps,
   MetaItemIcons,
   SavedJobsProps,
+  FourthOptionFieldValues,
+  FourthOptionIconType,
 };
