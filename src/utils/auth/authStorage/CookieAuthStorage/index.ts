@@ -1,6 +1,6 @@
 import { deleteCookie, getCookie, setCookie } from 'cookies-next';
 import type { CookieSerializeOptions } from 'cookie';
-import IAuthStorage from '../AbstractAuthStorage';
+import AbstractAuthStorage from '../AbstractAuthStorage';
 import getCookieOptions from '../../getCookieOptions';
 
 interface CookieAuthStorageOptions {
@@ -8,7 +8,7 @@ interface CookieAuthStorageOptions {
   refreshTokenName: string;
 }
 
-class CookieAuthStorage extends IAuthStorage<CookieSerializeOptions> {
+class CookieAuthStorage extends AbstractAuthStorage<CookieSerializeOptions> {
   private options: CookieAuthStorageOptions;
 
   constructor(options: CookieAuthStorageOptions) {
