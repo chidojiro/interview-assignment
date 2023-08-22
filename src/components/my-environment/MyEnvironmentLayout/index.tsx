@@ -3,7 +3,7 @@ import Icon from '../../common/Icon';
 import { MyEnvironmentLayoutTypes } from './MyEnvironmentLayout.types';
 
 function MyEnvironmentLayout({
-  title, handleAddItem, label, description, children,
+  title, handleAddItem, label, description, children, href,
 }: MyEnvironmentLayoutTypes) {
   return (
     <div className="block block--my-randstad block--xs">
@@ -11,7 +11,7 @@ function MyEnvironmentLayout({
         <div className="block__header">
           <h2 className="text-title-s l:text-title-m l:mb-s">{title}</h2>
           {typeof handleAddItem === 'function' && (
-            <a href="#?" className="block__control" onClick={handleAddItem}>
+            <a href={`${href || '#?'}`} className="block__control" onClick={handleAddItem}>
               <Icon iconClassName="icon icon--inline fill-brand--blue" iconType="add" />
               {label}
             </a>

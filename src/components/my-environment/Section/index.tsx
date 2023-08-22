@@ -3,11 +3,11 @@ import Icon from '../../common/Icon';
 import { SectionTypes } from './Section.types';
 
 function Section({
-  children, title, titleLink, description, handleEdit, handleAddItem, handleDelete, label, divider = false, id,
+  children, title, titleLink, description, handleEdit, handleAddItem, handleDelete, label, divider = false, id, actionHeaderStyles,
 }: SectionTypes) {
   return (
     <div className={`my-environment-container ${divider ? 'pb-m l:pb-l divider' : ''}`} id={id}>
-      <div className="my-environment-action-header mb-s l:mb-m">
+      <div className={`my-environment-action-header ${actionHeaderStyles !== undefined ? actionHeaderStyles : 'mb-s l:mb-m'}`}>
         <div className="my-environment-header">
           <h2 className="title--s mr-xxs">{titleLink ? <a href={titleLink}>{title}</a> : title}</h2>
           {(typeof handleEdit === 'function' || typeof handleDelete === 'function') && (

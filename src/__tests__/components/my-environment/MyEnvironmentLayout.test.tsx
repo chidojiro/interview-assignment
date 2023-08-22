@@ -66,4 +66,23 @@ describe('MyEnvironmentLayout component tests', () => {
     fireEvent.click(addItemLink);
     expect(handleAddItem).toHaveBeenCalledTimes(1);
   });
+
+  it('renders the component with passed href as a property', () => {
+    const handleAddItem = jest.fn();
+
+    const { getByText } = render(
+      <MyEnvironmentLayout
+        title="My Environment"
+        label="Add Item"
+        href="some-website-address"
+        handleAddItem={handleAddItem}
+      >
+        <div>Environment content</div>
+      </MyEnvironmentLayout>,
+    );
+
+    const addItemLink = getByText('Add Item');
+    expect(addItemLink).toBeInTheDocument();
+    expect(addItemLink).toHaveAttribute('href', 'some-website-address');
+  });
 });

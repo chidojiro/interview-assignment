@@ -4,4 +4,5 @@ export type MyEnvironmentLayoutTypes = {
   label?: string | React.ReactNode;
   description?: string | React.ReactNode;
   children?: React.ReactNode;
+  href?: string;
 };
