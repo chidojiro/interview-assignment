@@ -30,7 +30,7 @@ class AuthManager<OptionsType> {
 
   public async getValidatedIdToken() {
     if (!this.idTokenPromise) {
-      this.idTokenPromise = new Promise<string | undefined>((resolve, reject) => {
+      this.idTokenPromise = new Promise<string | undefined>((resolve) => {
         setTimeout(() => {
           const refreshToken = this.authStorage.getRefreshToken();
 
@@ -57,8 +57,8 @@ class AuthManager<OptionsType> {
               this.idTokenPromise = null;
               return response?.idToken;
             })
-            .catch((ex) => {
-              reject(ex);
+            .catch(() => {
+              resolve(undefined);
               this.idTokenPromise = null;
             });
         }, 0);
