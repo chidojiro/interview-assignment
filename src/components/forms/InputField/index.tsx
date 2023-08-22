@@ -23,7 +23,7 @@ function InputField({
 }: InputFieldProps): React.ReactElement {
   const otherFieldProps = {
     type,
-    ...(disabled && { readonly: 'readonly' }),
+    ...(disabled && { readOnly: true }),
     ...(placeholder && { placeholder }),
     ...props,
   };
