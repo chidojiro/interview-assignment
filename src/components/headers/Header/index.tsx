@@ -145,6 +145,7 @@ function Header({
                   <HeaderSavedJobs
                     gdsApiKey={savedJobsEnabled.gdsApiKey}
                     gdsApiUrl={savedJobsEnabled.gdsApiUrl}
+                    shareIdTokenAcrossSubdomains={savedJobsEnabled.shareIdTokenAcrossSubdomains}
                     buttonUrl={savedJobsUrl}
                     ariaLabel={savedJobsEnabled.ariaLabel}
                   />

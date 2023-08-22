@@ -13,6 +13,7 @@ function SavedJobIcon({
   size = 'l',
   gdsApiKey,
   gdsApiUrl,
+  shareIdTokenAcrossSubdomains,
   searchApiKey,
   searchApiUrl,
   savedJobId,
@@ -49,14 +50,14 @@ function SavedJobIcon({
       }
     } else if (savedJobId && typeof (savedJobId) === 'string') {
       setIconFilled('');
-      const onSuccessfullDelete = await deleteSavedJobs(gdsApiKey, gdsApiUrl, savedJobId);
+      const onSuccessfullDelete = await deleteSavedJobs(gdsApiKey, gdsApiUrl, shareIdTokenAcrossSubdomains, savedJobId);
       if (returnJobPostingDetails && onSuccessfullDelete) {
         returnJobPostingDetails(jobPostingWebDetailId, title);
       }
 
       saveJobEvent(title, false);
     } else {
-      await postSavedJobs(gdsApiKey, gdsApiUrl, jobPostingWebDetailId);
+      await postSavedJobs(gdsApiKey, gdsApiUrl, shareIdTokenAcrossSubdomains, jobPostingWebDetailId);
       setIconFilled('filled');
 
       saveJobEvent(title, true);

@@ -47,6 +47,7 @@ export interface HeaderProps {
   savedJobsEnabled?: {
     gdsApiKey: string;
     gdsApiUrl: string;
+    shareIdTokenAcrossSubdomains: boolean;
     ariaLabel: string;
   };
   popoverTranslations?: TranslationProps;

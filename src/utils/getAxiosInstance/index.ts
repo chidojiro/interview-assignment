@@ -11,8 +11,11 @@ const AxiosInstances = new Map<string, AxiosInstance>();
 /**
  * Get an already created axios instance or create (and initialize) a new one.
  */
-function getAxiosInstance(gdsConfigOptions: GdsConfigOptions) {
-  const instanceKey = `${gdsConfigOptions.baseUrl}?${gdsConfigOptions.apiKey}`;
+function getAxiosInstance(gdsConfigOptions: GdsConfigOptions, shareIdTokenAcrossSubdomains: boolean) {
+  // instanceKey is not an URL but an URL-like unique hash of this function's parameters.
+  const instanceKey = `${gdsConfigOptions.baseUrl}?key=${gdsConfigOptions.apiKey}&auth=${
+    shareIdTokenAcrossSubdomains ? 'shared' : 'private'
+  }`;
   let axiosInstance = AxiosInstances.get(instanceKey);
 
   if (!axiosInstance) {
@@ -26,7 +29,7 @@ function getAxiosInstance(gdsConfigOptions: GdsConfigOptions) {
       },
     });
 
-    const authManager = getAuthManager(gdsConfigOptions);
+    const authManager = getAuthManager(gdsConfigOptions, shareIdTokenAcrossSubdomains);
 
     axiosInstance.interceptors.request.use(async (config) => {
       const result = config;

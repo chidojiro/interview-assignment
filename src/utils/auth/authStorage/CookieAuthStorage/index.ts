@@ -6,6 +6,7 @@ import getCookieOptions from '../../getCookieOptions';
 interface CookieAuthStorageOptions {
   idTokenName: string;
   refreshTokenName: string;
+  shareIdTokenAcrossSubdomains: boolean;
 }
 
 class CookieAuthStorage extends AbstractAuthStorage<CookieSerializeOptions> {
@@ -28,7 +29,7 @@ class CookieAuthStorage extends AbstractAuthStorage<CookieSerializeOptions> {
 
   public setIdToken(idToken: string) {
     const expires = this.idTokenExpiresAt(idToken);
-    const idTokenOptions = getCookieOptions({ expires });
+    const idTokenOptions = getCookieOptions(this.options.shareIdTokenAcrossSubdomains, { expires });
     setCookie(this.options.idTokenName, idToken, idTokenOptions);
   }
 
@@ -56,7 +57,7 @@ class CookieAuthStorage extends AbstractAuthStorage<CookieSerializeOptions> {
   }
 
   public deleteTokens(): void {
-    const idTokenCookieOptions = getCookieOptions();
+    const idTokenCookieOptions = getCookieOptions(this.options.shareIdTokenAcrossSubdomains);
     deleteCookie(this.options.idTokenName, idTokenCookieOptions);
     deleteCookie(this.options.refreshTokenName);
   }

@@ -13,8 +13,8 @@ export type Data = {
 export class TalentAppApi {
   private readonly axiosInstance: AxiosInstance;
 
-  constructor(gdsApiKey: string, gdsApiUrl: string) {
-    this.axiosInstance = getAxiosInstance({ apiKey: gdsApiKey, baseUrl: gdsApiUrl });
+  constructor(gdsApiKey: string, gdsApiUrl: string, shareIdTokenAcrossSubdomains: boolean) {
+    this.axiosInstance = getAxiosInstance({ apiKey: gdsApiKey, baseUrl: gdsApiUrl }, shareIdTokenAcrossSubdomains);
   }
 
   async post<T = Data, R = AxiosResponse<T>, D = Data>(url: string, data?: D, config?: AxiosRequestConfig<D>): Promise<R> {

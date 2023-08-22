@@ -8,6 +8,7 @@ function HeaderSavedJobs({
   buttonUrl,
   gdsApiKey,
   gdsApiUrl,
+  shareIdTokenAcrossSubdomains,
   ariaLabel,
 }: HeaderSavedJobsProps) {
   const [maxCounter, setMaxCounter] = useState<number>(0);
@@ -16,7 +17,7 @@ function HeaderSavedJobs({
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const getAll = useCallback(
     useAsyncHandler(async () => {
-      const total = await getSavedJobsCount(gdsApiKey, gdsApiUrl);
+      const total = await getSavedJobsCount(gdsApiKey, gdsApiUrl, shareIdTokenAcrossSubdomains);
       if (total) {
         setMaxCounter(total);
       } else {

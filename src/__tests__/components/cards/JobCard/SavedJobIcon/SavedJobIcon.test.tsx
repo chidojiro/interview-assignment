@@ -39,6 +39,7 @@ const commonProps = {
   size: 'l',
   gdsApiKey: '12345',
   gdsApiUrl: 'https://example.com/api',
+  shareIdTokenAcrossSubdomains: false,
   jobPostingWebDetailId: 'def456',
   ariaLabel: 'Save Job',
   locale: 'en',
@@ -146,7 +147,7 @@ describe('SavedJobIcon component tests', () => {
     });
 
     expect(postSavedJobs).toHaveBeenCalledTimes(1);
-    expect(postSavedJobs).toHaveBeenCalledWith('12345', 'https://example.com/api', 'def456');
+    expect(postSavedJobs).toHaveBeenCalledWith('12345', 'https://example.com/api', commonProps.shareIdTokenAcrossSubdomains, 'def456');
     expect((window as unknown as CustomWindow).dataLayer).toEqual([{ event_params: null }, { event: 'interaction', event_params: { action: 'add', event_name: 'job_save', item_name: 'Test Job' } }]);
   });
 
@@ -165,6 +166,6 @@ describe('SavedJobIcon component tests', () => {
     fireEvent.click(button as HTMLButtonElement);
 
     expect(deleteSavedJobs).toHaveBeenCalledTimes(1);
-    expect(deleteSavedJobs).toHaveBeenCalledWith('12345', 'https://example.com/api', 'abc123');
+    expect(deleteSavedJobs).toHaveBeenCalledWith('12345', 'https://example.com/api', commonProps.shareIdTokenAcrossSubdomains, 'abc123');
   });
 });

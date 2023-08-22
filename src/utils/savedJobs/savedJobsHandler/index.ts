@@ -9,7 +9,12 @@ import saveSavedJobsToLocalStorage from '../savedJobsLocalStorage/saveSavedJobsL
 
 const savedJobsLocalStorageKey = 'saved-jobs';
 
-const getSavedJobsCount = async (gdsApiKey: string, gdsApiUrl: string, checkLocalStorage = true): Promise<number> => {
+const getSavedJobsCount = async (
+  gdsApiKey: string,
+  gdsApiUrl: string,
+  shareIdTokenAcrossSubdomains: boolean,
+  checkLocalStorage = true,
+): Promise<number> => {
   const userData = getUserData();
   const savedJobs = getSavedJobsLocalStorage();
   // Anon user
@@ -25,7 +30,7 @@ const getSavedJobsCount = async (gdsApiKey: string, gdsApiUrl: string, checkLoca
     return userData.savedJobs.totalElements;
     // After login, calls api
   } else if (userData.loginStatus) {
-    const talentApi = new TalentAppApi(gdsApiKey, gdsApiUrl);
+    const talentApi = new TalentAppApi(gdsApiKey, gdsApiUrl, shareIdTokenAcrossSubdomains);
     const response = await talentApi.get<Data, AxiosResponse<SavedJobsResponse>>('/me/saved-jobs?size=1').catch((err) => {
       // Needed logging for error.
       // eslint-disable-next-line no-console
@@ -40,9 +45,9 @@ const getSavedJobsCount = async (gdsApiKey: string, gdsApiUrl: string, checkLoca
   return 0;
 };
 
-const saveCountOfSavedJobs = async (gdsApiKey: string, gdsApiUrl: string) => {
+const saveCountOfSavedJobs = async (gdsApiKey: string, gdsApiUrl: string, shareIdTokenAcrossSubdomains: boolean) => {
   const numberOfSavedJobs: SavedJobsResponse = {
-    totalElements: await getSavedJobsCount(gdsApiKey, gdsApiUrl, false),
+    totalElements: await getSavedJobsCount(gdsApiKey, gdsApiUrl, shareIdTokenAcrossSubdomains, false),
   };
   const userData = getUserData();
   if (userData.loginStatus) {
@@ -56,20 +61,30 @@ const saveCountOfSavedJobs = async (gdsApiKey: string, gdsApiUrl: string) => {
   window.dispatchEvent(savedJobsEvent);
 };
 
-const postSavedJobs = async (gdsApiKey: string, gdsApiUrl: string, jobPostingWebDetailId: string): Promise<void> => {
-  const talentApi = new TalentAppApi(gdsApiKey, gdsApiUrl);
+const postSavedJobs = async (
+  gdsApiKey: string,
+  gdsApiUrl: string,
+  shareIdTokenAcrossSubdomains: boolean,
+  jobPostingWebDetailId: string,
+): Promise<void> => {
+  const talentApi = new TalentAppApi(gdsApiKey, gdsApiUrl, shareIdTokenAcrossSubdomains);
 
   await talentApi.post('/me/saved-jobs', { jobPostingWebDetailId }).then((res: AxiosResponse) => {
-    saveCountOfSavedJobs(gdsApiKey, gdsApiUrl);
+    saveCountOfSavedJobs(gdsApiKey, gdsApiUrl, shareIdTokenAcrossSubdomains);
     return res.data;
   });
 };
 
-const deleteSavedJobs = async (gdsApiKey: string, gdsApiUrl: string, savedJobId: string): Promise<AxiosResponse> => {
-  const talentApi = new TalentAppApi(gdsApiKey, gdsApiUrl);
+const deleteSavedJobs = async (
+  gdsApiKey: string,
+  gdsApiUrl: string,
+  shareIdTokenAcrossSubdomains: boolean,
+  savedJobId: string,
+): Promise<AxiosResponse> => {
+  const talentApi = new TalentAppApi(gdsApiKey, gdsApiUrl, shareIdTokenAcrossSubdomains);
 
   return talentApi.delete(`/me/saved-jobs/${savedJobId}`).then((res: AxiosResponse) => {
-    saveCountOfSavedJobs(gdsApiKey, gdsApiUrl);
+    saveCountOfSavedJobs(gdsApiKey, gdsApiUrl, shareIdTokenAcrossSubdomains);
     return res;
   });
 };

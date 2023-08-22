@@ -27,8 +27,14 @@ const getUploadedFiles = async (event: React.ChangeEvent<HTMLInputElement | HTML
   return [];
 };
 
-const uploadTemporaryResume = async (gdsApiKey: string, gdsApiUrl: string, formDataName: string, file: File): Promise<TempDocument> => {
-  const talentApi = new TalentAppApi(gdsApiKey, gdsApiUrl);
+const uploadTemporaryResume = async (
+  gdsApiKey: string,
+  gdsApiUrl: string,
+  shareIdTokenAcrossSubdomains: boolean,
+  formDataName: string,
+  file: File,
+): Promise<TempDocument> => {
+  const talentApi = new TalentAppApi(gdsApiKey, gdsApiUrl, shareIdTokenAcrossSubdomains);
   const formData = new FormData();
   formData.append(formDataName, file, file.name);
 
@@ -51,8 +57,8 @@ const uploadTemporaryResume = async (gdsApiKey: string, gdsApiUrl: string, formD
   });
 };
 
-const getResumeUrl = async (gdsApiKey: string, gdsApiUrl: string): Promise<string | undefined> => {
-  const talentApi = new TalentAppApi(gdsApiKey, gdsApiUrl);
+const getResumeUrl = async (gdsApiKey: string, gdsApiUrl: string, shareIdTokenAcrossSubdomains: boolean): Promise<string | undefined> => {
+  const talentApi = new TalentAppApi(gdsApiKey, gdsApiUrl, shareIdTokenAcrossSubdomains);
   const response = await talentApi.get<Data, AxiosResponse<string>>('/me/resume/document', { responseType: 'arraybuffer' }).catch((err) => {
     // Needed logging for error.
     // eslint-disable-next-line no-console
@@ -71,12 +77,17 @@ const getResumeUrl = async (gdsApiKey: string, gdsApiUrl: string): Promise<strin
   return undefined;
 };
 
-const getResumeFile = async (gdsApiKey: string, gdsApiUrl: string, filename: string): Promise<File | undefined> => {
+const getResumeFile = async (
+  gdsApiKey: string,
+  gdsApiUrl: string,
+  shareIdTokenAcrossSubdomains: boolean,
+  filename: string,
+): Promise<File | undefined> => {
   if (!filename) {
     return undefined;
   }
 
-  const fileUrl = await getResumeUrl(gdsApiKey, gdsApiUrl);
+  const fileUrl = await getResumeUrl(gdsApiKey, gdsApiUrl, shareIdTokenAcrossSubdomains);
   if (fileUrl) {
     const blob = await (await fetch(fileUrl)).blob();
     const mimeType = fileUrl.split(';')[0].split(':')[1] ?? '';
@@ -87,8 +98,12 @@ const getResumeFile = async (gdsApiKey: string, gdsApiUrl: string, filename: str
   return undefined;
 };
 
-const getResumeFilename = async (gdsApiKey: string, gdsApiUrl: string): Promise<AlreadyUploadedFile | undefined> => {
-  const talentApi = new TalentAppApi(gdsApiKey, gdsApiUrl);
+const getResumeFilename = async (
+  gdsApiKey: string,
+  gdsApiUrl: string,
+  shareIdTokenAcrossSubdomains: boolean,
+): Promise<AlreadyUploadedFile | undefined> => {
+  const talentApi = new TalentAppApi(gdsApiKey, gdsApiUrl, shareIdTokenAcrossSubdomains);
 
   const response = await talentApi.get<Data, AxiosResponse<AlreadyUploadedFile>>('/me/resume').catch((err) => {
     // Needed logging for error.
@@ -103,8 +118,13 @@ const getResumeFilename = async (gdsApiKey: string, gdsApiUrl: string): Promise<
   return undefined;
 };
 
-const deleteTempFile = async (tempResumeDocumentToken: string, gdsApiKey: string, gdsApiUrl: string) => {
-  const talentApi = new TalentAppApi(gdsApiKey, gdsApiUrl);
+const deleteTempFile = async (
+  tempResumeDocumentToken: string,
+  gdsApiKey: string,
+  gdsApiUrl: string,
+  shareIdTokenAcrossSubdomains: boolean,
+) => {
+  const talentApi = new TalentAppApi(gdsApiKey, gdsApiUrl, shareIdTokenAcrossSubdomains);
   talentApi
     .delete(`/temp-resume-documents/${tempResumeDocumentToken}`)
     .then((response) => response.status === 200)
@@ -117,11 +137,16 @@ const deleteTempFile = async (tempResumeDocumentToken: string, gdsApiKey: string
 };
 
 // Function that checks if the current logged in user has an already uplaoded file.
-const checkIfUserHasFile = async (files: AlreadyUploadedFile, gdsApiKey: string, gdsApiUrl: string) => {
+const checkIfUserHasFile = async (
+  files: AlreadyUploadedFile,
+  gdsApiKey: string,
+  gdsApiUrl: string,
+  shareIdTokenAcrossSubdomains: boolean,
+) => {
   if (!files) {
     return null;
   }
-  const returnedFile = await getResumeFilename(gdsApiKey, gdsApiUrl);
+  const returnedFile = await getResumeFilename(gdsApiKey, gdsApiUrl, shareIdTokenAcrossSubdomains);
   if (returnedFile) {
     const file: UploadedFile = {
       name: returnedFile.filename as string,
