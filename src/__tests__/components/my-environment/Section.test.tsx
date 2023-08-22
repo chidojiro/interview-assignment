@@ -128,4 +128,16 @@ describe('Section component tests', () => {
     fireEvent.click(addItemButton);
     expect(handleAddItem).toHaveBeenCalledTimes(1);
   });
+
+  it('should render the section action header container with provided actionHeaderStyles', () => {
+    const { container } = render(
+      <Section id="my-section" title="My Section" actionHeaderStyles="custom-styles">
+        <div>Content</div>
+      </Section>,
+    );
+
+    const titleElement = container.querySelector('#my-section');
+    expect(titleElement).toBeInTheDocument();
+    expect(titleElement?.firstChild).toHaveClass('custom-styles');
+  });
 });
