@@ -205,3 +205,6 @@ export type {
   FourthOptionFieldValues,
   FourthOptionIconType,
 };
+
+export { default as getAxiosInstance } from './utils/getAxiosInstance';
+export { default as getAuthManager } from './utils/auth/getAuthManager';

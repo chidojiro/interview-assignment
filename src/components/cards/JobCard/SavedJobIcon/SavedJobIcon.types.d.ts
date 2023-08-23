@@ -2,6 +2,7 @@ export interface SavedJobIconProps {
   size?: string;
   gdsApiKey: string;
   gdsApiUrl: string;
+  shareIdTokenAcrossSubdomains: boolean;
   searchApiUrl: string;
   searchApiKey: string;
   savedJobId?: string;

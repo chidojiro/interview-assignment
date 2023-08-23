@@ -11,6 +11,7 @@ async function getSavedJobs(
   },
   gdsApiKey: string,
   gdsApiUrl: string,
+  shareIdTokenAcrossSubdomains: boolean,
 ): Promise<SavedJobsResponse> {
   const { loginStatus } = getUserData();
   // If the user is not logged in, we will take the saved-jobs form the localstorage.
@@ -40,7 +41,7 @@ async function getSavedJobs(
     finalQuery += `&size=${process.env.NEXT_PUBLIC_SAVED_JOBS_PAGE_SIZE}`;
   }
 
-  const talentAppApi = new TalentApi(gdsApiKey, gdsApiUrl);
+  const talentAppApi = new TalentApi(gdsApiKey, gdsApiUrl, shareIdTokenAcrossSubdomains);
 
   return talentAppApi
     .get(`me/saved-jobs?${finalQuery}`)

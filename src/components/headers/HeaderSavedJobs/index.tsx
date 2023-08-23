@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { getSavedJobsCount } from '../../../utils/savedJobs/savedJobsHandler';
 import Icon from '../../common/Icon';
 import { HeaderSavedJobsProps } from './HeaderSavedJobs.types';
@@ -7,23 +7,28 @@ function HeaderSavedJobs({
   buttonUrl,
   gdsApiKey,
   gdsApiUrl,
+  shareIdTokenAcrossSubdomains,
   ariaLabel,
 }: HeaderSavedJobsProps) {
   const [maxCounter, setMaxCounter] = useState<number>(0);
 
-  useEffect(() => {
-    const getAll = async () => {
-      const total = await getSavedJobsCount(gdsApiKey, gdsApiUrl);
+  const getAll = useCallback(
+    async () => {
+      const total = await getSavedJobsCount(gdsApiKey, gdsApiUrl, shareIdTokenAcrossSubdomains);
       if (total) {
         setMaxCounter(total);
       } else {
         setMaxCounter(0);
       }
-    };
+    },
+    [gdsApiKey, gdsApiUrl, shareIdTokenAcrossSubdomains],
+  );
+
+  useEffect(() => {
     getAll();
     window.addEventListener('saved-jobs', getAll);
     return () => window.removeEventListener('saved-jobs', getAll);
-  }, [gdsApiKey, gdsApiUrl]);
+  }, [getAll]);
 
   return (
     <li className="navigation__service-item">

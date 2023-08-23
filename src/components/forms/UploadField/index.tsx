@@ -32,6 +32,7 @@ export type TranslationProps = {
 interface FileFieldProps extends WithFieldProps {
   gdsApiKey: string;
   gdsApiUrl: string;
+  shareIdTokenAcrossSubdomains: boolean;
   // Files are optional - for a field that should not check if there are any preloaded files - we should not set the files prop
   //  But if we want preloading - we should set the files prop with the appropriate user file.
   files?: AlreadyUploadedFile;
@@ -64,6 +65,7 @@ function UploadField({
   translations,
   gdsApiKey,
   gdsApiUrl,
+  shareIdTokenAcrossSubdomains,
   _withoutWrapper,
   setUploadedFilesToState,
   setFieldErrors,
@@ -79,7 +81,7 @@ function UploadField({
   useEffect(() => {
     const getAlreadyUploadedFile = () => {
       if (files && Object.keys(files).length !== 0) {
-        return checkIfUserHasFile(files, gdsApiKey, gdsApiUrl);
+        return checkIfUserHasFile(files, gdsApiKey, gdsApiUrl, shareIdTokenAcrossSubdomains);
       }
 
       return false;
@@ -100,7 +102,7 @@ function UploadField({
       }
     };
     checkForFile();
-  }, [files, gdsApiKey, gdsApiUrl, setIsUploaded]);
+  }, [files, gdsApiKey, gdsApiUrl, setIsUploaded, shareIdTokenAcrossSubdomains]);
 
   let uploadedItems: JSX.Element[] = [];
   const generalErrors: JSX.Element[] = [];
@@ -122,7 +124,7 @@ function UploadField({
       if (!resume?.error && resume?.file) {
         if (!resume?.generalError) setIsFileUploaded(true);
         try {
-          const uploadedFileToken = await uploadTemporaryResume(gdsApiKey, gdsApiUrl, formDataName, resume.file);
+          const uploadedFileToken = await uploadTemporaryResume(gdsApiKey, gdsApiUrl, shareIdTokenAcrossSubdomains, formDataName, resume.file);
           fileToken(uploadedFileToken.token);
 
           if (setUploadedFilesToState) {
@@ -145,7 +147,7 @@ function UploadField({
     }
   };
 
-  // Needed function for uploading the same file to be validated again.
+  // Needed function for uploading the same file to get validated again.
   const onInputClick = (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
     const element = event.target as HTMLInputElement;
     element.value = '';

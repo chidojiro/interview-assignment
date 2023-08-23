@@ -75,7 +75,7 @@ function JobCard(props: JobCardProps) {
             </a>
           </h3>
         </div>
-        {savedJobsEnabled && <SavedJobIcon searchApiKey={savedJobsEnabled.searchApiKey} searchApiUrl={savedJobsEnabled.searchApiUrl} gdsApiKey={savedJobsEnabled.gdsApiKey} gdsApiUrl={savedJobsEnabled.gdsApiUrl} jobPostingWebDetailId={savedJobsEnabled.jobPostingWebDetailId} savedJobId={savedJobsEnabled.savedJobId} ariaLabel={savedJobIconAriaLabel} returnJobPostingDetails={savedJobsEnabled.returnJobPostingDetails} locale={savedJobsEnabled.locale} title={title} />}
+        {savedJobsEnabled && <SavedJobIcon searchApiKey={savedJobsEnabled.searchApiKey} searchApiUrl={savedJobsEnabled.searchApiUrl} gdsApiKey={savedJobsEnabled.gdsApiKey} gdsApiUrl={savedJobsEnabled.gdsApiUrl} shareIdTokenAcrossSubdomains={savedJobsEnabled.shareIdTokenAcrossSubdomains} jobPostingWebDetailId={savedJobsEnabled.jobPostingWebDetailId} savedJobId={savedJobsEnabled.savedJobId} ariaLabel={savedJobIconAriaLabel} returnJobPostingDetails={savedJobsEnabled.returnJobPostingDetails} locale={savedJobsEnabled.locale} title={title} />}
       </div>
       <JobItemMetadata {...props} />
       {/* Safe here. */}

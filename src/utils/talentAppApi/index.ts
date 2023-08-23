@@ -1,5 +1,5 @@
-import axios, { AxiosRequestConfig, AxiosResponse, AxiosRequestHeaders } from 'axios';
-import { getCookie } from 'cookies-next';
+import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
+import getAxiosInstance from '../getAxiosInstance';
 
 export type Data = {
   // Data describes a generic abstract structure of request, which can be anything.
@@ -11,56 +11,26 @@ export type Data = {
  * Wraps around Axios and provides options of app-specific context to requests.
  */
 export class TalentAppApi {
-  axiosInstance = axios.create({});
+  private readonly axiosInstance: AxiosInstance;
 
-  constructor(gdsApiKey: string, gdsApiUrl: string) {
-    this.axiosInstance = axios.create({
-      baseURL: gdsApiUrl,
-      params: {
-        apikey: gdsApiKey,
-      },
-    });
+  constructor(gdsApiKey: string, gdsApiUrl: string, shareIdTokenAcrossSubdomains: boolean) {
+    this.axiosInstance = getAxiosInstance({ apiKey: gdsApiKey, baseUrl: gdsApiUrl }, shareIdTokenAcrossSubdomains);
   }
 
-  authorizationCookieName = 'IdToken';
-
-  isAuthorization = () => getCookie(this.authorizationCookieName);
-
-  defaultHeaders = () => ({
-    'Authorization': `Bearer ${getCookie(this.authorizationCookieName)}`,
-    'Content-Type': 'application/json',
-  });
-
   async post<T = Data, R = AxiosResponse<T>, D = Data>(url: string, data?: D, config?: AxiosRequestConfig<D>): Promise<R> {
-    return this.axiosInstance.post(url, data, TalentAppApi.mergeDefaultHeaders(this.defaultHeaders(), config));
+    return this.axiosInstance.post(url, data, config);
   }
 
   async get<T = Data, R = AxiosResponse<T>, D = Data>(url: string, config?: AxiosRequestConfig<D>): Promise<R> {
-    return this.axiosInstance.get(url, TalentAppApi.mergeDefaultHeaders(this.defaultHeaders(), config));
+    return this.axiosInstance.get(url, config);
   }
 
   async delete<T = Data, R = AxiosResponse<T>, D = Data>(url: string, config?: AxiosRequestConfig<D>): Promise<R> {
-    return this.axiosInstance.delete(url, TalentAppApi.mergeDefaultHeaders(this.defaultHeaders(), config));
+    return this.axiosInstance.delete(url, config);
   }
 
   async put<T = Data, R = AxiosResponse<T>, D = Data>(url: string, data?: D, config?: AxiosRequestConfig<D>): Promise<R> {
-    return this.axiosInstance.put(url, data, TalentAppApi.mergeDefaultHeaders(this.defaultHeaders(), config));
-  }
-
-  static mergeDefaultHeaders(headers: AxiosRequestHeaders, config?: AxiosRequestConfig) {
-    let allConfigs;
-    if (config) {
-      allConfigs = config;
-      if (config.headers) {
-        allConfigs.headers = { ...headers, ...config.headers };
-      } else {
-        allConfigs.headers = headers;
-      }
-    } else {
-      allConfigs = { headers };
-    }
-
-    return allConfigs;
+    return this.axiosInstance.put(url, data, config);
   }
 }
 
