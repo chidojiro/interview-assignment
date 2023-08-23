@@ -7,7 +7,6 @@ import Icon from '../../../common/Icon';
 import { postSavedJobs, deleteSavedJobs, handleAnonymousSavedJobs } from '../../../../utils/savedJobs/savedJobsHandler';
 import { SavedJobIconProps } from './SavedJobIcon.types';
 import getUserData from '../../../../utils/getUserData';
-import useAsyncHandler from '../../../../hooks/useAsyncHandler';
 
 function SavedJobIcon({
   size = 'l',
@@ -31,7 +30,7 @@ function SavedJobIcon({
     'icon__toggler--active': savedJobId || iconFilled,
   });
 
-  const onIconClick = useAsyncHandler(async () => {
+  const onIconClick = async () => {
     const { loginStatus } = getUserData();
 
     if (!loginStatus) {
@@ -62,7 +61,7 @@ function SavedJobIcon({
 
       saveJobEvent(title, true);
     }
-  });
+  };
 
   return (
     <button type="button" className={buttonClasses} aria-label={ariaLabel} aria-pressed={savedJobId ? 'true' : 'false'} id={`fav-${savedJobId}`} onClick={onIconClick}>

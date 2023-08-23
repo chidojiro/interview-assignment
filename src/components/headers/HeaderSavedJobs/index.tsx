@@ -2,7 +2,6 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { getSavedJobsCount } from '../../../utils/savedJobs/savedJobsHandler';
 import Icon from '../../common/Icon';
 import { HeaderSavedJobsProps } from './HeaderSavedJobs.types';
-import useAsyncHandler from '../../../hooks/useAsyncHandler';
 
 function HeaderSavedJobs({
   buttonUrl,
@@ -13,18 +12,16 @@ function HeaderSavedJobs({
 }: HeaderSavedJobsProps) {
   const [maxCounter, setMaxCounter] = useState<number>(0);
 
-  // useCallback doesn't recognize non-inline function dependencies
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const getAll = useCallback(
-    useAsyncHandler(async () => {
+    async () => {
       const total = await getSavedJobsCount(gdsApiKey, gdsApiUrl, shareIdTokenAcrossSubdomains);
       if (total) {
         setMaxCounter(total);
       } else {
         setMaxCounter(0);
       }
-    }),
-    [gdsApiKey, gdsApiUrl],
+    },
+    [gdsApiKey, gdsApiUrl, shareIdTokenAcrossSubdomains],
   );
 
   useEffect(() => {
