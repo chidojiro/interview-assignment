@@ -70,6 +70,7 @@ declare global {
           addEventListener: (event: string, handler: (e: { target: { value: string } }) => void) => void;
           removeEventListener: (event: string, handler: (e: { target: { value: string } }) => void) => void;
         };
+        multiSelectSubmitButton: () => void;
       };
     };
   }

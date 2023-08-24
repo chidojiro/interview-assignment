@@ -177,10 +177,10 @@ function Chat({
                 {selectedOptionsText}
               </div>
               <div className="buttons-group">
-                <button type="button" className="button button--s mr-xxs" data-rs-chat-tags-deselect-button="" aria-hidden="true" onClick={clearMultiSelect}>
+                <button type="button" className="button button--s mr-xxs" data-rs-chat-tags-deselect-button="" aria-hidden="true" onClick={clearMultiSelect} disabled={replyLoading}>
                   {deselectButtonText}
                 </button>
-                <button type="button" className="button button--s button--filled" data-rs-chat-tags-submit-button="" aria-hidden="true" onClick={handleSubmitMultiSelect}>
+                <button type="button" className="button button--s button--filled" data-rs-chat-tags-submit-button="" aria-hidden="true" onClick={handleSubmitMultiSelect} disabled={replyLoading}>
                   {submitButtonText}
                 </button>
               </div>

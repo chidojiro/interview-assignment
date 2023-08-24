@@ -59,7 +59,7 @@ function useHandleChatReplies(
   }, [initialMultiselectData, setConversationFinished, setReplies, showTextBubble]);
 
   const handleSubmitMultiSelect = () => {
-    if (!handleMultiSelectSubmit) return;
+    if (!handleMultiSelectSubmit || replyLoading) return;
     setReplyLoading(true);
     handleMultiSelectSubmit(multiSelectData.current, selectedItems.current).then((response) => {
       multiSelectResponse.current = response;
