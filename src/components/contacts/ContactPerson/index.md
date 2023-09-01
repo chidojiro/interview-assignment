@@ -8,7 +8,7 @@
     jobTitle: 'Software Engineer',
     emailAddress: 'john.doe@example.com',
     phoneNumber: '+123456789',
-    photo: 'avatar.jpg',
+    photo: '/img/wade-ortega.jpeg',
     regionCode: 'US',
     useLowerCase: true,
     overrides: {

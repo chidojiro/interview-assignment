@@ -37,5 +37,14 @@ const replies = [
   },
 ];
 
-  <Chat settings={settings} replies={replies} />
+const conversation = {
+  replies,
+  setChatReplies: () => { return undefined },
+  replyLoading: true,
+  setReplyLoading: () => { return undefined },
+  conversationData: { responseId: '', conversationId: '' },
+  setConversationData: () => { return undefined },
+};
+
+  <Chat settings={settings} conversation={conversation} />
   ```

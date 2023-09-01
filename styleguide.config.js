@@ -13,6 +13,7 @@ config.module.rules.push({
 
 module.exports = {
   title: 'Shared Components Library',
+  assetsDir: path.join(__dirname, 'src/assets/'),
   moduleAliases: {
     '@ffw/randstad-shared-components': path.resolve(__dirname, 'src/index.ts'),
   },
@@ -29,7 +30,6 @@ module.exports = {
 
   styleguideComponents: {
     StyleGuideRenderer: path.join(__dirname, 'src/docs-lib/StyleGuideRenderer'),
-    ReactExample: path.join(__dirname, 'src/docs-lib/ReactExample'),
     TableRenderer: path.join(__dirname, 'src/docs-lib/TableRenderer'),
   },
 
@@ -40,7 +40,7 @@ module.exports = {
       links: [
         {
           rel: 'stylesheet',
-          href: 'src/assets/css/orbit-randstad.css',
+          href: 'css/orbit-randstad.css',
         },
       ],
     },

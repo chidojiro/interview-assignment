@@ -1,13 +1,12 @@
-import React, { useEffect } from "react";
-import Original from "react-styleguidist/lib/client/rsg-components/StyleGuide/StyleGuideRenderer";
-import load from "./init";
+import React from 'react';
+import Original from 'react-styleguidist/lib/client/rsg-components/StyleGuide/StyleGuideRenderer';
 
-export const StyleGuideRenderer = (props: any) => {
-  useEffect(load, []);
-
+export function StyleGuideRenderer(props: any) {
   return (
     <>
       <style
+        // Disabled this rule here, add parser in future.
+        // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{
           __html: `
         .rsg--sidebar-4 {
@@ -75,6 +74,6 @@ export const StyleGuideRenderer = (props: any) => {
       <Original {...props} />
     </>
   );
-};
+}
 
 export default StyleGuideRenderer;

@@ -58,7 +58,7 @@ function Chat({
     replyComponents, clearMultiSelect, handleSubmitMultiSelect,
   } = useHandleChatReplies(replies, setReplies, replyLoading, setReplyLoading, conversationFinished, setConversationFinished, quickSuggestHandler, handleMultiSelectSubmit);
 
-  const imgPath = !process.env.NEXT_PUBLIC_RESOURCE_PREFIX ? '/src/assets/img/randstad-wings.jpg' : `${process.env.NEXT_PUBLIC_RESOURCE_PREFIX}/src/assets/img/randstad-wings.jpg`;
+  const imgPath = !process.env.NEXT_PUBLIC_RESOURCE_PREFIX ? '/img/randstad-wings.jpg' : `${process.env.NEXT_PUBLIC_RESOURCE_PREFIX}/src/assets/img/randstad-wings.jpg`;
 
   const handleTextSubmit = () => {
     if (!handleSendButton) return;
