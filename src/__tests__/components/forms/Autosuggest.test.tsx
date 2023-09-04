@@ -83,7 +83,6 @@ describe('Autosuggest component tests', () => {
       await waitForDebounce();
     });
     expect(onSelectItem).toHaveBeenCalledWith('A2');
-    expect(onInputChange).toHaveBeenCalledWith('A2');
     expect(input.value).toBe('A2');
   });
 

@@ -1,4 +1,4 @@
-import { renderHook, act } from '@testing-library/react-hooks';
+import { renderHook, act } from '@testing-library/react';
 import useDebounce from '../../hooks/useDebounce';
 
 jest.useFakeTimers(); // Mock the timers to control time-based behavior

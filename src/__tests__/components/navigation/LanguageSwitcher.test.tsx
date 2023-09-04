@@ -1,14 +1,12 @@
 import React from 'react';
-import { fireEvent, render, act, waitFor } from '@testing-library/react';
+import {
+  fireEvent,
+  render,
+  act,
+  waitFor,
+} from '@testing-library/react';
 import LanguageSwitcher from '../../../components/navigation/LanguageSwitcher';
 import { CustomWindow } from '../../../utils/gtm/types';
-
-import Mock = jest.Mock;
-
-// Autosuggest field prevents user fast typing with a debounce technology.
-const waitForDebounce = (timeout = 155) => new Promise((resolve) => {
-  setTimeout(resolve, timeout);
-});
 
 describe('LanguageSwitcher component tests', () => {
   beforeEach(() => {
@@ -21,8 +19,12 @@ describe('LanguageSwitcher component tests', () => {
   });
 
   const items = [
-    { language: 'en', isActive: true, url: '/en', filters: { query: 'test'} },
-    { language: 'fr', isActive: false, url: '/fr', filters: {} },
+    {
+      language: 'en', isActive: true, url: '/en', filters: { query: 'test' },
+    },
+    {
+      language: 'fr', isActive: false, url: '/fr', filters: {},
+    },
   ];
 
   const toastSettings = {
@@ -93,15 +95,16 @@ describe('LanguageSwitcher component tests', () => {
 
   it('does dataLayer event works correctly', async () => {
     const { container } = render(<LanguageSwitcher items={items} useToast toastSettings={toastSettings} />);
-    
+
     const buttonSwitch = container.querySelector('.language-link');
     expect(buttonSwitch).toBeInTheDocument();
 
     await act(async () => {
       fireEvent.click(buttonSwitch as HTMLButtonElement);
     });
-    
+
     await act(async () => {
+      jest.useFakeTimers();
       jest.advanceTimersByTime(2000);
     });
 
@@ -112,7 +115,12 @@ describe('LanguageSwitcher component tests', () => {
     await act(async () => {
       fireEvent.click(button as HTMLButtonElement);
     });
-    
-    await waitFor(() => expect((window as unknown as CustomWindow).dataLayer).toEqual([{ event_params: null }, { event: 'interaction', event_params: { event_name: 'language_switch', current_language: 'en', switched_language: 'fr', filters_active: 'true' } }]))
+
+    await waitFor(() => expect((window as unknown as CustomWindow).dataLayer).toEqual([{ event_params: null }, {
+      event: 'interaction',
+      event_params: {
+        event_name: 'language_switch', current_language: 'en', switched_language: 'fr', filters_active: 'true',
+      },
+    }]));
   });
 });

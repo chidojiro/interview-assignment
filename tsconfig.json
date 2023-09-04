@@ -9,7 +9,8 @@
     "strict": true,
     "sourceMap": true,
     "target": "esnext",
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "types": ["node", "jest"],
   },
   "exclude": ["node_modules", "build"],
   "parserOptions": {
