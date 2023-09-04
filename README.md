@@ -98,10 +98,11 @@ export default WithLib(["untouched"])(UI(Sortbar)());
 
 1.  Run  **yarn docs:dev**  inside the main folder of the repository to see the Styleguide and demo of all components that have .md files and are described.
 2. Files without .md file won't be shown in the Styleguide (**skipComponentsWithoutExample**: true)
+3. Run **yarn docs:build** and after the build open the index.html file to see a production demo of the library.
 
 ## Build orbit-randstad css
 
-Go to `/src/assets` folder and run `gulp build` inside it.
+Go to main folder of the library and run `yarn build-css` inside it.
 ## Contributors
 
 Please check the guide for [contributors](https://gitlab.workingpropeople.com/randstad-bluex/git-df-prd-bluex-lib-react-components/-/blob/dev/CONTRIBUTORS.md):

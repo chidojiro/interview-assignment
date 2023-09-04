@@ -2,8 +2,8 @@
 import { Autosuggest } from "@ffw/randstad-shared-components";
 
 <Autosuggest
-  name="text-2"
-  id="text-2"
+  name="text-1"
+  id="text-1"
   required
   placeholder="select your city ..."
   label="city"
@@ -64,8 +64,8 @@ import { Autosuggest } from "@ffw/randstad-shared-components";
 "",
   (
     <Autosuggest
-      name="text-2"
-      id="text-2"
+      name="text-3"
+      id="text-3"
       required
       placeholder="select your city ..."
       label="city"
@@ -105,8 +105,8 @@ import { Autosuggest } from "@ffw/randstad-shared-components";
 "",
   (
     <Autosuggest
-      name="text-2"
-      id="text-2"
+      name="text-4"
+      id="text-4"
       required
       placeholder="select your city ..."
       label="city"
@@ -132,8 +132,8 @@ import { Autosuggest } from "@ffw/randstad-shared-components";
 
 <Autosuggest
   customInput
-  name="text-2"
-  id="text-2"
+  name="text-5"
+  id="text-5"
   required
   placeholder="select your city ..."
   label="city"
@@ -164,8 +164,8 @@ import { Autosuggest } from "@ffw/randstad-shared-components";
   customInput
   customInputLabel="My custom input:"
   customInputIcon="search"
-  name="text-3"
-  id="text-3"
+  name="text-6"
+  id="text-6"
   required
   placeholder="select your city ..."
   label="city"

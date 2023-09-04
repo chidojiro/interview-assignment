@@ -1,5 +1,4 @@
-import { renderHook } from '@testing-library/react-hooks';
-import { render, waitFor } from '@testing-library/react';
+import { render, waitFor, renderHook } from '@testing-library/react';
 import useHandleChatReplies from '../../hooks/chat/useHandleChatReplies';
 import { ConversationReply } from '../../utils';
 
@@ -13,18 +12,16 @@ describe('useHandleChatReplies', () => {
   const handleMultiSelectSubmit = jest.fn();
 
   const handleRender = (replies: Array<ConversationReply>) => {
-    const { result } = renderHook(() =>
-      useHandleChatReplies(
-        replies,
-        setReplies,
-        replyLoading,
-        setReplyLoading,
-        conversationFinished,
-        setConversationFinished,
-        handleQuickSuggest,
-        handleMultiSelectSubmit,
-      ),
-    );
+    const { result } = renderHook(() => useHandleChatReplies(
+      replies,
+      setReplies,
+      replyLoading,
+      setReplyLoading,
+      conversationFinished,
+      setConversationFinished,
+      handleQuickSuggest,
+      handleMultiSelectSubmit,
+    ));
 
     waitFor(() => {
       expect(result.current).toBeDefined();

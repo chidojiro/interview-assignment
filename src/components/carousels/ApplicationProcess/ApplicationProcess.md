@@ -8,7 +8,7 @@ import { ApplicationProcess, ApplicationProcessCard } from "@ffw/randstad-shared
   <ApplicationProcessCard
     cardTitle={'Test Card 1'}
     cardDescription={'Test Card 1 Description'}
-    cardImage={'testImg'}
+    cardImage="/img/Binoculars_illustration_UseBackgroundBlue_RGB.svg"
     accessibilityItemNumber={'1 of 3'}
     cardColor={'bg-variant-brand-secondary'}
     badgeColor={'bg-variant-brand-tertiary'}
@@ -17,7 +17,7 @@ import { ApplicationProcess, ApplicationProcessCard } from "@ffw/randstad-shared
   <ApplicationProcessCard
     cardTitle={'Test Card 2'}
     cardDescription={'Test Card 2 Description'}
-    cardImage={'testImg'}
+    cardImage="/img/Binoculars_illustration_UseBackgroundBlue_RGB.svg"
     accessibilityItemNumber={'2 of 3'}
     cardColor={'bg-variant-brand-secondary'}
     badgeColor={'bg-variant-brand-tertiary'}
@@ -26,7 +26,7 @@ import { ApplicationProcess, ApplicationProcessCard } from "@ffw/randstad-shared
   <ApplicationProcessCard
     cardTitle={'Test Card 3'}
     cardDescription={'Test Card 3 Description'}
-    cardImage={'testImg'}
+    cardImage="/img/Binoculars_illustration_UseBackgroundBlue_RGB.svg"
     accessibilityItemNumber={'3 of 3'}
     cardColor={'bg-variant-brand-secondary'}
     badgeColor={'bg-variant-brand-tertiary'}

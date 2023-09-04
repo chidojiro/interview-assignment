@@ -5,7 +5,7 @@ import { ChatReplyProps } from './ChatReply';
 function ChatReply({
   type, first = false, logoAltText = 'logo Randstad', children, ...props
 }: ChatReplyProps) {
-  const imgPath = !process.env.NEXT_PUBLIC_RESOURCE_PREFIX ? '/src/assets/img/randstad-wings.jpg' : `${process.env.NEXT_PUBLIC_RESOURCE_PREFIX}/src/assets/img/randstad-wings.jpg`;
+  const imgPath = !process.env.NEXT_PUBLIC_RESOURCE_PREFIX ? '/img/randstad-wings.jpg' : `${process.env.NEXT_PUBLIC_RESOURCE_PREFIX}/src/assets/img/randstad-wings.jpg`;
   return (
     <div
       className={cn('chat-content__wrapper', {
