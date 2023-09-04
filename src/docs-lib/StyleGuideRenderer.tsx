@@ -65,8 +65,12 @@ export function StyleGuideRenderer(props: any) {
           color: red;
           font-size: 20px;
         }
-        .npm__react-simple-code-editor__textarea {
-          line-height: 16.8px !important;
+
+        span.token.tag {
+          align-items: normal;
+          border-radius: 0;
+          display: inline;
+          height: auto;
         }
       `,
         }}
