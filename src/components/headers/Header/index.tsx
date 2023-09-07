@@ -192,10 +192,9 @@ function Header({
                 </div>
               )}
             </div>
-            { !isMyRandstad && subMenu
-              ? (
-                <Submenu items={subMenu} />
-              ) : null}
+            { !isMyRandstad && subMenu && (
+              <Submenu items={subMenu} />
+            )}
             { isMyRandstad && !currentUser.loginStatus ? (
               <Submenu items={subMenu} RouterComponent={RouterComponent} />
             )

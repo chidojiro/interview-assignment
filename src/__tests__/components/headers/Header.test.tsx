@@ -252,8 +252,8 @@ describe('Header', () => {
     });
 
     it('should not be rendered if submenuLinks not provided', () => {
-      const { getByTestId } = renderHeader({ ...defaultProps, ...{ submenuLinks: null } });
-      expect(getByTestId('my-randstad')).toBeNull();
+      const { queryByTestId } = renderHeader({ ...defaultProps, ...{ submenuLinks: null } });
+      expect(queryByTestId('my-randstad')).toBeNull();
     });
 
     it('should display label from translations myRandstadTitle', () => {
