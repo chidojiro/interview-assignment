@@ -42,7 +42,7 @@ export interface HeaderProps {
   brand: HeaderBrands;
   isMyRandstad: boolean;
   routes: Routes;
-  submenuLinks: Routes;
+  submenuLinks: Routes | null;
   localization: LocalizationTypes;
   savedJobsEnabled?: {
     gdsApiKey: string;
