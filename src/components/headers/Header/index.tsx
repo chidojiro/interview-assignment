@@ -74,8 +74,8 @@ function Header({
   const myRandstadLogoutUrl = generateUrl(languagePrefix, locale as string, 'logout', submenuLinks);
   const myRandstadBaseUrl = generateUrl(languagePrefix, locale as string, 'dashboard', submenuLinks);
 
-  const dashboard = findElement(submenuLinks[locale as string], 'id', 'dashboard');
-  const myRandstadLabel = popoverTranslations && popoverTranslations.myRandstadTitle ? popoverTranslations.myRandstadTitle : '';
+  const dashboard = submenuLinks ? findElement(submenuLinks[locale as string], 'id', 'dashboard') : null;
+  const myRandstadLabel = popoverTranslations && popoverTranslations.myRandstadTitle ? popoverTranslations.myRandstadTitle : null;
   const baseUrl = dashboard && dashboard.url ? dashboard.url : '';
 
   // Get (ordered) languages from the s3 file and filter these with routes.
@@ -91,7 +91,7 @@ function Header({
 
   // Display separate second menu for the My Randstad.
   if (isMyRandstad) {
-    subMenuItems = (submenuLinks as Routes)[locale as string].secondary;
+    subMenuItems = submenuLinks && (submenuLinks as Routes)[locale as string].secondary;
   } else {
     // Filter active menu item from the list of the Main menu.
     // Filter method returns a new array with a single element, we need an element data.
@@ -103,15 +103,17 @@ function Header({
   }
 
   // Set as active element whenever url matched route.
-  const subMenu = subMenuItems?.map((item: SubmenuItems) => {
+  // Whenever no sub-menu items are available, set the variable to null,
+  // to prevent empty list rendering in the Submenu component.
+  const subMenu = subMenuItems.length > 0 ? subMenuItems.map((item: SubmenuItems) => {
     if (item.url !== currentUrl) return item;
     return {
       ...item,
       isActive: true,
     };
-  });
+  }) : null;
 
-  let tabBarMenu = (submenuLinks as Routes)[locale as string].main;
+  let tabBarMenu = submenuLinks ? (submenuLinks as Routes)[locale as string].main : [];
   if (currentUser.loginStatus && isMyRandstad) {
     tabBarMenu = tabBarMenu.map((item: Routes) => {
       if (item.url !== currentUrl) return item;
@@ -141,7 +143,7 @@ function Header({
               <Logo homepageUrl={homepageUrl} />
               <MainMenu items={mainMenuItems} />
               <ul className="navigation__service navigation__service--minimal">
-                {savedJobsEnabled ? (
+                {submenuLinks && savedJobsEnabled ? (
                   <HeaderSavedJobs
                     gdsApiKey={savedJobsEnabled.gdsApiKey}
                     gdsApiUrl={savedJobsEnabled.gdsApiUrl}
@@ -150,12 +152,14 @@ function Header({
                     ariaLabel={savedJobsEnabled.ariaLabel}
                   />
                 ) : null}
-                <MyRandstad
-                  label={myRandstadLabel}
-                  show={showMyRandstad}
-                  isAuth={currentUser.loginStatus}
-                  userName={currentUser.currentUser?.personalInfo}
-                />
+                {submenuLinks && (
+                  <MyRandstad
+                    label={myRandstadLabel}
+                    show={showMyRandstad}
+                    isAuth={currentUser.loginStatus}
+                    userName={currentUser.currentUser?.personalInfo}
+                  />
+                )}
                 <li className="navigation__service-item hidden--from-l">
                   <button
                     type="button"
@@ -172,24 +176,25 @@ function Header({
                 <UtilityNavigation items={utilityMenuItems} />
                 <LanguageSwitcher items={languageSwitcherItems || []} extraClasses="l:ml-s" useToast={useToast} toastSettings={toastSettings} />
               </div>
-              <div id="navigationPopup">
-                <LoginPopover
-                  isAuth={currentUser.loginStatus}
-                  links={submenuLinks}
-                  locale={locale}
-                  languagePrefix={languagePrefix}
-                  translations={popoverTranslations}
-                  userName={currentUser.currentUser?.personalInfo}
-                  logoutUrl={myRandstadLogoutUrl}
-                  RouterComponent={RouterComponent}
-                  currentRoute={currentRoute}
-                />
-              </div>
+              { submenuLinks && (
+                <div id="navigationPopup">
+                  <LoginPopover
+                    isAuth={currentUser.loginStatus}
+                    links={submenuLinks}
+                    locale={locale}
+                    languagePrefix={languagePrefix}
+                    translations={popoverTranslations}
+                    userName={currentUser.currentUser?.personalInfo}
+                    logoutUrl={myRandstadLogoutUrl}
+                    RouterComponent={RouterComponent}
+                    currentRoute={currentRoute}
+                  />
+                </div>
+              )}
             </div>
-            { !isMyRandstad
-              ? (
-                <Submenu items={subMenu} />
-              ) : null}
+            { !isMyRandstad && subMenu && (
+              <Submenu items={subMenu} />
+            )}
             { isMyRandstad && !currentUser.loginStatus ? (
               <Submenu items={subMenu} RouterComponent={RouterComponent} />
             )

@@ -21,6 +21,8 @@ const config = {
     '<rootDir>/src/hoc/**',
     '<rootDir>/src/hooks/**',
     '<rootDir>/src/utils/**',
+    '!<rootDir>/src/**/*.types.d.ts',
+    '!<rootDir>/src/**/*.d.ts',
   ],
 };
 

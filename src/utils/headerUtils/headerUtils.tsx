@@ -1,13 +1,12 @@
 import { Menu, MenuItem, Routes } from './headerUtils.types';
 
-export const getCurrentMenuItemUrl = (mainMenuItems: MenuItem[], baseUrl: string, currentUrl: string) =>
-  // Get the menu item url that best matches the current url
-  // (from a two level navigation - without homepage "/" that will always match)
-  mainMenuItems
-    .map((item: Routes) => [item, item.children]).flat(2)
-    .filter((item: Routes) => (baseUrl.startsWith(item.url) || currentUrl.startsWith(item.url))
-      && item.url !== '/')
-    .sort((a: Routes, b: Routes) => b.url.length - a.url.length)[0]?.url || null;
+// Get the menu item url that best matches the current url
+// (from a two level navigation - without homepage "/" that will always match).
+export const getCurrentMenuItemUrl = (mainMenuItems: MenuItem[], baseUrl: string, currentUrl: string) => mainMenuItems
+  .map((item: Routes) => [item, item.children]).flat(2)
+  .filter((item: Routes) => (baseUrl.startsWith(item.url) || currentUrl.startsWith(item.url))
+    && item.url !== '/')
+  .sort((a: Routes, b: Routes) => b.url.length - a.url.length)[0]?.url || null;
 
 export const getMainMenu = (menu: Menu, baseUrl: string, currentUrl: string) => {
   const mainMenu = menu?.main || [];
@@ -21,7 +20,7 @@ export const getMainMenu = (menu: Menu, baseUrl: string, currentUrl: string) => 
       isActive: child.url === currentMenuItemUrl || child.url === currentUrl,
     }));
 
-    const hasChildActive = children.find((child: any) => child.isActive)?.isActive || false;
+    const hasChildActive = children.find((child: MenuItem & { isActive: boolean }) => child.isActive)?.isActive || false;
     // Set active trail
     const isActive = menuHasActiveItem ? false : hasChildActive || menuItem.url === currentMenuItemUrl;
 
@@ -40,14 +39,16 @@ export const getMainMenu = (menu: Menu, baseUrl: string, currentUrl: string) => 
 
 export function findElement(menu: Routes, prop: string, value: string): { id: string, url: string, title: string } | null {
   let element = null;
-  Object.keys(menu).find((menuItem) => {
-    Object.keys(menu[menuItem]).find((item) => {
-      if (menu[menuItem][item][prop] == value) {
-        element = menu[menuItem][item];
-      }
+  const menuKeys = Object.keys(menu);
+  if (menu !== null && menuKeys.length !== 0) {
+    menuKeys.forEach((menuItem) => {
+      Object.keys(menu[menuItem]).forEach((item) => {
+        if (menu[menuItem][item][prop] === value) {
+          element = menu[menuItem][item];
+        }
+      });
     });
-  });
-
+  }
   return element;
 }
 
@@ -86,8 +87,8 @@ type Element = {
   url: string;
 };
 
-export function generateUrl(languagePrefix: string, locale: string, elementId: string, submenuLinks: Record<string, Element[]>): string {
-  const element = findElement(submenuLinks[locale], 'id', elementId);
+export function generateUrl(languagePrefix: string, locale: string, elementId: string, submenuLinks: Record<string, Element[]> | null): string {
+  const element = submenuLinks ? findElement(submenuLinks[locale], 'id', elementId) : null;
   const baseUrl = element?.url ?? '';
   return (languagePrefix + baseUrl).replace(/^\/\/?/, '/');
 }
