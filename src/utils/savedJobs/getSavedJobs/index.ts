@@ -7,11 +7,11 @@ import { SavedJobsResponse } from './types';
 
 async function getSavedJobs(
   queryParams: {
+    size: string,
     [key: string]: number | string;
   },
   gdsApiKey: string,
   gdsApiUrl: string,
-  defaultPageSize: string | number,
   shareIdTokenAcrossSubdomains: boolean,
 ): Promise<SavedJobsResponse> {
   const { loginStatus } = getUserData();
@@ -37,10 +37,6 @@ async function getSavedJobs(
     };
   }
   let finalQuery = queryBuilder(queryParams);
-
-  if (!finalQuery.includes('size')) {
-    finalQuery += `&size=${defaultPageSize}`;
-  }
 
   const talentAppApi = new TalentApi(gdsApiKey, gdsApiUrl, shareIdTokenAcrossSubdomains);
 
