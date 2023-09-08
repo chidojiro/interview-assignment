@@ -11,6 +11,7 @@ async function getSavedJobs(
   },
   gdsApiKey: string,
   gdsApiUrl: string,
+  defaultPageSize: string | number,
   shareIdTokenAcrossSubdomains: boolean,
 ): Promise<SavedJobsResponse> {
   const { loginStatus } = getUserData();
@@ -38,7 +39,7 @@ async function getSavedJobs(
   let finalQuery = queryBuilder(queryParams);
 
   if (!finalQuery.includes('size')) {
-    finalQuery += `&size=${process.env.NEXT_PUBLIC_SAVED_JOBS_PAGE_SIZE}`;
+    finalQuery += `&size=${defaultPageSize}`;
   }
 
   const talentAppApi = new TalentApi(gdsApiKey, gdsApiUrl, shareIdTokenAcrossSubdomains);
