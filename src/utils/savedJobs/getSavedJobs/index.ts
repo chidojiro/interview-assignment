@@ -7,6 +7,7 @@ import { SavedJobsResponse } from './types';
 
 async function getSavedJobs(
   queryParams: {
+    size: string,
     [key: string]: number | string;
   },
   gdsApiKey: string,
@@ -36,10 +37,6 @@ async function getSavedJobs(
     };
   }
   let finalQuery = queryBuilder(queryParams);
-
-  if (!finalQuery.includes('size')) {
-    finalQuery += `&size=${process.env.NEXT_PUBLIC_SAVED_JOBS_PAGE_SIZE}`;
-  }
 
   const talentAppApi = new TalentApi(gdsApiKey, gdsApiUrl, shareIdTokenAcrossSubdomains);
 
