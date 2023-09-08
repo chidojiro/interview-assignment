@@ -7,7 +7,7 @@ import { SavedJobsResponse } from './types';
 
 async function getSavedJobs(
   queryParams: {
-    size: string,
+    size: string | number,
     [key: string]: number | string;
   },
   gdsApiKey: string,
