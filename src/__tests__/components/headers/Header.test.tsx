@@ -1,68 +1,21 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { HeaderProps } from 'src/components/headers/Header/Header.types';
-import { LoginPopoverPropTypes } from '../../../components/headers/LoginPopover/LoginPopover.types';
-import { MyRandstadProps } from '../../../components/navigation/MyRandstad/MyRandstad.types';
 import { TabBarProps } from '../../../components/navigation/TabBar/TabBar.types';
-import { LogoProps } from '../../../components/navigation/Logo/Logo.types';
-import { UtilityNavigationProps } from '../../../components/navigation/UtilityNavigation/UtilityNavigation.types';
 import Header from '../../../components/headers/Header';
 import HeaderBrandsEnum from '../../../components/headers/Header/headerBrands.enum';
 import * as utils from '../../../utils';
 
+jest.mock('@ffw/randstad-local-orbit/original/js/components/tab-bar');
+jest.mock('../../../hooks/useOrbitComponent', () => ({
+  __esModule: true,
+  default: jest.fn(() => {
+    const ref = { current: null };
+    return [ref];
+  }),
+}));
+
 const mockGtmScriptInit = jest.spyOn(utils, 'gtmScriptInitializer');
-
-jest.mock(
-  '../../../components/navigation/Logo',
-  () => function Logo({ homepageUrl }: LogoProps) {
-    return (
-      <div data-testid="logo-url">{homepageUrl}</div>
-    );
-  },
-);
-jest.mock(
-  '../../../components/headers/LoginPopover',
-  () => function LoginPopover({ translations }: LoginPopoverPropTypes) {
-    return (
-      <div data-testid="login-popover">
-        <span data-testid="login-popover-title">{ translations?.myRandstadTitle }</span>
-      </div>
-    );
-  },
-);
-
-jest.mock(
-  '../../../components/headers/HeaderSavedJobs',
-  () => jest.fn().mockImplementation(() => <div data-testid="saved-jobs" />),
-);
-
-jest.mock(
-  '../../../components/navigation/MyRandstad',
-  () => function MyRandstad({ label }: MyRandstadProps) {
-    return (
-      <div data-testid="my-randstad">
-        <span data-testid="mrnd-label">{label}</span>
-      </div>
-    );
-  },
-);
-
-jest.mock(
-  '../../../components/navigation/UtilityNavigation',
-  () => function UtilityNavigation({ items }: UtilityNavigationProps) {
-    if (!items || !items.length) {
-      return null;
-    }
-
-    return (
-      <div data-testid="utility-navigation">
-        {items?.map((menuItem) => (
-          <li key={menuItem.title}>{menuItem.title}</li>
-        ))}
-      </div>
-    );
-  },
-);
 
 jest.mock(
   '../../../components/navigation/TabBar',
@@ -82,6 +35,8 @@ jest.mock(
     );
   },
 );
+
+const myRandstad = 'my randstad';
 
 const defaultProps = {
   brand: HeaderBrandsEnum.DarkBlue,
@@ -136,7 +91,7 @@ const defaultProps = {
         },
         {
           id: 'dashboard',
-          title: 'my randstad',
+          title: myRandstad,
           url: '/my-randstad/',
           icon: 'rand_icon',
           children: [],
@@ -144,9 +99,16 @@ const defaultProps = {
       ],
       popup: [
         {
-          id: 'popup',
-          title: 'popup',
-          url: '/popup-url/',
+          id: 'register',
+          title: 'register',
+          url: '/register-url/',
+          children: [],
+        },
+        {
+          id: 'login',
+          title: 'login',
+          url: '/login-url/',
+          children: [],
         },
       ],
       secondary: [
@@ -166,8 +128,8 @@ const defaultProps = {
   popoverTranslations: {
     myRandstadTitle: 'myRandstadTitle',
     greeting: 'greeting',
-    registerText: 'registerText',
-    loginText: 'loginText',
+    registerText: 'register',
+    loginText: 'login',
     logoutText: 'logoutText',
     heading1: 'heading1',
     heading2: 'heading2',
@@ -183,13 +145,13 @@ const renderHeader = (props: HeaderProps) => render(<Header {...props} />);
 describe('Header', () => {
   describe('Logo', () => {
     it('should contain the url without localization', () => {
-      const { getByTestId } = renderHeader(defaultProps);
-      expect(getByTestId('logo-url')).toHaveTextContent('/');
+      const { getByText } = renderHeader(defaultProps);
+      expect(getByText('randstad', { selector: 'title' }).closest('a')).toHaveAttribute('href', '/');
     });
 
     it('should contain the url with localization', () => {
-      const { getByTestId } = renderHeader({ ...defaultProps, ...{ localization: { locales: ['en', 'fr'], locale: 'en', defaultLocale: 'fr' } } });
-      expect(getByTestId('logo-url')).toHaveTextContent('/en/');
+      const { getByText } = renderHeader({ ...defaultProps, ...{ localization: { locales: ['en', 'fr'], locale: 'en', defaultLocale: 'fr' } } });
+      expect(getByText('randstad', { selector: 'title' }).closest('a')).toHaveAttribute('href', '/en/');
     });
   });
 
@@ -206,7 +168,7 @@ describe('Header', () => {
   });
 
   describe('First level menu', () => {
-    test('should render menu item as active', () => {
+    it('should render menu item as active', () => {
       const { getByText } = renderHeader({ ...defaultProps, ...{ currentUrl: '/parent-menu-url/' } });
 
       expect(getByText('main menu item', { selector: '.navigation__menu-item a' }).parentElement).toHaveClass('navigation__menu-item--active');
@@ -232,39 +194,44 @@ describe('Header', () => {
         gdsApiKey: 'gdsApiKey',
         gdsApiUrl: 'gdsApiUrl',
         shareIdTokenAcrossSubdomains: false,
-        ariaLabel: 'ariaLabel',
+        ariaLabel: 'saved-jobs',
       };
 
-      const { getByTestId } = renderHeader({ ...defaultProps, savedJobsEnabled: { ...savedJobs } });
-      expect(getByTestId('saved-jobs')).toBeInTheDocument();
+      const { getByLabelText } = renderHeader({ ...defaultProps, savedJobsEnabled: { ...savedJobs } });
+      expect(getByLabelText('saved-jobs')).toBeInTheDocument();
     });
 
     it('should not be rendered if submenuLinks not provided', () => {
-      const { queryByTestId } = renderHeader({ ...defaultProps, ...{ submenuLinks: null } });
-      expect(queryByTestId('saved-jobs')).toBeNull();
+      const { queryByLabelText } = renderHeader({ ...defaultProps, ...{ submenuLinks: null } });
+      expect(queryByLabelText('saved-jobs')).toBeNull();
     });
   });
 
   describe('My Randstad', () => {
     it('should be rendered for the anonymous users', () => {
-      const { getByTestId } = renderHeader(defaultProps);
-      expect(getByTestId('my-randstad')).toBeInTheDocument();
+      const { getByText } = renderHeader(defaultProps);
+      expect(getByText(myRandstad)).toBeInTheDocument();
     });
 
     it('should not be rendered if submenuLinks not provided', () => {
-      const { queryByTestId } = renderHeader({ ...defaultProps, ...{ submenuLinks: null } });
-      expect(queryByTestId('my-randstad')).toBeNull();
+      const { queryByText } = renderHeader({ ...defaultProps, ...{ submenuLinks: null } });
+      expect(queryByText(myRandstad)).toBeNull();
+    });
+
+    it('should not be a part of mobile menu when subMenu not provided', () => {
+      const { queryByText } = renderHeader({ ...defaultProps, ...{ submenuLinks: null } });
+      expect(queryByText(myRandstad, { selector: 'a' })).toBeNull();
     });
 
     it('should display label from translations myRandstadTitle', () => {
-      const { getByTestId } = renderHeader(defaultProps);
-      expect(getByTestId('mrnd-label')).toHaveTextContent('myRandstadTitle');
+      const { getByText } = renderHeader(defaultProps);
+      expect(getByText('myRandstadTitle', { selector: 'span' })).toBeInTheDocument();
     });
 
-    it('should not display label from translations myRandstadTitle', () => {
+    it('should display default label when myRandstadTitle not provided', () => {
       defaultProps.popoverTranslations.myRandstadTitle = '';
-      const { getByTestId } = renderHeader(defaultProps);
-      expect(getByTestId('mrnd-label')).not.toHaveTextContent('myRandstadTitle');
+      const { getByText } = renderHeader(defaultProps);
+      expect(getByText(myRandstad, { selector: 'span' })).toBeInTheDocument();
     });
 
     it('should render TabBar menu with active element', () => {
