@@ -6,7 +6,6 @@ import Header from '../../../components/headers/Header';
 import HeaderBrandsEnum from '../../../components/headers/Header/headerBrands.enum';
 import * as utils from '../../../utils';
 
-jest.mock('@ffw/randstad-local-orbit/original/js/components/tab-bar');
 jest.mock('../../../hooks/useOrbitComponent', () => ({
   __esModule: true,
   default: jest.fn(() => {
