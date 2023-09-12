@@ -339,8 +339,25 @@ describe('Header', () => {
 
     it('should add GTM script', () => {
       const gtmId = 'GTM-ID';
+      const coreEvent = {};
       renderHeader({ ...defaultProps, ...{ gtmId } });
-      expect(mockGtmScriptInit).toHaveBeenCalledWith(window, document, 'script', 'dataLayer', gtmId);
+      expect(mockGtmScriptInit).toHaveBeenCalledWith(window, document, 'script', 'dataLayer', gtmId, coreEvent);
+    });
+  });
+
+  describe('CoreEvent', () => {
+    it('should add Core event dataLayer', () => {
+      const gtmId = 'GTM-ID';
+      const coreEventId = {
+        user: {
+          account_id: 'test_id'
+        },
+        page: {
+          type: 'test_type'
+        }
+      };
+      renderHeader({ ...defaultProps, ...{ gtmId }, ...{ coreEventId } });
+      expect(mockGtmScriptInit).toHaveBeenCalledWith(window, document, 'script', 'dataLayer', gtmId, coreEventId);
     });
   });
 });
