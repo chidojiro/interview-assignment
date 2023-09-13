@@ -340,7 +340,7 @@ describe('Header', () => {
     it('should add GTM script', () => {
       const gtmId = 'GTM-ID';
       const coreEvent = {};
-      renderHeader({ ...defaultProps, ...{ gtmId } });
+      renderHeader({ ...defaultProps, ...{ gtmId }, ...{coreEvent} });
       expect(mockGtmScriptInit).toHaveBeenCalledWith(window, document, 'script', 'dataLayer', gtmId, coreEvent);
     });
   });
@@ -348,16 +348,17 @@ describe('Header', () => {
   describe('CoreEvent', () => {
     it('should add Core event dataLayer', () => {
       const gtmId = 'GTM-ID';
-      const coreEventId = {
+      const coreEvent = {
         user: {
           account_id: 'test_id'
         },
         page: {
-          type: 'test_type'
+          page_type: 'test_type'
         }
       };
-      renderHeader({ ...defaultProps, ...{ gtmId }, ...{ coreEventId } });
-      expect(mockGtmScriptInit).toHaveBeenCalledWith(window, document, 'script', 'dataLayer', gtmId, coreEventId);
+
+      renderHeader({ ...defaultProps, ...{ gtmId }, ...{ coreEvent } });
+      expect(mockGtmScriptInit).toHaveBeenCalledWith(window, document, 'script', 'dataLayer', gtmId, coreEvent);
     });
   });
 });
