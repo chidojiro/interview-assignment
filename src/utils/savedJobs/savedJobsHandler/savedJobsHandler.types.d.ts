@@ -24,10 +24,12 @@ export type Job = {
         locality: string;
       },
     ];
+    clientDetail: { name: string };
     webDetail: {
       id: string;
     };
     employmentCategories: string[];
+    payRates: {};
   };
 };
 
