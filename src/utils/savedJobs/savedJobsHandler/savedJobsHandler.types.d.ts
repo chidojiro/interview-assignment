@@ -1,3 +1,4 @@
+import type { RXPJobPayRates, RXPJobClient } from "src/utils/searchApi/types";
 export interface SavedJobsResponse {
   totalElements: number;
 }
@@ -24,12 +25,12 @@ export type Job = {
         locality: string;
       },
     ];
-    clientDetail: { name: string };
+    clientDetail: RXPJobClient | null;
     webDetail: {
       id: string;
     };
     employmentCategories: string[];
-    payRates: {};
+    payRates: RXPJobPayRates | null;
   };
 };
 

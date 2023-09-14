@@ -1,6 +1,6 @@
 export type RXPJob = {
-  payRates: RXPJobPayRates;
-  clientDetail: RXPJobClient;
+  payRates: RXPJobPayRates | null;
+  clientDetail: RXPJobClient | null;
   id: string;
   jobTitle: string;
   description: { description: string };
@@ -10,12 +10,12 @@ export type RXPJob = {
 };
 
 export type RXPJobClient = {
-  name: string;
+  name: string | null;
 }
 
 export type RXPJobPayRates = {
   currencyCode: string;
-  currencySymbol: string;
+  currencySymbol?: string;
   salaryMax: number;
   salaryMin: number;
   unit: string;
@@ -32,5 +32,5 @@ export type RXPJobPostingDetail = {
 
 export type RXPJobAddress = {
   locality: string;
-  administrativeArea: string;
+  administrativeArea?: string;
 };
