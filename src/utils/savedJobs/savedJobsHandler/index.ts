@@ -96,10 +96,12 @@ export const transferSavedJobStructure = (job: RXPJob): LocalStorageSavedJob => 
       jobDescription: job.description.description,
       jobTitle: job.jobTitle,
       workLocationAddresses: [job.workLocationAddress],
+      clientDetail: job.clientDetail,
       webDetail: {
         id: job.id,
       },
       employmentCategories: [job.jobInformation.jobType],
+      payRates: job.payRates,
     },
   },
   createdDate: job.postingDetail.postingTime,
@@ -169,4 +171,6 @@ const handleAnonymousSavedJobs = async (searchApiUrl: string, searchApiKey: stri
   return true;
 };
 
-export { getSavedJobsCount, postSavedJobs, deleteSavedJobs, handleAnonymousSavedJobs };
+export {
+  getSavedJobsCount, postSavedJobs, deleteSavedJobs, handleAnonymousSavedJobs,
+};

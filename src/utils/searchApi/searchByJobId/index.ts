@@ -9,7 +9,16 @@ async function searchByJobId(url: string, apiKey: string, jobId: string, locale:
     query: `
         query ($id: ID! $language: LanguageCode!) {
             getJob(id: $id language: $language) {
-                workLocationAddress {locality}
+                workLocationAddress {locality administrativeArea}
+                clientDetail { name }
+                payRates {
+                  salaryMin
+                  salaryMax
+                  currencyCode
+                  currencySymbol
+                  unit
+                  unitDisplay
+                },
                 jobTitle,
                 id,
                 description { description } ,
