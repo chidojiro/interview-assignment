@@ -6,14 +6,6 @@ import Header from '../../../components/headers/Header';
 import HeaderBrandsEnum from '../../../components/headers/Header/headerBrands.enum';
 import * as utils from '../../../utils';
 
-jest.mock('../../../hooks/useOrbitComponent', () => ({
-  __esModule: true,
-  default: jest.fn(() => {
-    const ref = { current: null };
-    return [ref];
-  }),
-}));
-
 const mockGtmScriptInit = jest.spyOn(utils, 'gtmScriptInitializer');
 
 jest.mock(

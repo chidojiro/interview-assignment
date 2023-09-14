@@ -133,7 +133,7 @@ function Header({
     utilityMenuItems = menuLinks.utility;
   }
 
-  const baseUrl = dashboard?.url ? dashboard?.url : '';
+  const baseUrl = dashboard?.url ?? '';
 
   const mainMenuItems = getMainMenu(menuLinks, baseUrl, currentUrl as string);
 
