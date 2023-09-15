@@ -5,6 +5,7 @@ import { PersistData } from '../../../utils/getUserData/types';
 import { SubmenuItems } from '../../navigation/Submenu/Submenu.types';
 import { BgColor } from '../../../utils/getBackground/getBackground.types';
 import { Items } from '../../navigation/navigation.types';
+import { MenuItems } from '../../navigation/UtilityNavigation/UtilityNavigation.types';
 import Logo from '../../navigation/Logo';
 import MainMenu from '../../navigation/MainMenu';
 import UtilityNavigation from '../../navigation/UtilityNavigation';
@@ -27,7 +28,7 @@ import { gtmScriptInitializer } from '../../../utils';
 
 function Header({
   brand,
-  isMyRandstad = false,
+  isMyRandstad,
   submenuLinks,
   savedJobsEnabled,
   routes,
@@ -64,34 +65,87 @@ function Header({
     }
   }, [gtmId]);
 
+  /**
+   * Return an isActive prop to the menu item whenever current URL are equal.
+   *
+   * @param {SubmenuItems | Routes} item
+   *  Menu item.
+   *
+   * @return {Object}
+   *  Menu item, or menu item with isActive prop.
+   *
+   */
+  const getActiveMenuItem = (item: SubmenuItems | Routes) => {
+    if (item.url !== currentUrl) return item;
+    return {
+      ...item,
+      isActive: true,
+    };
+  };
+
   const { locale, defaultLocale } = localization;
   const headerClass = getHeaderClass(brand);
 
-  const homepageUrl = locale === defaultLocale ? '/' : `/${locale}/`;
-  const languagePrefix = locale === defaultLocale ? '' : `/${locale}`;
+  let homepageUrl = `/${locale}/`;
+  let languagePrefix = `/${locale}`;
+  let subMenu = null;
+  let subMenuItems = [];
+  let tabBarMenu = [];
+  let utilityMenuItems: MenuItems[] = [];
+  let dashboard = null;
+  let myRandstadLabel = null;
 
-  const savedJobsUrl = generateUrl(languagePrefix, locale as string, 'saved-jobs', submenuLinks);
-  const myRandstadLogoutUrl = generateUrl(languagePrefix, locale as string, 'logout', submenuLinks);
-  const myRandstadBaseUrl = generateUrl(languagePrefix, locale as string, 'dashboard', submenuLinks);
+  let savedJobsUrl = '';
+  let myRandstadLogoutUrl = '';
+  let myRandstadBaseUrl = '';
 
-  const dashboard = submenuLinks ? findElement(submenuLinks[locale as string], 'id', 'dashboard') : null;
-  const myRandstadLabel = popoverTranslations && popoverTranslations.myRandstadTitle ? popoverTranslations.myRandstadTitle : null;
-  const baseUrl = dashboard && dashboard.url ? dashboard.url : '';
+  let menuLinks: Menu = {};
+
+  if (locale === defaultLocale) {
+    homepageUrl = '/';
+    languagePrefix = '';
+  }
+
+  // Update My Randstad and Saved Jobs components with data from the submenuLinks
+  if (submenuLinks) {
+    dashboard = findElement(submenuLinks[locale as string], 'id', 'dashboard');
+    // Get tabBar menu the submenuLinks main.menu
+    tabBarMenu = (submenuLinks as Routes)[locale as string].main;
+
+    // Generate proper URLs.
+    savedJobsUrl = generateUrl(languagePrefix, locale as string, 'saved-jobs', submenuLinks);
+    myRandstadLogoutUrl = generateUrl(languagePrefix, locale as string, 'logout', submenuLinks);
+    myRandstadBaseUrl = generateUrl(languagePrefix, locale as string, 'dashboard', submenuLinks);
+  }
+
+  // Use translation for the 'my randstad' button title, if available.
+  if (popoverTranslations?.myRandstadTitle) {
+    myRandstadLabel = popoverTranslations.myRandstadTitle;
+  }
 
   // Get (ordered) languages from the s3 file and filter these with routes.
-  let menuLinks: Menu = {};
-  if (routes && (routes as Routes)[locale as string]) {
+  if ((routes as Routes)?.[locale as string]) {
     menuLinks = (routes as Routes)[locale as string];
   }
-  const mainMenuItems = getMainMenu(menuLinks, baseUrl, currentUrl as string);
-  const utilityMenuItems = menuLinks && menuLinks?.utility ? menuLinks.utility : [];
-  const showMyRandstad = true;
 
-  let subMenuItems = [];
+  // Set utility menu from the menuLinks if available.
+  if (menuLinks && menuLinks?.utility) {
+    utilityMenuItems = menuLinks.utility;
+  }
+
+  const baseUrl = dashboard?.url ?? '';
+
+  const mainMenuItems = getMainMenu(menuLinks, baseUrl, currentUrl as string);
+
+  // Do not display MyRandstad in the mobile navigation without submenuLinks.
+  const showMyRandstad = !!submenuLinks;
 
   // Display separate second menu for the My Randstad.
   if (isMyRandstad) {
-    subMenuItems = submenuLinks && (submenuLinks as Routes)[locale as string].secondary;
+    subMenuItems = (submenuLinks as Routes)?.[locale as string].secondary;
+    if (currentUser.loginStatus) {
+      tabBarMenu = tabBarMenu.map(getActiveMenuItem);
+    }
   } else {
     // Filter active menu item from the list of the Main menu.
     // Filter method returns a new array with a single element, we need an element data.
@@ -102,26 +156,11 @@ function Header({
     }
   }
 
-  // Set as active element whenever url matched route.
+  // Set as an active element whenever the subMenu item URL is equal to the page route.
   // Whenever no sub-menu items are available, set the variable to null,
   // to prevent empty list rendering in the Submenu component.
-  const subMenu = subMenuItems.length > 0 ? subMenuItems.map((item: SubmenuItems) => {
-    if (item.url !== currentUrl) return item;
-    return {
-      ...item,
-      isActive: true,
-    };
-  }) : null;
-
-  let tabBarMenu = submenuLinks ? (submenuLinks as Routes)[locale as string].main : [];
-  if (currentUser.loginStatus && isMyRandstad) {
-    tabBarMenu = tabBarMenu.map((item: Routes) => {
-      if (item.url !== currentUrl) return item;
-      return {
-        ...item,
-        isActive: true,
-      };
-    });
+  if (subMenuItems.length > 0) {
+    subMenu = subMenuItems.map(getActiveMenuItem);
   }
 
   return (
@@ -143,7 +182,7 @@ function Header({
               <Logo homepageUrl={homepageUrl} />
               <MainMenu items={mainMenuItems} />
               <ul className="navigation__service navigation__service--minimal">
-                {submenuLinks && savedJobsEnabled ? (
+                {submenuLinks && savedJobsEnabled && (
                   <HeaderSavedJobs
                     gdsApiKey={savedJobsEnabled.gdsApiKey}
                     gdsApiUrl={savedJobsEnabled.gdsApiUrl}
@@ -151,7 +190,7 @@ function Header({
                     buttonUrl={savedJobsUrl}
                     ariaLabel={savedJobsEnabled.ariaLabel}
                   />
-                ) : null}
+                )}
                 {submenuLinks && (
                   <MyRandstad
                     label={myRandstadLabel}
@@ -195,13 +234,12 @@ function Header({
             { !isMyRandstad && subMenu && (
               <Submenu items={subMenu} />
             )}
-            { isMyRandstad && !currentUser.loginStatus ? (
+            { isMyRandstad && !currentUser.loginStatus && (
               <Submenu items={subMenu} RouterComponent={RouterComponent} />
-            )
-              : null}
+            )}
           </div>
           {breadcrumbs?.breadcrumbsItems && breadcrumbs?.breadcrumbsMobileItem
-            ? (
+            && (
               <div className="navigation__bottom pb-none">
                 <Breadcrumbs
                   bgColor={brand as BgColor['bgColor']}
@@ -209,7 +247,7 @@ function Header({
                   mobileItem={breadcrumbs.breadcrumbsMobileItem}
                 />
               </div>
-            ) : null }
+            )}
         </nav>
         <NavigationModal>
           <nav className="navigation-accordion">
@@ -225,13 +263,13 @@ function Header({
           </nav>
         </NavigationModal>
       </header>
-      { isMyRandstad && currentUser.loginStatus ? (
+      { isMyRandstad && currentUser.loginStatus && (
         <div className="block bg-greyscale--grey-10 my-environment__sub-menu">
           <div className="wrapper">
             <TabBar items={tabBarMenu} currentUrl={currentUrl} RouterComponent={RouterComponent} />
           </div>
         </div>
-      ) : null}
+      )}
     </>
   );
 }

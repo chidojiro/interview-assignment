@@ -3,7 +3,7 @@ interface MenuItemsBase {
   url: string;
 }
 
-interface MenuItems extends MenuItemsBase {
+export interface MenuItems extends MenuItemsBase {
   children: MenuItemsBase[];
 }
 
