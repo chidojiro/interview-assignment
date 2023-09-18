@@ -27,7 +27,7 @@ describe('prepareContinueRequest', () => {
     const response = prepareContinueRequest(data, ContinueRequestType.QUICK_SUGGEST);
     expect(getCookie).toHaveBeenCalled();
     expect(response.data).toEqual('testPayload');
-    expect(response.reply_text).toEqual('');
+    expect(response.reply_text).toEqual('test');
     expect(response.idToken).toEqual('test');
     expect(response.request_type).toEqual(ContinueRequestType.QUICK_SUGGEST);
   });
