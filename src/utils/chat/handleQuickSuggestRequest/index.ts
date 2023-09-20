@@ -1,8 +1,16 @@
-import type { ConversationMultiSelect, ConversationQuickSuggest } from '../types';
+import type { ConversationMultiSelect, ConversationMultiSelectItem, ConversationQuickSuggest } from '../types';
 
 const handleQuickSuggestRequest = (data: unknown): { dataRequest: string | undefined; textRequest: string } => {
   let dataRequest;
   let textRequest = '';
+
+  /**
+   * If we have text param in the data, then this means that is of type ConversationMultiSelectItem, which means that
+   * we need to make the textRequest equal to it.
+   */
+  if (data && (data as ConversationMultiSelectItem).text) {
+    textRequest = (data as ConversationMultiSelectItem).text;
+  }
 
   /**
    * If we have param in the data, then this means that is of type ConversationMultiSelect, which means that
