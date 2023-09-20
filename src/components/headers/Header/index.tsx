@@ -42,6 +42,7 @@ function Header({
   useToast = false,
   toastSettings,
   gtmId,
+  coreEvent = {},
 }: HeaderProps) {
   // TO DO: currentUser.loginState state needed because tabBar needs an active link on logout
   const [currentUser, setCurrentUser] = useState({} as PersistData);
@@ -61,9 +62,9 @@ function Header({
 
   useEffect(() => {
     if (gtmId) {
-      gtmScriptInitializer(window, document, 'script', 'dataLayer', gtmId);
+      gtmScriptInitializer(window, document, 'script', 'dataLayer', gtmId, coreEvent);
     }
-  }, [gtmId]);
+  }, [gtmId, coreEvent]);
 
   /**
    * Return an isActive prop to the menu item whenever current URL are equal.

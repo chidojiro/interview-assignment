@@ -64,6 +64,7 @@ export interface HeaderProps {
     buttonCloseText: Record<string, string>;
   };
   gtmId?: string;
+  coreEvent?: object
 }
 
 type Menu = {

@@ -15,7 +15,7 @@ const scriptExists = (url: string) => {
   return false;
 };
 
-export const gtmScriptInitializer = (w: Window, d: Document, s: string, l: string, i: string) => {
+export const gtmScriptInitializer = (w: Window, d: Document, s: string, l: string, i: string, coreEvent: object) => {
   if (!(w as unknown as CustomWindow).dataLayer) {
     (window as unknown as CustomWindow).dataLayer = [];
   }
@@ -23,6 +23,11 @@ export const gtmScriptInitializer = (w: Window, d: Document, s: string, l: strin
   // eslint-disable-next-line eqeqeq
   const dl = l != 'dataLayer' ? `&l=${l}` : '';
   const scr = `https://www.googletagmanager.com/gtm.js?id=${i}${dl}`;
+
+  // This core event should be placed always on top above the gtm
+  if (Object.keys(coreEvent).length > 0) {
+    (w as unknown as CustomWindow).dataLayer.unshift(coreEvent);
+  }
 
   /* To avoid a lot of installations of Google Tag Manager detected warning */
   if (!scriptExists(scr)) {

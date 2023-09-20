@@ -297,8 +297,24 @@ describe('Header', () => {
 
     it('should add GTM script', () => {
       const gtmId = 'GTM-ID';
-      renderHeader({ ...defaultProps, ...{ gtmId } });
-      expect(mockGtmScriptInit).toHaveBeenCalledWith(window, document, 'script', 'dataLayer', gtmId);
+      const coreEvent = {};
+      renderHeader({ ...defaultProps, ...{ gtmId }, ...{ coreEvent } });
+      expect(mockGtmScriptInit).toHaveBeenCalledWith(window, document, 'script', 'dataLayer', gtmId, coreEvent);
+    });
+
+    it('should add Core event dataLayer', () => {
+      const gtmId = 'GTM-ID';
+      const coreEvent = {
+        user: {
+          account_id: 'test_id',
+        },
+        page: {
+          page_type: 'test_type',
+        },
+      };
+
+      renderHeader({ ...defaultProps, ...{ gtmId }, ...{ coreEvent } });
+      expect(mockGtmScriptInit).toHaveBeenCalledWith(window, document, 'script', 'dataLayer', gtmId, coreEvent);
     });
   });
 });
