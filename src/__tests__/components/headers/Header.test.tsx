@@ -301,9 +301,7 @@ describe('Header', () => {
       renderHeader({ ...defaultProps, ...{ gtmId }, ...{ coreEvent } });
       expect(mockGtmScriptInit).toHaveBeenCalledWith(window, document, 'script', 'dataLayer', gtmId, coreEvent);
     });
-  });
 
-  describe('CoreEvent', () => {
     it('should add Core event dataLayer', () => {
       const gtmId = 'GTM-ID';
       const coreEvent = {
