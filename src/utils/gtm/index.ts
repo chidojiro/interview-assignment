@@ -25,7 +25,7 @@ export const gtmScriptInitializer = (w: Window, d: Document, s: string, l: strin
   const scr = `https://www.googletagmanager.com/gtm.js?id=${i}${dl}`;
 
   // This core event should be placed always on top above the gtm
-  if (Object.keys(coreEvent).length > 0){
+  if (Object.keys(coreEvent).length > 0) {
     (w as unknown as CustomWindow).dataLayer.unshift(coreEvent);
   }
 

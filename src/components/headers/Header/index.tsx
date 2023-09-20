@@ -42,7 +42,7 @@ function Header({
   useToast = false,
   toastSettings,
   gtmId,
-  coreEvent = {}
+  coreEvent = {},
 }: HeaderProps) {
   // TO DO: currentUser.loginState state needed because tabBar needs an active link on logout
   const [currentUser, setCurrentUser] = useState({} as PersistData);
