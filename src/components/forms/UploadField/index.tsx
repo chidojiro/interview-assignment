@@ -176,40 +176,41 @@ function UploadField({
     const size = (file?.file?.size || file?.file?.size === 0) ? file?.file?.size as number : file?.size;
     const successfulUpload = !(Object.hasOwn(file, 'error') && file.error);
     uploadedItems.push(
-      <li
-        className={`closable upload-list__item divider ${successfulUpload ? 'upload-list__item--success' : 'upload-list__item--error'}`}
-        {...{ [`data-rs-file-upload-${index}`]: '' }}
-        key={file.name}
-      >
-        <span className="upload-list__link" data-rs-closable-fadeout="">
-          {file.name}
-        </span>
-        <span className="upload-list__info text--alternative" data-rs-closable-fadeout="">{successfulUpload ? FormatFileSize(size as number, translations.UploadFieldSizes) || 0 : translations.UploadFieldError}</span>
-        {successfulUpload ? <Icon iconType="check" iconClassName="icon upload-list__success" /> : (
-          <span className="tooltip tooltip--icon">
-            {/* This element is interactive. */}
-            {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex */}
-            <div className="tooltip__trigger" tabIndex={0}>
-              <Icon iconType="info" iconClassName="icon" />
-              <span className="tooltip__content ">
-                <span className="tooltip__text">
-                  {Object.hasOwn(file, 'error') && file.error ? file.error : null}
-                </span>
-                <span className="tooltip__pointer" />
-              </span>
-            </div>
-          </span>
-        )}
-        <button
-          className="button--icon-only upload-list__remove"
-          data-rs-closable={`data-rs-file-upload-${index}`}
-          onClick={() => removeFile()}
-          aria-label="Close"
-          type="button"
+      <React.Fragment key={file.name}>
+        <li
+          className={`closable upload-list__item divider ${successfulUpload ? 'upload-list__item--success' : 'upload-list__item--error'}`}
+          {...{ [`data-rs-file-upload-${index}`]: '' }}
         >
-          <Icon iconType="close-16" iconClassName="icon icon--inline icon--s" />
-        </button>
-      </li>,
+          <span className="upload-list__link" data-rs-closable-fadeout="">
+            {file.name}
+          </span>
+          <span className="upload-list__info text--alternative" data-rs-closable-fadeout="">{successfulUpload ? FormatFileSize(size as number, translations.UploadFieldSizes) || 0 : translations.UploadFieldError}</span>
+          {successfulUpload ? <Icon iconType="check" iconClassName="icon upload-list__success" /> : (
+            <span className="tooltip tooltip--icon">
+              {/* This element is interactive. */}
+              {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex */}
+              <div className="tooltip__trigger" tabIndex={0}>
+                <Icon iconType="info" iconClassName="icon" />
+                <span className="tooltip__content ">
+                  <span className="tooltip__text">
+                    {Object.hasOwn(file, 'error') && file.error ? file.error : null}
+                  </span>
+                  <span className="tooltip__pointer" />
+                </span>
+              </div>
+            </span>
+          )}
+          <button
+            className="button--icon-only upload-list__remove"
+            data-rs-closable={`data-rs-file-upload-${index}`}
+            onClick={() => removeFile()}
+            aria-label="Close"
+            type="button"
+          >
+            <Icon iconType="close-16" iconClassName="icon icon--inline icon--s" />
+          </button>
+        </li>
+      </React.Fragment>,
     );
   });
 
