@@ -41,6 +41,9 @@ export default function FooterColumnNav({ columns }: FooterColumnNavProps) {
             <ul className="extensive-link-list">
               {column.children.map((columnItem, itemIndex) => (
                 <li className="extensive-link-list__item divider" key={columnItem.title}>
+                  <span className="extensive-link-list__list-title hidden--until-l">
+                    {columnItem.title}
+                  </span>
                   <div
                     ref={(el) => {
                       if (el) {
@@ -48,11 +51,12 @@ export default function FooterColumnNav({ columns }: FooterColumnNavProps) {
                         columnRefs.current[columnIndex][itemIndex] = el;
                       }
                     }}
-                    className="collapsible__trigger"
+                    className="collapsible__trigger hidden--from-l"
                     data-rs-collapsible=""
                     data-rs-toggable=""
                     role="button"
                     aria-expanded="false"
+                    tabIndex={0}
                   >
                     <span className="extensive-link-list__list-title">
                       {columnItem.title}
