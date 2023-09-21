@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import * as yup from 'yup';
+import cn from 'classnames';
 import FormatFileSize from '../../../utils/formatFileSize';
 import Icon from '../../common/Icon';
 import withField, { WithFieldProps } from '../../../hoc/withField';
@@ -177,9 +178,15 @@ function UploadField({
     const successfulUpload = !(Object.hasOwn(file, 'error') && file.error);
     uploadedItems.push(
       <li
-        className={`closable upload-list__item divider ${successfulUpload ? 'upload-list__item--success' : 'upload-list__item--error'}`}
-        {...{ [`data-rs-file-upload-${index}`]: '' }}
         key={file.name}
+        className={cn(
+          'closable upload-list__item divider',
+          {
+            'upload-list__item--success': successfulUpload,
+            'upload-list__item--error': !successfulUpload,
+          },
+        )}
+        {...{ [`data-rs-file-upload-${index}`]: '' }}
       >
         <span className="upload-list__link" data-rs-closable-fadeout="">
           {file.name}
