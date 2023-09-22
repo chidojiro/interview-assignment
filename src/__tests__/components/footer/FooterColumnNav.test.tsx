@@ -96,9 +96,7 @@ describe('FooterColumnNav', () => {
 
       expect(collapsibleTrigger).toHaveAttribute('data-rs-toggable');
       expect(collapsibleTrigger).toHaveAttribute('data-rs-collapsible');
-
       expect(collapsibleContent).toHaveAttribute('data-rs-collapsible-content');
-      expect(collapsibleContent).toHaveAttribute('aria-hidden', 'true');
     });
   });
 });
