@@ -64,7 +64,7 @@ export default function FooterColumnNav({ columns }: FooterColumnNavProps) {
                         && (<Icon iconClassName="hidden--from-l icon toggle-arrow" iconType="chevron-down" />)}
                     </span>
                   </div>
-                  <div className="collapsible__content" data-rs-collapsible-content="true" aria-hidden="true">
+                  <div className="collapsible__content" data-rs-collapsible-content="true">
                     {columnItem.children && columnItem.children.length > 0 && (
                       <ul>
                         {columnItem.children.map((link) => (
