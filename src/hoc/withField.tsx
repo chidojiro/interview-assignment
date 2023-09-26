@@ -18,6 +18,7 @@ export interface WithFieldProps {
   _formGroupProps?: object;
   onBlur?: (event: React.FocusEvent<HTMLInputElement | HTMLSelectElement>) => void;
   onChange?: (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
+  onKeyDown?: (event: React.onKeyDown<HTMLInputElement | HTMLSelectElement>) => void;
   _withoutWrapper?: boolean;
 }
 
