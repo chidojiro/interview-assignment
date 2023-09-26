@@ -29,7 +29,7 @@ function AccordionItem({
   }, []);
 
   return (
-    <li {...attr} className="link-list__item">
+    <li {...attr} id={id} className="link-list__item">
       <div
         className={`collapsible__trigger ${expanded ? 'icon__toggler--active' : ''}`}
         data-rs-collapsible=""
