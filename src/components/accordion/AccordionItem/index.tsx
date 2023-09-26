@@ -15,6 +15,7 @@ function AccordionItem({
   expanded = false,
   HeadingTag = 'h3',
   ariaLabel = '',
+  id,
   ...attr
 }: AccordionItemInterface) {
   const ref = useRef<HTMLDivElement | null>(null);
