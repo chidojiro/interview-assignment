@@ -26,9 +26,25 @@ build:
     - if: $ENVIRONMENT == null && $CI_PIPELINE_SOURCE != "pipeline" && ($CI_COMMIT_BRANCH == "main" || $CI_COMMIT_TAG)
   script: |
     git remote add codecommit /fake-temp-url || true
-    
-    # Bluex account
+
+    # EU region
     git remote set-url codecommit https://git-codecommit.eu-west-1.amazonaws.com/v1/repos/git-bluex-prd-bx-lib-react-components
+    git push codecommit HEAD:refs/heads/$CI_COMMIT_REF_NAME
+
+    # US region
+    git remote set-url codecommit https://git-codecommit.us-east-1.amazonaws.com/v1/repos/git-bluex-prd-bu-lib-react-components
+    git push codecommit HEAD:refs/heads/$CI_COMMIT_REF_NAME
+
+    # CA region
+    git remote set-url codecommit https://git-codecommit.ca-central-1.amazonaws.com/v1/repos/git-bluex-prd-bc-lib-react-components
+    git push codecommit HEAD:refs/heads/$CI_COMMIT_REF_NAME
+
+    # AP region
+    git remote set-url codecommit https://git-codecommit.ap-southeast-1.amazonaws.com/v1/repos/git-bluex-prd-bs-lib-react-components
+    git push codecommit HEAD:refs/heads/$CI_COMMIT_REF_NAME
+
+    # AP 2 region
+    git remote set-url codecommit https://git-codecommit.ap-southeast-2.amazonaws.com/v1/repos/git-bluex-prd-ba-lib-react-components
     git push codecommit HEAD:refs/heads/$CI_COMMIT_REF_NAME
 
 translations_upload:
@@ -40,15 +56,15 @@ translations_upload:
   rules:
     - if: $ENVIRONMENT && $CI_PIPELINE_SOURCE == "pipeline"
   script: |
-    
+
     # s3-sync is the aws s3 profile used for the dev environments
     AWS_S3_PROFILE="s3-sync"
     ACCOUNT_TYPE="dta";
-    
+
     if [[ $ENVIRONMENT == "test" ]]; then
       ENVIRONMENT="tst";
     fi
-    
+
     if [[ $ENVIRONMENT == "prod" ]]; then
       ENVIRONMENT="prd";
       ACCOUNT_TYPE="prd";
