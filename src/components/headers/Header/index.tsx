@@ -72,7 +72,6 @@ function Header({
         isMyRandstadEnabled,
       );
     }
-    // Todo will we have more then one calls because of object here?
   }, [gtmSettings, isMyRandstadEnabled, localization.locale]);
 
   /**

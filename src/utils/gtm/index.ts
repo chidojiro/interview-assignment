@@ -35,7 +35,7 @@ const getCoreEventObject = (coreEvent: { country: string, type: string, language
   } else {
     userEventObject = { ip_address: '', cms_user_id: '', no_of_applications: '' };
   }
-  console.log(process.env.NEXT_PUBLIC_ENVIRONMENT);
+
   return {
     page: {
       environment: process.env.NEXT_PUBLIC_ENVIRONMENT || '',
