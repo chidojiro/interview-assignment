@@ -21,6 +21,15 @@ const scriptExists = (url: string) => {
 const getCoreEventObject = (coreEvent: { country: string, type: string, language: string }, isLoginEnabled: boolean): CoreDataLayerEventObjectType => {
   const user = getUserData();
   let userEventObject: DataLayerUserObject;
+  let environment = 'dev';
+  if (process.env.NEXT_PUBLIC_ENVIRONMENT) {
+    if (process.env.NEXT_PUBLIC_ENVIRONMENT.startsWith('prd')) {
+      environment = 'prod';
+    } else if (process.env.NEXT_PUBLIC_ENVIRONMENT.startsWith('tst')) {
+      environment = 'QA';
+    }
+  }
+
   if (isLoginEnabled) {
     userEventObject = {
       login_status: user.loginStatus ? 'member' : 'guest',
@@ -38,8 +47,10 @@ const getCoreEventObject = (coreEvent: { country: string, type: string, language
 
   return {
     page: {
-      environment: process.env.NEXT_PUBLIC_ENVIRONMENT || '',
-      ...coreEvent,
+      environment: environment.toUpperCase(),
+      country: coreEvent.country.toUpperCase(),
+      type: coreEvent.type,
+      language: coreEvent.language,
     },
     user: userEventObject,
   };

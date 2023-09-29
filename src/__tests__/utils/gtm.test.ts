@@ -60,13 +60,13 @@ describe('gtm', () => {
     });
 
     it('should include global datalayer object', () => {
-      process.env.NEXT_PUBLIC_ENVIRONMENT = 'DEV|TEST|PPR';
+      process.env.NEXT_PUBLIC_ENVIRONMENT = 'dev2';
       gtmScriptInitializer(windowObject, document, 'script', 'dataLayer', gtmSettings, 'en', true);
       expect(windowObject.dataLayer).toHaveLength(2);
       expect(windowObject.dataLayer?.[0]).toStrictEqual({
         page: {
-          country: 'country',
-          environment: 'DEV|TEST|PPR',
+          country: 'COUNTRY',
+          environment: 'DEV',
           language: 'en',
           type: 'random',
         },
@@ -100,13 +100,13 @@ describe('gtm', () => {
     });
 
     it('should include minified version of user object if my randstad app is disabled', () => {
-      process.env.NEXT_PUBLIC_ENVIRONMENT = 'DEV|TEST|PPR';
+      process.env.NEXT_PUBLIC_ENVIRONMENT = 'dev2';
       gtmScriptInitializer(windowObject, document, 'script', 'dataLayer', gtmSettings, 'en', false);
       expect(windowObject.dataLayer).toHaveLength(2);
       expect(windowObject.dataLayer?.[0]).toStrictEqual({
         page: {
-          country: 'country',
-          environment: 'DEV|TEST|PPR',
+          country: 'COUNTRY',
+          environment: 'DEV',
           language: 'en',
           type: 'random',
         },
@@ -115,6 +115,43 @@ describe('gtm', () => {
           ip_address: '',
           no_of_applications: '',
         },
+      });
+    });
+
+    describe('environment detection', () => {
+      it('should use "dev" environment if global env is not set', () => {
+        getUserDataMock.mockReturnValue({
+          loginStatus: false,
+          savedJobs: {
+            totalElements: 0,
+          },
+        });
+        gtmScriptInitializer(windowObject, document, 'script', 'dataLayer', gtmSettings, 'en', true);
+        expect((windowObject.dataLayer?.[0] as { page: { environment?: string } })?.page?.environment).toBe('DEV');
+      });
+
+      it('should use "QA" environment if global env is set to tst2', () => {
+        process.env.NEXT_PUBLIC_ENVIRONMENT = 'tst2';
+        getUserDataMock.mockReturnValue({
+          loginStatus: false,
+          savedJobs: {
+            totalElements: 0,
+          },
+        });
+        gtmScriptInitializer(windowObject, document, 'script', 'dataLayer', gtmSettings, 'en', true);
+        expect((windowObject.dataLayer?.[0] as { page: { environment?: string } })?.page?.environment).toBe('QA');
+      });
+
+      it('should use "PROD" environment if global env is set to prd2', () => {
+        process.env.NEXT_PUBLIC_ENVIRONMENT = 'prd2';
+        getUserDataMock.mockReturnValue({
+          loginStatus: false,
+          savedJobs: {
+            totalElements: 0,
+          },
+        });
+        gtmScriptInitializer(windowObject, document, 'script', 'dataLayer', gtmSettings, 'en', true);
+        expect((windowObject.dataLayer?.[0] as { page: { environment?: string } })?.page?.environment).toBe('PROD');
       });
     });
   });
