@@ -90,6 +90,7 @@ import ArrowLink from './components/pagination/ArrowLink';
 import Sortbar from './components/forms/Sortbar';
 import MyRandstad from './components/navigation/MyRandstad';
 import SavedJobIcon from './components/cards/JobCard/SavedJobIcon';
+import ErrorBoundary from './components/errors/ErrorBoundary';
 import { JobCardProps, SavedJobsProps } from './components/cards/JobCard/JobCard.types';
 import {
   MetaItemIcons,
@@ -188,6 +189,7 @@ export {
   ArrowLink,
   Sortbar,
   MetaCardOption,
+  ErrorBoundary,
 };
 
 /**
