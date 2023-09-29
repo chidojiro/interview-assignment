@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import FormattedErrorBase from "../../../utils/errors/FormattedErrorBase";
 
 export type ErrorBoundaryState = {
   formattedError: object;
@@ -11,11 +12,7 @@ export type ErrorBoundaryTranslations = {
 
 
 export type ErrorBoundaryProps = {
-  /* FormattedErrorBase Class passed as a prop, without explicit import,
-     to be able to overwrite basic FormattedErrorBase implementation
-   */
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  FormattedError: any;
+  FormattedError: FormattedErrorBase;
   translations: ErrorBoundaryTranslations;
   children: ReactNode;
 }

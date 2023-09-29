@@ -1,9 +1,3 @@
-export enum ErrorType {
-  VALIDATION,
-  GENERAL,
-  UNKNOWN,
-}
-
 export type StatusCodeError = {
   statusCode?: number;
   status?: number;
@@ -11,8 +5,6 @@ export type StatusCodeError = {
 
 export default class FormattedErrorBase {
   protected statusCode?: number;
-
-  type: ErrorType;
 
   message?: string;
 
@@ -23,8 +15,6 @@ export default class FormattedErrorBase {
   // For the sake of better error handling.
   /* eslint-disable @typescript-eslint/no-explicit-any */
   constructor(exception: any, context: string) {
-    // Initially, the error type will be unknown.
-    this.type = ErrorType.UNKNOWN;
     this.context = context;
     // This means that this is an Api Error.
     if (exception.response && Object.hasOwn(exception.response.data, 'error')
@@ -42,28 +32,33 @@ export default class FormattedErrorBase {
       this.message = String(exception);
     }
 
-    this.logError();
+    if (this.shouldLog()) {
+      this.logError();
+    }
   }
 
-  protected logError() {
-    /**
-     * We will log only if the error is of type UNKNOWN AND we have NEXT_PUBLIC_DEBUG turned on, or BACKEND_DEBUG.
-     *
-     * NEXT_PUBLIC_DEBUG - this is an env variable, which turns on debugging for the app in general (BE and FE).
-     *
-     * BACKEND_DEBUG - this is an env variable, which turns on debugging for the back-end only.
-     * We are going to figure out if we are on the back-end or the front-end based on this variable.
-     * Next only puts env variables on the FE if they are prefixed with NEXT_PUBLIC_, so this means that
-     * this variable will be undefined on the FE, and not undefined on the backend.
-     * Only when it is set to "true" we will turn on logging.
-     *
-     * The idea is that on PROD we only want to log on the backend.
-     *
-     */
-    if ((process.env.NEXT_PUBLIC_DEBUG === 'true' || process.env.BACKEND_DEBUG === 'true') && this.type === ErrorType.UNKNOWN) {
-      // Log the error.
-      console.error(this);
-    }
+  /**
+   * We will log only if the error is of type UNKNOWN AND we have NEXT_PUBLIC_DEBUG turned on, or BACKEND_DEBUG.
+   *
+   * NEXT_PUBLIC_DEBUG - this is an env variable, which turns on debugging for the app in general (BE and FE).
+   *
+   * BACKEND_DEBUG - this is an env variable, which turns on debugging for the back-end only.
+   * We are going to figure out if we are on the back-end or the front-end based on this variable.
+   * Next only puts env variables on the FE if they are prefixed with NEXT_PUBLIC_, so this means that
+   * this variable will be undefined on the FE, and not undefined on the backend.
+   * Only when it is set to "true" we will turn on logging.
+   *
+   * The idea is that on PROD we only want to log on the backend.
+   *
+   */
+  // Used in constructor.
+  // eslint-disable-next-line class-methods-use-this
+  protected shouldLog() {
+    return (process.env.NEXT_PUBLIC_DEBUG === 'true' || process.env.BACKEND_DEBUG === 'true')
+  }
+
+  private logError() {
+    console.error(this);
   }
 
   // Used in constructor.
