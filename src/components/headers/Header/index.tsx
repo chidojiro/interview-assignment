@@ -41,12 +41,12 @@ function Header({
   languageSwitcherItems,
   useToast = false,
   toastSettings,
-  gtmId,
-  coreEvent = {},
+  gtmSettings,
 }: HeaderProps) {
   // TO DO: currentUser.loginState state needed because tabBar needs an active link on logout
   const [currentUser, setCurrentUser] = useState({} as PersistData);
   const profileData = useUserData();
+  const isMyRandstadEnabled = submenuLinks !== null && Object.keys(submenuLinks).length > 0;
 
   useEffect(() => {
     const newUserData = getUserData();
@@ -61,10 +61,19 @@ function Header({
   }, [profileData]);
 
   useEffect(() => {
-    if (gtmId) {
-      gtmScriptInitializer(window, document, 'script', 'dataLayer', gtmId, coreEvent);
+    if (gtmSettings) {
+      gtmScriptInitializer(
+        window,
+        document,
+        'script',
+        'dataLayer',
+        gtmSettings,
+        localization.locale || '',
+        isMyRandstadEnabled,
+      );
     }
-  }, [gtmId, coreEvent]);
+    // Todo will we have more then one calls because of object here?
+  }, [gtmSettings, isMyRandstadEnabled, localization.locale]);
 
   /**
    * Return an isActive prop to the menu item whenever current URL are equal.
@@ -108,7 +117,7 @@ function Header({
   }
 
   // Update My Randstad and Saved Jobs components with data from the submenuLinks
-  if (submenuLinks) {
+  if (isMyRandstadEnabled) {
     dashboard = findElement(submenuLinks[locale as string], 'id', 'dashboard');
     // Get tabBar menu the submenuLinks main.menu
     tabBarMenu = (submenuLinks as Routes)[locale as string].main;
@@ -183,7 +192,7 @@ function Header({
               <Logo homepageUrl={homepageUrl} />
               <MainMenu items={mainMenuItems} />
               <ul className="navigation__service navigation__service--minimal">
-                {submenuLinks && savedJobsEnabled && (
+                {isMyRandstadEnabled && savedJobsEnabled && (
                   <HeaderSavedJobs
                     gdsApiKey={savedJobsEnabled.gdsApiKey}
                     gdsApiUrl={savedJobsEnabled.gdsApiUrl}
@@ -192,7 +201,7 @@ function Header({
                     ariaLabel={savedJobsEnabled.ariaLabel}
                   />
                 )}
-                {submenuLinks && (
+                {isMyRandstadEnabled && (
                   <MyRandstad
                     label={myRandstadLabel}
                     show={showMyRandstad}
@@ -216,7 +225,7 @@ function Header({
                 <UtilityNavigation items={utilityMenuItems} />
                 <LanguageSwitcher items={languageSwitcherItems || []} extraClasses="l:ml-s" useToast={useToast} toastSettings={toastSettings} />
               </div>
-              { submenuLinks && (
+              { isMyRandstadEnabled && (
                 <div id="navigationPopup">
                   <LoginPopover
                     isAuth={currentUser.loginStatus}

@@ -290,31 +290,29 @@ describe('Header', () => {
   });
 
   describe('GTM', () => {
-    it('should not add script tag if gtmID not provided', () => {
+    it('should not add script tag if gtm object is not provided', () => {
       renderHeader(defaultProps);
       expect(mockGtmScriptInit).not.toHaveBeenCalled();
     });
 
-    it('should add GTM script', () => {
-      const gtmId = 'GTM-ID';
-      const coreEvent = {};
-      renderHeader({ ...defaultProps, ...{ gtmId }, ...{ coreEvent } });
-      expect(mockGtmScriptInit).toHaveBeenCalledWith(window, document, 'script', 'dataLayer', gtmId, coreEvent);
+    it('should add GTM script if my randstad is enabled', () => {
+      const gtmSettings = {
+        id: 'GTM-ID',
+        type: 'page-type',
+        country: 'foo',
+      };
+      renderHeader({ ...defaultProps, gtmSettings });
+      expect(mockGtmScriptInit).toHaveBeenCalledWith(window, document, 'script', 'dataLayer', gtmSettings, 'en', true);
     });
 
-    it('should add Core event dataLayer', () => {
-      const gtmId = 'GTM-ID';
-      const coreEvent = {
-        user: {
-          account_id: 'test_id',
-        },
-        page: {
-          page_type: 'test_type',
-        },
+    it('should add GTM script if my randstad is disabled', () => {
+      const gtmSettings = {
+        id: 'GTM-ID',
+        type: 'page-type',
+        country: 'bar',
       };
-
-      renderHeader({ ...defaultProps, ...{ gtmId }, ...{ coreEvent } });
-      expect(mockGtmScriptInit).toHaveBeenCalledWith(window, document, 'script', 'dataLayer', gtmId, coreEvent);
+      renderHeader({ ...defaultProps, submenuLinks: null, gtmSettings });
+      expect(mockGtmScriptInit).toHaveBeenCalledWith(window, document, 'script', 'dataLayer', gtmSettings, 'en', false);
     });
   });
 });
