@@ -20,6 +20,12 @@ Class contains the following properties (can be overwritten):
 
 `context` - a bit of a context where this error has happened or why.
 
+`shouldLog()` - protected method responsible for error logging.
+
+`logError()` - private method can't be overwritten by inherited classes.
+
+`getStatusCodeFromError()` - protected method return error number.
+
 Base example usage:
 ```js
 import { FormattedErrorBase } from '@ffw/randstad-shared-components/src/utils';
@@ -36,11 +42,13 @@ import { FormattedErrorBase } from '@ffw/randstad-shared-components/src/utils';
 class FormattedError extends FormattedErrorBase {
   constructor(exception: any, context: string, ...args) {
     super(exception, context);
+    this.type = ErrorType.UNKNOWN;
     // constructor overwrites, if necessary.
   }
-  
-  logError() {
-    // custom implementation of basic method.
+
+  // custom implementation of basic method.
+  shouldLog() {
+    return super.shouldLog() && && this.type === ErrorType.UNKNOWN
   }
 
   appErrorsHandler() {
