@@ -19,6 +19,18 @@ export default class FormattedErrorBase {
   constructor(exception: any, context: string, shouldLogError: boolean) {
     this.context = context;
     this.shouldLogError = shouldLogError;
+
+    this.initExceptionErrorMessage(exception);
+
+    if (this.shouldLog()) {
+      this.logError();
+    }
+  }
+
+  /**
+   * Format an error message output.
+   */
+  protected initExceptionErrorMessage(exception: any) {
     // This means that this is an Api Error.
     if (exception.response && Object.hasOwn(exception.response.data, 'error')
       && typeof exception.response.data.error === 'object') {
@@ -34,38 +46,18 @@ export default class FormattedErrorBase {
       // and set the message to the exception message.
       this.message = String(exception);
     }
-
-    if (this.shouldLog()) {
-      this.logError();
-    }
   }
 
-  /**
-   * We will log only if the error is of type UNKNOWN AND we have NEXT_PUBLIC_DEBUG turned on, or BACKEND_DEBUG.
-   *
-   * NEXT_PUBLIC_DEBUG - this is an env variable, which turns on debugging for the app in general (BE and FE).
-   *
-   * BACKEND_DEBUG - this is an env variable, which turns on debugging for the back-end only.
-   * We are going to figure out if we are on the back-end or the front-end based on this variable.
-   * Next only puts env variables on the FE if they are prefixed with NEXT_PUBLIC_, so this means that
-   * this variable will be undefined on the FE, and not undefined on the backend.
-   * Only when it is set to "true" we will turn on logging.
-   *
-   * The idea is that on PROD we only want to log on the backend.
-   *
-   */
-  // Used in constructor.
-  // eslint-disable-next-line class-methods-use-this
   protected shouldLog() {
     return this.shouldLogError;
   }
 
   private logError() {
+    // Remove shouldLogError from output.
+    delete this.shouldLogError;
     console.error(this);
   }
 
-  // Used in constructor.
-  // eslint-disable-next-line class-methods-use-this
   protected getStatusCodeFromError(exception: any): number {
     if (exception.response) {
       exception = exception.response;
