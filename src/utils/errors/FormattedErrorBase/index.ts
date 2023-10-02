@@ -12,10 +12,13 @@ export default class FormattedErrorBase {
 
   public context?: string;
 
+  private shouldLogError?: boolean;
+
   // For the sake of better error handling.
   /* eslint-disable @typescript-eslint/no-explicit-any */
-  constructor(exception: any, context: string) {
+  constructor(exception: any, context: string, shouldLogError: boolean) {
     this.context = context;
+    this.shouldLogError = shouldLogError;
     // This means that this is an Api Error.
     if (exception.response && Object.hasOwn(exception.response.data, 'error')
       && typeof exception.response.data.error === 'object') {
@@ -54,7 +57,7 @@ export default class FormattedErrorBase {
   // Used in constructor.
   // eslint-disable-next-line class-methods-use-this
   protected shouldLog() {
-    return (process.env.NEXT_PUBLIC_DEBUG === 'true' || process.env.BACKEND_DEBUG === 'true')
+    return this.shouldLogError;
   }
 
   private logError() {

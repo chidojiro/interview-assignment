@@ -12,7 +12,9 @@ export type ErrorBoundaryTranslations = {
 
 
 export type ErrorBoundaryProps = {
-  FormattedError: FormattedErrorBase;
+  // Constructor can contain different amount of arguments.
+  FormattedError: new (...args: any[]) => FormattedErrorBase;
+  shouldLogError: boolean;
   translations: ErrorBoundaryTranslations;
   children: ReactNode;
 }
