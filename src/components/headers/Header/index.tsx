@@ -41,8 +41,7 @@ function Header({
   languageSwitcherItems,
   useToast = false,
   toastSettings,
-  gtmId,
-  coreEvent = {},
+  gtmSettings,
 }: HeaderProps) {
   // TO DO: currentUser.loginState state needed because tabBar needs an active link on logout
   const [currentUser, setCurrentUser] = useState({} as PersistData);
@@ -60,11 +59,20 @@ function Header({
     }
   }, [profileData]);
 
+  const isLoginEnabled = submenuLinks !== null && Object.keys(submenuLinks).length > 0;
   useEffect(() => {
-    if (gtmId) {
-      gtmScriptInitializer(window, document, 'script', 'dataLayer', gtmId, coreEvent);
+    if (gtmSettings) {
+      gtmScriptInitializer(
+        window,
+        document,
+        'script',
+        'dataLayer',
+        gtmSettings,
+        localization.locale || '',
+        isLoginEnabled,
+      );
     }
-  }, [gtmId, coreEvent]);
+  }, [gtmSettings, isLoginEnabled, localization.locale]);
 
   /**
    * Return an isActive prop to the menu item whenever current URL are equal.
