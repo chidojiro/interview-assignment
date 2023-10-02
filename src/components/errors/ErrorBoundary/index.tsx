@@ -11,8 +11,8 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   }
 
   componentDidCatch(error: Error) {
-    const { FormattedError, shouldLogError } = this.props;
-    const formattedError = new FormattedError(error, 'errorBoundary', shouldLogError);
+    const { FormattedError} = this.props;
+    const formattedError = new FormattedError(error, 'errorBoundary');
     this.setState({ formattedError });
   }
 
