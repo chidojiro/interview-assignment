@@ -6,9 +6,6 @@ export type StatusCodeError = {
   status?: number;
 }
 
-type ExceptionResponse = { response: any };
-type ExceptionTypeB = { errorCode: number, message: string };
-
 export default class FormattedErrorBase {
   protected statusCode?: number;
 
