@@ -14,9 +14,7 @@ jest.useFakeTimers().setSystemTime(new Date('2023-10-01'));
 const windowObject: Window & { dataLayer? : unknown[] } = window;
 
 describe('gtm', () => {
-  const { env } = process;
   beforeEach(() => {
-    process.env = { ...env };
     document.head.replaceChildren();
     delete windowObject.dataLayer;
 
@@ -60,7 +58,6 @@ describe('gtm', () => {
     });
 
     it('should include global datalayer object', () => {
-      process.env.NEXT_PUBLIC_ENVIRONMENT = 'dev2';
       gtmScriptInitializer(windowObject, document, 'script', 'dataLayer', gtmSettings, 'en', true);
       expect(windowObject.dataLayer).toHaveLength(2);
       expect(windowObject.dataLayer?.[0]).toStrictEqual({
@@ -100,7 +97,6 @@ describe('gtm', () => {
     });
 
     it('should include minified version of user object if my randstad app is disabled', () => {
-      process.env.NEXT_PUBLIC_ENVIRONMENT = 'dev2';
       gtmScriptInitializer(windowObject, document, 'script', 'dataLayer', gtmSettings, 'en', false);
       expect(windowObject.dataLayer).toHaveLength(2);
       expect(windowObject.dataLayer?.[0]).toStrictEqual({
@@ -131,26 +127,26 @@ describe('gtm', () => {
       });
 
       it('should use "QA" environment if global env is set to tst2', () => {
-        process.env.NEXT_PUBLIC_ENVIRONMENT = 'tst2';
         getUserDataMock.mockReturnValue({
           loginStatus: false,
           savedJobs: {
             totalElements: 0,
           },
         });
-        gtmScriptInitializer(windowObject, document, 'script', 'dataLayer', gtmSettings, 'en', true);
+        const tstEnvironment = { ...gtmSettings, env: 'tst2' };
+        gtmScriptInitializer(windowObject, document, 'script', 'dataLayer', tstEnvironment, 'en', true);
         expect((windowObject.dataLayer?.[0] as { page: { environment?: string } })?.page?.environment).toBe('QA');
       });
 
       it('should use "PROD" environment if global env is set to prd2', () => {
-        process.env.NEXT_PUBLIC_ENVIRONMENT = 'prd2';
         getUserDataMock.mockReturnValue({
           loginStatus: false,
           savedJobs: {
             totalElements: 0,
           },
         });
-        gtmScriptInitializer(windowObject, document, 'script', 'dataLayer', gtmSettings, 'en', true);
+        const prdEnvironment = { ...gtmSettings, env: 'prd2' };
+        gtmScriptInitializer(windowObject, document, 'script', 'dataLayer', prdEnvironment, 'en', true);
         expect((windowObject.dataLayer?.[0] as { page: { environment?: string } })?.page?.environment).toBe('PROD');
       });
     });

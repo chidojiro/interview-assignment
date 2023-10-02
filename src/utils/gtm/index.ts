@@ -18,14 +18,14 @@ const scriptExists = (url: string) => {
   return false;
 };
 
-const getCoreEventObject = (coreEvent: { country: string, type: string, language: string }, isLoginEnabled: boolean): CoreDataLayerEventObjectType => {
+const getCoreEventObject = (coreEvent: { country: string, type: string, language: string, env?: string }, isLoginEnabled: boolean): CoreDataLayerEventObjectType => {
   const user = getUserData();
   let userEventObject: DataLayerUserObject;
   let environment = 'dev';
-  if (process.env.NEXT_PUBLIC_ENVIRONMENT) {
-    if (process.env.NEXT_PUBLIC_ENVIRONMENT.startsWith('prd')) {
+  if (coreEvent.env) {
+    if (coreEvent.env.startsWith('prd')) {
       environment = 'prod';
-    } else if (process.env.NEXT_PUBLIC_ENVIRONMENT.startsWith('tst')) {
+    } else if (coreEvent.env.startsWith('tst')) {
       environment = 'QA';
     }
   }
@@ -61,7 +61,7 @@ export const gtmScriptInitializer = (
   d: Document,
   s: string,
   l: string,
-  gtm: { id: string, type: string, country: string },
+  gtm: { id: string, type: string, country: string, env?: string },
   language: string,
   isLoginEnabled: boolean,
 ) => {
@@ -74,7 +74,13 @@ export const gtmScriptInitializer = (
   const src = `https://www.googletagmanager.com/gtm.js?id=${gtm.id}${dl}`;
   /* To avoid a lot of installations of Google Tag Manager detected warning */
   if (!scriptExists(src)) {
-    (w as unknown as CustomWindow).dataLayer.unshift(getCoreEventObject({ country: gtm.country, type: gtm.type, language }, isLoginEnabled));
+    const coreEventSettings = {
+      country: gtm.country,
+      type: gtm.type,
+      language,
+      env: gtm.env,
+    };
+    (w as unknown as CustomWindow).dataLayer.unshift(getCoreEventObject(coreEventSettings, isLoginEnabled));
     (w as unknown as CustomWindow).dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
     const f = d.getElementsByTagName(s)[0];
     const j: HTMLScriptElement = d.createElement('script');

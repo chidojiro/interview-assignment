@@ -67,6 +67,7 @@ export interface HeaderProps {
     type: string;
     id: string;
     country: string;
+    env?: string;
   },
 }
 

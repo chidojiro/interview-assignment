@@ -60,20 +60,19 @@ function Header({
   }, [profileData]);
 
   const isLoginEnabled = submenuLinks !== null && Object.keys(submenuLinks).length > 0;
-  const { id, type, country } = gtmSettings || {};
   useEffect(() => {
-    if (id && type && country) {
+    if (gtmSettings) {
       gtmScriptInitializer(
         window,
         document,
         'script',
         'dataLayer',
-        { id, type, country },
+        gtmSettings,
         localization.locale || '',
         isLoginEnabled,
       );
     }
-  }, [id, type, country, isLoginEnabled, localization.locale]);
+  }, [gtmSettings, isLoginEnabled, localization.locale]);
 
   /**
    * Return an isActive prop to the menu item whenever current URL are equal.
