@@ -1,19 +1,19 @@
 // For the sake of better error handling.
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
 export type StatusCodeError = {
   statusCode?: number;
   status?: number;
 }
 
 export default class FormattedErrorBase {
+
   protected statusCode?: number;
 
-  message?: string;
+  protected message?: string;
 
-  stack?: string;
+  protected stack?: string;
 
-  public context?: string;
+  protected context?: string;
 
   /**
    * Create a formatted message.
@@ -22,10 +22,12 @@ export default class FormattedErrorBase {
    *  An error.
    * @param context
    *  A bit of a context where this error has happened or why.
+   * @param settings
+   *  Allow to the child classes pass additional configuration through the constructor.
    */
-  constructor(exception: any, context: string) {
+  constructor(exception: any, context: string, settings: object = {}) {
     this.context = context;
-    this.prepareException(exception);
+    this.prepareException(exception, settings);
     if (this.shouldLog()) {
       this.logError();
     }
@@ -36,10 +38,11 @@ export default class FormattedErrorBase {
    *
    * @param exception
    *  An error.
-   *
+   * @param settings
+   *  Additional configuration.
    * @protected
    */
-  protected prepareException(exception: any) {
+  protected prepareException (exception: any, settings: object) {
     // This means that this is an Api Error.
     if (exception.response && Object.hasOwn(exception.response.data, 'error')
       && typeof exception.response.data.error === 'object') {
@@ -62,8 +65,7 @@ export default class FormattedErrorBase {
    *
    * @protected
    */
-  // eslint-disable-next-line class-methods-use-this
-  protected shouldLog() {
+  shouldLog() {
     return true;
   }
 
@@ -72,23 +74,19 @@ export default class FormattedErrorBase {
    *
    * @private
    */
-  private logError() {
+  protected logError() {
     console.error(this);
   }
 
   /**
-   * Extract an error status code if possible.
-   * Whenever error does not contain a field for the status code,
-   * then this means that we will just return a default one.
+   * Extract an error status code from the error if possible.
+   *
    * @param exception
    *  An error.
-   *
    * @return number
    *  An error number.
-   *
    * @protected
    */
-  // eslint-disable-next-line class-methods-use-this
   protected getStatusCodeFromError(exception: any): number {
     if (exception.response) {
       exception = exception.response;
@@ -103,6 +101,7 @@ export default class FormattedErrorBase {
       return statusCodeError.status;
     }
 
+    // If the error does not contain a field for the status code, then this means that we will just return a default one.
     return 500;
   }
 }
