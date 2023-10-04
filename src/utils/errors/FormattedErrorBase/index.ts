@@ -13,7 +13,7 @@ export default class FormattedErrorBase {
 
   protected stack?: string;
 
-  protected context?: string;
+  context?: string;
 
   /**
    * Create a formatted message.
