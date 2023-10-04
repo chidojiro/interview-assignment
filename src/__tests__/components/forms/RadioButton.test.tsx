@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, waitFor ,screen, fireEvent } from '@testing-library/react';
+import { render, waitFor, screen, fireEvent } from '@testing-library/react';
 import RadioButton from '../../../components/forms/RadioButton';
 import Stackable from '../../../components/forms/Stackable';
 
