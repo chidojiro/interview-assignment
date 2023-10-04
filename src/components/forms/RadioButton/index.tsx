@@ -4,9 +4,9 @@ import withField from '../../../hoc/withField';
 import { RadioButtonProps } from './RadioButton.types';
 
 /**
- * A box which enables the user to select one option out of multiple options. See [here](https://randstad.design/components/core/forms/radio-button/)
+ * A box which enables the user to select one option out of options. See [here](https://randstad.design/components/core/forms/radio-button/)
  *
- * *Every other passed props will be added to `<input>`. Like "data-attribute" and "aria-label"*
+ * *Every other passed props will appear on `<input>`. Like "data-attribute" and "aria-label"*
  */
 function RadioButton({
   id, label, _formGroupProps, ...props

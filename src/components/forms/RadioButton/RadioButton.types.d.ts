@@ -4,4 +4,5 @@ export interface RadioButtonProps {
   id: string;
   disabled: boolean;
   _formGroupProps?: object;
+  checked?: boolean;
 }
