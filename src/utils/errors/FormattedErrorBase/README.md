@@ -9,17 +9,19 @@ We will log only if the error is of type `UNKNOWN` and we have `NEXT_PUBLIC_DEBU
 
 Class contains the following properties (can be overwritten):
 
-`message` - the error message.
+`message` - an error message.
 
-`stack` - the error stack.
+`stack` - an error stack.
 
 `context` - a bit of a context where this error has happened or why.
 
-`shouldLog()` - protected method responsible for error logging.
+`prepareException()` - prepare an exception message with all helpful information to identify the root cause of an error. @protected
 
-`logError()` - private method can't be overwritten by inherited classes.
+`shouldLog()` -  responsible for error logging. @protected
 
-`getStatusCodeFromError()` - protected method return error number.
+`logError()` - log error itself. @protected
+
+`getStatusCodeFromError()` - return error number. @protected
 
 Base example usage:
 ```js
@@ -48,7 +50,7 @@ class FormattedError extends FormattedErrorBase {
    * @inheritDoc
    *   Add unique app id to the log.
    */
-  prepareException(exception: any) {
+  prepareException(exception: any, settings: object) {
     this.app = 'UNIQUE_APP_ID';
   }
 }
