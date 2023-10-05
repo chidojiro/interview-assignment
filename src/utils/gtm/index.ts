@@ -19,8 +19,6 @@ const scriptExists = (url: string) => {
 };
 
 const getCoreEventObject = (coreEvent: { country: string, type: string, language: string, env?: string }, isLoginEnabled: boolean): CoreDataLayerEventObjectType => {
-  const user = getUserData();
-  let userEventObject: DataLayerUserObject;
   let environment = 'dev';
   if (coreEvent.env) {
     if (coreEvent.env.startsWith('prd')) {
@@ -29,20 +27,27 @@ const getCoreEventObject = (coreEvent: { country: string, type: string, language
       environment = 'QA';
     }
   }
+  const getCookie = (name: string): string => {
+    const parts = `; ${document.cookie}`.split(`; ${name}=`);
+    return (parts.pop() || '').split(';').shift() || '';
+  };
+  let userEventObject: DataLayerUserObject = {
+    ip_address: getCookie('ip_address'),
+    cms_user_id: getCookie('cms_user_id'),
+    no_of_applications: '',
+  };
 
   if (isLoginEnabled) {
+    const user = getUserData();
     userEventObject = {
+      ...userEventObject,
       login_status: user.loginStatus ? 'member' : 'guest',
       account_id: user.currentUser?.id || '',
-      type: '',
+      type: user.currentUser?.personalInfo?.isEmployee ? 'employee' : '',
       employee_number: '',
-      ip_address: '',
       signup_date: user.currentUser?.createdDate || '',
-      cms_user_id: '',
       no_of_applications: '',
     };
-  } else {
-    userEventObject = { ip_address: '', cms_user_id: '', no_of_applications: '' };
   }
 
   return {
