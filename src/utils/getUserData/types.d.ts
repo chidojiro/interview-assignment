@@ -2,6 +2,7 @@ type PersonalInfo = {
   familyName: string;
   givenName: string;
   preferredName: string | undefined;
+  isEmployee?: boolean;
 };
 
 type CurrentUser = {

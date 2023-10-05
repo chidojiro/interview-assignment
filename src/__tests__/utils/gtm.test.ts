@@ -1,6 +1,5 @@
 import { gtmScriptInitializer } from '../../utils/gtm';
 
-// todo nice idea for the name in the Header.props.
 const gtmSettings = { id: '1', type: 'random', country: 'country' };
 const getUserDataMock = jest.fn();
 jest.mock('../../utils/getUserData', () => ({
@@ -12,6 +11,13 @@ jest.useFakeTimers().setSystemTime(new Date('2023-10-01'));
 
 // Define datalayer property to fix issue with typescript errors: dataLayer doesn't exists.
 const windowObject: Window & { dataLayer? : unknown[] } = window;
+
+const anonymousUser = {
+  loginStatus: false,
+  savedJobs: {
+    totalElements: 0,
+  },
+};
 
 describe('gtm', () => {
   beforeEach(() => {
@@ -26,6 +32,9 @@ describe('gtm', () => {
       },
       loginStatus: true,
     });
+    // Run the tests like these cookies are not present in the user browser.
+    document.cookie = 'ip_address=172.168.0.1; expires=Mon, 1 Sep 2023 00:00:00 UTC; path=/';
+    document.cookie = 'cms_user_id=XXXXX; expires=Mon, 1 Sep 2023 00:00:00 UTC; path=/';
   });
 
   describe('gtmScriptInitializer', () => {
@@ -86,14 +95,33 @@ describe('gtm', () => {
     });
 
     it('should use "guest" login status for the anonymous user', () => {
-      getUserDataMock.mockReturnValue({
-        loginStatus: false,
-        savedJobs: {
-          totalElements: 0,
-        },
-      });
+      getUserDataMock.mockReturnValue(anonymousUser);
       gtmScriptInitializer(windowObject, document, 'script', 'dataLayer', gtmSettings, 'en', true);
       expect((windowObject.dataLayer?.[0] as { user: { login_status?: string } })?.user?.login_status).toBe('guest');
+    });
+
+    it('should use "employee" user type status for the users with isEmployee flag', () => {
+      getUserDataMock.mockReturnValue({
+        currentUser: {
+          email: 'john@example.com',
+          createdDate: '2023-08-17T05:32:48.269472588Z',
+          personalInfo: {
+            isEmployee: true,
+          },
+          id: 'xxxxxxxx-b63f-4f91-8279-d0d04a11f858',
+        },
+        loginStatus: true,
+      });
+      gtmScriptInitializer(windowObject, document, 'script', 'dataLayer', gtmSettings, 'en', true);
+      expect((windowObject.dataLayer?.[0] as { user: { type?: string } })?.user?.type).toBe('employee');
+    });
+
+    it('should populate "ip_address" and "cms_user_id" based on browser cookies', () => {
+      document.cookie = 'ip_address=172.168.0.1; expires=Mon, 1 Jan 2024 00:00:00 UTC; path=/';
+      document.cookie = 'cms_user_id=XXXXX; expires=Mon, 1 Jan 2024 00:00:00 UTC; path=/';
+      gtmScriptInitializer(windowObject, document, 'script', 'dataLayer', gtmSettings, 'en', true);
+      expect((windowObject.dataLayer?.[0] as { user: { ip_address?: string } })?.user?.ip_address).toBe('172.168.0.1');
+      expect((windowObject.dataLayer?.[0] as { user: { cms_user_id?: string } })?.user?.cms_user_id).toBe('XXXXX');
     });
 
     it('should include minified version of user object if my randstad app is disabled', () => {
@@ -116,35 +144,20 @@ describe('gtm', () => {
 
     describe('environment detection', () => {
       it('should use "dev" environment if global env is not set', () => {
-        getUserDataMock.mockReturnValue({
-          loginStatus: false,
-          savedJobs: {
-            totalElements: 0,
-          },
-        });
+        getUserDataMock.mockReturnValue(anonymousUser);
         gtmScriptInitializer(windowObject, document, 'script', 'dataLayer', gtmSettings, 'en', true);
         expect((windowObject.dataLayer?.[0] as { page: { environment?: string } })?.page?.environment).toBe('DEV');
       });
 
       it('should use "QA" environment if global env is set to tst2', () => {
-        getUserDataMock.mockReturnValue({
-          loginStatus: false,
-          savedJobs: {
-            totalElements: 0,
-          },
-        });
+        getUserDataMock.mockReturnValue(anonymousUser);
         const tstEnvironment = { ...gtmSettings, env: 'tst2' };
         gtmScriptInitializer(windowObject, document, 'script', 'dataLayer', tstEnvironment, 'en', true);
         expect((windowObject.dataLayer?.[0] as { page: { environment?: string } })?.page?.environment).toBe('QA');
       });
 
       it('should use "PROD" environment if global env is set to prd2', () => {
-        getUserDataMock.mockReturnValue({
-          loginStatus: false,
-          savedJobs: {
-            totalElements: 0,
-          },
-        });
+        getUserDataMock.mockReturnValue(anonymousUser);
         const prdEnvironment = { ...gtmSettings, env: 'prd2' };
         gtmScriptInitializer(windowObject, document, 'script', 'dataLayer', prdEnvironment, 'en', true);
         expect((windowObject.dataLayer?.[0] as { page: { environment?: string } })?.page?.environment).toBe('PROD');
