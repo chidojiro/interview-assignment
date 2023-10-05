@@ -25,6 +25,7 @@ function Autosuggest({
   noResultsText,
   initialValue,
   config,
+  disabled,
   _formGroupProps,
   ...fieldProps
 }: AutosuggestPropTypes) {
@@ -45,7 +46,7 @@ function Autosuggest({
   return (
     <FormGroup {..._formGroupProps}>
       <div {...wrapperProps}>
-        <input {...fieldProps} {...inputProps} type="text" autoComplete="off" onKeyDown={(e) => open && e.key === 'Enter' && e.preventDefault()} />
+        <input {...fieldProps} {...inputProps} disabled={disabled} type="text" autoComplete="off" onKeyDown={(e) => open && e.key === 'Enter' && e.preventDefault()} />
         {open && (
           <ul className="select-menu__list">
             {customInput && listItemProps && (
