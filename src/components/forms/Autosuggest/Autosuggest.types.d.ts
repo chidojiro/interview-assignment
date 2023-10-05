@@ -8,4 +8,5 @@ export interface AutosuggestPropTypes extends WithFieldProps, UseAutosuggestPara
   noResultsText?: string;
   _formGroupProps?: object;
   placeholder?: string;
+  disabled?: boolean;
 }

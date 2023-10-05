@@ -20,7 +20,6 @@ export interface WithFieldProps {
   onChange?: (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
   onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement | HTMLSelectElement>) => void;
   _withoutWrapper?: boolean;
-  disabled?: boolean;
 }
 
 const withField = <T extends WithFieldProps = WithFieldProps>(ChildComponent: React.FC<T>) => {
