@@ -14,5 +14,8 @@
   "Shared.Components.DatePicker.LongMonths": "janvier, février, mars, avril, mai, juin, juilliet, août, septiembre, octobre, novembre, décember",
   "Shared.Components.DatePicker.ShortMonths": "janv, févr, mars, avr, mai, juin, juill, août, sept, oct, nov, déc",
   "Shared.Components.DatePicker.ShortWeeks": "dim, lun, mar, mer, jeu, ven, sam",
-  "Shared.Components.DatePicker.ClearText": "clear"
+  "Shared.Components.DatePicker.ClearText": "clear",
+
+  "Shared.Components.ErrorBoundary.Title": "Quelque chose s'est mal passé...",
+  "Shared.Components.ErrorBoundary.Description": "Il semble y avoir une erreur lors du chargement de cette page. Veuillez actualiser et réessayer."
 }

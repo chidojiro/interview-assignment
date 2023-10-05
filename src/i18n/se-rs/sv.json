@@ -14,5 +14,8 @@
   "Shared.Components.DatePicker.LongMonths": "januari, februari, mars, april, maj, juni, juli, augusti, september, oktober, november, december",
   "Shared.Components.DatePicker.ShortMonths": "jan, feb, mars, april, maj, juni, juli, aug, sep, okt, nov, dec",
   "Shared.Components.DatePicker.ShortWeeks": "sö, må, ti, on, to, fr, lö",
-  "Shared.Components.DatePicker.ClearText": "töm"
+  "Shared.Components.DatePicker.ClearText": "töm",
+
+  "Shared.Components.ErrorBoundary.Title": "Något gick fel...",
+  "Shared.Components.ErrorBoundary.Description": "Det verkar ha uppstått ett problem med att ladda sidan. Uppdatera sidan och försök igen."
 }
