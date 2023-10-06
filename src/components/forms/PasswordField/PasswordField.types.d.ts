@@ -19,6 +19,7 @@ export interface PasswordFieldProps extends Partial<Pick<WithFieldProps, 'onBlur
   };
   hideValidationList?: boolean;
   disableValidationRules?: boolean;
+  newPassword?: boolean,
   /** Refers to the aria-label attribute of the show button. */
   buttonLabel?: string;
   forgottenPasswordLink?: React.ReactElement;
