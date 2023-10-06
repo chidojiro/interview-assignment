@@ -39,13 +39,21 @@ const getCoreEventObject = (coreEvent: { country: string, type: string, language
 
   if (isLoginEnabled) {
     const user = getUserData();
+    let formattedDate = '';
+    if (user.currentUser?.createdDate) {
+      try {
+        [formattedDate] = (new Date(user.currentUser.createdDate)).toISOString().split('T');
+      } catch (e) {
+        formattedDate = '';
+      }
+    }
     userEventObject = {
       ...userEventObject,
       login_status: user.loginStatus ? 'member' : 'guest',
       account_id: user.currentUser?.id || '',
       type: user.currentUser?.personalInfo?.isEmployee ? 'employee' : '',
       employee_number: '',
-      signup_date: user.currentUser?.createdDate || '',
+      signup_date: formattedDate,
       no_of_applications: '',
     };
   }

@@ -81,7 +81,7 @@ describe('gtm', () => {
           account_id: 'xxxxxxxx-b63f-4f91-8279-d0d04a11f858',
           employee_number: '',
           login_status: 'member',
-          signup_date: '2023-08-17T05:32:48.269472588Z',
+          signup_date: '2023-08-17',
           ip_address: '',
           no_of_applications: '',
           type: '',
@@ -92,6 +92,19 @@ describe('gtm', () => {
         'gtm.start': new Date('2023-10-01').getTime(),
         event: 'gtm.js',
       });
+    });
+
+    it('should not throw exceptions when invalid date has been provided', () => {
+      getUserDataMock.mockReturnValue({
+        currentUser: {
+          email: 'john@example.com',
+          createdDate: '2023-23-17T05:32:48.269472588Z',
+          id: 'xxxxxxxx-b63f-4f91-8279-d0d04a11f858',
+        },
+        loginStatus: true,
+      });
+      gtmScriptInitializer(windowObject, document, 'script', 'dataLayer', gtmSettings, 'en', true);
+      expect((windowObject.dataLayer?.[0] as { user: { signup_date?: string } })?.user?.signup_date).toBe('');
     });
 
     it('should use "guest" login status for the anonymous user', () => {
