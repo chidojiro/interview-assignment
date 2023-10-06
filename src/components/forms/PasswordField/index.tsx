@@ -98,7 +98,7 @@ function PasswordField({
         data-rs-password-validator=""
         data-rs-password-visibility=""
       >
-        <input {...props} type="password" {...newPassword && { autocomplete: 'new-password' }} />
+        <input {...props} type="password" {...newPassword && { autoComplete: 'new-password' }} />
         <button
           type="button"
           data-rs-password-visibility-trigger=""
