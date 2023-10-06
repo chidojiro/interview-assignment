@@ -22,6 +22,7 @@ function PasswordField({
   _formGroupProps = {},
   minChars = 8,
   validationSchema,
+  newPassword,
   buttonLabel = 'show password',
   hideValidationList = true,
   disableValidationRules = true,
@@ -97,7 +98,7 @@ function PasswordField({
         data-rs-password-validator=""
         data-rs-password-visibility=""
       >
-        <input {...props} type="password" />
+        <input {...props} type="password" {...newPassword && { autocomplete: 'new-password' }} />
         <button
           type="button"
           data-rs-password-visibility-trigger=""
