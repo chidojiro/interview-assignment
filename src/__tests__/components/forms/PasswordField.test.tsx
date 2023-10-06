@@ -72,6 +72,16 @@ describe('PasswordField component tests', () => {
     expect(useDigit).toBeInTheDocument();
   });
 
+  test('renders the component with the optional newPassword prop', () => {
+    const { container, getByText } = render(
+        <PasswordField {...props} disableValidationRules={false} newPassword />,
+    );
+
+    const input = container.querySelector('[type=\'password\']') as Element;
+    expect(input).toBeInTheDocument();
+    expect(input.getAttribute('autocomplete')).toBe('new-password');
+  });
+
   /**
    * I tried to handle the click on the 'eye' icon but it does not work at the
    * moment because Orbit handles this logic and we are unable to test it as it is.
