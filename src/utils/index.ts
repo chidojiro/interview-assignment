@@ -10,7 +10,7 @@ import getSavedJobsLocalStorage from './savedJobs/savedJobsLocalStorage/getSaved
 import removeSavedJobsFromLocalStorage from './savedJobs/savedJobsLocalStorage/removeSavedJobsLocalStorage';
 import saveSavedJobsToLocalStorage from './savedJobs/savedJobsLocalStorage/saveSavedJobsLocalStorage';
 import getSavedJobs from './savedJobs/getSavedJobs';
-import { gtmScriptInitializer, gtmDataLayerPushHandler } from './gtm';
+import { gtmScriptInitializer, gtmDataLayerPushHandler, gtmDataLayerEcommercePushHandler } from './gtm';
 import getKeyCodeOnKeyDownEvent from './getKeyCodeOnKeyDownEvent';
 import FormattedErrorBase from './errors/FormattedErrorBase';
 import type {
@@ -33,6 +33,7 @@ export {
   getSavedJobs,
   gtmScriptInitializer,
   gtmDataLayerPushHandler,
+  gtmDataLayerEcommercePushHandler,
   ContinueRequestType,
   getKeyCodeOnKeyDownEvent,
   prepareContinueRequest,
