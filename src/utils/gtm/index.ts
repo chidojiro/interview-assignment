@@ -10,6 +10,13 @@ export function gtmDataLayerPushHandler(eventDataObject: DataLayerEventObjectTyp
   (window as unknown as CustomWindow).dataLayer.push(eventDataObject);
 }
 
+export function gtmDataLayerEcommercePushHandler(eventDataObject: DataLayerEventObjectType) {
+  (window as unknown as CustomWindow).dataLayer = (window as unknown as CustomWindow).dataLayer || [];
+  // Pushes { ecommerce: null }, as in documentation, before each event.
+  (window as unknown as CustomWindow).dataLayer.push({ ecommerce: null });
+  (window as unknown as CustomWindow).dataLayer.push(eventDataObject);
+}
+
 const scriptExists = (url: string) => {
   const scripts = document.getElementsByTagName('script');
   for (let i = 0; i < scripts.length; i += 1) {
