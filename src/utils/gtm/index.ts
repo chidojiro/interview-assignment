@@ -3,11 +3,18 @@ import type {
 } from './types';
 import getUserData from '../getUserData';
 
-export function gtmDataLayerPushHandler(eventDataObject: DataLayerEventObjectType) {
+function pushToDataLayer(eventDataObject: DataLayerEventObjectType, key: string) {
   (window as unknown as CustomWindow).dataLayer = (window as unknown as CustomWindow).dataLayer || [];
-  // Pushes { event_params: null }, as in documentation, before each event.
-  (window as unknown as CustomWindow).dataLayer.push({ event_params: null });
+  // Pushes { [key]: null }, as in documentation, before each event.
+  const dataToPush = { [key]: null };
+  (window as unknown as CustomWindow).dataLayer.push(dataToPush);
   (window as unknown as CustomWindow).dataLayer.push(eventDataObject);
+}
+export function gtmDataLayerPushHandler(eventDataObject: DataLayerEventObjectType) {
+  pushToDataLayer(eventDataObject, 'event_params');
+}
+export function gtmDataLayerEcommercePushHandler(eventDataObject: DataLayerEventObjectType) {
+  pushToDataLayer(eventDataObject, 'ecommerce');
 }
 
 const scriptExists = (url: string) => {
