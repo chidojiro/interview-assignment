@@ -48,12 +48,14 @@ describe('Autosuggest component tests', () => {
   test('Autosuggest callbacks have been triggered.', async () => {
     const onInputChange = jest.fn();
     const onSelectItem = jest.fn();
+    const onDropdownClose = jest.fn();
 
     const { findByTestId, findByText } = await renderAutosuggest({
       items: ['A1', 'A2', 'A3'],
       config: { skipFilter: true },
       onSelectItem,
       onInputChange,
+      onDropdownClose,
     });
 
     const input = await findByTestId('autosuggest') as HTMLInputElement;
@@ -83,6 +85,7 @@ describe('Autosuggest component tests', () => {
       await waitForDebounce();
     });
     expect(onSelectItem).toHaveBeenCalledWith('A2');
+    expect(onDropdownClose).toHaveBeenCalled();
     expect(input.value).toBe('A2');
   });
 
