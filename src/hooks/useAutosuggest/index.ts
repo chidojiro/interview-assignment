@@ -129,7 +129,10 @@ const useAutosuggest = ({
     if (onDropdownClose && !open) {
       onDropdownClose(inputValue);
     }
-  }, [open, onDropdownClose, inputValue]);
+    // ESLint requires adding onDropdownClose as a dependency, but
+    // this triggers re-renders and leads to unexpected behavior.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [open, inputValue]);
 
   // Event handlers.
   const handleInputChange = ({ nativeEvent, target }: React.ChangeEvent) => {
