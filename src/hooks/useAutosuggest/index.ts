@@ -54,6 +54,7 @@ const useAutosuggest = ({
   items = [],
   onInputChange: changeCb,
   onSelectItem: selectItemCb,
+  onDropdownClose,
   initialValue = '',
   config = {},
 }: UseAutosuggestParamTypes) => {
@@ -123,6 +124,12 @@ const useAutosuggest = ({
     // eslint-disable-next-line consistent-return
     return () => document.removeEventListener('click', clickOutside);
   }, []);
+
+  useEffect(() => {
+    if (onDropdownClose && !open) {
+      onDropdownClose(inputValue);
+    }
+  }, [open, onDropdownClose, inputValue]);
 
   // Event handlers.
   const handleInputChange = ({ nativeEvent, target }: React.ChangeEvent) => {

@@ -4,6 +4,8 @@ export type UseAutosuggestParamTypes = {
   onInputChange?: (event: string) => void;
   /** Triggered on item select */
   onSelectItem?: (newVal: string) => void;
+  /** Triggered when dropdown closes */
+  onDropdownClose?: (newVal: string) => void;
   /** Set autosuggest initial initialValue. */
   initialValue?: string;
   config?: {
