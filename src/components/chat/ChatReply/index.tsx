@@ -1,11 +1,13 @@
 import React from 'react';
 import cn from 'classnames';
+import dompurify from 'dompurify';
 import { ChatReplyProps } from './ChatReply';
 
 function ChatReply({
   type, first = false, logoAltText = 'logo Randstad', children, ...props
 }: ChatReplyProps) {
   const imgPath = !process.env.NEXT_PUBLIC_RESOURCE_PREFIX ? '/img/randstad-wings.jpg' : `${process.env.NEXT_PUBLIC_RESOURCE_PREFIX}/src/assets/img/randstad-wings.jpg`;
+  const sanitizer = dompurify.sanitize;
   return (
     <div
       className={cn('chat-content__wrapper', {
@@ -20,7 +22,7 @@ function ChatReply({
       )}
       {/* Chat replies come as string with HTML. */}
       {/* eslint-disable-next-line react/no-danger */}
-      <div className={cn(`chat__content chat__content--${type} speech-bubble speech-bubble--${type}`)} {...props} dangerouslySetInnerHTML={{ __html: children || '' }} />
+      <div className={cn(`chat__content chat__content--${type} speech-bubble speech-bubble--${type}`)} {...props} dangerouslySetInnerHTML={{ __html: sanitizer(children) || '' }} />
     </div>
   );
 }
