@@ -13,6 +13,9 @@ import getSavedJobs from './savedJobs/getSavedJobs';
 import { gtmScriptInitializer, gtmDataLayerPushHandler, gtmDataLayerEcommercePushHandler } from './gtm';
 import getKeyCodeOnKeyDownEvent from './getKeyCodeOnKeyDownEvent';
 import FormattedErrorBase from './errors/FormattedErrorBase';
+import SplunkLogger from './errors/splunkLogger';
+import splunkAxiosError from './errors/splunkLogger/splunkAxiosError';
+import splunkError from './errors/splunkLogger/splunkError';
 import type {
   ConversationReply, ConversationQuickSuggest, ConversationMultiSelect, ConversationMultiSelectItem,
 } from './chat/types';
@@ -21,6 +24,7 @@ import { ContinueRequestType } from './chat/types';
 import type { DataLayerEventObjectType } from './gtm/types';
 import type { ContinueResponse } from './chat/handleContinueResponse/types';
 import type { ContinueRequest } from './chat/prepareContinueRequest/types';
+import type { SplunkMessage } from './errors/splunkLogger/types';
 
 export {
   savedJobsHandler,
@@ -38,6 +42,9 @@ export {
   getKeyCodeOnKeyDownEvent,
   prepareContinueRequest,
   FormattedErrorBase,
+  SplunkLogger,
+  splunkAxiosError,
+  splunkError,
 };
 
 export type {
@@ -52,4 +59,5 @@ export type {
   ConversationMultiSelectItem,
   ContinueResponse,
   ContinueRequest,
+  SplunkMessage,
 };

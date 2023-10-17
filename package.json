@@ -35,6 +35,7 @@
     "@ffw/randstad-local-orbit": "git+ssh://git-codecommit.eu-west-1.amazonaws.com/v1/repos/git-bluex-prd-bx-local-orbit#dev",
     "@types/js-cookie": "^3.0.3",
     "@types/react-slick": "^0.23.10",
+    "@types/splunk-logging": "^0.11.2",
     "@types/styled-components": "^5.1.26",
     "axios": "^0.27.2",
     "classnames": "^2.3.2",
@@ -45,6 +46,7 @@
     "react-content-loader": "^6.2.0",
     "react-google-recaptcha-enterprise": "^1.0.3",
     "react-slick": "^0.29.0",
+    "splunk-logging": "^0.11.1",
     "styled-components": "^5.3.6",
     "yup": "^1.0.2"
   },
