@@ -25,7 +25,7 @@ function splunkError(
     http: {
       userAgent,
     },
-    version: 3,
+    version: 1,
     timestamp: new Date().toISOString(),
     status: '500',
     message: error.message,

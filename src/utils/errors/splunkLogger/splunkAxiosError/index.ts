@@ -23,6 +23,7 @@ function splunkAxiosError(
   return {
     ...baseError,
     status: error.status,
+    messageDetail: JSON.stringify({ reqData: error.config.data, respData: error.response.data }),
     http: {
       ...baseError.http,
       url,
