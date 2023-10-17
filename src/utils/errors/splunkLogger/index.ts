@@ -29,10 +29,9 @@ class SplunkLogger {
       },
       severity: message.level
     }, (error, req, res) => {
-      //TODO: Handle callback here.
-      console.error('error', error);
-      console.error('body', res);
-      console.error('sent', message)
+      if(error) {
+        console.error({'res': res, 'error': error, 'req': req});
+      }
     });
   }
 }
