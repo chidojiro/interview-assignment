@@ -25,10 +25,10 @@ Class contains the following properties (can be overwritten):
 
 Base example usage:
 ```js
-import { FormattedErrorBase } from '@ffw/randstad-shared-components/src/utils';
+import { createError, FormattedErrorBase } from '@ffw/randstad-shared-components/src/utils';
 
 try {} catch (error) {
-  new FormattedErrorBase(error, 'Error context');
+  /* throw */ createError(FormattedErrorBase, error, 'Error context');
 }
 ```
 
@@ -38,20 +38,19 @@ import { FormattedErrorBase } from '@ffw/randstad-shared-components/src/utils';
 
 
 class FormattedError extends FormattedErrorBase {
+  constructor(exception: any, context: string, settings: object = {}, ...moreArgs: any[]) {
+    super(exception, context, settings);
+    //...
+    // FormattedError initialization
+    // ...
+  }
+
   /**
    * @inheritDoc
    *   Log errors depending on env configuration.
    */
   shouldLog() {
     return (process.env.NEXT_PUBLIC_DEBUG === 'true' || process.env.BACKEND_DEBUG === 'true') && super.shouldLog();
-  }
-  
-  /* 
-   * @inheritDoc
-   *   Add unique app id to the log.
-   */
-  prepareException(exception: any, settings: object) {
-    this.app = 'UNIQUE_APP_ID';
   }
 }
 
