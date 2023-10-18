@@ -47,6 +47,8 @@ export {
   splunkError,
 };
 
+export { default as createError } from './errors/createError';
+
 export type {
   AlreadyUploadedFile,
   LocalStorageSavedJob,

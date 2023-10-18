@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { createError } from '../../../utils';
 import { ErrorBoundaryProps, ErrorBoundaryState } from './ErrorBoundary.types';
 
 class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
@@ -11,8 +12,8 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   }
 
   componentDidCatch(error: Error) {
-    const { FormattedError} = this.props;
-    const formattedError = new FormattedError(error, 'errorBoundary');
+    const { FormattedError } = this.props;
+    const formattedError = createError(FormattedError, error, 'errorBoundary');
     this.setState({ formattedError });
   }
 

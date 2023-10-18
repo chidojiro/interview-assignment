@@ -6,7 +6,6 @@ export type StatusCodeError = {
 }
 
 export default class FormattedErrorBase {
-
   protected statusCode?: number;
 
   protected message?: string;
@@ -27,22 +26,6 @@ export default class FormattedErrorBase {
    */
   constructor(exception: any, context: string, settings: object = {}) {
     this.context = context;
-    this.prepareException(exception, settings);
-    if (this.shouldLog()) {
-      this.logError();
-    }
-  }
-
-  /**
-   * Prepare an exception message with all helpful information to identify the root cause of an error.
-   *
-   * @param exception
-   *  An error.
-   * @param settings
-   *  Additional configuration.
-   * @protected
-   */
-  protected prepareException (exception: any, settings: object) {
     // This means that this is an Api Error.
     if (exception.response && Object.hasOwn(exception.response.data, 'error')
       && typeof exception.response.data.error === 'object') {
@@ -86,7 +69,7 @@ export default class FormattedErrorBase {
    *
    * @private
    */
-  protected logError() {
+  public logError() {
     console.error(this);
   }
 
