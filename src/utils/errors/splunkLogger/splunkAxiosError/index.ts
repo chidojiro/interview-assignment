@@ -22,7 +22,7 @@ function splunkAxiosError(
   // Base error, to have the axios error properties.
   return {
     ...baseError,
-    status: error.status,
+    status: error.code,
     messageDetail: JSON.stringify({ reqData: error.config.data, respData: error.response.data }),
     http: {
       ...baseError.http,
