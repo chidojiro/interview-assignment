@@ -1,9 +1,9 @@
-import { AxiosResponse } from 'axios';
+import { AxiosRequestConfig } from 'axios';
 import isUint64 from '../../../isUint64';
 
-function generateCorelationId(response?: AxiosResponse) {
-  if (response) {
-    const clientCorrelationId = response.headers['x-correlation-id'];
+function generateCorelationId(request?: AxiosRequestConfig) {
+  if (request && request.headers) {
+    const clientCorrelationId = request.headers['x-correlation-id'] as string;
     if (clientCorrelationId && clientCorrelationId.length && isUint64(clientCorrelationId[0])) return clientCorrelationId[0]; // generate random traceId
   }
   // the range of generated number is 0 - 18446744073709551615

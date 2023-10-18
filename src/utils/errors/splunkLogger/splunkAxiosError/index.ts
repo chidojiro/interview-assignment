@@ -30,7 +30,7 @@ function splunkAxiosError(
       status_code: error.response.status,
       method: error.config.method,
     },
-    corelation_id: generateCorelationId(error.response),
+    corelation_id: generateCorelationId(error.config),
   };
 }
 
