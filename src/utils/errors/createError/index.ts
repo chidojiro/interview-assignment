@@ -17,6 +17,8 @@ const createError = <C extends FormattedErrorBaseDescendant>(Cls: C, ...args: Co
     instance.logError();
   }
 
+  instance.logSplunkError(args[0]);
+
   return instance as InstanceType<C>;
 };
 

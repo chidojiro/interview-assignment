@@ -74,6 +74,18 @@ export default class FormattedErrorBase {
   }
 
   /**
+   * Log an error to splunk.
+   *
+   * This is empty, as every app will need to decide how they want to log the error.
+   *
+   * @param exception
+   *   The error that we want to log.
+   *
+   * @public
+   */
+  public logSplunkError(exception: unknown) {}
+
+  /**
    * Extract an error status code from the error if possible.
    *
    * @param exception
