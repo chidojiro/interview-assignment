@@ -34,7 +34,7 @@ function splunkAxiosError(
       ...baseError.http,
       url,
       port,
-      status_code: error.request.status,
+      status_code: error.response.status,
       method: error.config.method,
     },
     corelation_id: generateCorelationId(error.request),
