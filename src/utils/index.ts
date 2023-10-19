@@ -14,7 +14,7 @@ import { gtmScriptInitializer, gtmDataLayerPushHandler, gtmDataLayerEcommercePus
 import getKeyCodeOnKeyDownEvent from './getKeyCodeOnKeyDownEvent';
 import FormattedErrorBase from './errors/FormattedErrorBase';
 import SplunkLogger from './errors/splunkLogger';
-import splunkAxiosError from './errors/splunkLogger/splunkAxiosError';
+import createSplunkError from './errors/splunkLogger/createSplunkError';
 import splunkError from './errors/splunkLogger/splunkError';
 import type {
   ConversationReply, ConversationQuickSuggest, ConversationMultiSelect, ConversationMultiSelectItem,
@@ -43,7 +43,7 @@ export {
   prepareContinueRequest,
   FormattedErrorBase,
   SplunkLogger,
-  splunkAxiosError,
+  createSplunkError,
   splunkError,
 };
 
