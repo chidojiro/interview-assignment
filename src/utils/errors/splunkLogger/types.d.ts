@@ -24,6 +24,7 @@ export type SplunkMessage = {
     url?: string,
     status_code?: number,
     userAgent?: string,
+    port?: number,
   }
   network_client_ip?: string,
   corelation_id: string,

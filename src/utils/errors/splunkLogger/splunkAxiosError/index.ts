@@ -20,6 +20,12 @@ function splunkAxiosError(
   // Get base error...
   const baseError = splunkError(error, metadata, context, env);
   // Base error, to have the axios error properties.
+  const agent = error.request as unknown as { agent: { defaultPort: number } };
+
+  let port;
+  if (agent.agent && agent.agent.defaultPort) {
+    port = agent.agent.defaultPort;
+  }
   return {
     ...baseError,
     status: error.code,
@@ -27,7 +33,8 @@ function splunkAxiosError(
     http: {
       ...baseError.http,
       url,
-      status_code: error.response.status,
+      port,
+      status_code: error.request.status,
       method: error.config.method,
     },
     corelation_id: generateCorelationId(error.request),
