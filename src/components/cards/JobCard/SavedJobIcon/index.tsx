@@ -24,6 +24,8 @@ function SavedJobIcon({
   locale,
 }: SavedJobIconProps) {
   const [iconFilled, setIconFilled] = useState<boolean>(!!savedJobId);
+  // For logged users, we need to store the saved job id from the GDS API, so we can add/delete it later.
+  // This is not the Job ID, but the entity ID from the GDS for that particular job.
   const [savedJobApiId, setSavedJobApiId] = useState(savedJobId);
   const iconClasses = cn('icon', {
     [`icon--${size}`]: size,
