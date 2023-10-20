@@ -5,7 +5,7 @@ export interface SavedJobIconProps {
   shareIdTokenAcrossSubdomains: boolean;
   searchApiUrl: string;
   searchApiKey: string;
-  savedJobId?: string;
+  savedJobId?: string | null;
   jobPostingWebDetailId: string;
   ariaLabel?: string;
   returnJobPostingDetails?: (jobPostingWebDetailId: string, jobPostingTitle: string) => void;
