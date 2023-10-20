@@ -66,12 +66,12 @@ const postSavedJobs = async (
   gdsApiUrl: string,
   shareIdTokenAcrossSubdomains: boolean,
   jobPostingWebDetailId: string,
-): Promise<void> => {
+): Promise<AxiosResponse> => {
   const talentApi = new TalentAppApi(gdsApiKey, gdsApiUrl, shareIdTokenAcrossSubdomains);
 
-  await talentApi.post('/me/saved-jobs', { jobPostingWebDetailId }).then((res: AxiosResponse) => {
+  return talentApi.post('/me/saved-jobs', { jobPostingWebDetailId }).then((res: AxiosResponse) => {
     saveCountOfSavedJobs(gdsApiKey, gdsApiUrl, shareIdTokenAcrossSubdomains);
-    return res.data;
+    return res;
   });
 };
 
