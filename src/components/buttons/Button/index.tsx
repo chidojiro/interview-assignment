@@ -56,7 +56,7 @@ function Button({
         />
       )}
       {loader && <span className="dots" />}
-      {!loader && children}
+      {!loader && <span>{children}</span>}
     </ButtonTag>
   );
 }
