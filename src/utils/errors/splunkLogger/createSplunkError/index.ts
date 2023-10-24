@@ -29,6 +29,7 @@ function createSplunkError(
 
     baseError = {
       ...baseError,
+      messageDetail: JSON.stringify({ res: error.response.data }),
       status: error.code,
       http: {
         ...baseError.http,
