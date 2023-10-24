@@ -1,4 +1,5 @@
 import React, {
+  useEffect,
   useState,
 } from 'react';
 import cn from 'classnames';
@@ -22,13 +23,21 @@ function SavedJobIcon({
   returnJobPostingDetails,
   locale,
 }: SavedJobIconProps) {
-  const [iconFilled, setIconFilled] = useState(savedJobId);
+  const [iconFilled, setIconFilled] = useState<boolean>(!!savedJobId);
+  // For logged users, we need to store the saved job id from the GDS API, so we can add/delete it later.
+  // This is not the Job ID, but the entity ID from the GDS for that particular job.
+  const [savedJobApiId, setSavedJobApiId] = useState(savedJobId);
   const iconClasses = cn('icon', {
     [`icon--${size}`]: size,
   }, 'icon--inline');
   const buttonClasses = cn('icon__toggler', 'icon--l', {
-    'icon__toggler--active': savedJobId || iconFilled,
+    'icon__toggler--active': savedJobApiId || iconFilled,
   });
+
+  useEffect(() => {
+    setIconFilled(!!savedJobId);
+    setSavedJobApiId(savedJobId);
+  }, [savedJobId]);
 
   const onIconClick = async () => {
     const { loginStatus } = getUserData();
@@ -36,35 +45,40 @@ function SavedJobIcon({
     if (!loginStatus) {
       const filled = await handleAnonymousSavedJobs(searchApiUrl, searchApiKey, jobPostingWebDetailId, locale);
       if (filled && !iconFilled) {
-        setIconFilled('filled');
+        setIconFilled(true);
 
         saveJobEvent(title, true);
       } else if (!filled && iconFilled) {
         if (returnJobPostingDetails) {
           returnJobPostingDetails(jobPostingWebDetailId, title);
         }
-        setIconFilled('');
+        setIconFilled(false);
 
         saveJobEvent(title, false);
       }
-    } else if (savedJobId && typeof (savedJobId) === 'string') {
-      setIconFilled('');
-      const onSuccessfullDelete = await deleteSavedJobs(gdsApiKey, gdsApiUrl, shareIdTokenAcrossSubdomains, savedJobId);
-      if (returnJobPostingDetails && onSuccessfullDelete) {
+    } else if (savedJobApiId && savedJobApiId !== '') {
+      setIconFilled(false);
+      const deleteSavedResponse = await deleteSavedJobs(gdsApiKey, gdsApiUrl, shareIdTokenAcrossSubdomains, savedJobApiId);
+      if (returnJobPostingDetails && deleteSavedResponse) {
         returnJobPostingDetails(jobPostingWebDetailId, title);
+      }
+      if (deleteSavedResponse) {
+        setSavedJobApiId(null);
       }
 
       saveJobEvent(title, false);
     } else {
-      await postSavedJobs(gdsApiKey, gdsApiUrl, shareIdTokenAcrossSubdomains, jobPostingWebDetailId);
-      setIconFilled('filled');
-
+      const postSavedResponse = await postSavedJobs(gdsApiKey, gdsApiUrl, shareIdTokenAcrossSubdomains, jobPostingWebDetailId);
+      if (postSavedResponse?.data) {
+        setSavedJobApiId(postSavedResponse?.data?.id);
+      }
+      setIconFilled(true);
       saveJobEvent(title, true);
     }
   };
 
   return (
-    <button type="button" className={buttonClasses} aria-label={ariaLabel} aria-pressed={savedJobId ? 'true' : 'false'} id={`fav-${savedJobId}`} onClick={onIconClick}>
+    <button type="button" className={buttonClasses} aria-label={ariaLabel} aria-pressed={savedJobApiId ? 'true' : 'false'} id={`fav-${savedJobApiId}`} onClick={onIconClick}>
       <span className={iconClasses}>
         <Icon iconType="heart-30" iconClassName={null} />
       </span>
