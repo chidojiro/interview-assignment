@@ -27,9 +27,8 @@ class CookieAuthStorage extends AbstractAuthStorage<CookieSerializeOptions> {
     return undefined;
   }
 
-  public setIdToken(idToken: string) {
-    const expires = this.idTokenExpiresAt(idToken);
-    const idTokenOptions = getCookieOptions(this.options.shareIdTokenAcrossSubdomains, { expires });
+  public setIdToken(idToken: string, options?: CookieSerializeOptions) {
+    const idTokenOptions = getCookieOptions(this.options.shareIdTokenAcrossSubdomains, options);
     setCookie(this.options.idTokenName, idToken, idTokenOptions);
   }
 
