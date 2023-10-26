@@ -32,14 +32,6 @@ class AuthManager<OptionsType> {
     if (!this.idTokenPromise) {
       this.idTokenPromise = new Promise<string | undefined>((resolve) => {
         setTimeout(() => {
-          const refreshToken = this.authStorage.getRefreshToken();
-
-          if (!refreshToken) {
-            resolve(undefined);
-            this.idTokenPromise = null;
-            return;
-          }
-
           const idToken = this.authStorage.getIdToken();
 
           if (typeof idToken === 'string' && !this.authStorage.willIdTokenExpireIn(idToken, 60 /* sec */)) {
@@ -49,7 +41,7 @@ class AuthManager<OptionsType> {
             return;
           }
 
-          // Here we have RefreshToken, and IdToken is either missing, invalid or is about to expire.
+          // IdToken is either missing, invalid or is about to expire.
           // Trying to refresh IdToken.
           this.refreshIdToken()
             .then((response) => {
