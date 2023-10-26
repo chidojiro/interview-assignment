@@ -42,17 +42,17 @@ class CookieAuthStorage extends AbstractAuthStorage<CookieSerializeOptions> {
   }
 
   public setRefreshToken(refreshToken: string, expiresInSecs?: number) {
-    let refreshTokenOptions: CookieSerializeOptions | undefined;
+    const refreshTokenOptions: CookieSerializeOptions = {
+      encode: String,
+      // secure: true,
+      sameSite: 'strict',
+      // httpOnly: true,
+    };
 
     if (expiresInSecs !== undefined) {
-      refreshTokenOptions = {
-        encode: String,
-        // secure: true,
-        sameSite: 'strict',
-        // httpOnly: true,
-        expires: new Date(Date.now() + expiresInSecs * 1000),
-      };
+      refreshTokenOptions.expires = new Date(Date.now() + expiresInSecs * 1000);
     }
+
     setCookie(this.options.refreshTokenName, refreshToken, refreshTokenOptions);
   }
 
