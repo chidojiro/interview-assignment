@@ -27,9 +27,8 @@ class CookieAuthStorage extends AbstractAuthStorage<CookieSerializeOptions> {
     return undefined;
   }
 
-  public setIdToken(idToken: string) {
-    const expires = this.idTokenExpiresAt(idToken);
-    const idTokenOptions = getCookieOptions(this.options.shareIdTokenAcrossSubdomains, { expires });
+  public setIdToken(idToken: string, options?: CookieSerializeOptions) {
+    const idTokenOptions = getCookieOptions(this.options.shareIdTokenAcrossSubdomains, options);
     setCookie(this.options.idTokenName, idToken, idTokenOptions);
   }
 
@@ -42,17 +41,17 @@ class CookieAuthStorage extends AbstractAuthStorage<CookieSerializeOptions> {
   }
 
   public setRefreshToken(refreshToken: string, expiresInSecs?: number) {
-    let refreshTokenOptions: CookieSerializeOptions | undefined;
+    const refreshTokenOptions: CookieSerializeOptions = {
+      encode: String,
+      // secure: true,
+      sameSite: 'strict',
+      // httpOnly: true,
+    };
 
     if (expiresInSecs !== undefined) {
-      refreshTokenOptions = {
-        encode: String,
-        // secure: true,
-        sameSite: 'strict',
-        // httpOnly: true,
-        expires: new Date(Date.now() + expiresInSecs * 1000),
-      };
+      refreshTokenOptions.expires = new Date(Date.now() + expiresInSecs * 1000);
     }
+
     setCookie(this.options.refreshTokenName, refreshToken, refreshTokenOptions);
   }
 
