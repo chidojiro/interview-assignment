@@ -241,7 +241,9 @@ const useAutosuggest = ({
 
     return {
       onMouseEnter: () => setSelectedIndex(index),
-      onClick: () => handleSelectedItem(listItem),
+      onClick: (event: React.MouseEvent) => { 
+        event.stopPropagation();
+        handleSelectedItem(listItem)},
       className: `${classes.item.base} ${active ? classes.item.active : ''} ${customValue ? classes.item.action : ''}`,
       ...ref,
     };
