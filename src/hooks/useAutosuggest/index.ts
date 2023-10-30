@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 
 import handleScrollBar from '../../utils/handleScrollBar';
 import useDebounce from '../useDebounce';
@@ -150,7 +150,8 @@ const useAutosuggest = ({
     setInputValue(value);
   };
 
-  const handleSelectedItem = (listItemValue: string) => {
+  const handleSelectedItem = (listItemValue: string, event: React.MouseEvent) => {
+    event.stopPropagation();
     setOpen(false);
     const value = getValue(inputValue, listItemValue, itemsStripWordList, allowNumericValue);
 
@@ -241,9 +242,7 @@ const useAutosuggest = ({
 
     return {
       onMouseEnter: () => setSelectedIndex(index),
-      onClick: (event: React.MouseEvent) => { 
-        event.stopPropagation();
-        handleSelectedItem(listItem)},
+      onClick: (event: React.MouseEvent) => handleSelectedItem(listItem, event),
       className: `${classes.item.base} ${active ? classes.item.active : ''} ${customValue ? classes.item.action : ''}`,
       ...ref,
     };
