@@ -3,7 +3,7 @@ import { PersistData } from './types';
 
 function getUserData(): PersistData {
   const refreshToken = getCookie('RefreshToken');
-  const accessToken = getCookie('IdToken');
+  const idToken = getCookie('IdToken');
   const defaultData = {
     loginStatus: false,
     savedJobs: {
@@ -17,7 +17,7 @@ function getUserData(): PersistData {
   const data = JSON.parse(localStorage.getItem('userState') || '{}');
 
   let loginStatus = false;
-  if (!refreshToken || !accessToken) {
+  if (!refreshToken || !idToken) {
     if (data?.currentUser && data?.loginStatus) {
       const { currentUser, savedJobs } = data;
       loginStatus = data.loginStatus;
