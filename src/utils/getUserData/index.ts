@@ -3,7 +3,7 @@ import { PersistData } from './types';
 
 function getUserData(): PersistData {
   const refreshToken = getCookie('RefreshToken');
-  const accessToken = getCookie('AccessToken');
+  const accessToken = getCookie('IdToken');
   const defaultData = {
     loginStatus: false,
     savedJobs: {
