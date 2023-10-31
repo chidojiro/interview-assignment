@@ -14,22 +14,21 @@ function getUserData(): PersistData {
   if (typeof window === 'undefined') {
     return defaultData;
   }
+  // logged out because of a missing token.
+  if (!refreshToken || !idToken) {
+    localStorage.removeItem('userState');
+    return defaultData;
+  }
+
   const data = JSON.parse(localStorage.getItem('userState') || '{}');
 
   let loginStatus = false;
-  if (!refreshToken || !idToken) {
-    if (data?.currentUser && data?.loginStatus) {
-      const { currentUser, savedJobs } = data;
-      loginStatus = data.loginStatus;
-      return { currentUser, loginStatus, savedJobs };
-    }
-
-    return { loginStatus, savedJobs: data.savedJobs };
+  if (data?.currentUser && data?.loginStatus) {
+    const { currentUser, savedJobs } = data;
+    loginStatus = data.loginStatus;
+    return { currentUser, loginStatus, savedJobs };
   }
-  if (data || Object.keys(data).length === 0) {
-    localStorage.removeItem('userState');
-  }
-  return defaultData;
+  return { loginStatus, savedJobs: data.savedJobs };
 }
 
 export default getUserData;
