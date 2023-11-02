@@ -73,27 +73,19 @@ const useAutosuggest = ({
   // Reference variables.
   const wrapperRef = useRef(null);
   const activeListItemRef = useRef(null);
-
-  /**
-   * The default timeout is 150 which restricts the number of requests for a given time while the user is typing.
-   * This delay delays the setting of the state value which comes from the user input.
-   * If the requests fail for sending high amount of requests - increase the delay.
-   */
-  const debounceInputValue = useDebounce(inputValue, 150);
   const filterList = useMemo(() => items.filter((l) => l.toLowerCase().indexOf(inputValue.trim().toLowerCase()) > -1), [items, inputValue]);
-
   const filteredList = skipFilter ? items : filterList;
   // Update the state of the input value whenever it's changed.
   useEffect(() => setInputValue(initialValue), [initialValue]);
 
   useEffect(() => {
-    if (previousInputValue === debounceInputValue) return;
+    if (previousInputValue === inputValue) return;
 
     setSelectedIndex(0);
-    setPreviousInputValue(debounceInputValue);
+    setPreviousInputValue(inputValue);
     const onChange = changeCb || (() => null);
-    onChange(debounceInputValue);
-  }, [debounceInputValue, changeCb, previousInputValue]);
+    onChange(inputValue);
+  }, [inputValue, changeCb, previousInputValue]);
 
   useEffect(() => {
     if (!activeListItemRef?.current || !wrapperRef?.current || !lastPressKey) return;
