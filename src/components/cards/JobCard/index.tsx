@@ -89,7 +89,7 @@ function JobCard(props: JobCardProps) {
         </div>
         {/* Safe here. */}
         {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex */}
-        <div className="cards__info-wrapper" tabIndex={0} data-rs-card-show-backside aria-label={infoIconAriaLabel}>
+        <div className="cards__info-wrapper" tabIndex={0} data-rs-card-show-backside role="button" aria-label={infoIconAriaLabel}>
           <span className="cards__info-button text--alternative">
             <Icon iconType="info" iconClassName="icon icon--inline" />
           </span>

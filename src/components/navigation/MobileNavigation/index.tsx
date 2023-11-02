@@ -98,7 +98,7 @@ function MobileNavigation({
             data-rs-toggable=""
           >
             <div className="link-list__link">
-              <a id="mr-mobile-navigation-menu-title" href={`${myRandstadUrl}/`}>
+              <a id="mr-mobile-navigation-menu-title" href={`${myRandstadUrl}`}>
                 {myRandstadLabel}
               </a>
               <span className="icon toggle-arrow" data-rs-collapsible-button="" role="button">
