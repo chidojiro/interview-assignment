@@ -15,7 +15,7 @@ function getUserData(): PersistData {
     return defaultData;
   }
   // logged out because of a missing token.
-  if (!refreshToken || !idToken) {
+  if (!refreshToken && !idToken) {
     localStorage.removeItem('userState');
     return defaultData;
   }
