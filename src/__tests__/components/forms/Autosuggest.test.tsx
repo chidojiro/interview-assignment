@@ -7,7 +7,7 @@ const waitForDebounce = (timeout = 155) => new Promise((resolve) => {
   setTimeout(resolve, timeout);
 });
 
-const renderAutosuggest = async (props?: object, typeInValue = '') => {
+const renderAutosuggest = async (props?: object, typeInValue = '', debounce = true) => {
   const config = {
     id: 'customId',
     required: false,
@@ -17,15 +17,18 @@ const renderAutosuggest = async (props?: object, typeInValue = '') => {
     placeholder: 'Placeholder text',
     'data-custom': 'custom-attr',
     'data-testid': 'autosuggest',
+    debounce,
     ...props,
   };
 
-  const wrapper = render(<Autosuggest name="suggestion-input" {...config} />);
+  const wrapper = render(<Autosuggest name="suggestion-input" {...config}/>);
   if (typeInValue) {
     const input = await wrapper.findByTestId(config['data-testid']) as HTMLInputElement;
     await act(async () => {
       fireEvent.change(input, { target: { value: typeInValue } });
-      await waitForDebounce();
+      if (debounce) {
+        await waitForDebounce();
+      }
     });
   }
 
@@ -281,5 +284,37 @@ describe('Autosuggest component tests', () => {
     fireEvent.change(input, { target: { value: 'Some custom value' } });
     const customInputIcon = container.querySelector('.select-menu__item--action svg') as HTMLElement;
     expect(customInputIcon).toBeInTheDocument();
+  });
+
+  test('Autosuggest callbacks have been triggered without debounce.', async () => {
+    const onInputChange = jest.fn();
+    const onSelectItem = jest.fn();
+    const onDropdownClose = jest.fn();
+
+    const { findByTestId, findByText } = await renderAutosuggest({
+      items: ['A1', 'A2', 'A3'],
+      config: { skipFilter: true },
+      onSelectItem,
+      onInputChange,
+      onDropdownClose,
+    }, '', false); // Pass 'false' to disable debounce
+
+    const input = await findByTestId('autosuggest') as HTMLInputElement;
+
+    await act(async () => {
+      fireEvent.change(input, { target: { value: 'foo' } });
+    });
+    expect(onInputChange).toHaveBeenCalledWith('foo');
+
+    expect(await findByText('A1')).toBeTruthy();
+    expect(await findByText('A2')).toBeTruthy();
+    expect(await findByText('A3')).toBeTruthy();
+
+    await act(async () => {
+      fireEvent.click(await findByText('A2'));
+    });
+    expect(onSelectItem).toHaveBeenCalledWith('A2');
+    expect(onDropdownClose).toHaveBeenCalled();
+    expect(input.value).toBe('A2');
   });
 });

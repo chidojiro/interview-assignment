@@ -28,10 +28,11 @@ function Autosuggest({
   config,
   disabled,
   _formGroupProps,
+  debounce = true,
   ...fieldProps
 }: AutosuggestPropTypes) {
   const [values, props] = useAutosuggest({
-    items, onInputChange, onSelectItem, config, initialValue, onDropdownClose,
+    items, onInputChange, onSelectItem, config, initialValue, onDropdownClose, debounce
   });
 
   const {

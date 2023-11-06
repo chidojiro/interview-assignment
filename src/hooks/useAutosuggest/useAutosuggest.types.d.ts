@@ -18,4 +18,7 @@ export type UseAutosuggestParamTypes = {
     /** Applies logic for multiselect configuration of the component */
     isMultiSelect?: boolean;
   };
+
+  /** Triggered debounce if needed. */
+  debounce?: boolean;
 };
