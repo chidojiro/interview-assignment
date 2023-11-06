@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
 
 module.exports = {
   entry: './src/index.ts',
@@ -35,5 +36,13 @@ module.exports = {
       'process.env.NEXT_PUBLIC_RESOURCE_PREFIX': JSON.stringify(process.env.NEXT_PUBLIC_RESOURCE_PREFIX),
       // ...
     }),
+    new NodePolyfillPlugin({
+      includeAliases: ['process', 'crypto', 'stream', 'https', 'http', 'path', 'querystring', 'zlib'],
+    }),
   ],
+  resolve: {
+    fallback: {
+      fs: false,
+    },
+  },
 };
