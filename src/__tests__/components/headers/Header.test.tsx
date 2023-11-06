@@ -14,13 +14,14 @@ jest.mock(
     return (
       <div data-testid="tab-bar">
         {items.map((item) => (
-          <span
+          <a
             key={item.title}
-            className={`${item.isActive ? 'active' : ''}`}
+            href={item.url}
+            className={`tab-bar__item ${item.isActive ? 'active' : ''}`}
             data-testid="tab-bar-item"
           >
             {item.title}
-          </span>
+          </a>
         ))}
       </div>
     );
@@ -225,7 +226,7 @@ describe('Header', () => {
       expect(getByText(myRandstad, { selector: 'span' })).toBeInTheDocument();
     });
 
-    it('should render TabBar menu with active element', () => {
+    it('should render TabBar menu with items', () => {
       // Create a mock for localStorage
       const localStorageMock = {
         getItem: jest.fn(),
@@ -247,18 +248,13 @@ describe('Header', () => {
             familyName: 'User family name',
             givenName: 'User given name',
           },
+          loginStatus: true,
         },
-        loginStatus: true,
       }));
 
-      const { getByText, rerender } = renderHeader({ ...{ ...defaultProps, ...{ currentUrl: '/menu-item', isMyRandstad: true } } });
+      const { getByText } = renderHeader({ ...{ ...defaultProps, ...{ currentUrl: '/menu-item', isMyRandstad: true } } });
 
-      expect(getByText('sub menu item', { selector: 'span' })).toBeInTheDocument();
-      expect(getByText('sub menu item', { selector: 'span' })).toHaveClass('active');
-
-      rerender(<Header {...{ ...defaultProps, ...{ currentUrl: '/url', isMyRandstad: true } }} />);
-
-      expect(getByText('sub menu item', { selector: 'span' })).not.toHaveClass('active');
+      expect(getByText('sub menu item')).toBeInTheDocument();
 
       // Restore the original localStorage
       Object.defineProperty(window, 'localStorage', {

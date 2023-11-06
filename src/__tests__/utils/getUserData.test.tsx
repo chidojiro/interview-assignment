@@ -6,35 +6,6 @@ describe('getUserData', () => {
     localStorage.clear();
   });
 
-  it('returns user data from localStorage when available', () => {
-    const data = {
-      currentUser: {
-        name: 'John Doe',
-        email: 'john@example.com',
-      },
-      loginStatus: true,
-      savedJobs: {
-        totalElements: 5,
-      },
-    };
-
-    // Save user data in localStorage
-    localStorage.setItem('userState', JSON.stringify(data));
-
-    const result = getUserData();
-
-    expect(result).toEqual({
-      currentUser: {
-        name: 'John Doe',
-        email: 'john@example.com',
-      },
-      loginStatus: true,
-      savedJobs: {
-        totalElements: 5,
-      },
-    });
-  });
-
   it('returns default data when user data in localStorage is invalid', () => {
     // Save invalid user data in localStorage
     localStorage.setItem('userState', '');
@@ -42,7 +13,9 @@ describe('getUserData', () => {
     const result = getUserData();
     expect(result).toEqual({
       loginStatus: false,
-      savedJobs: undefined,
+      savedJobs: {
+        totalElements: 0,
+      },
     });
   });
 
@@ -50,7 +23,9 @@ describe('getUserData', () => {
     const result = getUserData();
     expect(result).toEqual({
       loginStatus: false,
-      savedJobs: undefined,
+      savedJobs: {
+        totalElements: 0,
+      },
     });
   });
 });

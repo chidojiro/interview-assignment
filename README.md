@@ -22,56 +22,27 @@ Support documention for all available components. [Styleguide link](https://blue
 
 ## Getting started
 
-The follow guide is the recommended setup for `Bluex` apps.
+1. Add the codecommit repository as package.json dependency to the project's application.
+2. Run ``yarn install``
+3. Use ``yarn test`` to run all unit tests
+4. Use ``yarn docs:dev`` to run the styleguidist server and to have live preview of the components and how they change while you develop.
 
-1. Add `shared components library` asw repo in `package.json` file and install it.
+## Local development:
+- Run yarn install to install all dependencies
+- Run yarn test if you want to run all the unit tests
+- Run yarn docs:dev to run the local styleguidist development server and have a live preview of the components while you develop.
 
-2. Create new folder inside `components` and name it `ui`.
 
-3. Create new folder inside `ui` and name it `hoc`.
+## Bluex apps setup:
+- Add shared components library as repository (currently using Codecommit) in package.json file and install it.
 
-4. Inside `hoc` folder create `withUI.js` file and copy the example from `lib/src/hoc/withUI.example.js` (it can be added to webpack alias according the app). It will be used to prevent app crashing when component is missing. With this `hoc` can be set initail props.
+- For components that are dependent on Orbit library (toggle, accordion, etc.) - the following approach is used:
+  - There's an import from the local orbit library of the required library 
+import { Collapsible } from '@ffw/randstad-local-orbit/js/components/collapsible';
+  - Then, inside an useEffect, we initialise it
+new Collapsible(ref.current);
 
-5. Inside `hoc` folder create `withLib.js` file and copy the example from `lib/src/hoc/withLib.example.js` (it can be added to webpack alias according the app). It will help orbit js linking with `shared components library`.
-
-6. Create new component (it can be added to webpack alias according the app).
-
-7. Import the component from `@ffw/randstad-shared-components/build`
-
-8. Wrap it with `withUI` and export it default.
-
-9. Wrap componenet with `withLib` and pass all required orbit library as array of string/strings and export it default.  
-   `Skip this step when component does not have any orbit js library/libraries.`
-
-Example without default props
-
-```jsx
-import { InputField } from "@ffw/randstad-shared-components/build";
-import UI from "@UI/hoc/UI"; // here webpack alias is used.
-
-export default UI(InputField)();
-```
-
-Example with default props
-
-_An excellent way to setup initial configuration without the need to be passed on each call. Like datepicker date format or `SPH` theme_
-
-```jsx
-import { Navigation } from "@ffw/randstad-shared-components/build";
-import UI from "@UI/hoc/UI"; // here webpack alias is used.
-
-export default UI(Navigation)({ theme: "sph" });
-```
-
-Example with Orbit js library
-
-```jsx
-import { Sortbar } from "@ffw/randstad-shared-components/build";
-import UI from "@UI/hoc/UI"; // here webpack alias is used.
-import WithLib from "@UI/hoc/WithLib"; // here webpack alias is used.
-
-export default WithLib(["untouched"])(UI(Sortbar)());
-```
+- Import the component from @ffw/randstad-shared-components or from @UI if you use alias as it is used in the RXP MyRandstad app.
 
 ## Creating & updating components
 
@@ -101,10 +72,13 @@ export default WithLib(["untouched"])(UI(Sortbar)());
 3. Run **yarn docs:build** and after the build open the index.html file to see a production demo of the library.
 
 ## Build orbit-randstad css
-
 Go to main folder of the library and run `yarn build-css` inside it.
-## Contributors
 
+## Polyfills
+- Since Webpack 5 - some built-in polyfills which were part of Webpack 4 are gone. 
+- We have added **NodePolyfillPlugin** and inside webpack.config.js we have configured some of them under the includeAliases array. Also, inside webpack.config.js, there's a fallback for **fs**.
+
+## Contributors
 Please check the guide for [contributors](https://gitlab.workingpropeople.com/randstad-bluex/git-df-prd-bluex-lib-react-components/-/blob/dev/CONTRIBUTORS.md):
 
 - [Deployment](https://gitlab.workingpropeople.com/randstad-bluex/git-df-prd-bluex-lib-react-components/-/blob/dev/CONTRIBUTORS.md#deployment)
