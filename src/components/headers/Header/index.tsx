@@ -54,6 +54,7 @@ function Header({
 
     if (currentUser.loginStatus !== newUserData.loginStatus
       || newPersonalInfo?.familyName !== currentUserPersonalInfo?.familyName
+      || newPersonalInfo?.preferredName !== currentUserPersonalInfo?.preferredName
       || newPersonalInfo?.givenName !== currentUserPersonalInfo?.givenName) {
       setCurrentUser(newUserData);
     }
