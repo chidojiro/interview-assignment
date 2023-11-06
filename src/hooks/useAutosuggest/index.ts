@@ -57,6 +57,7 @@ const useAutosuggest = ({
   onDropdownClose,
   initialValue = '',
   config = {},
+  debounce = true,
 }: UseAutosuggestParamTypes) => {
   const { skipFilter, allowNumericValue, itemsStripWordList = [], isMultiSelect = false } = config;
   const onSelectItem = selectItemCb || (() => null);
@@ -79,7 +80,7 @@ const useAutosuggest = ({
    * This delay delays the setting of the state value which comes from the user input.
    * If the requests fail for sending high amount of requests - increase the delay.
    */
-  const debounceInputValue = useDebounce(inputValue, 150);
+  const debounceInputValue = debounce ? useDebounce(inputValue, 150) : inputValue
   const filterList = useMemo(() => items.filter((l) => l.toLowerCase().indexOf(inputValue.trim().toLowerCase()) > -1), [items, inputValue]);
 
   const filteredList = skipFilter ? items : filterList;
