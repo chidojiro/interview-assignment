@@ -13,6 +13,12 @@ interface SavedJobsProps {
   locale: string;
 }
 
+export type NoticeType = 'negative' | 'informative' | 'positive' | 'warning' | 'subtle';
+interface NoticeProps {
+  text: string | JSX.Element | (string | JSX.Element)[];
+  type: NoticeType;
+}
+
 export interface JobCardProps extends JobItemMetadataProps {
   title: string;
   description: string;
@@ -31,4 +37,6 @@ export interface JobCardProps extends JobItemMetadataProps {
   savedJobIconAriaLabel?: string;
   savedJobsEnabled?: SavedJobsProps;
   onMouseDownClick?: () => void;
+  disabled?: boolean;
+  notice?: NoticeProps | null;
 }
