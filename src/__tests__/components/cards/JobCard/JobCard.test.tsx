@@ -301,7 +301,7 @@ describe('JobCard tests', () => {
       },
     );
 
-    const noticeEl = document.querySelector('.cards__item').querySelector('.notice-in-page--negative');
+    const noticeEl = document.querySelector('.cards__item .notice-in-page--negative');
     expect(noticeEl).toBeInTheDocument();
     expect(handleMouseDownClick).not.toHaveBeenCalled();
   });
