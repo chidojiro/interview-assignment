@@ -1,4 +1,5 @@
 import { JobItemMetadataProps } from './JobItemMetadata/JobItemMetadata.types';
+import { NoticeProps } from '../../notifications/Notice/Notice.types';
 
 interface SavedJobsProps {
   gdsApiKey: string;
@@ -11,12 +12,6 @@ interface SavedJobsProps {
   ariaLabel?: string;
   returnJobPostingDetails?: (jobPostingWebDetailId: string, jobPostingTitle: string) => void;
   locale: string;
-}
-
-export type NoticeType = 'negative' | 'informative' | 'positive' | 'warning' | 'subtle';
-interface NoticeProps {
-  text: string | JSX.Element | (string | JSX.Element)[];
-  type: NoticeType;
 }
 
 export interface JobCardProps extends JobItemMetadataProps {

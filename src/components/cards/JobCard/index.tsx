@@ -86,8 +86,8 @@ function JobCard(props: JobCardProps) {
               <span className="make-entire-card-clickable" />
             </a>
           </h3>
-          { notice && notice.text && notice.type && (
-            <Notice type={notice.type}>{notice.text}</Notice>
+          { notice && notice.children && notice.type && (
+            <Notice type={notice.type}>{notice.children}</Notice>
           )}
         </div>
         {savedJobsEnabled && <SavedJobIcon searchApiKey={savedJobsEnabled.searchApiKey} searchApiUrl={savedJobsEnabled.searchApiUrl} gdsApiKey={savedJobsEnabled.gdsApiKey} gdsApiUrl={savedJobsEnabled.gdsApiUrl} shareIdTokenAcrossSubdomains={savedJobsEnabled.shareIdTokenAcrossSubdomains} jobPostingWebDetailId={savedJobsEnabled.jobPostingWebDetailId} savedJobId={savedJobsEnabled.savedJobId} ariaLabel={savedJobIconAriaLabel} returnJobPostingDetails={savedJobsEnabled.returnJobPostingDetails} locale={savedJobsEnabled.locale} title={title} />}
