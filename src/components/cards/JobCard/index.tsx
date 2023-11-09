@@ -59,7 +59,7 @@ function JobCard(props: JobCardProps) {
   return (
     <li
       className={cn('cards__item ', {
-        'bg-variant-white': hasBackground,
+        'bg-variant-white': !hasBackground,
         'cards__item--disabled': disabled,
       })}
       data-rs-card
