@@ -293,7 +293,7 @@ describe('JobCard tests', () => {
         activeView="grid"
         notice={{
           type: 'negative',
-          text: 'This job is not valid.',
+          children: 'This job is not valid.',
         }}
       />,
       {
