@@ -1,4 +1,5 @@
 import { JobItemMetadataProps } from './JobItemMetadata/JobItemMetadata.types';
+import { NoticeProps } from '../../notifications/Notice/Notice.types';
 
 interface SavedJobsProps {
   gdsApiKey: string;
@@ -31,4 +32,6 @@ export interface JobCardProps extends JobItemMetadataProps {
   savedJobIconAriaLabel?: string;
   savedJobsEnabled?: SavedJobsProps;
   onMouseDownClick?: () => void;
+  disabled?: boolean;
+  notice?: NoticeProps | null;
 }

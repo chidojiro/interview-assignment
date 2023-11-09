@@ -230,4 +230,79 @@ describe('JobCard tests', () => {
     expect(screen.getByLabelText(infoIconAriaLabel)).toBeInTheDocument();
     expect(handleMouseDownClick).not.toHaveBeenCalled();
   });
+
+  it('Checks the job card disabled state.', async () => {
+    render(
+      <JobCard
+        title="Test title"
+        description="Test Description"
+        id="1"
+        url="www.google.com"
+        date={Date.now().toString()}
+        enableLogo
+        infoIconAriaLabel={infoIconAriaLabel}
+        closeIconAriaLabel={closeIconAreaLabel}
+        logoAltTagValue="test alt"
+        logoSrcTagValue="https://www.randstad-easydrive.de/m/19e8e57574a321fa/original/Logo-Jobborse-GULP.jpeg"
+        onMouseDownClick={handleMouseDownClick}
+        hasBackground={false}
+        viewJobText="View job"
+        closeText=""
+        location="göteborg kommun, västra götaland"
+        salary="sek1,000,000 - sek2,000,000 0"
+        jobType="rekrytering"
+        enableLocation
+        enableSalary
+        enableJobType
+        activeView="grid"
+        disabled
+      />,
+      {
+        wrapper: UlWrapper,
+      },
+    );
+
+    const disabledEl = document.querySelector('.cards__item');
+    expect(disabledEl).toHaveClass('cards__item--disabled');
+    expect(handleMouseDownClick).not.toHaveBeenCalled();
+  });
+
+  it('Checks the job card to have Notice.', async () => {
+    render(
+      <JobCard
+        title="Test title"
+        description="Test Description"
+        id="1"
+        url="www.google.com"
+        date={Date.now().toString()}
+        enableLogo
+        infoIconAriaLabel={infoIconAriaLabel}
+        closeIconAriaLabel={closeIconAreaLabel}
+        logoAltTagValue="test alt"
+        logoSrcTagValue="https://www.randstad-easydrive.de/m/19e8e57574a321fa/original/Logo-Jobborse-GULP.jpeg"
+        onMouseDownClick={handleMouseDownClick}
+        hasBackground={false}
+        viewJobText="View job"
+        closeText=""
+        location="göteborg kommun, västra götaland"
+        salary="sek1,000,000 - sek2,000,000 0"
+        jobType="rekrytering"
+        enableLocation
+        enableSalary
+        enableJobType
+        activeView="grid"
+        notice={{
+          type: 'negative',
+          children: 'This job is not valid.',
+        }}
+      />,
+      {
+        wrapper: UlWrapper,
+      },
+    );
+
+    const noticeEl = document.querySelector('.cards__item .notice-in-page--negative');
+    expect(noticeEl).toBeInTheDocument();
+    expect(handleMouseDownClick).not.toHaveBeenCalled();
+  });
 });

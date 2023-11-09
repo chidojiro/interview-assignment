@@ -2,10 +2,12 @@ import React, {
   useEffect, useRef, useState, SyntheticEvent,
 } from 'react';
 import { Card } from '@ffw/randstad-local-orbit/js/components/card';
+import cn from 'classnames';
 import { JobCardProps } from './JobCard.types';
 import Icon from '../../common/Icon';
 import JobItemMetadata from './JobItemMetadata';
 import SavedJobIcon from './SavedJobIcon';
+import Notice from '../../notifications/Notice';
 
 function JobCard(props: JobCardProps) {
   const {
@@ -26,6 +28,8 @@ function JobCard(props: JobCardProps) {
     viewJobText,
     savedJobsEnabled,
     savedJobIconAriaLabel = 'saved job icon',
+    disabled = false,
+    notice = null,
   } = props;
   const [realLogoImg, setRealLogoImg] = useState(true);
 
@@ -53,7 +57,15 @@ function JobCard(props: JobCardProps) {
   }, [activeView]);
 
   return (
-    <li className={`cards__item ${hasBackground ? '' : 'bg-variant-white'}`} data-rs-card data-rs-carousel-card ref={cardRef}>
+    <li
+      className={cn('cards__item ', {
+        'bg-variant-white': hasBackground,
+        'cards__item--disabled': disabled,
+      })}
+      data-rs-card
+      data-rs-carousel-card
+      ref={cardRef}
+    >
       <div className="cards__header">
         <div className="cards__logo-title-container">
           {enableLogo && logoSrcTagValue?.length && (
@@ -74,6 +86,9 @@ function JobCard(props: JobCardProps) {
               <span className="make-entire-card-clickable" />
             </a>
           </h3>
+          { notice && notice.children && notice.type && (
+            <Notice type={notice.type}>{notice.children}</Notice>
+          )}
         </div>
         {savedJobsEnabled && <SavedJobIcon searchApiKey={savedJobsEnabled.searchApiKey} searchApiUrl={savedJobsEnabled.searchApiUrl} gdsApiKey={savedJobsEnabled.gdsApiKey} gdsApiUrl={savedJobsEnabled.gdsApiUrl} shareIdTokenAcrossSubdomains={savedJobsEnabled.shareIdTokenAcrossSubdomains} jobPostingWebDetailId={savedJobsEnabled.jobPostingWebDetailId} savedJobId={savedJobsEnabled.savedJobId} ariaLabel={savedJobIconAriaLabel} returnJobPostingDetails={savedJobsEnabled.returnJobPostingDetails} locale={savedJobsEnabled.locale} title={title} />}
       </div>
