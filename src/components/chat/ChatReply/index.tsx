@@ -22,7 +22,7 @@ function ChatReply({
       )}
       {/* Chat replies come as string with HTML. */}
       {/* eslint-disable-next-line react/no-danger */}
-      <div className={cn(`chat__content chat__content--${type} speech-bubble speech-bubble--${type}`)} {...props} dangerouslySetInnerHTML={{ __html: sanitizer(children  || '') }} />
+      <div className={cn(`chat__content chat__content--${type} speech-bubble speech-bubble--${type}`)} {...props} dangerouslySetInnerHTML={{ __html: sanitizer(children || '') }} />
     </div>
   );
 }
