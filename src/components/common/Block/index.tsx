@@ -16,6 +16,8 @@ function Block({
   stacked = false,
   blockHeaderClasses = '',
   blockContentClasses = '',
+  showExpiration = false,
+  expirationNotice = false,
 }: BlockProps) {
   return (
     <div className={cn('block', {
@@ -28,8 +30,18 @@ function Block({
       >
         {title && (
           <div className={cn('block__header', blockHeaderClasses)}>
-            <h2 className="block__title">{title}</h2>
-          </div>
+          <h2 className={cn({
+            'basic-layout__side': showExpiration,
+          }, 'block__title')}
+          >
+            {title}
+          </h2>
+          {showExpiration && (
+            <div className="basic-layout__main">
+              {expirationNotice}
+            </div>
+          )}
+        </div>
         )}
         {beforeContent}
         <div className={cn('block__content', blockContentClasses, {

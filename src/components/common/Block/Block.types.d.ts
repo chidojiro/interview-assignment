@@ -12,4 +12,6 @@ export interface BlockProps {
   stacked?: boolean;
   blockHeaderClasses?: string;
   blockContentClasses?: string;
+  showExpiration?: boolean,
+  expirationNotice?: React.ReactNode,
 }
