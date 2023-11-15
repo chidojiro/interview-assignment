@@ -41,7 +41,7 @@ class SplunkLogger {
         severity: message.level
       }, (error, req, res) => {
         if(error) {
-          console.error({'res': res, 'error': error, 'req': req});
+          console.error('Error BE splunk logging ', {'res': res, 'error': error, 'req': req});
         }
       });
     }
@@ -56,6 +56,7 @@ class SplunkLogger {
       },
       events: [
         {
+          // The context is both the action and the caller, because we are always passing the name of the caller function as the context.
           action: message.context,
           caller: message.context,
           timestamp: message.timestamp,
@@ -71,7 +72,7 @@ class SplunkLogger {
     }
 
     this.api.post(`/${message.metadata.opco}/${message.version}/web`, request).catch((e) => {
-      console.error('Something went wrong...', e);
+      console.error('Error Splunk FE logging ', e);
     })
   }
 
