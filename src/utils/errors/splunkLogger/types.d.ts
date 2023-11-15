@@ -32,3 +32,22 @@ export type SplunkMessage = {
   span_id: string,
   level: LOGGING_LEVEL
 }
+
+export type SplunkFEEvent = {
+  action: string,
+  timestamp: string,
+  url: string,
+  app: string,
+  level: string,
+  message: string,
+  messageDetail: string,
+  traceId: string,
+  caller: string,
+}
+
+export type SplunkFEMessage = {
+  meta: {
+    userAgent?: string
+  },
+  events: Array<SplunkFEEvent>
+}
