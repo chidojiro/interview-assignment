@@ -8,24 +8,15 @@ function Submenu({ items, RouterComponent }: SubmenuProps) {
 
   return (
     <ul className="navigation__menu navigation__menu--sub hidden--until-l">
-      {items.map((menuItem) => (menuItem.isActive
-        ? (
-          <li
-            key={menuItem.title}
-            className="navigation__menu-item navigation__menu-item--active"
-          >
-            {menuItem.title}
-          </li>
-        )
-        : (
-          <li
-            key={menuItem.title}
-            className="navigation__menu-item"
-          >
-            {RouterComponent ? <RouterComponent href={menuItem.url}>{menuItem.title}</RouterComponent>
-              : <a href={menuItem.url}>{menuItem.title}</a>}
-          </li>
-        )))}
+      {items.map((menuItem) => (
+        <li
+          key={menuItem.title}
+          className={`navigation__menu-item ${menuItem.isActive ? 'navigation__menu-item--active' : ''}`}
+        >
+          {RouterComponent ? <RouterComponent href={menuItem.url}>{menuItem.title}</RouterComponent>
+            : <a href={menuItem.url}>{menuItem.title}</a>}
+        </li>
+      ))}
     </ul>
   );
 }
