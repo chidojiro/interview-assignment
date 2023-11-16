@@ -1,6 +1,6 @@
 import React from 'react';
 import { SubmenuProps } from './Submenu.types';
-import classNames from "classnames";
+import classNames from 'classnames';
 
 function Submenu({ items, RouterComponent }: SubmenuProps) {
   if (!items) {
