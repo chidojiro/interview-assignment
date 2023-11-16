@@ -171,7 +171,7 @@ describe('Header', () => {
     it('should render menu item as active', () => {
       const { getByText } = renderHeader({ ...defaultProps, ...{ currentUrl: '/sub-menu-url/' } });
 
-      expect(getByText('submenu item', { selector: '.navigation__menu-item' })).toHaveClass('navigation__menu-item--active');
+      expect(getByText('submenu item', { selector: '.navigation__menu-item a' }).closest("li")).toHaveClass('navigation__menu-item--active');
     });
 
     it('should render My randstad menu as second level menu', () => {
