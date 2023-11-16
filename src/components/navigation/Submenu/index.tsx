@@ -1,5 +1,6 @@
 import React from 'react';
 import { SubmenuProps } from './Submenu.types';
+import classNames from "classnames";
 
 function Submenu({ items, RouterComponent }: SubmenuProps) {
   if (!items) {
@@ -11,7 +12,9 @@ function Submenu({ items, RouterComponent }: SubmenuProps) {
       {items.map((menuItem) => (
         <li
           key={menuItem.title}
-          className={`navigation__menu-item ${menuItem.isActive ? 'navigation__menu-item--active' : ''}`}
+          className={classNames('navigation__menu-item', {
+            'navigation__menu-item--active': menuItem.isActive,
+          })}
         >
           {RouterComponent ? <RouterComponent href={menuItem.url}>{menuItem.title}</RouterComponent>
             : <a href={menuItem.url}>{menuItem.title}</a>}
