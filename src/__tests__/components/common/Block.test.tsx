@@ -1,6 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import Block from '../../../components/common/Block';
+import Notice from '../../../components/notifications/Notice';
 
 describe('Block left aligned exists', () => {
   test('should render block with left aligned text', () => {
@@ -41,5 +42,16 @@ describe('Block left aligned exists', () => {
 
     const blockWrapper = container.querySelector('.block__wrapper');
     expect(blockWrapper).toHaveClass('block__wrapper--stacked');
+  });
+
+  test('renders with Notice component', () => {
+    const { container } = render(
+      <Block blockHeaderClasses="block__content basic-layout" stacked title="This is left aligned title." expirationNotice={<Notice type="informative">Some date</Notice>}>
+        This is the block content.
+      </Block>,
+    );
+
+    const blockWrapper = container.querySelector('.notice-in-page');
+    expect(blockWrapper).toHaveClass('notice-in-page--informative');
   });
 });
