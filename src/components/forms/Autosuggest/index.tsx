@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 
 import useAutosuggest from '../../../hooks/useAutosuggest';
 import withField from '../../../hoc/withField';
@@ -32,7 +32,7 @@ function Autosuggest({
   ...fieldProps
 }: AutosuggestPropTypes) {
   const [values, props] = useAutosuggest({
-    items, onInputChange, onSelectItem, config, initialValue, onDropdownClose, debounce
+    items, onInputChange, onSelectItem, config, initialValue, onDropdownClose, debounce,
   });
 
   const {
