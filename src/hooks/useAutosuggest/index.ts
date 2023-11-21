@@ -1,4 +1,9 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, {
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 
 import handleScrollBar from '../../utils/handleScrollBar';
 import useDebounce from '../useDebounce';
@@ -59,7 +64,12 @@ const useAutosuggest = ({
   config = {},
   debounce = true,
 }: UseAutosuggestParamTypes) => {
-  const { skipFilter, allowNumericValue, itemsStripWordList = [], isMultiSelect = false } = config;
+  const {
+    skipFilter,
+    allowNumericValue,
+    itemsStripWordList = [],
+    isMultiSelect = false,
+  } = config;
   const onSelectItem = selectItemCb || (() => null);
   // States.
   const [open, setOpen] = useState(false);
@@ -80,7 +90,8 @@ const useAutosuggest = ({
    * This delay delays the setting of the state value which comes from the user input.
    * If the requests fail for sending high amount of requests - increase the delay.
    */
-  const debounceInputValue = debounce ? useDebounce(inputValue, 150) : inputValue
+  const debounceInputValue = useDebounce(inputValue, 150);
+  const fieldInputValue = debounce ? debounceInputValue : inputValue;
   const filterList = useMemo(() => items.filter((l) => l.toLowerCase().indexOf(inputValue.trim().toLowerCase()) > -1), [items, inputValue]);
 
   const filteredList = skipFilter ? items : filterList;
@@ -88,13 +99,13 @@ const useAutosuggest = ({
   useEffect(() => setInputValue(initialValue), [initialValue]);
 
   useEffect(() => {
-    if (previousInputValue === debounceInputValue) return;
+    if (previousInputValue === fieldInputValue) return;
 
     setSelectedIndex(0);
-    setPreviousInputValue(debounceInputValue);
+    setPreviousInputValue(fieldInputValue);
     const onChange = changeCb || (() => null);
-    onChange(debounceInputValue);
-  }, [debounceInputValue, changeCb, previousInputValue]);
+    onChange(fieldInputValue);
+  }, [fieldInputValue, changeCb, previousInputValue]);
 
   useEffect(() => {
     if (!activeListItemRef?.current || !wrapperRef?.current || !lastPressKey) return;
@@ -113,9 +124,9 @@ const useAutosuggest = ({
       const w = wrapperRef.current as HTMLLIElement;
 
       if (
-        w.className.includes('open') &&
-        !w.querySelector('ul')?.contains(target as HTMLElement) &&
-        !w.querySelector('input')?.contains(target as HTMLElement)
+        w.className.includes('open')
+        && !w.querySelector('ul')?.contains(target as HTMLElement)
+        && !w.querySelector('input')?.contains(target as HTMLElement)
       ) {
         setOpen(false);
       }
