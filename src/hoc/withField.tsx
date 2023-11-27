@@ -15,6 +15,7 @@ export interface WithFieldProps {
   label?: string;
   value?: string | number | string[];
   withFormGroup?: boolean;
+  autoComplete?: string;
   _formGroupProps?: object;
   onBlur?: (event: React.FocusEvent<HTMLInputElement | HTMLSelectElement>) => void;
   onChange?: (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
@@ -38,6 +39,7 @@ const withField = <T extends WithFieldProps = WithFieldProps>(ChildComponent: Re
       formGroupLabel,
       label,
       withFormGroup,
+      autoComplete,
       ...rest
     } = props;
 
@@ -51,6 +53,7 @@ const withField = <T extends WithFieldProps = WithFieldProps>(ChildComponent: Re
       currency,
       id: fieldId,
       label: labelValue,
+      autoComplete,
       ...rest,
     };
 
