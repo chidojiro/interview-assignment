@@ -17,5 +17,6 @@
   "Shared.Components.DatePicker.ClearText": "töm",
 
   "Shared.Components.ErrorBoundary.Title": "Något gick fel...",
-  "Shared.Components.ErrorBoundary.Description": "Det verkar ha uppstått ett problem med att ladda sidan. Uppdatera sidan och försök igen."
+  "Shared.Components.ErrorBoundary.Description": "Det verkar ha uppstått ett problem med att ladda sidan. Uppdatera sidan och försök igen.",
+  "Shared.Components.savedJobs.AriaLabel": "Sparade jobb"
 }

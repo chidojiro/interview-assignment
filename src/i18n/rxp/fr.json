@@ -17,5 +17,6 @@
   "Shared.Components.DatePicker.ClearText": "clear",
 
   "Shared.Components.ErrorBoundary.Title": "Quelque chose s'est mal passé...",
-  "Shared.Components.ErrorBoundary.Description": "Il semble y avoir une erreur lors du chargement de cette page. Veuillez actualiser et réessayer."
+  "Shared.Components.ErrorBoundary.Description": "Il semble y avoir une erreur lors du chargement de cette page. Veuillez actualiser et réessayer.",
+  "Shared.Components.savedJobs.AriaLabel": "Saved jobs"
 }

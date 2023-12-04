@@ -17,5 +17,6 @@
   "Shared.Components.DatePicker.ClearText": "clear",
 
   "Shared.Components.ErrorBoundary.Title": "Something went wrong...",
-  "Shared.Components.ErrorBoundary.Description": "There seems to be an error with loading this page. Please refresh and try again."
+  "Shared.Components.ErrorBoundary.Description": "There seems to be an error with loading this page. Please refresh and try again.",
+  "Shared.Components.savedJobs.AriaLabel": "Saved jobs"
 }
