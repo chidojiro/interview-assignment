@@ -1,6 +1,4 @@
-import React, {
-  ReactElement, useEffect, useRef, useState,
-} from 'react';
+import React, { useEffect, useState } from 'react';
 import cn from 'classnames';
 import saveJobEvent from '../../../../utils/gtmEvents';
 import Icon from '../../../common/Icon';
