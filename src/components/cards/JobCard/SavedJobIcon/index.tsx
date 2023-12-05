@@ -1,7 +1,5 @@
 import React, {
-  ReactElement,
-  useEffect,
-  useState,
+  ReactElement, useEffect, useRef, useState,
 } from 'react';
 import cn from 'classnames';
 import saveJobEvent from '../../../../utils/gtmEvents';
@@ -11,8 +9,7 @@ import { SavedJobIconProps } from './SavedJobIcon.types';
 import getUserData from '../../../../utils/getUserData';
 import { LocalStorageSavedJobs } from '../../../../utils';
 import getSavedJobsLocalStorage from '../../../../utils/savedJobs/savedJobsLocalStorage/getSavedJobsLocalStorage';
-import Modal from '../../../overlays/Modal';
-import Button from '../../../buttons/Button';
+import SavedJobLimitModal from '../SavedJobLimitModal';
 
 function SavedJobIcon({
   size = 'l',
@@ -27,11 +24,16 @@ function SavedJobIcon({
   title,
   returnJobPostingDetails,
   locale,
-  anonymousSavedLimitModalTitle = '',
-  anonymousSavedLimitModalText = '',
-  anonymousSavedLimitModalButtonText = '',
-  anonymousSavedJobsLimit = 10,
+  anonymousSavedLimit = {
+    modalTitle: '',
+    modalText: '',
+    modalButtonText: '',
+    jobsLimit: 10,
+  },
 }: SavedJobIconProps) {
+  const {
+    modalTitle, modalText, modalButtonText, jobsLimit,
+  } = anonymousSavedLimit;
   const [iconFilled, setIconFilled] = useState<boolean>(!!savedJobId);
   const [anonymousSavedLimitModalOpen, setAnonymousSavedLimitModalOpen] = useState<boolean>(false);
   // For logged users, we need to store the saved job id from the GDS API, so we can add/delete it later.
@@ -54,7 +56,7 @@ function SavedJobIcon({
 
     if (!loginStatus) {
       const savedJobs: LocalStorageSavedJobs | undefined = getSavedJobsLocalStorage();
-      if ((savedJobs?.totalElements || 0) >= anonymousSavedJobsLimit) {
+      if ((savedJobs?.totalElements || 0) >= jobsLimit) {
         setAnonymousSavedLimitModalOpen(true);
         return;
       }
@@ -93,36 +95,12 @@ function SavedJobIcon({
     }
   };
 
-  const showSavedJobsLimitModal = anonymousSavedLimitModalOpen && (anonymousSavedLimitModalTitle && anonymousSavedLimitModalText && anonymousSavedLimitModalButtonText);
-  const modalContent: {
-    title: string;
-    children: ReactElement;
-    footer: ReactElement;
-  } = {
-    title: anonymousSavedLimitModalTitle,
-    children:
-  <>
-    <p>{anonymousSavedLimitModalText}</p>
-    <div className="flex items-center justify-center">
-      <img src={`${process.env.NEXT_PUBLIC_RESOURCE_PREFIX}/src/assets/img/PlussSignsAndHeart_illustration_UseBackgroundWhite_RGB.svg`} alt="" />
-    </div>
-  </>,
-    footer:
-  <Button
-    type="button"
-    fullWidth
-  >
-    {anonymousSavedLimitModalButtonText}
-  </Button>,
-  };
+  const showSavedJobsLimitModal = anonymousSavedLimitModalOpen && (modalTitle && modalText && modalButtonText);
 
   return (
     <>
       {showSavedJobsLimitModal && (
-        <Modal
-          onClose={() => setAnonymousSavedLimitModalOpen(false)}
-          {...modalContent}
-        />
+        <SavedJobLimitModal modalTitle={modalTitle} modalText={modalText} modalButtonText={modalButtonText} setAnonymousSavedLimitModalOpen={setAnonymousSavedLimitModalOpen} />
       )}
       <button type="button" className={buttonClasses} aria-label={ariaLabel} aria-pressed={savedJobApiId ? 'true' : 'false'} id={`fav-${jobPostingWebDetailId}`} onClick={onIconClick}>
         <span className={iconClasses}>

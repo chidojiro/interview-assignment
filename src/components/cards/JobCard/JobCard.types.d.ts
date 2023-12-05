@@ -12,10 +12,12 @@ interface SavedJobsProps {
   ariaLabel?: string;
   returnJobPostingDetails?: (jobPostingWebDetailId: string, jobPostingTitle: string) => void;
   locale: string;
-  anonymousSavedLimitModalTitle?: string;
-  anonymousSavedLimitModalText?: string;
-  anonymousSavedLimitModalButtonText?: string;
-  anonymousSavedJobsLimit?: number;
+  anonymousSavedLimit?: {
+    modalTitle: string;
+    modalText: string;
+    modalButtonText: string;
+    jobsLimit: number,
+  };
 }
 
 export interface JobCardProps extends JobItemMetadataProps {

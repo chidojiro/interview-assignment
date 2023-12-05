@@ -90,7 +90,22 @@ function JobCard(props: JobCardProps) {
             <Notice type={notice.type}>{notice.children}</Notice>
           )}
         </div>
-        {savedJobsEnabled && <SavedJobIcon searchApiKey={savedJobsEnabled.searchApiKey} searchApiUrl={savedJobsEnabled.searchApiUrl} gdsApiKey={savedJobsEnabled.gdsApiKey} gdsApiUrl={savedJobsEnabled.gdsApiUrl} shareIdTokenAcrossSubdomains={savedJobsEnabled.shareIdTokenAcrossSubdomains} jobPostingWebDetailId={savedJobsEnabled.jobPostingWebDetailId} savedJobId={savedJobsEnabled.savedJobId} ariaLabel={savedJobIconAriaLabel} returnJobPostingDetails={savedJobsEnabled.returnJobPostingDetails} locale={savedJobsEnabled.locale} title={title} anonymousSavedLimitModalTitle={savedJobsEnabled.anonymousSavedLimitModalTitle} anonymousSavedLimitModalText={savedJobsEnabled.anonymousSavedLimitModalText} anonymousSavedLimitModalButtonText={savedJobsEnabled.anonymousSavedLimitModalButtonText} anonymousSavedJobsLimit={savedJobsEnabled.anonymousSavedJobsLimit} />}
+        {savedJobsEnabled && (
+          <SavedJobIcon
+            searchApiKey={savedJobsEnabled.searchApiKey}
+            searchApiUrl={savedJobsEnabled.searchApiUrl}
+            gdsApiKey={savedJobsEnabled.gdsApiKey}
+            gdsApiUrl={savedJobsEnabled.gdsApiUrl}
+            shareIdTokenAcrossSubdomains={savedJobsEnabled.shareIdTokenAcrossSubdomains}
+            jobPostingWebDetailId={savedJobsEnabled.jobPostingWebDetailId}
+            savedJobId={savedJobsEnabled.savedJobId}
+            ariaLabel={savedJobIconAriaLabel}
+            returnJobPostingDetails={savedJobsEnabled.returnJobPostingDetails}
+            locale={savedJobsEnabled.locale}
+            title={title}
+            anonymousSavedLimit={savedJobsEnabled.anonymousSavedLimit}
+          />
+        )}
       </div>
       <JobItemMetadata {...props} />
       {/* Safe here. */}
