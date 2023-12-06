@@ -131,6 +131,41 @@ describe('SavedJobIcon component tests', () => {
     expect((window as unknown as CustomWindow).dataLayer).toEqual([{ event_params: null }, { event: 'interaction', event_params: { action: 'add', event_name: 'job_save', item_name: 'Test Job' } }]);
   });
 
+  it('should show modal when anonymous reach saved jobs limit', async () => {
+    (getUserData as Mock).mockImplementation(() => ({ loginStatus: false }));
+    (getSavedJobsLocalStorage as Mock).mockImplementation(() => ({
+      content: [],
+      totalElements: 5,
+      pageNumber: 1,
+      pageSize: 10,
+    }));
+
+    const { container } = render(
+      <SavedJobIcon
+        {...commonProps}
+        anonymousSavedLimit={{
+          jobsLimit: 5,
+          modalTitle: 'Test title',
+          modalText: 'Test text',
+          modalButtonText: 'Test button text',
+        }}
+      />,
+    );
+
+    const button = container.querySelector('button');
+    await act(async () => {
+      fireEvent.click(button as HTMLButtonElement);
+    });
+
+    const modalContentWrapper = container.querySelector('.modal.modal--active');
+    expect(modalContentWrapper).toHaveAttribute('data-rs-modal', 'modal');
+    expect(modalContentWrapper).toContainElement(container.querySelector('.saved-jobs-limit-wrapper'));
+    expect(modalContentWrapper).toBeInTheDocument();
+
+    expect(getUserData).toHaveBeenCalled();
+    expect(getSavedJobsLocalStorage).toHaveBeenCalled();
+  });
+
   it('calls postSavedJobs when savedJobId is not provided and the button is clicked, for logged in users.', async () => {
     (getUserData as Mock).mockImplementation(() => ({ loginStatus: true }));
     const { container } = render(

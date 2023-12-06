@@ -1,13 +1,13 @@
-import React, {
-  useEffect,
-  useState,
-} from 'react';
+import React, { useEffect, useState } from 'react';
 import cn from 'classnames';
 import saveJobEvent from '../../../../utils/gtmEvents';
 import Icon from '../../../common/Icon';
 import { postSavedJobs, deleteSavedJobs, handleAnonymousSavedJobs } from '../../../../utils/savedJobs/savedJobsHandler';
 import { SavedJobIconProps } from './SavedJobIcon.types';
 import getUserData from '../../../../utils/getUserData';
+import { LocalStorageSavedJobs } from '../../../../utils';
+import getSavedJobsLocalStorage from '../../../../utils/savedJobs/savedJobsLocalStorage/getSavedJobsLocalStorage';
+import SavedJobLimitModal from '../SavedJobLimitModal';
 
 function SavedJobIcon({
   size = 'l',
@@ -22,8 +22,18 @@ function SavedJobIcon({
   title,
   returnJobPostingDetails,
   locale,
+  anonymousSavedLimit = {
+    modalTitle: '',
+    modalText: '',
+    modalButtonText: '',
+    jobsLimit: 10,
+  },
 }: SavedJobIconProps) {
+  const {
+    modalTitle, modalText, modalButtonText, jobsLimit,
+  } = anonymousSavedLimit;
   const [iconFilled, setIconFilled] = useState<boolean>(!!savedJobId);
+  const [anonymousSavedLimitModalOpen, setAnonymousSavedLimitModalOpen] = useState<boolean>(false);
   // For logged users, we need to store the saved job id from the GDS API, so we can add/delete it later.
   // This is not the Job ID, but the entity ID from the GDS for that particular job.
   const [savedJobApiId, setSavedJobApiId] = useState(savedJobId);
@@ -43,6 +53,12 @@ function SavedJobIcon({
     const { loginStatus } = getUserData();
 
     if (!loginStatus) {
+      const savedJobs: LocalStorageSavedJobs | undefined = getSavedJobsLocalStorage();
+      if ((savedJobs?.totalElements || 0) >= jobsLimit) {
+        setAnonymousSavedLimitModalOpen(true);
+        return;
+      }
+
       const filled = await handleAnonymousSavedJobs(searchApiUrl, searchApiKey, jobPostingWebDetailId, locale);
       if (filled && !iconFilled) {
         setIconFilled(true);
@@ -77,15 +93,22 @@ function SavedJobIcon({
     }
   };
 
+  const showSavedJobsLimitModal = anonymousSavedLimitModalOpen && (modalTitle && modalText && modalButtonText);
+
   return (
-    <button type="button" className={buttonClasses} aria-label={ariaLabel} aria-pressed={savedJobApiId ? 'true' : 'false'} id={`fav-${jobPostingWebDetailId}`} onClick={onIconClick}>
-      <span className={iconClasses}>
-        <Icon iconType="heart-30" iconClassName={null} />
-      </span>
-      <span className={iconClasses}>
-        <Icon iconType="heart-filled-30" iconClassName={null} />
-      </span>
-    </button>
+    <>
+      {showSavedJobsLimitModal && (
+        <SavedJobLimitModal modalTitle={modalTitle} modalText={modalText} modalButtonText={modalButtonText} setAnonymousSavedLimitModalOpen={setAnonymousSavedLimitModalOpen} />
+      )}
+      <button type="button" className={buttonClasses} aria-label={ariaLabel} aria-pressed={savedJobApiId ? 'true' : 'false'} id={`fav-${jobPostingWebDetailId}`} onClick={onIconClick}>
+        <span className={iconClasses}>
+          <Icon iconType="heart-30" iconClassName={null} />
+        </span>
+        <span className={iconClasses}>
+          <Icon iconType="heart-filled-30" iconClassName={null} />
+        </span>
+      </button>
+    </>
   );
 }
 

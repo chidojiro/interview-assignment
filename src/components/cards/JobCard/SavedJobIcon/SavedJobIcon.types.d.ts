@@ -11,4 +11,10 @@ export interface SavedJobIconProps {
   returnJobPostingDetails?: (jobPostingWebDetailId: string, jobPostingTitle: string) => void;
   locale: string;
   title: string;
+  anonymousSavedLimit?: {
+    modalTitle: string;
+    modalText: string;
+    modalButtonText: string;
+    jobsLimit: number,
+  };
 }
