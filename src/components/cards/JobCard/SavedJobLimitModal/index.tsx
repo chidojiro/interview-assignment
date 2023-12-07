@@ -5,13 +5,13 @@ import Button from '../../../buttons/Button';
 
 function SavedJobLimitModal(props: SavedJobLimitModalProps) {
   const {
-    modalTitle, modalText, modalButtonText, setAnonymousSavedLimitModalOpen,
+    modalTitle, modalText, modalButtonText, modalButtonLink, setAnonymousSavedLimitModalOpen,
   } = props;
 
   return (
     <Modal
       title={modalTitle}
-      footer={(<Button type="button" fullWidth>{modalButtonText}</Button>)}
+      footer={(<Button fullWidth href={modalButtonLink}>{modalButtonText}</Button>)}
       onClose={() => setAnonymousSavedLimitModalOpen(false)}
     >
       <div className="saved-jobs-limit-wrapper">

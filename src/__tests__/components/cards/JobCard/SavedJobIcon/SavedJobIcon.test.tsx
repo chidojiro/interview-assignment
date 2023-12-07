@@ -148,6 +148,7 @@ describe('SavedJobIcon component tests', () => {
           modalTitle: 'Test title',
           modalText: 'Test text',
           modalButtonText: 'Test button text',
+          modalButtonLink: 'https://google.com',
         }}
       />,
     );

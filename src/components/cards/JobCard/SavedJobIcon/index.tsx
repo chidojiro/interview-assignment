@@ -26,11 +26,12 @@ function SavedJobIcon({
     modalTitle: '',
     modalText: '',
     modalButtonText: '',
+    modalButtonLink: '',
     jobsLimit: 10,
   },
 }: SavedJobIconProps) {
   const {
-    modalTitle, modalText, modalButtonText, jobsLimit,
+    modalTitle, modalText, modalButtonText, modalButtonLink, jobsLimit,
   } = anonymousSavedLimit;
   const [iconFilled, setIconFilled] = useState<boolean>(!!savedJobId);
   const [anonymousSavedLimitModalOpen, setAnonymousSavedLimitModalOpen] = useState<boolean>(false);
@@ -93,12 +94,12 @@ function SavedJobIcon({
     }
   };
 
-  const showSavedJobsLimitModal = anonymousSavedLimitModalOpen && (modalTitle && modalText && modalButtonText);
+  const showSavedJobsLimitModal = anonymousSavedLimitModalOpen && (modalTitle && modalText && modalButtonText && modalButtonLink);
 
   return (
     <>
       {showSavedJobsLimitModal && (
-        <SavedJobLimitModal modalTitle={modalTitle} modalText={modalText} modalButtonText={modalButtonText} setAnonymousSavedLimitModalOpen={setAnonymousSavedLimitModalOpen} />
+        <SavedJobLimitModal modalTitle={modalTitle} modalText={modalText} modalButtonText={modalButtonText} modalButtonLink={modalButtonLink} setAnonymousSavedLimitModalOpen={setAnonymousSavedLimitModalOpen} />
       )}
       <button type="button" className={buttonClasses} aria-label={ariaLabel} aria-pressed={savedJobApiId ? 'true' : 'false'} id={`fav-${jobPostingWebDetailId}`} onClick={onIconClick}>
         <span className={iconClasses}>
