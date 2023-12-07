@@ -3,6 +3,7 @@ import React, {
 } from 'react';
 import { Card } from '@ffw/randstad-local-orbit/js/components/card';
 import cn from 'classnames';
+import Badge from '../../common/Badge';
 import { JobCardProps } from './JobCard.types';
 import Icon from '../../common/Icon';
 import JobItemMetadata from './JobItemMetadata';
@@ -30,6 +31,7 @@ function JobCard(props: JobCardProps) {
     savedJobIconAriaLabel = 'saved job icon',
     disabled = false,
     notice = null,
+    badgeText,
   } = props;
   const [realLogoImg, setRealLogoImg] = useState(true);
 
@@ -66,6 +68,14 @@ function JobCard(props: JobCardProps) {
       data-rs-carousel-card
       ref={cardRef}
     >
+      <div className="mb-s">
+        {badgeText ? (
+          <Badge color="primary" size="l">
+            {badgeText}
+          </Badge>
+        ) : null}
+      </div>
+
       <div className="cards__header">
         <div className="cards__logo-title-container">
           {enableLogo && logoSrcTagValue?.length && (
