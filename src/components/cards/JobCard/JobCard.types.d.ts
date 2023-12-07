@@ -16,6 +16,7 @@ interface SavedJobsProps {
     modalTitle: string;
     modalText: string;
     modalButtonText: string;
+    modalButtonLink: string;
     jobsLimit: number,
   };
 }
