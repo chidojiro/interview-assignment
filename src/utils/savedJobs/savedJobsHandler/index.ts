@@ -58,7 +58,7 @@ const saveCountOfSavedJobs = async (gdsApiKey: string, gdsApiUrl: string, shareI
     await localStorage.setItem('userState', JSON.stringify(userData));
   }
   const savedJobsEvent = new Event(savedJobsLocalStorageKey);
-  window.dispatchEvent(savedJobsEvent);
+  window.top?.dispatchEvent(savedJobsEvent);
 };
 
 const postSavedJobs = async (
