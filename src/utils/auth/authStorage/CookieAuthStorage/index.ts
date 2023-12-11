@@ -1,6 +1,6 @@
 import { deleteCookie, getCookie, setCookie } from 'cookies-next';
 import type { CookieSerializeOptions } from 'cookie';
-import AbstractAuthStorage from '../AbstractAuthStorage';
+import AuthStorage from '../AbstractAuthStorage';
 import getCookieOptions from '../../getCookieOptions';
 
 interface CookieAuthStorageOptions {
@@ -9,38 +9,29 @@ interface CookieAuthStorageOptions {
   shareIdTokenAcrossSubdomains: boolean;
 }
 
-class CookieAuthStorage extends AbstractAuthStorage<CookieSerializeOptions> {
-  private options: CookieAuthStorageOptions;
-
-  constructor(options: CookieAuthStorageOptions) {
-    super();
-    this.options = {
-      ...options,
-    };
-  }
-
-  public getIdToken() {
-    const value = getCookie(this.options.idTokenName);
+const createCookieAuthStorage: (options: CookieAuthStorageOptions) => AuthStorage<CookieSerializeOptions> = (options) => ({
+  getIdToken() {
+    const value = getCookie(options.idTokenName);
     if (typeof value === 'string') {
       return value;
     }
     return undefined;
-  }
+  },
 
-  public setIdToken(idToken: string, options?: CookieSerializeOptions) {
-    const idTokenOptions = getCookieOptions(this.options.shareIdTokenAcrossSubdomains, options);
-    setCookie(this.options.idTokenName, idToken, idTokenOptions);
-  }
+  setIdToken(idToken: string, additionalOptions?: CookieSerializeOptions) {
+    const idTokenOptions = getCookieOptions(options.shareIdTokenAcrossSubdomains, additionalOptions);
+    setCookie(options.idTokenName, idToken, idTokenOptions);
+  },
 
-  public getRefreshToken() {
-    const value = getCookie(this.options.refreshTokenName);
+  getRefreshToken() {
+    const value = getCookie(options.refreshTokenName);
     if (typeof value === 'string') {
       return value;
     }
     return undefined;
-  }
+  },
 
-  public setRefreshToken(refreshToken: string, expiresInSecs?: number) {
+  setRefreshToken(refreshToken: string, expiresInSecs?: number) {
     const refreshTokenOptions: CookieSerializeOptions = {
       encode: String,
       // secure: true,
@@ -52,14 +43,14 @@ class CookieAuthStorage extends AbstractAuthStorage<CookieSerializeOptions> {
       refreshTokenOptions.expires = new Date(Date.now() + expiresInSecs * 1000);
     }
 
-    setCookie(this.options.refreshTokenName, refreshToken, refreshTokenOptions);
-  }
+    setCookie(options.refreshTokenName, refreshToken, refreshTokenOptions);
+  },
 
-  public deleteTokens(): void {
-    const idTokenCookieOptions = getCookieOptions(this.options.shareIdTokenAcrossSubdomains);
-    deleteCookie(this.options.idTokenName, idTokenCookieOptions);
-    deleteCookie(this.options.refreshTokenName);
-  }
-}
+  deleteTokens(): void {
+    const idTokenCookieOptions = getCookieOptions(options.shareIdTokenAcrossSubdomains);
+    deleteCookie(options.idTokenName, idTokenCookieOptions);
+    deleteCookie(options.refreshTokenName);
+  },
+});
 
-export default CookieAuthStorage;
+export default createCookieAuthStorage;

@@ -1,19 +1,19 @@
 import { GdsConfigOptions } from '../AuthManager/types';
-import AuthManager from '../AuthManager';
-import CookieAuthStorage from '../authStorage/CookieAuthStorage';
+import createCookieAuthStorage from '../authStorage/CookieAuthStorage';
+import createAuthManager from '../AuthManager';
 
-const AuthManagers = new Map<string, AuthManager<unknown>>();
+const AuthManagers = new Map<string, ReturnType<typeof createAuthManager<unknown>>>();
 
 function getAuthManager(gdsConfigOptions: GdsConfigOptions, shareIdTokenAcrossSubdomains: boolean) {
   const hash = `${gdsConfigOptions.baseUrl}?${gdsConfigOptions.apiKey}`;
   let authManager = AuthManagers.get(hash);
   if (!authManager) {
-    const authStorage = new CookieAuthStorage({
+    const authStorage = createCookieAuthStorage({
       idTokenName: 'IdToken',
       refreshTokenName: 'RefreshToken',
       shareIdTokenAcrossSubdomains,
     });
-    authManager = new AuthManager(authStorage, gdsConfigOptions);
+    authManager = createAuthManager(authStorage, gdsConfigOptions);
     AuthManagers.set(hash, authManager);
   }
 
