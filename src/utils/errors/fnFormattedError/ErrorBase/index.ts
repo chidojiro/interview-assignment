@@ -10,15 +10,19 @@ function ErrorBase(exception: any, context: string): BaseError {
     type: ErrorType.UNKNOWN,
   };
 
+  // This means that this is an Api Error.
   if (exception.response && Object.hasOwn(exception.response.data, 'error')
     && typeof exception.response.data.error === 'object'
   ) {
+    // Get the status code from the error.
     baseError.statusCode = getStatusCodeFromError(exception);
   } else if (exception instanceof Error) {
+    // If we got here, this means that the error is of type generic Error, and we can format it accordingly.
     baseError.stack = exception.stack;
     baseError.message = exception.message;
     baseError.statusCode = getStatusCodeFromError(exception);
   } else {
+    // If the error is none of the above cases, we don't know what the error is, so we will set the message of the error the string version of the exception.
     baseError.message = String(exception);
   }
 

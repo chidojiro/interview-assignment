@@ -1,10 +1,16 @@
 // For the sake of better error handling.
 /* eslint-disable @typescript-eslint/no-explicit-any */
+/**
+ * @deprecated
+ */
 export type StatusCodeError = {
   statusCode?: number;
   status?: number;
 }
 
+/**
+ * @deprecated
+ */
 export default class FormattedErrorBase {
   protected statusCode?: number;
 

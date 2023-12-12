@@ -19,7 +19,7 @@ import isFormattedError from './errors/fnFormattedError/isFormattedError';
 import getStatusCodeFromError from './errors/fnFormattedError/getStatusCodeFromError';
 import ErrorBase from './errors/fnFormattedError/ErrorBase';
 import logError from './errors/fnFormattedError/logError';
-import {ErrorType} from "./errors/fnFormattedError/ErrorBase/types";
+import { ErrorType, BaseError } from './errors/fnFormattedError/ErrorBase/types';
 import createSplunkError from './errors/splunkLogger/createSplunkError';
 import splunkError from './errors/splunkLogger/splunkError';
 import type {
@@ -65,6 +65,7 @@ export type {
   AlreadyUploadedFile,
   LocalStorageSavedJob,
   LocalStorageSavedJobs,
+  BaseError,
   Job,
   DataLayerEventObjectType,
   ConversationReply,

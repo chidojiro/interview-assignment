@@ -1,14 +1,21 @@
-import { StatusCodeError } from '../../FormattedErrorBase';
+import { StatusCodeError } from '../ErrorBase/types';
 
+/**
+ * This function will retrieve the status code of a given error.
+ * The idea is to figure out from which field to get the status code for all the known possible error cases.
+ *
+ * @param exception
+ *   The exception that we need to take the error from.
+ */
 // For better error handling.
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function getStatusCodeFromError(exception: any): number {
-  let innerError = exception;
+  let error = exception as { response: unknown };
 
-  if (innerError.response) {
-    innerError = exception.response;
+  if (error.response) {
+    error = exception.response;
   }
-  const statusCodeError = innerError as StatusCodeError;
+  const statusCodeError = error as StatusCodeError;
 
   // If the error contains a field for the status code we will return it.
   if (statusCodeError.statusCode) {

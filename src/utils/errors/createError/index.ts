@@ -10,6 +10,8 @@ type FormattedErrorBaseDescendant = new (...args: any[]) => FormattedErrorBase;
  * @param Cls A class which extends FormattedErrorBase
  * @param args Arguments of Cls's constructor
  * @returns instance of Cls
+ *
+ * @deprecated
  */
 const createError = <C extends FormattedErrorBaseDescendant>(Cls: C, ...args: ConstructorParameters<C>) => {
   const instance = new Cls(...args);

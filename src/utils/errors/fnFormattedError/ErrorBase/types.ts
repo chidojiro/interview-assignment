@@ -4,6 +4,11 @@ export enum ErrorType {
   UNKNOWN,
 }
 
+export type StatusCodeError = {
+  statusCode?: number;
+  status?: number;
+};
+
 export type BaseError = {
   type: ErrorType;
   statusCode?: number;
