@@ -1,6 +1,6 @@
 import { deleteCookie, getCookie, setCookie } from 'cookies-next';
 import type { CookieSerializeOptions } from 'cookie';
-import AuthStorage from '../AbstractAuthStorage';
+import AuthStorage from '../types';
 import getCookieOptions from '../../getCookieOptions';
 
 interface CookieAuthStorageOptions {

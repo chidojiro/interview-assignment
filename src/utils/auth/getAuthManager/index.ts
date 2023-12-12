@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { GdsConfigOptions } from '../AuthManager/types';
 import createCookieAuthStorage from '../authStorage/CookieAuthStorage';
 import createAuthManager from '../AuthManager';
@@ -13,7 +14,16 @@ function getAuthManager(gdsConfigOptions: GdsConfigOptions, shareIdTokenAcrossSu
       refreshTokenName: 'RefreshToken',
       shareIdTokenAcrossSubdomains,
     });
-    authManager = createAuthManager(authStorage, gdsConfigOptions);
+    const axiosInstance = axios.create({
+      baseURL: gdsConfigOptions.baseUrl,
+      params: {
+        apikey: gdsConfigOptions.apiKey,
+      },
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    authManager = createAuthManager(authStorage, axiosInstance);
     AuthManagers.set(hash, authManager);
   }
 

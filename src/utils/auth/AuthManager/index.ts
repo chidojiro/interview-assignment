@@ -1,18 +1,25 @@
-import axios from 'axios';
-import AuthStorage from '../authStorage/AbstractAuthStorage';
+import { AxiosInstance } from 'axios';
+import AuthStorage from '../authStorage/types';
 import willIdTokenExpireIn from '../authStorage/willIdTokenExpireIn';
-import { refreshIdTokenResponse, GdsConfigOptions } from './types';
+import { refreshIdTokenResponse } from './types';
 
-const createAuthManager = <OptionsType>(authStorage: AuthStorage<OptionsType>, gdsConfigOptions: GdsConfigOptions) => {
-  const axiosInstance = axios.create({
-    baseURL: gdsConfigOptions.baseUrl,
-    params: {
-      apikey: gdsConfigOptions.apiKey,
-    },
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
+const createAuthManager = <OptionsType>(authStorage: AuthStorage<OptionsType>, axiosInstance: AxiosInstance) => {
+  const refreshIdToken = async () => {
+    const refreshToken = authStorage.getRefreshToken();
+    if (!refreshToken) {
+      return Promise.reject();
+    }
+
+    const response = await axiosInstance.post<refreshIdTokenResponse>('/tokens/refresh', undefined, {
+      params: {
+        refreshToken,
+      },
+    });
+
+    authStorage.setIdToken(response.data.idToken);
+
+    return response.data;
+  };
 
   let idTokenPromise: Promise<string | undefined> | null = null;
 
@@ -36,7 +43,7 @@ const createAuthManager = <OptionsType>(authStorage: AuthStorage<OptionsType>, g
 
             // IdToken is either missing, invalid or is about to expire.
             // Trying to refresh IdToken.
-            this.refreshIdToken()
+            refreshIdToken()
               .then((response) => {
                 resolve(response?.idToken);
                 idTokenPromise = null;
@@ -53,22 +60,7 @@ const createAuthManager = <OptionsType>(authStorage: AuthStorage<OptionsType>, g
       return idTokenPromise;
     },
 
-    async refreshIdToken() {
-      const refreshToken = authStorage.getRefreshToken();
-      if (!refreshToken) {
-        return Promise.reject();
-      }
-
-      const response = await axiosInstance.post<refreshIdTokenResponse>('/tokens/refresh', undefined, {
-        params: {
-          refreshToken,
-        },
-      });
-
-      authStorage.setIdToken(response.data.idToken);
-
-      return response.data;
-    },
+    refreshIdToken,
   };
 };
 
