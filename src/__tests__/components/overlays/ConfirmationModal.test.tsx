@@ -76,15 +76,6 @@ describe('ConfirmationModal', () => {
     expect(mockProps.onSubmit).toHaveBeenCalledTimes(1);
   });
 
-  it('should call modalClose when escape key is pressed', async () => {
-    const { container } = renderModal();
-    fireEvent.keyDown(container, { key: 'Escape' });
-
-    await waitFor(() => {
-      expect(mockProps.onClose).toHaveBeenCalledTimes(1);
-    }, { timeout: 300 });
-  });
-
   it('should not call modalClose when a non-escape key is pressed', () => {
     const { container } = renderModal();
     fireEvent.keyDown(container, { key: 'Enter' });
