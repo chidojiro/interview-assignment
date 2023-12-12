@@ -14,6 +14,12 @@ import { gtmScriptInitializer, gtmDataLayerPushHandler, gtmDataLayerEcommercePus
 import getKeyCodeOnKeyDownEvent from './getKeyCodeOnKeyDownEvent';
 import FormattedErrorBase from './errors/FormattedErrorBase';
 import SplunkLogger from './errors/splunkLogger';
+import shouldLog from './errors/fnFormattedError/shouldLog';
+import isFormattedError from './errors/fnFormattedError/isFormattedError';
+import getStatusCodeFromError from './errors/fnFormattedError/getStatusCodeFromError';
+import ErrorBase from './errors/fnFormattedError/ErrorBase';
+import logError from './errors/fnFormattedError/logError';
+import {ErrorType} from "./errors/fnFormattedError/ErrorBase/types";
 import createSplunkError from './errors/splunkLogger/createSplunkError';
 import splunkError from './errors/splunkLogger/splunkError';
 import type {
@@ -43,8 +49,14 @@ export {
   prepareContinueRequest,
   FormattedErrorBase,
   SplunkLogger,
+  ErrorType,
+  ErrorBase,
   createSplunkError,
   splunkError,
+  getStatusCodeFromError,
+  logError,
+  shouldLog,
+  isFormattedError,
 };
 
 export { default as createError } from './errors/createError';

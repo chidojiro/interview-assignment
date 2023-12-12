@@ -23,6 +23,8 @@ export default class FormattedErrorBase {
    *  A bit of a context where this error has happened or why.
    * @param settings
    *  Allow to the child classes pass additional configuration through the constructor.
+   *
+   *  @deprecated
    */
   constructor(exception: any, context: string, settings: object = {}) {
     this.context = context;
