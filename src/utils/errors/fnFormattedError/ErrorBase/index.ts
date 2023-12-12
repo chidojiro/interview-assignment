@@ -22,7 +22,7 @@ function ErrorBase(exception: any, context: string): BaseError {
     baseError.message = exception.message;
     baseError.statusCode = getStatusCodeFromError(exception);
   } else {
-    // If the error is none of the above cases, we don't know what the error is, so we will set the message of the error the string version of the exception.
+    // If the error is none of the above cases, we don't know what the error is, so we will set the message of the error to the string version of the exception.
     baseError.message = String(exception);
   }
 
