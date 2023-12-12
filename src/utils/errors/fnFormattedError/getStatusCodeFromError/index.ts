@@ -1,5 +1,7 @@
 import { StatusCodeError } from '../../FormattedErrorBase';
 
+// For better error handling.
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function getStatusCodeFromError(exception: any): number {
   let innerError = exception;
 
