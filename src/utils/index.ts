@@ -12,7 +12,8 @@ import saveSavedJobsToLocalStorage from './savedJobs/savedJobsLocalStorage/saveS
 import getSavedJobs from './savedJobs/getSavedJobs';
 import { gtmScriptInitializer, gtmDataLayerPushHandler, gtmDataLayerEcommercePushHandler } from './gtm';
 import getKeyCodeOnKeyDownEvent from './getKeyCodeOnKeyDownEvent';
-import SplunkLogger from './errors/splunkLogger';
+import sendSplunkErrorBe from "./errors/splunkLogger/sendSplunkErrorBe";
+import sendSplunkErrorFe from "./errors/splunkLogger/sendSplunkErrorFe";
 import shouldLog from './errors/fnFormattedError/shouldLog';
 import isFormattedError from './errors/fnFormattedError/isFormattedError';
 import getStatusCodeFromError from './errors/fnFormattedError/getStatusCodeFromError';
@@ -46,7 +47,8 @@ export {
   ContinueRequestType,
   getKeyCodeOnKeyDownEvent,
   prepareContinueRequest,
-  SplunkLogger,
+  sendSplunkErrorFe,
+  sendSplunkErrorBe,
   ErrorType,
   ErrorBase,
   createSplunkError,

@@ -10,6 +10,8 @@ export type StatusCodeError = {
 };
 
 export type BaseError = {
+  // The error context.
+  context: string;
   /**
    * The error type.
    *
@@ -27,8 +29,6 @@ export type BaseError = {
   message?: string;
   // The error stack.
   stack?: string;
-  // The error context.
-  context?: string;
   // Flag if the error is a formatted error, used for identifying.
   isFormattedError: boolean;
 };
