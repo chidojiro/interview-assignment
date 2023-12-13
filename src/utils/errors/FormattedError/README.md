@@ -39,6 +39,8 @@ try {} catch (error) {
 If you want to have the full control, and extend the functionality, you should use the `BaseError` function directly, to avoid unnecessary logging.
 Example in MyRandstad app:
 ```js
+import { ErrorBase, ErrorType,  shouldLog, logError } from '@ffw/ranstad-shared-components/src/utils';
+
 function FnFormattedError(exception: unknown, context: string, errorMap: object = {}): FormattedError {
   // The base error creation.
   const baseError = ErrorBase(exception, context);
@@ -50,7 +52,7 @@ function FnFormattedError(exception: unknown, context: string, errorMap: object 
   const finalError = { ...baseError, ...formattedError, context };
   
   // We are also calling directly the 'shouldLog' function, in order to figure out if the logging is on and then we want to log only for UNKNOWN errors.
-  const shouldLogError = shouldLog(process.env.NEXT_PUBLIC_DEBUG === 'true', process.env.BACKEND_DEBUG === 'true') && formattedErrorType === ErrorType.UNKNOWN
+  const shouldLogError = shouldLog(process.env.NEXT_PUBLIC_DEBUG === 'true', process.env.BACKEND_DEBUG === 'true') && formattedError.type === ErrorType.UNKNOWN
   if (shouldLogError) {
     // Calling directly logError from the lib.
     logError(finalError);
