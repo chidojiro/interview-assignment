@@ -12,14 +12,14 @@ import saveSavedJobsToLocalStorage from './savedJobs/savedJobsLocalStorage/saveS
 import getSavedJobs from './savedJobs/getSavedJobs';
 import { gtmScriptInitializer, gtmDataLayerPushHandler, gtmDataLayerEcommercePushHandler } from './gtm';
 import getKeyCodeOnKeyDownEvent from './getKeyCodeOnKeyDownEvent';
-import sendSplunkErrorBe from "./errors/splunkLogger/sendSplunkErrorBe";
-import sendSplunkErrorFe from "./errors/splunkLogger/sendSplunkErrorFe";
-import shouldLog from './errors/fnFormattedError/shouldLog';
-import isFormattedError from './errors/fnFormattedError/isFormattedError';
-import getStatusCodeFromError from './errors/fnFormattedError/getStatusCodeFromError';
-import ErrorBase from './errors/fnFormattedError/ErrorBase';
-import logError from './errors/fnFormattedError/logError';
-import { ErrorType, BaseError } from './errors/fnFormattedError/ErrorBase/types';
+import sendSplunkErrorBe from './errors/splunkLogger/sendSplunkErrorBe';
+import sendSplunkErrorFe from './errors/splunkLogger/sendSplunkErrorFe';
+import shouldLog from './errors/FormattedError/shouldLog';
+import isFormattedError from './errors/FormattedError/isFormattedError';
+import getStatusCodeFromError from './errors/FormattedError/getStatusCodeFromError';
+import ErrorBase from './errors/FormattedError/ErrorBase';
+import logError from './errors/FormattedError/logError';
+import { ErrorType, BaseError } from './errors/FormattedError/ErrorBase/types';
 import createSplunkError from './errors/splunkLogger/createSplunkError';
 import splunkError from './errors/splunkLogger/splunkError';
 import type {
