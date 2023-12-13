@@ -45,7 +45,6 @@ function DatePicker({
   }, [minDate, maxDate]);
 
   useEffect(() => {
-    console.log('useEFfect id, name');
     if (!ref.current) return;
     const target = (ref.current as HTMLInputElement | null)?.querySelector('input.input') as HTMLInputElement;
     if (target) {
