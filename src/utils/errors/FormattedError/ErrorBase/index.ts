@@ -11,7 +11,7 @@ function ErrorBase(exception: any, context: string): BaseError {
   };
 
   // This means that this is an Api Error.
-  if (exception.response && Object.hasOwn(exception.response.data, 'error')
+  if (exception && exception.response && exception.response.data && Object.hasOwn(exception.response.data, 'error')
     && typeof exception.response.data.error === 'object'
   ) {
     // Get the status code from the error.

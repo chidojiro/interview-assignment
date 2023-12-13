@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { createError } from '../../../utils';
 import { ErrorBoundaryProps, ErrorBoundaryState } from './ErrorBoundary.types';
+import createError from "../../../utils/errors/FormattedError/createError";
 
 class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   constructor(props: ErrorBoundaryProps) {
@@ -12,8 +12,11 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   }
 
   componentDidCatch(error: Error) {
-    const { FormattedError } = this.props;
-    const formattedError = createError(FormattedError, error, 'errorBoundary');
+    let { feDebug, beDebug } = this.props;
+    if(!feDebug) feDebug = false;
+    if(!beDebug) beDebug = false;
+
+    const formattedError = createError(error, 'errorBoundary', feDebug, beDebug);
     this.setState({ formattedError });
   }
 
