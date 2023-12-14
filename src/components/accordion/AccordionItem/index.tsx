@@ -3,6 +3,7 @@ import { Collapsible } from '@ffw/randstad-local-orbit/js/components/collapsible
 import { Toggable } from '@ffw/randstad-local-orbit/js/components/toggable';
 import Svg from '../../common/Svg';
 import { AccordionItemInterface } from './AccordionItem.types';
+import cn from 'classnames';
 
 /**
  * Expanding and collapsing sections of content. See [here](https://randstad.design/components/core/accordion/)
@@ -29,6 +30,9 @@ function AccordionItem({
     }
   }, []);
 
+
+  const contentClasses = cn('collapsible__content', { 'body-copy': bodyCopy });
+
   return (
     <li {...attr} id={id} className="link-list__item">
       <div
@@ -53,7 +57,7 @@ function AccordionItem({
         </HeadingTag>
       </div>
       <div
-        className={`collapsible__content ${bodyCopy ? 'body-copy' : ''}`}
+        className={contentClasses}
         data-rs-collapsible-content={`${expanded ? 'expanded' : ''}`}
         aria-hidden={!expanded}
       >
