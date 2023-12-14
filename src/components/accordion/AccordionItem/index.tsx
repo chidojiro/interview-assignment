@@ -16,6 +16,7 @@ function AccordionItem({
   HeadingTag = 'h3',
   ariaLabel = '',
   id,
+  bodyCopy = true,
   ...attr
 }: AccordionItemInterface) {
   const ref = useRef<HTMLDivElement | null>(null);
@@ -52,7 +53,7 @@ function AccordionItem({
         </HeadingTag>
       </div>
       <div
-        className="collapsible__content body-copy"
+        className={`collapsible__content ${bodyCopy ? 'body-copy' : ''}`}
         data-rs-collapsible-content={`${expanded ? 'expanded' : ''}`}
         aria-hidden={!expanded}
       >
