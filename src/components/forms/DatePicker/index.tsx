@@ -66,11 +66,11 @@ function DatePicker({
    * component. (the solution comes from there)
    */
   useEffect(() => {
-    window.addEventListener('onFlatDatePickerChange', () => {
+    window.addEventListener('onFlatDatePickerChange', (e) => {
       if (!ref.current) return;
 
       const target = (ref.current as HTMLInputElement | null)?.querySelector('input.input') as HTMLInputElement;
-      if (target) {
+      if (target === (e as CustomEvent).detail?.target) {
         target.name = name;
         if (onChange) {
           onChange({
