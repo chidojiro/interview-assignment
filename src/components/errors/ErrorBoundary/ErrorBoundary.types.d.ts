@@ -1,5 +1,4 @@
 import { ReactNode } from 'react';
-import FormattedErrorBase from "../../../utils/errors/FormattedErrorBase";
 
 export type ErrorBoundaryState = {
   formattedError: object;
@@ -13,7 +12,9 @@ export type ErrorBoundaryTranslations = {
 
 export type ErrorBoundaryProps = {
   // Constructor can contain different amount of arguments.
-  FormattedError: new (...args: any[]) => FormattedErrorBase;
   translations: ErrorBoundaryTranslations;
   children: ReactNode;
+
+  feDebug?: boolean;
+  beDebug?: boolean;
 }

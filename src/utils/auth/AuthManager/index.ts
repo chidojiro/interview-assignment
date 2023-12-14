@@ -1,81 +1,67 @@
-import axios, { AxiosInstance } from 'axios';
-import AbstractAuthStorage from '../authStorage/AbstractAuthStorage';
-import { refreshIdTokenResponse, GdsConfigOptions } from './types';
+import { AxiosInstance } from 'axios';
+import AuthStorage from '../authStorage/types';
+import willIdTokenExpireIn from '../authStorage/willIdTokenExpireIn';
+import { refreshIdTokenResponse } from './types';
 
-/**
- * A class responsible for refreshing IdToken
- */
-class AuthManager<OptionsType> {
-  public readonly authStorage: AbstractAuthStorage<OptionsType>;
-
-  private idTokenPromise: Promise<string | undefined> | null = null;
-
-  /**
-   * Axios instance used to make refresh token requests
-   */
-  private axiosInstance: AxiosInstance;
-
-  constructor(storage: AbstractAuthStorage<OptionsType>, gdsConfigOptions: GdsConfigOptions) {
-    this.authStorage = storage;
-    this.axiosInstance = axios.create({
-      baseURL: gdsConfigOptions.baseUrl,
-      params: {
-        apikey: gdsConfigOptions.apiKey,
-      },
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-  }
-
-  public async getValidatedIdToken() {
-    if (!this.idTokenPromise) {
-      this.idTokenPromise = new Promise<string | undefined>((resolve) => {
-        setTimeout(() => {
-          const idToken = this.authStorage.getIdToken();
-
-          if (typeof idToken === 'string' && !this.authStorage.willIdTokenExpireIn(idToken, 60 /* sec */)) {
-            // We have valid IdToken, which will not going to expire too soon.
-            resolve(idToken);
-            this.idTokenPromise = null;
-            return;
-          }
-
-          // IdToken is either missing, invalid or is about to expire.
-          // Trying to refresh IdToken.
-          this.refreshIdToken()
-            .then((response) => {
-              resolve(response?.idToken);
-              this.idTokenPromise = null;
-              return response?.idToken;
-            })
-            .catch(() => {
-              resolve(undefined);
-              this.idTokenPromise = null;
-            });
-        }, 0);
-      });
-    }
-
-    return this.idTokenPromise;
-  }
-
-  public async refreshIdToken() {
-    const refreshToken = this.authStorage.getRefreshToken();
+const createAuthManager = <OptionsType>(authStorage: AuthStorage<OptionsType>, axiosInstance: AxiosInstance) => {
+  const refreshIdToken = async () => {
+    const refreshToken = authStorage.getRefreshToken();
     if (!refreshToken) {
       return Promise.reject();
     }
 
-    const response = await this.axiosInstance.post<refreshIdTokenResponse>('/tokens/refresh', undefined, {
+    const response = await axiosInstance.post<refreshIdTokenResponse>('/tokens/refresh', undefined, {
       params: {
         refreshToken,
       },
     });
 
-    this.authStorage.setIdToken(response.data.idToken);
+    authStorage.setIdToken(response.data.idToken);
 
     return response.data;
-  }
-}
+  };
 
-export default AuthManager;
+  let idTokenPromise: Promise<string | undefined> | null = null;
+
+  return {
+    get authStorage() {
+      return authStorage;
+    },
+
+    async getValidatedIdToken() {
+      if (!idTokenPromise) {
+        idTokenPromise = new Promise<string | undefined>((resolve) => {
+          setTimeout(() => {
+            const idToken = authStorage.getIdToken();
+
+            if (typeof idToken === 'string' && !willIdTokenExpireIn(idToken, 60 /* sec */)) {
+              // We have valid IdToken, which will not going to expire too soon.
+              resolve(idToken);
+              idTokenPromise = null;
+              return;
+            }
+
+            // IdToken is either missing, invalid or is about to expire.
+            // Trying to refresh IdToken.
+            refreshIdToken()
+              .then((response) => {
+                resolve(response?.idToken);
+                idTokenPromise = null;
+                return response?.idToken;
+              })
+              .catch(() => {
+                resolve(undefined);
+                idTokenPromise = null;
+              });
+          }, 0);
+        });
+      }
+
+      return idTokenPromise;
+    },
+
+    refreshIdToken,
+  };
+};
+
+export default createAuthManager;

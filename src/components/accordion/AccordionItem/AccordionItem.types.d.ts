@@ -6,4 +6,5 @@ export interface AccordionItemInterface {
   HeadingTag?: keyof JSX.IntrinsicElements;
   ariaLabel?: string;
   id?: string;
+  bodyCopy?: boolean;
 }
