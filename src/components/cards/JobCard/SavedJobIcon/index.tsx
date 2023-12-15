@@ -55,7 +55,10 @@ function SavedJobIcon({
 
     if (!loginStatus) {
       const savedJobs: LocalStorageSavedJobs | undefined = getSavedJobsLocalStorage();
-      if ((savedJobs?.totalElements || 0) >= jobsLimit) {
+      const found = savedJobs?.content?.findIndex((r) => r.id === jobPostingWebDetailId);
+
+      // If the job is not saved and the limit reached, we show the modal.
+      if (found === -1 && (savedJobs?.totalElements || 0) >= jobsLimit) {
         setAnonymousSavedLimitModalOpen(true);
         return;
       }
