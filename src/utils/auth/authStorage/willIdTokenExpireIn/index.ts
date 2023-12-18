@@ -2,6 +2,7 @@ import jwtDecode, { InvalidTokenError } from 'jwt-decode';
 
 function idTokenExpiresAt(idToken: string): Date {
   try {
+    jwtDecode(idToken, { header: true });
     const decoded: { exp: number } = jwtDecode(idToken);
     return new Date(decoded.exp * 1000); // exp is in seconds
   } catch (ex) {
