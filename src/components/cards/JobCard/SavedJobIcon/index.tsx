@@ -104,7 +104,7 @@ function SavedJobIcon({
       {showSavedJobsLimitModal && (
         <SavedJobLimitModal modalTitle={modalTitle} modalText={modalText} modalButtonText={modalButtonText} modalButtonLink={modalButtonLink} setAnonymousSavedLimitModalOpen={setAnonymousSavedLimitModalOpen} />
       )}
-      <button type="button" className={buttonClasses} aria-label={ariaLabel} aria-pressed={savedJobApiId ? 'true' : 'false'} id={`fav-${jobPostingWebDetailId}`} onClick={onIconClick}>
+      <button type="button" className={buttonClasses} aria-label={ariaLabel} aria-pressed={(savedJobApiId || iconFilled) ? 'true' : 'false'} id={`fav-${jobPostingWebDetailId}`} onClick={onIconClick}>
         <span className={iconClasses}>
           <Icon iconType="heart-30" iconClassName={null} />
         </span>
