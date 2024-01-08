@@ -70,12 +70,18 @@ function LoginPopover({
   const removeActiveClass = () => {
     const popoverTrigger = document.querySelector('.navigation__service-my-randstad');
     if (popoverTrigger) {
-      popoverTrigger.classList.remove('active');
       // Since the login-popover stays open after click, we dispatch a click on the backdrop/overlay.
       const overlay = document.querySelector('[data-rs-popover-overlay]');
       if (overlay) {
         (overlay as HTMLElement).click();
       }
+
+      /**
+       * When the user is logged in, clicking on the overlay triggers "toggle"
+       * of the "active" class. 
+       * That's why the manual removal of the class is executed last.
+       */
+      popoverTrigger.classList.remove('active');
     }
   };
 
