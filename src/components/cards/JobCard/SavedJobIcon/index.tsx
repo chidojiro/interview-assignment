@@ -50,8 +50,25 @@ function SavedJobIcon({
     setSavedJobApiId(savedJobId);
   }, [savedJobId]);
 
+  useEffect(() => {
+    const onIconStateChangeExt = ((event: CustomEvent) => {
+      // Check if this icon is for the same job as the icon which triggered the event.
+      if (event.detail?.jobId === jobPostingWebDetailId) {
+        setIconFilled(event.detail.iconFilled);
+        setSavedJobApiId(event.detail.savedJobApiId);
+      }
+    }) as EventListener;
+
+    // Listen for an event, triggered when other heart icon in the same page (including in an iframe in the same page)
+    // has changed its state
+    window.top?.addEventListener('saved-job-toggle', onIconStateChangeExt);
+
+    return () => window.top?.removeEventListener('saved-job-toggle', onIconStateChangeExt);
+  }, [jobPostingWebDetailId]);
+
   const onIconClick = async () => {
     const { loginStatus } = getUserData();
+    const newState = { iconFilled, savedJobApiId };
 
     if (!loginStatus) {
       const savedJobs: LocalStorageSavedJobs | undefined = getSavedJobsLocalStorage();
@@ -65,36 +82,50 @@ function SavedJobIcon({
 
       const filled = await handleAnonymousSavedJobs(searchApiUrl, searchApiKey, jobPostingWebDetailId, locale);
       if (filled && !iconFilled) {
-        setIconFilled(true);
+        newState.iconFilled = true;
 
         saveJobEvent(title, true);
       } else if (!filled && iconFilled) {
         if (returnJobPostingDetails) {
           returnJobPostingDetails(jobPostingWebDetailId, title);
         }
-        setIconFilled(false);
+        newState.iconFilled = false;
+        newState.savedJobApiId = undefined;
 
         saveJobEvent(title, false);
       }
     } else if (savedJobApiId && savedJobApiId !== '') {
-      setIconFilled(false);
+      newState.iconFilled = false;
       const deleteSavedResponse = await deleteSavedJobs(gdsApiKey, gdsApiUrl, shareIdTokenAcrossSubdomains, savedJobApiId);
       if (returnJobPostingDetails && deleteSavedResponse) {
         returnJobPostingDetails(jobPostingWebDetailId, title);
       }
       if (deleteSavedResponse) {
-        setSavedJobApiId(null);
+        newState.savedJobApiId = null;
       }
 
       saveJobEvent(title, false);
     } else {
       const postSavedResponse = await postSavedJobs(gdsApiKey, gdsApiUrl, shareIdTokenAcrossSubdomains, jobPostingWebDetailId);
       if (postSavedResponse?.data) {
-        setSavedJobApiId(postSavedResponse?.data?.id);
+        newState.savedJobApiId = postSavedResponse?.data?.id;
       }
-      setIconFilled(true);
+      newState.iconFilled = true;
       saveJobEvent(title, true);
     }
+
+    setIconFilled(newState.iconFilled);
+    setSavedJobApiId(newState.savedJobApiId);
+
+    // Dispatch a custom event to notify all other heart icons for this job.
+    const event = new CustomEvent('saved-job-toggle', {
+      detail: {
+        jobId: jobPostingWebDetailId, ...newState,
+      },
+    });
+
+    // Dispatch to topmost window so that all other windows (iframes) to receive this event.
+    window.top?.dispatchEvent(event);
   };
 
   const showSavedJobsLimitModal = anonymousSavedLimitModalOpen && (modalTitle && modalText && modalButtonText && modalButtonLink);
