@@ -13,6 +13,7 @@ function Modal({
   footerDividerTop = false,
   modalOverflow = false,
   bgVariantBrand,
+  modalFullScreen = false,
   disableBrowserHistory = false,
 }: ModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
@@ -57,16 +58,17 @@ function Modal({
   return (
     <div
       ref={modalRef}
-      className="modal"
+      className={`modal ${modalFullScreen && 'p-none'}`}
       data-rs-modal="modal"
       {...additionalAttributes}
     >
       <div
-        className={`modal__dialog ${bgVariantBrand || 'bg-variant-brand-tertiary'}`}
+        className={`modal__dialog ${bgVariantBrand || 'bg-variant-brand-tertiary'} ${modalFullScreen && 'w-full h-full'}`}
         role="dialog"
         aria-modal="true"
         aria-labelledby="#"
         data-rs-modal-dialog=""
+        style={modalFullScreen ? { borderRadius: '0' } : {}}
       >
         <div className="modal__header" data-rs-modal-header="">
           <div className="modal__title">{title}</div>
@@ -80,7 +82,7 @@ function Modal({
             <Icon iconClassName={classNames('icon icon--l icon--inline hidden--until-l icon--alternative')} iconType="close-30" />
           </button>
         </div>
-        <div className={`modal__main ${modalOverflow ? 'modal__main--overflow' : ''} ${footer ? null : 'mb-m'}`} data-rs-modal-main="">
+        <div className={`modal__main ${modalOverflow ? 'modal__main--overflow' : ''} ${modalFullScreen && 'p-none'} ${footer ? null : 'mb-m'}`} data-rs-modal-main="">
           {children}
         </div>
         {footer ? (

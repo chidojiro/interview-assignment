@@ -11,4 +11,5 @@ export interface ModalProps {
   modalOverflow?: boolean;
   bgVariantBrand?: string | undefined;
   disableBrowserHistory?: boolean;
+  modalFullScreen?: boolean;
 }
