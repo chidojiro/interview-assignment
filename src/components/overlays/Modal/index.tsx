@@ -13,7 +13,7 @@ function Modal({
   footerDividerTop = false,
   modalOverflow = false,
   bgVariantBrand,
-  fullScreen = true,
+  fullScreen = false,
   disableBrowserHistory = false,
 }: ModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
