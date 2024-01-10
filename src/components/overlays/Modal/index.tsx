@@ -59,10 +59,11 @@ function Modal({
     'p-none': fullScreen,
   });
 
-  const modalDialogClasses = classNames('modal__dialog', {
-    [bgVariantBrand || 'bg-variant-brand-tertiary']: !bgVariantBrand,
-    'w-full h-full rounded-none': fullScreen,
-  });
+  const modalDialogClasses = classNames(
+    'modal__dialog',
+    bgVariantBrand || 'bg-variant-brand-tertiary',
+    { 'w-full h-full rounded-none': fullScreen }
+  );
 
   const modalMainClasses = classNames('modal__main', {
     'modal__main--overflow': modalOverflow,
