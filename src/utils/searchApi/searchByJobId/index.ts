@@ -4,11 +4,11 @@ import { RXPJob } from '../types';
 async function searchByJobId(url: string, apiKey: string, jobId: string, locale: string): Promise<RXPJob | null> {
   const searchApi = new SearchApi(apiKey, url);
   let job: RXPJob | null = null;
-
+  const opcoLabel = process.env.NEXT_PUBLIC_OPCO_LABEL?.toUpperCase;
   const query: GraphqlData = {
     query: `
-        query ($id: ID! $language: LanguageCode!) {
-            getJob(id: $id language: $language) {
+        query ($id: ID! $language: LanguageCode! $opcoCodes: opcoCodes!) {
+            getJob(id: $id language: $language opcoCodes: $opcoCodes) {
                 workLocationAddress {locality administrativeArea}
                 clientDetail { name }
                 payRates {
@@ -26,7 +26,7 @@ async function searchByJobId(url: string, apiKey: string, jobId: string, locale:
                 postingDetail { postingTime }
             }
         }`,
-    variables: { id: jobId, language: locale },
+    variables: { id: jobId, language: locale, opcoCodes: opcoLabel },
   };
 
   try {
