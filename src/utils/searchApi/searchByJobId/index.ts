@@ -1,10 +1,10 @@
 import SearchApi, { GraphqlData } from '../index';
 import { RXPJob } from '../types';
 
-async function searchByJobId(url: string, apiKey: string, jobId: string, locale: string): Promise<RXPJob | null> {
+async function searchByJobId(url: string, apiKey: string, jobId: string, locale: string, opcoCodes: string): Promise<RXPJob | null> {
   const searchApi = new SearchApi(apiKey, url);
   let job: RXPJob | null = null;
-  const opcoLabel = process.env.NEXT_PUBLIC_OPCO_LABEL?.toUpperCase;
+  const opcoLabel = opcoCodes.toUpperCase;
   const query: GraphqlData = {
     query: `
         query ($id: ID! $language: LanguageCode! $opcoCodes: opcoCodes!) {
