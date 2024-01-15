@@ -20,6 +20,7 @@ function SavedJobIcon({
   jobPostingWebDetailId,
   ariaLabel,
   title,
+  opcoCodes,
   returnJobPostingDetails,
   locale,
   anonymousSavedLimit = {
@@ -80,7 +81,7 @@ function SavedJobIcon({
         return;
       }
 
-      const filled = await handleAnonymousSavedJobs(searchApiUrl, searchApiKey, jobPostingWebDetailId, locale);
+      const filled = await handleAnonymousSavedJobs(searchApiUrl, searchApiKey, jobPostingWebDetailId, locale, opcoCodes);
       if (filled && !iconFilled) {
         newState.iconFilled = true;
 

@@ -8,6 +8,7 @@ export interface SavedJobIconProps {
   savedJobId?: string | null;
   jobPostingWebDetailId: string;
   ariaLabel?: string;
+  opcoCodes?: string;
   returnJobPostingDetails?: (jobPostingWebDetailId: string, jobPostingTitle: string) => void;
   locale: string;
   title: string;
