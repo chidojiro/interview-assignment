@@ -66,14 +66,29 @@ function Toast({
   const ref = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
-    if (!ref.current) return;
+    if (!ref.current) return undefined;
     if (!ref.current.dataset.rendered) {
       ref.current.dataset.rendered = 'rendered';
       const toastInstance = new OrbitComponent(ref.current);
       toastInstance.show();
     }
-  }, [id]);
 
+    // Handle the custom 'toast-close' event, dispatched by the orbit component
+    // when it decides to hide for whatever reason.
+    // Othewise the react <Toast> component will continue to "think" the toast is
+    // open (even if closed), and will never show up again.
+    const handleToastClosed = () => {
+      setCloseToast('closable--closed');
+      if (onClose) {
+        onClose();
+      }
+    };
+    const toastElementRef = ref.current;
+    toastElementRef.addEventListener('toast-close', handleToastClosed);
+    return () => {
+      toastElementRef.removeEventListener('toast-close', handleToastClosed);
+    };
+  }, [id, onClose]);
   return (
     <div className={`toast bg-variant-brand-secondary show toast--active ${closeToast}`} {...attributes} ref={ref}>
       <p className="toast__message">{title}</p>
