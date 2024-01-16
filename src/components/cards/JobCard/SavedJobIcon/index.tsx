@@ -8,6 +8,7 @@ import getUserData from '../../../../utils/getUserData';
 import { LocalStorageSavedJobs } from '../../../../utils';
 import getSavedJobsLocalStorage from '../../../../utils/savedJobs/savedJobsLocalStorage/getSavedJobsLocalStorage';
 import SavedJobLimitModal from '../SavedJobLimitModal';
+import Button from '../../../buttons/Button';
 
 function SavedJobIcon({
   size = 'l',
@@ -44,6 +45,7 @@ function SavedJobIcon({
   }, 'icon--inline');
   const buttonClasses = cn('icon__toggler', 'icon--l', {
     'icon__toggler--active': savedJobApiId || iconFilled,
+    'button--save-icon': displayAs === 'button'
   });
 
   useEffect(() => {
@@ -133,17 +135,18 @@ function SavedJobIcon({
 
   return (
     <>
-      {showSavedJobsLimitModal && (
-        <SavedJobLimitModal modalTitle={modalTitle} modalText={modalText} modalButtonText={modalButtonText} modalButtonLink={modalButtonLink} setAnonymousSavedLimitModalOpen={setAnonymousSavedLimitModalOpen} />
-      )}
-      <button type="button" className={buttonClasses} aria-label={ariaLabel} aria-pressed={(savedJobApiId || iconFilled) ? 'true' : 'false'} id={`fav-${jobPostingWebDetailId}`} onClick={onIconClick}>
-        <span className={iconClasses}>
-          <Icon iconType="heart-30" iconClassName={null} />
-        </span>
-        <span className={iconClasses}>
-          <Icon iconType="heart-filled-30" iconClassName={null} />
-        </span>
-      </button>
+        {showSavedJobsLimitModal && (
+          <SavedJobLimitModal modalTitle={modalTitle} modalText={modalText} modalButtonText={modalButtonText} modalButtonLink={modalButtonLink} setAnonymousSavedLimitModalOpen={setAnonymousSavedLimitModalOpen} />
+        )}
+        <button type="button" className={buttonClasses} aria-label={ariaLabel} aria-pressed={(savedJobApiId || iconFilled) ? 'true' : 'false'} id={`fav-${jobPostingWebDetailId}`} onClick={onIconClick}>
+          <span className={iconClasses}>
+            <Icon iconType="heart-30" iconClassName={null} />
+          </span>
+          <span className={iconClasses}>
+            <Icon iconType="heart-filled-30" iconClassName={null} />
+          </span>
+          {displayAs === 'button' ? <span className='button--save-icon--text'>save</span> : null}
+        </button>
     </>
   );
 }
