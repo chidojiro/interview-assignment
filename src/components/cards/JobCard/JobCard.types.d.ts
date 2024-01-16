@@ -10,6 +10,7 @@ interface SavedJobsProps {
   jobPostingWebDetailId: string;
   savedJobId?: string;
   ariaLabel?: string;
+  opcoCodes: string;
   returnJobPostingDetails?: (jobPostingWebDetailId: string, jobPostingTitle: string) => void;
   locale: string;
   anonymousSavedLimit?: {
@@ -41,4 +42,5 @@ export interface JobCardProps extends JobItemMetadataProps {
   onMouseDownClick?: () => void;
   disabled?: boolean;
   notice?: NoticeProps | null;
+  opcoCodes: string;
 }
