@@ -42,5 +42,5 @@ export interface JobCardProps extends JobItemMetadataProps {
   onMouseDownClick?: () => void;
   disabled?: boolean;
   notice?: NoticeProps | null;
-  opcoCodes: string;
+  opcoCodes?: string;
 }

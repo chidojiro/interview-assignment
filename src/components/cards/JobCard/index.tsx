@@ -30,6 +30,7 @@ function JobCard(props: JobCardProps) {
     savedJobIconAriaLabel = 'saved job icon',
     disabled = false,
     notice = null,
+    opcoCodes,
   } = props;
   const [realLogoImg, setRealLogoImg] = useState(true);
 
@@ -104,6 +105,7 @@ function JobCard(props: JobCardProps) {
             locale={savedJobsEnabled.locale}
             title={title}
             anonymousSavedLimit={savedJobsEnabled.anonymousSavedLimit}
+            opcoCodes={opcoCodes}
           />
         )}
       </div>
