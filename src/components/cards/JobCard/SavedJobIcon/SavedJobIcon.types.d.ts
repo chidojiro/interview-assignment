@@ -18,4 +18,5 @@ export interface SavedJobIconProps {
     modalButtonLink: string;
     jobsLimit: number,
   };
+  displayAs?: 'icon' | 'button';
 }

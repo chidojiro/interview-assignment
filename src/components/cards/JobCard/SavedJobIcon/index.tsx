@@ -29,6 +29,7 @@ function SavedJobIcon({
     modalButtonLink: '',
     jobsLimit: 10,
   },
+  displayAs = 'icon',
 }: SavedJobIconProps) {
   const {
     modalTitle, modalText, modalButtonText, modalButtonLink, jobsLimit,
