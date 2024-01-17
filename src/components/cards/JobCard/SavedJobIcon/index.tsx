@@ -8,7 +8,6 @@ import getUserData from '../../../../utils/getUserData';
 import { LocalStorageSavedJobs } from '../../../../utils';
 import getSavedJobsLocalStorage from '../../../../utils/savedJobs/savedJobsLocalStorage/getSavedJobsLocalStorage';
 import SavedJobLimitModal from '../SavedJobLimitModal';
-import Button from '../../../buttons/Button';
 
 function SavedJobIcon({
   size = 'l',
