@@ -19,4 +19,5 @@ export interface SavedJobIconProps {
     jobsLimit: number,
   };
   displayAs?: 'icon' | 'button';
+  savedButtonText?: string;
 }

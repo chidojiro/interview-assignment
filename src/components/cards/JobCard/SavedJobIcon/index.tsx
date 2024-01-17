@@ -30,6 +30,7 @@ function SavedJobIcon({
     jobsLimit: 10,
   },
   displayAs = 'icon',
+  savedButtonText = 'save'
 }: SavedJobIconProps) {
   const {
     modalTitle, modalText, modalButtonText, modalButtonLink, jobsLimit,
@@ -144,7 +145,7 @@ function SavedJobIcon({
           <span className={iconClasses}>
             <Icon iconType="heart-filled-30" iconClassName={null} />
           </span>
-          {displayAs === 'button' ? <span className='button--save-icon--text'>save</span> : null}
+          {displayAs === 'button' ? <span className='button--save-icon--text'>{savedButtonText}</span> : null}
         </button>
     </>
   );
