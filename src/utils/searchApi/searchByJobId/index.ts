@@ -8,7 +8,7 @@ async function searchByJobId(url: string, apiKey: string, jobId: string, locale:
   const query: GraphqlData = {
     query: `
         query ($id: ID! $language: LanguageCode! $opcoCodes: opcoCodes!) {
-            getJob(id: $id language: $language opcoCodes: $opcoCodes) {
+            getJob(id: $id language: $language opcoCodes: [$opcoCodes]) {
                 workLocationAddress {locality administrativeArea}
                 clientDetail { name }
                 payRates {
