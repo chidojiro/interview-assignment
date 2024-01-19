@@ -1,15 +1,16 @@
 import React from 'react';
+import cn from 'classnames';
 import Icon from '../../common/Icon';
 import { SectionTypes } from './Section.types';
 
 function Section({
-  children, title, titleLink, description, handleEdit, handleAddItem, handleDelete, label, divider = false, id, actionHeaderStyles,
+  children, title, titleLink, description, handleEdit, handleAddItem, handleDelete, label, divider = false, id, actionHeaderStyles, profileBuilder = false,
 }: SectionTypes) {
   return (
     <div className={`my-environment-container ${divider ? 'pb-m l:pb-l divider' : ''}`} id={id}>
       <div className={`my-environment-action-header ${actionHeaderStyles !== undefined ? actionHeaderStyles : 'mb-s l:mb-m'}`}>
         <div className="my-environment-header">
-          <h2 className="title--s mr-xxs">{titleLink ? <a href={titleLink}>{title}</a> : title}</h2>
+          <h2 className={cn('mr-xxs', { 'title--s': !profileBuilder, 'title--s l:text-title-l text-brand-secondary': profileBuilder })}>{titleLink ? <a href={titleLink}>{title}</a> : title}</h2>
           {(typeof handleEdit === 'function' || typeof handleDelete === 'function') && (
             <div className="my-environment__controls mt-xxs" id={`edit-${(title as string).replace(' ', '-')}`}>
               {handleEdit && (
@@ -29,7 +30,9 @@ function Section({
         </div>
         {description && (
           <div className="my-enviroment-description mt-s">
-            <p className="my-environment--empty-state text--alternative mb-none">{description}</p>
+            <p className={cn('my-environment--empty-state text--alternative mb-none', { 'text-brand-secondary': profileBuilder })}>
+              {description}
+            </p>
           </div>
         )}
         {typeof handleAddItem === 'function' && (
