@@ -141,10 +141,10 @@ function SavedJobIcon({
         )}
         <button type="button" className={buttonClasses} aria-label={ariaLabel} aria-pressed={(savedJobApiId || iconFilled) ? 'true' : 'false'} id={`fav-${jobPostingWebDetailId}`} onClick={onIconClick}>
           <span className={iconClasses}>
-            <Icon iconType="heart-30" iconClassName={null} />
+            <Icon iconType={displayAs === 'button' ? 'heart' : 'heart-30'}  iconClassName={null} />
           </span>
           <span className={iconClasses}>
-            <Icon iconType="heart-filled-30" iconClassName={null} />
+            <Icon iconType={displayAs === 'button' ? 'heart-filled' : 'heart-filled-30'} iconClassName={null} />
           </span>
           {displayAs === 'button' ? <span className='button--save-icon--text'>{savedButtonText}</span> : null}
         </button>
