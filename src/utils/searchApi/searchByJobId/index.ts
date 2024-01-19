@@ -7,7 +7,7 @@ async function searchByJobId(url: string, apiKey: string, jobId: string, locale:
   const opcoLabel: Array<string> = [opcoCodes.toUpperCase()];
   const query: GraphqlData = {
     query: `
-        query ($id: ID! $language: LanguageCode! $opcoCodes: opcoCodes!) {
+        query ($id: ID! $language: LanguageCode! $opcoCodes: [String!]) {
             getJob(id: $id language: $language opcoCodes: $opcoCodes) {
                 workLocationAddress {locality administrativeArea}
                 clientDetail { name }
