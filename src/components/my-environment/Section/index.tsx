@@ -10,7 +10,7 @@ function Section({
     <div className={`my-environment-container ${divider ? 'pb-m l:pb-l divider' : ''}`} id={id}>
       <div className={`my-environment-action-header ${actionHeaderStyles !== undefined ? actionHeaderStyles : 'mb-s l:mb-m'}`}>
         <div className="my-environment-header">
-          <h2 className={cn('mr-xxs', { 'title--s': !profileBuilder, 'title--s l:text-title-l text-brand-secondary': profileBuilder })}>{titleLink ? <a href={titleLink}>{title}</a> : title}</h2>
+          <h2 className={cn('mr-xxs title--s ', { 'l:text-title-l text-brand-secondary': profileBuilder })}>{titleLink ? <a href={titleLink}>{title}</a> : title}</h2>
           {(typeof handleEdit === 'function' || typeof handleDelete === 'function') && (
             <div className="my-environment__controls mt-xxs" id={`edit-${(title as string).replace(' ', '-')}`}>
               {handleEdit && (
