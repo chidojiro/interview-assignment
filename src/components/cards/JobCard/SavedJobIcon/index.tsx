@@ -84,7 +84,7 @@ function SavedJobIcon({
         return;
       }
 
-      const filled = await handleAnonymousSavedJobs(searchApiUrl, searchApiKey, jobPostingWebDetailId, locale, opcoCodes as string);
+      const filled = await handleAnonymousSavedJobs(searchApiUrl, searchApiKey, jobPostingWebDetailId, locale, opcoCodes);
       if (filled && !iconFilled) {
         newState.iconFilled = true;
 
