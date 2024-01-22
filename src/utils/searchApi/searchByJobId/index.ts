@@ -1,11 +1,10 @@
 import SearchApi, { GraphqlData } from '../index';
 import { RXPJob } from '../types';
 
-async function searchByJobId(url: string, apiKey: string, jobId: string, locale: string, opcoCodes: string): Promise<RXPJob | null> {
+async function searchByJobId(url: string, apiKey: string, jobId: string, locale: string, opcoCodesParam: string | string[]): Promise<RXPJob | null> {
   const searchApi = new SearchApi(apiKey, url);
   let job: RXPJob | null = null;
-  const opcoLabel = opcoCodes.toUpperCase();
-  const opcoLabels: Array<string> = [opcoLabel];
+  const opcoCodes = Array.isArray(opcoCodesParam) ? opcoCodesParam : [opcoCodesParam];
   const query: GraphqlData = {
     query: `
         query ($id: ID! $language: LanguageCode! $opcoCodes: [String!]) {
@@ -27,7 +26,7 @@ async function searchByJobId(url: string, apiKey: string, jobId: string, locale:
                 postingDetail { postingTime }
             }
         }`,
-    variables: { id: jobId, language: locale, opcoCodes: opcoLabels },
+    variables: { id: jobId, language: locale, opcoCodes },
   };
 
   try {

@@ -124,7 +124,7 @@ export const transferSavedJobStructure = (job: RXPJob): LocalStorageSavedJob => 
  *    true = we need to fill it.
  *    false = we need to unfill it.
  */
-const handleAnonymousSavedJobs = async (searchApiUrl: string, searchApiKey: string, jobId: string, locale: string, opcoCodes: string): Promise<boolean> => {
+const handleAnonymousSavedJobs = async (searchApiUrl: string, searchApiKey: string, jobId: string, locale: string, opcoCodes: string | string[]): Promise<boolean> => {
   let savedJobs: LocalStorageSavedJobs | undefined = getSavedJobsLocalStorage();
   if (savedJobs && savedJobs.content) {
     // Search if we have the job in the local storage.
