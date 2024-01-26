@@ -67,6 +67,7 @@ import Dropdown from './components/forms/Dropdown';
 import Stackable from './components/forms/Stackable';
 import Rating from './components/indicators/Rating';
 import RatingStars from './components/indicators/RatingStars';
+import Steps from './components/indicators/Steps';
 import ApplicationProcess from './components/carousels/ApplicationProcess';
 import ApplicationProcessCard from './components/carousels/ApplicationProcessCard';
 import { ApplicationProcessCardProp } from './components/carousels/ApplicationProcessCard/ApplicationProcessCard.types';
@@ -101,6 +102,7 @@ import {
   FourthOptionIconType,
 } from './components/cards/JobCard/JobItemMetadata/JobItemMetadata.types';
 import MetaCardOption from './components/cards/JobCard/JobItemMetadata/MetaCardOption';
+import { StepInterface, UpdateStepFunction } from './components/indicators/Steps/Steps.types';
 
 export {
   Pagination,
@@ -177,6 +179,7 @@ export {
   TagCheckbox,
   Rating,
   RatingStars,
+  Steps,
   MetaInfoCard,
   MetaInfoCardItems,
   ContactDetails,
@@ -211,6 +214,8 @@ export type {
   SavedJobsProps,
   FourthOptionFieldValues,
   FourthOptionIconType,
+  StepInterface,
+  UpdateStepFunction,
 };
 
 export { default as getAxiosInstance } from './utils/getAxiosInstance';
