@@ -3,8 +3,7 @@ import cn from 'classnames';
 import Icon from '../../common/Icon';
 import { StepsProps, StepInterface } from './Steps.types';
 
-function Steps({ steps, handleChangeStep, currentActiveStep }: StepsProps) {
-  const latestCompletedStep = steps.findLast((step) => step.completed === true) as StepInterface;
+function Steps({ steps, handleChangeStep }: StepsProps) {
   return (
     <ul className="indicator-step__list">
       {steps.map((step: StepInterface) => {
@@ -12,7 +11,7 @@ function Steps({ steps, handleChangeStep, currentActiveStep }: StepsProps) {
           'indicator-step__item--complete': step.completed && !step.active,
           'indicator-step__item--active': step.active,
         });
-        const enableStep = (step.id <= currentActiveStep) || (latestCompletedStep && (step.id < latestCompletedStep.id)) || step.completed;
+        const enableStep = step.visited;
 
         return (
           // Change step events.

@@ -4,7 +4,6 @@ export type UpdateStepFunction = (stepId: number, propertyToUpdate: 'active' | '
 export interface StepsProps {
   steps: StepInterface[];
   handleChangeStep: UpdateStepFunction;
-  currentActiveStep: number;
 }
 
 export interface StepInterface {
@@ -12,6 +11,7 @@ export interface StepInterface {
   name: string;
   active: boolean;
   completed: boolean;
+  visited?: boolean;
   translation: string;
   showSteps?: boolean;
 }

@@ -37,5 +37,5 @@ const handleChange = () => {
 }
 
 <div className="bg-variant-white">
-<Steps steps={exampleSteps} handleChangeStep={async () => {}} currentActiveStep={1} /></div>;
+<Steps steps={exampleSteps} handleChangeStep={async () => {}} /></div>;
 ```
