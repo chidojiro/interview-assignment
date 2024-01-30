@@ -108,5 +108,6 @@
     "js",
     "ts",
     "tsx"
-  ]
+  ],
+  "sideEffects": false
 }
