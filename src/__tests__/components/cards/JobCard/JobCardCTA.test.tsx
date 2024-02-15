@@ -14,7 +14,7 @@ describe('JobCardCTA tests', () => {
     render(<JobCardCTA label="Find jobs" jobsPageUrl="/jobs" />);
     const element = document.querySelector('.cards__item img');
 
-    expect(element).toHaveAttribute('src', '/img/Binoculars_illustration_UseBackgroundBlue_RGB.svg');
+    expect(element).toHaveAttribute('src', '/img/Binoculars_Icon_White_RGB.svg');
   });
 
   test('Renders a JobCardCTA to have correct url.', () => {
