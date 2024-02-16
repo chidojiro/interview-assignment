@@ -119,7 +119,7 @@ function ConfirmationModal({
             <Button href="#" variant="filled" handleClick={onSubmit}>
               {confirmButtonText}
             </Button>
-            <Button className="modal__cancel" href="#" variant="plain" handleClick={(event: CloseEvents) => modalCancel(event)}>
+            <Button className="modal__cancel mr-xxs" href="#" variant="plain" handleClick={(event: CloseEvents) => modalCancel(event)}>
               {cancelButtonText}
             </Button>
           </div>
