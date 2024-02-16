@@ -70,17 +70,24 @@ function DatePicker({
       if (!ref.current) return;
 
       const target = (ref.current as HTMLInputElement | null)?.querySelector('input.input') as HTMLInputElement;
-      if (target === (e as CustomEvent).detail?.target) {
+      const customEventTarget = (e as CustomEvent).detail?.target;
+
+      if (target === customEventTarget) {
         target.name = name;
         if (onChange) {
           onChange({
             target,
           } as React.ChangeEvent<HTMLInputElement>);
         }
+      } else if (customEventTarget === null && onChange) {
+        target.name = name;
+        onChange({
+          target,
+        } as React.ChangeEvent<HTMLInputElement>);
       }
     });
-  // We don't want to add dependencies here, not needed.
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // We don't want to add dependencies here, not needed.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
