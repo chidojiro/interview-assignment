@@ -11,12 +11,16 @@ function Steps({ steps, handleChangeStep }: StepsProps) {
           'indicator-step__item--complete': step.completed && !step.active,
           'indicator-step__item--active': step.active,
         });
-        const enableStep = step.visited;
-
+        // Descoped as not orbit behavior.
+        // const enableStep = step.visited;
         return (
-          // Change step events.
+          // Change step events. Descoped as not orbit behavior.
           // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions
-          <li key={step.name} className={stepClass} onClick={() => (enableStep ? handleChangeStep(step.id, 'active') : undefined)}>
+          <li
+            key={step.name}
+            className={stepClass}
+            // onClick={() => (enableStep ? handleChangeStep(step.id, 'active') : undefined)}
+          >
             <div className="indicator-step__dot">
               <div className="indicator-step__dot-inner">
                 {step.completed ? <Icon iconType="check" iconClassName="icon fill-brand--off-white" /> : null}
