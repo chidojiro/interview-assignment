@@ -79,16 +79,9 @@ function DatePicker({
             target,
           } as React.ChangeEvent<HTMLInputElement>);
         }
-      } else if (customEventTarget === null && onChange) {
-        target.name = name;
-        onChange({
-          target,
-        } as React.ChangeEvent<HTMLInputElement>);
       }
     });
-    // We don't want to add dependencies here, not needed.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [name, onChange]);
 
   return (
     <FormGroup {..._formGroupProps}>
