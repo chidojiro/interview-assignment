@@ -70,7 +70,9 @@ function DatePicker({
       if (!ref.current) return;
 
       const target = (ref.current as HTMLInputElement | null)?.querySelector('input.input') as HTMLInputElement;
-      if (target === (e as CustomEvent).detail?.target) {
+      const customEventTarget = (e as CustomEvent).detail?.target;
+
+      if (target === customEventTarget) {
         target.name = name;
         if (onChange) {
           onChange({
@@ -79,9 +81,7 @@ function DatePicker({
         }
       }
     });
-  // We don't want to add dependencies here, not needed.
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [name, onChange]);
 
   return (
     <FormGroup {..._formGroupProps}>
