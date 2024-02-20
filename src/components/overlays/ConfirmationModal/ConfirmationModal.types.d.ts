@@ -9,4 +9,5 @@ export interface ConfirmationModalProps {
   onClose: (event: CloseEvents) => void;
   onCancelClick: (event: CloseEvents) => void;
   onSubmit?: (event: React.MouseEvent) => void;
+  primaryButtonIsCancel?: boolean;
 }
