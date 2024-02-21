@@ -1,9 +1,11 @@
-export type UpdateStepFunction = (stepId: number, propertyToUpdate: 'active' | 'completed') => Promise<void>;
+export type StepStateEnum = 'active' | 'completed' | 'skipped';
+export type UpdateStepFunction = (stepId: number, propertyToUpdate: StepStateEnum) => Promise<void>;
 
 
 export interface StepsProps {
   steps: StepInterface[];
   handleChangeStep: UpdateStepFunction;
+  disableOnClicks: boolean;
 }
 
 export interface StepInterface {
@@ -12,6 +14,7 @@ export interface StepInterface {
   active: boolean;
   completed: boolean;
   visited?: boolean;
+  skipped?: boolean;
   translation: string;
   showSteps?: boolean;
 }
