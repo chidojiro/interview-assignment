@@ -13,7 +13,6 @@ function ConfirmationModal({
   ariaLabelClose = 'close',
   confirmButtonText = 'yes',
   cancelButtonText = 'cancel',
-  primaryButtonIsCancel = false,
 }: ConfirmationModalProps) {
   const modalRef = React.useRef<HTMLDivElement>(null);
   const modalButtonsGroupRef = React.useRef<HTMLDivElement>(null);
@@ -108,44 +107,22 @@ function ConfirmationModal({
           <p className="form__header">{content}</p>
         </div>
         <div className="modal__footer divider" data-rs-modal-footer="">
-          {primaryButtonIsCancel ? (
-            <div ref={modalButtonsGroupRef} className="button-group button-group--full-width hidden--from-l">
-              <Button className="modal__cancel" href="#" variant="filled" fullWidth handleClick={(event: CloseEvents) => modalCancel(event)}>
-                {cancelButtonText}
-              </Button>
-              <Button href="#" variant="plain" fullWidth handleClick={onSubmit}>
-                {confirmButtonText}
-              </Button>
-            </div>
-          ) : (
-            <div ref={modalButtonsGroupRef} className="button-group button-group--full-width hidden--from-l">
-              <Button href="#" variant="filled" fullWidth handleClick={onSubmit}>
-                {confirmButtonText}
-              </Button>
-              <Button className="modal__cancel" href="#" variant="plain" fullWidth handleClick={(event: CloseEvents) => modalCancel(event)}>
-                {cancelButtonText}
-              </Button>
-            </div>
-          )}
-          {primaryButtonIsCancel ? (
-            <div ref={modalButtonsGroupRef} className="button-group hidden--until-l button-group--options">
-              <Button className="modal__cancel" variant="filled" href="#" handleClick={(event: CloseEvents) => modalCancel(event)}>
-                {cancelButtonText}
-              </Button>
-              <Button className="mr-xxs" href="#" variant="plain" handleClick={onSubmit}>
-                {confirmButtonText}
-              </Button>
-            </div>
-          ) : (
-            <div ref={modalButtonsGroupRef} className="button-group hidden--until-l button-group--options">
-              <Button href="#" variant="filled" handleClick={onSubmit}>
-                {confirmButtonText}
-              </Button>
-              <Button className="modal__cancel mr-xxs" href="#" variant="plain" handleClick={(event: CloseEvents) => modalCancel(event)}>
-                {cancelButtonText}
-              </Button>
-            </div>
-          )}
+          <div ref={modalButtonsGroupRef} className="button-group button-group--full-width hidden--from-l">
+            <Button href="#" variant="filled" fullWidth handleClick={onSubmit}>
+              {confirmButtonText}
+            </Button>
+            <Button className="modal__cancel" href="#" variant="plain" fullWidth handleClick={(event: CloseEvents) => modalCancel(event)}>
+              {cancelButtonText}
+            </Button>
+          </div>
+          <div ref={modalButtonsGroupRef} className="button-group hidden--until-l button-group--options">
+            <Button href="#" variant="filled" handleClick={onSubmit}>
+              {confirmButtonText}
+            </Button>
+            <Button className="modal__cancel mr-xxs" href="#" variant="plain" handleClick={(event: CloseEvents) => modalCancel(event)}>
+              {cancelButtonText}
+            </Button>
+          </div>
         </div>
       </div>
     </div>
