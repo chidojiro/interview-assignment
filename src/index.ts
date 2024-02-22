@@ -102,7 +102,7 @@ import {
   FourthOptionIconType,
 } from './components/cards/JobCard/JobItemMetadata/JobItemMetadata.types';
 import MetaCardOption from './components/cards/JobCard/JobItemMetadata/MetaCardOption';
-import { StepInterface, UpdateStepFunction } from './components/indicators/Steps/Steps.types';
+import { StepInterface, UpdateStepFunction, StepStateEnum } from './components/indicators/Steps/Steps.types';
 
 export {
   Pagination,
@@ -215,6 +215,7 @@ export type {
   FourthOptionFieldValues,
   FourthOptionIconType,
   StepInterface,
+  StepStateEnum,
   UpdateStepFunction,
 };
 
