@@ -7,4 +7,5 @@ export interface SubmenuItems extends Items {
 export interface SubmenuProps {
   items?: SubmenuItems[];
   RouterComponent?: React.FC<any>;
+  languagePrefix?: string;
 }

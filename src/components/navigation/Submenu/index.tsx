@@ -1,8 +1,8 @@
 import React from 'react';
-import { SubmenuProps } from './Submenu.types';
 import classNames from 'classnames';
+import { SubmenuProps } from './Submenu.types';
 
-function Submenu({ items, RouterComponent }: SubmenuProps) {
+function Submenu({ items, RouterComponent, languagePrefix }: SubmenuProps) {
   if (!items) {
     return null;
   }
@@ -16,7 +16,7 @@ function Submenu({ items, RouterComponent }: SubmenuProps) {
             'navigation__menu-item--active': menuItem.isActive,
           })}
         >
-          {RouterComponent ? <RouterComponent href={menuItem.url}>{menuItem.title}</RouterComponent>
+          {RouterComponent ? <RouterComponent href={`${languagePrefix}${menuItem.url}`}>{menuItem.title}</RouterComponent>
             : <a href={menuItem.url}>{menuItem.title}</a>}
         </li>
       ))}
