@@ -4,8 +4,6 @@ export type UpdateStepFunction = (stepId: number, propertyToUpdate: StepStateEnu
 
 export interface StepsProps {
   steps: StepInterface[];
-  handleChangeStep: UpdateStepFunction;
-  disableOnClicks: boolean;
 }
 
 export interface StepInterface {
