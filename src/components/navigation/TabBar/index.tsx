@@ -16,7 +16,7 @@ function checkUrlMatch(url: string | undefined, items: TabBarItem[]) {
 }
 
 function TabBar({
-  items = [], currentUrl, isIconTabBar = true, RouterComponent,
+  items = [], currentUrl, isIconTabBar = true, RouterComponent, languagePrefix,
 }: TabBarProps) {
   const ref = useRef<HTMLInputElement>(null);
   const [firstLoad, setFirstLoad] = useState(false);
@@ -45,10 +45,12 @@ function TabBar({
     <div ref={ref} className={`tab-bar ${isIconTabBar ? 'tab-bar--icon' : ''}`} data-rs-tab-bar="" data-rs-tab-bar-animation-type="instant">
       {items.map((item) => {
         if (RouterComponent) {
+          // Next JS 14 does not support out of the box language prefix, like NextJs 12 (pages router).
+          // @e will add it here directly in the url.
           return (
             <RouterComponent
               key={item.title}
-              href={item.url}
+              href={`${languagePrefix}${item.url}`}
               className={`tab-bar__item ${item.isActive ? 'active' : ''}`}
               data-rs-tab-bar-item=""
             >

@@ -276,7 +276,7 @@ function Header({
       { isMyRandstad && currentUser.loginStatus && (
         <div className="block bg-greyscale--grey-10 my-environment__sub-menu">
           <div className="wrapper">
-            <TabBar items={tabBarMenu} currentUrl={currentUrl} RouterComponent={RouterComponent} />
+            <TabBar languagePrefix={languagePrefix} items={tabBarMenu} currentUrl={currentUrl} RouterComponent={RouterComponent} />
           </div>
         </div>
       )}

@@ -7,6 +7,7 @@ export type TabBarItem = {
 
 export interface TabBarProps {
   items: Array<TabBarItem>;
+  languagePrefix: string,
   currentUrl?: string;
   isIconTabBar?: boolean;
   RouterComponent?: React.FC<any>;
