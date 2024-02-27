@@ -26,7 +26,7 @@ function LoggedIn({
         {menuLinks?.map((item) => (
           <li data-rs-popover-button-close="" className="link-list__item" key={item.url}>
             {RouterComponent ? (
-              <RouterComponent onClick={callback} href={item.url} className="link-list__link" id={`${item.id}-popover`}>
+              <RouterComponent prefetch onClick={callback} href={item.url} className="link-list__link" id={`${item.id}-popover`}>
                 {item.icon && <Icon iconClassName="icon icon--inline" iconType={item.icon} />}
                 {item.title}
               </RouterComponent>
