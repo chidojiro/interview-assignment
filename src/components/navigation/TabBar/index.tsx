@@ -49,6 +49,7 @@ function TabBar({
           // @e will add it here directly in the url.
           return (
             <RouterComponent
+              prefetch
               key={item.title}
               href={`${languagePrefix}${item.url}`}
               className={`tab-bar__item ${item.isActive ? 'active' : ''}`}
