@@ -1,5 +1,7 @@
 import React from 'react';
-import { render, fireEvent, act } from '@testing-library/react';
+import {
+  render, fireEvent, act, waitFor,
+} from '@testing-library/react';
 import SavedJobIcon from '../../../../../components/cards/JobCard/SavedJobIcon';
 import {
   postSavedJobs,
@@ -44,6 +46,7 @@ const commonProps = {
   ariaLabel: 'Save Job',
   locale: 'en',
   title: 'Test Job',
+  opcoCodes: 'rxp',
 };
 
 const dummySavedJobId = 'abc123';
@@ -201,7 +204,9 @@ describe('SavedJobIcon component tests', () => {
     const button = container.querySelector('button');
     fireEvent.click(button as HTMLButtonElement);
 
-    expect(deleteSavedJobs).toHaveBeenCalledTimes(1);
-    expect(deleteSavedJobs).toHaveBeenCalledWith('12345', 'https://example.com/api', commonProps.shareIdTokenAcrossSubdomains, 'abc123');
+    waitFor(() => {
+      expect(deleteSavedJobs).toHaveBeenCalledTimes(1);
+      expect(deleteSavedJobs).toHaveBeenCalledWith('12345', 'https://example.com/api', commonProps.shareIdTokenAcrossSubdomains, 'abc123');
+    });
   });
 });
