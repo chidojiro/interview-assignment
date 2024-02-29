@@ -19,7 +19,7 @@ function Steps({ steps }: StepsProps) {
           >
             <div className="indicator-step__dot">
               <div className="indicator-step__dot-inner">
-                {step.completed ? <Icon iconType="check" iconClassName="icon fill-brand--off-white" /> : null}
+                {step.completed && !step.skipped? <Icon iconType="check" iconClassName="icon fill-brand--off-white" /> : null}
                 {step.active || step.skipped ? (
                   <span className="icon fill-brand--off-white">
                     <span className="blue-dot" />
