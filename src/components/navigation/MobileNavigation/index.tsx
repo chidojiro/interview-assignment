@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useMemo } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Collapsible } from '@ffw/randstad-local-orbit/js/components/collapsible';
 import { Toggable } from '@ffw/randstad-local-orbit/js/components/toggable';
 import Svg from '../../common/Svg';
@@ -49,7 +49,7 @@ function MobileNavigation({
       }
     }
   }, [myRandstadMenu, mobileMenuRef]);
-  const correctMyRandstadUrl = useMemo(() => myRandstadUrl?.charAt(myRandstadUrl.length - 1) !== '/' ? `${myRandstadUrl}/` : myRandstadUrl, [myRandstadUrl])
+
   return (
     <ul className="link-list link-list--single accordion accordion--s">
       {items.map((menuItem, index) => (
@@ -98,7 +98,7 @@ function MobileNavigation({
             data-rs-toggable=""
           >
             <div className="link-list__link">
-              <a id="mr-mobile-navigation-menu-title" href={`${correctMyRandstadUrl}`}>
+              <a id="mr-mobile-navigation-menu-title" href={`${myRandstadUrl}`}>
                 {myRandstadLabel}
               </a>
               <span className="icon toggle-arrow" data-rs-collapsible-button="" role="button">
