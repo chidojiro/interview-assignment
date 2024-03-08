@@ -73,7 +73,9 @@ function Header({
         isLoginEnabled,
       );
     }
-  }, [gtmSettings, isLoginEnabled, localization.locale]);
+    // Ensure we initialize gtm once.
+    // eslint-disable-next-line
+  }, []);
 
   /**
    * Return an isActive prop to the menu item whenever current URL are equal.
