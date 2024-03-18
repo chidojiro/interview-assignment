@@ -16,8 +16,8 @@ import {
   UpdateResumeStateProps,
 } from '../../../utils/resumeHandler/resumeHandler.types';
 import Preloader from '../../loaders/Preloader';
-import { GoogleDriveProps } from '../GoogleDriveUpload/types';
-import GoogleDriveUpload from '../GoogleDriveUpload';
+import { GoogleDriveProps } from './GoogleDriveUpload/types';
+import GoogleDriveUpload from './GoogleDriveUpload';
 
 export type TranslationProps = {
   UploadSuccessful: string | React.ReactNode,

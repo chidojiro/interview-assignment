@@ -72,10 +72,9 @@ function GoogleDriveUpload<T extends GoogleDriveUploadProps>({
   mimeTypes,
 }: T) {
   const [openPicker, authResponse] = useDrivePicker();
-  // const customViewsArray = [new google.picker.DocsView()]; // custom view
 
-  const authToken = useRef('');
   let mimes : string;
+  const authToken = useRef('');
   if (mimeTypes && mimeTypes.length > 0) {
     mimes = mimeTypes.join(',');
   }
