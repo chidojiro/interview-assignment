@@ -6,6 +6,7 @@ export interface GoogleDriveProps {
   clientId: string,
   developerKey: string,
   scopes: Array<string>,
+  enabled: boolean,
 
   viewId?: ViewIdOptions,
   showUploadView?: boolean,

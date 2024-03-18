@@ -43,7 +43,6 @@ interface FileFieldProps extends WithFieldProps {
   multiselect?: boolean;
   maxSizeInBytes: number;
   supportedMimeTypes: string;
-  useGoogleDrive?: boolean,
   googleDriveProps?: GoogleDriveProps,
   useDropbox?: boolean,
   touched?: boolean;
@@ -75,7 +74,6 @@ function UploadField({
   setFieldErrors,
   setIsUploaded,
   googleDriveProps,
-  useGoogleDrive,
 }: FileFieldProps) {
   const [updatedFiles, setUpdatedFiles] = useState<UploadedFile[]>([]);
   // State used to control if the field set to readonly or not.
@@ -295,7 +293,7 @@ function UploadField({
             </div>
           )}
           <div className="upload-choices">
-            { googleDriveProps && useGoogleDrive && (
+            { googleDriveProps && googleDriveProps.enabled && (
               <GoogleDriveUpload
                 inputRef={inputRef}
                 mimeTypes={mimeTypes}
