@@ -7,4 +7,8 @@ export interface ContactPersonProps {
   type?: 'contact-person' | 'meet-the-team';
   profiles: PersonTypes[];
   backgroundClass?: string;
+  contactForm?: {
+    contactFormButtonText: string;
+    onContactFormButtonClicked: (event: React.MouseEvent) => void;
+  };
 }
