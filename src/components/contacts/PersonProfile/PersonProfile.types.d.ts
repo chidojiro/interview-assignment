@@ -1,5 +1,6 @@
 import { SocialLinkTypes } from '../../common/SocialLinks/SocialLinks.types';
 import { ImageSizeClasses } from '../ImageSizeClasses.types';
+import { ContactPersonForm } from '../Contacts.types';
 
 export type PersonTypes = {
   pictureUrl?: string;
@@ -18,8 +19,5 @@ export interface PersonProfileTypes {
   avatarClasses?: string;
   personProfileClasses?: string;
   personInfoClasses?: string;
-  contactForm?: {
-    contactFormButtonText: string;
-    onContactFormButtonClicked: (event: React.MouseEvent) => void;
-  };
+  contactForm?: ContactPersonForm;
 }

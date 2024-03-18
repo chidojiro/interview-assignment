@@ -1,4 +1,5 @@
 import { PersonTypes } from '../PersonProfile/PersonProfile.types';
+import { ContactPersonForm } from '../Contacts.types';
 import React from 'react';
 
 export interface ContactPersonProps {
@@ -7,8 +8,5 @@ export interface ContactPersonProps {
   type?: 'contact-person' | 'meet-the-team';
   profiles: PersonTypes[];
   backgroundClass?: string;
-  contactForm?: {
-    contactFormButtonText: string;
-    onContactFormButtonClicked: (event: React.MouseEvent) => void;
-  };
+  contactForm?: ContactPersonForm;
 }

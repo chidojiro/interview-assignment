@@ -4,7 +4,7 @@ import { ImageSizeClasses } from '../ImageSizeClasses.types';
 import { PersonProfileTypes } from './PersonProfile.types';
 import Icon from '../../common/Icon';
 import SocialLinks from '../../common/SocialLinks';
-import {Button} from "../../../index";
+import { Button } from '../../../index';
 
 function PersonProfile({
   size = 'XXL', avatarClasses = 'mb-s l:mb-none l:mr-s', person, personProfileClasses, personInfoClasses, contactForm,
@@ -19,7 +19,7 @@ function PersonProfile({
   };
 
   if (!person || !person.name) return null;
-  const {contactFormButtonText, onContactFormButtonClicked} = contactForm || {};
+  const { contactFormButtonText, onContactFormButtonClicked } = contactForm || {};
 
   return (
     <div className={cn('person__profile', personProfileClasses)}>

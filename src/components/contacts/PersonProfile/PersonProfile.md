@@ -35,8 +35,12 @@ import { PersonProfile } from "@ffw/randstad-shared-components";
             title: 'instagram',
             icon: 'instagram-filled-30',
           }
-        ]
+        ],
       };
-    
-  <PersonProfile person={person} avatarClasses="mb-s" />
+  const contactForm = {
+    contactFormButtonText: 'Send a message',
+    onContactFormButtonClicked: () => {}
+  };
+
+  <PersonProfile person={person} avatarClasses="mb-s" contactForm={contactForm} />
   ```
