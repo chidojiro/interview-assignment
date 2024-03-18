@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import * as yup from 'yup';
 import cn from 'classnames';
 import FormatFileSize from '../../../utils/formatFileSize';
@@ -16,6 +16,8 @@ import {
   UpdateResumeStateProps,
 } from '../../../utils/resumeHandler/resumeHandler.types';
 import Preloader from '../../loaders/Preloader';
+import { GoogleDriveProps } from './GoogleDriveUpload/types';
+import GoogleDriveUpload from './GoogleDriveUpload';
 
 export type TranslationProps = {
   UploadSuccessful: string | React.ReactNode,
@@ -41,7 +43,7 @@ interface FileFieldProps extends WithFieldProps {
   multiselect?: boolean;
   maxSizeInBytes: number;
   supportedMimeTypes: string;
-  useGoogleDrive?: boolean,
+  googleDriveProps?: GoogleDriveProps,
   useDropbox?: boolean,
   touched?: boolean;
   /** @ignore Private props from HOC for easy setup. */
@@ -71,11 +73,13 @@ function UploadField({
   setUploadedFilesToState,
   setFieldErrors,
   setIsUploaded,
+  googleDriveProps,
 }: FileFieldProps) {
   const [updatedFiles, setUpdatedFiles] = useState<UploadedFile[]>([]);
   // State used to control if the field set to readonly or not.
   const [isFileUploaded, setIsFileUploaded] = useState<boolean>();
   const [isFilePreloaded, setIsFilePreloaded] = useState<boolean>();
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const maxSizeForCv = 1048576 * maxSizeInBytes;
 
@@ -233,6 +237,7 @@ function UploadField({
           {isFilePreloaded === false && (
             <div className="form-group__input">
               <input
+                ref={inputRef}
                 name={name}
                 id={id}
                 accept={supportedMimeTypes}
@@ -287,6 +292,17 @@ function UploadField({
               </div>
             </div>
           )}
+          <div className="upload-choices">
+            { googleDriveProps && googleDriveProps.enabled && (
+              <GoogleDriveUpload
+                inputRef={inputRef}
+                mimeTypes={mimeTypes}
+                multiselect={multiselect}
+                setFieldErrors={setFieldErrors}
+                {...googleDriveProps}
+              />
+            ) }
+          </div>
           {uploadedItems && <ul className="upload-list">{uploadedItems}</ul>}
           {generalErrors}
         </div>
