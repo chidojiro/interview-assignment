@@ -38,6 +38,9 @@ function GoogleDriveUpload<T extends GoogleDriveUploadProps>({
         try {
           await handleGoogleDriveUpload(data, authToken, inputRef);
         } catch (e) {
+          // We need to log the error here...
+          // eslint-disable-next-line no-console
+          console.error('Google drive Error: ', e);
           if (setFieldErrors) {
             setFieldErrors('Google drive error');
           }
