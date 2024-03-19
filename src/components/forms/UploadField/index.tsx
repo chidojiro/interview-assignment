@@ -235,74 +235,76 @@ function UploadField({
         <div>
           {isFilePreloaded === undefined && isFileUploaded === undefined && <Preloader />}
           {isFilePreloaded === false && (
-            <div className="form-group__input">
-              <input
-                ref={inputRef}
-                name={name}
-                id={id}
-                accept={supportedMimeTypes}
-                disabled={isFileUploaded}
-                multiple={multiselect}
-                type="file"
-                onChange={onInputChange}
-                onClick={onInputClick}
-              />
-              <div className="upload" data-rs-upload="">
-                <div className="upload__content">
-                  {isFileUploaded === true
-                    && (
-                      <>
-                        <div className="upload__text">
-                          <span className="text--alternative">
-                            {translations.UploadSuccessful}
-                          </span>
-                        </div>
-                        <p className="text--alternative">
-                          {translations.SuccessfulSubText}
-                        </p>
-                      </>
-                    )}
-                  {isFileUploaded === false
-                    && (
-                      <>
-                        <div className="upload__text">
-                          <span className="icon icon--inline">
-                            <Icon iconType="attachment" />
-                          </span>
-                          <span className="upload__add">
-                            {translations.AddFiles}
-                          </span>
-                          <span className="hidden--until-l">
-                            {' '}
-                            {translations.OrDropHere}
-                          </span>
-                        </div>
-                        <p>
-                          {translations.AlternativeText}
-                        </p>
-                      </>
-                    )}
-                </div>
-                <div className="upload__content upload__content--drop">
-                  <span>
-                    {' '}
-                    {translations.DropFileHere}
-                  </span>
+            <>
+              <div className="form-group__input">
+                <input
+                  ref={inputRef}
+                  name={name}
+                  id={id}
+                  accept={supportedMimeTypes}
+                  disabled={isFileUploaded}
+                  multiple={multiselect}
+                  type="file"
+                  onChange={onInputChange}
+                  onClick={onInputClick}
+                />
+                <div className="upload" data-rs-upload="">
+                  <div className="upload__content">
+                    {isFileUploaded === true
+                      && (
+                        <>
+                          <div className="upload__text">
+                            <span className="text--alternative">
+                              {translations.UploadSuccessful}
+                            </span>
+                          </div>
+                          <p className="text--alternative">
+                            {translations.SuccessfulSubText}
+                          </p>
+                        </>
+                      )}
+                    {isFileUploaded === false
+                      && (
+                        <>
+                          <div className="upload__text">
+                            <span className="icon icon--inline">
+                              <Icon iconType="attachment" />
+                            </span>
+                            <span className="upload__add">
+                              {translations.AddFiles}
+                            </span>
+                            <span className="hidden--until-l">
+                              {' '}
+                              {translations.OrDropHere}
+                            </span>
+                          </div>
+                          <p>
+                            {translations.AlternativeText}
+                          </p>
+                        </>
+                      )}
+                  </div>
+                  <div className="upload__content upload__content--drop">
+                    <span>
+                      {' '}
+                      {translations.DropFileHere}
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
+              <div className="upload-choices">
+                {googleDriveProps && googleDriveProps.enabled && (
+                  <GoogleDriveUpload
+                    inputRef={inputRef}
+                    mimeTypes={mimeTypes}
+                    multiselect={multiselect}
+                    setFieldErrors={setFieldErrors}
+                    {...googleDriveProps}
+                  />
+                )}
+              </div>
+            </>
           )}
-          <div className="upload-choices">
-            { googleDriveProps && googleDriveProps.enabled && (
-              <GoogleDriveUpload
-                inputRef={inputRef}
-                mimeTypes={mimeTypes}
-                multiselect={multiselect}
-                setFieldErrors={setFieldErrors}
-                {...googleDriveProps}
-              />
-            ) }
-          </div>
           {uploadedItems && <ul className="upload-list">{uploadedItems}</ul>}
           {generalErrors}
         </div>
