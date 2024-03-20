@@ -1,6 +1,6 @@
-import React from 'react';
+import { MouseEvent } from 'react';
 
 export type ContactPersonForm = {
   contactFormButtonText: string;
-  onContactFormButtonClicked: (event: React.MouseEvent) => void;
+  onContactFormButtonClicked: (event: MouseEvent) => void;
 };
