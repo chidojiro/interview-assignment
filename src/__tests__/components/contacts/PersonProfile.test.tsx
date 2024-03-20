@@ -1,8 +1,9 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import {fireEvent, render, screen} from '@testing-library/react';
 import PersonProfile from '../../../components/contacts/PersonProfile';
 
 describe('PersonProfile', () => {
+  const contactFormClickMock = jest.fn();
   const person = {
     name: 'John Doe',
     title: 'Software Engineer',
@@ -13,6 +14,10 @@ describe('PersonProfile', () => {
       { title: 'Twitter', url: 'https://twitter.com/johndoe', icon: 'twitter-filled-30' },
       { title: 'LinkedIn', url: 'https://www.linkedin.com/in/johndoe', icon: 'linkedin-filled-30' },
     ],
+  };
+  const contactForm = {
+    contactFormButtonText: 'Send a message',
+    onContactFormButtonClicked: contactFormClickMock,
   };
 
   it('renders the person profile correctly', () => {
@@ -25,6 +30,22 @@ describe('PersonProfile', () => {
     expect(screen.getByText('john.doe@example.com')).toBeInTheDocument();
     expect(screen.queryByTitle('Twitter')).toBeInTheDocument();
     expect(screen.queryByTitle('LinkedIn')).toBeInTheDocument();
+  });
+
+  it('renders the person profile with contact form button correctly', () => {
+    render(<PersonProfile person={person} contactForm={contactForm} />);
+
+    expect(screen.getByText('John Doe')).toBeInTheDocument();
+    expect(screen.getByText('Software Engineer')).toBeInTheDocument();
+    expect(screen.getByText('Lorem ipsum dolor sit amet')).toBeInTheDocument();
+    expect(screen.getByText('1234567890')).toBeInTheDocument();
+    expect(screen.queryByText('john.doe@example.com')).not.toBeInTheDocument();
+    expect(screen.getByText('Send a message')).toBeInTheDocument();
+    expect(screen.queryByTitle('Twitter')).toBeInTheDocument();
+    expect(screen.queryByTitle('LinkedIn')).toBeInTheDocument();
+    const contactFormButtonElement = screen.getByText('Send a message');
+    fireEvent.click(contactFormButtonElement);
+    expect(contactFormClickMock).toHaveBeenCalledTimes(1);
   });
 
   it('renders the person profile without social links', () => {

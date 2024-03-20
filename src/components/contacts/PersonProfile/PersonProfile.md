@@ -40,3 +40,50 @@ import { PersonProfile } from "@ffw/randstad-shared-components";
     
   <PersonProfile person={person} avatarClasses="mb-s" />
   ```
+
+  PersonProfile component with contact email form used in ContactDetails on Job Details page.
+  ```jsx
+import { PersonProfile } from "@ffw/randstad-shared-components";
+
+  const person = {
+        name: 'John Doe',
+        initials: 'JD',
+        title: 'manager outsourcing',
+        description: 'I am here to support the resource management needs of your business by applying our outsourcing solutions.',
+        phone: '+1 (954) 308 6213',
+        email: 'wade.ortega@randstad.com',
+        socialLinks: [
+          {
+            url: '#',
+            title: 'linkedin',
+            icon: 'linkedin-filled-30',
+          },
+          {
+            url: '#',
+            title: 'twitter',
+            icon: 'twitter-filled-30',
+          },
+          {
+            url: '#',
+            title: 'facebook',
+            icon: 'facebook-filled-30',
+          },
+          {
+            url: '#',
+            title: 'youtube',
+            icon: 'youtube-filled-30',
+          },
+          {
+            url: '#',
+            title: 'instagram',
+            icon: 'instagram-filled-30',
+          }
+        ],
+      };
+  const contactForm = {
+    contactFormButtonText: 'Send a message',
+    onContactFormButtonClicked: () => {}
+  };
+
+  <PersonProfile person={person} avatarClasses="mb-s" contactForm={contactForm} />
+  ```
