@@ -1,4 +1,4 @@
-PersonProfile component used in ContactDetails, in Meta info card on Job apply page, etc.
+  PersonProfile component used in ContactDetails, in Meta info card on Job apply page, etc.
   ```jsx
 import { PersonProfile } from "@ffw/randstad-shared-components";
 

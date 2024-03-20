@@ -1,7 +1,6 @@
 import React from 'react';
 import {fireEvent, render, screen} from '@testing-library/react';
 import ContactDetails from '../../../components/contacts/ContactDetails';
-import {ActionNoticeProps} from "../../../components/notifications/ActionNotice/ActionNotice.types";
 
 describe('ContactDetails', () => {
   const contactFormClickMock = jest.fn();
