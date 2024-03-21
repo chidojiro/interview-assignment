@@ -53,7 +53,7 @@ function GoogleDriveUpload<T extends GoogleDriveUploadProps>({
 
     <button
       type="button"
-      className="upload google_picker button--clean"
+      className="upload google_picker button--clean px-xs"
       data-attr-dropzone-id="edit-choose-file"
       onClick={() => {
         handleOpenPicker();
