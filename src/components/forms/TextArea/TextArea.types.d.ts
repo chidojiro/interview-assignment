@@ -11,6 +11,8 @@ export interface TextAreaProps {
     characters?: string;
     charactersLeft?: string;
   };
+  /** Set text area placeholder value */
+  placeholder?: string;
   /** Set text area max length */
   maxlength: number;
   /** @ignore Private props from HOC for easy setup. */
