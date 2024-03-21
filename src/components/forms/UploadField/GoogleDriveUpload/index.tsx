@@ -5,7 +5,7 @@ import handleGoogleDriveUpload from '../../../../utils/upload/googleDrive/handle
 
 function GoogleDriveUpload<T extends GoogleDriveUploadProps>({
   developerKey, clientId, inputRef, setFieldErrors,
-  showUploadView = true,
+  showUploadView = false,
   viewId = 'DOCS',
   multiselect,
   scopes,
