@@ -24,7 +24,7 @@ function PersonProfile({
   return (
     <div className={cn('person__profile', personProfileClasses)}>
       <div className={cn('avatar aspect-ratio aspect-ratio--1-1', sizeClasses[size], avatarClasses, {
-        'avatar__initials': !person.pictureUrl,
+        avatar__initials: !person.pictureUrl,
       })}
       >
         {person.pictureUrl
@@ -43,8 +43,9 @@ function PersonProfile({
 
         {person.phone || person.email
           ? (
-            <ul className="contact-details">
-              {person.phone
+            <>
+              <ul className="contact-details">
+                {person.phone
               && (
                 <li className="contact-details__item">
                   <a href={`tel:${person.phone}`} className="contact-details__link" aria-label="">
@@ -53,7 +54,7 @@ function PersonProfile({
                   </a>
                 </li>
               )}
-              {person.email && !contactForm
+                {person.email && !contactForm
               && (
                 <li className="contact-details__item">
                   <a href={`mailto:${person.email}`} className="contact-details__link" aria-label="">
@@ -62,12 +63,13 @@ function PersonProfile({
                   </a>
                 </li>
               )}
+              </ul>
               {contactFormButtonText && onContactFormButtonClicked && (
-                <Button handleClick={onContactFormButtonClicked}>
+                <Button className={cn('', { 'mt-s': person.phone })} handleClick={onContactFormButtonClicked}>
                   {contactFormButtonText}
                 </Button>
               )}
-            </ul>
+            </>
           ) : null}
 
         {person.socialLinks
