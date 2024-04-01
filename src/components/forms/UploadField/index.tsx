@@ -20,6 +20,7 @@ import { GoogleDriveProps } from './GoogleDriveUpload/types';
 import GoogleDriveUpload from './GoogleDriveUpload';
 import { DropboxProps } from './DropboxUpload/types';
 import DropboxUpload from './DropboxUpload';
+import '../../../assets/scss/upload.scss';
 
 export type TranslationProps = {
   UploadSuccessful: string | React.ReactNode,
