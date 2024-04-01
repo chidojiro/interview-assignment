@@ -15,3 +15,4 @@ declare module '@ffw/randstad-local-orbit/js/components/switch';
 declare module '@ffw/randstad-local-orbit/js/components/toast';
 declare module '@ffw/randstad-local-orbit';
 declare module 'react-google-recaptcha-enterprise';
+declare module 'react-dropbox-chooser';

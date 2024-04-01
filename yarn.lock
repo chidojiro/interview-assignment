@@ -1828,6 +1828,11 @@
   dependencies:
     "@types/trusted-types" "*"
 
+"@types/dropbox-chooser@^1.0.2", "@types/dropbox-chooser@^1.0.8":
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/@types/dropbox-chooser/-/dropbox-chooser-1.0.8.tgz#c00d8fbb1e60685ceb2e7d71346e2ca6f4ccee6c"
+  integrity sha512-iXAJPSOgucUTAVOYipdzbA4VHFJ9AiAWBdAq0/fR+W3DUcPCH7lGZ2TAonK2WX4vYkSY7omLwfggX591HhsEVQ==
+
 "@types/eslint-scope@^3.7.3":
   version "3.7.4"
   resolved "https://registry.yarnpkg.com/@types/eslint-scope/-/eslint-scope-3.7.4.tgz#37fc1223f0786c39627068a12e94d6e6fc61de16"
@@ -9201,6 +9206,11 @@ load-json-file@^1.0.0:
     pinkie-promise "^2.0.0"
     strip-bom "^2.0.0"
 
+load-script@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/load-script/-/load-script-1.0.0.tgz#0491939e0bee5643ee494a7e3da3d2bac70c6ca4"
+  integrity sha512-kPEjMFtZvwL9TaZo0uZ2ml+Ye9HUMmPwbYRJ324qF9tqMejwykJ5ggTyvzmrbBeapCAbk98BSbTeovHEEP1uCA==
+
 loader-runner@^2.4.0:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/loader-runner/-/loader-runner-2.4.0.tgz#ed47066bfe534d7e84c4c7b9998c2a75607d9357"
@@ -10962,6 +10972,13 @@ react-dom@^18.2.0:
   dependencies:
     loose-envify "^1.1.0"
     scheduler "^0.23.0"
+
+react-dropbox-chooser@^0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/react-dropbox-chooser/-/react-dropbox-chooser-0.0.5.tgz#0df0c5792bb1641b559d323c13c33711ece784a2"
+  integrity sha512-AhxXtT3fht67NNO2YSKPoMYFh/WkbJDd9/0s+qjz3D4LEq7qTgGw/dG0X32wBJBIIJomJ9eUHAx7QNiQPw9ndg==
+  dependencies:
+    load-script "^1.0.0"
 
 react-error-overlay@^6.0.11:
   version "6.0.11"
@@ -13155,6 +13172,14 @@ url@^0.11.0:
   dependencies:
     punycode "^1.4.1"
     qs "^6.11.0"
+
+use-dropbox-chooser@^0.0.6:
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/use-dropbox-chooser/-/use-dropbox-chooser-0.0.6.tgz#3dc8eb222fc5515166ba384e845505edb1abe0e8"
+  integrity sha512-WeBrEBQwMeCdWmcEu8Z4DfNnDrSOkPHWOkMBy5cjU3T++b6jemOtiq+NDws7+Z1WN+Mt5wDscUSQBEMGjHUV/g==
+  dependencies:
+    "@types/dropbox-chooser" "^1.0.2"
+    load-script "^1.0.0"
 
 use@^3.1.0:
   version "3.1.1"
