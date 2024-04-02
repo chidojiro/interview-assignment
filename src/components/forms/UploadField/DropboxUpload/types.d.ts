@@ -11,6 +11,7 @@ export interface DropboxUploadProps extends DropboxProps {
   inputRef: RefObject<HTMLInputElement>,
   setFieldErrors?: (errMessage: string) => void,
   multiselect?: boolean,
+  disabled: boolean,
 }
 
 export type DropboxFile = {

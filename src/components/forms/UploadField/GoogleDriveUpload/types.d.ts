@@ -21,7 +21,3 @@ export interface GoogleDriveUploadProps extends GoogleDriveProps {
 
 }
 
-export type SimulatedEvent = {
-  simulated: boolean,
-}
-

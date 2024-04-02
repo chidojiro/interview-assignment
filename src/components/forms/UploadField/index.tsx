@@ -309,6 +309,7 @@ function UploadField({
                 )}
                 { dropboxProps && dropboxProps.enableDropbox && (
                   <DropboxUpload
+                    disabled={isFileUploaded === true}
                     sizeLimit={maxSizeInBytes}
                     inputRef={inputRef}
                     mimeTypes={mimeTypes}
