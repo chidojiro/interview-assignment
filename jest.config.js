@@ -24,6 +24,9 @@ const config = {
     '!<rootDir>/src/**/*.types.d.ts',
     '!<rootDir>/src/**/*.d.ts',
   ],
+  moduleNameMapper: {
+    '\\.(css|scss)$': '<rootDir>/src/jestStyleMock.ts',
+  },
 };
 
 module.exports = config;

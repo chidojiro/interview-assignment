@@ -18,6 +18,9 @@ import {
 import Preloader from '../../loaders/Preloader';
 import { GoogleDriveProps } from './GoogleDriveUpload/types';
 import GoogleDriveUpload from './GoogleDriveUpload';
+import { DropboxProps } from './DropboxUpload/types';
+import DropboxUpload from './DropboxUpload';
+import '../../../assets/scss/upload.scss';
 
 export type TranslationProps = {
   UploadSuccessful: string | React.ReactNode,
@@ -44,6 +47,7 @@ interface FileFieldProps extends WithFieldProps {
   maxSizeInBytes: number;
   supportedMimeTypes: string;
   googleDriveProps?: GoogleDriveProps,
+  dropboxProps?: DropboxProps,
   useDropbox?: boolean,
   touched?: boolean;
   /** @ignore Private props from HOC for easy setup. */
@@ -74,6 +78,7 @@ function UploadField({
   setFieldErrors,
   setIsUploaded,
   googleDriveProps,
+  dropboxProps,
 }: FileFieldProps) {
   const [updatedFiles, setUpdatedFiles] = useState<UploadedFile[]>([]);
   // State used to control if the field set to readonly or not.
@@ -302,6 +307,18 @@ function UploadField({
                     {...googleDriveProps}
                   />
                 )}
+                { dropboxProps && dropboxProps.enableDropbox && (
+                  <DropboxUpload
+                    disabled={isFileUploaded === true}
+                    sizeLimit={maxSizeInBytes}
+                    inputRef={inputRef}
+                    mimeTypes={mimeTypes}
+                    multiselect={multiselect}
+                    setFieldErrors={setFieldErrors}
+                    {...dropboxProps}
+                  />
+                ) }
+
               </div>
             </>
           )}

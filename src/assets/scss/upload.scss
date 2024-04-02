@@ -1,0 +1,15 @@
+.form-group--upload {
+  .upload-choices {
+    & > div, button {
+      width: 100%;
+
+      @media screen and (min-width: 941px) {
+        width: calc(50% - 5px);
+      }
+    }
+
+    & > div > .upload {
+      width: 100%;
+    }
+  }
+}
