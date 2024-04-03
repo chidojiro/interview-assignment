@@ -234,6 +234,7 @@ function Header({
                     isAuth={currentUser.loginStatus}
                     userName={currentUser.currentUser?.personalInfo}
                     trackLoginPopoverEvent={trackLoginPopoverEvent}
+                    popoverOpen={trackLoginPopoverOpenRef.current}
                   />
                 )}
                 <li className="navigation__service-item hidden--from-l">

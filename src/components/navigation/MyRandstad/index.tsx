@@ -1,10 +1,11 @@
 import React from 'react';
+import { getKeyCodeOnKeyDownEvent } from '../../../utils';
 import Icon from '../../common/Icon';
 import { MyRandstadProps } from './MyRandstad.types';
 import { UserNameProps } from '../../headers/LoginPopover/LoginPopover.types';
 
 function MyRandstad({
-  isAuth, show, label, userName, userImgUrl, trackLoginPopoverEvent,
+  isAuth, show, label, userName, userImgUrl, trackLoginPopoverEvent, popoverOpen,
 }: MyRandstadProps) {
   const { givenName, familyName, preferredName } = userName || { givenName: '', familyName: '', preferredName: '' } as UserNameProps;
   const userInitials = preferredName ? `${preferredName.slice(0, 1).toUpperCase()}` : `${givenName.slice(0, 1).toUpperCase()}`;
@@ -14,7 +15,20 @@ function MyRandstad({
   }
 
   return (
-    <li className="navigation__service-item">
+    // Disable for list item
+    // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
+    <li
+      className="navigation__service-item"
+      onKeyDown={(event) => {
+        const keyCode = getKeyCodeOnKeyDownEvent(event);
+        if (keyCode === 'Enter') {
+          trackLoginPopoverEvent(!popoverOpen);
+        }
+        if (keyCode === 'Escape' && popoverOpen) {
+          trackLoginPopoverEvent(false);
+        }
+      }}
+    >
       <a
         href="#?"
         className="navigation__service-link navigation__service-my-randstad"
