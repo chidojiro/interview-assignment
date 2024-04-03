@@ -1,4 +1,4 @@
-import { PickerCallback } from 'react-google-drive-picker/dist/typeDefs';
+import { PickerCallback } from '@fyelci/react-google-drive-picker/dist/typeDefs';
 import React from 'react';
 import handleUploadedFiles from '../handleUploadedFiles';
 
