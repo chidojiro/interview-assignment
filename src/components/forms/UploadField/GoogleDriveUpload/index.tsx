@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import useDrivePicker from 'react-google-drive-picker';
+import useDrivePicker from '@fyelci/react-google-drive-picker';
 import { GoogleDriveUploadProps } from './types';
 import handleGoogleDriveUpload from '../../../../utils/upload/googleDrive/handleGoogleDriveUpload';
 
