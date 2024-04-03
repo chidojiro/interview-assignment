@@ -1833,11 +1833,6 @@
   dependencies:
     "@types/trusted-types" "*"
 
-"@types/dropbox-chooser@^1.0.2", "@types/dropbox-chooser@^1.0.8":
-  version "1.0.8"
-  resolved "https://registry.yarnpkg.com/@types/dropbox-chooser/-/dropbox-chooser-1.0.8.tgz#c00d8fbb1e60685ceb2e7d71346e2ca6f4ccee6c"
-  integrity sha512-iXAJPSOgucUTAVOYipdzbA4VHFJ9AiAWBdAq0/fR+W3DUcPCH7lGZ2TAonK2WX4vYkSY7omLwfggX591HhsEVQ==
-
 "@types/eslint-scope@^3.7.3":
   version "3.7.4"
   resolved "https://registry.yarnpkg.com/@types/eslint-scope/-/eslint-scope-3.7.4.tgz#37fc1223f0786c39627068a12e94d6e6fc61de16"
@@ -13172,14 +13167,6 @@ url@^0.11.0:
   dependencies:
     punycode "^1.4.1"
     qs "^6.11.0"
-
-use-dropbox-chooser@^0.0.6:
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/use-dropbox-chooser/-/use-dropbox-chooser-0.0.6.tgz#3dc8eb222fc5515166ba384e845505edb1abe0e8"
-  integrity sha512-WeBrEBQwMeCdWmcEu8Z4DfNnDrSOkPHWOkMBy5cjU3T++b6jemOtiq+NDws7+Z1WN+Mt5wDscUSQBEMGjHUV/g==
-  dependencies:
-    "@types/dropbox-chooser" "^1.0.2"
-    load-script "^1.0.0"
 
 use@^3.1.0:
   version "3.1.1"

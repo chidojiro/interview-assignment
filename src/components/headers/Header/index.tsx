@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
 import { Routes } from '../../../utils/headerUtils/headerUtils.types';
 import { PersistData } from '../../../utils/getUserData/types';
@@ -24,7 +24,8 @@ import getUserData from '../../../utils/getUserData';
 import HeaderSavedJobs from '../HeaderSavedJobs';
 import useUserData from '../../../hooks/useUserData';
 import { HeaderProps, Menu } from './Header.types';
-import { gtmScriptInitializer } from '../../../utils';
+import { getKeyCodeOnKeyDownEvent, gtmScriptInitializer } from '../../../utils';
+import { loginPopoverEvent } from '../../../utils/gtmEvents';
 
 function Header({
   brand,
@@ -46,6 +47,7 @@ function Header({
   // TO DO: currentUser.loginState state needed because tabBar needs an active link on logout
   const [currentUser, setCurrentUser] = useState({} as PersistData);
   const profileData = useUserData();
+  const trackLoginPopoverOpenRef = useRef<boolean>(false);
 
   useEffect(() => {
     const newUserData = getUserData();
@@ -175,6 +177,28 @@ function Header({
     subMenu = subMenuItems.map(getActiveMenuItem);
   }
 
+  const trackLoginPopoverEvent = (open: boolean) => {
+    loginPopoverEvent(open);
+    trackLoginPopoverOpenRef.current = open;
+  };
+
+  useEffect(() => {
+    function keyDownEvent(event: KeyboardEvent): void {
+      const keyCode = getKeyCodeOnKeyDownEvent(event as unknown as React.KeyboardEvent);
+      if ((keyCode === 'Enter' || keyCode === 'Escape') && trackLoginPopoverOpenRef.current) {
+        trackLoginPopoverEvent(false);
+      }
+    }
+
+    if (!currentUser.loginStatus) {
+      document.addEventListener('keydown', keyDownEvent);
+    }
+
+    return () => {
+      document.removeEventListener('keydown', keyDownEvent);
+    };
+  }, [currentUser.loginStatus]);
+
   return (
     <>
       <header
@@ -209,6 +233,8 @@ function Header({
                     show={showMyRandstad}
                     isAuth={currentUser.loginStatus}
                     userName={currentUser.currentUser?.personalInfo}
+                    trackLoginPopoverEvent={trackLoginPopoverEvent}
+                    popoverOpen={trackLoginPopoverOpenRef.current}
                   />
                 )}
                 <li className="navigation__service-item hidden--from-l">
@@ -239,6 +265,7 @@ function Header({
                     logoutUrl={myRandstadLogoutUrl}
                     RouterComponent={RouterComponent}
                     currentRoute={currentRoute}
+                    trackLoginPopoverEvent={trackLoginPopoverEvent}
                   />
                 </div>
               )}

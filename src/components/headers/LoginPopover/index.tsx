@@ -17,6 +17,7 @@ function LoginPopover({
   arrowVariant,
   RouterComponent,
   currentRoute,
+  trackLoginPopoverEvent,
 }: LoginPopoverPropTypes) {
   const [ref] = useOrbitComponent('popover');
   const overlayRef = useRef<HTMLDivElement>(null);
@@ -78,7 +79,7 @@ function LoginPopover({
 
       /**
        * When the user is logged in, clicking on the overlay triggers "toggle"
-       * of the "active" class. 
+       * of the "active" class.
        * That's why the manual removal of the class is executed last.
        */
       popoverTrigger.classList.remove('active');
@@ -125,7 +126,18 @@ function LoginPopover({
           )}
         </div>
       </div>
-      <div ref={overlayRef} className="modal__overlay modal__overlay--light" data-rs-popover-overlay="" />
+      {/* Disable rules for not needed keydown event and role */}
+      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
+      <div
+        ref={overlayRef}
+        className="modal__overlay modal__overlay--light"
+        data-rs-popover-overlay=""
+        onClick={() => {
+          if (!isAuth) {
+            trackLoginPopoverEvent(false);
+          }
+        }}
+      />
     </>
   );
 }
