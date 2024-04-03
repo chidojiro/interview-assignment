@@ -1,4 +1,4 @@
-import { CallbackDoc } from 'react-google-drive-picker/dist/typeDefs';
+import { CallbackDoc } from '@fyelci/react-google-drive-picker/dist/typeDefs';
 import React from 'react';
 import axios from 'axios';
 import { SimulatedEvent } from '../../../../components/forms/UploadField/GoogleDriveUpload/types';
