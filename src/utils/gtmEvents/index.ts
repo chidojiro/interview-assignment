@@ -15,7 +15,7 @@ export default function saveJobEvent(title: string, add: boolean) {
 
 export function loginPopoverEvent(open: boolean) {
   const event = {
-    event: 'modal_interaction',
+    event: 'interaction',
     event_params: {
       event_name: 'modal_interaction',
       action: open ? 'open' : 'close',
