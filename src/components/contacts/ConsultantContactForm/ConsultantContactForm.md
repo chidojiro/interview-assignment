@@ -9,7 +9,6 @@ const [open, setOpen] = useState(false);
   {open && (
     <ConsultantContactForm 
         modalOnClose={() => setOpen(false)}
-        modalTitle='Contact your consultant'
         onSubmit={() => {}}
         onChange={() => {}}
         currentLanguage='en'
@@ -38,6 +37,7 @@ const [open, setOpen] = useState(false);
                 optionalLabel: 'Optional',
                 messageLabel: 'Your message',
             },
+            modalTitle: 'Contact your consultant',
             messagePlaceholder: 'Please give us as much details as possible about your inquiry',
             textAreaCharacters: 'characters',
             textAreaCharacterLimit: '500 characters left',

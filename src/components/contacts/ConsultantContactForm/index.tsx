@@ -9,7 +9,7 @@ import Modal from '../../overlays/Modal';
 import { ConsultantContactFormProps } from './ConsultantContactForm.types';
 
 function ConsultantContactForm({
-  modalTitle, modalOnClose, onSubmit, onChange, currentLanguage, buttonLoading, formData, formErrors, translations, recaptchaSitekey,
+  modalOnClose, onSubmit, onChange, currentLanguage, buttonLoading, formData, formErrors, translations, recaptchaSitekey,
 }: ConsultantContactFormProps) {
   const contactFirstNameClasses = cn('form-group', { 'form-group--error': formErrors?.contactFirstName });
   const contactSurnameClasses = cn('form-group', { 'form-group--error': formErrors?.contactSurname });
@@ -18,7 +18,7 @@ function ConsultantContactForm({
 
   return (
     <Modal
-      title={modalTitle}
+      title={translations.modalTitle}
       onClose={modalOnClose}
     >
       <form

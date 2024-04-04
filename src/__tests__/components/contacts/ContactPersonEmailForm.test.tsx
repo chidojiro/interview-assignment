@@ -36,6 +36,7 @@ describe('ConsultantContactForm component test', () => {
       optionalLabel: '(optional)',
       messageLabel: 'Message',
     },
+    modalTitle: 'Contact Us',
     messagePlaceholder: 'Enter your message here',
     textAreaCharacters: 'characters',
     textAreaCharacterLimit: '500 characters left',
@@ -48,7 +49,6 @@ describe('ConsultantContactForm component test', () => {
   it('renders form fields and submit button', () => {
     render(
       <ConsultantContactForm
-        modalTitle="Contact Us"
         modalOnClose={() => {}}
         onSubmit={() => {}}
         onChange={() => {}}
@@ -72,7 +72,6 @@ describe('ConsultantContactForm component test', () => {
   it('displays form errors', () => {
     render(
       <ConsultantContactForm
-        modalTitle="Contact Us"
         modalOnClose={() => {}}
         onSubmit={() => {}}
         onChange={() => {}}
@@ -96,7 +95,6 @@ describe('ConsultantContactForm component test', () => {
 
     render(
       <ConsultantContactForm
-        modalTitle="Contact Us"
         modalOnClose={() => {}}
         onSubmit={handleSubmit}
         onChange={() => {}}

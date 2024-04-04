@@ -2,7 +2,6 @@ import { CloseEvents } from "src/components/overlays/Modal/Modal.types";
 
 export interface ConsultantContactFormProps {
     modalOnClose: (event: CloseEvents) => void;
-    modalTitle: string;
     onSubmit: (event: any) => any;
     onChange: (event: any) => void;
     currentLanguage: string
@@ -31,6 +30,7 @@ export interface ConsultantContactFormProps {
             optionalLabel: string;
             messageLabel: string;
         },
+        modalTitle: string;
         messagePlaceholder: string,
         textAreaCharacters: string,
         textAreaCharacterLimit: string,
