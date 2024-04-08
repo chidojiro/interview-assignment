@@ -94,6 +94,7 @@ import SavedJobIcon from './components/cards/JobCard/SavedJobIcon';
 import ErrorBoundary from './components/errors/ErrorBoundary';
 import ContentTable from './components/tables/ContentTable';
 import DataTable from './components/tables/DataTable';
+import ConsultantContactForm from './components/contacts/ConsultantContactForm';
 
 import { JobCardProps, SavedJobsProps } from './components/cards/JobCard/JobCard.types';
 import {
@@ -197,6 +198,7 @@ export {
   MetaCardOption,
   ContentTable,
   DataTable,
+  ConsultantContactForm,
   ErrorBoundary,
 };
 
