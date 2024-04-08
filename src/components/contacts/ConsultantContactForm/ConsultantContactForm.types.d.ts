@@ -35,6 +35,5 @@ export interface ConsultantContactFormProps {
         textAreaCharacters: string,
         textAreaCharacterLimit: string,
         submitButtonText: string,
-        generalError: string,
     }
 }

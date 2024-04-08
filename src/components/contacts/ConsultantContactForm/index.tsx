@@ -176,7 +176,7 @@ function ConsultantContactForm({
         </Button>
         {
           formErrors?.generalError
-    && <Notice type="negative">{translations.generalError}</Notice>
+    && <Notice type="negative">{formErrors?.generalError}</Notice>
         }
       </form>
     </Modal>

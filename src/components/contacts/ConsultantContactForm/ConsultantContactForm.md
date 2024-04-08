@@ -42,7 +42,6 @@ const [open, setOpen] = useState(false);
             textAreaCharacters: 'characters',
             textAreaCharacterLimit: '500 characters left',
             submitButtonText: 'send',
-            generalError: 'Something went wrong. Please try it again or refresh the page.',
         }}
     />
   )}

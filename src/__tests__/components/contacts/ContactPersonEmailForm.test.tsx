@@ -41,7 +41,6 @@ describe('ConsultantContactForm component test', () => {
     textAreaCharacters: 'characters',
     textAreaCharacterLimit: '500 characters left',
     submitButtonText: 'Submit',
-    generalError: 'An error occurred',
   };
 
   const mockRecaptchaSitekey = 'mock-recaptcha-sitekey';
