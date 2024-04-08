@@ -17,6 +17,7 @@ function LoginPopover({
   arrowVariant,
   RouterComponent,
   currentRoute,
+  trackLoginPopoverOpen,
   trackLoginPopoverEvent,
 }: LoginPopoverPropTypes) {
   const [ref] = useOrbitComponent('popover');
@@ -133,7 +134,7 @@ function LoginPopover({
         className="modal__overlay modal__overlay--light"
         data-rs-popover-overlay=""
         onClick={() => {
-          if (!isAuth) {
+          if (trackLoginPopoverOpen) {
             trackLoginPopoverEvent(false);
           }
         }}

@@ -1,11 +1,17 @@
 import React from 'react';
-import { getKeyCodeOnKeyDownEvent } from '../../../utils';
 import Icon from '../../common/Icon';
 import { MyRandstadProps } from './MyRandstad.types';
 import { UserNameProps } from '../../headers/LoginPopover/LoginPopover.types';
+import { getKeyCodeOnKeyDownEvent } from '../../../utils';
 
 function MyRandstad({
-  isAuth, show, label, userName, userImgUrl, trackLoginPopoverEvent, popoverOpen,
+  isAuth,
+  show,
+  label,
+  userName,
+  userImgUrl,
+  trackLoginPopoverOpen,
+  trackLoginPopoverEvent,
 }: MyRandstadProps) {
   const { givenName, familyName, preferredName } = userName || { givenName: '', familyName: '', preferredName: '' } as UserNameProps;
   const userInitials = preferredName ? `${preferredName.slice(0, 1).toUpperCase()}` : `${givenName.slice(0, 1).toUpperCase()}`;
@@ -19,12 +25,12 @@ function MyRandstad({
     // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
     <li
       className="navigation__service-item"
-      onKeyDown={(event) => {
+      onKeyUp={(event) => {
         const keyCode = getKeyCodeOnKeyDownEvent(event);
         if (keyCode === 'Enter') {
-          trackLoginPopoverEvent(!popoverOpen);
+          trackLoginPopoverEvent(!trackLoginPopoverOpen);
         }
-        if (keyCode === 'Escape' && popoverOpen) {
+        if (keyCode === 'Escape' && trackLoginPopoverOpen) {
           trackLoginPopoverEvent(false);
         }
       }}
@@ -36,21 +42,25 @@ function MyRandstad({
         aria-label="person-icon/initials"
       >
         {!isAuth ? (
-          <>
+          // Disable for span
+          // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
+          <span
+            className="flex"
+            onClick={() => {
+              trackLoginPopoverEvent(!trackLoginPopoverOpen);
+            }}
+          >
             <Icon iconClassName="icon icon--inline icon-person" iconType="person" />
-            <Icon iconClassName="icon icon--xs icon--inline icon-chevron hidden--from-l" iconType="chevron-down-8" />
+            <Icon iconClassName="icon icon--xs icon--inline icon-chevron hidden--from-l self-center" iconType="chevron-down-8" />
             {/* Disable rules for not needed keydown event and role */}
             {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
             <span
               id="navigation__service-user-text"
               className="hidden--until-l"
-              onClick={() => {
-                trackLoginPopoverEvent(true);
-              }}
             >
               {label || 'my randstad'}
             </span>
-          </>
+          </span>
         ) : (
           <>
             <span className="icon icon--inline">
