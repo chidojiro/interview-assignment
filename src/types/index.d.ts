@@ -13,6 +13,7 @@ declare module '@ffw/randstad-local-orbit/original/js/components/auto-resize';
 declare module '@ffw/randstad-local-orbit/original/js/components/tags';
 declare module '@ffw/randstad-local-orbit/js/components/switch';
 declare module '@ffw/randstad-local-orbit/js/components/toast';
+declare module '@ffw/randstad-local-orbit/original/js/components/closable';
 declare module '@ffw/randstad-local-orbit';
 declare module 'react-google-recaptcha-enterprise';
 declare module 'react-dropbox-chooser';

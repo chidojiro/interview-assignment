@@ -1,0 +1,77 @@
+.bluex-promote-app {
+  &__split-view,
+  &__full-width {
+    position: relative;
+    overflow: hidden;
+
+    @media screen and (min-width: 941px) {
+      height: 240px;
+
+      .notice-text-only__wrapper {
+        height: 100%
+      }
+    }
+
+    .notice-text-only__description {
+      @media screen and (min-width: 941px) {
+        width: 50%;
+
+        p {
+          font-size: 32px;
+          line-height: 36px;
+          margin-bottom: 20px;
+        }
+      }
+    }
+  }
+
+  &__full-width {
+    .bluex-promote-app__image,
+    .bluex-promote-app__image img {
+      width: 100%;
+    }
+
+    .notice-text-only__content {
+      z-index: 1;
+    }
+
+    .notice-text-only__description .description {
+      @media screen and (min-width: 941px) {
+        color: var(--color-brand-secondary);
+      }
+    }
+  }
+
+  &__image {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: 50%;
+    transform: translateY(-50%);
+  }
+
+  p {
+    margin-bottom: 16px;
+
+    @media screen and (min-width: 941px) {
+      margin-bottom: 0;
+    }
+  }
+
+  .notice-text-only__close {
+    z-index: 1;
+    top: 0;
+  }
+
+  .store-icons {
+    .apple-store__icon {
+      width: 100%;
+      max-width: 118px;
+    }
+
+    .google-store__icon {
+      width: 100%;
+      max-width: 134px;
+    }
+  }
+}

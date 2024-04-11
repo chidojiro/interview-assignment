@@ -7,8 +7,8 @@ const webpackConfig = require('./webpack.config');
 const config = { ...webpackConfig };
 
 config.module.rules.push({
-  test: /\.css$/,
-  use: ['css-loader'],
+  test: /\.s[ac]ss$/i,
+  use: ['css-loader', 'sass-loader'],
 });
 
 module.exports = {
