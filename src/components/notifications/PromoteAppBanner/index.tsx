@@ -1,9 +1,9 @@
 import React, { useCallback, useState } from 'react';
+import { Closable } from '@ffw/randstad-local-orbit/original/js/components/closable';
 import classNames from 'classnames';
 import Icon from '../../common/Icon';
 import { CloseEvents, PromoteAppBannerProps } from './PromoteAppBanner.types';
 import '../../../assets/scss/promote-app-banner.scss';
-import { Closable } from '@ffw/randstad-local-orbit/original/js/components/closable';
 
 function PromoteAppBanner({
   children,
@@ -13,7 +13,7 @@ function PromoteAppBanner({
   ariaLabelClose = 'close',
   onClose,
   isClosable = true,
-  type = 'split-view',
+  type = 'no-image',
   imagePath,
   imageAlt = '',
   appleLink,
