@@ -5,6 +5,7 @@ function getUserData(): PersistData {
   const refreshToken = getCookie('RefreshToken');
   const idToken = getCookie('IdToken');
   const defaultData = {
+    isIdTokenValidated: undefined,
     loginStatus: false,
     savedJobs: {
       totalElements: 0,
