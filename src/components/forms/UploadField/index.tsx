@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import * as yup from 'yup';
 import cn from 'classnames';
 import FormatFileSize from '../../../utils/formatFileSize';
@@ -16,6 +16,11 @@ import {
   UpdateResumeStateProps,
 } from '../../../utils/resumeHandler/resumeHandler.types';
 import Preloader from '../../loaders/Preloader';
+import { GoogleDriveProps } from './GoogleDriveUpload/types';
+import GoogleDriveUpload from './GoogleDriveUpload';
+import { DropboxProps } from './DropboxUpload/types';
+import DropboxUpload from './DropboxUpload';
+import '../../../assets/scss/upload.scss';
 
 export type TranslationProps = {
   UploadSuccessful: string | React.ReactNode,
@@ -41,7 +46,8 @@ interface FileFieldProps extends WithFieldProps {
   multiselect?: boolean;
   maxSizeInBytes: number;
   supportedMimeTypes: string;
-  useGoogleDrive?: boolean,
+  googleDriveProps?: GoogleDriveProps,
+  dropboxProps?: DropboxProps,
   useDropbox?: boolean,
   touched?: boolean;
   /** @ignore Private props from HOC for easy setup. */
@@ -71,11 +77,14 @@ function UploadField({
   setUploadedFilesToState,
   setFieldErrors,
   setIsUploaded,
+  googleDriveProps,
+  dropboxProps,
 }: FileFieldProps) {
   const [updatedFiles, setUpdatedFiles] = useState<UploadedFile[]>([]);
   // State used to control if the field set to readonly or not.
   const [isFileUploaded, setIsFileUploaded] = useState<boolean>();
   const [isFilePreloaded, setIsFilePreloaded] = useState<boolean>();
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const maxSizeForCv = 1048576 * maxSizeInBytes;
 
@@ -231,61 +240,87 @@ function UploadField({
         <div>
           {isFilePreloaded === undefined && isFileUploaded === undefined && <Preloader />}
           {isFilePreloaded === false && (
-            <div className="form-group__input">
-              <input
-                name={name}
-                id={id}
-                accept={supportedMimeTypes}
-                disabled={isFileUploaded}
-                multiple={multiselect}
-                type="file"
-                onChange={onInputChange}
-                onClick={onInputClick}
-              />
-              <div className="upload" data-rs-upload="">
-                <div className="upload__content">
-                  {isFileUploaded === true
-                    && (
-                      <>
-                        <div className="upload__text">
-                          <span className="text--alternative">
-                            {translations.UploadSuccessful}
-                          </span>
-                        </div>
-                        <p className="text--alternative">
-                          {translations.SuccessfulSubText}
-                        </p>
-                      </>
-                    )}
-                  {isFileUploaded === false
-                    && (
-                      <>
-                        <div className="upload__text">
-                          <span className="icon icon--inline">
-                            <Icon iconType="attachment" />
-                          </span>
-                          <span className="upload__add">
-                            {translations.AddFiles}
-                          </span>
-                          <span className="hidden--until-l">
-                            {' '}
-                            {translations.OrDropHere}
-                          </span>
-                        </div>
-                        <p>
-                          {translations.AlternativeText}
-                        </p>
-                      </>
-                    )}
-                </div>
-                <div className="upload__content upload__content--drop">
-                  <span>
-                    {' '}
-                    {translations.DropFileHere}
-                  </span>
+            <>
+              <div className="form-group__input">
+                <input
+                  ref={inputRef}
+                  name={name}
+                  id={id}
+                  accept={supportedMimeTypes}
+                  disabled={isFileUploaded}
+                  multiple={multiselect}
+                  type="file"
+                  onChange={onInputChange}
+                  onClick={onInputClick}
+                />
+                <div className="upload" data-rs-upload="">
+                  <div className="upload__content">
+                    {isFileUploaded === true
+                      && (
+                        <>
+                          <div className="upload__text">
+                            <span className="text--alternative">
+                              {translations.UploadSuccessful}
+                            </span>
+                          </div>
+                          <p className="text--alternative">
+                            {translations.SuccessfulSubText}
+                          </p>
+                        </>
+                      )}
+                    {isFileUploaded === false
+                      && (
+                        <>
+                          <div className="upload__text">
+                            <span className="icon icon--inline">
+                              <Icon iconType="attachment" />
+                            </span>
+                            <span className="upload__add">
+                              {translations.AddFiles}
+                            </span>
+                            <span className="hidden--until-l">
+                              {' '}
+                              {translations.OrDropHere}
+                            </span>
+                          </div>
+                          <p>
+                            {translations.AlternativeText}
+                          </p>
+                        </>
+                      )}
+                  </div>
+                  <div className="upload__content upload__content--drop">
+                    <span>
+                      {' '}
+                      {translations.DropFileHere}
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
+              <div className="upload-choices">
+                {googleDriveProps && googleDriveProps.enabled && (
+                  <GoogleDriveUpload
+                    inputRef={inputRef}
+                    mimeTypes={mimeTypes}
+                    multiselect={multiselect}
+                    setFieldErrors={setFieldErrors}
+                    {...googleDriveProps}
+                  />
+                )}
+                { dropboxProps && dropboxProps.enableDropbox && (
+                  <DropboxUpload
+                    disabled={isFileUploaded === true}
+                    sizeLimit={maxSizeInBytes}
+                    inputRef={inputRef}
+                    mimeTypes={mimeTypes}
+                    multiselect={multiselect}
+                    setFieldErrors={setFieldErrors}
+                    {...dropboxProps}
+                  />
+                ) }
+
+              </div>
+            </>
           )}
           {uploadedItems && <ul className="upload-list">{uploadedItems}</ul>}
           {generalErrors}

@@ -76,6 +76,25 @@ import { ContactDetails } from '@ffw/randstad-shared-components';
  
   <ContactDetails type="contact-person" title="get in touch" description="We are here to help you with your press questions" profiles={profiles} />
   ```
+ContactDetails component with "contact-person" variant and button for contact form.
+```jsx
+import { ContactDetails } from '@ffw/randstad-shared-components';
+ const profiles = [
+   {
+      name: 'wade ortega',
+      initials: 'WO',
+      title: 'manager outsourcing',
+      description: 'I am here to support the resource management needs of your business by applying our outsourcing solutions.',
+      email: 'wade.ortega@randstad.com',
+    },
+   ];
+ const contactForm = {
+   contactFormButtonText: 'Send a message',
+   onContactFormButtonClicked: () => {}
+ };
+
+  <ContactDetails type="contact-person" title="get in touch" description="We are here to help you with your press questions" profiles={profiles} contactForm={contactForm} />
+  ```
 ContactDetails component with "contact-person" variant with tertiary background.
 ```jsx
 import { ContactDetails } from '@ffw/randstad-shared-components';

@@ -31,7 +31,7 @@ function Breadcrumbs({
               {mobileItem && (
                 RouterComponent ? <RouterComponent className="breadcrumb__link hidden--from-l" href={mobileUrl}>{mobileTitle}</RouterComponent> : <a className="breadcrumb__link hidden--from-l" href={mobileUrl}>{mobileTitle}</a>
               )}
-              <ul className="breadcrumb__list hidden--until-l">
+              <ul className="breadcrumb__list text-ellipsis hidden--until-l">
                 {items.map(({ title, link, active }, index) => (
                   <li className="breadcrumb__item" key={`breadcrumb-${title}-${index}`}>
                     {link && !active ? (

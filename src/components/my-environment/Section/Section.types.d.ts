@@ -10,4 +10,5 @@ export type SectionTypes = {
   label?: string | React.ReactNode;
   divider?: boolean;
   actionHeaderStyles?: string;
+  profileBuilder?: boolean;
 };

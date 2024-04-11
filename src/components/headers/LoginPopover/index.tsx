@@ -17,6 +17,8 @@ function LoginPopover({
   arrowVariant,
   RouterComponent,
   currentRoute,
+  trackLoginPopoverOpen,
+  trackLoginPopoverEvent,
 }: LoginPopoverPropTypes) {
   const [ref] = useOrbitComponent('popover');
   const overlayRef = useRef<HTMLDivElement>(null);
@@ -70,12 +72,18 @@ function LoginPopover({
   const removeActiveClass = () => {
     const popoverTrigger = document.querySelector('.navigation__service-my-randstad');
     if (popoverTrigger) {
-      popoverTrigger.classList.remove('active');
       // Since the login-popover stays open after click, we dispatch a click on the backdrop/overlay.
       const overlay = document.querySelector('[data-rs-popover-overlay]');
       if (overlay) {
         (overlay as HTMLElement).click();
       }
+
+      /**
+       * When the user is logged in, clicking on the overlay triggers "toggle"
+       * of the "active" class.
+       * That's why the manual removal of the class is executed last.
+       */
+      popoverTrigger.classList.remove('active');
     }
   };
 
@@ -119,7 +127,18 @@ function LoginPopover({
           )}
         </div>
       </div>
-      <div ref={overlayRef} className="modal__overlay modal__overlay--light" data-rs-popover-overlay="" />
+      {/* Disable rules for not needed keydown event and role */}
+      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
+      <div
+        ref={overlayRef}
+        className="modal__overlay modal__overlay--light"
+        data-rs-popover-overlay=""
+        onClick={() => {
+          if (trackLoginPopoverOpen) {
+            trackLoginPopoverEvent(false);
+          }
+        }}
+      />
     </>
   );
 }

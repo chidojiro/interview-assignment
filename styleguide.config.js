@@ -151,5 +151,10 @@ module.exports = {
       components: 'src/components/chat/Chat/*.tsx',
       description: 'Chat component used for pre-screening.',
     },
+    {
+      name: 'Tables',
+      components: 'src/components/tables/**/*.tsx',
+      description: 'A collection of related data held in a structured format consisting of columns, and rows.',
+    },
   ],
 };

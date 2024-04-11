@@ -4,9 +4,10 @@ import { ImageSizeClasses } from '../ImageSizeClasses.types';
 import { PersonProfileTypes } from './PersonProfile.types';
 import Icon from '../../common/Icon';
 import SocialLinks from '../../common/SocialLinks';
+import Button from '../../buttons/Button';
 
 function PersonProfile({
-  size = 'XXL', avatarClasses = 'mb-s l:mb-none l:mr-s', person, personProfileClasses, personInfoClasses,
+  size = 'XXL', avatarClasses = 'mb-s l:mb-none l:mr-s', person, personProfileClasses, personInfoClasses, contactForm,
 }: PersonProfileTypes) {
   const sizeClasses: ImageSizeClasses = {
     XS: 'avatar--XS',
@@ -18,11 +19,12 @@ function PersonProfile({
   };
 
   if (!person || !person.name) return null;
+  const { contactFormButtonText, onContactFormButtonClicked } = contactForm || {};
 
   return (
     <div className={cn('person__profile', personProfileClasses)}>
       <div className={cn('avatar aspect-ratio aspect-ratio--1-1', sizeClasses[size], avatarClasses, {
-        'avatar__initials': !person.pictureUrl,
+        avatar__initials: !person.pictureUrl,
       })}
       >
         {person.pictureUrl
@@ -41,8 +43,9 @@ function PersonProfile({
 
         {person.phone || person.email
           ? (
-            <ul className="contact-details">
-              {person.phone
+            <>
+              <ul className="contact-details">
+                {person.phone
               && (
                 <li className="contact-details__item">
                   <a href={`tel:${person.phone}`} className="contact-details__link" aria-label="">
@@ -51,7 +54,7 @@ function PersonProfile({
                   </a>
                 </li>
               )}
-              {person.email
+                {person.email && !contactForm
               && (
                 <li className="contact-details__item">
                   <a href={`mailto:${person.email}`} className="contact-details__link" aria-label="">
@@ -60,7 +63,13 @@ function PersonProfile({
                   </a>
                 </li>
               )}
-            </ul>
+              </ul>
+              {contactFormButtonText && onContactFormButtonClicked && (
+                <Button className={cn('', { 'mt-s': person.phone })} handleClick={onContactFormButtonClicked}>
+                  {contactFormButtonText}
+                </Button>
+              )}
+            </>
           ) : null}
 
         {person.socialLinks

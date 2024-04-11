@@ -25,6 +25,7 @@ import HeaderSavedJobs from '../HeaderSavedJobs';
 import useUserData from '../../../hooks/useUserData';
 import { HeaderProps, Menu } from './Header.types';
 import { gtmScriptInitializer } from '../../../utils';
+import { loginPopoverEvent } from '../../../utils/gtmEvents';
 
 function Header({
   brand,
@@ -46,6 +47,7 @@ function Header({
   // TO DO: currentUser.loginState state needed because tabBar needs an active link on logout
   const [currentUser, setCurrentUser] = useState({} as PersistData);
   const profileData = useUserData();
+  const [trackLoginPopoverOpen, setTrackLoginPopover] = useState(false);
 
   useEffect(() => {
     const newUserData = getUserData();
@@ -73,7 +75,9 @@ function Header({
         isLoginEnabled,
       );
     }
-  }, [gtmSettings, isLoginEnabled, localization.locale]);
+    // Ensure we initialize gtm once.
+    // eslint-disable-next-line
+  }, []);
 
   /**
    * Return an isActive prop to the menu item whenever current URL are equal.
@@ -173,6 +177,13 @@ function Header({
     subMenu = subMenuItems.map(getActiveMenuItem);
   }
 
+  const trackLoginPopoverEvent = (open: boolean) => {
+    if (!currentUser.loginStatus) {
+      loginPopoverEvent(open);
+      setTrackLoginPopover(open);
+    }
+  };
+
   return (
     <>
       <header
@@ -207,6 +218,8 @@ function Header({
                     show={showMyRandstad}
                     isAuth={currentUser.loginStatus}
                     userName={currentUser.currentUser?.personalInfo}
+                    trackLoginPopoverOpen={trackLoginPopoverOpen}
+                    trackLoginPopoverEvent={trackLoginPopoverEvent}
                   />
                 )}
                 <li className="navigation__service-item hidden--from-l">
@@ -237,6 +250,8 @@ function Header({
                     logoutUrl={myRandstadLogoutUrl}
                     RouterComponent={RouterComponent}
                     currentRoute={currentRoute}
+                    trackLoginPopoverOpen={trackLoginPopoverOpen}
+                    trackLoginPopoverEvent={trackLoginPopoverEvent}
                   />
                 </div>
               )}
@@ -245,7 +260,7 @@ function Header({
               <Submenu items={subMenu} />
             )}
             { isMyRandstad && !currentUser.loginStatus && (
-              <Submenu items={subMenu} RouterComponent={RouterComponent} />
+              <Submenu items={subMenu} RouterComponent={RouterComponent} languagePrefix={languagePrefix} />
             )}
           </div>
           {breadcrumbs?.breadcrumbsItems && breadcrumbs?.breadcrumbsMobileItem
@@ -276,7 +291,7 @@ function Header({
       { isMyRandstad && currentUser.loginStatus && (
         <div className="block bg-greyscale--grey-10 my-environment__sub-menu">
           <div className="wrapper">
-            <TabBar items={tabBarMenu} currentUrl={currentUrl} RouterComponent={RouterComponent} />
+            <TabBar languagePrefix={languagePrefix} items={tabBarMenu} currentUrl={currentUrl} RouterComponent={RouterComponent} />
           </div>
         </div>
       )}

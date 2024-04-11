@@ -8,6 +8,7 @@ export interface SavedJobIconProps {
   savedJobId?: string | null;
   jobPostingWebDetailId: string;
   ariaLabel?: string;
+  opcoCodes: string | string[];
   returnJobPostingDetails?: (jobPostingWebDetailId: string, jobPostingTitle: string) => void;
   locale: string;
   title: string;
@@ -18,4 +19,6 @@ export interface SavedJobIconProps {
     modalButtonLink: string;
     jobsLimit: number,
   };
+  displayAs?: 'icon' | 'button';
+  savedButtonText?: string;
 }

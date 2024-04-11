@@ -67,6 +67,7 @@ import Dropdown from './components/forms/Dropdown';
 import Stackable from './components/forms/Stackable';
 import Rating from './components/indicators/Rating';
 import RatingStars from './components/indicators/RatingStars';
+import Steps from './components/indicators/Steps';
 import ApplicationProcess from './components/carousels/ApplicationProcess';
 import ApplicationProcessCard from './components/carousels/ApplicationProcessCard';
 import { ApplicationProcessCardProp } from './components/carousels/ApplicationProcessCard/ApplicationProcessCard.types';
@@ -91,6 +92,10 @@ import Sortbar from './components/forms/Sortbar';
 import MyRandstad from './components/navigation/MyRandstad';
 import SavedJobIcon from './components/cards/JobCard/SavedJobIcon';
 import ErrorBoundary from './components/errors/ErrorBoundary';
+import ContentTable from './components/tables/ContentTable';
+import DataTable from './components/tables/DataTable';
+import ConsultantContactForm from './components/contacts/ConsultantContactForm';
+
 import { JobCardProps, SavedJobsProps } from './components/cards/JobCard/JobCard.types';
 import {
   MetaItemIcons,
@@ -98,6 +103,7 @@ import {
   FourthOptionIconType,
 } from './components/cards/JobCard/JobItemMetadata/JobItemMetadata.types';
 import MetaCardOption from './components/cards/JobCard/JobItemMetadata/MetaCardOption';
+import { StepInterface, UpdateStepFunction, StepStateEnum } from './components/indicators/Steps/Steps.types';
 
 export {
   Pagination,
@@ -174,6 +180,7 @@ export {
   TagCheckbox,
   Rating,
   RatingStars,
+  Steps,
   MetaInfoCard,
   MetaInfoCardItems,
   ContactDetails,
@@ -189,6 +196,9 @@ export {
   ArrowLink,
   Sortbar,
   MetaCardOption,
+  ContentTable,
+  DataTable,
+  ConsultantContactForm,
   ErrorBoundary,
 };
 
@@ -206,6 +216,9 @@ export type {
   SavedJobsProps,
   FourthOptionFieldValues,
   FourthOptionIconType,
+  StepInterface,
+  StepStateEnum,
+  UpdateStepFunction,
 };
 
 export { default as getAxiosInstance } from './utils/getAxiosInstance';

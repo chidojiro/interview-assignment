@@ -58,7 +58,7 @@ const saveCountOfSavedJobs = async (gdsApiKey: string, gdsApiUrl: string, shareI
     await localStorage.setItem('userState', JSON.stringify(userData));
   }
   const savedJobsEvent = new Event(savedJobsLocalStorageKey);
-  window.dispatchEvent(savedJobsEvent);
+  window.top?.dispatchEvent(savedJobsEvent);
 };
 
 const postSavedJobs = async (
@@ -124,7 +124,7 @@ export const transferSavedJobStructure = (job: RXPJob): LocalStorageSavedJob => 
  *    true = we need to fill it.
  *    false = we need to unfill it.
  */
-const handleAnonymousSavedJobs = async (searchApiUrl: string, searchApiKey: string, jobId: string, locale: string): Promise<boolean> => {
+const handleAnonymousSavedJobs = async (searchApiUrl: string, searchApiKey: string, jobId: string, locale: string, opcoCodes: string | string[]): Promise<boolean> => {
   let savedJobs: LocalStorageSavedJobs | undefined = getSavedJobsLocalStorage();
   if (savedJobs && savedJobs.content) {
     // Search if we have the job in the local storage.
@@ -156,7 +156,7 @@ const handleAnonymousSavedJobs = async (searchApiUrl: string, searchApiKey: stri
   }
 
   // If we got here, then this means that we need to query the api for the job.
-  const result = await searchByJobId(searchApiUrl, searchApiKey, jobId, locale);
+  const result = await searchByJobId(searchApiUrl, searchApiKey, jobId, locale, opcoCodes);
 
   // If there is no result, this means that there is some kind of error. We return false, as we don't want to update anything.
   if (!result) {

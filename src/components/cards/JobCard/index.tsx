@@ -32,6 +32,7 @@ function JobCard(props: JobCardProps) {
     disabled = false,
     notice = null,
     badgeText,
+    opcoCodes,
   } = props;
   const [realLogoImg, setRealLogoImg] = useState(true);
 
@@ -114,6 +115,7 @@ function JobCard(props: JobCardProps) {
             locale={savedJobsEnabled.locale}
             title={title}
             anonymousSavedLimit={savedJobsEnabled.anonymousSavedLimit}
+            opcoCodes={opcoCodes}
           />
         )}
       </div>

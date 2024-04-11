@@ -130,14 +130,17 @@ describe('gtm', () => {
     });
 
     it('should populate "ip_address" and "cms_user_id" based on browser cookies', () => {
-      document.cookie = 'ip_address=172.168.0.1; expires=Mon, 1 Jan 2024 00:00:00 UTC; path=/';
-      document.cookie = 'cms_user_id=XXXXX; expires=Mon, 1 Jan 2024 00:00:00 UTC; path=/';
+      Object.defineProperty(document, 'cookie', {
+        writable: true,
+        value: 'ip_address=172.168.0.1; expires=Mon, 1 Jan 2024 00:00:00 UTC; path=/; cms_user_id=XXXXX; expires=Mon, 1 Jan 2024 00:00:00 UTC; path=/',
+      });
       gtmScriptInitializer(windowObject, document, 'script', 'dataLayer', gtmSettings, 'en', true);
       expect((windowObject.dataLayer?.[0] as { user: { ip_address?: string } })?.user?.ip_address).toBe('172.168.0.1');
       expect((windowObject.dataLayer?.[0] as { user: { cms_user_id?: string } })?.user?.cms_user_id).toBe('XXXXX');
     });
 
     it('should include minified version of user object if my randstad app is disabled', () => {
+      document.cookie = '';
       gtmScriptInitializer(windowObject, document, 'script', 'dataLayer', gtmSettings, 'en', false);
       expect(windowObject.dataLayer).toHaveLength(2);
       expect(windowObject.dataLayer?.[0]).toStrictEqual({

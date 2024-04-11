@@ -70,4 +70,35 @@ describe('Modal component', () => {
     fireEvent.click(container.querySelector('button.modal__close') as HTMLButtonElement);
     expect(window.history.pushState).not.toHaveBeenCalled();
   });
+
+  // Tests for "fullScreen" prop.
+  it('should apply "w-full h-full rounded-none" classes when fullScreen is true', () => {
+    const { container } = render(
+      <Modal
+        title="Modal title"
+        onClose={() => {}}
+        fullScreen={true} // Set fullScreen to true
+      >
+        <div id="modal-content">Modal content</div>
+      </Modal>,
+    );
+
+    const modalDialogElement = container.querySelector('.modal__dialog');
+    expect(modalDialogElement).toHaveClass('w-full h-full rounded-none');
+  });
+
+  it('should not apply "w-full h-full rounded-none" classes when fullScreen is false', () => {
+    const { container } = render(
+      <Modal
+        title="Modal title"
+        onClose={() => {}}
+        fullScreen={false} // Set fullScreen to false
+      >
+        <div id="modal-content">Modal content</div>
+      </Modal>,
+    );
+
+    const modalDialogElement = container.querySelector('.modal__dialog');
+    expect(modalDialogElement).not.toHaveClass('w-full h-full rounded-none');
+  });
 });
