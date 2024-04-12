@@ -10,6 +10,7 @@ function getUserData(): PersistData {
     savedJobs: {
       totalElements: 0,
     },
+    disagreed: undefined,
   };
 
   if (typeof window === 'undefined') {
@@ -23,13 +24,20 @@ function getUserData(): PersistData {
 
   const data = JSON.parse(localStorage.getItem('userState') || '{}');
 
-  let loginStatus = false;
-  if (data?.currentUser && data?.loginStatus) {
-    const { currentUser, savedJobs } = data;
-    loginStatus = data.loginStatus;
-    return { currentUser, loginStatus, savedJobs };
+  const loginStatus = (data?.currentUser && data?.loginStatus) ? data.loginStatus : false;
+
+  const userData: PersistData = {
+    loginStatus,
+    savedJobs: data.savedJobs,
+  };
+
+  if (loginStatus) {
+    userData.currentUser = data.currentUser;
+    userData.disagreed = data.disagreed;
+    userData.isIdTokenValidated = data.isIdTokenValidated;
   }
-  return { loginStatus, savedJobs: data.savedJobs };
+
+  return userData;
 }
 
 export default getUserData;

@@ -20,4 +20,6 @@ export type PersistData = {
   savedJobs: {
     totalElements: number;
   };
+  disagreed?: boolean;
+  isIdTokenValidated?: boolean;
 };
