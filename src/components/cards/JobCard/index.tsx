@@ -34,7 +34,7 @@ function JobCard(props: JobCardProps) {
     badgeText,
     opcoCodes,
     RouterComponent,
-    jobDetailsInfoUrl,
+    backsideUrl,
   } = props;
   const [realLogoImg, setRealLogoImg] = useState(true);
 
@@ -154,7 +154,7 @@ function JobCard(props: JobCardProps) {
         <div className="cards__backside-description" dangerouslySetInnerHTML={{ __html: description }} />
         <div className="cards__backside-footer">
           <a
-            href={jobDetailsInfoUrl ?? url}
+            href={backsideUrl ?? url}
             data-jobid={id}
             onMouseDown={onMouseDownClick}
             className="cards__backside-footer--horizontal cards__backside-footer--job-link"
