@@ -33,6 +33,7 @@ function JobCard(props: JobCardProps) {
     notice = null,
     badgeText,
     opcoCodes,
+    RouterComponent,
   } = props;
   const [realLogoImg, setRealLogoImg] = useState(true);
 
@@ -92,10 +93,19 @@ function JobCard(props: JobCardProps) {
             </div>
           )}
           <h3 className="cards__title">
-            <a href={url} tabIndex={0} className="cards__link" onMouseDown={onMouseDownClick}>
-              {title}
-              <span className="make-entire-card-clickable" />
-            </a>
+            { RouterComponent ? (
+              <RouterComponent href={url} prefetch tabIndex={0} onMouseDown={onMouseDownClick} className="cards__link">
+                {title}
+                <span className="make-entire-card-clickable" />
+
+              </RouterComponent>
+            ) : (
+              <a href={url} tabIndex={0} className="cards__link" onMouseDown={onMouseDownClick}>
+                {title}
+                <span className="make-entire-card-clickable" />
+              </a>
+            )}
+
           </h3>
           { notice && notice.children && notice.type && (
             <Notice type={notice.type}>{notice.children}</Notice>
@@ -142,17 +152,30 @@ function JobCard(props: JobCardProps) {
         {/* eslint-disable-next-line react/no-danger */}
         <div className="cards__backside-description" dangerouslySetInnerHTML={{ __html: description }} />
         <div className="cards__backside-footer">
-          <a
-            href={url}
-            data-jobid={id}
-            onMouseDown={onMouseDownClick}
-            className="cards__backside-footer--horizontal cards__backside-footer--job-link"
-            tabIndex={-1}
-            aria-label=""
-          >
-            <Icon iconType="eye" iconClassName="icon icon--inline" />
-            {viewJobText}
-          </a>
+          {RouterComponent ? (
+            <RouterComponent
+              href={url}
+              tabIndex={-1}
+              onMouseDown={onMouseDownClick}
+              className="cards__backside-footer--horizontal cards__backside-footer--job-link"
+              prefetch
+            >
+              <Icon iconType="eye" iconClassName="icon icon--inline" />
+              {viewJobText}
+            </RouterComponent>
+          ) : (
+            <a
+              href={url}
+              data-jobid={id}
+              onMouseDown={onMouseDownClick}
+              className="cards__backside-footer--horizontal cards__backside-footer--job-link"
+              tabIndex={-1}
+              aria-label=""
+            >
+              <Icon iconType="eye" iconClassName="icon icon--inline" />
+              {viewJobText}
+            </a>
+          )}
           <div
             className="cards__backside-footer--horizontal cards__backside-footer--close-backside"
             data-rs-card-hide-backside=""

@@ -44,4 +44,5 @@ export interface JobCardProps extends JobItemMetadataProps {
   notice?: NoticeProps | null;
   opcoCodes: string | string[];
   badgeText?: string | undefined;
+  RouterComponent?: React.FC<any>;
 }
