@@ -3,9 +3,9 @@ import { Menu, MenuItem, Routes } from './headerUtils.types';
 // Get the menu item url that best matches the current url
 // (from a two level navigation - without homepage "/" that will always match).
 export const getCurrentMenuItemUrl = (mainMenuItems: MenuItem[], baseUrl: string, currentUrl: string) => mainMenuItems
-  .map((item: Routes) => [item, item.children]).flat(2)
-  .filter((item: Routes) => (baseUrl.startsWith(item.url) || currentUrl.startsWith(item.url))
-    && item.url !== '/')
+  .map((item: Routes) => [item, item?.children]).flat(2)
+  .filter((item: Routes) => (baseUrl.startsWith(item?.url) || currentUrl.startsWith(item?.url))
+    && item?.url !== '/')
   .sort((a: Routes, b: Routes) => b.url.length - a.url.length)[0]?.url || null;
 
 export const getMainMenu = (menu: Menu, baseUrl: string, currentUrl: string) => {
