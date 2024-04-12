@@ -27,6 +27,7 @@ export interface JobCardProps extends JobItemMetadataProps {
   description: string;
   id: string;
   url: string;
+  jobDetailsInfoUrl?: string;
   date: string;
   enableLogo?: boolean;
   hasBackground?: boolean;

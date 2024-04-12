@@ -34,6 +34,7 @@ function JobCard(props: JobCardProps) {
     badgeText,
     opcoCodes,
     RouterComponent,
+    jobDetailsInfoUrl,
   } = props;
   const [realLogoImg, setRealLogoImg] = useState(true);
 
@@ -70,13 +71,13 @@ function JobCard(props: JobCardProps) {
       data-rs-carousel-card
       ref={cardRef}
     >
-      <div className="mb-s">
-        {badgeText ? (
+      { badgeText ? (
+        <div className="mb-s">
           <Badge color="primary" size="l">
             {badgeText}
           </Badge>
-        ) : null}
-      </div>
+        </div>
+      ) : null}
 
       <div className="cards__header">
         <div className="cards__logo-title-container">
@@ -152,30 +153,17 @@ function JobCard(props: JobCardProps) {
         {/* eslint-disable-next-line react/no-danger */}
         <div className="cards__backside-description" dangerouslySetInnerHTML={{ __html: description }} />
         <div className="cards__backside-footer">
-          {RouterComponent ? (
-            <RouterComponent
-              href={url}
-              tabIndex={-1}
-              onMouseDown={onMouseDownClick}
-              className="cards__backside-footer--horizontal cards__backside-footer--job-link"
-              prefetch
-            >
-              <Icon iconType="eye" iconClassName="icon icon--inline" />
-              {viewJobText}
-            </RouterComponent>
-          ) : (
-            <a
-              href={url}
-              data-jobid={id}
-              onMouseDown={onMouseDownClick}
-              className="cards__backside-footer--horizontal cards__backside-footer--job-link"
-              tabIndex={-1}
-              aria-label=""
-            >
-              <Icon iconType="eye" iconClassName="icon icon--inline" />
-              {viewJobText}
-            </a>
-          )}
+          <a
+            href={jobDetailsInfoUrl ?? url}
+            data-jobid={id}
+            onMouseDown={onMouseDownClick}
+            className="cards__backside-footer--horizontal cards__backside-footer--job-link"
+            tabIndex={-1}
+            aria-label=""
+          >
+            <Icon iconType="eye" iconClassName="icon icon--inline" />
+            {viewJobText}
+          </a>
           <div
             className="cards__backside-footer--horizontal cards__backside-footer--close-backside"
             data-rs-card-hide-backside=""
