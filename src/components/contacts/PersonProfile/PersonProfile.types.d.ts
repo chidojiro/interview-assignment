@@ -9,6 +9,7 @@ export type PersonTypes = {
   title?: string;
   description?: string;
   phone?: string;
+  phoneNumbers?: [string];
   email?: string;
   socialLinks?: SocialLinkTypes[];
 };
