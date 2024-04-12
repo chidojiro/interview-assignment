@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { Closable } from '@ffw/randstad-local-orbit/original/js/components/closable';
-import classNames from 'classnames';
+import cn from 'classnames';
 import Icon from '../../common/Icon';
 import { CloseEvents, PromoteAppBannerProps } from './PromoteAppBanner.types';
 import '../../../assets/scss/promote-app-banner.scss';
@@ -51,7 +51,13 @@ function PromoteAppBanner({
   }
 
   return (
-    <div className={`block ${backgroundClass}-${background} notice-text-only bluex-promote-app ${isClosable ? 'notice-text-only__closable' : ''} ${closable ? 'closable--closed' : ''} ${typeClassesWrapper}`} data-rs-promotional-app-banner>
+    <div
+      className={cn(`block ${backgroundClass}-${background} notice-text-only bluex-promote-app`, {
+        'notice-text-only__closable': isClosable,
+        'closable--closed': closable,
+      }, typeClassesWrapper)}
+      data-rs-promotional-app-banner
+    >
       <div className="wrapper notice-text-only__wrapper">
         <div className="notice-text-only__content body-copy">
           {isClosable && (
@@ -65,7 +71,7 @@ function PromoteAppBanner({
                 data-rs-closable="data-rs-promotional-app-banner"
                 ref={ref}
               >
-                <Icon iconClassName={classNames('icon icon--inline icon--alternative')} iconType="close" />
+                <Icon iconClassName={cn('icon icon--inline icon--alternative')} iconType="close" />
               </button>
             </div>
           )}
