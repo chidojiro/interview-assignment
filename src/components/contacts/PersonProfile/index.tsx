@@ -41,7 +41,7 @@ function PersonProfile({
           </p>
         )}
 
-        {person.phone || person.email
+        {person.phone || person.email || person.phoneNumbers
           ? (
             <>
               <ul className="contact-details">
@@ -54,6 +54,17 @@ function PersonProfile({
                   </a>
                 </li>
               )}
+                {person?.phoneNumbers
+                  && (
+                    person.phoneNumbers.map((phoneNumber : string) => (
+                      <li className="contact-details__item">
+                        <a href={`tel:${phoneNumber}`} className="contact-details__link" aria-label="">
+                          <Icon iconType="phone" iconClassName="icon icon--inline icon--hover" />
+                          <span>{phoneNumber}</span>
+                        </a>
+                      </li>
+                    ))
+                  )}
                 {person.email && !contactForm
               && (
                 <li className="contact-details__item">
