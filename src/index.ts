@@ -38,6 +38,7 @@ import TextNotice from './components/notifications/TextNotice';
 import ActionNotice from './components/notifications/ActionNotice';
 import { TextNoticeBackground } from './components/notifications/TextNotice/TextNotice.types';
 import Toast from './components/notifications/Toast';
+import PromoteAppBanner from './components/notifications/PromoteAppBanner';
 import Footer from './components/footer/Footer';
 import FooterColumnNav from './components/footer/FooterColumnNav';
 import FooterBottomNav from './components/footer/FooterBottomNav';
@@ -200,6 +201,7 @@ export {
   DataTable,
   ConsultantContactForm,
   ErrorBoundary,
+  PromoteAppBanner,
 };
 
 /**
