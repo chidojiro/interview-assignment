@@ -3,11 +3,13 @@ import { Toast as OrbitComponent } from '@ffw/randstad-local-orbit/js/components
 import Icon from '../../common/Icon';
 import Button from '../../buttons/Button';
 import { CloseEvents, ToastProps } from './Toast.types';
+import getBackground from '../../../utils/getBackground';
 
 function Toast({
-  title, anchor, id, buttonCloseText, buttonSuccessText, ariaLabelClose = 'close', labelClose = 'close', onSuccess, onClose, successBtnVariant,
+  title, anchor, id, buttonCloseText, buttonSuccessText, ariaLabelClose = 'close', labelClose = 'close', onSuccess, onClose, successBtnVariant, bgColor = 'secondary',
 }: ToastProps) {
   const [closeToast, setCloseToast] = useState('');
+  const backgroundColor = getBackground(bgColor);
 
   const attributes = {
     'data-rs-toast': id,
@@ -90,7 +92,7 @@ function Toast({
     };
   }, [id, onClose]);
   return (
-    <div className={`toast bg-variant-brand-secondary show toast--active ${closeToast}`} {...attributes} ref={ref}>
+    <div className={`toast ${backgroundColor} show toast--active ${closeToast}`} {...attributes} ref={ref}>
       <p className="toast__message">{title}</p>
       {(buttonCloseText || buttonSuccessText) && (
         <div className="toast__cta">
