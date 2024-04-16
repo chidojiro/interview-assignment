@@ -68,8 +68,6 @@ export interface LoginPopoverPropTypes {
   arrowVariant?: PopoverArrowVariants;
   logoutUrl?: string;
   currentRoute?: string | undefined;
-  trackLoginPopoverOpen: boolean;
-  trackLoginPopoverEvent: (open: boolean) => void;
   // disable eslint for type any
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   RouterComponent?: React.FC<any>;

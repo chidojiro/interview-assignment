@@ -1,10 +1,11 @@
 import React, { useEffect, useRef } from 'react';
-import useOrbitComponent from '../../../hooks/useOrbitComponent';
+import { Popover } from '@ffw/randstad-local-orbit/js/components/popover';
 import LoggedOut from './LoggedOut';
 import LoggedIn from './LoggedIn';
 import {
   LinksType, LoginPopoverPropTypes, Routes, TranslationProps,
 } from './LoginPopover.types';
+import { loginPopoverEvent } from '../../../utils/gtmEvents';
 
 function LoginPopover({
   isAuth,
@@ -17,10 +18,8 @@ function LoginPopover({
   arrowVariant,
   RouterComponent,
   currentRoute,
-  trackLoginPopoverOpen,
-  trackLoginPopoverEvent,
 }: LoginPopoverPropTypes) {
-  const [ref] = useOrbitComponent('popover');
+  const ref = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -87,6 +86,32 @@ function LoginPopover({
     }
   };
 
+  useEffect(() => {
+    const trackEvent = (event: Event) => {
+      if (
+        event.target
+        && event.target instanceof HTMLDivElement
+        && event.target.dataset
+        && event.target.dataset.rsPopover === 'login-popover'
+        && !localStorage.getItem('userState')
+      ) {
+        if (!event.target.classList.contains('popover--active')) {
+          loginPopoverEvent(false);
+        } else {
+          loginPopoverEvent(true);
+        }
+      }
+    };
+
+    if (ref.current?.hasAttribute('data-rs-popover') && !ref.current.hasAttribute('data-rendered')) {
+      new Popover(ref.current);
+      ref.current.dataset.rendered = 'rendered';
+      document.addEventListener('DOMSubtreeModified', (event) => trackEvent(event));
+    }
+
+    return () => document.removeEventListener('DOMSubtreeModified', (event) => trackEvent(event));
+  }, []);
+
   return (
     <>
       <div ref={ref} className={`popover bg-variant-brand-tertiary bluex-popover--mobile ${arrowType}`} data-rs-popover="login-popover" role="dialog" aria-hidden="true">
@@ -127,17 +152,10 @@ function LoginPopover({
           )}
         </div>
       </div>
-      {/* Disable rules for not needed keydown event and role */}
-      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
       <div
         ref={overlayRef}
         className="modal__overlay modal__overlay--light"
         data-rs-popover-overlay=""
-        onClick={() => {
-          if (trackLoginPopoverOpen) {
-            trackLoginPopoverEvent(false);
-          }
-        }}
       />
     </>
   );
