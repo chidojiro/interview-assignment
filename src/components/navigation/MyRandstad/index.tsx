@@ -12,6 +12,7 @@ function MyRandstad({
   userImgUrl,
   trackLoginPopoverOpen,
   trackLoginPopoverEvent,
+  hiddenLabel = false,
 }: MyRandstadProps) {
   const { givenName, familyName, preferredName } = userName || { givenName: '', familyName: '', preferredName: '' } as UserNameProps;
   const userInitials = preferredName ? `${preferredName.slice(0, 1).toUpperCase()}` : `${givenName.slice(0, 1).toUpperCase()}`;
@@ -54,12 +55,14 @@ function MyRandstad({
             <Icon iconClassName="icon icon--xs icon--inline icon-chevron hidden--from-l self-center" iconType="chevron-down-8" />
             {/* Disable rules for not needed keydown event and role */}
             {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
-            <span
-              id="navigation__service-user-text"
-              className="hidden--until-l"
-            >
-              {label || 'my randstad'}
-            </span>
+            {!hiddenLabel && (
+              <span
+                id="navigation__service-user-text"
+                className="hidden--until-l"
+              >
+                {label || 'my randstad'}
+              </span>
+            )}
           </span>
         ) : (
           <>
@@ -71,9 +74,11 @@ function MyRandstad({
               )}
             </span>
             <Icon iconClassName="icon icon--xs icon--inline icon-chevron ml-none hidden--from-l" iconType="chevron-down-8" />
-            <span id="navigation__service-user-text" className="hidden--until-l">
-              {preferredName || givenName}
-            </span>
+            {!hiddenLabel && (
+              <span id="navigation__service-user-text" className="hidden--until-l">
+                {preferredName || givenName}
+              </span>
+            )}
           </>
         )}
       </a>
