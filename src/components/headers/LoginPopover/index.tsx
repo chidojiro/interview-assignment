@@ -86,6 +86,10 @@ function LoginPopover({
     }
   };
 
+  /**
+   * This logic initializes the login-popover component from orbit and attaches the DOMSubtreeModified listener.
+   * We check for popover--active class and trigger the data tracking event base on it.
+   */
   useEffect(() => {
     const trackEvent = (event: Event) => {
       if (
