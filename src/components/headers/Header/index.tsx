@@ -43,6 +43,7 @@ function Header({
   useToast = false,
   toastSettings,
   gtmSettings,
+  theme,
 }: HeaderProps) {
   // TO DO: currentUser.loginState state needed because tabBar needs an active link on logout
   const [currentUser, setCurrentUser] = useState({} as PersistData);
@@ -200,7 +201,7 @@ function Header({
         >
           <div className="wrapper navigation__wrapper">
             <div className="navigation__top">
-              <Logo homepageUrl={homepageUrl} />
+              <Logo homepageUrl={homepageUrl} theme={theme} />
               <MainMenu items={mainMenuItems} />
               <ul className="navigation__service navigation__service--minimal">
                 {submenuLinks && savedJobsEnabled && (

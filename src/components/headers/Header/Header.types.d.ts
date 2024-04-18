@@ -1,6 +1,7 @@
 import { TranslationProps } from '../../../components/headers/LoginPopover/LoginPopover.types';
 import HeaderBrandsEnum from './headerBrands.enum';
 import { LocalizationTypes, Routes } from '../../../utils/headerUtils/headerUtils.types';
+import { Theme } from '../../navigation/navigation.types';
 
 export type HeaderBrands =
   | HeaderBrandsEnum.Primary
@@ -69,6 +70,7 @@ export interface HeaderProps {
     country: string;
     env?: string;
   },
+  theme?: Theme['theme'];
 }
 
 type Menu = {
