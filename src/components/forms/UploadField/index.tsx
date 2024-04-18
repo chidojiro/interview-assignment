@@ -106,7 +106,15 @@ function UploadField({
         if (setIsUploaded) setIsUploaded(false);
       }
     };
-    checkForFile();
+
+    // Run checkForFile if we don't know if the file uploaded, or not (isFileUploaded - undefined).
+    //
+    // Basically, if the file is pre-uploaded (the talent already has a file) isFileUploaded - set to true.
+    // If the file is not pre-uploaded (the talent does not have a file) isFileUploaded - set to false.
+    // We haven't checked if isFileUploaded - undefined.
+    if (isFileUploaded === undefined) {
+      checkForFile();
+    }
   }, [files, gdsApiKey, gdsApiUrl, setIsUploaded, shareIdTokenAcrossSubdomains]);
 
   let uploadedItems: JSX.Element[] = [];
