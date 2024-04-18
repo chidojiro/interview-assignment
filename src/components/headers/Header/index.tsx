@@ -25,7 +25,6 @@ import HeaderSavedJobs from '../HeaderSavedJobs';
 import useUserData from '../../../hooks/useUserData';
 import { HeaderProps, Menu } from './Header.types';
 import { gtmScriptInitializer } from '../../../utils';
-import { loginPopoverEvent } from '../../../utils/gtmEvents';
 
 function Header({
   brand,
@@ -48,7 +47,6 @@ function Header({
   // TO DO: currentUser.loginState state needed because tabBar needs an active link on logout
   const [currentUser, setCurrentUser] = useState({} as PersistData);
   const profileData = useUserData();
-  const [trackLoginPopoverOpen, setTrackLoginPopover] = useState(false);
 
   useEffect(() => {
     const newUserData = getUserData();
@@ -178,13 +176,6 @@ function Header({
     subMenu = subMenuItems.map(getActiveMenuItem);
   }
 
-  const trackLoginPopoverEvent = (open: boolean) => {
-    if (!currentUser.loginStatus) {
-      loginPopoverEvent(open);
-      setTrackLoginPopover(open);
-    }
-  };
-
   return (
     <>
       <header
@@ -219,8 +210,6 @@ function Header({
                     show={showMyRandstad}
                     isAuth={currentUser.loginStatus}
                     userName={currentUser.currentUser?.personalInfo}
-                    trackLoginPopoverOpen={trackLoginPopoverOpen}
-                    trackLoginPopoverEvent={trackLoginPopoverEvent}
                   />
                 )}
                 <li className="navigation__service-item hidden--from-l">
@@ -251,8 +240,6 @@ function Header({
                     logoutUrl={myRandstadLogoutUrl}
                     RouterComponent={RouterComponent}
                     currentRoute={currentRoute}
-                    trackLoginPopoverOpen={trackLoginPopoverOpen}
-                    trackLoginPopoverEvent={trackLoginPopoverEvent}
                   />
                 </div>
               )}

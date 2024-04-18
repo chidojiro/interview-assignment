@@ -2,7 +2,6 @@ import React from 'react';
 import Icon from '../../common/Icon';
 import { MyRandstadProps } from './MyRandstad.types';
 import { UserNameProps } from '../../headers/LoginPopover/LoginPopover.types';
-import { getKeyCodeOnKeyDownEvent } from '../../../utils';
 
 function MyRandstad({
   isAuth,
@@ -10,8 +9,6 @@ function MyRandstad({
   label,
   userName,
   userImgUrl,
-  trackLoginPopoverOpen,
-  trackLoginPopoverEvent,
   hiddenLabel = false,
 }: MyRandstadProps) {
   const { givenName, familyName, preferredName } = userName || { givenName: '', familyName: '', preferredName: '' } as UserNameProps;
@@ -22,19 +19,8 @@ function MyRandstad({
   }
 
   return (
-    // Disable for list item
-    // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
     <li
       className="navigation__service-item"
-      onKeyUp={(event) => {
-        const keyCode = getKeyCodeOnKeyDownEvent(event);
-        if (keyCode === 'Enter') {
-          trackLoginPopoverEvent(!trackLoginPopoverOpen);
-        }
-        if (keyCode === 'Escape' && trackLoginPopoverOpen) {
-          trackLoginPopoverEvent(false);
-        }
-      }}
     >
       <a
         href="#?"
@@ -43,14 +29,7 @@ function MyRandstad({
         aria-label="person-icon/initials"
       >
         {!isAuth ? (
-          // Disable for span
-          // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
-          <span
-            className="flex"
-            onClick={() => {
-              trackLoginPopoverEvent(!trackLoginPopoverOpen);
-            }}
-          >
+          <>
             <Icon iconClassName="icon icon--inline icon-person" iconType="person" />
             <Icon iconClassName="icon icon--xs icon--inline icon-chevron hidden--from-l self-center" iconType="chevron-down-8" />
             {/* Disable rules for not needed keydown event and role */}
@@ -63,7 +42,7 @@ function MyRandstad({
                 {label || 'my randstad'}
               </span>
             )}
-          </span>
+          </>
         ) : (
           <>
             <span className="icon icon--inline">
