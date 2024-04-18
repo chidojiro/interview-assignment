@@ -115,7 +115,7 @@ function UploadField({
     if (isFileUploaded === undefined) {
       checkForFile();
     }
-  }, [files, gdsApiKey, gdsApiUrl, setIsUploaded, shareIdTokenAcrossSubdomains]);
+  }, [isFileUploaded, files, gdsApiKey, gdsApiUrl, setIsUploaded, shareIdTokenAcrossSubdomains]);
 
   let uploadedItems: JSX.Element[] = [];
   const generalErrors: JSX.Element[] = [];
