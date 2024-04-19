@@ -7,4 +7,5 @@ export interface MyRandstadProps {
   userName?: UserNameProps;
   userImgUrl?: string;
   hiddenLabel?: boolean;
+  popoverId?: string;
 }

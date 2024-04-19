@@ -18,6 +18,7 @@ function LoginPopover({
   arrowVariant,
   RouterComponent,
   currentRoute,
+  popoverId = 'login-popover',
 }: LoginPopoverPropTypes) {
   const ref = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
@@ -118,7 +119,7 @@ function LoginPopover({
 
   return (
     <>
-      <div ref={ref} className={`popover bg-variant-brand-tertiary bluex-popover--mobile ${arrowType}`} data-rs-popover="login-popover" role="dialog" aria-hidden="true">
+      <div ref={ref} className={`popover bg-variant-brand-tertiary bluex-popover--mobile ${arrowType}`} data-rs-popover={popoverId} role="dialog" aria-hidden="true">
         <div className="popover__dialog">
           {!isAuth && (
             <LoggedOut
