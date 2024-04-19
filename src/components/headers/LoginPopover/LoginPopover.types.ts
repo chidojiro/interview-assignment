@@ -71,4 +71,5 @@ export interface LoginPopoverPropTypes {
   // disable eslint for type any
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   RouterComponent?: React.FC<any>;
+  popoverId?: string;
 }

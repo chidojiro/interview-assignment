@@ -38,7 +38,7 @@ function HeaderSavedJobs({
         ) : (
           <Icon iconType="heart-filled" iconClassName="icon icon--inline fill-brand--red" />
         )}
-        <span className="favorites__counter hidden--until-l" id="maxCounter">
+        <span className="favorites__counter" id="maxCounter">
           {maxCounter}
         </span>
       </a>
