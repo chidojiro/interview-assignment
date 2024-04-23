@@ -35,7 +35,7 @@ function JobCard(props: JobCardProps) {
     opcoCodes,
     RouterComponent,
     backsideUrl,
-    trackAndTraceStatus,
+    trackAndTraceData,
   } = props;
   const [realLogoImg, setRealLogoImg] = useState(true);
 
@@ -134,10 +134,10 @@ function JobCard(props: JobCardProps) {
       <JobItemMetadata {...props} />
       {/* Safe here. */}
       {/* eslint-disable-next-line react/no-danger */}
-      {trackAndTraceStatus && trackAndTraceStatus.status && (
+      {trackAndTraceData && trackAndTraceData.status && (
         <div className="mt-xs mb-s">
-          <div>{ trackAndTraceStatus.title }</div>
-          <div className="text-brand-primary">{ trackAndTraceStatus.status }</div>
+          <div>{ trackAndTraceData.title }</div>
+          <div className="text-brand-primary">{ trackAndTraceData.status }</div>
         </div>
       )}
       <div className="cards__description" dangerouslySetInnerHTML={{ __html: description }} />

@@ -22,7 +22,7 @@ interface SavedJobsProps {
   };
 }
 
-interface TrackAndTraceStatus {
+interface trackAndTraceData {
   title: string;
   status?: string;
 }
@@ -51,5 +51,5 @@ export interface JobCardProps extends JobItemMetadataProps {
   opcoCodes: string | string[];
   badgeText?: string | undefined;
   RouterComponent?: React.FC<any>;
-  trackAndTraceStatus?: TrackAndTraceStatus;
+  trackAndTraceData?: trackAndTraceData;
 }
