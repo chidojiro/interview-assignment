@@ -191,7 +191,7 @@ function Header({
       >
         <nav
           className={classNames('navigation', {
-            'my-environment': access ? access === 'private' : currentUser.loginStatus && isMyRandstad,
+            'my-environment': isMyRandstad && (access ? access === 'private' : currentUser.loginStatus),
           })}
           role="navigation"
           id="block-main-navigation"
