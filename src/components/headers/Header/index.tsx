@@ -62,8 +62,8 @@ function Header({
 
     // Find the currentRoute's access, in order for us to figure out which header to show.
     // We have a backup based on the loginStatus, as we won't always have access for the route through all the apps.
-    if (submenuLinks && localization.locale && currentRoute) {
-      setAccess(submenuLinks[localization.locale]?.clientRoutes.find((f: Routes) => f.id === currentRoute).access);
+    if (submenuLinks && localization.locale && currentUrl) {
+      setAccess(submenuLinks[localization.locale]?.clientRoutes.find((f: Routes) => f.url === currentUrl).access);
     }
   }, [profileData]);
 
@@ -186,7 +186,7 @@ function Header({
     <>
       <header
         className={classNames('header', {
-          'my-randstad-logged-in': access ? access === 'private' : currentUser.loginStatus,
+          'my-randstad-logged-in': currentUser.loginStatus,
         }, headerClass)}
       >
         <nav
@@ -214,7 +214,7 @@ function Header({
                   <MyRandstad
                     label={myRandstadLabel}
                     show={showMyRandstad}
-                    isAuth={access ? access === 'private' : currentUser.loginStatus}
+                    isAuth={currentUser.loginStatus}
                     userName={currentUser.currentUser?.personalInfo}
                   />
                 )}
@@ -237,7 +237,7 @@ function Header({
               { submenuLinks && (
                 <div id="navigationPopup">
                   <LoginPopover
-                    isAuth={access ? access === 'private' : currentUser.loginStatus}
+                    isAuth={currentUser.loginStatus}
                     links={submenuLinks}
                     locale={locale}
                     languagePrefix={languagePrefix}
@@ -253,7 +253,7 @@ function Header({
             { !isMyRandstad && subMenu && (
               <Submenu items={subMenu} />
             )}
-            { (isMyRandstad && access ? access !== 'private' : !currentUser.loginStatus) && (
+            { (isMyRandstad && (access ? access !== 'private' : !currentUser.loginStatus)) && (
               <Submenu items={subMenu} RouterComponent={RouterComponent} languagePrefix={languagePrefix} />
             )}
           </div>
@@ -282,7 +282,7 @@ function Header({
           </nav>
         </NavigationModal>
       </header>
-      { (isMyRandstad && access ? access === 'private' : currentUser.loginStatus) && (
+      { (isMyRandstad && (access ? access === 'private' : currentUser.loginStatus)) && (
         <div className="block bg-greyscale--grey-10 my-environment__sub-menu">
           <div className="wrapper">
             <TabBar languagePrefix={languagePrefix} items={tabBarMenu} currentUrl={currentUrl} RouterComponent={RouterComponent} />
