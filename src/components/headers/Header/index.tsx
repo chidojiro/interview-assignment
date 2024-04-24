@@ -46,18 +46,24 @@ function Header({
 }: HeaderProps) {
   // TO DO: currentUser.loginState state needed because tabBar needs an active link on logout
   const [currentUser, setCurrentUser] = useState({} as PersistData);
+  const [access, setAccess] = useState('');
   const profileData = useUserData();
-
   useEffect(() => {
     const newUserData = getUserData();
     const { personalInfo: newPersonalInfo } = newUserData.currentUser || {};
     const { personalInfo: currentUserPersonalInfo } = currentUser.currentUser || {};
 
     if (currentUser.loginStatus !== newUserData.loginStatus
-      || newPersonalInfo?.familyName !== currentUserPersonalInfo?.familyName
-      || newPersonalInfo?.preferredName !== currentUserPersonalInfo?.preferredName
-      || newPersonalInfo?.givenName !== currentUserPersonalInfo?.givenName) {
+        || newPersonalInfo?.familyName !== currentUserPersonalInfo?.familyName
+        || newPersonalInfo?.preferredName !== currentUserPersonalInfo?.preferredName
+        || newPersonalInfo?.givenName !== currentUserPersonalInfo?.givenName) {
       setCurrentUser(newUserData);
+    }
+
+    // Find the currentRoute's access, in order for us to figure out which header to show.
+    // We have a backup based on the loginStatus, as we won't always have access for the route through all the apps.
+    if (submenuLinks && localization.locale && currentUrl) {
+      setAccess(submenuLinks[localization.locale]?.clientRoutes.find((f: Routes) => f.url === currentUrl).access);
     }
   }, [profileData]);
 
@@ -156,7 +162,7 @@ function Header({
   // Display separate second menu for the My Randstad.
   if (isMyRandstad) {
     subMenuItems = (submenuLinks as Routes)?.[locale as string].secondary;
-    if (currentUser.loginStatus) {
+    if (access ? access === 'private' : currentUser.loginStatus) {
       tabBarMenu = tabBarMenu.map(getActiveMenuItem);
     }
   } else {
@@ -185,7 +191,7 @@ function Header({
       >
         <nav
           className={classNames('navigation', {
-            'my-environment': currentUser.loginStatus && isMyRandstad,
+            'my-environment': isMyRandstad && (access ? access === 'private' : currentUser.loginStatus),
           })}
           role="navigation"
           id="block-main-navigation"
@@ -247,7 +253,7 @@ function Header({
             { !isMyRandstad && subMenu && (
               <Submenu items={subMenu} />
             )}
-            { isMyRandstad && !currentUser.loginStatus && (
+            { (isMyRandstad && (access ? access !== 'private' : !currentUser.loginStatus)) && (
               <Submenu items={subMenu} RouterComponent={RouterComponent} languagePrefix={languagePrefix} />
             )}
           </div>
@@ -276,7 +282,7 @@ function Header({
           </nav>
         </NavigationModal>
       </header>
-      { isMyRandstad && currentUser.loginStatus && (
+      { (isMyRandstad && (access ? access === 'private' : currentUser.loginStatus)) && (
         <div className="block bg-greyscale--grey-10 my-environment__sub-menu">
           <div className="wrapper">
             <TabBar languagePrefix={languagePrefix} items={tabBarMenu} currentUrl={currentUrl} RouterComponent={RouterComponent} />
