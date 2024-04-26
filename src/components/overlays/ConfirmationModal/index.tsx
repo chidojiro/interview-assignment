@@ -13,7 +13,6 @@ function ConfirmationModal({
   ariaLabelClose = 'close',
   confirmButtonText = 'yes',
   cancelButtonText = 'cancel',
-  onXClicked,
 }: ConfirmationModalProps) {
   const modalRef = React.useRef<HTMLDivElement>(null);
   const modalButtonsGroupRef = React.useRef<HTMLDivElement>(null);
@@ -32,9 +31,6 @@ function ConfirmationModal({
         /* onClose is for side-effects in the apps where you use the modal. */
         onClose?.(event as CloseEvents);
       }, 350);
-      if (onXClicked) {
-        onXClicked();
-      }
     };
 
     // Handle X button event.
