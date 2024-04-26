@@ -63,7 +63,7 @@ function Header({
     // Find the currentRoute's access, in order for us to figure out which header to show.
     // We have a backup based on the loginStatus, as we won't always have access for the route through all the apps.
     if (submenuLinks && localization.locale && currentUrl) {
-      setAccess(submenuLinks[localization.locale]?.clientRoutes.find((f: Routes) => f.url === currentUrl)?.access ?? '');
+      setAccess(submenuLinks[localization.locale]?.clientRoutes?.find((f: Routes) => f.url === currentUrl)?.access ?? '');
     }
   }, [profileData]);
 

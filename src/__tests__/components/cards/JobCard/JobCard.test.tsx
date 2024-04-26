@@ -40,6 +40,7 @@ describe('JobCard tests', () => {
         enableSalary
         enableJobType
         activeView="grid"
+        opcoCodes="rxp"
       />,
       {
         wrapper: UlWrapper,
@@ -75,6 +76,7 @@ describe('JobCard tests', () => {
         enableSalary
         enableJobType
         activeView="grid"
+        opcoCodes="rxp"
       />,
       {
         wrapper: UlWrapper,
@@ -112,6 +114,7 @@ describe('JobCard tests', () => {
         fourthOptionField="client_name_settings"
         clientName="randstad"
         activeView="grid"
+        opcoCodes="rxp"
       />,
       {
         wrapper: UlWrapper,
@@ -148,6 +151,7 @@ describe('JobCard tests', () => {
         enableJobType
         fourthOptionField="client_name_settings"
         activeView="grid"
+        opcoCodes="rxp"
       />,
       {
         wrapper: UlWrapper,
@@ -185,6 +189,7 @@ describe('JobCard tests', () => {
         fourthOptionField="education_settings"
         education="bachelor"
         activeView="grid"
+        opcoCodes="rxp"
       />,
       {
         wrapper: UlWrapper,
@@ -221,6 +226,7 @@ describe('JobCard tests', () => {
         fourthOptionField="education_settings"
         education="bachelor"
         activeView="grid"
+        opcoCodes="rxp"
       />,
       {
         wrapper: UlWrapper,
@@ -255,6 +261,7 @@ describe('JobCard tests', () => {
         enableSalary
         enableJobType
         activeView="grid"
+        opcoCodes="rxp"
         disabled
       />,
       {
@@ -295,6 +302,7 @@ describe('JobCard tests', () => {
           type: 'negative',
           children: 'This job is not valid.',
         }}
+        opcoCodes="rxp"
       />,
       {
         wrapper: UlWrapper,

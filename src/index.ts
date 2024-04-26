@@ -223,5 +223,7 @@ export type {
   UpdateStepFunction,
 };
 
+export { default as getPromoteAppBannerCookie } from './utils/promoteAppBanner/getPromoteAppBannerCookie';
+export { default as setPromoteAppBannerCookie } from './utils/promoteAppBanner/setPromoteAppBannerCookie';
 export { default as getAxiosInstance } from './utils/getAxiosInstance';
 export { default as getAuthManager } from './utils/auth/getAuthManager';
