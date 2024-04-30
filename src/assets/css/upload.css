@@ -1,0 +1,13 @@
+.form-group--upload .upload-choices > div, .form-group--upload .upload-choices button {
+  width: 100%;
+}
+@media screen and (min-width: 941px) {
+  .form-group--upload .upload-choices > div, .form-group--upload .upload-choices button {
+    width: calc(50% - 5px);
+  }
+}
+.form-group--upload .upload-choices > div > .upload {
+  width: 100%;
+}
+
+/*# sourceMappingURL=upload.css.map */

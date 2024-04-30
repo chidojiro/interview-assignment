@@ -13,7 +13,8 @@
     "lint": "eslint .",
     "fmt": "prettier --write .",
     "build-css": "sass src/assets/scss:src/assets/css",
-    "update-orbit": "yarn upgrade @ffw/randstad-local-orbit && yarn build-css"
+    "update-orbit": "yarn upgrade @ffw/randstad-local-orbit && yarn build-css",
+    "update-tt-orbit": "yarn upgrade @ffw/randstad-tempoteam-orbit && yarn build-css"
   },
   "lint-staged": {
     "*.{ts, tsx}": [
@@ -33,6 +34,7 @@
   },
   "dependencies": {
     "@ffw/randstad-local-orbit": "git+ssh://git-codecommit.eu-west-1.amazonaws.com/v1/repos/git-bluex-prd-bx-local-orbit#dev",
+    "@ffw/randstad-tempoteam-orbit": "git+ssh://git-codecommit.eu-west-1.amazonaws.com/v1/repos/git-bluex-prd-bx-tempoteam-orbit#dev",
     "@fyelci/react-google-drive-picker": "^1.2.2",
     "@types/js-cookie": "^3.0.6",
     "@types/react-slick": "^0.23.12",

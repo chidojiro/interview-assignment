@@ -1,0 +1,63 @@
+.bluex-promote-app__split-view, .bluex-promote-app__full-width {
+  position: relative;
+  overflow: hidden;
+}
+@media screen and (min-width: 941px) {
+  .bluex-promote-app__split-view, .bluex-promote-app__full-width {
+    height: 240px;
+  }
+  .bluex-promote-app__split-view .notice-text-only__wrapper, .bluex-promote-app__full-width .notice-text-only__wrapper {
+    height: 100%;
+  }
+}
+@media screen and (min-width: 941px) {
+  .bluex-promote-app__split-view .notice-text-only__description, .bluex-promote-app__full-width .notice-text-only__description {
+    width: 50%;
+  }
+  .bluex-promote-app__split-view .notice-text-only__description p, .bluex-promote-app__full-width .notice-text-only__description p {
+    font-size: 32px;
+    line-height: 36px;
+    margin-bottom: 20px;
+  }
+}
+.bluex-promote-app__full-width .bluex-promote-app__image,
+.bluex-promote-app__full-width .bluex-promote-app__image img {
+  width: 100%;
+}
+.bluex-promote-app__full-width .notice-text-only__content {
+  z-index: 1;
+}
+@media screen and (min-width: 941px) {
+  .bluex-promote-app__full-width .notice-text-only__description .description {
+    color: var(--color-brand-secondary);
+  }
+}
+.bluex-promote-app__image {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 50%;
+  transform: translateY(-50%);
+}
+.bluex-promote-app p {
+  margin-bottom: 16px;
+}
+@media screen and (min-width: 941px) {
+  .bluex-promote-app p {
+    margin-bottom: 0;
+  }
+}
+.bluex-promote-app .notice-text-only__close {
+  z-index: 1;
+  top: 0;
+}
+.bluex-promote-app .store-icons .apple-store__icon {
+  width: 100%;
+  max-width: 118px;
+}
+.bluex-promote-app .store-icons .google-store__icon {
+  width: 100%;
+  max-width: 134px;
+}
+
+/*# sourceMappingURL=promote-app-banner.css.map */
