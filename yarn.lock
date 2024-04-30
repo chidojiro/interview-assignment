@@ -1312,6 +1312,35 @@
     vinyl-named "^1.1.0"
     webpack-stream "^5.2.1"
 
+"@ffw/randstad-tempoteam-orbit@git+ssh://git-codecommit.eu-west-1.amazonaws.com/v1/repos/git-bluex-prd-bx-tempoteam-orbit#dev":
+  version "1.2.0"
+  resolved "git+ssh://git-codecommit.eu-west-1.amazonaws.com/v1/repos/git-bluex-prd-bx-tempoteam-orbit#3345334137929b863059cf7743f3500cb6e2f93b"
+  dependencies:
+    babel-core "^6.26.3"
+    babel-polyfill "^6.26.0"
+    babel-preset-env "^1.7.0"
+    element-closest "^3.0.1"
+    flatpickr "^4.6.8"
+    gulp "^4.0.2"
+    gulp-append-prepend "^1.0.9"
+    gulp-autoprefixer "^7.0.1"
+    gulp-babel "^7.0.1"
+    gulp-clean "^0.4.0"
+    gulp-dart-sass "^1.0.2"
+    gulp-esbuild "^0.9.0"
+    gulp-if "^3.0.0"
+    gulp-load-plugins "^2.0.7"
+    gulp-plumber "^1.2.1"
+    gulp-sourcemaps "^3.0.0"
+    gulp-svgstore "^7.0.1"
+    gulp-uglify "^3.0.2"
+    jquery "^3.6.0"
+    js-cookie "^2.2.1"
+    slick-carousel "^1.8.1"
+    url-search-params-polyfill "^7.0.0"
+    vinyl-named "^1.1.0"
+    webpack-stream "^5.2.1"
+
 "@fyelci/react-google-drive-picker@^1.2.2":
   version "1.2.5"
   resolved "https://registry.yarnpkg.com/@fyelci/react-google-drive-picker/-/react-google-drive-picker-1.2.5.tgz#e167ddcba069585033513e3527fa2c463127a5ce"
@@ -6657,7 +6686,7 @@ flat-cache@^3.0.4:
     keyv "^4.5.3"
     rimraf "^3.0.2"
 
-flatpickr@^4.6.13:
+flatpickr@^4.6.13, flatpickr@^4.6.8:
   version "4.6.13"
   resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-4.6.13.tgz#8a029548187fd6e0d670908471e43abe9ad18d94"
   integrity sha512-97PMG/aywoYpB4IvbvUJi0RQi8vearvU0oov1WW3k0WZPBMrTQVqekSX5CjSG/M4Q3i6A/0FKXC7RyAoAUUSPw==
