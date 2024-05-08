@@ -191,6 +191,8 @@ function Header({
       >
         <nav
           className={classNames('navigation', {
+            //  If we are in my randstad environment and the access is public, we will apply the my-environment class if we logged in.
+            //         This actually handles the saved-jobs page in my randstad.
             'my-environment': isMyRandstad && (access ? access === 'private' || (access === 'public' && currentUser.loginStatus) : currentUser.loginStatus),
           })}
           role="navigation"
