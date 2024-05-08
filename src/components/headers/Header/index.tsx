@@ -191,7 +191,7 @@ function Header({
       >
         <nav
           className={classNames('navigation', {
-            'my-environment': isMyRandstad && (access ? access === 'private' : currentUser.loginStatus),
+            'my-environment': isMyRandstad && (access ? access === 'private' || (access === 'public' && currentUser.loginStatus) : currentUser.loginStatus),
           })}
           role="navigation"
           id="block-main-navigation"
@@ -253,7 +253,7 @@ function Header({
             { !isMyRandstad && subMenu && (
               <Submenu items={subMenu} />
             )}
-            { (isMyRandstad && (access ? access !== 'private' : !currentUser.loginStatus)) && (
+            { (isMyRandstad && (access ? (access === 'public' && !currentUser.loginStatus) || access === 'anonymous' : !currentUser.loginStatus)) && (
               <Submenu items={subMenu} RouterComponent={RouterComponent} languagePrefix={languagePrefix} />
             )}
           </div>
@@ -282,7 +282,7 @@ function Header({
           </nav>
         </NavigationModal>
       </header>
-      { (isMyRandstad && (access ? access === 'private' : currentUser.loginStatus)) && (
+      { (isMyRandstad && (access ? access === 'private' || (access === 'public' && currentUser.loginStatus) : currentUser.loginStatus)) && (
         <div className="block bg-greyscale--grey-10 my-environment__sub-menu">
           <div className="wrapper">
             <TabBar languagePrefix={languagePrefix} items={tabBarMenu} currentUrl={currentUrl} RouterComponent={RouterComponent} />
