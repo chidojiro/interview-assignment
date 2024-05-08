@@ -253,6 +253,9 @@ function Header({
             { !isMyRandstad && subMenu && (
               <Submenu items={subMenu} />
             )}
+            {/* If we are in my randstad environment and the access is public, we will show the subMenu if we not logged in.
+                This actually handles the saved-jobs page in my randstad. */
+            }
             { (isMyRandstad && (access ? (access === 'public' && !currentUser.loginStatus) || access === 'anonymous' : !currentUser.loginStatus)) && (
               <Submenu items={subMenu} RouterComponent={RouterComponent} languagePrefix={languagePrefix} />
             )}
@@ -282,6 +285,8 @@ function Header({
           </nav>
         </NavigationModal>
       </header>
+      {/* If we are in my randstad environment and the access is public, we will show the tabBar if we logged in.
+        This actually handles the saved-jobs page in my randstad. */}
       { (isMyRandstad && (access ? access === 'private' || (access === 'public' && currentUser.loginStatus) : currentUser.loginStatus)) && (
         <div className="block bg-greyscale--grey-10 my-environment__sub-menu">
           <div className="wrapper">
