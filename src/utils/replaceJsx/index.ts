@@ -11,11 +11,11 @@ export default (content: string, regexp: RegExp, callback: MatchCallback) => {
   const output = [];
   const rule = regexp;
   let result;
-  let c = content;
+  let c: string = content;
   let key = 0;
   // For simplicity’s sake we are iterating through all matches in while loop.
   // eslint-disable-next-line no-cond-assign
-  while ((result = rule.exec(<string>c)) !== null) {
+  while ((result = rule.exec(c)) !== null) {
     const m = result[0];
     const i = result.index;
 
