@@ -223,6 +223,8 @@ export type {
   UpdateStepFunction,
 };
 
+export { default as getClosedMarketingMessagesFromCookie } from './utils/marketingMessages/getClosedMarketingMessagesFromCookie';
+export { default as setClosedMarketingMessagesCookie } from './utils/marketingMessages/setClosedMarketingMessagesCookie';
 export { default as getPromoteAppBannerCookie } from './utils/promoteAppBanner/getPromoteAppBannerCookie';
 export { default as setPromoteAppBannerCookie } from './utils/promoteAppBanner/setPromoteAppBannerCookie';
 export { default as getAxiosInstance } from './utils/getAxiosInstance';
