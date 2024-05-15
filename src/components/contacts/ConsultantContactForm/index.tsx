@@ -9,12 +9,15 @@ import Modal from '../../overlays/Modal';
 import { ConsultantContactFormProps } from './ConsultantContactForm.types';
 
 function ConsultantContactForm({
-  modalOnClose, onSubmit, onChange, currentLanguage, buttonLoading, formData, formErrors, translations, recaptchaSitekey,
+  modalOnClose, onSubmit, onChange, currentLanguage, buttonLoading, formData, formErrors, translations, recaptchaSitekey, onRecaptchaChange,
 }: ConsultantContactFormProps) {
-  const contactFirstNameClasses = cn('form-group', { 'form-group--error': formErrors?.contactFirstName });
-  const contactSurnameClasses = cn('form-group', { 'form-group--error': formErrors?.contactSurname });
-  const contactEmailClasses = cn('form-group', { 'form-group--error': formErrors?.contactEmail });
-  const contactMessageClasses = cn('form-group', { 'form-group--error': formErrors?.contactMessage });
+  const formGroupClass = 'form-group';
+
+  const contactFirstNameClasses = cn(formGroupClass, { 'form-group--error': formErrors?.contactFirstName });
+  const contactSurnameClasses = cn(formGroupClass, { 'form-group--error': formErrors?.contactSurname });
+  const contactEmailClasses = cn(formGroupClass, { 'form-group--error': formErrors?.contactEmail });
+  const contactMessageClasses = cn(formGroupClass, { 'form-group--error': formErrors?.contactMessage });
+  const contactPhoneNumberClasses = cn(formGroupClass, { 'form-group--error': formErrors?.contactPhoneNumber });
 
   return (
     <Modal
@@ -108,14 +111,13 @@ function ConsultantContactForm({
             }
           </div>
         </div>
-        <div className="form-group">
+        <div className={contactPhoneNumberClasses}>
           <label
             htmlFor="contactPhoneNumber"
             className="form-group__label"
           >
             {translations.labels.phoneNumberLabel}
             <span className="form-group__optional">
-              {' '}
               {translations.labels.optionalLabel}
             </span>
           </label>
@@ -129,6 +131,13 @@ function ConsultantContactForm({
               aria-label={translations.labels.phoneNumberLabel}
             />
           </div>
+          {
+            formErrors?.contactPhoneNumber && (
+              <div className="form-group__feedback">
+                {formErrors.contactPhoneNumber}
+              </div>
+            )
+          }
         </div>
         <div className={contactMessageClasses}>
           <label
@@ -163,7 +172,15 @@ function ConsultantContactForm({
             }
           </div>
         </div>
-        {recaptchaSitekey && <GoogleRecaptcha onChange={() => {}} sitekey={recaptchaSitekey} locale={currentLanguage} />}
+        {recaptchaSitekey && (
+          <GoogleRecaptcha
+            touched
+            error={formErrors.recaptcha}
+            onChange={onRecaptchaChange}
+            sitekey={recaptchaSitekey}
+            locale={currentLanguage}
+          />
+        )}
         <Button
           type="button"
           variant="filled"

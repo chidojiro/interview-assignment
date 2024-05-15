@@ -7,6 +7,7 @@ export interface ConsultantContactFormProps {
     currentLanguage: string
     buttonLoading: boolean;
     recaptchaSitekey: string;
+    onRecaptchaChange: (token: string | null) => void
     formData: {
         contactFirstName: string;
         contactSurname: string;
@@ -19,7 +20,9 @@ export interface ConsultantContactFormProps {
         contactSurname: string;
         contactMessage: string;
         contactEmail: string;
+        contactPhoneNumber: string;
         generalError: string;
+        recaptcha: string;
     };
     translations: {
         labels: {
