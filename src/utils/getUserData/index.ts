@@ -22,7 +22,7 @@ function getUserData(): PersistData {
   // logged out because of a missing token.
   if (!refreshToken && !idToken) {
     // keep localStorage if in register process.
-    if (JSON.stringify(data) === '{}' || typeof data.currentUser.contactInfo.emailAddress === 'undefined' || !data.currentUser.contactInfo.emailAddress) {
+    if (!data?.currentUser?.contactInfo?.emailAddress) {
       localStorage.removeItem('userState');
     }
     return defaultData;
