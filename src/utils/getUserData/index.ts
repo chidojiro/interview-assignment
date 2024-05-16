@@ -16,13 +16,17 @@ function getUserData(): PersistData {
   if (typeof window === 'undefined') {
     return defaultData;
   }
-  // logged out because of a missing token.
-  if (!refreshToken && !idToken) {
-    localStorage.removeItem('userState');
-    return defaultData;
-  }
 
   const data = JSON.parse(localStorage.getItem('userState') || '{}');
+
+  // logged out because of a missing token.
+  if (!refreshToken && !idToken) {
+    // keep localStorage if in register process.
+    if (JSON.stringify(data) === '{}' || typeof data.currentUser.contactInfo.emailAddress === 'undefined' || !data.currentUser.contactInfo.emailAddress) {
+      localStorage.removeItem('userState');
+    }
+    return defaultData;
+  }
 
   const loginStatus = (data?.currentUser && data?.loginStatus) ? data.loginStatus : false;
 
