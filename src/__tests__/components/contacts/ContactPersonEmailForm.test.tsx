@@ -17,6 +17,8 @@ describe('ConsultantContactForm component test', () => {
     contactEmail: 'Invalid email address',
     contactMessage: 'Message cannot be empty',
     generalError: 'An error occurred',
+    contactPhoneNumber: '0888888888',
+    recaptcha: '',
   };
 
   const mockFormErrorsNegative = {
@@ -25,6 +27,8 @@ describe('ConsultantContactForm component test', () => {
     contactEmail: '',
     contactMessage: '',
     generalError: '',
+    contactPhoneNumber: '',
+    recaptcha: '',
   };
 
   const mockTranslations = {
@@ -57,6 +61,7 @@ describe('ConsultantContactForm component test', () => {
         formErrors={mockFormErrorsNegative}
         translations={mockTranslations}
         recaptchaSitekey={mockRecaptchaSitekey}
+        onRecaptchaChange={() => {}}
       />,
     );
 
@@ -80,6 +85,7 @@ describe('ConsultantContactForm component test', () => {
         formErrors={mockFormErrorsPositive}
         translations={mockTranslations}
         recaptchaSitekey={mockRecaptchaSitekey}
+        onRecaptchaChange={() => {}}
       />,
     );
 
@@ -103,6 +109,7 @@ describe('ConsultantContactForm component test', () => {
         formErrors={mockFormErrorsNegative}
         translations={mockTranslations}
         recaptchaSitekey={mockRecaptchaSitekey}
+        onRecaptchaChange={() => {}}
       />,
     );
 

@@ -43,6 +43,7 @@ module.exports = {
   resolve: {
     fallback: {
       fs: false,
+      vm: false,
     },
   },
 };
