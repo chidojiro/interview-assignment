@@ -1,5 +1,4 @@
 import React from 'react';
-import cn from 'classnames';
 import GoogleRecaptcha from '../../forms/GoogleRecaptcha';
 import Notice from '../../notifications/Notice';
 import TextArea from '../../forms/TextArea';
