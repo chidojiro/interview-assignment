@@ -17,6 +17,8 @@ describe('ConsultantContactForm component test', () => {
     contactEmail: 'Invalid email address',
     contactMessage: 'Message cannot be empty',
     generalError: 'An error occurred',
+    recaptcha: 'error with recaptcha',
+    contactPhoneNumber: 'phone number is invalid',
   };
 
   const mockFormErrorsNegative = {
@@ -25,6 +27,8 @@ describe('ConsultantContactForm component test', () => {
     contactEmail: '',
     contactMessage: '',
     generalError: '',
+    recaptcha: '',
+    contactPhoneNumber: '',
   };
 
   const mockTranslations = {
@@ -48,6 +52,8 @@ describe('ConsultantContactForm component test', () => {
   it('renders form fields and submit button', () => {
     render(
       <ConsultantContactForm
+        onRecaptchaChange={() => {}}
+        recaptchaRef={null}
         modalOnClose={() => {}}
         onSubmit={() => {}}
         onChange={() => {}}
@@ -71,6 +77,8 @@ describe('ConsultantContactForm component test', () => {
   it('displays form errors', () => {
     render(
       <ConsultantContactForm
+        onRecaptchaChange={() => {}}
+        recaptchaRef={null}
         modalOnClose={() => {}}
         onSubmit={() => {}}
         onChange={() => {}}
@@ -94,6 +102,8 @@ describe('ConsultantContactForm component test', () => {
 
     render(
       <ConsultantContactForm
+        onRecaptchaChange={() => {}}
+        recaptchaRef={null}
         modalOnClose={() => {}}
         onSubmit={handleSubmit}
         onChange={() => {}}

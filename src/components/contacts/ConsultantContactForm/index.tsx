@@ -102,7 +102,7 @@ function ConsultantContactForm({
           type="submit"
           variant="filled"
           fullWidth
-          handleClick={handleClick ?? onSubmit}
+          handleClick={handleClick}
           loader={buttonLoading}
           disabled={buttonLoading}
         >
