@@ -63,7 +63,6 @@ describe('ConsultantContactForm component test', () => {
         formErrors={mockFormErrorsNegative}
         translations={mockTranslations}
         recaptchaSitekey={mockRecaptchaSitekey}
-        onRecaptchaChange={() => {}}
       />,
     );
 
@@ -89,7 +88,6 @@ describe('ConsultantContactForm component test', () => {
         formErrors={mockFormErrorsPositive}
         translations={mockTranslations}
         recaptchaSitekey={mockRecaptchaSitekey}
-        onRecaptchaChange={() => {}}
       />,
     );
 
@@ -115,7 +113,6 @@ describe('ConsultantContactForm component test', () => {
         formErrors={mockFormErrorsNegative}
         translations={mockTranslations}
         recaptchaSitekey={mockRecaptchaSitekey}
-        onRecaptchaChange={() => {}}
       />,
     );
 
