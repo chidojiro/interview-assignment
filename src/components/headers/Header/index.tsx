@@ -20,6 +20,7 @@ import {
   getMainMenu, findElement, getHeaderClass, generateUrl,
 } from '../../../utils/headerUtils/headerUtils';
 import LoginPopover from '../LoginPopover';
+import NavigationWrapper from '../NavigationWrapper';
 import getUserData from '../../../utils/getUserData';
 import HeaderSavedJobs from '../HeaderSavedJobs';
 import useUserData from '../../../hooks/useUserData';
@@ -200,40 +201,46 @@ function Header({
             <div className="navigation__top">
               <Logo homepageUrl={homepageUrl} theme={theme} />
               <MainMenu items={mainMenuItems} />
-              <ul className="navigation__service navigation__service--minimal">
-                {submenuLinks && savedJobsEnabled && (
-                  <HeaderSavedJobs
-                    gdsApiKey={savedJobsEnabled.gdsApiKey}
-                    gdsApiUrl={savedJobsEnabled.gdsApiUrl}
-                    shareIdTokenAcrossSubdomains={savedJobsEnabled.shareIdTokenAcrossSubdomains}
-                    buttonUrl={savedJobsUrl}
-                    ariaLabel={savedJobsEnabled.ariaLabel}
-                  />
-                )}
-                {submenuLinks && (
-                  <MyRandstad
-                    label={myRandstadLabel}
-                    show={showMyRandstad}
-                    isAuth={currentUser.loginStatus}
-                    userName={currentUser.currentUser?.personalInfo}
-                  />
-                )}
-                <li className="navigation__service-item hidden--from-l">
-                  <button
-                    type="button"
-                    className="button--icon-only button--hamburger"
-                    data-rs-navigation-menu-icon=""
-                    data-rs-navigation-menu-labels=""
-                    aria-label="open menu"
-                  >
-                    <span className="icon icon--hamburger" />
-                  </button>
-                </li>
-              </ul>
-              <div className="navigation__link-bar flex hidden--until-l">
-                <UtilityNavigation items={utilityMenuItems} />
-                <LanguageSwitcher items={languageSwitcherItems || []} extraClasses="l:ml-s" useToast={useToast} toastSettings={toastSettings} />
-              </div>
+              <NavigationWrapper theme={theme}>
+                <ul
+                  className={classNames('navigation__service navigation__service--minimal', {
+                    'order-2': theme === 'tt',
+                  })}
+                >
+                  {submenuLinks && savedJobsEnabled && (
+                    <HeaderSavedJobs
+                      gdsApiKey={savedJobsEnabled.gdsApiKey}
+                      gdsApiUrl={savedJobsEnabled.gdsApiUrl}
+                      shareIdTokenAcrossSubdomains={savedJobsEnabled.shareIdTokenAcrossSubdomains}
+                      buttonUrl={savedJobsUrl}
+                      ariaLabel={savedJobsEnabled.ariaLabel}
+                    />
+                  )}
+                  {submenuLinks && (
+                    <MyRandstad
+                      label={myRandstadLabel}
+                      show={showMyRandstad}
+                      isAuth={currentUser.loginStatus}
+                      userName={currentUser.currentUser?.personalInfo}
+                    />
+                  )}
+                  <li className="navigation__service-item hidden--from-l">
+                    <button
+                      type="button"
+                      className="button--icon-only button--hamburger"
+                      data-rs-navigation-menu-icon=""
+                      data-rs-navigation-menu-labels=""
+                      aria-label="open menu"
+                    >
+                      <span className="icon icon--hamburger" />
+                    </button>
+                  </li>
+                </ul>
+                <div className="navigation__link-bar flex hidden--until-l">
+                  <UtilityNavigation items={utilityMenuItems} />
+                  <LanguageSwitcher items={languageSwitcherItems || []} extraClasses="l:ml-s" useToast={useToast} toastSettings={toastSettings} />
+                </div>
+              </NavigationWrapper>
               { submenuLinks && (
                 <div id="navigationPopup">
                   <LoginPopover
