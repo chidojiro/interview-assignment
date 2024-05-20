@@ -21,6 +21,7 @@ module.exports = {
     '**/components/forms/autosuggest/**',
     '**/components/base/**',
     '**/components/form-group/Label.js',
+    '**/__tests__/**',
   ],
 
   getComponentPathLine(componentPath) {
