@@ -64,6 +64,8 @@ function ConsultantContactForm({
           id="contactPhoneNumber"
           onChange={onChange}
           onBlur={onBlur}
+          required={false}
+          optionalLabel={translations.labels.optionalLabel}
           value={formData?.contactPhoneNumber}
           aria-label={translations.labels.phoneNumberLabel}
           formGroupLabel={translations.labels.phoneNumberLabel}
