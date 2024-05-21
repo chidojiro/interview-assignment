@@ -1,6 +1,11 @@
 import { getCookie } from 'cookies-next';
 import { PersistData } from './types';
 
+/**
+ * Gets the userData and populates if from the localstorage, if logged in.
+ *
+ * If we need to know the user's status (outside my-randstad app) - call this function, as it handled the logged out state properly.
+ */
 function getUserData(): PersistData {
   const refreshToken = getCookie('RefreshToken');
   const idToken = getCookie('IdToken');
@@ -16,14 +21,16 @@ function getUserData(): PersistData {
   if (typeof window === 'undefined') {
     return defaultData;
   }
-  // logged out because of a missing token.
-  if (!refreshToken && !idToken) {
-    localStorage.removeItem('userState');
-    return defaultData;
-  }
 
+  // If the tokens are missing we won't check the localstorage, we will return the default state.
   const data = JSON.parse(localStorage.getItem('userState') || '{}');
 
+  if (!refreshToken && !idToken) {
+    return {
+      ...defaultData,
+      currentUser: data?.currentUser ?? undefined,
+    };
+  }
   const loginStatus = (data?.currentUser && data?.loginStatus) ? data.loginStatus : false;
 
   const userData: PersistData = {
