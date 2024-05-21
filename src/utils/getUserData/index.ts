@@ -1,6 +1,11 @@
 import { getCookie } from 'cookies-next';
 import { PersistData } from './types';
 
+/**
+ * Gets the userData and populates if from the localstorage, if logged in.
+ *
+ * If we need to know the user's status (outside my-randstad app) - call this function, as it handled the logged out state properly.
+ */
 function getUserData(): PersistData {
   const refreshToken = getCookie('RefreshToken');
   const idToken = getCookie('IdToken');
