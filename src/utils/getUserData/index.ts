@@ -23,11 +23,14 @@ function getUserData(): PersistData {
   }
 
   // If the tokens are missing we won't check the localstorage, we will return the default state.
-  if (!refreshToken && !idToken) {
-    return defaultData;
-  }
-
   const data = JSON.parse(localStorage.getItem('userState') || '{}');
+
+  if (!refreshToken && !idToken) {
+    return {
+      ...defaultData,
+      currentUser: data?.currentUser ?? undefined,
+    };
+  }
   const loginStatus = (data?.currentUser && data?.loginStatus) ? data.loginStatus : false;
 
   const userData: PersistData = {
