@@ -112,7 +112,7 @@ function ConsultantContactForm({
         </Button>
         {
           formErrors?.generalError
-    && <Notice type="negative">{formErrors?.generalError}</Notice>
+    && <Notice type="negative" className="mt-xs">{formErrors?.generalError}</Notice>
         }
       </form>
     </Modal>
