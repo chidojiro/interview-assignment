@@ -17,17 +17,12 @@ function getUserData(): PersistData {
     return defaultData;
   }
 
-  const data = JSON.parse(localStorage.getItem('userState') || '{}');
-
-  // logged out because of a missing token.
+  // If the tokens are missing we won't check the localstorage, we will return the default state.
   if (!refreshToken && !idToken) {
-    // keep localStorage if in register process.
-    if (!data?.currentUser?.contactInfo?.emailAddress) {
-      localStorage.removeItem('userState');
-    }
     return defaultData;
   }
 
+  const data = JSON.parse(localStorage.getItem('userState') || '{}');
   const loginStatus = (data?.currentUser && data?.loginStatus) ? data.loginStatus : false;
 
   const userData: PersistData = {
