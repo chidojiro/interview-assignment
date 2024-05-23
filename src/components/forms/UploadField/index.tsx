@@ -280,8 +280,8 @@ function UploadField({
                       && (
                         <>
                           <div className="upload__text">
-                            <span className="icon icon--inline">
-                              <Icon iconType="attachment" />
+                            <span className="icon icon--inline mr-xxs">
+                              <Icon iconType="attachment" iconClassName="text-brand-primary" />
                             </span>
                             <span className="upload__add">
                               {translations.AddFiles}
