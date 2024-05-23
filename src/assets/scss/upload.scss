@@ -5,11 +5,21 @@
 
       @media screen and (min-width: 941px) {
         width: calc(50% - 5px);
+
+        &:only-child {
+          width: 100%;
+          margin-right: 0 !important;
+        }
       }
     }
 
     & > div > .upload {
       width: 100%;
+    }
+
+    .upload:before {
+      width: 20px;
+      height: 20px;
     }
   }
 }

@@ -43,6 +43,10 @@ module.exports = {
           rel: 'stylesheet',
           href: 'css/orbit-randstad.css',
         },
+        {
+          rel: 'stylesheet',
+          href: 'css/upload.css',
+        },
       ],
     },
   },
