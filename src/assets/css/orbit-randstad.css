@@ -996,6 +996,17 @@ p {
   border-color: #4d91e1 !important;
 }
 
+.bg-variant-brand-alert {
+  background: #FDF3F3;
+  border-top: 2px solid #E00F0F;
+}
+.bg-variant-brand-alert .title {
+  color: #E00F0F;
+}
+.bg-variant-brand-alert [data-rs-closable] .icon {
+  color: #2175d9;
+}
+
 .border-radius > img {
   border-radius: 4px;
 }
@@ -8003,6 +8014,13 @@ input[type=search]::-webkit-search-decoration, input[type=search]::-webkit-searc
   }
 }
 
+.bluex-logo-randstad-ent svg {
+  transform: scale(0.8);
+  top: -20px;
+  position: relative;
+  left: -32px;
+}
+
 /*
  * Topic card used in Topic overview text for RSR.
  */
@@ -9779,7 +9797,7 @@ input[type=search]::-webkit-search-decoration, input[type=search]::-webkit-searc
 }
 @media (min-width: 941px) {
   .content-block__title-bottom {
-    text-align: right;
+    text-align: left;
   }
   .content-block__bubble {
     font-size: 60px;
@@ -9796,7 +9814,7 @@ input[type=search]::-webkit-search-decoration, input[type=search]::-webkit-searc
     grid-column-start: 1;
   }
   .content-block__title > span + span {
-    margin-top: 10px;
+    margin-top: 0;
   }
   .content-block__eyebrow + .content-block__title {
     margin-top: 10px;
@@ -13895,6 +13913,10 @@ input[type=search]::-webkit-search-decoration, input[type=search]::-webkit-searc
   width: 20px;
 }
 
+.list--checks--senary li::before {
+  background-color: #ffb511 !important;
+}
+
 .bg-variant-brand-primary .list--checks li:before {
   mask-repeat: no-repeat;
   mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' width='20' height='20' %3E%3Cpath d='M7.6472,15.999 C7.3972,15.999 7.1462,15.905 6.9532,15.719 L1.3052,10.265 C0.9082,9.881 0.8972,9.247 1.2802,8.851 C1.6652,8.454 2.2982,8.441 2.6942,8.825 L7.6472,13.608 L17.3052,4.279 C17.7022,3.898 18.3362,3.907 18.7192,4.305 C19.1022,4.701 19.0912,5.335 18.6942,5.719 L8.3412,15.719 C8.1482,15.905 7.8972,15.999 7.6472,15.999'/%3E%3C/svg%3E%0A");
@@ -13990,6 +14012,11 @@ input[type=search]::-webkit-search-decoration, input[type=search]::-webkit-searc
     top: 7px;
   }
 }
+.list-items--brand-senary ul li::before,
+.list-items--brand-senary ol li::before {
+  color: var(--color-brand-senary) !important;
+}
+
 .location-details {
   align-items: flex-start;
   display: flex;
@@ -14022,6 +14049,18 @@ input[type=search]::-webkit-search-decoration, input[type=search]::-webkit-searc
     position: absolute;
   }
 }
+.media-block-scalable {
+  position: relative;
+}
+@media (min-width: 941px) {
+  .media-block-scalable {
+    width: calc(33 / 58 * 100%);
+  }
+}
+.media-block-scalable img {
+  height: 100%;
+}
+
 .media-block--boxed {
   overflow: hidden;
   position: relative;
@@ -16113,14 +16152,6 @@ a.selector-box__option:hover {
 .data-table__content {
   padding-bottom: 0;
 }
-@media (min-width: 941px) {
-  .data-table--filters tr td {
-    text-align: center;
-  }
-}
-.data-table--filters tr td:first-child {
-  text-align: left;
-}
 .data-table--filters .data-table-icon-webcast,
 .data-table--filters .data-table-icon-slides,
 .data-table--filters .data-table-icon-press-releases,
@@ -16414,6 +16445,10 @@ a.selector-box__option:hover {
 }
 .location-nearby:not(.button--plain) .icon {
   top: 4px;
+}
+
+.media-block:not(.media-block--full-width) source[width] + img[src*=".png"] {
+  object-fit: contain;
 }
 
 .toast--active {
@@ -16989,8 +17024,28 @@ a.selector-box__option:hover {
 .blog-overview__list {
   display: flex;
 }
+.blog-overview__list--stacked {
+  flex-direction: column;
+}
+@media (min-width: 941px) {
+  .blog-overview__list--stacked {
+    flex-direction: row;
+  }
+}
+.blog-overview__list--stacked .blog-overview__item:not(:last-child) {
+  margin-bottom: 50px;
+}
+@media (min-width: 941px) {
+  .blog-overview__list--stacked .blog-overview__item:not(:last-child) {
+    margin-bottom: 0;
+  }
+}
 .blog-overview__content {
   margin-top: 20px;
+}
+.blog-overview__article > .blog-overview__content {
+  margin-top: 0;
+  margin-bottom: 20px;
 }
 .blog-overview__link {
   display: block;
@@ -17534,7 +17589,7 @@ a.selector-box__option:hover {
 }
 
 .cta-box__text,
-.cta-box__text p {
+.cta-box__text p:not(.cta-box--paragraph__p) {
   font-size: 40px;
   letter-spacing: -2px;
   line-height: 45px;
@@ -17542,7 +17597,7 @@ a.selector-box__option:hover {
 }
 @media (min-width: 941px) {
   .cta-box__text,
-  .cta-box__text p {
+  .cta-box__text p:not(.cta-box--paragraph__p) {
     font-size: 60px;
     letter-spacing: -3px;
     line-height: 60px;
@@ -17584,6 +17639,17 @@ a.selector-box__option:hover {
     margin-left: 30px;
   }
 }
+.cta-box--paragraph .cta-box__text {
+  max-width: calc(48 / 58 * 100%);
+}
+.cta-box--paragraph__p {
+  margin-top: 30px;
+  width: calc(43 / 58 * 100%);
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: 25px;
+}
+
 .cards__event .cards__item {
   border-radius: 0;
   margin-bottom: 5px;
@@ -20067,15 +20133,13 @@ a.selector-box__option:hover {
 }
 @media (min-width: 941px) {
   .header--404 .header__content {
-    padding-bottom: 130px;
+    padding-bottom: 80px;
+  }
+  .header--404 .content-block__title > span {
+    display: inline;
   }
   .header--404 .content-block__description {
-    margin-top: 130px;
-  }
-  .header--404 .media-block img {
-    margin-top: 10px;
-    max-width: 760px;
-    min-width: 0;
+    margin-top: 0;
   }
 }
 
@@ -24507,6 +24571,17 @@ html.modal-open body {
 .side-nav-sticky__list-item.is-active a, .side-nav-sticky__list-item.is-active:before {
   color: var(--color-brand-secondary);
   transition: all 0.3s;
+}
+.side-nav-sticky__list-item--unordered {
+  padding: 15px 5px 15px 5px;
+}
+@media (min-width: 941px) {
+  .side-nav-sticky__list-item--unordered {
+    padding: 10px 5px 9px 3px;
+  }
+}
+.side-nav-sticky__list-item--unordered:before {
+  content: none;
 }
 
 @media (min-width: 501px) {
@@ -29381,6 +29456,21 @@ html.modal-open body {
     left: -41px;
   }
 }
+.navigation-mega .logo.bluex-logo-randstad-ent, .navigation-mega .bluex-logo-randstad-ent.logo-randstad {
+  position: relative;
+  overflow: hidden;
+  width: 230px !important;
+  height: 60px;
+  flex-shrink: 0;
+}
+@media (max-width: 940px) {
+  .navigation-mega .logo.bluex-logo-randstad-ent svg, .navigation-mega .bluex-logo-randstad-ent.logo-randstad svg {
+    transform: scale(0.7);
+    top: -20px;
+    position: relative;
+    left: -35px;
+  }
+}
 .navigation-mega .button--hamburger .icon--hamburger, .navigation-mega .button--hamburger .icon--hamburger:before, .navigation-mega .button--hamburger .icon--hamburger:after {
   background: #2175d9;
 }
@@ -29684,6 +29774,7 @@ html.modal-open body {
   transform: rotate(180deg);
 }
 
+.opco-it,
 .opco-fr,
 .jobs-app-fr {
   --header-banner-height-small: 70px;
@@ -29693,15 +29784,19 @@ html.modal-open body {
   --header-banner-spacing-left-large: 30px;
   --header-banner-spacing-top-large: 30px;
 }
+.opco-it .header__banner,
 .opco-fr .header__banner,
 .jobs-app-fr .header__banner {
   position: relative;
   z-index: 1;
 }
+.opco-it .header__banner + .header__banner,
 .opco-fr .header__banner + .header__banner,
 .jobs-app-fr .header__banner + .header__banner {
   display: none;
 }
+.opco-it .header__banner svg,
+.opco-it .header__banner img,
 .opco-fr .header__banner svg,
 .opco-fr .header__banner img,
 .jobs-app-fr .header__banner svg,
@@ -29713,6 +29808,8 @@ html.modal-open body {
   object-position: top left;
 }
 @media (min-width: 941px) {
+  .opco-it .header__banner svg,
+  .opco-it .header__banner img,
   .opco-fr .header__banner svg,
   .opco-fr .header__banner img,
   .jobs-app-fr .header__banner svg,
@@ -29721,18 +29818,26 @@ html.modal-open body {
     object-position: top right;
   }
 }
+.opco-it .sticky .header__banner,
 .opco-fr .sticky .header__banner,
 .jobs-app-fr .sticky .header__banner {
   display: none;
 }
 @media (max-width: 940px) {
+  .opco-it .header__banner,
   .opco-fr .header__banner,
   .jobs-app-fr .header__banner {
     height: var(--header-banner-height-small);
     margin-top: var(--header-banner-spacing-top-large);
     width: var(--header-banner-width-small);
   }
-  .opco-fr .button + .header__banner, .opco-fr .bluex-hubspot-form .hs-button + .header__banner, .bluex-hubspot-form .opco-fr .hs-button + .header__banner,
+  .opco-it .button + .header__banner, .opco-it .bluex-hubspot-form .hs-button + .header__banner, .bluex-hubspot-form .opco-it .hs-button + .header__banner,
+  .opco-it .header--job-detail--alternative .header__banner,
+  .opco-it .search-form ~ .header__banner,
+  .opco-it form ~ .header__banner,
+  .opco-fr .button + .header__banner,
+  .opco-fr .bluex-hubspot-form .hs-button + .header__banner,
+  .bluex-hubspot-form .opco-fr .hs-button + .header__banner,
   .opco-fr .header--job-detail--alternative .header__banner,
   .opco-fr .search-form ~ .header__banner,
   .opco-fr form ~ .header__banner,
@@ -29744,18 +29849,23 @@ html.modal-open body {
   .jobs-app-fr form ~ .header__banner {
     margin-top: 40px;
   }
-  .opco-fr .header--text .button, .opco-fr .header--text .bluex-hubspot-form .hs-button, .bluex-hubspot-form .opco-fr .header--text .hs-button,
+  .opco-it .header--text .button, .opco-it .header--text .bluex-hubspot-form .hs-button, .bluex-hubspot-form .opco-it .header--text .hs-button,
+  .opco-fr .header--text .button,
+  .opco-fr .header--text .bluex-hubspot-form .hs-button,
+  .bluex-hubspot-form .opco-fr .header--text .hs-button,
   .jobs-app-fr .header--text .button,
   .jobs-app-fr .header--text .bluex-hubspot-form .hs-button,
   .bluex-hubspot-form .jobs-app-fr .header--text .hs-button {
     margin-bottom: 10px;
   }
+  .opco-it .header .mobile-header-search-results,
   .opco-fr .header .mobile-header-search-results,
   .jobs-app-fr .header .mobile-header-search-results {
     margin-bottom: -10px;
   }
 }
 @media (min-width: 941px) {
+  .opco-it .header__banner,
   .opco-fr .header__banner,
   .jobs-app-fr .header__banner {
     height: var(--header-banner-height-large);
@@ -29765,52 +29875,64 @@ html.modal-open body {
     top: 30px;
     width: var(--header-banner-width-large);
   }
+  .opco-it .header--text .header__banner,
   .opco-fr .header--text .header__banner,
   .jobs-app-fr .header--text .header__banner {
     top: 20px;
   }
+  .opco-it .header--welcome .header__media:not(.media-block--full-width) img,
   .opco-fr .header--welcome .header__media:not(.media-block--full-width) img,
   .jobs-app-fr .header--welcome .header__media:not(.media-block--full-width) img {
     right: 30%;
   }
 }
 @media (min-width: 941px) {
+  .opco-it .header .content-block__eyebrow,
+  .opco-it .header .content-block__title,
   .opco-fr .header .content-block__eyebrow,
   .opco-fr .header .content-block__title,
   .jobs-app-fr .header .content-block__eyebrow,
   .jobs-app-fr .header .content-block__title {
     padding-right: calc(var(--header-banner-width-large) + var(--header-banner-spacing-left-large));
   }
+  .opco-it .header .header__content:not(.header__content--full-width) .content-block__title,
   .opco-fr .header .header__content:not(.header__content--full-width) .content-block__title,
   .jobs-app-fr .header .header__content:not(.header__content--full-width) .content-block__title {
     padding-right: 0 !important;
   }
+  .opco-it .content-block__title-bottom,
   .opco-fr .content-block__title-bottom,
   .jobs-app-fr .content-block__title-bottom {
     text-align: left;
   }
 }
 @media (min-width: 941px) {
+  .opco-it .mvp-header--search-alternative.header .search-form,
   .opco-fr .mvp-header--search-alternative.header .search-form,
   .jobs-app-fr .mvp-header--search-alternative.header .search-form {
     padding-top: 50px !important;
   }
+  .opco-it .mvp-header--search-alternative.header .header__banner,
   .opco-fr .mvp-header--search-alternative.header .header__banner,
   .jobs-app-fr .mvp-header--search-alternative.header .header__banner {
     top: calc(var(--header-banner-spacing-top-large) * -1);
   }
+  .opco-it .mvp-header--search-alternative .get-job-alerts,
   .opco-fr .mvp-header--search-alternative .get-job-alerts,
   .jobs-app-fr .mvp-header--search-alternative .get-job-alerts {
     padding-left: 0;
   }
 }
 @media (min-width: 941px) {
+  .opco-it .header--job-detail--alternative .header__content.header__content.header__content,
   .opco-fr .header--job-detail--alternative .header__content.header__content.header__content,
   .jobs-app-fr .header--job-detail--alternative .header__content.header__content.header__content {
     padding-right: 0 !important;
   }
 }
 @media (min-width: 941px) {
+  .opco-it div.header.bg-variant-brand-quaternary .form-groups--row,
+  .opco-it div.header.bg-variant-brand-secondary .form-groups--row,
   .opco-fr div.header.bg-variant-brand-quaternary .form-groups--row,
   .opco-fr div.header.bg-variant-brand-secondary .form-groups--row,
   .jobs-app-fr div.header.bg-variant-brand-quaternary .form-groups--row,
@@ -29819,18 +29941,24 @@ html.modal-open body {
     grid-template-columns: repeat(4, auto);
     padding-right: calc(var(--header-banner-width-large) + var(--header-banner-spacing-left-large)) !important;
   }
+  .opco-it div.header.bg-variant-brand-quaternary .form-groups--row.l\:w-3\/4,
+  .opco-it div.header.bg-variant-brand-secondary .form-groups--row.l\:w-3\/4,
   .opco-fr div.header.bg-variant-brand-quaternary .form-groups--row.l\:w-3\/4,
   .opco-fr div.header.bg-variant-brand-secondary .form-groups--row.l\:w-3\/4,
   .jobs-app-fr div.header.bg-variant-brand-quaternary .form-groups--row.l\:w-3\/4,
   .jobs-app-fr div.header.bg-variant-brand-secondary .form-groups--row.l\:w-3\/4 {
     width: 100% !important;
   }
+  .opco-it div.header.bg-variant-brand-quaternary .get-job-alerts-distance-search,
+  .opco-it div.header.bg-variant-brand-secondary .get-job-alerts-distance-search,
   .opco-fr div.header.bg-variant-brand-quaternary .get-job-alerts-distance-search,
   .opco-fr div.header.bg-variant-brand-secondary .get-job-alerts-distance-search,
   .jobs-app-fr div.header.bg-variant-brand-quaternary .get-job-alerts-distance-search,
   .jobs-app-fr div.header.bg-variant-brand-secondary .get-job-alerts-distance-search {
     grid-column: 3;
   }
+  .opco-it div.header.bg-variant-brand-quaternary .header__banner,
+  .opco-it div.header.bg-variant-brand-secondary .header__banner,
   .opco-fr div.header.bg-variant-brand-quaternary .header__banner,
   .opco-fr div.header.bg-variant-brand-secondary .header__banner,
   .jobs-app-fr div.header.bg-variant-brand-quaternary .header__banner,
@@ -29839,6 +29967,8 @@ html.modal-open body {
   }
 }
 @media (min-width: 941px) {
+  .opco-it .header__content--xl .header__banner,
+  .opco-it .header--banner-indent-right .header__banner,
   .opco-fr .header__content--xl .header__banner,
   .opco-fr .header--banner-indent-right .header__banner,
   .jobs-app-fr .header__content--xl .header__banner,
@@ -29886,6 +30016,9 @@ html.modal-open body {
   .navigation {
     z-index: 3;
   }
+  .popover-open .navigation {
+    z-index: initial;
+  }
   .navigation__menu li, .navigation__menu li + li {
     margin-left: 0;
     margin-right: 30px;
@@ -29895,6 +30028,9 @@ html.modal-open body {
   }
   .navigation__menu li:last-of-type {
     margin-right: 0;
+  }
+  .header--404 .navigation {
+    z-index: 3;
   }
 }
 @media (min-width: 1441px) {
@@ -30902,12 +31038,20 @@ html.modal-open body {
   grid-column: span 6/span 6 !important;
 }
 
+.col-span-7 {
+  grid-column: span 7/span 7 !important;
+}
+
 .col-span-12 {
   grid-column: span 12/span 12 !important;
 }
 
 .col-start-2 {
   grid-column-start: 2 !important;
+}
+
+.col-start-9 {
+  grid-column-start: 9 !important;
 }
 
 .m-auto {
@@ -31199,6 +31343,10 @@ html.modal-open body {
 
 .rounded-xl {
   border-radius: 8px !important;
+}
+
+.rounded-none {
+  border-radius: 0px !important;
 }
 
 .bg-brand-primary {
@@ -31581,6 +31729,9 @@ html.modal-open body {
   }
   .l\:w-8\/12 {
     width: 66.666667% !important;
+  }
+  .l\:w-full {
+    width: 100% !important;
   }
   .l\:grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr)) !important;

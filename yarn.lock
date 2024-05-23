@@ -1285,7 +1285,7 @@
 
 "@ffw/randstad-local-orbit@git+ssh://git-codecommit.eu-west-1.amazonaws.com/v1/repos/git-bluex-prd-bx-local-orbit#dev":
   version "1.2.0"
-  resolved "git+ssh://git-codecommit.eu-west-1.amazonaws.com/v1/repos/git-bluex-prd-bx-local-orbit#32cc07fbc1f826bb1441e37d1247305ab9b7d6ca"
+  resolved "git+ssh://git-codecommit.eu-west-1.amazonaws.com/v1/repos/git-bluex-prd-bx-local-orbit#c772607c9d57f6213933f27cf687b2585f1dd098"
   dependencies:
     babel-core "^6.26.3"
     babel-polyfill "^6.26.0"
