@@ -261,6 +261,7 @@ describe('JobCard tests', () => {
         enableSalary
         enableJobType
         activeView="grid"
+        opcoCodes="rxp"
         disabled
         opcoCodes="rxp"
       />,

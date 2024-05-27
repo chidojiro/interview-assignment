@@ -38,6 +38,8 @@ import TextNotice from './components/notifications/TextNotice';
 import ActionNotice from './components/notifications/ActionNotice';
 import { TextNoticeBackground } from './components/notifications/TextNotice/TextNotice.types';
 import Toast from './components/notifications/Toast';
+import PromoteAppBanner from './components/notifications/PromoteAppBanner';
+import Banner from './components/notifications/Banner';
 import Footer from './components/footer/Footer';
 import FooterColumnNav from './components/footer/FooterColumnNav';
 import FooterBottomNav from './components/footer/FooterBottomNav';
@@ -200,6 +202,8 @@ export {
   DataTable,
   ConsultantContactForm,
   ErrorBoundary,
+  PromoteAppBanner,
+  Banner,
 };
 
 /**
@@ -221,5 +225,9 @@ export type {
   UpdateStepFunction,
 };
 
+export { default as getClosedMarketingMessagesFromCookie } from './utils/marketingMessages/getClosedMarketingMessagesFromCookie';
+export { default as setClosedMarketingMessagesCookie } from './utils/marketingMessages/setClosedMarketingMessagesCookie';
+export { default as getPromoteAppBannerCookie } from './utils/promoteAppBanner/getPromoteAppBannerCookie';
+export { default as setPromoteAppBannerCookie } from './utils/promoteAppBanner/setPromoteAppBannerCookie';
 export { default as getAxiosInstance } from './utils/getAxiosInstance';
 export { default as getAuthManager } from './utils/auth/getAuthManager';

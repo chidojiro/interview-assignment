@@ -6,6 +6,6 @@ export interface MyRandstadProps {
   label: string | React.ReactNode;
   userName?: UserNameProps;
   userImgUrl?: string;
-  trackLoginPopoverOpen: boolean
-  trackLoginPopoverEvent: (open: boolean) => void
+  hiddenLabel?: boolean;
+  popoverId?: string;
 }

@@ -58,25 +58,25 @@ const noIconItems = [
 
 describe('TabBar', () => {
   it('renders the correct number of items', () => {
-    render(<TabBar items={mockItems} />);
+    render(<TabBar items={mockItems} languagePrefix="en" />);
     const items = screen.getAllByRole('link');
     expect(items).toHaveLength(5);
   });
 
   it('renders the active item with the "active" class', () => {
-    render(<TabBar items={mockItems} />);
+    render(<TabBar items={mockItems} languagePrefix="en" />);
     const activeItem = screen.getByRole('link', { name: /overview/i });
     expect(activeItem).toHaveClass('active');
   });
 
   it('renders the correct item titles', () => {
-    render(<TabBar items={mockItems} />);
+    render(<TabBar items={mockItems} languagePrefix="en" />);
     const itemTitles = screen.getAllByText(/overview|my applications|job preferences|personal information|settings/i);
     expect(itemTitles).toHaveLength(5);
   });
 
   it('renders the correct item icons', () => {
-    const { container } = render(<TabBar items={mockItems} />);
+    const { container } = render(<TabBar items={mockItems} languagePrefix="en" />);
     const itemIcons = container.querySelectorAll('.tab-bar svg use');
     expect(itemIcons).toHaveLength(5);
     const xLinkAttribute = 'xlink:href';
@@ -88,13 +88,13 @@ describe('TabBar', () => {
   });
 
   it('should render two tabs with no icons', async () => {
-    render(<TabBar items={noIconItems} />);
+    render(<TabBar items={noIconItems} languagePrefix="en" />);
     const items = screen.getAllByRole('link');
     expect(items).toHaveLength(2);
   });
 
   it('should change active tab', async () => {
-    const { container } = await render(<TabBar items={noIconItems} />);
+    const { container } = await render(<TabBar items={noIconItems} languagePrefix="en" />);
     const tabs = container.querySelectorAll('.tab-bar__item:not(.active)');
     const inactiveTab = tabs[0];
     fireEvent.click(inactiveTab);

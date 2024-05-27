@@ -11,6 +11,7 @@ async function handleUploadedFiles(
   const filesForUpload: Array<File> = [];
   await Promise.all(docs.map(async (doc) => {
     const response = await axios.get(`https://www.googleapis.com/drive/v2/files/${doc.id}?alt=media`, {
+      responseType: 'arraybuffer',
       headers: {
         Authorization: `Bearer ${authToken.current}`,
       },

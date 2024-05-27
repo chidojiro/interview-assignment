@@ -7,6 +7,7 @@ async function handleDropboxUpload(files: Array<DropboxFile>, inputRef: React.Re
   const filesToUpload: Array<File> = [];
   await Promise.all(files.map(async (file) => {
     const response = await axios.get(file.link, {
+      responseType: 'arraybuffer',
       // We will always include the timestamp as a query param, as on Safari we have a bug where the request cached
       // and when we hit cache we are always getting 404.
       params: {

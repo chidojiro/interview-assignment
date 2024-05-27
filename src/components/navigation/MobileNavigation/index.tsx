@@ -55,7 +55,11 @@ function MobileNavigation({
       {items.map((menuItem, index) => (
         <li key={menuItem.title} className="link-list__item">
           <div
-            ref={(el) => ref.current[index] = el}
+            ref={(el) => {
+              if (ref.current) {
+                ref.current[index] = el;
+              }
+            }}
             className="collapsible__trigger"
             {...menuAttributes(menuItem.children ? menuItem.children.length : 0)}
           >

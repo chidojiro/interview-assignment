@@ -7,8 +7,8 @@ const webpackConfig = require('./webpack.config');
 const config = { ...webpackConfig };
 
 config.module.rules.push({
-  test: /\.css$/,
-  use: ['css-loader'],
+  test: /\.s[ac]ss$/i,
+  use: ['css-loader', 'sass-loader'],
 });
 
 module.exports = {
@@ -17,11 +17,7 @@ module.exports = {
   moduleAliases: {
     '@ffw/randstad-shared-components': path.resolve(__dirname, 'src/index.ts'),
   },
-  ignore: [
-    '**/components/forms/autosuggest/**',
-    '**/components/base/**',
-    '**/components/form-group/Label.js',
-  ],
+  ignore: ['**/components/forms/autosuggest/**', '**/components/base/**', '**/components/form-group/Label.js', '**/__tests__/**'],
 
   getComponentPathLine(componentPath) {
     const folderName = path.basename(path.dirname(componentPath));
@@ -41,6 +37,14 @@ module.exports = {
         {
           rel: 'stylesheet',
           href: 'css/orbit-randstad.css',
+        },
+        {
+          rel: 'stylesheet',
+          href: 'css/upload.css',
+        },
+        {
+          rel: 'stylesheet',
+          href: 'css/modal.css',
         },
       ],
     },
