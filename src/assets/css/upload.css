@@ -5,9 +5,17 @@
   .form-group--upload .upload-choices > div, .form-group--upload .upload-choices button {
     width: calc(50% - 5px);
   }
+  .form-group--upload .upload-choices > div:only-child, .form-group--upload .upload-choices button:only-child {
+    width: 100%;
+    margin-right: 0 !important;
+  }
 }
 .form-group--upload .upload-choices > div > .upload {
   width: 100%;
+}
+.form-group--upload .upload-choices .upload:before {
+  width: 20px;
+  height: 20px;
 }
 
 /*# sourceMappingURL=upload.css.map */
