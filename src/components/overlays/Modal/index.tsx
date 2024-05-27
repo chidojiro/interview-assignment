@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import classNames from 'classnames';
 import Icon from '../../common/Icon';
 import { ModalProps } from './Modal.types';
+import '../../../assets/scss/modal.scss';
 
 function Modal({
   title,
