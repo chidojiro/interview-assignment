@@ -9,4 +9,5 @@ export interface ContactPersonProps {
   profiles: PersonTypes[];
   backgroundClass?: string;
   contactForm?: ContactPersonForm;
+  noImage?: boolean;
 }

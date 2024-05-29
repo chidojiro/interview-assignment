@@ -7,7 +7,7 @@ import SocialLinks from '../../common/SocialLinks';
 import Button from '../../buttons/Button';
 
 function PersonProfile({
-  size = 'XXL', avatarClasses = 'mb-s l:mb-none l:mr-s', person, personProfileClasses, personInfoClasses, contactForm,
+  size = 'XXL', avatarClasses = 'mb-s l:mb-none l:mr-s', person, personProfileClasses, personInfoClasses, contactForm, noImage = false,
 }: PersonProfileTypes) {
   const sizeClasses: ImageSizeClasses = {
     XS: 'avatar--XS',
@@ -23,13 +23,15 @@ function PersonProfile({
 
   return (
     <div className={cn('person__profile', personProfileClasses)}>
-      <div className={cn('avatar aspect-ratio aspect-ratio--1-1', sizeClasses[size], avatarClasses, {
-        avatar__initials: !person.pictureUrl,
-      })}
-      >
-        {person.pictureUrl
-          ? <img src={person.pictureUrl} alt={person.name} /> : <span>{person.initials}</span>}
-      </div>
+      {!noImage && (
+        <div className={cn('avatar aspect-ratio aspect-ratio--1-1', sizeClasses[size], avatarClasses, {
+          avatar__initials: !person.pictureUrl,
+        })}
+        >
+          {person.pictureUrl
+            ? <img src={person.pictureUrl} alt={person.name} /> : <span>{person.initials}</span>}
+        </div>
+      )}
 
       <div className={cn('person__info', personInfoClasses)}>
         {person.name && <h3 className="person__name">{person.name}</h3>}
