@@ -4,7 +4,7 @@ import PersonProfile from '../PersonProfile';
 import { ContactPersonProps } from './ContactDetails.types';
 
 function ContactDetails({
-  type = 'contact-person', title, description, profiles, backgroundClass, contactForm,
+  type = 'contact-person', title, description, profiles, backgroundClass, contactForm, noImage = false,
 }: ContactPersonProps) {
   let avatarClasses = 'mb-s l:mb-none l:mr-s';
   if (type === 'meet-the-team') avatarClasses = 'mb-s';
@@ -24,7 +24,7 @@ function ContactDetails({
         </div>
         <div className={cn('block__content', type)}>
           {profiles.map((profile) => (
-            <PersonProfile person={profile} avatarClasses={avatarClasses} size="XXL" key={profile.name} contactForm={contactForm} />
+            <PersonProfile person={profile} avatarClasses={avatarClasses} size="XXL" key={profile.name} contactForm={contactForm} noImage={noImage} />
           ))}
         </div>
       </div>
