@@ -263,7 +263,6 @@ describe('JobCard tests', () => {
         activeView="grid"
         opcoCodes="rxp"
         disabled
-        opcoCodes="rxp"
       />,
       {
         wrapper: UlWrapper,
@@ -386,7 +385,7 @@ describe('JobCard tests', () => {
           type: 'negative',
           children: 'This job is not valid.',
         }}
-        trackAndTraceStatus={{
+        trackAndTraceData={{
           title: 'application status',
           status: 'internal interview',
         }}
