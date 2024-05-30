@@ -12,8 +12,8 @@ function QuickLinkCard({
   clickAreaAriaLabel = 'make entire card clickable',
 }: QuickLinkCardProps) {
   function handleOnKeyDown(e: React.KeyboardEvent<HTMLSpanElement>) {
-    if (typeof onClick === 'function' && e.key === 'Enter') {
-      return onClick(e);
+    if (e.key === 'Enter') {
+      window.open(url, '_blank');
     }
     return null;
   }
