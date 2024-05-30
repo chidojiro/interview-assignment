@@ -95,7 +95,14 @@ function Header({
    *
    */
   const getActiveMenuItem = (item: SubmenuItems | Routes) => {
-    if (item.url !== currentUrl) return item;
+    let url = currentUrl;
+
+    // If we are in my-randstad we will just cut the id from the link, so we can set the needed tab bar item as active.
+    if (isMyRandstad && url?.includes(':')) {
+      url = url?.split(':')[0];
+    }
+
+    if (item.url !== url) return item;
     return {
       ...item,
       isActive: true,
