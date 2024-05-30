@@ -1,6 +1,6 @@
 import React from 'react';
 import { QuickLinkCardProps } from './QuickLinkCard.types';
-import '../../../assets/scss/quick-links.scss';
+import './quick-links.scss';
 import Icon from '../../common/Icon';
 
 function QuickLinkCard({
@@ -11,6 +11,12 @@ function QuickLinkCard({
   onClick,
   clickAreaAriaLabel = 'make entire card clickable',
 }: QuickLinkCardProps) {
+  function handleOnKeyDown(e: React.KeyboardEvent<HTMLSpanElement>) {
+    if (typeof onClick === 'function' && e.key === 'Enter') {
+      return onClick(e);
+    }
+    return null;
+  }
   return (
     <div className="dashboard-card cards__item p-s l:py-s l:px-m">
       <div className="dashboard-card--top mb-xxs flex justify-between items-start">
@@ -25,12 +31,7 @@ function QuickLinkCard({
               aria-label={clickAreaAriaLabel}
               className="make-entire-card-clickable"
               onClick={onClick}
-              onKeyDown={(e) => {
-                if (typeof onClick === 'function' && e.key === 'Enter') {
-                  return onClick(e);
-                }
-                return null;
-              }}
+              onKeyDown={handleOnKeyDown}
             />
           )}
         </a>
