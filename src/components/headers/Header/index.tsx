@@ -44,6 +44,7 @@ function Header({
   gtmSettings,
   theme,
 }: HeaderProps) {
+  console.log(submenuLinks);
   // TO DO: currentUser.loginState state needed because tabBar needs an active link on logout
   const [currentUser, setCurrentUser] = useState({} as PersistData);
   const [access, setAccess] = useState('');
@@ -95,14 +96,8 @@ function Header({
    *
    */
   const getActiveMenuItem = (item: SubmenuItems | Routes) => {
-    let url = currentUrl;
+    if (item.url !== currentUrl) return item;
 
-    // If we are in my-randstad we will just cut the id from the link, so we can set the needed tab bar item as active.
-    if (isMyRandstad && url?.includes(':')) {
-      url = url?.split(':')[0];
-    }
-
-    if (item.url !== url) return item;
     return {
       ...item,
       isActive: true,
