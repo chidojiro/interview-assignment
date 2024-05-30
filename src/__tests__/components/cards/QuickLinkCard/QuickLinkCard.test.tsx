@@ -36,11 +36,18 @@ describe('QuickLinkCard component', () => {
 
   it('handles keydown event on the clickable area', () => {
     const { getByRole } = render(<QuickLinkCard {...defaultProps} />);
-
     const clickableArea = getByRole('button', { name: 'make entire card clickable' });
+
+    // Mock window.open
+    const originalOpen = window.open;
+    window.open = jest.fn();
+
     fireEvent.keyDown(clickableArea, { key: 'Enter', code: 'Enter', charCode: 13 });
 
-    expect(defaultProps.onClick).toHaveBeenCalledTimes(1);
+    expect(window.open).toHaveBeenCalledWith('https://example.com', '_blank');
+
+    // Restore window.open
+    window.open = originalOpen;
   });
 
   it('renders without description if not provided', () => {
