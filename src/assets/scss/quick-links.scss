@@ -1,0 +1,9 @@
+.quick-links {
+  .cards__item {
+    background-color: var(--color-brand-tertiary) !important;
+  }
+
+  @media screen and (min-width: 941px) {
+    grid-row-gap: 40px;
+  }
+}
