@@ -65,7 +65,7 @@ function JobCard(props: JobCardProps) {
 
   return (
     <li
-      className={cn('jobs-card cards__item ', {
+      className={cn('job-card cards__item ', {
         'bg-variant-white': !hasBackground,
         'cards__item--disabled': disabled,
       })}
