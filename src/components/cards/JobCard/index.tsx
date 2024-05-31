@@ -9,6 +9,7 @@ import Icon from '../../common/Icon';
 import JobItemMetadata from './JobItemMetadata';
 import SavedJobIcon from './SavedJobIcon';
 import Notice from '../../notifications/Notice';
+import '../../../assets/scss/job-card.scss';
 
 function JobCard(props: JobCardProps) {
   const {
@@ -64,7 +65,7 @@ function JobCard(props: JobCardProps) {
 
   return (
     <li
-      className={cn('cards__item ', {
+      className={cn('jobs-card cards__item ', {
         'bg-variant-white': !hasBackground,
         'cards__item--disabled': disabled,
       })}

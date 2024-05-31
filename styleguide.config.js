@@ -46,6 +46,10 @@ module.exports = {
           rel: 'stylesheet',
           href: 'css/modal.css',
         },
+        {
+          rel: 'stylesheet',
+          href: 'css/job-card.css',
+        },
       ],
     },
   },
