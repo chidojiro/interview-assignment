@@ -44,7 +44,6 @@ function Header({
   gtmSettings,
   theme,
 }: HeaderProps) {
-  console.log(submenuLinks);
   // TO DO: currentUser.loginState state needed because tabBar needs an active link on logout
   const [currentUser, setCurrentUser] = useState({} as PersistData);
   const [access, setAccess] = useState('');
