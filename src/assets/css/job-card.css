@@ -1,0 +1,15 @@
+.cards__backside-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.cards__backside-card .cards__backside-description {
+  height: auto;
+  flex-grow: 1;
+}
+.cards__backside-card .cards__backside-footer {
+  position: absolute !important;
+  bottom: -15px !important;
+}
+
+/*# sourceMappingURL=job-card.css.map */
