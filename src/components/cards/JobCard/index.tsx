@@ -9,7 +9,6 @@ import Icon from '../../common/Icon';
 import JobItemMetadata from './JobItemMetadata';
 import SavedJobIcon from './SavedJobIcon';
 import Notice from '../../notifications/Notice';
-import '../../../assets/scss/job-card.scss';
 
 function JobCard(props: JobCardProps) {
   const {
@@ -36,7 +35,6 @@ function JobCard(props: JobCardProps) {
     opcoCodes,
     RouterComponent,
     backsideUrl,
-    trackAndTraceData,
   } = props;
   const [realLogoImg, setRealLogoImg] = useState(true);
 
@@ -65,7 +63,7 @@ function JobCard(props: JobCardProps) {
 
   return (
     <li
-      className={cn('job-card cards__item ', {
+      className={cn('cards__item ', {
         'bg-variant-white': !hasBackground,
         'cards__item--disabled': disabled,
       })}
@@ -73,15 +71,14 @@ function JobCard(props: JobCardProps) {
       data-rs-carousel-card
       ref={cardRef}
     >
-      { badgeText ? (
-        <div className="mb-s">
-          <Badge color="primary" size="l">
-            {badgeText}
-          </Badge>
-        </div>
-      ) : null}
-
-      <div className="cards__header">
+      <div className="cards__header flex-wrap">
+        { badgeText ? (
+          <div className="mb-s w-full">
+            <Badge color="primary" size="l">
+              {badgeText}
+            </Badge>
+          </div>
+        ) : null}
         <div className="cards__logo-title-container">
           {enableLogo && logoSrcTagValue?.length && (
             <div>
@@ -135,12 +132,6 @@ function JobCard(props: JobCardProps) {
       <JobItemMetadata {...props} />
       {/* Safe here. */}
       {/* eslint-disable-next-line react/no-danger */}
-      {trackAndTraceData && trackAndTraceData.status && (
-        <div className="mt-xs mb-s">
-          <div>{ trackAndTraceData.title }</div>
-          <div className="text-brand-primary">{ trackAndTraceData.status }</div>
-        </div>
-      )}
       <div className="cards__description" dangerouslySetInnerHTML={{ __html: description }} />
       <div className="cards__footer">
         <div className="cards__time-info">
