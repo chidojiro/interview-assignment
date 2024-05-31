@@ -97,6 +97,7 @@ import ErrorBoundary from './components/errors/ErrorBoundary';
 import ContentTable from './components/tables/ContentTable';
 import DataTable from './components/tables/DataTable';
 import ConsultantContactForm from './components/contacts/ConsultantContactForm';
+import QuickLinkCard from './components/cards/QuickLinkCard';
 
 import { JobCardProps, SavedJobsProps } from './components/cards/JobCard/JobCard.types';
 import {
@@ -204,6 +205,7 @@ export {
   ErrorBoundary,
   PromoteAppBanner,
   Banner,
+  QuickLinkCard,
 };
 
 /**
