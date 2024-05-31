@@ -27,6 +27,7 @@ export interface JobCardProps extends JobItemMetadataProps {
   description: string;
   id: string;
   url: string;
+  backsideUrl?: string;
   date: string;
   enableLogo?: boolean;
   hasBackground?: boolean;
@@ -43,4 +44,6 @@ export interface JobCardProps extends JobItemMetadataProps {
   disabled?: boolean;
   notice?: NoticeProps | null;
   opcoCodes: string | string[];
+  badgeText?: string | undefined;
+  RouterComponent?: React.FC<any>;
 }

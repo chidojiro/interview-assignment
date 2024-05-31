@@ -42,6 +42,7 @@ import Icon from '../../common/Icon';
       fourthOptionAriaLabelValue="Fourth option aria-label"
       lowerCased={false}
       activeView="grid"
+      badgeText="updated today"
   />
 </JobCardList>
 ```

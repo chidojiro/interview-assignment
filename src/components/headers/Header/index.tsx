@@ -96,6 +96,7 @@ function Header({
    */
   const getActiveMenuItem = (item: SubmenuItems | Routes) => {
     if (item.url !== currentUrl) return item;
+
     return {
       ...item,
       isActive: true,
