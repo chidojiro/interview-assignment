@@ -29,13 +29,6 @@ function Banner({
   const generatedId = useId();
   const id = propId || generatedId;
 
-  const handleClose = () => {
-    // Delay the close action to avoid the animation.
-    setTimeout(() => {
-      onClose();
-    }, 500);
-  };
-
   React.useEffect(() => {
     if (!buttonRef.current) return;
     new Closable(buttonRef.current);
@@ -74,7 +67,7 @@ function Banner({
             </div>
             <div className="notice-alert__close" data-rs-closable-fadeout="">
               <button
-                onClick={handleClose}
+                onClick={() => onClose()}
                 ref={buttonRef}
                 type="button"
                 className={cn('button--icon-only', hideCloseButtonOnDesktop && 'hidden--from-l')}
