@@ -24,7 +24,6 @@ interface BannerProps {
 function Banner({
   title, button, children, onClose, hideCloseButtonOnDesktop, id: propId, type = 'general',
 }: BannerProps) {
-  console.log('Banner1');
   const buttonRef = useRef(null);
   const generatedId = useId();
   const id = propId || generatedId;
