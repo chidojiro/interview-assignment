@@ -78,7 +78,7 @@ function PersonProfile({
               )}
               </ul>
               {contactFormButtonText && onContactFormButtonClicked && (
-                <Button className={cn('', { 'mt-s': person.phone })} handleClick={onContactFormButtonClicked}>
+                <Button className={cn('', { 'mt-s': person.phone || person.phoneNumbers?.length })} handleClick={onContactFormButtonClicked}>
                   {contactFormButtonText}
                 </Button>
               )}

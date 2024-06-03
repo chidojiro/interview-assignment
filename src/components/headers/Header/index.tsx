@@ -88,6 +88,18 @@ function Header({
    *
    */
   const getActiveMenuItem = (item: SubmenuItems | Routes) => {
+    /**
+     * If the current url is for the track & trace page, we need to show the my-applications tab bar item as active
+     *
+     * This is something custom and purely for the my-randstad app.
+     */
+    if (currentUrl === '/my-randstad/my-applications/:id/' && item.url === '/my-randstad/my-applications/') {
+      return {
+        ...item,
+        isActive: true,
+      };
+    }
+
     if (item.url !== currentUrl) return item;
 
     return {
