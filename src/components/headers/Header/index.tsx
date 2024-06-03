@@ -46,7 +46,6 @@ function Header({
 }: HeaderProps) {
   // TO DO: currentUser.loginState state needed because tabBar needs an active link on logout
   const [currentUser, setCurrentUser] = useState({} as PersistData);
-  const [access, setAccess] = useState('');
   const profileData = useUserData();
   useEffect(() => {
     const newUserData = getUserData();
@@ -59,14 +58,7 @@ function Header({
         || newPersonalInfo?.givenName !== currentUserPersonalInfo?.givenName) {
       setCurrentUser(newUserData);
     }
-
-    // Find the currentRoute's access, in order for us to figure out which header to show.
-    // We have a backup based on the loginStatus, as we won't always have access for the route through all the apps.
-    if (submenuLinks && localization.locale && currentUrl) {
-      setAccess(submenuLinks[localization.locale]?.clientRoutes?.find((f: Routes) => f.url === currentUrl)?.access ?? '');
-    }
   }, [profileData]);
-
   const isLoginEnabled = submenuLinks !== null && Object.keys(submenuLinks).length > 0;
   useEffect(() => {
     if (gtmSettings) {
@@ -124,6 +116,11 @@ function Header({
   if (locale === defaultLocale) {
     homepageUrl = '/';
     languagePrefix = '';
+  }
+
+  let access = '';
+  if (submenuLinks && localization && localization.locale) {
+    access = submenuLinks[localization.locale]?.clientRoutes?.find((f: Routes) => f.url === currentUrl)?.access ?? '';
   }
 
   // Update My Randstad and Saved Jobs components with data from the submenuLinks
