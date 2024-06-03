@@ -47,7 +47,16 @@ const mainMenuItems = [
     {
         "title": "suh menu parent link",
         "url": "/suh-menu-parent-link/",
-        "children": [],
+        "children": [
+          {
+            title: 'sub menu item 1',
+            url: '/second-sub-menu-url/',
+          },
+          {
+            title: 'sub menu item 2',
+            url: '/second-sub-menu-url/',
+          },
+        ],
         "isActive": false
     }
 ];

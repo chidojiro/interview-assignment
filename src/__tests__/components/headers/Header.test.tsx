@@ -169,9 +169,11 @@ describe('Header', () => {
 
   describe('Second level menu', () => {
     it('should render menu item as active', () => {
-      const { getByText } = renderHeader({ ...defaultProps, ...{ currentUrl: '/sub-menu-url/' } });
+      const { getAllByText } = renderHeader({ ...defaultProps, ...{ currentUrl: '/sub-menu-url/' } });
 
-      expect(getByText('submenu item', { selector: '.navigation__menu-item a' }).closest("li")).toHaveClass('navigation__menu-item--active');
+      const submenuItems = getAllByText('submenu item', { selector: '.navigation__menu-item a' }).map((subItem) => subItem.parentElement);
+      const activeItem = submenuItems.filter((submenuItem) => submenuItem?.classList.contains('navigation__menu-item--active'));
+      expect(activeItem[0]).toBeInTheDocument();
     });
 
     it('should render My randstad menu as second level menu', () => {

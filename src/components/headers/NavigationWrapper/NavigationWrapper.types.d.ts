@@ -1,0 +1,1 @@
+export type NavigationWrapperProps = { theme?: string, children: React.ReactNode };
