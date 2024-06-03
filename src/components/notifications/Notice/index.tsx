@@ -1,11 +1,10 @@
 import React from 'react';
+import cn from 'classnames';
 import Icon from '../../common/Icon';
 import { NoticeProps } from './Notice.types';
 
 function Notice({
-  children,
-  type = 'informative',
-  icon,
+  children, type = 'informative', icon, className,
 }: NoticeProps) {
   let noticeIcon;
 
@@ -30,7 +29,7 @@ function Notice({
   }
 
   return (
-    <div className={`notice-in-page notice-in-page--${type}`}>
+    <div className={cn(`notice-in-page notice-in-page--${type}`, className)}>
       <Icon iconClassName="icon icon--inline icon--static" iconType={icon || noticeIcon || 'info'} />
       <span className="notice-in-page__body-copy body-copy">{children}</span>
     </div>

@@ -40,6 +40,7 @@ describe('JobCard tests', () => {
         enableSalary
         enableJobType
         activeView="grid"
+        opcoCodes="rxp"
       />,
       {
         wrapper: UlWrapper,
@@ -75,6 +76,7 @@ describe('JobCard tests', () => {
         enableSalary
         enableJobType
         activeView="grid"
+        opcoCodes="rxp"
       />,
       {
         wrapper: UlWrapper,
@@ -112,6 +114,7 @@ describe('JobCard tests', () => {
         fourthOptionField="client_name_settings"
         clientName="randstad"
         activeView="grid"
+        opcoCodes="rxp"
       />,
       {
         wrapper: UlWrapper,
@@ -148,6 +151,7 @@ describe('JobCard tests', () => {
         enableJobType
         fourthOptionField="client_name_settings"
         activeView="grid"
+        opcoCodes="rxp"
       />,
       {
         wrapper: UlWrapper,
@@ -185,6 +189,7 @@ describe('JobCard tests', () => {
         fourthOptionField="education_settings"
         education="bachelor"
         activeView="grid"
+        opcoCodes="rxp"
       />,
       {
         wrapper: UlWrapper,
@@ -221,6 +226,7 @@ describe('JobCard tests', () => {
         fourthOptionField="education_settings"
         education="bachelor"
         activeView="grid"
+        opcoCodes="rxp"
       />,
       {
         wrapper: UlWrapper,
@@ -255,6 +261,7 @@ describe('JobCard tests', () => {
         enableSalary
         enableJobType
         activeView="grid"
+        opcoCodes="rxp"
         disabled
       />,
       {
@@ -295,6 +302,7 @@ describe('JobCard tests', () => {
           type: 'negative',
           children: 'This job is not valid.',
         }}
+        opcoCodes="rxp"
       />,
       {
         wrapper: UlWrapper,
@@ -304,5 +312,91 @@ describe('JobCard tests', () => {
     const noticeEl = document.querySelector('.cards__item .notice-in-page--negative');
     expect(noticeEl).toBeInTheDocument();
     expect(handleMouseDownClick).not.toHaveBeenCalled();
+  });
+
+  it('Checks the job card to have badge text.', async () => {
+    render(
+      <JobCard
+        title="Test title"
+        description="Test Description"
+        id="1"
+        url="www.google.com"
+        date={Date.now().toString()}
+        enableLogo
+        infoIconAriaLabel={infoIconAriaLabel}
+        closeIconAriaLabel={closeIconAreaLabel}
+        logoAltTagValue="test alt"
+        logoSrcTagValue="https://www.randstad-easydrive.de/m/19e8e57574a321fa/original/Logo-Jobborse-GULP.jpeg"
+        onMouseDownClick={handleMouseDownClick}
+        hasBackground={false}
+        viewJobText="View job"
+        closeText=""
+        location="göteborg kommun, västra götaland"
+        salary="sek1,000,000 - sek2,000,000 0"
+        jobType="rekrytering"
+        enableLocation
+        enableSalary
+        enableJobType
+        activeView="grid"
+        notice={{
+          type: 'negative',
+          children: 'This job is not valid.',
+        }}
+        badgeText="updated today"
+        opcoCodes="rxp"
+      />,
+      {
+        wrapper: UlWrapper,
+      },
+    );
+
+    const badge = document.querySelector('.cards__item .badge__text');
+    expect(badge).toBeInTheDocument();
+    expect(badge).toHaveTextContent('updated today');
+
+    expect(handleMouseDownClick).not.toHaveBeenCalled();
+  });
+
+  it('Checks the job card to have track and trace application status.', async () => {
+    const { getByText } = render(
+      <JobCard
+        title="Test title"
+        description="Test Description"
+        id="1"
+        url="www.google.com"
+        date={Date.now().toString()}
+        enableLogo
+        infoIconAriaLabel={infoIconAriaLabel}
+        closeIconAriaLabel={closeIconAreaLabel}
+        logoAltTagValue="test alt"
+        logoSrcTagValue="https://www.randstad-easydrive.de/m/19e8e57574a321fa/original/Logo-Jobborse-GULP.jpeg"
+        onMouseDownClick={handleMouseDownClick}
+        hasBackground={false}
+        viewJobText="View job"
+        closeText=""
+        location="göteborg kommun, västra götaland"
+        salary="sek1,000,000 - sek2,000,000 0"
+        jobType="rekrytering"
+        enableLocation
+        enableSalary
+        enableJobType
+        activeView="grid"
+        notice={{
+          type: 'negative',
+          children: 'This job is not valid.',
+        }}
+        trackAndTraceData={{
+          title: 'application status',
+          status: 'internal interview',
+        }}
+        opcoCodes="rxp"
+      />,
+      {
+        wrapper: UlWrapper,
+      },
+    );
+
+    const trackAndTraceStatus = getByText('internal interview');
+    expect(trackAndTraceStatus).toBeInTheDocument();
   });
 });

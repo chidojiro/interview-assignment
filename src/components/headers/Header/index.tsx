@@ -46,7 +46,6 @@ function Header({
 }: HeaderProps) {
   // TO DO: currentUser.loginState state needed because tabBar needs an active link on logout
   const [currentUser, setCurrentUser] = useState({} as PersistData);
-
   const profileData = useUserData();
   useEffect(() => {
     const newUserData = getUserData();
@@ -58,6 +57,12 @@ function Header({
         || newPersonalInfo?.preferredName !== currentUserPersonalInfo?.preferredName
         || newPersonalInfo?.givenName !== currentUserPersonalInfo?.givenName) {
       setCurrentUser(newUserData);
+    }
+
+    // Find the currentRoute's access, in order for us to figure out which header to show.
+    // We have a backup based on the loginStatus, as we won't always have access for the route through all the apps.
+    if (submenuLinks && localization.locale && currentUrl) {
+      setAccess(submenuLinks[localization.locale]?.clientRoutes.find((f: Routes) => f.url === currentUrl)?.access ?? '');
     }
   }, [profileData]);
   const isLoginEnabled = submenuLinks !== null && Object.keys(submenuLinks).length > 0;

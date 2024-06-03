@@ -3,6 +3,7 @@ import React, {
 } from 'react';
 import { Card } from '@ffw/randstad-local-orbit/js/components/card';
 import cn from 'classnames';
+import Badge from '../../common/Badge';
 import { JobCardProps } from './JobCard.types';
 import Icon from '../../common/Icon';
 import JobItemMetadata from './JobItemMetadata';
@@ -30,7 +31,10 @@ function JobCard(props: JobCardProps) {
     savedJobIconAriaLabel = 'saved job icon',
     disabled = false,
     notice = null,
+    badgeText,
     opcoCodes,
+    RouterComponent,
+    backsideUrl,
   } = props;
   const [realLogoImg, setRealLogoImg] = useState(true);
 
@@ -67,7 +71,14 @@ function JobCard(props: JobCardProps) {
       data-rs-carousel-card
       ref={cardRef}
     >
-      <div className="cards__header">
+      <div className="cards__header flex-wrap">
+        { badgeText ? (
+          <div className="mb-s w-full">
+            <Badge color="primary" size="l">
+              {badgeText}
+            </Badge>
+          </div>
+        ) : null}
         <div className="cards__logo-title-container">
           {enableLogo && logoSrcTagValue?.length && (
             <div>
@@ -82,10 +93,19 @@ function JobCard(props: JobCardProps) {
             </div>
           )}
           <h3 className="cards__title">
-            <a href={url} tabIndex={0} className="cards__link" onMouseDown={onMouseDownClick}>
-              {title}
-              <span className="make-entire-card-clickable" />
-            </a>
+            { RouterComponent ? (
+              <RouterComponent href={url} prefetch tabIndex={0} onMouseDown={onMouseDownClick} className="cards__link">
+                {title}
+                <span className="make-entire-card-clickable" />
+
+              </RouterComponent>
+            ) : (
+              <a href={url} tabIndex={0} className="cards__link" onMouseDown={onMouseDownClick}>
+                {title}
+                <span className="make-entire-card-clickable" />
+              </a>
+            )}
+
           </h3>
           { notice && notice.children && notice.type && (
             <Notice type={notice.type}>{notice.children}</Notice>
@@ -133,7 +153,7 @@ function JobCard(props: JobCardProps) {
         <div className="cards__backside-description" dangerouslySetInnerHTML={{ __html: description }} />
         <div className="cards__backside-footer">
           <a
-            href={url}
+            href={backsideUrl ?? url}
             data-jobid={id}
             onMouseDown={onMouseDownClick}
             className="cards__backside-footer--horizontal cards__backside-footer--job-link"

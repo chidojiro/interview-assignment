@@ -9,6 +9,11 @@ export type FourthOptionFieldValues =
   | 'sector_settings';
 export type FourthOptionIconType = 'building' | 'clock' | 'education' | 'calendar' | 'factory';
 
+interface TrackAndTraceData {
+  title: string;
+  status?: string;
+}
+
 export interface JobItemMetadataProps {
   location: string;
   salary?: string;
@@ -39,4 +44,6 @@ export interface JobItemMetadataProps {
   lowerCased?: boolean;
   evergreenJobIcon?: string;
   evergreenJobText?: string;
+
+  trackAndTraceData?: TrackAndTraceData;
 }

@@ -28,6 +28,7 @@ function JobItemMetadata({
   lowerCased = false,
   evergreenJobText,
   evergreenJobIcon,
+  trackAndTraceData,
 }: JobItemMetadataProps) {
   const fieldValue = (value: string) => (lowerCased ? value.toLowerCase() : value);
 
@@ -164,6 +165,12 @@ function JobItemMetadata({
         )
       }
       {renderFourthMetaCardOption()}
+      {trackAndTraceData && trackAndTraceData.status && (
+        <div className="mt-xs mb-s">
+          <div>{ trackAndTraceData.title }</div>
+          <div className="text-brand-primary">{ trackAndTraceData.status }</div>
+        </div>
+      )}
     </ul>
   );
 }

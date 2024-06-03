@@ -21,4 +21,5 @@ export interface PersonProfileTypes {
   personProfileClasses?: string;
   personInfoClasses?: string;
   contactForm?: ContactPersonForm;
+  noImage?: boolean;
 }
