@@ -58,12 +58,6 @@ function Header({
         || newPersonalInfo?.givenName !== currentUserPersonalInfo?.givenName) {
       setCurrentUser(newUserData);
     }
-
-    // Find the currentRoute's access, in order for us to figure out which header to show.
-    // We have a backup based on the loginStatus, as we won't always have access for the route through all the apps.
-    if (submenuLinks && localization.locale && currentUrl) {
-      setAccess(submenuLinks[localization.locale]?.clientRoutes.find((f: Routes) => f.url === currentUrl)?.access ?? '');
-    }
   }, [profileData]);
   const isLoginEnabled = submenuLinks !== null && Object.keys(submenuLinks).length > 0;
   useEffect(() => {
