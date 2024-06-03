@@ -30983,6 +30983,18 @@ html.modal-open body {
   position: relative !important;
 }
 
+.bottom-auto {
+  bottom: auto !important;
+}
+
+.bottom-none {
+  bottom: 0rem !important;
+}
+
+.z-2 {
+  z-index: 2 !important;
+}
+
 .order-1 {
   -webkit-order: 1 !important;
   order: 1 !important;

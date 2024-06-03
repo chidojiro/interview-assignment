@@ -7,7 +7,6 @@ import { Closable } from '@ffw/randstad-local-orbit/original/js/components/closa
 
 import Img from '../../common/Img';
 import Svg from '../../common/Svg';
-import './Banner.scss';
 
 interface BannerProps {
   title: string;
@@ -53,7 +52,7 @@ function Banner({
   const isErrorType = type === 'error';
 
   return (
-    <div className={cn('marketing-message block notice-alert notice-alert__closable fixed w-full', isErrorType ? 'bg-variant-brand-alert' : 'bg-variant-brand-primary')} {...{ [notificationId]: '' }}>
+    <div className={cn('marketing-message block notice-alert notice-alert__closable fixed w-full bottom-none z-2', isErrorType ? 'bg-variant-brand-alert' : 'bg-variant-brand-primary')} {...{ [notificationId]: '' }}>
       <div className="wrapper notice-alert__wrapper">
         <div className="notice-alert__content l:grid l:grid-cols-12">
           <div className={cn(isGeneralType ? 'col-span-6' : 'col-span-7')}>
