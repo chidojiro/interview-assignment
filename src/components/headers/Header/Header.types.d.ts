@@ -51,6 +51,7 @@ export interface HeaderProps {
     shareIdTokenAcrossSubdomains: boolean;
     ariaLabel: string;
   };
+  showChildren?: boolean;
   popoverTranslations?: TranslationProps;
   currentUrl: string | undefined;
   RouterComponent?: React.FC<any>;

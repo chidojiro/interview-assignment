@@ -1,13 +1,17 @@
 import React from 'react';
-import { NavigationWrapperProps } from './NavigationWrapper.types';
+import {
+  NavigationWrapperProps,
+  NavigationWrapperReturnProps,
+  ValidRenderedElement,
+} from './NavigationWrapper.types';
 
 /**
  *
- * This componentadds the custom wrapper for BE-TT (tempo team).
+ * This component adds the custom wrapper for BE-TT (tempo team).
  * This approach is for the Header of the tempoteam due to differences in the markup.
  * Other cases got handled with CSS whenever possible.
  */
-function NavigationWrapper({ theme, children }: NavigationWrapperProps) {
+function NavigationWrapper({ theme, children }: NavigationWrapperProps): NavigationWrapperReturnProps {
   if (theme === 'tt') {
     return (
       <div className="navigation__container">
@@ -15,7 +19,8 @@ function NavigationWrapper({ theme, children }: NavigationWrapperProps) {
       </div>
     );
   }
-  return children;
+  // Cast children to ValidRenderedElement to match the return type
+  return children as ValidRenderedElement;
 }
 
 export default NavigationWrapper;
