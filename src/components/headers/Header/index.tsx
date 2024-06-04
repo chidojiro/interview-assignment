@@ -32,6 +32,7 @@ function Header({
   isMyRandstad,
   submenuLinks,
   savedJobsEnabled,
+  showChildren = false,
   routes,
   localization,
   popoverTranslations,
@@ -200,7 +201,7 @@ function Header({
           <div className="wrapper navigation__wrapper">
             <div className="navigation__top">
               <Logo homepageUrl={homepageUrl} theme={theme} />
-              <MainMenu items={mainMenuItems} />
+              <MainMenu items={mainMenuItems} showChildren={showChildren} />
               <NavigationWrapper theme={theme}>
                 <ul
                   className={classNames('navigation__service navigation__service--minimal', {
