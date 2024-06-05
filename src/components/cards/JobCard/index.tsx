@@ -57,7 +57,7 @@ function JobCard(props: JobCardProps) {
 
   useEffect(() => {
     if (cardRef?.current?.classList.contains('cards__item--backside-active')) {
-      (cardRef?.current?.querySelector(('[data-rs-card-hide-backside]')) as HTMLLIElement)?.click();
+      (cardRef?.current?.querySelector('[data-rs-card-hide-backside]') as HTMLLIElement)?.click();
     }
   }, [activeView]);
 
@@ -72,14 +72,14 @@ function JobCard(props: JobCardProps) {
       ref={cardRef}
     >
       <div className="cards__header flex-wrap">
-        { badgeText ? (
+        {badgeText ? (
           <div className="mb-s w-full">
             <Badge color="primary" size="l">
               {badgeText}
             </Badge>
           </div>
         ) : null}
-        <div className="cards__logo-title-container">
+        <div className="cards__logo-title-container w-auto flex-grow">
           {enableLogo && logoSrcTagValue?.length && (
             <div>
               <div className={`cards__logo ${realLogoImg ? '' : 'hidden--visually'}`} ref={logoRef}>
