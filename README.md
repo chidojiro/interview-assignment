@@ -20,3 +20,7 @@ To start with, we have a styled todo list that supports adding todos. We also ha
 - The active todos should be sorted by created_at descending
 - The completed todos should be sorted by completed_at ascending
 
+## Bonus
+
+1. Add a deadline for a todo (inputted as minutes from now to make it simple), send an alert when the deadline is reached
+
