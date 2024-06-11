@@ -1,6 +1,7 @@
-import styled from "@emotion/styled";
+import React from "react";
 
-export const TodoList = styled.ul({
-    width: "100%",
-    listStyle: "none",
-});
+export const TodoList = ({children, ...props}) => {
+    return <ul {...props} className='w-full'>
+        {children}
+    </ul>
+}

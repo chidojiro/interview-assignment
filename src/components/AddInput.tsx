@@ -1,18 +1,4 @@
-import { FC, useState } from "react";
-import styled from "@emotion/styled";
-
-const Form = styled.form({
-    width: "100%",
-});
-
-const Input = styled.input({
-    width: "100%",
-    border: "none",
-    padding: 16,
-    outline: "none",
-    borderRadius: 3,
-    marginBottom: 8,
-});
+import React, {FC, useState} from "react";
 
 export interface AddInputProps {
     onAdd: (label: string) => void;
@@ -22,18 +8,20 @@ export const AddInput: FC<AddInputProps> = ({ onAdd }) => {
     const [input, setInput] = useState("");
 
     return (
-        <Form
+        <form
+            className='w-full'
             onSubmit={(e) => {
                 e.preventDefault();
                 onAdd(input);
                 setInput("");
             }}
         >
-            <Input
+            <input
+                className='w-full border-none p-[16px] outline-none border-r-4 mb-[8px]'
                 onChange={(e) => setInput(e.target.value)}
                 value={input}
                 placeholder="Add a new todo item here"
             />
-        </Form>
+        </form>
     );
 };

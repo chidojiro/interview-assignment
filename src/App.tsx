@@ -1,17 +1,10 @@
-import { useCallback, useState } from "react";
-import { v4 as uuid } from "uuid";
-import styled from "@emotion/styled";
-import { AddInput } from "./components/AddInput";
-import { TodoItem } from "./components/TodoItem";
-import { TodoList } from "./components/TodoList";
-import { Header } from "./components/Header";
+import React, {useCallback, useState} from "react";
+import {v4 as uuid} from "uuid";
+import {AddInput} from "./components/AddInput";
+import {TodoItem} from "./components/TodoItem";
+import {TodoList} from "./components/TodoList";
+import {Header} from "./components/Header";
 
-const Wrapper = styled.div({
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    width: 300,
-});
 interface Todo {
     id: string;
     label: string,
@@ -31,7 +24,7 @@ const initialData: Todo[] = [
     },
     {
         id: uuid(),
-        label: "Ace CoderPad interview",
+        label: "Ace interview",
         checked: true,
     },
 ];
@@ -51,7 +44,7 @@ function App() {
     }, []);
 
     return (
-        <Wrapper>
+        <div className='flex flex-col items-center w-[300px]'>
             <Header>Todo List</Header>
             <AddInput onAdd={addTodo} />
             <TodoList>
@@ -67,7 +60,7 @@ function App() {
                     }} />
                 ))}
             </TodoList>
-        </Wrapper>
+        </div>
     );
 }
 

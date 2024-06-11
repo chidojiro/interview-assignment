@@ -7,11 +7,11 @@ The goal of this exercise is to create a working todo list
 
 To start with, we have a styled todo list that supports adding todos. We also have premade styles for completed todo items. Although there's no working mechanism for "completing" a todo.
 
-## Task
+## Completed
 
 1. Clicking on a todo item should toggle the "checked" state.
 
-## Conversation
+## Todo
 
 1. The todo list state should be saved and loaded from local storage.
 2. Checked items should sink to the bottom of the list automatically

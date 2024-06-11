@@ -1,35 +1,5 @@
-import { FC } from "react";
-import styled from "@emotion/styled";
-
-export const Wrapper = styled.label({
-    display: "flex",
-    alignItems: "center",
-    width: "100%",
-    borderRadius: 4,
-    marginBottom: 8,
-    padding: 16,
-    background: "white",
-    fontWeight: "400",
-    fontSize: 14,
-    cursor: "pointer",
-});
-
-const Label = styled.span<{ checked: boolean }>(({ checked }) => ({
-    textDecoration: checked ? "line-through" : "none",
-    fontSize: 20,
-    margin: 0,
-    display: "flex",
-    flexDirection: "row",
-    flexWrap: "nowrap",
-    justifyContent: "flex-start",
-    alignItems: "center",
-}));
-
-const Checkbox = styled.input({
-    width: 16,
-    height: 16,
-    marginRight: 12,
-});
+import React, {FC} from "react";
+import {clsx} from 'clsx'
 
 export interface TodoItemProps {
     id: string;
@@ -39,20 +9,28 @@ export interface TodoItemProps {
 }
 
 export const TodoItem: FC<TodoItemProps> = ({
-                                                id,
-                                                label,
-                                                checked = false,
-                                                onChange
-                                            }) => {
+        id,
+        label,
+        checked = false,
+        onChange
+    }) => {
     return (
-        <Wrapper>
-            <Checkbox
+        <li className='flex items-center w-full border-r-4 mb-2 p-4 bg-white font-normal text-lg cursor-pointer'>
+            <input
+                className='w-[16px] h-[16px] mr-12'
                 type="checkbox"
                 id={id}
                 checked={checked}
                 onChange={onChange}
             />
-            <Label checked={checked}>{label}</Label>
-        </Wrapper>
+            <span
+                className={clsx(
+                'm-0 flex flex-row flex-nowrap justify-start items-center text-lg',
+                    checked && 'line-through'
+                )}
+            >
+                {label}
+            </span>
+        </li>
     );
 };
